@@ -1,5 +1,6 @@
-dot -Tpng torconfig.dot > torconfig.png
-dot -Tpdf torconfig.dot > torconfig.pdf
+COMMANDS (for graphvis):  
+* generate png for digraph: dot -Tpng torconfig.dot > torconfig.png
+* generate pdf for digraph: dot -Tpdf torconfig.dot > torconfig.pdf
 
 VISIONS: 
  * have UI paths for Tor vs other browsers--is is usable? how is it different? the number of choices, 
@@ -14,7 +15,7 @@ VISIONS:
 
 
 META-TODO: 
- * ~visualizations of UI config paths in Tor~ (for user experiments!)
+ * ~~visualizations of UI config paths in Tor~~ (for user experiments!)
  * determine which UI config paths work/don't work for all three censorship environments
  * draft a survey: get at what people are confused about and why
  * think of UI tweak to test: reducing depth and breadth of UI paths
