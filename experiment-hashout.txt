@@ -1,7 +1,7 @@
 Tor Circumvention UX Experiment: 
 -2 settings: where tor and websites are blocked, where tor is not blocked but websites are blocked. 
 -follow up with one-on-one interviews for outliers and random participants 
--implement an improvement
+-(? implement an improvement)
 
 Scope: 
 - Tor’s configuration dialogue only, with respect to censorship circumvention
@@ -18,25 +18,25 @@ Analyses:
 - analyze the behaviors of people after-the-fact to see how many would have made a dangerous mistake (observe actions, then see what would have happened in other censorship environments—i.e. they would have not been able to search online for “tor config help,” they would have been blocked and logged that they tried to go to a website so the police will come, etc.)
 - qualitative analysis on survey answers 
 
-Participant Briefing (Rough Draft):
 
-For 
 
-Tor Survey Questions (Rough Draft): 
 
-1. What is your gender? (male/female)
-2. What is your age? (number)
-3. What is the highest education level you have completed? (high school/bachelors/higher)
 
-4. Have you used Tor before? 
-5. Which of the following terms have you heard of before? (measure technical sophistication, censorship awareness, insert fake concepts)
-6. If your computer breaks, which of the following would you do? (fix it myself, ask another person, hire someone)
+Participant Briefing: we need to give enough contextual information so that the users will behave in a realistic manner. Since it is very difficult to emulate real-world realism, we will explicitly set up an environment thorough the briefing. After giving the participant a realistic scenario in which they can role-play in, this should purposefully disclose a particular amount of information, talk about any resources, and explicitly discuss any consequences. 
 
-7. How confident were you that you were using Tor correctly? (open answer)
-8. How confident were you with each task? (likert scale)
-9. Based on your experience, would you use Tor again? Why or why not? (open answer)  
+bad example, but illustrates the idea (for proxy-only): You are at work and you really want to use Facebook, but it turns out that your employer’s firewall prevents you from using it. If you are caught using Facebook, you will be fired. 
 
-(show screenshots the configuration windows to participants when asking these questions) 
-10. What would have made it easier for you to configure the Tor Browser? Feel free to suggest technical changes and non-technical changes. (open answer) 
-11. What was the most confusing part when configuring the Tor Browser? This can include wording, input choices, feedback mechanisms, etc.  (open answer) 
 
+
+For NOT tor-blocked and website-blocked environments: 
+
+You are in a country where the government has blocked specific websites. Tor is a browser which lets you browse the web anonymously, and also allows you to access censored web page. The government does not know about Tor, so they have not blocked Tor. You can use Tor to browse the web. Imagine that you want to complete the list of following tasks in your country, because these sites are ones that you would like to visit, and are a part of your regular routine. 
+
+
+For tor-blocked and website-blocked environments: 
+
+You are in a country where the government has blocked specific websites. Tor is a browser which lets you browse the web anonymously, and also allows you to access censored web page. The government knows about Tor, so they have also blocked Tor in your country. However, you can still use Tor with a little bit of configuration, which can hide the fact that you are using Tor to browse the web. Imagine that you want to complete the list of following tasks in your country, because these sites are ones that you would like to visit, and are a part of your regular routine. 
+
+
+
+Tor Survey Questions: http://www.surveygizmo.com/s3/2085559/Tor-Usability-Survey/SG_TEST_RUN
