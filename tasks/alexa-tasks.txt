@@ -1,0 +1,93 @@
+1,google.com
+Do a web search.
+Search for a business on Google Maps.
+
+2,facebook.com
+Log in, check Facebook.
+
+3,youtube.com
+Watch a video.
+
+4,amazon.com
+Buy something (place an order most of the way?).
+Watch a video.
+
+5,yahoo.com
+Do a web search
+Read recent news.
+Check a stock price.
+
+6,wikipedia.org
+Read an article.
+Edit an article.
+Upload an image.
+
+7,twitter.com
+Read a user's timeline.
+Search for something.
+Make a tweet.
+
+8,ebay.com
+
+9,linkedin.com
+Do a search.
+
+10,reddit.com
+Read the front page of a subreddit.
+Make a post.
+
+11,imgur.com
+Do a search.
+
+12,craigslist.org
+Search for something in the local area.
+Place an ad.
+
+13,go.com
+
+14,tumblr.com
+
+15,netflix.com
+Watch a video.
+
+16,pinterest.com
+
+17,t.co
+
+18,live.com
+
+19,bing.com
+Do a web search.
+Check news.
+Find directions.
+
+20,blogspot.com
+
+21,espn.go.com
+Check sports scores.
+Watch video highlights.
+
+22,paypal.com
+
+23,instagram.com
+
+24,apple.com
+Browse the App Store.
+Listen to iTunes.
+
+25,cnn.com
+Read headlines.
+
+26,imdb.com
+
+27,chase.com
+
+28,huffingtonpost.com
+
+29,diply.com
+
+30,nytimes.com
+
+other
+Visit a hidden service.
+Upload to SecureDrop.
