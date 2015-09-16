@@ -1,5 +1,14 @@
 Tor Circumvention UX Experiment: 
--2 settings: where tor and websites are blocked, where tor is not blocked but websites are blocked. 
+-3 settings: 
+
+websites are blocked (DNS), CONNECT == SUCCESS
+
+tor blocked by protocol and ip addresses and websites by (DNS), CHOOSE ANY BRIDGE == SUCCESS
+
+tor blocked by protocol and ip addresses and hard coded bridges are blocked and websites by (DNS)
+MEEK OR OWN BRIDGE ADDRESS == SUCCESS 
+
+
 -follow up with one-on-one interviews for outliers and random participants 
 -(? implement an improvement)
 
@@ -19,12 +28,21 @@ Analyses:
 - qualitative analysis on survey answers 
 
 
+TASKLIST:
+Do a Google web search.
+Watch a YouTube video.
+Find the Amazon best sellers in the "Movies & TV" category.
+On Yahoo, find the exchange rate between dollars and euros.
+Click on the featured article in the Wikipedia "History" portal.
+Find the Twitter trending topics.
+Find directions from Times Square to Carnegie Hall on Bing Maps.
+
+Log into a social media account.
+View a page that shows a captcha.
 
 
 
-Participant Briefing: we need to give enough contextual information so that the users will behave in a realistic manner. Since it is very difficult to emulate real-world realism, we will explicitly set up an environment thorough the briefing. After giving the participant a realistic scenario in which they can role-play in, this should purposefully disclose a particular amount of information, talk about any resources, and explicitly discuss any consequences. 
-
-bad example, but illustrates the idea (for proxy-only): You are at work and you really want to use Facebook, but it turns out that your employer’s firewall prevents you from using it. If you are caught using Facebook, you will be fired. 
+BREIFING: we need to give enough contextual information so that the users will behave in a realistic manner. Since it is very difficult to emulate real-world realism, we will explicitly set up an environment thorough the briefing. After giving the participant a realistic scenario in which they can role-play in, this should purposefully disclose a particular amount of information, talk about any resources, and explicitly discuss any consequences. 
 
 
 
