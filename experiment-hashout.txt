@@ -1,0 +1,42 @@
+Tor Circumvention UX Experiment: 
+-2 settings: where tor and websites are blocked, where tor is not blocked but websites are blocked. 
+-follow up with one-on-one interviews for outliers and random participants 
+-implement an improvement
+
+Scope: 
+- Tor’s configuration dialogue only, with respect to censorship circumvention
+! Not in scope: proxies, user trust models, rest of Tor’s UX, anonymity
+
+Data collected: 
+-configuration control flow: via video capture
+-participants information/feedback: via survey
+! Let’s not write extensions or log everything
+
+Analyses: 
+- show a markov chain version of the configuration tree, before and after changes
+- measure dangerous mistakes, mistakes, time to completion, paths taken, etc. 
+- analyze the behaviors of people after-the-fact to see how many would have made a dangerous mistake (observe actions, then see what would have happened in other censorship environments—i.e. they would have not been able to search online for “tor config help,” they would have been blocked and logged that they tried to go to a website so the police will come, etc.)
+- qualitative analysis on survey answers 
+
+Participant Briefing (Rough Draft):
+
+For 
+
+Tor Survey Questions (Rough Draft): 
+
+1. What is your gender? (male/female)
+2. What is your age? (number)
+3. What is the highest education level you have completed? (high school/bachelors/higher)
+
+4. Have you used Tor before? 
+5. Which of the following terms have you heard of before? (measure technical sophistication, censorship awareness, insert fake concepts)
+6. If your computer breaks, which of the following would you do? (fix it myself, ask another person, hire someone)
+
+7. How confident were you that you were using Tor correctly? (open answer)
+8. How confident were you with each task? (likert scale)
+9. Based on your experience, would you use Tor again? Why or why not? (open answer)  
+
+(show screenshots the configuration windows to participants when asking these questions) 
+10. What would have made it easier for you to configure the Tor Browser? Feel free to suggest technical changes and non-technical changes. (open answer) 
+11. What was the most confusing part when configuring the Tor Browser? This can include wording, input choices, feedback mechanisms, etc.  (open answer) 
+
