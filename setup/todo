@@ -1,0 +1,13 @@
+"start up" script:
+Install hosts file.
+Set up firewall rules.
+Install Tor Browser.
+Put IE, Firefox, Chrome on the desktop.
+Add a link to the survey on the desktop.
+Install VLC.
+Start screen recording.
+
+
+"shut down" script:
+Turn off recording.
+Upload video file.
