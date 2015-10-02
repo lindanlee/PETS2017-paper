@@ -25,5 +25,28 @@ def read_addresses_from_json(f):
 def block_ips(ips, name):
     print "netsh advfirewall firewall add rule name=\"%s\" dir=out action=block remoteip=%s" % (name, ",".join(ips))
 
+# https://gitweb.torproject.org/builders/tor-browser-bundle.git/tree/Bundle-Data/PTConfigs/bridge_prefs.js?id=tbb-5.0.3-build3
+torbrowser_addresses = [
+    "83.212.101.3",
+    "169.229.59.74",
+    "169.229.59.75",
+    "109.105.109.163",
+    "109.105.109.163",
+    "192.240.101.106",
+    "50.7.176.114",
+    "131.252.210.150",
+    "128.105.214.161",
+    "128.105.214.162",
+    "128.105.214.163",
+    "[2001:49f0:d002:1::2]",
+    "[2001:49f0:d00a:1::c]",
+    "188.226.213.208",
+    "83.212.101.3",
+    "178.209.52.110",
+    "83.212.101.3",
+    "104.131.108.182",
+]
+
 addresses = read_addresses_from_json(sys.stdin)
 block_ips(addresses, "Tor relays")
+block_ips(torbrowser_addresses, "Tor browser bridges")
