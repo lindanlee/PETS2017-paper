@@ -15,6 +15,7 @@ def read_addresses_from_json(f):
     for relay in j["relays"]:
         for or_address in relay["or_addresses"]:
             addr, port = or_address.rsplit(":", 1)
+            addr = addr.strip("[]")
             addresses.append(addr)
     return addresses
 
@@ -38,8 +39,8 @@ torbrowser_addresses = [
     "128.105.214.161",
     "128.105.214.162",
     "128.105.214.163",
-    "[2001:49f0:d002:1::2]",
-    "[2001:49f0:d00a:1::c]",
+    "2001:49f0:d002:1::2",
+    "2001:49f0:d00a:1::c",
     "188.226.213.208",
     "83.212.101.3",
     "178.209.52.110",
