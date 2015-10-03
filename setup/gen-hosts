@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 
+# Install to C:\Windows\System32\drivers\etc\hosts
+# aka
+#          %SystemRoot%\System32\drivers\etc\hosts
+
 BASE_DOMAINS = [
     "torproject",
     "amazon",
