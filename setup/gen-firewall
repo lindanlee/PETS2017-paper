@@ -26,8 +26,8 @@ def read_addresses_from_json(f):
 
 def block_ips(ips, name):
     num_addresses = len(ips) 
-    for i in range (0,num_addresses,2000):
-        slice = ips[i:i+2000]
+    for i in range (0,num_addresses,500):
+        slice = ips[i:i+500]
         print "netsh advfirewall firewall add rule name=\"%s\" dir=out action=block remoteip=%s" % (name, ",".join(slice))
 
 # https://gitweb.torproject.org/builders/tor-browser-bundle.git/tree/Bundle-Data/PTConfigs/bridge_prefs.js?id=tbb-5.0.3-build3
