@@ -52,21 +52,21 @@ torbrowser_addresses = [
     "104.131.108.182",
 ]
 
-# make this fresh
-#addresses = read_addresses_from_json(sys.stdin)
-#block_ips(addresses, "Tor relays")
-
 level = int(sys.argv[1])
 
 batch_file = open("batch-file.bat","w")
 hosts_file = open("hosts","w")
+or_addresses_file = open("or_addresses.json","r")
 
 if level == 3: 
     #block tor, hardcoded relays, and generate a hostfile
+    addresses = read_addresses_from_json(or_addresses_file)
+    block_ips(addresses, "Tor relays")
     block_ips(torbrowser_addresses, "Tor browser bridges")
 elif level == 2: 
     #block tor and generte a hostfile
-    pass
+    addresses = read_addresses_from_json(or_addresses_file)
+    block_ips(addresses, "Tor relays")
 elif level == 1: 
     #generate a hostfile
     pass
