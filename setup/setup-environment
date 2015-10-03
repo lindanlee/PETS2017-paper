@@ -3,6 +3,8 @@
 import sys
 import json
 
+### install hostsfile and set up firewall rules
+
 # Usage:
 # wget -O or_addresses.json https://onionoo.torproject.org/details?fields=or_addresses
 # ./gen-firewall < or_addresses.json
@@ -136,4 +138,16 @@ elif level == 1:
 else:
     assert False 
 
-    
+
+### install Tor Browser
+
+### install VLC
+
+### add a link to the survey on the desktop
+
+### put IE, Firefox, Chrome on the desktop
+
+### start screen recording 
+
+
+
