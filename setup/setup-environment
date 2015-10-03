@@ -122,14 +122,17 @@ if level == 3:
     block_ips(addresses, "Tor relays")
     block_ips(torbrowser_addresses, "Tor browser bridges")
     make_hostfile()
+    print >> batch_file, "copy hosts %SystemRoot%\System32\drivers\etc\hosts" 
 elif level == 2: 
     #block tor and generte a hostfile
     addresses = read_addresses_from_json(or_addresses_file)
     block_ips(addresses, "Tor relays")
     make_hostfile()
+    print >> batch_file, "copy hosts %SystemRoot%\System32\drivers\etc\hosts" 
 elif level == 1: 
     #generate a hostfile
     make_hostfile()
+    print >> batch_file, "copy hosts %SystemRoot%\System32\drivers\etc\hosts" 
 else:
     assert False 
 
