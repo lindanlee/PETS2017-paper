@@ -1,4 +1,4 @@
-Tor Circumvention UX Experiment: 
+﻿Tor Circumvention UX Experiment: 
 -3 settings: 
 
 websites are blocked (DNS), CONNECT == SUCCESS
@@ -28,7 +28,7 @@ Analyses:
 - qualitative analysis on survey answers 
 
 
-TASKLIST:
+TASKLIST: (needs to be updated) 
 Do a Google web search.
 Watch a YouTube video.
 Find the Amazon best sellers in the "Movies & TV" category.
