@@ -1,0 +1,76 @@
+#!/usr/bin/env python
+
+import sys
+import json
+
+# Usage:
+# wget -O or_addresses.json https://onionoo.torproject.org/details?fields=or_addresses
+# ./gen-firewall < or_addresses.json
+
+# Alternate onionoo download: https://onionoo.thecthulhu.com/details?fields=or_addresses
+
+def read_addresses_from_json(f):
+    j = json.load(f)
+    addresses = []
+    for relay in j["relays"]:
+        for or_address in relay["or_addresses"]:
+            addr, port = or_address.rsplit(":", 1)
+            addr = addr.strip("[]")
+            addresses.append(addr)
+    return addresses
+
+# How to use the "netsh advfirewall firewall" context instead of the "netsh
+# firewall" context to control Windows Firewall behavior in Windows Server 2008
+# and in Windows Vista
+# https://support.microsoft.com/en-us/kb/947709
+
+def block_ips(ips, name):
+    num_addresses = len(ips) 
+    for i in range (0,num_addresses,500):
+        slice = ips[i:i+500]
+        print >> batch_file, "netsh advfirewall firewall add rule name=\"%s\" dir=out action=block remoteip=%s" % (name, ",".join(slice))
+
+# https://gitweb.torproject.org/builders/tor-browser-bundle.git/tree/Bundle-Data/PTConfigs/bridge_prefs.js?id=tbb-5.0.3-build3
+torbrowser_addresses = [
+    "83.212.101.3",
+    "169.229.59.74",
+    "169.229.59.75",
+    "109.105.109.163",
+    "109.105.109.163",
+    "192.240.101.106",
+    "50.7.176.114",
+    "131.252.210.150",
+    "128.105.214.161",
+    "128.105.214.162",
+    "128.105.214.163",
+    "2001:49f0:d002:1::2",
+    "2001:49f0:d00a:1::c",
+    "188.226.213.208",
+    "83.212.101.3",
+    "178.209.52.110",
+    "83.212.101.3",
+    "104.131.108.182",
+]
+
+# make this fresh
+#addresses = read_addresses_from_json(sys.stdin)
+#block_ips(addresses, "Tor relays")
+
+level = int(sys.argv[1])
+
+batch_file = open("batch-file.bat","w")
+hosts_file = open("hosts","w")
+
+if level == 3: 
+    #block tor, hardcoded relays, and generate a hostfile
+    block_ips(torbrowser_addresses, "Tor browser bridges")
+elif level == 2: 
+    #block tor and generte a hostfile
+    pass
+elif level == 1: 
+    #generate a hostfile
+    pass
+else:
+    assert False 
+
+    
