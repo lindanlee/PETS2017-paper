@@ -148,6 +148,15 @@ Some domains, like wikipedia.org, may allow HTTP but not HTTPS.
 Blocked requests fail silently (no block page).
 \end{itemize}
 
+In certain real censorship environment and our most 
+prohibitive simulated censorship environments, only some of 
+Tor's pluggable transports work in censorship environments
+where others do not. Some of them require additional information
+(like bridge addresses) before they work. Currently, we do not 
+have a way to target test specific transports. However, we 
+do ask why participants chose a specific pluggable 
+transport in our exit survey to gain some insight. 
+
 \noindent {\bfseries List of Tasks} 
 In our experimental setup, successful completion of 
 these given tasks requires of correct configuration.
@@ -196,39 +205,6 @@ minimum wage for an hour and any transportation costs to the lab.  \\
 We plan to finish the user study by the end of the semester. 
 From this experiment, we hope to accomplish the following: 
 
-
-\section{Remaining Questions} 
-
-\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
-\item {\bfseries Targeting specific pluggable transports}
-Some of Tor's pluggable transports work in censorship environments
-where others do not.
-Additionally, some of them require additional information
-(like bridge addresses) before they work.
-Is there a way to target testing of specific transports?
-Is there anything to infer from participants' selection of transports, 
-or do we assume they are trying transports at random?
-
-\item {\bfseries Censorship environments}
-Our proposed censorship simulation is informed
-by real-world censors.
-What other representative environments
-should be tested?
-
-\item {\bfseries Browsing tasks}
-Circumvention is broader than the stereotypical
-``dissident blogger'' use case.
-We have invented some tasks that use some of the
-most popular web sites.
-What other browsing tasks make sense to test?
-
-\item {\bfseries Experimental design}
-Our initial study was aimed at a specific subset of users (journalists).
-We plan to remove this restriction in order
-to have a larger participant population.
-We aim to make our results reproducible by publishing
-our software and firewall configurations.
-\end{itemize}
 
 \section{Resources}
 \noindent Our online artifacts of the work done during this class, Fall 2015,
