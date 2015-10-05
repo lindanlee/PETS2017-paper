@@ -109,6 +109,11 @@ censorship circumvention tool, rather than an anonymity tool. }
 {\color {red}
 % test tor, test improvements, may do followups on demand, push changes.
 
+% setting up the environment wrt interface paths.
+% setting up motivation: roleplay, tasks to complete
+% follow up with a survey 
+
+
 %improve what is below:
 For users to circumvent censorship in their resident countries, they will need to configure Tor to set up a proxy, bridge, or both. There is a configuration wizard to help guide users through setting up their connection, but our hypothesis is that the average user will not easily be able to configure Tor correctly in these adverse settings, as they require the user to provide IP addresses of proxies or bridges to use. The goal of our experiment is to see how successful users are at carrying out common browsing tasks in an adversarial setting using Tor.}\\
 
@@ -119,6 +124,7 @@ For users to circumvent censorship in their resident countries, they will need t
 \end{figure*}
 
 \begin{figure}[t]
+\label{fig:bridges}
   \centering
     \includegraphics[width=0.5\textwidth]{configuration-screenshot.png}
     \caption{The Tor Bridges Configuration window of the Tor configuration interface. Tor users in censored environments and some of our participants will be required to select the correct bridge for circumventing censorship. Note that the interface prompts users to choose a transport type, which can be the source of confusion. Bridges are non-listed guard relays to the Tor network, and some of them can have transport types which obfuscate traffic in different ways.}
@@ -155,48 +161,42 @@ leisurely purposes.
 We start off the experiment by telling them that they are in an adversarial setting, and that some websites are blocked and some websites are not. We will instruct them to visit notblocked.com and also blocked.com to illustrate the situation that they are in. We will also explain what Tor is, and how they can use it if necessary, and ask them to complete the set of tasks. To complete all the tasks, the participants will ultimately need to get the correct configuration settings for the country they are simulated to be in. We will end the experiment with a survey which asks them things like their security background, tech exposure, what was unexpected, what was hard, etc. We plan to analyze: which configuration tasks are hard (bridges versus proxies, etc.), how many were successful, how long it took users to configure, if they understood the process, if they were confident that it was working as expected, etc.} \\
 
 \noindent {\bfseries Censorship Environment Simulation} 
-{\color{red}
 We plan to simulate three censorship environments.
 They are informed by our experience with pluggable transports
 and knowledge of commonly seen censorship techniques.
 They are not meant perfectly to replicate the network environment
-in any particular country; rather, they are abstract simulations
-that are nevertheless inspired by reality.
-
-% talk about how these censorship environments cover the UI path
+in any particular country. Although inspired by reality, these
+abstract simulations are intended to require distinct configurations
+of the Tor Browser from our participants. 
 
 \begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
-\item{Corporate network.}
-A simulation of an enterprise or educational firewall.
-Blocks all services but HTTP, HTTPS, and DNS.
-Certain non-work-related domains, like youtube.com and torproject.org,
-are blocked by DNS and HTTP inspection.
-Blocked requests are redirected to a block page.
-\item{DNS-only censor.}
-This censor injects false replies to DNS queries
-for forbidden domain names (DNS poisoning),
-but does not do deep packet inspection on TCP streams.
-Unlike the corporate censor, this censor allows protocols
-outside a small whitelisted set.
-\item{Comprehensive censor.}
-Employs a variety of techniques, depending on the target.
-May do DNS poisoning, IP blocking, and inspection of TCP streams
-(examining the URL of HTTP requests, for example).
-Some domains may be blocked by DNS and deep packet inspection;
-others may additionally be blocked by IP address.
-Tor relays are blocked by IP address.
-Some domains, like wikipedia.org, may allow HTTP but not HTTPS.
-Blocked requests fail silently (no block page).
+\item {\bfseries Mild censorship} 
+(Reflective of countries such as {\color{red}?? and ??}.)
+Certain domain names are blocked. Reaching these 
+domains requires any use of a censorship circumvention 
+tool. The default option to ``connect'' to the Tor network 
+directly will circumvent this censor. Additional correct
+bridge or proxy configuration are optional. 
+\item {\bfseries Intermediate censorship} 
+(Reflective of countries such as {\color{red}?? and ??}.)
+Certain domain names are blocked. Censorship circumvention
+tools are blocked. Since Tor is blocked by blocking all public Tor
+relay nodes, the default option to ``connect'' to the Tor network
+directly will fail. A choice of a hard-coded bridge (see Figure ~\ref{fig:bridges})
+or a valid non-public bridge is required to circumvent this censor.  
+Additional correct proxy configuration is optional.
+\item {\bfseries Comprehensive censorship} 
+(Reflective of countries such as China and Syria.)
+Certain domain names are blocked. Censorship circumvention tools
+are thoroughly blocked. Tor is blocked by blocking all public
+Tor relay nodes, and the censor has examined source code to block
+all hard-coded bridge relays in the configuration interface. The default option
+to ``connect'' to the Tor network directly will fail. Choosing any other bridges than
+``meek-amazon,'' ``meek-azure,'' and``meek-google,'' will fail. This is because 
+domain-fronting requires censors to block entire CDNs to also block this
+transport (which will cause huge collateral blocking damage), making it resistant to agressive censorship environments. Additional details,
+see ~\cite{fifield2015blocking}.\\
 \end{itemize}
-
-In certain real censorship environment and our most 
-prohibitive simulated censorship environments, only some of 
-Tor's pluggable transports work in censorship environments
-where others do not. Some of them require additional information
-(like bridge addresses) before they work. Currently, we do not 
-have a way to target test specific transports. However, we 
-do ask why participants chose a specific pluggable 
-transport in our exit survey to gain some insight.}\\
 
 \noindent {\bfseries List of Tasks} 
 In our experimental setup, successful completion of 
@@ -260,7 +260,7 @@ are below:
 \item \href{https://github.com/lindanlee/circumvention-ux-tor/blob/master/setup/takedown-environment}{experimental takedown code: saving files and cleanup} 
 \end{itemize}
 
-%%  FROM ANONYMITY UX STUDY 
+% from anonymity study
 Our online artifacts of study of Tor as an anonymity tool, such as 
 the summary, results, and resulting browser changes are below:
 \begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
