@@ -3,4 +3,5 @@ circumvention-experiment.pdf
 *.bbl
 *.blg
 *.log
+*.out
 *.synctex.gz
