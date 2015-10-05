@@ -217,18 +217,18 @@ Certain domain names are blocked. Censorship circumvention tools
 are thoroughly blocked. Tor is blocked by blocking all public
 Tor relay nodes, and the censor has examined source code to block
 all hard-coded bridge relays in the configuration interface. The default option
-to ``connect'' to the Tor network directly will fail. Choosing any other bridges than
+to ``connect'' to the Tor network directly will fail. Choosing any bridges other than
 ``meek-amazon,'' ``meek-azure,'' and``meek-google,'' will fail. This is because 
 domain-fronting requires censors to block entire CDNs to also block this
-transport (which will cause huge collateral blocking damage), making it resistant to agressive censorship environments. Additional details,
-see ~\cite{fifield2015blocking}.\\
+transport (which will cause huge collateral blocking damage), making it resistant to agressive censorship environments.
+(See ~\cite{fifield2015blocking} for additional details.)\\
 \end{itemize}
 
 \noindent {\bfseries List of Tasks} 
 In our experimental setup, successful completion of 
 these given tasks requires of correct configuration.
 The difficulty of circumventing  censorship to visit the 
-websites required for the tasks will vary on the 
+websites required for the tasks will vary depending on the 
 simulated censorship environment. Since all participants will be given the 
 same set of tasks, regardless of the censorship environment, 
 the difficulty of completing the tasks remains constant assuming
@@ -263,12 +263,12 @@ From this experiment, we hope to accomplish the following:
 \item {\bfseries Test the Tor configuration interface} We will perform the largest-scale user study 
 of Tor to date, measuring how users configure Tor in three different adversarial settings. 
 \item {\bfseries Test an improved configuration interface} With the measurements collected
-from testing the interface as-is, Nathan will be designing ways to improve the interface to minimize
+from testing the interface as-is, we will be designing ways to improve the interface to minimize
 time taken, paths taken, and error states reached.
 \item {\bfseries Test an alternative configuration interface} A Tor developer has offered
 to design a mock-up interface for an alternative configuration interface which will
 greatly automate the process. There are tradeoffs between ease of use and transparency
-of the system's, and ethical considerations with loggable errors resulting from automated configuration. 
+of the systems, and ethical considerations with loggable errors resulting from automated configuration. 
 \item {\bfseries Push changes} We have the support of Tor developers
 to improve this interface. Additionally, since the configuration interface does not require 
 any changes to the Tor Browser functionality, improvements to the interface will
