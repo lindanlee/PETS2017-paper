@@ -85,27 +85,27 @@ we decided to focus on an important use case of Tor browser, censorship circumve
 To our knowledge, this is the first user study investigating the usability of Tor as a 
 censorship circumvention tool, rather than an anonymity tool. }
 
-
-
 \section{Design}
 
 \noindent {\bfseries Overview}
 {\color {red}
-% test tor, test improvements, may do followups on demand, push changes.
-
-% setting up the environment wrt interface paths.
-
 %improve what is below:
 For users to circumvent censorship in their resident countries, they will need
 to configure Tor to set up a proxy, bridge, or both. There is a configuration
-wizard to help guide users through setting up their connection, but our
-hypothesis is that the average user will not easily be able to configure Tor
-correctly in these adverse settings, as they require the user to provide IP
-addresses of proxies or bridges to use. The goal of our experiment is to see
-how successful users are at carrying out common browsing tasks in an
-adversarial setting using Tor.}\\
+wizard to help guide users through setting up their connection, but 
+
+Our hypothesis is that the average user does not have knowledge
+knowledge on how certain pluggable transports work, or to provide non-publicly listed IP
+addresses bridges. Certain real-world censorship settings require the user to provide this
+information during configuration, which will affect how successful users are at 
+circumventing censorship using Tor. There are blogs in countries which have extensive
+censorship on how to configure Tor correctly {\color {red} cite something}, and participants may 
+receive additional informatio through word of mouth. Our study will measure if the configuration
+interface successfully guides users to correctly configuring their browser, not accounting 
+for any additional  information that a real user may have.}\\
 
 \begin{figure*}[t]
+\label{fig:interface}
   \centering
     \includegraphics[width=\textwidth]{../torconfig.png}
     \caption{This flow chart shows all of the possible paths taken through the
@@ -145,6 +145,12 @@ Participants will be compensated \$30 for their time, which covers
 minimum wage for an hour and any transportation costs to the lab.  \\
 
 \noindent {\bfseries Experiment Flow} 
+We will run three sets of the experiment, the first set to test the current configuration
+interface, a second set to test the improved interface, and a third set to test the 
+alternate configuration interface. The experiment flow will be the same across all 
+sets of experiments, with the fact that the configuration interface will be altered 
+across sets. 
+
 The experiment begins with the participants being informed that they are in a
 simulated censorship
 environment, where some --- but not all --- websites are blocked. We will
