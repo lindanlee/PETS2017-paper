@@ -112,6 +112,12 @@ censorship circumvention tool, rather than an anonymity tool. }
 %improve what is below:
 For users to circumvent censorship in their resident countries, they will need to configure Tor to set up a proxy, bridge, or both. There is a configuration wizard to help guide users through setting up their connection, but our hypothesis is that the average user will not easily be able to configure Tor correctly in these adverse settings, as they require the user to provide IP addresses of proxies or bridges to use. The goal of our experiment is to see how successful users are at carrying out common browsing tasks in an adversarial setting using Tor.}\\
 
+\begin{figure*}[t]
+  \centering
+    \includegraphics[width=\textwidth]{../torconfig.png}
+    \caption{This flow chart shows all of the possible paths taken through the Tor configuration interface. A state represents a window in the interface, with the exception of the leaves, which indicate the final action taken by the interface (``q'' for quit, ``s'' for success, and ``e'' for error). The transitions between the states indicate which user action causes that transition. The cause for error is can be found \href{https://github.com/lindanlee/circumvention-ux-tor/blob/master/torconfig.dot}{here}.}
+\end{figure*}
+
 \begin{figure}[t]
   \centering
     \includegraphics[width=0.5\textwidth]{configuration-screenshot.png}
