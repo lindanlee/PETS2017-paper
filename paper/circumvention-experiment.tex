@@ -79,20 +79,20 @@ censorship circumvention tool, rather than an anonymity tool.
 \section{Design}
 
 \noindent {\bfseries Overview}
-There is a configuration interface (Figure ~\ref{fig:interface}) to help guide users through 
-setting up their connection to the Tor network. Through this, users can configure Tor to set up a bridge,
-proxy, or both. Since proxies are not a Tor-specific notion nor explicitly required to circumvent censorship, 
-we will focus our study on bridge configuration. We accomplish this by placing users in crafted simulated 
-censorship environments which require particular bridge configurations to circumvent censorship. 
+The Tor Browser provides a configuration interface (Figure
+~\ref{fig:interface}) to guide users through setting up their connection to the
+Tor network. While people in most countries can connect to Tor using the
+dialog's default settings, citizens in certain censorship environments must
+make use of additional settings, such as bridges, proxies, or both.
 
-Our hypothesis is that the average user does not have knowledge
-knowledge on how certain pluggable transports work, or to provide non-publicly listed IP
-addresses bridges. Certain real-world censorship settings require the user to provide this
-information during configuration, which will affect how successful users are at 
-circumventing censorship using Tor. Participants may receive additional information through word 
-of mouth, help from relatives, or blogs. Our study will measure if the configuration
-interface successfully guides users to correctly configuring their browser, not accounting 
-for any additional  information that a real user may have.\\
+Our hypothesis is that, under these circumstances, the average user will
+struggle to connect, because they lack knowledge of the technical terms and
+mechanisms required for circumvention (such as pluggable transports) and cannot
+obtain information not explicitly provided by the user interface (e.g., IP
+addresses of non-publicly listed bridges).
+
+Our study will test this hypotheses by measuring if the connection
+interface successfully guides users to correctly configuring their browser.\\
 
 \begin{figure*}[t]
 \label{fig:interface}
