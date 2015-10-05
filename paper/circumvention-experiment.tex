@@ -103,10 +103,28 @@ censorship circumvention tool, rather than an anonymity tool.
 
 
 \section{Design}
+
 \noindent {\bfseries Overview}
+% test tor, test improvements, may do followups on demand, push changes.
+
+%improve what is below:
 For users to circumvent censorship in their resident countries, they will need to configure Tor to set up a proxy, bridge, or both. There is a configuration wizard to help guide users through setting up their connection, but our hypothesis is that the average user will not easily be able to configure Tor correctly in these adverse settings, as they require the user to provide IP addresses of proxies or bridges to use. The goal of our experiment is to see how successful users are at carrying out common browsing tasks in an adversarial setting using Tor. 
 
+\noindent {\bfseries Experiment Logistics} 
+The IRB protocol to run this user study has been approved (2014-12-6995). 
+We plan to recruit from 100-200 users for the purpose of this study, 
+making it largest user study to examine Tor.  This study will be conducted at the 
+Experimental Social Science Laboratory (Xlab)
+at the University of California, Berkeley, which consists of 36 laptops with 
+cubicle walls separating each laptop. We will use individual host firewalls to simulate
+censorship environments and will record computer screens to capture 
+user activity. The total length of the experiment, including briefing, completing the censorship 
+circumvention tasks, exit survey, and debriefing, will take about an hour. 
+Participants will be compensated \$30 for their time, which is more to cover 
+minimum wage for an hour and any transportation costs to the lab.  \\
 
+\noindent {\bfseries Experiment Flow} 
+% explain one experiment from start to end. 
 At the start of the study, participants will be informed
 of the role they they will be playing in the study. Particularly,
 they will be informed that they are in a censorship environment
@@ -117,12 +135,15 @@ leisurely purposes.
 We start off the experiment by telling them that they are in an adversarial setting, and that some websites are blocked and some websites are not. We will instruct them to visit notblocked.com and also blocked.com to illustrate the situation that they are in. We will also explain what Tor is, and how they can use it if necessary, and ask them to complete the set of tasks. To complete all the tasks, the participants will ultimately need to get the correct configuration settings for the country they are simulated to be in. We will end the experiment with a survey which asks them things like their security background, tech exposure, what was unexpected, what was hard, etc. We plan to analyze: which configuration tasks are hard (bridges versus proxies, etc.), how many were successful, how long it took users to configure, if they understood the process, if they were confident that it was working as expected, etc. \\
 
 \noindent {\bfseries Censorship Environment Simulation}
+
 We plan to simulate three censorship environments.
 They are informed by our experience with pluggable transports
 and knowledge of commonly seen censorship techniques.
 They are not meant perfectly to replicate the network environment
 in any particular country; rather, they are abstract simulations
 that are nevertheless inspired by reality.
+
+% talk about how these censorship environments cover the UI path
 
 \begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
 \item{Corporate network.}
@@ -177,6 +198,10 @@ were further refined after performing a pilot study of the experiment.
 We hope the tasks convey an example of how of a user might 
 browse the Internet in a censored environment. 
 
+%talk about how participants will be motivated to configure to 
+%complete these tasks. participants will write down the answers 
+%on a sheet of paper... 
+
 \begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
 \item Do a Google web search for the population of Zimbabwe. 
 \item On Youtube, find a video playing Bach's ``Ode to Joy.'' 
@@ -187,23 +212,14 @@ browse the Internet in a censored environment.
 \item On Bing Maps, find directions from Time Square to Carnegie Hall.
 \end{itemize}
 
-\noindent {\bfseries Experiment Logistics} 
-The IRB protocol to run this user study has been approved (2014-12-6995). 
-We plan to recruit from 100-200 users for the purpose of this study, 
-making it largest user study to examine Tor.  This study will be conducted at the 
-Experimental Social Science Laboratory (Xlab)
-at the University of California, Berkeley, which consists of 36 laptops with 
-cubicle walls separating each laptop. We will use individual host firewalls to simulate
-censorship environments and will record computer screens to capture 
-user activity. The total length of the experiment, including briefing, completing the censorship 
-circumvention tasks, exit survey, and debriefing, will take about an hour. 
-Participants will be compensated \$30 for their time, which is more to cover 
-minimum wage for an hour and any transportation costs to the lab.  \\
-
 \section{What we hope to accomplish}
 
 We plan to finish the user study by the end of the semester. 
 From this experiment, we hope to accomplish the following: 
+
+% measure how an average user might configure Tor in various circumention settings
+% test improvement and alternate configuration 
+% make changes!
 
 
 \section{Resources}
