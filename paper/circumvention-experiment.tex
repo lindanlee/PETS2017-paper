@@ -34,25 +34,26 @@
 \maketitle
 
 \begin{abstract}
-
+{\color{red}
 Tor has grown beyond its original purpose as and has 
 since become an important Internet circumvention tool.
 We specifically examine it usability as a censorship circumvention tool,
 an essential facet for adoption and use.  
 We focus our analysis on the connection configuration dialog of Tor browser,
-as censorship circumvention requires correct transport configurations. %%
+as censorship circumvention requires correct transport configurations.
 Our talk will describe a future study aimed at evaluating 
 if and how easily users can circumvent censorship using Tor Browser,
 isolating specific browser features to study in the process. 
 To this end, we will conduct a large-scale user study examining hundreds of users 
 on how they navigate Tor's configuration wizard to complete seven browsing tasks 
 in three different adversarial settings. 
-We solicit feedback to improve our study's design.
+We solicit feedback to improve our study's design.}
 \end{abstract}
 
 \keywords{Censorship, Security, User Studies, Anonymity, Tor}
 
 \section{Tor's Usability}
+{\color {red}
 %Idea is to cover background on Tor's usability as an anonymity tool, and then highlight the shift in focus to evaluating Tor's usability as a censorship circumvention tool. 
 
 Tor is the most widely used anonymity tool today. However, there are complaints that Tor is not usable. Norcie~\cite{norcie2012eliminating} did an experiment which identified stopping points in Tor browser, 
@@ -98,17 +99,18 @@ we decided to focus on an important use case of Tor browser, censorship circumve
 %say something along the lines of ``x people are using it for this, and there's no work on it,'' 
 %if there are stats on this type of thing.
 To our knowledge, this is the first user study investigating the usability of Tor as a 
-censorship circumvention tool, rather than an anonymity tool. 
+censorship circumvention tool, rather than an anonymity tool. }
 
 
 
 \section{Design}
 
 \noindent {\bfseries Overview}
+{\color {red}
 % test tor, test improvements, may do followups on demand, push changes.
 
 %improve what is below:
-For users to circumvent censorship in their resident countries, they will need to configure Tor to set up a proxy, bridge, or both. There is a configuration wizard to help guide users through setting up their connection, but our hypothesis is that the average user will not easily be able to configure Tor correctly in these adverse settings, as they require the user to provide IP addresses of proxies or bridges to use. The goal of our experiment is to see how successful users are at carrying out common browsing tasks in an adversarial setting using Tor. 
+For users to circumvent censorship in their resident countries, they will need to configure Tor to set up a proxy, bridge, or both. There is a configuration wizard to help guide users through setting up their connection, but our hypothesis is that the average user will not easily be able to configure Tor correctly in these adverse settings, as they require the user to provide IP addresses of proxies or bridges to use. The goal of our experiment is to see how successful users are at carrying out common browsing tasks in an adversarial setting using Tor.}\\
 
 \noindent {\bfseries Experiment Logistics} 
 The IRB protocol to run this user study has been approved (2014-12-6995). 
@@ -124,6 +126,7 @@ Participants will be compensated \$30 for their time, which is more to cover
 minimum wage for an hour and any transportation costs to the lab.  \\
 
 \noindent {\bfseries Experiment Flow} 
+{\color {red}
 % explain one experiment from start to end. 
 At the start of the study, participants will be informed
 of the role they they will be playing in the study. Particularly,
@@ -136,9 +139,10 @@ leisurely purposes.
 %complete these tasks. participants will write down the answers 
 %on a sheet of paper... 
 
-We start off the experiment by telling them that they are in an adversarial setting, and that some websites are blocked and some websites are not. We will instruct them to visit notblocked.com and also blocked.com to illustrate the situation that they are in. We will also explain what Tor is, and how they can use it if necessary, and ask them to complete the set of tasks. To complete all the tasks, the participants will ultimately need to get the correct configuration settings for the country they are simulated to be in. We will end the experiment with a survey which asks them things like their security background, tech exposure, what was unexpected, what was hard, etc. We plan to analyze: which configuration tasks are hard (bridges versus proxies, etc.), how many were successful, how long it took users to configure, if they understood the process, if they were confident that it was working as expected, etc. \\
+We start off the experiment by telling them that they are in an adversarial setting, and that some websites are blocked and some websites are not. We will instruct them to visit notblocked.com and also blocked.com to illustrate the situation that they are in. We will also explain what Tor is, and how they can use it if necessary, and ask them to complete the set of tasks. To complete all the tasks, the participants will ultimately need to get the correct configuration settings for the country they are simulated to be in. We will end the experiment with a survey which asks them things like their security background, tech exposure, what was unexpected, what was hard, etc. We plan to analyze: which configuration tasks are hard (bridges versus proxies, etc.), how many were successful, how long it took users to configure, if they understood the process, if they were confident that it was working as expected, etc.} \\
 
 \noindent {\bfseries Censorship Environment Simulation} 
+{\color{red}
 We plan to simulate three censorship environments.
 They are informed by our experience with pluggable transports
 and knowledge of commonly seen censorship techniques.
@@ -179,7 +183,7 @@ where others do not. Some of them require additional information
 (like bridge addresses) before they work. Currently, we do not 
 have a way to target test specific transports. However, we 
 do ask why participants chose a specific pluggable 
-transport in our exit survey to gain some insight.\\
+transport in our exit survey to gain some insight.}\\
 
 \noindent {\bfseries List of Tasks} 
 In our experimental setup, successful completion of 
