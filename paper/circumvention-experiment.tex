@@ -35,7 +35,8 @@
 
 \begin{abstract}
 Tor has grown beyond its original purpose as an anonymity tool and has 
-since become an important censorship circumvention tool. {\color {red} cite something here..}
+since become an important censorship circumvention tool. It now listed 
+as one of the ways that normal people use Tor \cite{whotor}.
 We specifically examine its usability as a censorship circumvention tool,
 an essential facet for adoption and use.  
 We focus our analysis on the connection configuration interface of Tor browser,
@@ -70,7 +71,8 @@ This study uncovered a number of bugs and stopping points. Changes made are refl
 
 There are still many features of Tor that are left unevaluated through user research---such as advanced web tasks (such as accessing hidden services), the configuration menu to connect to the Tor network, configuring for automatic updates, and identity/cookie management. Rather than selecting the features to study in isolation, 
 we decided to focus on an important use case of Tor browser, censorship circumvention. 
-Internet censorship is shown to be pervasive across the world today \ref{faris2008measuring}. 
+Internet censorship is shown to be pervasive across the world today \ref{faris2008measuring}, with 
+some countries blocking censorship circumvention tools as well \ref{winter2012great}. 
 To our knowledge, this is the first user study investigating the usability of Tor as a 
 censorship circumvention tool, rather than an anonymity tool.
 
@@ -191,14 +193,14 @@ of the Tor Browser from our participants.
 
 \begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
 \item {\bfseries Mild censorship} 
-(Reflective of countries such as {\color{red}?? and ??}.)
+%(Reflective of countries such as {\color{red}?? and ??}.)
 Certain domain names are blocked. Reaching these 
 domains requires any use of a censorship circumvention 
 tool. The default option to ``connect'' to the Tor network 
 directly will circumvent this censor. Additional correct
 bridge or proxy configuration are optional. 
 \item {\bfseries Intermediate censorship} 
-(Reflective of countries such as {\color{red}?? and ??}.)
+%(Reflective of countries such as {\color{red}?? and ??}.)
 Certain domain names are blocked. Censorship circumvention
 tools are blocked. Since Tor is blocked by blocking all public Tor
 relay nodes, the default option to ``connect'' to the Tor network
@@ -206,7 +208,7 @@ directly will fail. A choice of a hard-coded bridge (see Figure ~\ref{fig:bridge
 or a valid non-public bridge is required to circumvent this censor.  
 Additional correct proxy configuration is optional.
 \item {\bfseries Comprehensive censorship} 
-(Reflective of countries such as China and Syria.)
+%(Reflective of countries such as China and Syria.)
 Certain domain names are blocked. Censorship circumvention tools
 are thoroughly blocked. Tor is blocked by blocking all public
 Tor relay nodes, and the censor has examined source code to block
