@@ -35,7 +35,7 @@
 
 \begin{abstract}
 Tor has grown beyond its original purpose as an anonymity tool and has 
-since become an important censorship circumvention tool. It now listed 
+since become an important censorship circumvention tool. It is now listed
 as one of the ways that normal people use Tor \cite{whotor}.
 We specifically examine its usability as a censorship circumvention tool,
 an essential facet for adoption and use.  
@@ -58,20 +58,24 @@ functionality, these changes will be easy to deploy.
 \keywords{Censorship, Security, User Studies, Anonymity, Tor}
 
 \section{Tor's Usability}
-As the most widely used anonymity tool today, Tor is primarily known as an anonymity tool. 
-For this reason, user studies on Tor have been solely about, the usability of Tor as an 
+As the most widely used anonymity tool today, Tor is primarily known for this aspect of its functionality.
+For this reason, user studies on Tor have been solely about the usability of Tor as an
 anonymity tool. Norcie~\cite{norcie2012eliminating} conducted an experiment which identified 
 ``stopping points'' in Tor browser,  documenting points when people would get frustrated enough 
 to stop using Tor. To our knowledge, that has been the only published user study of Tor. 
-Since then, Tor has had a lot of updates.There have been been no published usability evaluations of
+Since then, Tor has had a lot of updates. There have been been no published usability evaluations of
 Tor Browser since the introduction of the 4.0 series, which introduced radical UI changes. 
 Lee and Fifield \cite {uxsprint} ran a small pilot study testing the download, install, and user interface of Tor Browser. 
 This study uncovered a number of bugs and stopping points. Changes made are reflected in series 
 5.1 and later. 
 
-There are still many features of Tor that are left unevaluated through user research---such as advanced web tasks (such as accessing hidden services), the configuration menu to connect to the Tor network, configuring for automatic updates, and identity/cookie management. Rather than selecting the features to study in isolation, 
-we decided to focus on an important use case of Tor browser, censorship circumvention. 
-Internet censorship is shown to be pervasive across the world today \cite{faris2008measuring}, with 
+There are still many features of Tor that are left unevaluated through user
+research --- such as advanced web tasks (e.g., accessing hidden services), the
+configuration menu to connect to the Tor network, configuring automatic
+updates, and identity/cookie management. Rather than selecting the features to
+study in isolation,
+we decided to focus on an important use case of Tor browser: censorship circumvention. 
+Internet censorship is pervasive across the world today \cite{faris2008measuring}, with 
 some countries blocking censorship circumvention tools as well \cite{winter2012great}. 
 To our knowledge, this is the first user study investigating the usability of Tor as a 
 censorship circumvention tool.
@@ -91,7 +95,7 @@ mechanisms required for circumvention (such as pluggable transports) and cannot
 obtain information not explicitly provided by the user interface (e.g., IP
 addresses of non-publicly listed bridges).
 
-Our study will test this hypotheses by measuring if the connection
+Our study will test this hypothesis by measuring if the connection
 interface successfully guides users to correctly configuring their browser.\\
 
 \begin{figure*}[t]
@@ -123,7 +127,7 @@ interface successfully guides users to correctly configuring their browser.\\
 
 \noindent {\bfseries Experiment Logistics} 
 The IRB protocol to run this user study has been approved (2014-12-6995). 
-We plan to recruit from 100-200 users for the purpose of this study, 
+We plan to recruit 100-200 users for the purpose of this study,
 making it the largest user study of Tor to date.  This study will be conducted at the
 Experimental Social Science Laboratory (Xlab)
 at the University of California, Berkeley, which consists of 36 laptops,
@@ -135,7 +139,8 @@ Participants will be compensated \$30 for their time, which covers
 minimum wage for an hour and any transportation costs to the lab.  \\
 
 \noindent {\bfseries Experiment Flow} 
-We will run three sets of the experiment, the first set to test the current configuration
+We will conduct three separate experiments as part of this study:
+the first set to test the current configuration
 interface, a second set to test the improved interface, and a third set to test the 
 alternate configuration interface. The experiment flow will be the same across all 
 sets of experiments, but the configuration interface will be different across sets. 
@@ -147,9 +152,9 @@ instruct them to visit a non-blocked website and a blocked website on a
 ``standard'' browser (one that is not used for censorship circumvention, such
 as Chrome, Safari, or Firefox) to illustrate the situation.
 Then, the participants will find out the role they they will be playing in the study.
-This role is that of a regular citizen, who is trying to visit blocked websites
+This role is that of a regular citizen who is trying to visit blocked websites
 for non-critical leisurely purposes,
-and that there is a minimal chance of risk. This information is given
+and for whom the chance of risk is minimal. This information is given
 to achieve
 consistency across participants: behaviors may change if the tasks were 
 critical or if there were great risks associated with configuration mistakes. 
@@ -184,7 +189,7 @@ information.
 We plan to simulate three censorship environments.
 They are informed by our experience with pluggable transports
 and knowledge of commonly seen censorship techniques.
-They are not meant perfectly to replicate the network environment
+They are not meant to perfectly replicate the network environment
 in any particular country. Although inspired by reality, these
 abstract simulations are intended to require distinct configurations
 of the Tor Browser from our participants. 
@@ -229,7 +234,7 @@ the difficulty of completing the tasks remains constant assuming
 correct configuration. The tasks themselves are not intended to
 be challenging.
 
-The tasks were initially inspired by the top Alexa sites, 
+The tasks were inspired by the top Alexa sites,
 an indication of representative and relevant browsing behavior. 
 From these, we selected sites which were commonly censored, 
 but filtered tasks that would require a participant to reveal private information 
@@ -242,7 +247,7 @@ browse the Internet in a censored environment.
 \item Google search for the population of Zimbabwe. 
 \item On YouTube, find a video playing Bach's ``Ode to Joy.''
 \item Find the Amazon best-sellers in ``Movies \& TV.''
-\item On Yahoo, find the exchange rate of Dollars to Euros.
+\item On Yahoo, find the exchange rate of dollars to euros.
 \item Find the Wikipedia ``History'' portal's featured article. 
 \item On Twitter, find the currently trending topics.
 \item On Bing Maps, find directions from Times Square to Carnegie Hall.\\
@@ -253,7 +258,7 @@ improvements to the interface, as they will be based on the data collected from
 the user studies on the current configuration interface. In general, we will measure the 
 time it took to configure correctly, and help users avoid common mistakes. An alternate 
 interface to automate the configuration process for the user has been proposed in the 
-community. There issue is that the automation make the connection process less transparent, 
+community. One concern about it is that the automation makes the connection process less transparent, 
 and since there are countries who log internet activity, automated attempts to obviously
 use the Tor network could have the potential to be incriminating.
 
@@ -266,7 +271,7 @@ From this experiment, we hope to accomplish the following:
 \item {\bfseries Test the Tor configuration interface} We will perform the largest user study 
 of Tor, measuring Tor configuration in three different adversarial settings. 
 \item {\bfseries Test an improved configuration interface} With the measurements collected
-from testing the interface as-is, we will be design and test improvements to minimize
+from testing the interface as-is, we will design and test improvements to minimize
 time taken, paths taken, and error states reached.
 \item {\bfseries Test an alternative configuration interface} A Tor developer has offered
 to design a mock-up interface for an alternative configuration interface which will
