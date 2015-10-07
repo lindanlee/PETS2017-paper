@@ -1,31 +1,40 @@
-COMMANDS (for graphvis):  
+TODO: 
+-run experiment to evaluate the current configuration interface. 
+-run an experiment to evaluate an improved interface.
+-run an experiment to evaluate an alternate interface. 
+
+Censorship environments: 
+1. websites are blocked >> CONNECT == SUCCESS
+2. website and tor public relays are blocked >> CHOOSE ANY BRIDGE == SUCCESS
+3. website, tor public relays, and tor hard coded bridges are blocked >> MEEK OR OWN BRIDGE ADDRESS == SUCCESS 
+
+Participant tasks: 
+• Google search for the population of Zimbabwe.
+• On YouTube, find a video playing Bach’s “Ode to Joy.”
+• Find the Amazon best-sellers in “Movies & TV.”
+• On Yahoo, find the exchange rate of Dollars to Euros.
+• Find the Wikipedia “History” portal’s featured article.
+• On Twitter, find the currently trending topics.
+• On Bing Maps, find directions from Times Square to
+Carnegie Hall.
+
+Tor Survey Questions: 
+http://www.surveygizmo.com/s3/2085559/Tor-Usability-Survey/SG_TEST_RUN
+
+Graphvis commands (for generating interface flow diagram):  
 * generate png for digraph: dot -Tpng torconfig.dot > torconfig.png
 * generate pdf for digraph: dot -Tpdf torconfig.dot > torconfig.pdf
+Tor Circumvention UX Experiment
 
-VISIONS: 
- * have UI paths for Tor vs other browsers--is is usable? how is it different? the number of choices, 
- the breadth of the paths, the depth of the paths, etc. 
- * compare browser states for Tor vs other browsers--how is it? number of states, types of states, etc.
- * visualize how people fail: set up a video of the UI config path in Tor, and how people traverse it 
- over time, lighting up the paths over time and indicating end result of fail or success
- * visualize people in environments in aggregate: grid of all the animations of the single UI config
- trees in a grid, all people on same environment in a grid, clustered by behavior, and playing while 
- a timer displays the time. 
- * fix paths: consolidate good paths and bad paths, reduce number of paths, prevent mistakes.  
+Scope: 
+- Tor’s configuration dialogue only, with respect to censorship circumvention
+! Not in scope: proxies, user trust models, rest of Tor’s UX, anonymity
 
+Data collected: 
+-configuration control flow: via video capture
+-participants information/feedback: via survey
 
-META-TODO: 
- * ~~visualizations of UI config paths in Tor~~ (for user experiments!)
- * determine which UI config paths work/don't work for all three censorship environments
- * draft a survey: get at what people are confused about and why
- * think of UI tweak to test: reducing depth and breadth of UI paths
- * hash out alternative: auto-config; is it ethical if less mistakes but no control? 
+Analyses: 
+* show a markov chain version of the configuration tree, before and after changes
+* qualitative analysis on survey answers 
 
- * determine which UI config paths work/don't work for countries (China, Iran..) 
- * visualizations of UI paths for all of Tor
- * visualizations of UI paths for browsers (Chrome, Firefox, Safari, IE) 
- * determine how many browser states based on choices; analyze for paths, reversibility, etc.
-
-TODO:
- * Expand error states from progress0 (e.g., you need PTs or you need bridges
-   and haven't configured them).
