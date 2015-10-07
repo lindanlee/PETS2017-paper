@@ -1,4 +1,5 @@
 ### TODO: 
+
 *run experiment to evaluate the current configuration interface. 
 *run an experiment to evaluate an improved interface.
 *run an experiment to evaluate an alternate interface. 
@@ -41,6 +42,7 @@ Tor Circumvention UX Experiment
 ! Not in scope: proxies, user trust models, rest of Tor’s UX, anonymity
 
 ### Data collected: 
+
 *configuration control flow: via video capture
 *participants information/feedback: via survey
 
