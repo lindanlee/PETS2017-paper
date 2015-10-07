@@ -1,8 +1,7 @@
 ### TODO: 
-
-*run experiment to evaluate the current configuration interface. 
-*run an experiment to evaluate an improved interface.
-*run an experiment to evaluate an alternate interface. 
+* run experiment to evaluate the current configuration interface. 
+* run an experiment to evaluate an improved interface.
+* run an experiment to evaluate an alternate interface. 
 
 ### Censorship environments: 
 
@@ -43,8 +42,8 @@ Tor Circumvention UX Experiment
 
 ### Data collected: 
 
-*configuration control flow: via video capture
-*participants information/feedback: via survey
+* configuration control flow: via video capture
+* participants information/feedback: via survey
 
 ### Analyses: 
 * show a markov chain version of the configuration tree, before and after changes
