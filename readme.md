@@ -4,6 +4,7 @@ TODO:
 -run an experiment to evaluate an alternate interface. 
 
 Censorship environments: 
+
 1. websites are blocked >> CONNECT == SUCCESS  
 2. website and tor public relays are blocked >> CHOOSE ANY BRIDGE == SUCCESS  
 3. website, tor public relays, and tor hard coded bridges are blocked >> MEEK OR OWN BRIDGE ADDRESS == SUCCESS   
@@ -19,6 +20,7 @@ Participant tasks:
 Carnegie Hall.
 
 Hypotheses: 
+
 1. people don't know what a bridge or proxy is. > ask participants to define these terms in the survey.  
 2. people don't know what the difference between a bridge and a proxy is > ask if people can distinguish them. 
 3. people do not know when bridges or proxies are necessary > ask them this in the survey.  
