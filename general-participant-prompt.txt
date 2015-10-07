@@ -1,0 +1,10 @@
+We have placed you in a particular network in which some websites are blocked. In your favorite browser, please go to <non-blocked website> to confirm that the internet is working. Now, go to <blocked website> to confirm that some websites are being blocked. If you see that a page does not load for you, it is most likely that you are being blocked from going to that website, not that the website is having technical issues. 
+
+We put you in this specific network so that we can test Tor, a browser which can be used as a censorship circumvention tool in many different countries. Different countries use different methods to censor the websites. No one correct configuration of the Tor browser exists, as many different configurations may work to circumvent censorship, and configurations which work in some networks may not work in others. You will have considered to successfully circumvent censorship if you are able to complete all of the tasks on the worksheet on your desk. 
+
+
+
+Considerations: 
+-roleplaying and asking people to pretend that they are in a different country might be more confusing than helpful, especially because people from the US will already be in the mindset that there is no risk from trying to visit websites, and will most likely be visiting the websites on the task lists for leisure (participants will not assume risk or impose value on tasks). 
+-participants are not being told explicitly how the blocking is done. 
+-is this now too explicit? 
