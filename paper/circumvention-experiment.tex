@@ -92,12 +92,12 @@ we want this to be usable for that purpose.}
 \section{The Configuration Interface}
 
 \noindent {\bfseries Overview}
-The Tor Browser provides a configuration interface (Figure
-~\ref{fig:bridges}) to guide users through setting up their connection to the
+The Tor Browser provides a configuration interface to guide users through setting up 
+their connection to the
 Tor network. While people in most countries can connect to Tor using the
 dialog's default settings, citizens in certain censorship environments must
 make use of additional settings, such as bridges, proxies, or both. 
-%definition of a bridge, defintion of a proxy here. 
+{\color {red} definition of a bridge, definition of a proxy}   %%%
 Our study  will explore how well this interface successfully guides users to 
 correctly configuring their browser.\\
 
@@ -115,54 +115,21 @@ correctly configuring their browser.\\
 \end{figure}
 
 \noindent {\bfseries Configuration Flow}
-{\color {red} 
+There are five general paths a user can take through the Tor Browser connection
+configuration interface. {\color {red} These paths are shown in Figure ~\ref{fig:interface}}. 
+The configuration interface asks a series of questions to 
+the user to determine if the user requires a bridge or proxy when connecting to 
+the Tor network. Depending on how the user answers these questions, a user 
+has give paths through the configuration, as follows: 
 
 \begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
-\item {\bfseries Path 1}:  Configure directly
-\item {\bfseries Path 2}:  Bridge, no proxy
-\item {\bfseries Path 3}:  Bridge, proxy 
-\item {\bfseries Path 4}:  No bridge, proxy
-\item {\bfseries Path 5}:  No bridge, no proxy
+\item {\bfseries Path 1}:  Connect directly
+\item {\bfseries Path 2}:  Yes bridge, no proxy, connect
+\item {\bfseries Path 3}:  Yes bridge, yes proxy, connect 
+\item {\bfseries Path 4}:  No bridge, yes proxy, connect 
+\item {\bfseries Path 5}:  No bridge, no proxy, connect 
 \end{itemize}
-
-Upon the startup of the configuration interface, a user is asked to describe their 
-current situation. If their Internet connection is censored or proxied, the user 
-clicks ``Configure'' to configure bridge and proxy settings. Otherwise, the user
-clicks ``Connect'' to connect directly to the Tor network. 
-
-If a user is not connecting directly to the Tor network, then they are asked to 
-configure a bridge (as seen in TODO, the title of the window during configuration 
-is ``Tor Bridges Configuration''). We suspect that the reason for configuring a bridge
-first before a proxy is that more people need to configure bridges than proxies,
-but this is not known. The bridge configuration asks the users if their ISP blocks
-or censors connections to the Tor Network. The assumption here is that users will 
-not know if they need a bridge or not, but that they are equipped to answer if their
-current network environment censors the Tor Network. The configuration interface 
-uses this answer to deem if the user needs a bridge. A yes to this question would
-require a bridge while a no to this question would not. If they answer yes, they are 
-asked to configure the bridges. If they answer no, then the configuration interface 
-moves on to configuring proxies. 
-
-If a user who is not directly connecting to the Tor network is finished configuring
-a bridge or has answered that they do not need a bridge, they are asked to 
-configure a local proxy (as seen in TODO, the title of the window during
-configuration is ``Local Proxy Configuration''). The proxy configuration asks the 
-users if they need to use a local proxy to access the Internet. The assumption 
-is that people will not know the answer to this question, so there is a text instructing
-users how to find the answer to this question below the question. If the answer to
-the question is yes, the user needs a proxy and is taken to a screen where they are
-asked to configure the proxy settings. If the user does not need a proxy, then the 
-configuration interface attempts to connect to the Tor network with all the 
-given inputs up to this point so far. 
-
-Note that a user can decide to click ``Configure'' because they believe the 
-Internet connection is censored or proxied, but then answer the bridge and proxy
-questions in such a way that they deemed that they do not need a bridge or proxy 
-after all. In this case, clicking the ``Connect'' button after the above configuration steps
-would be equivalent to clicking ``Connect'' on the first screen. \\
-
-} 
-
+ 
 \begin{figure*}[t]
 \label{fig:interface}
   \centering
@@ -176,13 +143,50 @@ would be equivalent to clicking ``Connect'' on the first screen. \\
 \href{https://github.com/lindanlee/circumvention-ux-tor/blob/master/torconfig.dot}{here}.}
 \end{figure*}
 
-\noindent {\bfseries Things that are good} %% fix this so it's not so casual
+Upon the startup of the configuration interface, a user is asked to describe their 
+current situation. If their Internet connection is censored or proxied, the user 
+clicks ``Configure'' to configure bridge and proxy settings. Otherwise, the user
+clicks ``Connect'' to connect directly to the Tor network. 
+
+If a user is not connecting directly to the Tor network, then they are asked to 
+configure a bridge (as seen in {\color {red} TODO}, the title of the window during configuration %%%
+is ``Tor Bridges Configuration''). We suspect that the reason for configuring a bridge
+first before a proxy is that more people need to configure bridges than proxies,
+but this is not known. The bridge configuration asks the users if their ISP blocks
+or censors connections to the Tor Network. The assumption here is that users will 
+not know if they need a bridge or not, but that they are equipped to answer if their
+current network environment censors the Tor Network. The configuration interface 
+uses this answer to deem if the user needs a bridge. A yes to this question would
+require a bridge while a no to this question would not. If they answer yes, they are 
+asked to configure the bridges. If they answer no, then the configuration interface 
+moves on to configuring proxies. 
+
+If a user who is not directly connecting to the Tor network is finished configuring
+a bridge or has answered that they do not need a bridge, they are asked to 
+configure a local proxy (as seen in {\color {red} TODO}, the title of the window during %%%
+configuration is ``Local Proxy Configuration''). The proxy configuration asks the 
+users if they need to use a local proxy to access the Internet. The assumption 
+is that people will not know the answer to this question, so there is a text instructing
+users how to find the answer to this question below the question. If the answer to
+the question is yes, the user needs a proxy and is taken to a screen where they are
+asked to configure the proxy settings. If the user does not need a proxy, then the 
+configuration interface attempts to connect to the Tor network with all the 
+given inputs up to this point so far. 
+
+Note that a user can decide to click ``Configure'' because they believe the 
+Internet connection is censored or proxied, but then answer the bridge and proxy
+questions in such a way that they deemed that they do not need a bridge or proxy 
+after all. In this case, clicking the ``Connect'' button after the above configuration steps
+would be equivalent to clicking ``Connect'' on the first screen. \\ 
+
+
+\noindent {\bfseries Things that are good about the interface} %% fix this so it's not so casual
 {\color {red} 
 Talking to users, ``this will work in most situations,'' help button, support email.
 putting the bridge configuration before the proxy, etc.... \\
 }
 
-\noindent {\bfseries Things that could be improved}%% fix this so it's not so casual
+\noindent {\bfseries Things that could be improved about the interface }%% fix this so it's not so casual
 {\color {red} 
 clarify between bridges and proxy, getting rid of redundant text, etc.  \\
 }
@@ -387,4 +391,42 @@ are below:
 
 \bibliographystyle{abbrv}
 \bibliography{circumvention-experiment.bib} 
+
+\appendix
+\section*{A1: Configuration Interface Windows}
+
+\begin{figure}[h]
+\label{fig:window1}
+  \centering
+    \includegraphics[width=0.5\textwidth]{window1.png}
+    \caption{window1}
+\end{figure}
+
+\begin{figure}[h]
+\label{fig:window2}
+  \centering
+    \includegraphics[width=0.5\textwidth]{window2.png}
+    \caption{window2}
+\end{figure}
+
+\begin{figure}[h]
+\label{fig:window3}
+  \centering
+    \includegraphics[width=0.5\textwidth]{window3.png}
+    \caption{window3}
+\end{figure}
+
+\begin{figure}[h]
+\label{fig:window4}
+  \centering
+    \includegraphics[width=0.5\textwidth]{window4.png}
+    \caption{window4}
+\end{figure}
+
+\begin{figure}[h]
+\label{fig:window5}
+  \centering
+    \includegraphics[width=0.5\textwidth]{window5.png}
+    \caption{window5}
+\end{figure}
 \end{document}
