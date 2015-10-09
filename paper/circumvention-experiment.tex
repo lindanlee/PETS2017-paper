@@ -82,31 +82,12 @@ censorship circumvention tool.
 
 \section{The Configuration Interface}
 
-\noindent {\bfseries Hypotheses} {\color {red} how we came up with these hypotheses, how we will measure these hypotheses, etc.} 
-
-\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
-\item  {\bfseries H1}: people don't know what a bridge or proxy is. > ask participants to define these terms in the survey.  
-\item  {\bfseries H2}: people don't know what the difference between a bridge and a proxy is > ask if people can distinguish them. 
-\item  {\bfseries H3}: people do not know when bridges or proxies are necessary > ask them this in the survey.  
-\item  {\bfseries H4}: proxies cause confusion when configuring bridges. screen recording: see if people click on proxies (none of the enviornments require a proxy)
-\item  {\bfseries H5}: people will favor familiar-sounding transports (i.e. meek-google versus meek-azure or scramblesuit) > see screen recordings, ask in survey for which transports were picked in which order and why they chose the final transport.  
-\item {\bfseries H6}: (some dialogue is redundant. see opening window: "before you connect..." and bridge2 window: "you may use...") > we can try asking if people find these things useful, if they would prefer the interface without it, or if they read it.  
-\end{itemize} 
-
-\section{Design}
-
 \noindent {\bfseries Overview}
 The Tor Browser provides a configuration interface (Figure
 ~\ref{fig:interface}) to guide users through setting up their connection to the
 Tor network. While people in most countries can connect to Tor using the
 dialog's default settings, citizens in certain censorship environments must
 make use of additional settings, such as bridges, proxies, or both.
-
-Our hypothesis is that, under these circumstances, the average user will
-struggle to connect, because they lack knowledge of the technical terms and
-mechanisms required for circumvention (such as pluggable transports) and cannot
-obtain information not explicitly provided by the user interface (e.g., IP
-addresses of non-publicly listed bridges).
 
 Our study will test this hypothesis by measuring if the connection
 interface successfully guides users to correctly configuring their browser.\\
@@ -123,6 +104,23 @@ interface successfully guides users to correctly configuring their browser.\\
     transition. The cause for error is can be found
 \href{https://github.com/lindanlee/circumvention-ux-tor/blob/master/torconfig.dot}{here}.}
 \end{figure*}
+
+\noindent {\bfseries Hypotheses} We expect that the average user will
+struggle to connect because they lack knowledge of the technical terms and
+mechanisms required for circumvention (such as pluggable transports) and cannot
+obtain information not explicitly provided by the user interface (e.g., IP
+addresses of non-publicly listed bridges).
+
+\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
+\item  {\bfseries H1}: people don't know what a bridge or proxy is. > ask participants to define these terms in the survey.  
+\item  {\bfseries H2}: people don't know what the difference between a bridge and a proxy is > ask if people can distinguish them. 
+\item  {\bfseries H3}: people do not know when bridges or proxies are necessary > ask them this in the survey.  
+\item  {\bfseries H4}: proxies cause confusion when configuring bridges. screen recording: see if people click on proxies (none of the environments require a proxy)
+\item  {\bfseries H5}: people will favor familiar-sounding transports (i.e. meek-google versus meek-azure or scramblesuit) > see screen recordings, ask in survey for which transports were picked in which order and why they chose the final transport.  
+\item {\bfseries H6}: (some dialogue is redundant. see opening window: "before you connect..." and bridge2 window: "you may use...") > we can try asking if people find these things useful, if they would prefer the interface without it, or if they read it.  
+\end{itemize} 
+
+\section{Design}
 
 \begin{figure}[t]
 \label{fig:bridges}
@@ -196,7 +194,7 @@ found
 
 The experiment will conclude with a debriefing, which will inform that the
 participants of their screen capture and obtaining re-consent for the
-information. 
+information. \\
 
 \noindent {\bfseries Censorship Environment Simulation} 
 We plan to simulate three censorship environments.
@@ -205,7 +203,7 @@ and knowledge of commonly seen censorship techniques.
 They are not meant to perfectly replicate the network environment
 in any particular country. Although inspired by reality, these
 abstract simulations are intended to require distinct configurations
-of the Tor Browser from our participants. 
+of the Tor Browser from our participants. \\
 
 \begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
 \item {\bfseries Mild censorship} 
