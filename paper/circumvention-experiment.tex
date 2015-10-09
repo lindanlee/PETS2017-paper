@@ -57,8 +57,9 @@ functionality, these changes will be easy to deploy.
 
 \keywords{Censorship, Security, User Studies, Anonymity, Tor}
 
-\section{Tor's Usability}
-As the most widely used anonymity tool today, Tor is primarily known for this aspect of its functionality.
+\section{Tor}
+\noindent {\bfseries Usability}
+Tor is primarily known as the most widely used anonymity tool today. 
 For this reason, user studies on Tor have been solely about the usability of Tor as an
 anonymity tool. Norcie~\cite{norcie2012eliminating} conducted an experiment which identified 
 ``stopping points'' in Tor browser,  documenting points when people would get frustrated enough 
@@ -67,8 +68,9 @@ Since then, Tor has had a lot of updates. There have been been no published usab
 Tor Browser since the introduction of the 4.0 series, which introduced radical UI changes. 
 Lee and Fifield \cite {uxsprint} ran a small pilot study testing the download, install, and user interface of Tor Browser. 
 This study uncovered a number of bugs and stopping points. Changes made are reflected in series 
-5.1 and later. 
+5.1 and later. \\
 
+\noindent {\bfseries Scoping}
 There are still many features of Tor that are left unevaluated through user
 research --- such as advanced web tasks (e.g., accessing hidden services), the
 configuration menu to connect to the Tor network, configuring automatic
@@ -78,19 +80,88 @@ we decided to focus on an important use case of Tor browser: censorship circumve
 Internet censorship is pervasive across the world today \cite{faris2008measuring}, with 
 some countries blocking censorship circumvention tools as well \cite{winter2012great}. 
 To our knowledge, this is the first user study investigating the usability of Tor as a 
-censorship circumvention tool.
+censorship circumvention tool.\\
+
+\noindent {\bfseries Motivation}
+Changing the configuration interface would not require changes to the 
+Tor Browser functionality, making any suggested improvements very practical to 
+deploy in a short period of time. {\color {red} Additionally, people are just literally
+being censored everywhere so a lot of people are using it for this purpose. So 
+we want this to be usable for that purpose.} 
 
 \section{The Configuration Interface}
 
 \noindent {\bfseries Overview}
 The Tor Browser provides a configuration interface (Figure
-~\ref{fig:interface}) to guide users through setting up their connection to the
+~\ref{fig:bridges}) to guide users through setting up their connection to the
 Tor network. While people in most countries can connect to Tor using the
 dialog's default settings, citizens in certain censorship environments must
-make use of additional settings, such as bridges, proxies, or both.
+make use of additional settings, such as bridges, proxies, or both. 
+%definition of a bridge, defintion of a proxy here. 
+Our study  will explore how well this interface successfully guides users to 
+correctly configuring their browser.\\
 
-Our study will test this hypothesis by measuring if the connection
-interface successfully guides users to correctly configuring their browser.\\
+\begin{figure}[h]
+\label{fig:bridges}
+  \centering
+    \includegraphics[width=0.5\textwidth]{configuration-screenshot.png}
+    \caption{The Tor Bridges Configuration window of the Tor configuration
+    interface. Tor users in censored environments and some of our participants
+    will be required to select the correct bridge for circumventing censorship.
+    Note that the interface prompts users to choose a transport type, which can be
+    the source of confusion. Bridges are non-listed guard relays to the Tor
+    network; transports, supported by bridges, obfuscate traffic in
+    different ways.}
+\end{figure}
+
+\noindent {\bfseries Configuration Flow}
+{\color {red} 
+
+\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
+\item {\bfseries Path 1}:  Configure directly
+\item {\bfseries Path 2}:  Bridge, no proxy
+\item {\bfseries Path 3}:  Bridge, proxy 
+\item {\bfseries Path 4}:  No bridge, proxy
+\item {\bfseries Path 5}:  No bridge, no proxy
+\end{itemize}
+
+Upon the startup of the configuration interface, a user is asked to describe their 
+current situation. If their Internet connection is censored or proxied, the user 
+clicks ``Configure'' to configure bridge and proxy settings. Otherwise, the user
+clicks ``Connect'' to connect directly to the Tor network. 
+
+If a user is not connecting directly to the Tor network, then they are asked to 
+configure a bridge (as seen in TODO, the title of the window during configuration 
+is ``Tor Bridges Configuration''). We suspect that the reason for configuring a bridge
+first before a proxy is that more people need to configure bridges than proxies,
+but this is not known. The bridge configuration asks the users if their ISP blocks
+or censors connections to the Tor Network. The assumption here is that users will 
+not know if they need a bridge or not, but that they are equipped to answer if their
+current network environment censors the Tor Network. The configuration interface 
+uses this answer to deem if the user needs a bridge. A yes to this question would
+require a bridge while a no to this question would not. If they answer yes, they are 
+asked to configure the bridges. If they answer no, then the configuration interface 
+moves on to configuring proxies. 
+
+If a user who is not directly connecting to the Tor network is finished configuring
+a bridge or has answered that they do not need a bridge, they are asked to 
+configure a local proxy (as seen in TODO, the title of the window during
+configuration is ``Local Proxy Configuration''). The proxy configuration asks the 
+users if they need to use a local proxy to access the Internet. The assumption 
+is that people will not know the answer to this question, so there is a text instructing
+users how to find the answer to this question below the question. If the answer to
+the question is yes, the user needs a proxy and is taken to a screen where they are
+asked to configure the proxy settings. If the user does not need a proxy, then the 
+configuration interface attempts to connect to the Tor network with all the 
+given inputs up to this point so far. 
+
+Note that a user can decide to click ``Configure'' because they believe the 
+Internet connection is censored or proxied, but then answer the bridge and proxy
+questions in such a way that they deemed that they do not need a bridge or proxy 
+after all. In this case, clicking the ``Connect'' button after the above configuration steps
+would be equivalent to clicking ``Connect'' on the first screen. \\
+
+} 
 
 \begin{figure*}[t]
 \label{fig:interface}
@@ -104,6 +175,17 @@ interface successfully guides users to correctly configuring their browser.\\
     transition. The cause for error is can be found
 \href{https://github.com/lindanlee/circumvention-ux-tor/blob/master/torconfig.dot}{here}.}
 \end{figure*}
+
+\noindent {\bfseries Things that are good} %% fix this so it's not so casual
+{\color {red} 
+Talking to users, ``this will work in most situations,'' help button, support email.
+putting the bridge configuration before the proxy, etc.... \\
+}
+
+\noindent {\bfseries Things that could be improved}%% fix this so it's not so casual
+{\color {red} 
+clarify between bridges and proxy, getting rid of redundant text, etc.  \\
+}
 
 \noindent {\bfseries Hypotheses} We expect that the average user will
 struggle to connect because they lack knowledge of the technical terms and
@@ -121,20 +203,6 @@ addresses of non-publicly listed bridges).
 \end{itemize} 
 
 \section{Design}
-
-\begin{figure}[t]
-\label{fig:bridges}
-  \centering
-    \includegraphics[width=0.5\textwidth]{configuration-screenshot.png}
-    \caption{The Tor Bridges Configuration window of the Tor configuration
-    interface. Tor users in censored environments and some of our participants
-    will be required to select the correct bridge for circumventing censorship.
-    Note that the interface prompts users to choose a transport type, which can be
-    the source of confusion. Bridges are non-listed guard relays to the Tor
-    network; transports, supported by bridges, obfuscate traffic in
-    different ways.}
-\end{figure}
-
 
 \noindent {\bfseries Experiment Logistics} 
 The IRB protocol to run this user study has been approved (2014-12-6995). 
@@ -275,7 +343,6 @@ use the Tor network could have the potential to be incriminating.\\
 
 \noindent {\bfseries Exit Survey}
 {\color {red} talk about the survey here.} 
-
 
 \section{What we hope to accomplish}
 
