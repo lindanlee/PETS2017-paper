@@ -1,0 +1,15 @@
+Experiment: ~1 hour
+
+Expected times: 
+
+Briefing and settling in: 10 minutes
+Tasks: 30 minutes
+Survey: 15 minutes
+Debriefing and Payment: 5 minutes
+
+Experimenter script:
+
+Briefing and settling in: TODO
+Tasks: TODO
+Survey: TODO
+Debriefing and Payment: TODO
