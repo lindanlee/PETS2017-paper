@@ -9,7 +9,10 @@ Debriefing and Payment: 5 minutes
 
 Experimenter script:
 
-Briefing and settling in: TODO
-Tasks: TODO
-Survey: TODO
-Debriefing and Payment: TODO
+Briefing and settling in: We should introduce ourselves, have them sign a consent form, give out prompt and worksheets, read out the prompt and have people follow along to verify that some sites are blocked, and tell them that they have until the hour to complete all of these tasks, and that payment will be given upon completion. it might be worthwhile to reiterate that none of the tasks will collect their personal information, even though that is specified on the consent form. 
+
+Tasks: These should be self-explanatory and we will purposefully not be engaging with the participants during this time. We should discuss how to handle questions and what question we will/will not answer. 
+
+Survey: We will tell them to do the survey during the briefing and settling in part. But if they need additional assistance, we will be on call. 
+
+Debriefing and Payment: Talk about the true nature of the experiment, our affiliation with the university and Tor, that the changes will be implemented. Thank them. Explain to them that they have to sign for their payment as part of bookkeeping, and give them the payment. 
