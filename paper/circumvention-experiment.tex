@@ -399,34 +399,56 @@ are below:
 \label{fig:window1}
   \centering
     \includegraphics[width=0.5\textwidth]{window1.png}
-    \caption{window1}
+    \caption{Window 1: the first configuration window shown to the user upon
+    starting Tor Browser for the first time. Note that the interface's default choice
+    is to connect directly through Tor. The interface also gives additional guidance
+    to help users answer this question.}
 \end{figure}
 
 \begin{figure}[h]
 \label{fig:window2}
   \centering
     \includegraphics[width=0.5\textwidth]{window2.png}
-    \caption{window2}
+    \caption{Window 2: This is the next window shown if a user chooses to configure 
+    bridges or proxies. Note that the interface's default answer is ``No,'' 
+    and also advises users to click ``No'' if they are unsure. The user can navigate to the 
+    previous window by clicking ``Go Back,'' and continue configuration by clicking 
+    ``Continue.''}
 \end{figure}
 
 \begin{figure}[h]
 \label{fig:window3}
   \centering
     \includegraphics[width=0.5\textwidth]{window3.png}
-    \caption{window3}
+    \caption{Window 3: This is the window shown when a user answers that a bridge 
+    is required for the connection. Note that the default answer is to connect with a hard-
+    coded bridge rather than to enter in a custom bridge, and to use the recommended 
+    transport (obfs3). A possible source of confusion is that that the user is asked to choose 
+    a transport type, when the interface clearly is asking for bridge configuration. The user 
+    can navigate to the previous window by clicking ``Go Back,'' and continue configuration 
+    by clicking  ``Continue.''}
 \end{figure}
 
 \begin{figure}[h]
 \label{fig:window4}
   \centering
     \includegraphics[width=0.5\textwidth]{window4.png}
-    \caption{window4}
+    \caption{Window 4: This is the window shown after a user has deemed that a bridge
+    is not required for the connection, or when the bridge configuration settings have been 
+    chosen. Note that the default answer to if the user requires a proxy is ``No.'' Additionally,
+    there is text to guide the users on how to answer this question. The user 
+    can navigate to the previous window by clicking ``Go Back,'' and continue configuration 
+    by clicking  ``Continue.''}
 \end{figure}
 
 \begin{figure}[h]
 \label{fig:window5}
   \centering
     \includegraphics[width=0.5\textwidth]{window5.png}
-    \caption{window5}
+    \caption{Window 5: This is the window shown when a user answers that a proxy is 
+    required for the connection. Note that there are no default values in the answers, 
+    where there were for bridges. Additionally, since this is the last window in the configuration
+    interface, the options to navigate to other windows are to simply ``go back,'' or to 
+    connect to the Tor Network.}
 \end{figure}
 \end{document}
