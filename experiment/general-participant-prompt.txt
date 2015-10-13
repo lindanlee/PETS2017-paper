@@ -1,7 +1,8 @@
 We have placed you in a network in which some websites are blocked. In your favorite web browser, please go to <non-blocked website> to confirm that the Internet is working. Now, go to <blocked website> to confirm that some websites are blocked. If a website does not load for you, it is because the website is blocked, not because the website is having technical issues. 
 
-We put you in this restricted network so that we can test Tor Browser, a web browser that, when properly configured, can circumvent censorship and access blocked websites. There is no single correct configuration; many different configurations may work to circumvent censorship, and configurations that work in some networks may not work in others. You have successfully circumvented censorship when you complete all the tasks on your worksheet.
+We put you in this restricted network so that we can test Tor Browser, a web browser that, when properly configured, can circumvent censorship and access blocked websites. There is no single correct configuration; many different configurations may work to circumvent censorship. You have successfully circumvented censorship when you complete all the tasks on your worksheet.
 
+IN PROMPT: “, and configurations that work in some networks may not work in others” seems unnecessary since people only see one censorship environment. 
 
 
 Considerations: 
