@@ -1,11 +1,4 @@
-We have placed you in a network in which some websites are blocked. In your favorite web browser, please go to <non-blocked website> to confirm that the Internet is working. Now, go to <blocked website> to confirm that some websites are blocked. If a website does not load for you, it is because the website is blocked, not because the website is having technical issues. 
-
-We put you in this restricted network so that we can test Tor Browser, a web browser that, when properly configured, can circumvent censorship and access blocked websites. There is no single correct configuration; many different configurations may work to circumvent censorship. You have successfully circumvented censorship when you complete all the tasks on your worksheet.
-
-IN PROMPT: “, and configurations that work in some networks may not work in others” seems unnecessary since people only see one censorship environment. 
-
-
-Considerations: 
--roleplaying and asking people to pretend that they are in a different country might be more confusing than helpful, especially because people from the US will already be in the mindset that there is no risk from trying to visit websites, and will most likely be visiting the websites on the task lists for leisure (participants will not assume risk or impose value on tasks). 
--participants are not being told explicitly how the blocking is done. 
--is this now too explicit? 
+Imagine you live in an oppresive country that censors part of the internet. 
+We have simulated this in the laboratory by blocking certain websites and services. 
+The purpose of this experiment is to evaluate the use of Tor browser, which is a browser that can circumvent censorship and let you visit blocked websites. 
+Your task today will be to <task here>.
