@@ -8,7 +8,7 @@ BASE_DOMAINS = [
     "torproject",
     # "amazon",
     "wikipedia",
-    "google",
+    # "google",
 ]
 
 SUBDOMAINS = [
