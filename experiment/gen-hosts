@@ -14,6 +14,9 @@ BASE_DOMAINS = [
 SUBDOMAINS = [
     "www",
     "bridges",
+
+    "en", "ja",
+
     "af", "ax", "al", "dz", "as", "ad", "ao", "ai", "aq", "ag", "ar", "am", "aw",
     "au", "at", "az", "bs", "bh", "bd", "bb", "by", "be", "bz", "bj", "bm", "bt",
     "bo", "bq", "ba", "bw", "bv", "br", "io", "bn", "bg", "bf", "bi", "kh", "cm",
