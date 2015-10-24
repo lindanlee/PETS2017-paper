@@ -25,10 +25,7 @@ def read_addresses_from_json(f):
 # https://support.microsoft.com/en-us/kb/947709
 
 def block_ips(ips, name):
-    num_addresses = len(ips) 
-    for i in range (0,num_addresses,500):
-        slice = ips[i:i+500]
-        print "netsh advfirewall firewall add rule name=\"%s\" dir=out action=block remoteip=%s" % (name, ",".join(slice))
+    print "netsh advfirewall firewall add rule name=\"%s\" dir=out action=block remoteip=%s" % (name, ",".join(ips))
 
 # https://gitweb.torproject.org/builders/tor-browser-bundle.git/tree/Bundle-Data/PTConfigs/bridge_prefs.js?id=tbb-5.0.3-build3
 torbrowser_addresses = [
@@ -53,5 +50,8 @@ torbrowser_addresses = [
 ]
 
 addresses = read_addresses_from_json(sys.stdin)
-block_ips(addresses, "Tor relays")
+num_addresses = len(addresses)
+for i in range (0,num_addresses,500):
+    slice = addresses[i:i+500]
+    block_ips(slice, "Tor relays %d-%d" % (i, i+500-1))
 block_ips(torbrowser_addresses, "Tor browser bridges")
