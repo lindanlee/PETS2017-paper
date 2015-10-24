@@ -1,6 +1,8 @@
 127.0.0.1	torproject.com
 127.0.0.1	www.torproject.com
 127.0.0.1	bridges.torproject.com
+127.0.0.1	en.torproject.com
+127.0.0.1	ja.torproject.com
 127.0.0.1	af.torproject.com
 127.0.0.1	ax.torproject.com
 127.0.0.1	al.torproject.com
@@ -253,6 +255,8 @@
 127.0.0.1	torproject.org
 127.0.0.1	www.torproject.org
 127.0.0.1	bridges.torproject.org
+127.0.0.1	en.torproject.org
+127.0.0.1	ja.torproject.org
 127.0.0.1	af.torproject.org
 127.0.0.1	ax.torproject.org
 127.0.0.1	al.torproject.org
@@ -505,6 +509,8 @@
 127.0.0.1	torproject.net
 127.0.0.1	www.torproject.net
 127.0.0.1	bridges.torproject.net
+127.0.0.1	en.torproject.net
+127.0.0.1	ja.torproject.net
 127.0.0.1	af.torproject.net
 127.0.0.1	ax.torproject.net
 127.0.0.1	al.torproject.net
@@ -757,6 +763,8 @@
 127.0.0.1	wikipedia.com
 127.0.0.1	www.wikipedia.com
 127.0.0.1	bridges.wikipedia.com
+127.0.0.1	en.wikipedia.com
+127.0.0.1	ja.wikipedia.com
 127.0.0.1	af.wikipedia.com
 127.0.0.1	ax.wikipedia.com
 127.0.0.1	al.wikipedia.com
@@ -1009,6 +1017,8 @@
 127.0.0.1	wikipedia.org
 127.0.0.1	www.wikipedia.org
 127.0.0.1	bridges.wikipedia.org
+127.0.0.1	en.wikipedia.org
+127.0.0.1	ja.wikipedia.org
 127.0.0.1	af.wikipedia.org
 127.0.0.1	ax.wikipedia.org
 127.0.0.1	al.wikipedia.org
@@ -1261,6 +1271,8 @@
 127.0.0.1	wikipedia.net
 127.0.0.1	www.wikipedia.net
 127.0.0.1	bridges.wikipedia.net
+127.0.0.1	en.wikipedia.net
+127.0.0.1	ja.wikipedia.net
 127.0.0.1	af.wikipedia.net
 127.0.0.1	ax.wikipedia.net
 127.0.0.1	al.wikipedia.net
@@ -1513,6 +1525,8 @@
 127.0.0.1	google.com
 127.0.0.1	www.google.com
 127.0.0.1	bridges.google.com
+127.0.0.1	en.google.com
+127.0.0.1	ja.google.com
 127.0.0.1	af.google.com
 127.0.0.1	ax.google.com
 127.0.0.1	al.google.com
@@ -1765,6 +1779,8 @@
 127.0.0.1	google.org
 127.0.0.1	www.google.org
 127.0.0.1	bridges.google.org
+127.0.0.1	en.google.org
+127.0.0.1	ja.google.org
 127.0.0.1	af.google.org
 127.0.0.1	ax.google.org
 127.0.0.1	al.google.org
@@ -2017,6 +2033,8 @@
 127.0.0.1	google.net
 127.0.0.1	www.google.net
 127.0.0.1	bridges.google.net
+127.0.0.1	en.google.net
+127.0.0.1	ja.google.net
 127.0.0.1	af.google.net
 127.0.0.1	ax.google.net
 127.0.0.1	al.google.net
