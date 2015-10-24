@@ -1,0 +1,159 @@
+Instructions for doing a video-recorded user study. This is written from
+memory and is incomplete. This is what we did for the 2015 Tor UX
+Sprint:
+
+https://trac.torproject.org/projects/tor/wiki/org/meetings/2015UXsprint
+https://blog.torproject.org/blog/ux-sprint-2015-wrapup
+
+The output of the process is silent screencast videos with text captions
+that record what was spoken during the experiment.
+
+Linda Naeun Lee <lnl@berkeley.edu>
+David Fifield <fifield@eecs.berkeley.edu>
+
+
+== Setting up on Mac OS X 10.10 ==
+
+Create a remoteviewer account.
+
+Create /Users/USER/ux as the user you're going to use.
+
+Enable ssh, in System Preferences under "Sharing". Restrict ssh to the
+remoteviewer account.
+
+Turn on the firewall and block everything but ssh.
+
+Install VLC.
+
+Run stream.sh in a Terminal. It will create a local capture file and
+also start streaming to http://127.0.0.1:8080/.
+
+On your viewing computer, run
+	ssh -L 8080:127.0.0.1:8080 -N <Mac IP address>
+This sets up an ssh tunnel to the streaming VLC. Then, also on the
+viewing computer, run
+	wget http://127.0.0.1:8080/ -O capture-mac-$(date +'%Y%m%d-%H:%M:%S').mp4
+
+Now you have the video being saved in two places: on the experiment
+computer itself, and on the viewer computer.
+
+We didn't figure out how to terminate stream.sh cleanly, so the capture
+file will be missing necessary metadata at the end of the file. You can
+reencode with avconv to fix that. The copy you download should be fine.
+
+
+== Setting up on Windows 8 ==
+
+Create a remoteviewer account.
+
+Create C:\Users\USER\ux as the user you're going to use. Copy cursor.png
+into the directory. cursor.png is needed in order for the mouse pointer
+to show up in the videos.
+
+Install Cygwin and its openssh and cygrunsrv packages.
+
+http://www.noah.org/ssh/cygwin-sshd.html
+http://cygwin.wikia.com/wiki/Sshd
+
+Install VLC.
+
+Run stream.bat in a console. We couldn't figure out how to make the
+console and VLC icons disappear while it's running. You might have to
+edit the paths in stream.bat.
+
+On your viewing computer, run
+	ssh -L 8081:127.0.0.1:8080 -N <Windows IP address>
+This sets up an ssh tunnel to the streaming VLC. Then, also on the
+viewing computer, run
+	wget http://127.0.0.1:8080/ -O capture-windows-$(date +'%Y%m%d-%H:%M:%S').mp4
+
+Now you have the video being saved in two places: on the experiment
+computer itself, and on the viewer computer.
+
+
+== Cleanup between experiments ==
+
+Delete files they downloaded.
+
+Uninstall Tor Browser (delete from /Applications).
+
+Empty Trash.
+
+Enter all browsers and clear history/reset.
+
+Quit any running apps.
+
+=== Re-enable Gatekeeper on OS X ===
+
+If they changed the global "Allow apps downloaded from" setting on the
+Security & Privacy "General" pane, just change it back to "Mac App
+Store".
+
+If they did "Open Anyway" on the app, then run the command
+	spctl --disable /path/to/Tor\ Browser.app
+
+
+== Syncing audio/video masters ==
+
+Use Kdenlive (https://kdenlive.org/, apt-get install kdenlive).
+
+Go to "Settings→Manage Project Profiles" and create a new profile.
+	Description: "MacBook Air"
+	Size: 1440×900
+	Frame rate: 10/1
+	Pixel aspect ratio: 1/1
+	Display aspect ratio: 16/10
+	Colorspace: Unknown
+	Progressive
+If you used other than a MacBook Air, create a profile to match.
+
+Start a new project. "Project→Project Settings" and choose the Video
+Profile you created.
+
+Add the original video and audio files ("Project→Add Clip"). Drag the
+clips down to the audio and video tracks.
+
+Drag the audio horizontally until it lines up with the video. You can
+find a button click or something to match on.
+
+Highlight the zone you want to export by pressing "i" at the beginning
+and "o" at the end (like "in" and "out").
+
+Then do "Project→Render" and "Render to File".
+
+
+== Making captioned videos ==
+
+You have to first transcribe all the speech. Play the video in VLC at a
+slow speed, like 50%, or as slow as you need to keep up with typing.
+Dump the text into a file. It helps if you put line breaks where there
+are pauses, and blank lines when another speaker starts speaking.
+
+Then you have to add timing information to the text. We used the
+programs captions.py and date.py. But don't do that, find a better way.
+We didn't try it, but https://amara.org/ seems to be commonly used. You
+can possibly set up your own, to avoid sending original files to an
+untrusted service.
+
+The output of the timing process is files in .srt and .vtt formats. .srt
+can be loaded separately in a video player and it's also what we'll use
+to build embedded Kate captions into an Ogg Theora file. .vtt is WebVTT,
+which you use to add captions to HTML5 video. Kate is a derived format
+that can be multiplexed with Theora video.
+
+https://en.wikipedia.org/wiki/SubRip#SubRip_text_file_format
+https://developer.mozilla.org/en-US/docs/Web/API/Web_Video_Text_Tracks_Format
+https://wiki.xiph.org/OggKate#Text_movie_subtitles
+
+Strip the audio from your original video master and encode to Theora:
+	avconv -i file.mp4 -b 800k -an file-silent.ogg
+
+Build a Kate stream and multiplex it into the silent video.
+	kateenc -t srt -M -c SUB -l en_US -o file-captions.ogg file.srt
+	oggz merge -o file.ogg file-silent.ogg file-captions.ogg
+
+To make an HTML5 video with captions:
+	<video controls>
+		<source src="file.ogg">
+		<track src="file.vtt" kind="captions" srclang="en" default>
+	</video>
