@@ -1,4 +1,6 @@
-Imagine you live in an oppresive country that censors part of the internet. 
-We have simulated this in the laboratory by blocking certain websites and services. 
-The purpose of this experiment is to evaluate the use of Tor browser, which is a browser that can circumvent censorship and let you visit blocked websites. 
-Your task today will be to <task here>.
+Imagine you live in an oppressive country that censors part of the internet. 
+We have simulated this in the laboratory by blocking certain websites and services.
+ 
+The purpose of this experiment is to evaluate the use of Tor browser, which is a browser that can circumvent censorship and let you visit blocked websites. Currently, wikipedia is blocked (you can check this by going to wikipedia on a standard browser, like firefox, Chrome, or Internet Explorer). 
+
+Your task today will be to go to wikipedia and answer the following question.
