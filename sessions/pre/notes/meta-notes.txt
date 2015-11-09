@@ -1,0 +1,33 @@
+The config dialog for people under mild censorship is not optimal.
+(Optimized for heavier censorship.)
+People don't understand diff. between 1st-order censorship and 2nd-order censorship.
+
+Everyone in the mild censorship environment wanted to configure,
+thought they needed bridges, thought they needed proxies.
+We thought it would be okay to see the proxy window (no harm done)
+but people got there and then were frightened away from it ("Back").
+
+The first wizard page is more confusing than we thought.
+A lot of trouble stems from that.
+A lot of people ended up on the proxy settings
+(people seem confused by terms etc. and are doing things they don't have to).
+People aren't making informed choices;
+either don't read or don't understand.
+
+One though that when they chose a bridge,
+that it didn't work because they also chose to use a proxy
+and got a confusing interface.
+Went back and chose obfs4, this time chose *not* to use a proxy,
+and attributed the change to obfs4 vs. obfs3 rather than
+the true cause, no proxy vs. proxy.
+
+We thought we should give them more information,
+like the fact that Tor is on the desktop and they don't have to download it.
+But the failure cases are interesting;
+e.g. Googling to download Tor Browser and finding torproject.org blocked.
+Maybe give guidance when we do the quantitative Xlab study,
+but not during these qualitative studies.
+
+People seem to be affected by the time limit (we gave them 20 minutes).
+Let's not mention a time limit, and just come in 20 minuts from the
+end of the session if they're not done.
