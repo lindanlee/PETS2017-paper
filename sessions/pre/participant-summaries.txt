@@ -36,8 +36,6 @@ Particpant goes to cnn in chrome to see if the website is blocked. It is not, an
 
 P10: E1
 
-????? WHERE DA VIDEO AT ?????? 
-
 Participant clicks configure, chooses configure, goes with obfs3 because it is recommended, no proxy, and connects successfully on the first try. Note that the participant did not need to configure a bridge but did. They were confused on 1st (blocking websites) and 2nd level (blocking censorship circumvention technologies) censorship. 
 
 P11: E2 (~3:00) FIRST ON NOV14th
