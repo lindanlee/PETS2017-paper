@@ -121,6 +121,13 @@ and "o" at the end (like "in" and "out").
 
 Then do "Project→Render" and "Render to File".
 
+To do fast edits from the command line, you can use ffmpeg as follows.
+Suppose your capture file is called capture.mp4 and you've determined
+that the portion you want to excerpt starts at 25:14.00 and is 14:30.00
+long:
+
+ffmpeg -i capture.mp4 -codec copy -ss 25:14.00 -t 14:30.00 -y out.mp4
+
 
 == Making captioned videos ==
 
