@@ -218,7 +218,7 @@ Some references to keep in mind when explaining:
 \href{screening}{http://www.userfocus.co.uk/articles/screeners.html}
 \href{summative and usability mixed model}{http://www.usabilitybok.org/summative-usability-testing}
 
-\section{Design}
+\section{Methodology}
 
 \noindent {\bfseries Experiment Logistics} 
 The IRB protocol to run this user study has been approved (2014-12-6995). 
@@ -360,26 +360,58 @@ use the Tor network could have the potential to be incriminating.\\
 \noindent {\bfseries Exit Survey}
 {\color {red} talk about the survey here.} 
 
-\section{What we hope to accomplish}
+\section{Results}
+
+Problems: 
+
+\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
+\item {\bfseries Problem1:} People don't know how to choose between ``connect directly'' versus ``configure'' on the first screen. 
+\item {\bfseries Problem 2:} People feel compelled to set up a bridge, even if they don't need one, because they do not know how censorship works. 
+\item {\bfseries Problem 3:} When their first attempt to connect fails, people tend to first try changing the proxy settings, because that is the window visible after a failure (an artifact of the fact that it is the last window visible before the failure). 
+\item {\bfseries Problem 4:} When the first attempt to connect fails, people don't know what to do or what to try next. 
+\end{itemize}
+
+Proof of problems: 
+
+\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
+\item {\bfseries Proof 1:} TODO
+\item {\bfseries Proof 2:} TODO
+\item {\bfseries Proof 3:} TODO
+\item {\bfseries Proof 4:} TODO
+\end{itemize}
+
+Source of Problems: 
+
+\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
+\item {\bfseries Source 1: Users lack a mental model of how censorship works.} For instance, our participants did not know the difference between a bridge and a proxy or a censored website versus censored Tor relays. We suspect that this is the result of an accurate mental model of how the Internet works.  It would be unreasonable to assume that users should know this information, but some of this may be required to make a correct decision in the current interface. 
+\item {\bfseries Source 2: The interface flow does not guide users down the ideal path.} Much of the real estate on bridge configuration is used for the ``custom bridges'' option, which is an option rarely used. The interface instructs users to check out Internet settings to see if they would require a proxy, but it turns out that people are not skilled at doing so. Because the interface redirects users to the proxy screen after failing to make a connection, most of our participants tried configuring a proxy after a connection had failed due to an assumption that the proxy was the reason for the failure. In reality, there was no proxy setup required for any simulated censorship environment in our experiment and participants should have configured a bridge. 
+\item {\bfseries Source 3: There is little constructive feedback during failure cases.} When a connection seems to not work, our participants were unsure of if they should wait more or if they should try the connection with the same configuration again, both of which are viable strategies, depending on the situation. Although there are certain error messages which were helpful, most of the error messages were technical and not understood by our participants (Figure \ref{fig:error}). The interface does not give clear directions on what participants should do next if a connection fails. 
+\end{itemize}
+
+\begin{figure*}[t]
+\label{fig:error}
+  \centering
+    \includegraphics[width=\textwidth]{error.png}
+    \caption{An example of a technical error message which our participants did not understand.}
+\end{figure*}
+
+\section{Future Work}
 
 We plan to finish the user study by the end of the semester. 
 From this experiment, we hope to accomplish the following: 
 
-\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
-\item {\bfseries Test the Tor configuration interface} We will perform the largest user study 
-of Tor, measuring Tor configuration in three different adversarial settings. 
+\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt 
 \item {\bfseries Test an improved configuration interface} With the measurements collected
 from testing the interface as-is, we will design and test improvements to minimize
 time taken, paths taken, and error states reached.
-\item {\bfseries Test an alternative configuration interface} A Tor developer has offered
-to design a mock-up interface for an alternative configuration interface which will
-greatly automate the process. There are tradeoffs between ease of use and transparency
-of the systems, and ethical considerations with loggable errors resulting from automated configuration. 
 \item {\bfseries Push changes} We have the support of Tor developers
 to improve this interface. Additionally, since the configuration interface does not require 
 any changes to the Tor Browser functionality, improvements to the interface will
 be easy to deploy. 
 \end{itemize}
+
+
+\section{Discussion}
 
 \section{Resources}
 \noindent Our online artifacts of the work done during this class, Fall 2015,
