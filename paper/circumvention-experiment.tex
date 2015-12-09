@@ -97,9 +97,57 @@ their connection to the
 Tor network. While people in most countries can connect to Tor using the
 dialog's default settings, citizens in certain censorship environments must
 make use of additional settings, such as bridges, proxies, or both. 
-{\color {red} definition of a bridge, definition of a proxy}   %%%
-Our study  will explore how well this interface successfully guides users to 
+(Bridges are unlisted Tor relays, with pluggable transports to obfuscate traffic.
+Proxies help bypass local network restrictions and are typically only
+needed in restricted cases such as corporate environments.)
+Our study explores how successfully this interface guides users to
 correctly configuring their browser.\\
+
+\noindent {\bfseries Configuration Flow}
+
+\begin{figure*}[t]
+\label{fig:interface}
+  \centering
+    \includegraphics[width=\textwidth]{../torconfig.png}
+    \caption{This flow chart shows all of the possible paths taken through the
+    Tor configuration interface. A state represents a window in the interface,
+    with the exception of the leaves, which indicate the final action taken by
+    the interface (``q'' for quit, ``s'' for success, and ``e'' for error). The
+    transitions between the states indicate which user action causes that
+    transition. Annotations for the error states can be found by following
+\href{https://github.com/lindanlee/circumvention-ux-tor/blob/master/torconfig.dot}{this hyperlink}.}
+\end{figure*}
+
+As bridges and proxies can be configured independently or together, there are
+four main ways to set up a connection:
+
+\begin{enumerate} \itemsep1pt \parskip0pt \parsep0pt
+    \item With a bridge and proxy
+    \item With a bridge but no proxy
+    \item Without a bridge but with a proxy
+    \item Without either a bridge or proxy
+\end{enumerate}
+
+The launcher interface asks a series of questions to
+determine which of these configuration states a user requires.
+The four high-level states correspond to five distinct paths through the
+configuration interface. (The latter option -- connecting with neither a bridge
+nor proxy -- contributes two separate paths.) Each path branches further
+depending on user-specific inputs. Figure \ref{fig:interface} illustrates the
+resulting paths. 
+
+When the configuration window opens, a user is given the option to connect
+directly to the Tor network by clicking ``Connect'', or to click ``Configure''
+``if this computer's Internet connection is censored or proxied'' (Figure
+\ref{fig:window1}).
+
+If they choose the latter, the next screen asks, ``Does your Internet Service
+Provider (ISP) block or otherwise censor connection to the Tor network?''
+(Figure \ref{fig:window2}). Though this sounds repetitive, it is meant to
+identify and divert users who need only a proxy (and no bridge).
+This phrasing of the question carries the assumption that people will
+not know if they need a bridge or not, but that they are equipped to answer if their
+current network environment censors the Tor Network. 
 
 \begin{figure}[h]
 \label{fig:bridges}
@@ -114,84 +162,33 @@ correctly configuring their browser.\\
     different ways.}
 \end{figure}
 
-\noindent {\bfseries Configuration Flow}
-There are five general paths a user can take through the Tor Browser connection
-configuration interface. {\color {red} These paths are shown in Figure ~\ref{fig:interface}}. 
-The configuration interface asks a series of questions to 
-the user to determine if the user requires a bridge or proxy when connecting to 
-the Tor network. Depending on how the user answers these questions, a user 
-has give paths through the configuration, as follows: 
+Next, users are asked to configure bridges by selecting a transport type from a
+dropdown menu or entering the IP address of a custom bridge in a textbox (Figure
+\ref{fig:bridges}).
+Finally, users are asked whether they need a local proxy (Figure
+\ref{fig:window4}) and (if they answered yes) to configure it (Figure
+\ref{fig:window5}).
 
-\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
-\item {\bfseries Path 1}:  Connect directly
-\item {\bfseries Path 2}:  Yes bridge, no proxy, connect
-\item {\bfseries Path 3}:  Yes bridge, yes proxy, connect 
-\item {\bfseries Path 4}:  No bridge, yes proxy, connect 
-\item {\bfseries Path 5}:  No bridge, no proxy, connect 
-\end{itemize}
- 
-\begin{figure*}[t]
-\label{fig:interface}
-  \centering
-    \includegraphics[width=\textwidth]{../torconfig.png}
-    \caption{This flow chart shows all of the possible paths taken through the
-    Tor configuration interface. A state represents a window in the interface,
-    with the exception of the leaves, which indicate the final action taken by
-    the interface (``q'' for quit, ``s'' for success, and ``e'' for error). The
-    transitions between the states indicate which user action causes that
-    transition. The cause for error is can be found
-\href{https://github.com/lindanlee/circumvention-ux-tor/blob/master/torconfig.dot}{here}.}
-\end{figure*}
-
-Upon the startup of the configuration interface, a user is asked to describe their 
-current situation. If their Internet connection is censored or proxied, the user 
-clicks ``Configure'' to configure bridge and proxy settings. Otherwise, the user
-clicks ``Connect'' to connect directly to the Tor network. 
-
-If a user is not connecting directly to the Tor network, then they are asked to 
-configure a bridge (as seen in {\color {red} TODO}, the title of the window during configuration %%%
-is ``Tor Bridges Configuration''). We suspect that the reason for configuring a bridge
-first before a proxy is that more people need to configure bridges than proxies,
-but this is not known. The bridge configuration asks the users if their ISP blocks
-or censors connections to the Tor Network. The assumption here is that users will 
-not know if they need a bridge or not, but that they are equipped to answer if their
-current network environment censors the Tor Network. The configuration interface 
-uses this answer to deem if the user needs a bridge. A yes to this question would
-require a bridge while a no to this question would not. If they answer yes, they are 
-asked to configure the bridges. If they answer no, then the configuration interface 
-moves on to configuring proxies. 
-
-If a user who is not directly connecting to the Tor network is finished configuring
-a bridge or has answered that they do not need a bridge, they are asked to 
-configure a local proxy (as seen in {\color {red} TODO}, the title of the window during %%%
-configuration is ``Local Proxy Configuration''). The proxy configuration asks the 
-users if they need to use a local proxy to access the Internet. The assumption 
-is that people will not know the answer to this question, so there is a text instructing
-users how to find the answer to this question below the question. If the answer to
-the question is yes, the user needs a proxy and is taken to a screen where they are
-asked to configure the proxy settings. If the user does not need a proxy, then the 
-configuration interface attempts to connect to the Tor network with all the 
-given inputs up to this point so far. 
-
-Note that a user can decide to click ``Configure'' because they believe the 
-Internet connection is censored or proxied, but then answer the bridge and proxy
-questions in such a way that they deemed that they do not need a bridge or proxy 
-after all. In this case, clicking the ``Connect'' button after the above configuration steps
+Note that a user can decide to click ``Configure'' on the first screen, but then
+opt out of both bridges and proxies.
+In this case, connecting after these configuration steps
 would be equivalent to clicking ``Connect'' on the first screen. \\ 
 
+\noindent {\bfseries Design choices}
+The launcher interface utilizes a number of techniques to aid users and simplify
+the choices they have to make. Help buttons and a support email address that
+appears on every screen are meant to assist users that get stuck in the process.
+The interface also makes good use of defaults, for example by emphasizing that
+certain options ``will work in most situations.''
 
-\noindent {\bfseries Things that are good about the interface} %% fix this so it's not so casual
-{\color {red} 
-Talking to users, ``this will work in most situations,'' help button, support email.
-putting the bridge configuration before the proxy, etc.... \\
-}
+Still, there remains potential for confusion, especially with the more advanced
+configuration options. Bridges and proxies are not clearly defined, the
+interface doesn't specify when they would need to be used, and there is limited
+guidance for how to correctly choose specific values (e.g., which transport type
+to use or where to find proxy settings).
 
-\noindent {\bfseries Things that could be improved about the interface }%% fix this so it's not so casual
-{\color {red} 
-clarify between bridges and proxy, getting rid of redundant text, etc.  \\
-}
-
-\noindent {\bfseries Hypotheses} We expect that the average user will
+\section{Hypotheses}
+We expect that the average user will
 struggle to connect because they lack knowledge of the technical terms and
 mechanisms required for circumvention (such as pluggable transports) and cannot
 obtain information not explicitly provided by the user interface (e.g., IP
@@ -206,22 +203,145 @@ addresses of non-publicly listed bridges).
 \item {\bfseries H6}: (some dialogue is redundant. see opening window: "before you connect..." and bridge2 window: "you may use...") > we can try asking if people find these things useful, if they would prefer the interface without it, or if they read it.  
 \end{itemize} 
 
-\section{Methodology} 
-
-We are going to aim for 5 users per censorship environment, improvement, 
-and alternate interface. We are going to pre-screen our participants so that 
-we have a good mix of gender, age, technical background, and familiarity 
-with Tor. 
-
-Some references to keep in mind when explaining: 
-\href{why 5 users}{http://www.nngroup.com/articles/how-many-test-users/}
-\href{screening}{http://www.userfocus.co.uk/articles/screeners.html}
-\href{summative and usability mixed model}{http://www.usabilitybok.org/summative-usability-testing}
-
 \section{Methodology}
 
+To test our hypotheses, we simulated several environments in which people may
+have to use Tor for censorship circumvention. We examined whether users are able
+to join the network and studied how they interact with the launcher interface.
+Based on our findings, we designed improvements to the Tor launcher interface,
+which we test in a large-scale study.
+
+\subsection{Simulated censorship environments}
+We simulated three censorship environments.
+They are informed by our experience with pluggable transports
+and knowledge of commonly seen censorship techniques.
+They are not meant to perfectly replicate the network environment
+in any particular country. Although inspired by reality, these
+abstract simulations are intended to require distinct configurations
+of the Tor Browser from our participants.
+
+\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
+\item {\bfseries Mild censorship} 
+(Representative of countries such as France and Australia.)
+Certain domains are blocked. Reaching these 
+domains requires a censorship circumvention 
+tool. The default option to ``connect'' to the Tor network 
+directly will circumvent this censor. Additional correct
+bridge or proxy configurations are optional. 
+
+\item {\bfseries Intermediate censorship} 
+(Representative of countries such as Tunsia.)
+Certain domains are blocked. Censorship circumvention
+tools such as Tor are blocked. Since all public Tor
+relay nodes are blocked, the default option to ``connect'' to the Tor network
+directly will fail. Any choice of a hard-coded bridge
+or a valid non-public bridge will circumvent this censor.  
+Additional correct proxy configuration is optional.
+
+\item {\bfseries Comprehensive censorship} 
+(Representative of countries such as China and Syria.)
+Certain domains are blocked. Censorship circumvention tools
+are thoroughly blocked. Tor is blocked by blocking all public
+Tor relay nodes, and the censor has examined source code to block
+all hard-coded bridge relays in the configuration interface. The default option
+to ``connect'' to the Tor network directly will fail. Most bridges will fail,
+but ``meek-amazon,'' ``meek-azure,'' and ``meek-google'' still work.
+% TODO: meek-google doesn't work either, right? Should we remove it?
+This is because domain-fronting requires censors to block entire CDNs to also
+block this transport (which will cause huge collateral blocking damage), making
+it resistant to aggressive censorship environments.
+(See ~\cite{fifield2015blocking} for additional details.)\\
+\end{itemize}
+
+\subsection{Qualitative interface evaluation}
+To identify problems with the existing interface, we conducted a series of
+qualitative evaluations with a set of users representative of the general
+population.
+
+Using established best practices from the field of user experience research
+(\cite{howmanyusers}), we recruited five users for each censorship environment.
+We pre-screened our participants to have a good mix of gender, age, technical
+background, and familiarity with Tor. \\
+
+%Some references to keep in mind when explaining:
+%\href{why 5 users}{http://www.nngroup.com/articles/how-many-test-users/}
+%\href{screening}{http://www.userfocus.co.uk/articles/screeners.html}
+%\href{summative and usability mixed model}{http://www.usabilitybok.org/summative-usability-testing}
+
+\noindent {\bfseries Procedure}
+The experiment begins with the participants being informed that they are in a
+simulated censorship
+environment, where some --- but not all --- websites are blocked. We
+instruct them to visit a non-blocked website and a blocked website on a
+``standard'' browser (one that is not used for censorship circumvention, such
+as Chrome, Safari, or Firefox) to illustrate the situation.
+Participants are told that their
+role is that of a regular citizen who is trying to visit blocked websites
+for non-critical purposes,
+and for whom the chance of risk is minimal. This information is given
+to achieve
+consistency across participants: behaviors may change if the tasks are
+critical or if there were great risks associated with configuration mistakes. 
+
+After explaining the situation and the user's role, we
+instruct them to complete a set of
+tasks which will require visiting blocked websites. Ultimately, the
+participants will need to configure their Tor Browser to circumvent the
+simulated censorship environment. These tasks have a three-fold purpose of
+providing participants with feedback (if they did not correctly configure their
+browser, they cannot reach the website), motivating the participants to
+configure the browser correctly, and providing the researchers with an
+indicator of successful censorship circumvention.
+Participants' screens are recorded to capture how they configure
+their browser.
+
+After users complete the browsing tasks (or time runs out), we conduct an
+interview, collecting qualitative feedback from
+participants about their browsing experience as a whole
+and the configuration interface specifically.
+We ask questions such as
+``What was the most challenging part of connecting?''
+and
+``What is one change you would recommend?''
+
+
+\subsection{Interface design and iteration}
+After completing the qualitative user studies, we analyzed their results to
+identify common themes and problems. Based on these, we then designed
+improvements to the Tor launcher interface.
+
+To do this, we used an iterative design process, starting with low-fidelity
+(paper and pencil) prototypes and then proceeding to higher-fidelity versions.
+At each stage, the prototype was clickable, allowing for more realistic
+simulation.
+
+We collected feedback from researchers, professors, and Tor users and developers
+through the Tor project's mailing lists. We then iterated on the design by
+incorporating the comments and suggestions we received into the next version of
+the interface.
+
+\subsection{Quantitative evaluation of improvements}
+Once the new design of the user interface is finalized, we will conduct a
+large-scale quantitative evaluation, to test whether the improvements had a
+measurable effect on people's ability to connect to the Tor network.
+
+The experimental procedure will be nearly identical to the procedure for the
+qualitative portion of the study, described above. However, rather than
+conducting open-ended interviews at the end of the tasks, participants will be
+asked to fill out a brief survey. Furthermore, the interface will be
+instrumented to collect metrics and statistics for use in analysis and
+hypothesis testing.
+Some examples of metrics collected include the time spent on each screen, which
+paths the user followed, which interface elements they interacted with, and how
+often they did so. These will be analyzed in conjunction with high-level metrics
+(was the user able to connect to Tor successfully?).
+
+Participants will be split across several different experimental conditions.
+Some will be testing the improved user interface, while those in the control
+group will be completing the same tasks using the old, unimproved interface. \\
+% NOTE: removed mention of the alternate interface, unless there's something to say about it
+
 \noindent {\bfseries Experiment Logistics} 
-The IRB protocol to run this user study has been approved (2014-12-6995). 
 We plan to recruit 35-50 users for the purpose of this study,
 making it the largest user study of Tor to date.  This study will be conducted at the
 Experimental Social Science Laboratory (Xlab)
@@ -231,134 +351,11 @@ censorship environments and will record computer screens to capture
 user activity. The total length of the experiment, including briefing, completing the censorship 
 circumvention tasks, exit survey, and debriefing, will be about an hour.
 Participants will be compensated \$30 for their time, which covers
-minimum wage for an hour and any transportation costs to the lab.  \\
+minimum wage for an hour and any transportation costs to the lab. 
+The IRB protocol to run this user study has been approved (2014-12-6995). 
 
-\noindent {\bfseries Experiment Flow} 
-We will conduct three separate experiments as part of this study:
-the first set to test the current configuration
-interface, a second set to test the improved interface, and a third set to test the 
-alternate configuration interface. The experiment flow will be the same across all 
-sets of experiments, but the configuration interface will be different across sets. 
 
-The experiment begins with the participants being informed that they are in a
-simulated censorship
-environment, where some --- but not all --- websites are blocked. We will
-instruct them to visit a non-blocked website and a blocked website on a
-``standard'' browser (one that is not used for censorship circumvention, such
-as Chrome, Safari, or Firefox) to illustrate the situation.
-Then, the participants will find out the role they they will be playing in the study.
-This role is that of a regular citizen who is trying to visit blocked websites
-for non-critical leisurely purposes,
-and for whom the chance of risk is minimal. This information is given
-to achieve
-consistency across participants: behaviors may change if the tasks were 
-critical or if there were great risks associated with configuration mistakes. 
 
-After explaining the situation and their role, we will explain what Tor is, and
-how they can use it if necessary, and instruct them to complete a set of
-tasks which will require visiting blocked websites. Ultimately, the
-participants will need to configure their Tor Browser to circumvent the
-simulated censorship environment. These tasks have a three-fold purpose of
-providing participants with feedback (if they did not correctly configure their
-browser, they cannot reach the website),  motivating the participants to
-configure the browser correctly, and providing the researchers with an
-indicator of successful censorship circumvention.
-Participants' screens will be recorded to capture how they configure
-their browser, and to provide additional evidence that they have completed the
-tasks.
-
-After users complete the browsing tasks, we will administer a survey that 1)
-measures demographics, technical fluency, and
-familiarity with Tor and 2) collects qualitative feedback from
-participants about their browsing experience as a whole
-and the configuration interface specifically.
-A rough draft of the survey can be
-found
-\href{http://www.surveygizmo.com/collab/2085559/Tor-Usability-Survey}{here}.
-
-The experiment will conclude with a debriefing, which will inform that the
-participants of their screen capture and obtaining re-consent for the
-information. \\
-
-\noindent {\bfseries Censorship Environment Simulation} 
-We plan to simulate three censorship environments.
-They are informed by our experience with pluggable transports
-and knowledge of commonly seen censorship techniques.
-They are not meant to perfectly replicate the network environment
-in any particular country. Although inspired by reality, these
-abstract simulations are intended to require distinct configurations
-of the Tor Browser from our participants. \\
-
-\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
-\item {\bfseries Mild censorship} 
-(Reflective of countries such as France and Australia.)
-Certain domains are blocked. Reaching these 
-domains requires a censorship circumvention 
-tool. The default option to ``connect'' to the Tor network 
-directly will circumvent this censor. Additional correct
-bridge or proxy configurations are optional. 
-\item {\bfseries Intermediate censorship} 
-(Reflective of countries such as Tunsia.)
-Certain domains are blocked. Censorship circumvention
-tools are blocked. Since Tor is blocked by blocking all public Tor
-relay nodes, the default option to ``connect'' to the Tor network
-directly will fail. Any choice of a hard-coded bridge (see Figure ~\ref{fig:bridges})
-or a valid non-public bridge will circumvent this censor.  
-Additional correct proxy configuration is optional.
-\item {\bfseries Comprehensive censorship} 
-(Reflective of countries such as China and Syria.)
-Certain domains are blocked. Censorship circumvention tools
-are thoroughly blocked. Tor is blocked by blocking all public
-Tor relay nodes, and the censor has examined source code to block
-all hard-coded bridge relays in the configuration interface. The default option
-to ``connect'' to the Tor network directly will fail. Choosing any bridges other than
-``meek-amazon,'' ``meek-azure,'' and ``meek-google,'' will fail. This is because 
-domain-fronting requires censors to block entire CDNs to also block this
-transport (which will cause huge collateral blocking damage), making it resistant to agressive censorship environments.
-(See ~\cite{fifield2015blocking} for additional details.)\\
-\end{itemize}
-
-\noindent {\bfseries List of Tasks} 
-In our experimental setup, successful completion of 
-these given tasks requires of correct configuration.
-The difficulty of circumventing  censorship to visit the 
-websites required for the tasks will vary depending on the 
-simulated censorship environment. Since all participants will be given the 
-same set of tasks, regardless of the censorship environment, 
-the difficulty of completing the tasks remains constant assuming
-correct configuration. The tasks themselves are not intended to
-be challenging.
-
-The tasks were inspired by the top Alexa sites,
-an indication of representative and relevant browsing behavior. 
-From these, we selected sites which were commonly censored, 
-but filtered tasks that would require a participant to reveal private information 
-(such as login information) for ethical considerations. These tasks
-were further refined after performing a pilot study of the experiment. 
-We hope the tasks convey an example of how of a user might 
-browse the Internet in a censored environment. 
-
-\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
-\item Google search for the population of Zimbabwe. 
-\item On YouTube, find a video playing Bach's ``Ode to Joy.''
-\item Find the Amazon best-sellers in ``Movies \& TV.''
-\item On Yahoo, find the exchange rate of dollars to euros.
-\item Find the Wikipedia ``History'' portal's featured article. 
-\item On Twitter, find the currently trending topics.
-\item On Bing Maps, find directions from Times Square to Carnegie Hall.\\
-\end{itemize}
-
-\noindent {\bfseries Improved and Alternative Interfaces} We have yet to design the 
-improvements to the interface, as they will be based on the data collected from 
-the user studies on the current configuration interface. In general, we will measure the 
-time it took to configure correctly, and help users avoid common mistakes. An alternate 
-interface to automate the configuration process for the user has been proposed in the 
-community. One concern about it is that the automation makes the connection process less transparent, 
-and since there are countries who log Internet activity, automated attempts to obviously
-use the Tor network could have the potential to be incriminating.\\
-
-\noindent {\bfseries Exit Survey}
-{\color {red} talk about the survey here.} 
 
 \section{Results}
 
@@ -394,6 +391,93 @@ Source of Problems:
     \includegraphics[width=\textwidth]{error.png}
     \caption{An example of a technical error message which our participants did not understand.}
 \end{figure*}
+
+\section{Design}
+Based on the feedback we received and the insights we gathered from our
+participants, we designed improvements to the launcher interface. This section
+discusses our results and the design considerations we employed. \\
+
+\noindent {\bfseries Automation}
+One common piece of feedback, from experts and novices alike, was that the
+connection process could be simplified with automation. At first glance, many
+decisions currently made by the user could be automated. For example, bridge
+selection needs to happen only if a regular connection failed, and bridges could
+be tried automatically until one succeeds. However, there are security
+considerations that make this solution problematic. If the launcher starts by
+trying to make unobscured connections to publicly listed relays, detection is
+trivial in a country that logs Internet traffic, potentially resulting in
+repercussions for citizens. Furthermore, some users may be turned off by the
+lack of transparency in the connection process.
+
+However, other elements of the process can be automated without adverse effects.
+For example, local proxy settings can be imported from other browsers on the
+machine by looking for settings in well-known locations on the filesystem. The
+same can be done to answer the question that led many of our participants
+astray: is a local proxy even needed? Since this piece of automation offers a
+significant potential upside, with no apparent risks, we have incorporated it
+into our design. \\
+
+\noindent {\bfseries Building a better mental model}
+Participants' lack of a mental model of censorship led them to believe their
+connection was censored when, in reality, it was not. It furthermore contributed
+to their confusion between bridges and proxies. Our design directly addresses
+these issues.
+
+Potentially ambiguous text (i.e., referring to censorship) is removed in favor
+of stating the underlying options. Separate screens with binary options (Do you
+need a proxy? Yes/No) are removed; instead the option to opt out is incorporated
+on the configuration screen. This results in a more streamlined interface (fewer
+clicks required) and unified the context of each option: all information about
+bridges (or proxies) is now contained on one screen, so the user has the full
+context of their decision. \\
+
+\noindent {\bfseries Clarifying paths through the interface}
+Many users struggled because the workflow implicitly suggested by the interface
+didn't match the ideal path: crucial steps to follow were unclear or obscured,
+while undue prominence was given to comparatively less important elements.
+Our new design inverts this trend, focusing attention on the interface elements
+that are more important, or more generally applicable.
+
+A clear example of this is the ``Connect'' button on the first screen, which has
+increased in size and become green, making it more prominent as the recommended
+option. A similar aesthetic applies to the connect button seen after custom
+configuration.
+
+Rarely used elements are deemphasized. For example, the custom bridges box,
+which previously took up a significant portion of the bridge configuration
+screen, is now hidden until that option is selected.
+
+A progress indicator at the top of the window indicates which configuration step
+the user is on. It serves to clarify the independence of bridges and proxies,
+which need to be configured separately. In the event of a failure, the user is
+returned to the first step of the process -- the bridge configuration -- to
+avoid misleading users into thinking the proxy settings are the culprit. \\
+
+\noindent {\bfseries Designing for failure cases}
+
+Many users were led astray by interface elements that were unhelpful or
+misleading if the program encountered connection problems. Our design seeks to
+prevent such confusion by gracefully handling failures.
+
+The progress bar in the connection window drew many complaints, because it got
+stuck and didn't offer any guidance for how long users were supposed to wait. We
+address this by providing a countdown timer, indicating how long users should
+expect to wait. We further enhance the progress bar by adding visual indicators
+for major milestones in the connection, providing better feedback about what has
+been accomplished so far. Additionally, the current status of the connection
+attempt (drawn from the log) is displayed, to aid in understanding and
+debugging.
+
+In the event that the connection attempt fails, messages from the log are
+displayed, along with tips and suggestions about what to do next (e.g., try
+another bridge). To make potential the options clearer, the new failure screen
+includes a separate button for retrying without changing settings and another
+for returning to reconfigure the application. \\
+
+\noindent {\bfseries Additional changes}
+In addition to the changes above, we have simplified flows where possible,
+provided clearer definitions of bridges and proxies, and reduced visual clutter.
+{\color {red} Anything else?}
 
 \section{Future Work}
 
