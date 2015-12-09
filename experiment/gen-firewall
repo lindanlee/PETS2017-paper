@@ -27,6 +27,22 @@ def read_addresses_from_json(f):
 def block_ips(ips, name):
     print "netsh advfirewall firewall add rule name=\"%s\" dir=out action=block remoteip=%s" % (name, ",".join(ips))
 
+# These are from default_authorities in src/or/config.c in tor's source code,
+# as of tag: tor-0.2.10.
+# https://gitweb.torproject.org/tor.git/tree/src/or/config.c?id=tor-0.2.6.10#n848
+dirauth_addresses = [
+    "128.31.0.39",      # moria1
+    "86.59.21.38",      # tor26
+    "194.109.206.212",  # dizum
+    "82.94.251.203",    # Tonga
+    "131.188.40.189",   # gabelmoo
+    "193.23.244.244",   # dannenberg
+    "208.83.223.34",    # urras
+    "171.25.193.9",     # maatuska
+    "154.35.175.225",   # Faravahar
+    "199.254.238.52",   # longclaw
+]
+
 # https://gitweb.torproject.org/builders/tor-browser-bundle.git/tree/Bundle-Data/PTConfigs/bridge_prefs.js?id=tbb-5.0.3-build3
 torbrowser_addresses = [
     "83.212.101.3",
@@ -48,6 +64,8 @@ torbrowser_addresses = [
     "83.212.101.3",
     "104.131.108.182",
 ]
+
+block_ips(dirauth_addresses, "Tor directory authorities")
 
 addresses = read_addresses_from_json(sys.stdin)
 num_addresses = len(addresses)
