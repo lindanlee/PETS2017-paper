@@ -39,16 +39,16 @@ since become an important censorship circumvention tool. It is now listed
 as one of the ways that normal people use Tor \cite{whotor}.
 We specifically examine its usability as a censorship circumvention tool,
 an essential facet for adoption and use.  
-We focus our analysis on the connection configuration interface of Tor browser,
+We focus our analysis on the connection configuration interface of Tor Browser,
 as censorship circumvention requires correct transport configurations.
-We will conduct a large-scale user study examining 60-100 of users 
-on how they navigate Tor's configuration wizard to complete seven browsing tasks 
+We will conduct a large-scale user study examining how 60-100 users
+navigate Tor's configuration wizard to complete typical browsing tasks
 in three different adversarial settings. Our study combines quantitative measurements (interface
 paths taken to success, time to success, and which configuration was chosen) and
 qualitative measurements (if users were comfortable with use, what was most confusing, and 
-if they would use the browser again). The first phase of the study will evaluate if and how 
+if they would use the browser again). The first phase of the study evaluated if and how
 easily users can circumvent censorship using Tor Browser. The second phase
-of the study will test improvements to the interface and an alternate interface. 
+of the study will test the improvements to the interface. 
 Our goal is to integrate positive usability changes into the Tor Browser. Since
 the configuration interface is modular and does not require changes to the Tor Browser
 functionality, these changes will be easy to deploy. 
@@ -61,7 +61,7 @@ functionality, these changes will be easy to deploy.
 Tor is primarily known as the most widely used anonymity tool today. 
 For this reason, user studies on Tor have been solely about the usability of Tor as an
 anonymity tool. Norcie~\cite{norcie2012eliminating} conducted an experiment which identified 
-``stopping points'' in Tor browser,  documenting points when people would get frustrated enough 
+``stopping points'' in Tor Browser, documenting points when people would get frustrated enough
 to stop using Tor. To our knowledge, that has been the only published user study of Tor. 
 Since then, Tor has had a lot of updates. There have been been no published usability evaluations of
 Tor Browser since the introduction of the 4.0 series, which introduced radical UI changes. 
@@ -76,19 +76,19 @@ updates, and identity/cookie management. Rather than selecting the features to
 study in isolation, we decided to focus on an important use case of Tor browser: censorship circumvention. 
 Internet censorship is pervasive across the world today \cite{faris2008measuring}. 
 Although Tor was not designed to be a censorship circumvention tool, users started
-to use Tor as a censorship circumvention tool since Tor's role as a proxy to anonymize
+using it as once, since Tor's role as a proxy to anonymize
 people also worked to circumvent censorship. Now, circumventing censorship is a
-common use case for Tor, and Tor current censorship circumvention methods are
+common use case for Tor, and current censorship circumvention methods are
 incorporated into Tor, making it a viable censorship circumvention tool even in the face
 of adversaries. In fact, some countries unsuccessfully attempt to block Tor for this reason \cite{winter2012great}. 
 To our knowledge, this is the first user study investigating the usability of Tor as a 
 censorship circumvention tool.
 
 We believe that this is a great opportunity for user research. Censorship circumvention
-is not only a common use case, but one Tor was not intended for. Since Tor does not 
-track their users in any way or performs A/B testing, making a user study a more
+is not only a common use case, but one Tor was not intended for. Tor does not
+track their users in any way or perform A/B testing, making a user study a more
 uniquely beneficial source of feedback. Since the interface does not depend on the 
-internal functionalities of Tor, changes made to the configuration interface would not 
+internal functionality of Tor, changes made to the configuration interface would not
 require huge changes, making any suggested improvements very practical to 
 deploy. 
 
@@ -106,15 +106,15 @@ correctly configuring their browser.
 For context, we will give the definition of bridges, pluggable transports, and proxies. 
 Keep in mind that this is the kind of information that a user might need to know to be able
 to configure correctly. Note that bridges, pluggable transports, and proxies are technical 
-concepts which may be unfamiliar to the average users, and that bridges and pluggable 
+concepts which may be unfamiliar to the average user, and that bridges and pluggable
 transports are completely Tor-specific concepts. 
 
 Bridges are unlisted Tor relays that make it possible for a user to connect
 to the Tor network even if a censor blocks all publicly listed Tor relays. There used 
 to be plain relays which were exactly similar to public relays, but were unlisted. However, 
-censorship in countries which blocked Tor generally were motivated enough to agressively
-block Tor in other ways, such as traffic analysis. For this reason, a bridge usually associated 
-with a pluggable transport that circumvents deep packet inspection, transports can 
+censors in countries which blocked Tor generally were motivated enough to aggressively
+block Tor in other ways, such as traffic analysis. For this reason, a bridge is usually associated
+with a pluggable transport that circumvents deep packet inspection. Transports can
 assist by obfuscating traffic or reflecting traffic through a content distribution network. 
 Proxies help bypass local network restrictions and are typically only
 needed in restricted cases, such as corporate environments.\\
@@ -170,12 +170,7 @@ current network environment censors the Tor Network.
   \centering
     \includegraphics[width=0.5\textwidth]{configuration-screenshot.png}
     \caption{The Tor Bridges Configuration window of the Tor configuration
-    interface. Tor users in censored environments and some of our participants
-    will be required to select the correct bridge for circumventing censorship.
-    Note that the interface prompts users to choose a transport type, which can be
-    the source of confusion. Bridges are non-listed guard relays to the Tor
-    network; transports, supported by bridges, obfuscate traffic in
-    different ways.}
+    interface.}
 \end{figure}
 
 Next, users are asked to configure bridges by selecting a transport type from a
@@ -198,10 +193,11 @@ The interface also makes good use of defaults, for example by emphasizing that
 certain options ``will work in most situations.''
 
 Still, there remains potential for confusion, especially with the more advanced
-configuration options. Although arguably for the reason that users may not 
-understand or read, bridges, pluggable transports, and  proxies are never defined 
-for the user. This can lead to users confusing these terms, or not understanding
-the relations between these terms. Additionally, there is limited explanation of 
+configuration options.
+Bridges, pluggable transports, and proxies are never defined for the user,
+arguably because they might not read or understand these definitions.
+This can lead to users confusing these terms, or not understanding
+the relations between them. Additionally, there is limited explanation of 
 what pluggable transport types to choose from if the default one fails or how to 
 find proxy settings, which will be required of some users. 
 
@@ -209,12 +205,12 @@ find proxy settings, which will be required of some users.
 We expected that the average user will struggle to connect because they do not understand censorship circumvention or the  censorship circumvention technologies offered by Tor. We also predict that a user will not get the feedback they need to revise their connection configuration if they fail. Specifically: 
 
 \begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
-\item  {\bfseries Hypothesis 1}: users will generally not know when they need a bridge or proxy is, leading to issues such as choosing to configure a bridge or proxy when it is not necessary, or configuring bridges or proxies incorrectly. 
+\item  {\bfseries Hypothesis 1}: users will generally not know when they need a bridge or proxy, leading to issues such as choosing to configure a bridge or proxy when it is not necessary, or configuring bridges or proxies incorrectly.
 \item  {\bfseries Hypothesis 2}: people will not know when they need to configure or connect, since they do not understand how censorship works.   
 \item  {\bfseries Hypothesis 3}: proxies will cause confusion when configuring bridges. 
 \end{itemize} 
 
-We find these hypotheses to be true for our participants, although sometimes not for the reasons we expected. For instance, we believed that proxies will cause confusion when configuring bridges because participants would confuse one as the other; however, the interface redirected users to proxy configuration settings if a participant has chosen to configure a proxy, even if the source of failure was not from the proxy. Details of the experiment that has verified our hypotheses is below.  
+We find these hypotheses to be true for our participants, although sometimes not for the reasons we expected. For instance, we believed that proxies will cause confusion when configuring bridges because participants would confuse the two; however, the interface redirected users to proxy configuration settings if a participant had chosen to configure a proxy, even if the source of failure was not from the proxy. Details of the experiment that has verified our hypotheses is below.
 
 \section{Methodology}
 
@@ -369,14 +365,25 @@ The IRB protocol to run this user study has been approved (2014-12-6995).
 
 \section{Initial Results}
 
-The qualitative interface evaluation yielded in hours of observation for a set of 16 pre-selected, diverse participants taking various UI paths in different simulated censorship environments. We then interviewed the participants, getting hundreds of words of feedback from our participants. In this section, we will be talking about the insights gathered from the qualitative interface evaluation, which has shaped the re-design of the interface. All of the results are grounded in participants' experiences and feedback, which are available publicly online. The video screen captures from the experiment can be found \href{https://github.com/lindanlee/circumvention-ux-tor/tree/master/sessions/pre/videos}{here}; a summary of each video can be found \href{https://github.com/lindanlee/circumvention-ux-tor/blob/master/sessions/pre/participant-summaries.txt}{here}. The corresponding notes from the after-experiment interview can be found \href{https://github.com/lindanlee/circumvention-ux-tor/tree/master/sessions/pre/notes}{here}. 
+The qualitative interface evaluation yielded hours of observations, as well as
+interview data, for a set of 16 pre-selected, diverse participants taking
+various UI paths in different simulated censorship environments. This section
+discusses the insights gathered from the qualitative interface evaluation, which
+has shaped the re-design of the interface. All of the results are grounded in
+participants' experiences and feedback, which are available publicly online. The
+video screen captures from the experiment can be found
+\href{https://github.com/lindanlee/circumvention-ux-tor/tree/master/sessions/pre/videos}{here};
+a summary of each video can be found
+\href{https://github.com/lindanlee/circumvention-ux-tor/blob/master/sessions/pre/participant-summaries.txt}{here}.
+The corresponding notes from the after-experiment interview can be found
+\href{https://github.com/lindanlee/circumvention-ux-tor/tree/master/sessions/pre/notes}{here}. 
 
-We have evaluated at least one Tor user, one participant who has heard of Tor before the study, and three people who had never heard of Tor before in each simulated censorship environment. The nature of small-scale qualitative studies yields in rich information about each participant, but making generalizations from these results such as ``Tor users were able to configure quicker'' would be unsound. Our observations from our particular three participants were that they were more capable of debugging after failure modes and were more methodological about doing so, but they faced similar difficulties as the other participants. 
+We evaluated at least one Tor user, one participant who has heard of Tor before the study, and three people who had never heard of Tor before in each simulated censorship environment. The nature of small-scale qualitative studies results in rich information about each participant, but making generalizations from these results such as ``Tor users were able to configure quicker'' would be unsound. Our observations from our particular three participants were that they were more capable of debugging after failure modes and were more methodological about doing so, but they faced similar difficulties as the other participants. 
 
 We noticed four common challenges that our participants have had with the interface:  
 
 \begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
-\item {\bfseries Challenge1:} People don't know how to choose between ``connect directly'' versus ``configure'' on the first screen. As seen in Figure \ref{fig:window1}, there is some guidance for the users, but we found this largely unhelpful since people do not understand the text on the screen. 
+\item {\bfseries Challenge 1:} People don't know how to choose between ``connect directly'' versus ``configure'' on the first screen. As seen in Figure \ref{fig:window1}, there is some guidance for the users, but we found this largely unhelpful since people do not understand the text on the screen. 
 \item {\bfseries Challenge 2:} People feel compelled to set up a bridge, even if they don't need one, because they do not know how censorship works. Participants knew that they were censored to some degree since we had simulated censorship of websites. However, bridges are only necessary when the government has taken active steps to censor Tor itself.
 \item {\bfseries Challenge 3:} When their first attempt to connect fails, people tend to first try changing the proxy settings, because the interface directs people to the last window participants saw before the connection failure. This was problematic since the problem is not necessarily where the interface directs users. For instance, it was common for the interface to redirect users to the proxy window in Figure \ref{fig:window5}, even when they needed to pick another bridge. 
 \item {\bfseries Challenge 4:} When the first attempt to connect fails, people did not know what to do or what to try next. The feedback given to users was not understood (see Figure \ref{fig:error}) and also did not guide users into specific actions (such as trying a different bridge, trying the same configuration again, try connecting directly, etc.).
@@ -392,9 +399,9 @@ We noticed four common challenges that our participants have had with the interf
 These common four problems were illustrated by our participants concretely:
 
 \begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
-\item {\bfseries Proof of Challenge 1:} Of the five participants who could click directly to the network, three participants (P3,P4,P10) did not choose to connect directly.  Of the eleven participants who needed to configure their connection, eight (P1, P5, P6, P7, P8, P11, P13, P14, P16) chose to connect directly. One participant (P12) clicks configure, but answers the questions in such a way that it creates a direct connection. Only one (P15) was chose to configure when they needed to.
+\item {\bfseries Proof of Challenge 1:} Of the five participants who could click directly to the network, three participants (P3,P4,P10) did not choose to connect directly.  Of the eleven participants who needed to configure their connection, eight (P1, P5, P6, P7, P8, P11, P13, P14, P16) chose to connect directly. One participant (P12) clicks configure, but answers the questions in such a way that it creates a direct connection. Only one (P15) chose to configure when they needed to.
 \item {\bfseries Proof of Challenge 2:} Five participants were placed in a censored environment which did not block Tor. Three of the five (P3, P4, P10) configured a bridge for their connection. Of the other two, one participant (P2) was convinced that configuring a bridge was the correct course of action, but was intimidated at the thought of doing so and was pleasantly surprised when a direct connection succeeded; only one participant (P9) believed that a direct connection would work. 
-\item {\bfseries Proof of Challenge 3:} All three of our participants (P14, P15, P16) who never were able to circumvent the simulated censorship environment spent 25-30 minutes trying to correctly configure a proxy, which was never necessary to connect to the Tor network. Out of the five participants who needed to fix their bridge settings, there were only two participants (P5, P6) who eventually were able to figure out that their bridge settings needed to be adjusted.
+\item {\bfseries Proof of Challenge 3:} All three of our participants who failed to circumvent the simulated censorship environment (P14, P15, P16) spent 25-30 minutes trying to correctly configure a proxy, which was never necessary to connect to the Tor network. Out of the five participants who needed to fix their bridge settings, there were only two participants (P5, P6) who eventually were able to figure out that their bridge settings needed to be adjusted.
 \item {\bfseries Proof of Challenge 4:} One participant (P14) tried the same configuration seven times, even though those settings failed each time. Another participant (P12) tries the same configuration three times, and only manages to connect through a technical artifact of the experiment even though that should not have worked. Both of these participants emphasized that they did not know what they should be doing. Other participants' interview responses also indicate a lack of feedback after failure cases (P8, P15, P16). 
 \end{itemize}
 
@@ -402,11 +409,25 @@ The above challenges stemmed from these observations:
 
 \begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
 \item {\bfseries Observation 1: Users lack a mental model of how censorship works.} For instance, our participants did not know the difference between a bridge and a proxy or a censored website versus censored Tor relays. We suspect that this is the result of an accurate mental model of how the Internet works.  It would be unreasonable to assume that users should know this information, but some of this may be required to make a correct decision in the current interface. 
-\item {\bfseries Observation 2: The interface flow does not guide users down the ideal path.} Much of the real estate on bridge configuration is used for the ``custom bridges'' option, which is an option rarely used. The interface instructs users to check out Internet settings to see if they would require a proxy, but it turns out that people are not skilled at doing so. Because the interface redirects users to the proxy screen after failing to make a connection, most of our participants tried configuring a proxy after a connection had failed due to an assumption that the proxy was the reason for the failure. In reality, there was no proxy setup required for any simulated censorship environment in our experiment and participants should have configured a bridge. 
-\item {\bfseries Observation 3: There is little constructive feedback during failure cases.} When a connection seems to not work, our participants were unsure of if they should wait more or if they should try the connection with the same configuration again, both of which are viable strategies, depending on the situation. Although there are certain error messages which were helpful, most of the error messages were technical and not understood by our participants (Figure \ref{fig:error}). The interface does not give clear directions on what participants should do next if a connection fails. 
+\item {\bfseries Observation 2: The interface flow does not guide users down the ideal path.} Much of the real estate on bridge configuration is used for the ``custom bridges'' option, which is rarely used. The interface instructs users to check out Internet settings to see if they would require a proxy, but it turns out that people are not skilled at doing so. Because the interface redirects users to the proxy screen after failing to make a connection, most of our participants tried configuring a proxy after a connection had failed due to an assumption that the proxy was the reason for the failure. In reality, there was no proxy setup required for any simulated censorship environment in our experiment and participants should have configured a bridge. 
+\item {\bfseries Observation 3: There is little constructive feedback during
+    failure cases.} When a connection seems to not work, our participants were
+    unsure whether they needed to wait longer, or if they should try the
+    connection with the same configuration again. Both of these are viable
+    strategies, depending on the situation. Although there are certain error
+    messages which were helpful, most of the error messages were technical and
+    not understood by our participants (Figure \ref{fig:error}). The interface
+    does not give clear directions on what participants should do next if a
+    connection fails. 
 \end{itemize}
 
-Although we cannot comment on if the challenges mentioned above will be exactly representative of the Tor user population, it is fair to claim that these challenges are challenges that some Tor users will encounter while configuring Tor. Our observations are grounded in user interaction--specifically user mental modes, UI flow, and failure design--giving us high confidence that addressing these observations will make a noticeable impact on the usability of the Tor configuration dialog for censorship circumvention. 
+Although we cannot comment on whether the challenges mentioned above will be
+exactly representative of the Tor user population, it is fair to claim that some
+Tor users will encounter them while configuring Tor. Our observations are
+grounded in user interaction--specifically user mental modes, UI flow, and
+failure design--giving us high confidence that addressing these observations
+will make a noticeable impact on the usability of the Tor configuration dialog
+for censorship circumvention.
 
 \section{Design}
 Based on the feedback and the insights from our qualitative interface evaluation,
@@ -451,18 +472,15 @@ these issues.
 Potentially ambiguous text (i.e., referring to censorship) is removed in favor
 of stating the underlying options, as it was shown to confuse our participants.
 Previously, separate screens with binary options (Do you need a proxy? Yes/No) 
-were provided to help users decide if they needed a bridge or proxy, and skipping
-the configuration windows for bridges and proxies, respectively, when users
-answered that they didn't need one. We have removed these screens
-because our participants did not understand how to answer them correctly. This is 
-anticipated in the old interface, in fact: written text in the interface guides users on to 
-how to answer those questions.  
+were provided to help users decide if they needed a bridge or proxy.
+We have removed these screens
+because our participants did not understand how to answer them correctly.
 
-We chose to display all information about bridges and proxies is now contained on one 
-respective screen in the interface, giving the user has the full context of their decision.
-We made the guidance from the last interface (to not choose a bridge, to not choose a proxy)
-more direct by selecting the  option to opt out of a proxy as the default option on those screens
-(Figure \ref{fig:redesign-noproxy}).
+All information about bridges is now contained on one
+screen in the interface, giving the user the full context of their decision.
+The same is done with proxy settings.
+The recommended option (choosing no bridge and no proxy) is now the default on
+the respective configuration screens (Figure \ref{fig:redesign-noproxy}).
 This results in a more streamlined interface with fewer windows
 and fewer clicks required for our participants. \\
 
@@ -485,7 +503,7 @@ A clear example of this is the ``Connect'' button on the first screen
 increased in size and become green, making it more prominent as the recommended
 option. We believe that this will help the majority of Tor users. 
 Although some of our participants in environments had chosen to connect
-directly when they needed to configure, this is generally seen as low-risk today, and 
+directly when they needed to configure,
 the majority of censorship today can be circumvented with a direct connection. 
 A similar aesthetic applies to the connect button seen after custom
 configuration.
@@ -498,13 +516,13 @@ configuration.
     ``Connect'' button.}
 \end{figure}
 
-To help lessen the cognitive load and distribute a representative amount of space
-for options, recommendations are selected as the default option, and rarely used 
-elements are deemphasized. To encourage our users to click on helpful options, 
-the help button on the bridge configuration screen
+To help lessen the cognitive load and use a proportionate amount of space,
+recommended options are selected by default, and rarely used
+elements are deemphasized.
+The help button on the bridge configuration screen
 has been emphasized to be bigger, since it is a helpful option which people rarely
-clicked. To discourage our users from using an advanced setting only technical users 
-have a chance of  configuring correctly and should only be used in very rare circumstances, 
+clicked. To discourage our users from using an advanced setting
+that should only be used in very rare circumstances,
 we have now incorporated the custom bridge configuration in the dropdown menu
 (Figure \ref{fig:redesign-bridges});
 it previously took up a significant portion of the bridge configuration screen. 
@@ -524,8 +542,7 @@ returned to the first step of the process -- the bridge configuration -- to
 avoid misleading users into thinking the proxy settings are the culprit. Previously,
 the user had to manually click to go backward in the dialog to configure bridges.
 Even in the rare event that the proxy is the issue for the connection setting, the user
-will be directed to the proxy page naturally through the flow of the UI, without
-having the user to defy the natural flow of configuration. \\
+will be directed to the proxy page naturally through the flow of the UI. \\
 
 \noindent {\bfseries Designing for failure cases}
 
@@ -536,7 +553,7 @@ for our participants on their next steps.
 
 The progress bar in the connection window drew many complaints, because it got
 stuck and didn't offer any guidance for how long users were supposed to wait. 
-The connection process can take a non-trivial couple of minutes, and users may
+The connection process can take a non-trivial amount of time, and users may
 think that the connection isn't working, even when it is making slow progress. We
 address this by providing a countdown timer, indicating that a long wait time does
 not indicate failure. We further encourage waiting by adding visual indicators
@@ -554,7 +571,7 @@ debugging.
 
 In the event that the connection attempt fails, messages from the log are
 displayed, along with tips and suggestions about what to do next (e.g., try
-another bridge). To make potential the options clearer, the new failure screen
+another bridge). To make the potential options clearer, the new failure screen
 includes a separate button for common next steps which are able to resolve
 a failed connection, which are to retry without changing settings and to reconfigure 
 the connection. \\
@@ -579,14 +596,23 @@ The work summarized in the paper is only a part of the process of improving the 
 dialog for more usable censorship circumvention. We plan to continue this work by:
 
 \begin{itemize} \itemsep1pt \parskip0pt \parsep0pt 
-\item {\bfseries Testing our design with a small-scale qualitative study.} It is critical to get in-depth data user train of thought as they user the interface, one-on-one interviews, and open-ended feedback. For this reason, we plan to run a small-scale qualitative study similar to the one we have run for the old interface. We plan to run these studies at the start of Spring 2015. 
-\item {\bfseries Testing our design with a large-scale quantitative study.} To test our design alongside the old interface, we will recruit a large number of participants to try out both designs. The purpose of this is to get statistically significant results on whether our design choices have helped or not helped a user to configure successfully. We plan to run these studies at the start of Spring 2015.
+\item {\bfseries Testing our design with a small-scale qualitative study.} It is
+    critical to get in-depth data from users through one-on-one interviews and
+    open-ended feedback. For this reason, we plan to run a small-scale
+    qualitative study similar to the one we have run for the old interface. We
+    plan to run these studies at the start of Spring 2016.
+\item {\bfseries Testing our design with a large-scale quantitative study.} To
+    test our design alongside the old interface, we will recruit a large number
+    of participants to try out both designs. The purpose of this is to get
+    statistically significant results on whether our design choices have helped
+    users to configure successfully. We plan to run these studies at the start
+    of Spring 2016.
 \item {\bfseries Analyzing which design changes have made a positive impact.} We plan to instrument our interfaces to capture all clicks, window transitions, and other events so that we can analyze if our designs have helped our users connect faster and or with less effort. 
 \item {\bfseries Push some changes.} We have the input and support of Tor developers
 to improve this interface. Any improvements will be incorporated into the Tor Browser.
 \end{itemize}
 
-\noindent {\bfseries Quantitative experiment analyses} We want to show a statistically significant improvement in user effort for a successful connection. We have deemed this can be measured with various factors such as time, clicks, etc. For this reason, we will specifically be collecting data about: the total number of participants who have successfully circumvented censorship, the number of connection attempts for a successful connection, how much time participants spent configuring before a successful connection, the number of windows traversed in the UI, the number of clicks made, if bridge and proxy configuration interfered with each other, and how many people try repeat configuration settings. 
+\noindent {\bfseries Quantitative experiment analyses} We want to show a statistically significant improvement in user effort for a successful connection. We believe that this can be measured with various factors such as time, clicks, etc. For this reason, we will specifically be collecting data about: the total number of participants who have successfully circumvented censorship, the number of connection attempts for a successful connection, how much time participants spent configuring before a successful connection, the number of windows traversed in the UI, the number of clicks made, if bridge and proxy configuration interfered with each other, and how many people try repeat configuration settings. 
 
 One exciting analysis we will perform is to build a Markov model of the UI flow chart (Figure \ref{fig:markov} shows a simplified illustration). We believe that this will be helpful in communicating participant behavior in aggregate since it will show the change in the UI flow structure, as well as how participants decisions have changed (e.g., in the old interface, a participant in a censorship environment which does not block Tor has a 0.4 chance of choosing ``connect,'' whereas in the new interface, the probability is 0.6). We have other visualizations in mind to display all participants' window traversal at a glance (Figure \ref{fig:bar} shows a simplified illustration), as well as other analyses.\\
 
