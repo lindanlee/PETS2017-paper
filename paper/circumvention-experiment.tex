@@ -432,7 +432,15 @@ detecting the need for a proxy and importing the proxy settings required would s
 our participants from a task they do not have the background to easily complete. 
 Since this piece of automation offers a significant increase in usability for our users
 (addressing our most common failure case) with no apparent risks, we have incorporated it
-into our design. \\
+into our design (Figure \ref{fig:redesign-proxy}). \\
+
+\begin{figure}[h]
+\label{fig:redesign-proxy}
+  \centering
+    \includegraphics[width=0.5\textwidth]{redesign-proxy.png}
+    \caption{the proxy configuration screen, with an option to automatically
+        ``Import from another browser''}
+\end{figure}
 
 \noindent {\bfseries Building a better mental model}
 Participants' lack of a mental model of censorship led them to believe their
@@ -453,9 +461,17 @@ how to answer those questions.
 We chose to display all information about bridges and proxies is now contained on one 
 respective screen in the interface, giving the user has the full context of their decision.
 We made the guidance from the last interface (to not choose a bridge, to not choose a proxy)
-more direct by selecting the  option to opt out of a proxy as the default option on those screens. 
+more direct by selecting the  option to opt out of a proxy as the default option on those screens
+(Figure \ref{fig:redesign-noproxy}).
 This results in a more streamlined interface with fewer windows
 and fewer clicks required for our participants. \\
+
+\begin{figure}[h]
+\label{fig:redesign-noproxy}
+  \centering
+    \includegraphics[width=0.5\textwidth]{redesign-noproxy.png}
+    \caption{The default option is now to ``Proceed without proxy settings.''}
+\end{figure}
 
 \noindent {\bfseries Clarifying paths through the interface}
 Many users struggled because the workflow implicitly suggested by the interface
@@ -464,7 +480,8 @@ while undue prominence was given to comparatively less important elements.
 Our new design inverts this trend, focusing attention on the interface elements
 that are more important, or more generally applicable.
 
-A clear example of this is the ``Connect'' button on the first screen, which has
+A clear example of this is the ``Connect'' button on the first screen
+\ref{fig:redesign-firstscreen}, which has
 increased in size and become green, making it more prominent as the recommended
 option. We believe that this will help the majority of Tor users. 
 Although some of our participants in environments had chosen to connect
@@ -473,6 +490,14 @@ the majority of censorship today can be circumvented with a direct connection.
 A similar aesthetic applies to the connect button seen after custom
 configuration.
 
+\begin{figure}[h]
+\label{fig:redesign-firstscreen}
+  \centering
+    \includegraphics[width=0.5\textwidth]{redesign-firstscreen.png}
+    \caption{the initial connection screen. Note the prominence given to the
+    ``Connect'' button.}
+\end{figure}
+
 To help lessen the cognitive load and distribute a representative amount of space
 for options, recommendations are selected as the default option, and rarely used 
 elements are deemphasized. To encourage our users to click on helpful options, 
@@ -480,8 +505,17 @@ the help button on the bridge configuration screen
 has been emphasized to be bigger, since it is a helpful option which people rarely
 clicked. To discourage our users from using an advanced setting only technical users 
 have a chance of  configuring correctly and should only be used in very rare circumstances, 
-we have now incorporated the custom bridge configuration in the dropdown menu; 
+we have now incorporated the custom bridge configuration in the dropdown menu
+(Figure \ref{fig:redesign-bridges});
 it previously took up a significant portion of the bridge configuration screen. 
+
+\begin{figure}[h]
+\label{fig:redesign-bridges}
+  \centering
+    \includegraphics[width=0.5\textwidth]{redesign-bridges.png}
+    \caption{the bridge selection screen, with the option to ``Add Custom
+    Bridge''}
+\end{figure}
 
 A progress indicator at the top of the window indicates which configuration step
 the user is on. It serves to clarify the independence of bridges and proxies,
@@ -511,12 +545,27 @@ been accomplished so far. Additionally, the current status of the connection
 attempt (drawn from the log) is displayed, to aid in understanding and
 debugging.
 
+\begin{figure}[h]
+\label{fig:redesign-waiting}
+  \centering
+    \includegraphics[width=0.5\textwidth]{redesign-waiting.png}
+    \caption{the new connection screen}
+\end{figure}
+
 In the event that the connection attempt fails, messages from the log are
 displayed, along with tips and suggestions about what to do next (e.g., try
 another bridge). To make potential the options clearer, the new failure screen
 includes a separate button for common next steps which are able to resolve
 a failed connection, which are to retry without changing settings and to reconfigure 
 the connection. \\
+
+\begin{figure}[h]
+\label{fig:redesign-failure}
+  \centering
+    \includegraphics[width=0.5\textwidth]{redesign-failure.png}
+    \caption{the screen displayed when a connection failed}
+\end{figure}
+
 
 \noindent {\bfseries Additional changes}
 In addition to the changes above, we have simplified flows where possible,
