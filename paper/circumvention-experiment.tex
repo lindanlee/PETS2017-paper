@@ -57,8 +57,7 @@ functionality, these changes will be easy to deploy.
 
 \keywords{Censorship, Security, User Studies, Anonymity, Tor}
 
-\section{Tor}
-\noindent {\bfseries Usability}
+\section{Introduction}
 Tor is primarily known as the most widely used anonymity tool today. 
 For this reason, user studies on Tor have been solely about the usability of Tor as an
 anonymity tool. Norcie~\cite{norcie2012eliminating} conducted an experiment which identified 
@@ -68,26 +67,30 @@ Since then, Tor has had a lot of updates. There have been been no published usab
 Tor Browser since the introduction of the 4.0 series, which introduced radical UI changes. 
 Lee and Fifield \cite {uxsprint} ran a small pilot study testing the download, install, and user interface of Tor Browser. 
 This study uncovered a number of bugs and stopping points. Changes made are reflected in series 
-5.1 and later. \\
+5.1 and later. There has been no work done on Tor as a censorship circumvention tool. 
 
-\noindent {\bfseries Scoping}
 There are still many features of Tor that are left unevaluated through user
 research --- such as advanced web tasks (e.g., accessing hidden services), the
 configuration menu to connect to the Tor network, configuring automatic
 updates, and identity/cookie management. Rather than selecting the features to
-study in isolation,
-we decided to focus on an important use case of Tor browser: censorship circumvention. 
-Internet censorship is pervasive across the world today \cite{faris2008measuring}, with 
-some countries blocking censorship circumvention tools as well \cite{winter2012great}. 
+study in isolation, we decided to focus on an important use case of Tor browser: censorship circumvention. 
+Internet censorship is pervasive across the world today \cite{faris2008measuring}. 
+Although Tor was not designed to be a censorship circumvention tool, users started
+to use Tor as a censorship circumvention tool since Tor's role as a proxy to anonymize
+people also worked to circumvent censorship. Now, circumventing censorship is a
+common use case for Tor, and Tor current censorship circumvention methods are
+incorporated into Tor, making it a viable censorship circumvention tool even in the face
+of adversaries. In fact, some countries unsuccessfully attempt to block Tor for this reason \cite{winter2012great}. 
 To our knowledge, this is the first user study investigating the usability of Tor as a 
-censorship circumvention tool.\\
+censorship circumvention tool.
 
-\noindent {\bfseries Motivation}
-Changing the configuration interface would not require changes to the 
-Tor Browser functionality, making any suggested improvements very practical to 
-deploy in a short period of time. {\color {red} Additionally, people are just literally
-being censored everywhere so a lot of people are using it for this purpose. So 
-we want this to be usable for that purpose.} 
+We believe that this is a great opportunity for user research. Censorship circumvention
+is not only a common use case, but one Tor was not intended for. Since Tor does not 
+track their users in any way or performs A/B testing, making a user study a more
+uniquely beneficial source of feedback. Since the interface does not depend on the 
+internal functionalities of Tor, changes made to the configuration interface would not 
+require huge changes, making any suggested improvements very practical to 
+deploy. 
 
 \section{The Configuration Interface}
 
