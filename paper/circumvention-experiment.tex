@@ -402,7 +402,7 @@ Based on the feedback and the insights from our qualitative interface evaluation
 discusses design considerations we employed and corresponding justifications. \\
 
 \noindent {\bfseries Automation}
-One common piece of feedback, from experts and novices alike, was that the
+One common piece of feedback from experts and novices alike was that the
 connection process could be simplified with automation. At first glance, many
 decisions currently made by the user could be automated. For example, bridge
 selection needs to happen only if a regular connection failed, and bridges could
@@ -410,30 +410,40 @@ be tried automatically until one succeeds. However, there are security
 considerations that make this solution problematic. If the launcher starts by
 trying to make unobscured connections to publicly listed relays, detection is
 trivial in a country that logs Internet traffic, potentially resulting in
-repercussions for citizens. Furthermore, some users may be turned off by the
+repercussions for citizens. Furthermore, users may be turned off by the
 lack of transparency in the connection process.
 
 However, other elements of the process can be automated without adverse effects.
 For example, local proxy settings can be imported from other browsers on the
-machine by looking for settings in well-known locations on the filesystem. The
-same can be done to answer the question that led many of our participants
-astray: is a local proxy even needed? Since this piece of automation offers a
-significant potential upside, with no apparent risks, we have incorporated it
+machine by looking for settings in well-known locations on the filesystem. Automatically
+detecting the need for a proxy and importing the proxy settings required would save
+our participants from a task they do not have the background to easily complete. 
+Since this piece of automation offers a significant increase in usability for our users
+(addressing our most common failure case) with no apparent risks, we have incorporated it
 into our design. \\
 
 \noindent {\bfseries Building a better mental model}
 Participants' lack of a mental model of censorship led them to believe their
-connection was censored when, in reality, it was not. It furthermore contributed
+Tor connection was censored when, in reality, it was not. It furthermore contributed
 to their confusion between bridges and proxies. Our design directly addresses
 these issues.
 
 Potentially ambiguous text (i.e., referring to censorship) is removed in favor
-of stating the underlying options. Separate screens with binary options (Do you
-need a proxy? Yes/No) are removed; instead the option to opt out is incorporated
-on the configuration screen. This results in a more streamlined interface (fewer
-clicks required) and unified the context of each option: all information about
-bridges (or proxies) is now contained on one screen, so the user has the full
-context of their decision. \\
+of stating the underlying options, as it was shown to confuse our participants.
+Previously, separate screens with binary options (Do you need a proxy? Yes/No) 
+were provided to help users decide if they needed a bridge or proxy, and skipping
+the configuration windows for bridges and proxies, respectively, when users
+answered that they didn't need one. We have removed these screens
+because our participants did not understand how to answer them correctly. This is 
+anticipated in the old interface, in fact: written text in the interface guides users on to 
+how to answer those questions.  
+
+We chose to display all information about bridges and proxies is now contained on one 
+respective screen in the interface, giving the user has the full context of their decision.
+We made the guidance from the last interface (to not choose a bridge, to not choose a proxy)
+more direct by selecting the  option to opt out of a proxy as the default option on those screens. 
+This results in a more streamlined interface with fewer windows
+and fewer clicks required for our participants. \\
 
 \noindent {\bfseries Clarifying paths through the interface}
 Many users struggled because the workflow implicitly suggested by the interface
@@ -444,29 +454,46 @@ that are more important, or more generally applicable.
 
 A clear example of this is the ``Connect'' button on the first screen, which has
 increased in size and become green, making it more prominent as the recommended
-option. A similar aesthetic applies to the connect button seen after custom
+option. We believe that this will help the majority of Tor users. 
+Although some of our participants in environments had chosen to connect
+directly when they needed to configure, this is generally seen as low-risk today, and 
+the majority of censorship today can be circumvented with a direct connection. 
+A similar aesthetic applies to the connect button seen after custom
 configuration.
 
-Rarely used elements are deemphasized. For example, the custom bridges box,
-which previously took up a significant portion of the bridge configuration
-screen, is now hidden until that option is selected.
+To help lessen the cognitive load and distribute a representative amount of space
+for options, recommendations are selected as the default option, and rarely used 
+elements are deemphasized. To encourage our users to click on helpful options, 
+the help button on the bridge configuration screen
+has been emphasized to be bigger, since it is a helpful option which people rarely
+clicked. To discourage our users from using an advanced setting only technical users 
+have a chance of  configuring correctly and should only be used in very rare circumstances, 
+we have now incorporated the custom bridge configuration in the dropdown menu; 
+it previously took up a significant portion of the bridge configuration screen. 
 
 A progress indicator at the top of the window indicates which configuration step
 the user is on. It serves to clarify the independence of bridges and proxies,
 which need to be configured separately. In the event of a failure, the user is
 returned to the first step of the process -- the bridge configuration -- to
-avoid misleading users into thinking the proxy settings are the culprit. \\
+avoid misleading users into thinking the proxy settings are the culprit. Previously,
+the user had to manually click to go backward in the dialog to configure bridges.
+Even in the rare event that the proxy is the issue for the connection setting, the user
+will be directed to the proxy page naturally through the flow of the UI, without
+having the user to defy the natural flow of configuration. \\
 
 \noindent {\bfseries Designing for failure cases}
 
 Many users were led astray by interface elements that were unhelpful or
 misleading if the program encountered connection problems. Our design seeks to
-prevent such confusion by gracefully handling failures.
+prevent such confusion by anticipating failures and providing specific instructions
+for our participants on their next steps.
 
 The progress bar in the connection window drew many complaints, because it got
-stuck and didn't offer any guidance for how long users were supposed to wait. We
-address this by providing a countdown timer, indicating how long users should
-expect to wait. We further enhance the progress bar by adding visual indicators
+stuck and didn't offer any guidance for how long users were supposed to wait. 
+The connection process can take a non-trivial couple of minutes, and users may
+think that the connection isn't working, even when it is making slow progress. We
+address this by providing a countdown timer, indicating that a long wait time does
+not indicate failure. We further encourage waiting by adding visual indicators
 for major milestones in the connection, providing better feedback about what has
 been accomplished so far. Additionally, the current status of the connection
 attempt (drawn from the log) is displayed, to aid in understanding and
@@ -475,13 +502,15 @@ debugging.
 In the event that the connection attempt fails, messages from the log are
 displayed, along with tips and suggestions about what to do next (e.g., try
 another bridge). To make potential the options clearer, the new failure screen
-includes a separate button for retrying without changing settings and another
-for returning to reconfigure the application. \\
+includes a separate button for common next steps which are able to resolve
+a failed connection, which are to retry without changing settings and to reconfigure 
+the connection. \\
 
 \noindent {\bfseries Additional changes}
 In addition to the changes above, we have simplified flows where possible,
 provided clearer definitions of bridges and proxies, and reduced visual clutter.
-{\color {red} Anything else?}
+We believe that all of these changes are cohesive with the other design changes
+made to the interface and will be beneficial for the user.
 
 \section{Future Work}
 
