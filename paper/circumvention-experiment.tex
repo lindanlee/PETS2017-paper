@@ -98,13 +98,26 @@ deploy.
 The Tor Browser provides a configuration interface to guide users through setting up 
 their connection to the
 Tor network. While people in most countries can connect to Tor using the
-dialog's default settings, citizens in certain censorship environments must
+dialog's default settings, users in certain censorship environments must
 make use of additional settings, such as bridges, proxies, or both. 
-(Bridges are unlisted Tor relays, with pluggable transports to obfuscate traffic.
-Proxies help bypass local network restrictions and are typically only
-needed in restricted cases such as corporate environments.)
 Our study explores how successfully this interface guides users to
-correctly configuring their browser.\\
+correctly configuring their browser.
+
+For context, we will give the definition of bridges, pluggable transports, and proxies. 
+Keep in mind that this is the kind of information that a user might need to know to be able
+to configure correctly. Note that bridges, pluggable transports, and proxies are technical 
+concepts which may be unfamiliar to the average users, and that bridges and pluggable 
+transports are completely Tor-specific concepts. 
+
+Bridges are unlisted Tor relays that make it possible for a user to connect
+to the Tor network even if a censor blocks all publicly listed Tor relays. There used 
+to be plain relays which were exactly similar to public relays, but were unlisted. However, 
+censorship in countries which blocked Tor generally were motivated enough to agressively
+block Tor in other ways, such as traffic analysis. For this reason, a bridge usually associated 
+with a pluggable transport that circumvents deep packet inspection, transports can 
+assist by obfuscating traffic or reflecting traffic through a content distribution network. 
+Proxies help bypass local network restrictions and are typically only
+needed in restricted cases, such as corporate environments.\\
 
 \noindent {\bfseries Configuration Flow}
 
@@ -185,26 +198,23 @@ The interface also makes good use of defaults, for example by emphasizing that
 certain options ``will work in most situations.''
 
 Still, there remains potential for confusion, especially with the more advanced
-configuration options. Bridges and proxies are not clearly defined, the
-interface doesn't specify when they would need to be used, and there is limited
-guidance for how to correctly choose specific values (e.g., which transport type
-to use or where to find proxy settings).
+configuration options. Although arguably for the reason that users may not 
+understand or read, bridges, pluggable transports, and  proxies are never defined 
+for the user. This can lead to users confusing these terms, or not understanding
+the relations between these terms. Additionally, there is limited explanation of 
+what pluggable transport types to choose from if the default one fails or how to 
+find proxy settings, which will be required of some users. 
 
 \section{Hypotheses}
-We expect that the average user will
-struggle to connect because they lack knowledge of the technical terms and
-mechanisms required for circumvention (such as pluggable transports) and cannot
-obtain information not explicitly provided by the user interface (e.g., IP
-addresses of non-publicly listed bridges).
+We expected that the average user will struggle to connect because they do not understand censorship circumvention or the  censorship circumvention technologies offered by Tor. We also predict that a user will not get the feedback they need to revise their connection configuration if they fail. Specifically: 
 
 \begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
-\item  {\bfseries H1}: people don't know what a bridge or proxy is. > ask participants to define these terms in the survey.  
-\item  {\bfseries H2}: people don't know what the difference between a bridge and a proxy is > ask if people can distinguish them. 
-\item  {\bfseries H3}: people do not know when bridges or proxies are necessary > ask them this in the survey.  
-\item  {\bfseries H4}: proxies cause confusion when configuring bridges. screen recording: see if people click on proxies (none of the environments require a proxy)
-\item  {\bfseries H5}: people will favor familiar-sounding transports (i.e. meek-google versus meek-azure or scramblesuit) > see screen recordings, ask in survey for which transports were picked in which order and why they chose the final transport.  
-\item {\bfseries H6}: (some dialogue is redundant. see opening window: "before you connect..." and bridge2 window: "you may use...") > we can try asking if people find these things useful, if they would prefer the interface without it, or if they read it.  
+\item  {\bfseries Hypothesis 1}: users will generally not know when they need a bridge or proxy is, leading to issues such as choosing to configure a bridge or proxy when it is not necessary, or configuring bridges or proxies incorrectly. 
+\item  {\bfseries Hypothesis 2}: people will not know when they need to configure or connect, since they do not understand how censorship works.   
+\item  {\bfseries Hypothesis 3}: proxies will cause confusion when configuring bridges. 
 \end{itemize} 
+
+We find these hypotheses to be true for our participants, although sometimes not for the reasons we expected. For instance, we believed that proxies will cause confusion when configuring bridges because participants would confuse one as the other; however, the interface redirected users to proxy configuration settings if a participant has chosen to configure a proxy, even if the source of failure was not from the proxy. Details of the experiment that has verified our hypotheses is below.  
 
 \section{Methodology}
 
