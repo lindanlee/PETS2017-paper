@@ -261,7 +261,7 @@ population.
 Using established best practices from the field of user experience research
 (\cite{howmanyusers}), we recruited five users for each censorship environment.
 We pre-screened our participants to have a good mix of gender, age, technical
-background, and familiarity with Tor. \\
+background, and familiarity with Tor in each environment, and also overall. \\
 
 %Some references to keep in mind when explaining:
 %\href{why 5 users}{http://www.nngroup.com/articles/how-many-test-users/}
@@ -342,7 +342,7 @@ group will be completing the same tasks using the old, unimproved interface. \\
 % NOTE: removed mention of the alternate interface, unless there's something to say about it
 
 \noindent {\bfseries Experiment Logistics} 
-We plan to recruit 35-50 users for the purpose of this study,
+We plan to recruit up to 100 users for the purpose of this study,
 making it the largest user study of Tor to date.  This study will be conducted at the
 Experimental Social Science Laboratory (Xlab)
 at the University of California, Berkeley, which consists of 36 laptops,
@@ -355,47 +355,51 @@ minimum wage for an hour and any transportation costs to the lab.
 The IRB protocol to run this user study has been approved (2014-12-6995). 
 
 
-
-
 \section{Results}
 
-Problems: 
+The qualitative interface evaluation yielded in hours of observation for a set of 16 pre-selected, diverse participants taking various UI paths in different simulated censorship environments. We then interviewed the participants, getting hundreds of words of feedback from our participants. In this section, we will be talking about the insights gathered from the qualitative interface evaluation, which has shaped the re-design of the interface. All of the results are grounded in participants' experiences and feedback, which are available publicly online. The video screen captures from the experiment can be found \href{https://github.com/lindanlee/circumvention-ux-tor/tree/master/sessions/pre/videos}{here}; a summary of each video can be found \href{https://github.com/lindanlee/circumvention-ux-tor/blob/master/sessions/pre/participant-summaries.txt}{here}. The corresponding notes from the after-experiment interview can be found \href{https://github.com/lindanlee/circumvention-ux-tor/tree/master/sessions/pre/notes}{here}. 
+
+We have evaluated at least one Tor user, one participant who has heard of Tor before the study, and three people who had never heard of Tor before in each simulated censorship environment. The nature of small-scale qualitative studies yields in rich information about each participant, but making generalizations from these results such as ``Tor users were able to configure quicker'' would be unsound. Our observations from our particular three participants were that they were more capable of debugging after failure modes and were more methodological about doing so, but they faced similar difficulties as the other participants. 
+
+We noticed four common challenges that our participants have had with the interface:  
 
 \begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
-\item {\bfseries Problem1:} People don't know how to choose between ``connect directly'' versus ``configure'' on the first screen. 
-\item {\bfseries Problem 2:} People feel compelled to set up a bridge, even if they don't need one, because they do not know how censorship works. 
-\item {\bfseries Problem 3:} When their first attempt to connect fails, people tend to first try changing the proxy settings, because that is the window visible after a failure (an artifact of the fact that it is the last window visible before the failure). 
-\item {\bfseries Problem 4:} When the first attempt to connect fails, people don't know what to do or what to try next. 
+\item {\bfseries Challenge1:} People don't know how to choose between ``connect directly'' versus ``configure'' on the first screen. As seen in Figure \ref{fig:window1}, there is some guidance for the users, but we found this largely unhelpful since people do not understand the text on the screen. 
+\item {\bfseries Challenge 2:} People feel compelled to set up a bridge, even if they don't need one, because they do not know how censorship works. Participants knew that they were censored to some degree since we had simulated censorship of websites. However, bridges are only necessary when the government has taken active steps to censor Tor itself.
+\item {\bfseries Challenge 3:} When their first attempt to connect fails, people tend to first try changing the proxy settings, because the interface directs people to the last window participants saw before the connection failure. This was problematic since the problem is not necessarily where the interface directs users. For instance, it was common for the interface to redirect users to the proxy window in Figure \ref{fig:window5}, even when they needed to pick another bridge. 
+\item {\bfseries Challenge 4:} When the first attempt to connect fails, people did not know what to do or what to try next. The feedback given to users was not understood (see Figure \ref{fig:error}) and also did not guide users into specific actions (such as trying a different bridge, trying the same configuration again, try connecting directly, etc.).
 \end{itemize}
 
-Proof of problems: 
-
-\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
-\item {\bfseries Proof 1:} TODO
-\item {\bfseries Proof 2:} TODO
-\item {\bfseries Proof 3:} TODO
-\item {\bfseries Proof 4:} TODO
-\end{itemize}
-
-Source of Problems: 
-
-\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
-\item {\bfseries Source 1: Users lack a mental model of how censorship works.} For instance, our participants did not know the difference between a bridge and a proxy or a censored website versus censored Tor relays. We suspect that this is the result of an accurate mental model of how the Internet works.  It would be unreasonable to assume that users should know this information, but some of this may be required to make a correct decision in the current interface. 
-\item {\bfseries Source 2: The interface flow does not guide users down the ideal path.} Much of the real estate on bridge configuration is used for the ``custom bridges'' option, which is an option rarely used. The interface instructs users to check out Internet settings to see if they would require a proxy, but it turns out that people are not skilled at doing so. Because the interface redirects users to the proxy screen after failing to make a connection, most of our participants tried configuring a proxy after a connection had failed due to an assumption that the proxy was the reason for the failure. In reality, there was no proxy setup required for any simulated censorship environment in our experiment and participants should have configured a bridge. 
-\item {\bfseries Source 3: There is little constructive feedback during failure cases.} When a connection seems to not work, our participants were unsure of if they should wait more or if they should try the connection with the same configuration again, both of which are viable strategies, depending on the situation. Although there are certain error messages which were helpful, most of the error messages were technical and not understood by our participants (Figure \ref{fig:error}). The interface does not give clear directions on what participants should do next if a connection fails. 
-\end{itemize}
-
-\begin{figure*}[t]
+\begin{figure}[t]
 \label{fig:error}
   \centering
-    \includegraphics[width=\textwidth]{error.png}
+    \includegraphics[width=0.5\textwidth]{error.png}
     \caption{An example of a technical error message which our participants did not understand.}
-\end{figure*}
+\end{figure}
+
+These common four problems were illustrated by our participants concretely:
+
+\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
+\item {\bfseries Proof of Challenge 1:} Of the five participants who could click directly to the network, three participants (P3,P4,P10) did not choose to connect directly.  Of the eleven participants who needed to configure their connection, eight (P1, P5, P6, P7, P8, P11, P13, P14, P16) chose to connect directly. One participant (P12) clicks configure, but answers the questions in such a way that it creates a direct connection. Only one (P15) was chose to configure when they needed to.
+\item {\bfseries Proof of Challenge 2:} Five participants were placed in a censored environment which did not block Tor. Three of the five (P3, P4, P10) configured a bridge for their connection. Of the other two, one participant (P2) was convinced that configuring a bridge was the correct course of action, but was intimidated at the thought of doing so and was pleasantly surprised when a direct connection succeeded; only one participant (P9) believed that a direct connection would work. 
+\item {\bfseries Proof of Challenge 3:} All three of our participants (P14, P15, P16) who never were able to circumvent the simulated censorship environment spent 25-30 minutes trying to correctly configure a proxy, which was never necessary to connect to the Tor network. Out of the five participants who needed to fix their bridge settings, there were only two participants (P5, P6) who eventually were able to figure out that their bridge settings needed to be adjusted.
+\item {\bfseries Proof of Challenge 4:} One participant (P14) tried the same configuration seven times, even though those settings failed each time. Another participant (P12) tries the same configuration three times, and only manages to connect through a technical artifact of the experiment even though that should not have worked. Both of these participants emphasized that they did not know what they should be doing. Other participants' interview responses also indicate a lack of feedback after failure cases (P8, P15, P16). 
+\end{itemize}
+
+The above challenges stemmed from these observations: 
+
+\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
+\item {\bfseries Observation 1: Users lack a mental model of how censorship works.} For instance, our participants did not know the difference between a bridge and a proxy or a censored website versus censored Tor relays. We suspect that this is the result of an accurate mental model of how the Internet works.  It would be unreasonable to assume that users should know this information, but some of this may be required to make a correct decision in the current interface. 
+\item {\bfseries Observation 2: The interface flow does not guide users down the ideal path.} Much of the real estate on bridge configuration is used for the ``custom bridges'' option, which is an option rarely used. The interface instructs users to check out Internet settings to see if they would require a proxy, but it turns out that people are not skilled at doing so. Because the interface redirects users to the proxy screen after failing to make a connection, most of our participants tried configuring a proxy after a connection had failed due to an assumption that the proxy was the reason for the failure. In reality, there was no proxy setup required for any simulated censorship environment in our experiment and participants should have configured a bridge. 
+\item {\bfseries Observation 3: There is little constructive feedback during failure cases.} When a connection seems to not work, our participants were unsure of if they should wait more or if they should try the connection with the same configuration again, both of which are viable strategies, depending on the situation. Although there are certain error messages which were helpful, most of the error messages were technical and not understood by our participants (Figure \ref{fig:error}). The interface does not give clear directions on what participants should do next if a connection fails. 
+\end{itemize}
+
+Although we cannot comment on if the challenges mentioned above will be exactly representative of the Tor user population, it is fair to claim that these challenges are challenges that some Tor users will encounter while configuring Tor. Our observations are grounded in user interaction--specifically user mental modes, UI flow, and failure design--giving us high confidence that addressing these observations will make a noticeable impact on the usability of the Tor configuration dialog for censorship circumvention. 
 
 \section{Design}
-Based on the feedback we received and the insights we gathered from our
-participants, we designed improvements to the launcher interface. This section
-discusses our results and the design considerations we employed. \\
+Based on the feedback and the insights from our qualitative interface evaluation,
+ we designed improvements to the launcher interface. This section
+discusses design considerations we employed and corresponding justifications. \\
 
 \noindent {\bfseries Automation}
 One common piece of feedback, from experts and novices alike, was that the
