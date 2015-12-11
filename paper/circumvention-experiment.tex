@@ -65,7 +65,7 @@ Lee and Fifield \cite {uxsprint} ran a small pilot study testing the download, i
 This study uncovered a number of bugs and stopping points. Changes made are reflected in series 
 5.1 and later. There has been no work done on Tor as a censorship circumvention tool. 
 
-Many features of Tor that are left unevaluated through user
+Many features of Tor have not been evaluated through user
 research --- such as advanced web tasks (e.g., accessing hidden services), the
 configuration menu to connect to the Tor network, configuring automatic
 updates, and identity/cookie management. Rather than selecting the features to
@@ -323,8 +323,8 @@ prototypes.
 We collected feedback from researchers, professors, and Tor users and developers
 through the Tor project's mailing lists. We iteratively designed by
 incorporating the comments and suggestions we received into the next version of
-the interface. We plan to take some qualitative measurements of the new design
-by having some participants think aloud while they use our realistic mockup. This is 
+the interface. We plan to take qualitative measurements of the new design
+by having participants think aloud while they use our realistic mockup. This is
 to get any feedback before we launch our quantitative interface evaluation.
 
 \subsection{Quantitative interface evaluation}
@@ -380,7 +380,7 @@ We noticed four common challenges:
 \begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
 \item {\bfseries Challenge 1:} People don't know how to choose between ``connect directly'' versus ``configure'' on the first screen. As seen in Figure \ref{fig:window1}, there is some guidance for the users, but we found this largely unhelpful since people do not understand the text on the screen. 
 \item {\bfseries Challenge 2:} People feel compelled to set up a bridge, even if they don't need one, because they do not know how censorship works. Participants knew that they were censored to some degree since we had simulated censorship of websites. However, bridges are only necessary when the government has taken active steps to censor Tor itself.
-\item {\bfseries Challenge 3:} When their first attempt to connect fails, the interface directs people to the last window participants saw before the connection failure. The problem is not necessarily where the interface directs users, misguiding them. It was common for the interface to redirect users to the proxy window in Figure \ref{fig:window5}, even when they needed to pick another bridge. 
+\item {\bfseries Challenge 3:} When their first attempt to connect fails, the interface directs people to the last window they saw before the connection failure. The problem is not necessarily where the interface directs users, misguiding them. It was common for the interface to redirect users to the proxy window in Figure \ref{fig:window5}, even when they needed to pick another bridge. 
 \item {\bfseries Challenge 4:} When the first attempt to connect fails, people did not know what to do or what to try next. The feedback given to users was not understood (see Figure \ref{fig:error}) and also did not guide users into specific actions (such as trying a different bridge, trying the same configuration again, try connecting directly, etc.).
 \end{itemize}
 
@@ -531,7 +531,7 @@ it previously took up a significant portion of the bridge configuration screen.
 \label{fig:redesign-bridges}
 \end{figure}
 
-A progress indicator at the top of indicates various steps
+A progress indicator at the top of the window indicates various steps
 for configuring a connection. In addition to communicating what the various 
 steps of configuration are from the beginning, this indicator also serves to clarify the independence of
 bridges and proxies, which need to be configured separately. 
@@ -550,9 +550,9 @@ misleading if the program encountered connection problems. Our design seeks to
 prevent such confusion by anticipating failures and providing specific instructions
 for our participants on their next steps.
 
-The progress bar in the connection window often was unresponsive 
-and did not offer guidance for to wait. 
-The connection process can take about two minutes long enough that users may
+The progress bar in the connection window was often unresponsive
+and did not offer guidance for how long users were supposed to wait.
+The connection process can take about two minutes --- long enough that users may
 think that the connection has failed, even when it is making slow and invisible progress. 
 We added a countdown timer to indicate that a long wait time does
 not indicate failure. We also add visual indicators
@@ -586,7 +586,7 @@ the connection. \\
 \noindent {\bfseries Additional changes}
 In addition to the changes above, we have simplified flows,
 reduced text, and reduced visual clutter.
-We believe these changes are cohesive with the our design 
+We believe these changes are cohesive with our design
 and will be beneficial for the user.\\
 
 \section{Future Work}
