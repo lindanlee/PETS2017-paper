@@ -76,7 +76,7 @@ updates, and identity/cookie management. Rather than selecting the features to
 study in isolation, we decided to focus on an important use case of Tor browser: censorship circumvention. 
 Internet censorship is pervasive across the world today \cite{faris2008measuring}. 
 Although Tor was not designed to be a censorship circumvention tool, users started
-using it as once, since Tor's role as a proxy to anonymize
+using it as one, since Tor's role as a proxy to anonymize
 people also worked to circumvent censorship. Now, circumventing censorship is a
 common use case for Tor, and current censorship circumvention methods are
 incorporated into Tor, making it a viable censorship circumvention tool even in the face
@@ -239,7 +239,7 @@ directly will circumvent this censor. Additional correct
 bridge or proxy configurations are optional. 
 
 \item {\bfseries Intermediate censorship} 
-(Representative of countries such as Tunsia.)
+(Representative of countries such as Tunisia.)
 Certain domains are blocked. Censorship circumvention
 tools such as Tor are blocked. Since all public Tor
 relay nodes are blocked, the default option to ``connect'' to the Tor network
@@ -283,14 +283,14 @@ simulated censorship
 environment, where some --- but not all --- websites are blocked. We
 instruct them to visit a non-blocked website and a blocked website on a
 ``standard'' browser (one that is not used for censorship circumvention, such
-as Chrome, Safari, or Firefox) to illustrate the situation.
+as Chrome, Internet Explorer, or Firefox) to illustrate the situation.
 Participants are told that their
 role is that of a regular citizen who is trying to visit blocked websites
 for non-critical purposes,
 and for whom the chance of risk is minimal. This information is given
 to achieve
 consistency across participants: behaviors may change if the tasks are
-critical or if there were great risks associated with configuration mistakes. 
+critical or if there are great risks associated with configuration mistakes.
 
 After explaining the situation and the user's role, we
 instruct them to complete a set of
@@ -304,7 +304,7 @@ indicator of successful censorship circumvention.
 Participants' screens are recorded to capture how they configure
 their browser.
 
-After users complete the browsing tasks (or time runs out), we conduct an
+After users completed the browsing tasks (or time ran out), we conducted an
 interview, collecting qualitative feedback from
 participants about their browsing experience as a whole
 and the configuration interface specifically.
@@ -323,6 +323,8 @@ To do this, we used an iterative design process, starting with low-fidelity
 (paper and pencil) prototypes and then proceeding to higher-fidelity versions.
 At each stage, the prototype was clickable, allowing for more realistic
 simulation.
+
+% XXX: expect merge conflict here because whitespace was (accidentally?) removed in newer changes
 
 We collected feedback from researchers, professors, and Tor users and developers
 through the Tor project's mailing lists. We then iterated on the design by
@@ -408,7 +410,7 @@ These common four problems were illustrated by our participants concretely:
 The above challenges stemmed from these observations: 
 
 \begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
-\item {\bfseries Observation 1: Users lack a mental model of how censorship works.} For instance, our participants did not know the difference between a bridge and a proxy or a censored website versus censored Tor relays. We suspect that this is the result of an accurate mental model of how the Internet works.  It would be unreasonable to assume that users should know this information, but some of this may be required to make a correct decision in the current interface. 
+\item {\bfseries Observation 1: Users lack a mental model of how censorship works.} For instance, our participants did not know the difference between a bridge and a proxy or a censored website versus censored Tor relays. We suspect that this is the result of an inaccurate mental model of how the Internet works.  It would be unreasonable to assume that users should know this information, but some of this may be required to make a correct decision in the current interface. 
 \item {\bfseries Observation 2: The interface flow does not guide users down the ideal path.} Much of the real estate on bridge configuration is used for the ``custom bridges'' option, which is rarely used. The interface instructs users to check out Internet settings to see if they would require a proxy, but it turns out that people are not skilled at doing so. Because the interface redirects users to the proxy screen after failing to make a connection, most of our participants tried configuring a proxy after a connection had failed due to an assumption that the proxy was the reason for the failure. In reality, there was no proxy setup required for any simulated censorship environment in our experiment and participants should have configured a bridge. 
 \item {\bfseries Observation 3: There is little constructive feedback during
     failure cases.} When a connection seems to not work, our participants were
@@ -424,8 +426,8 @@ The above challenges stemmed from these observations:
 Although we cannot comment on whether the challenges mentioned above will be
 exactly representative of the Tor user population, it is fair to claim that some
 Tor users will encounter them while configuring Tor. Our observations are
-grounded in user interaction--specifically user mental modes, UI flow, and
-failure design--giving us high confidence that addressing these observations
+grounded in user interaction -- specifically user mental modes, UI flow, and
+failure design -- giving us high confidence that addressing these observations
 will make a noticeable impact on the usability of the Tor configuration dialog
 for censorship circumvention.
 
@@ -499,7 +501,7 @@ Our new design inverts this trend, focusing attention on the interface elements
 that are more important, or more generally applicable.
 
 A clear example of this is the ``Connect'' button on the first screen
-\ref{fig:redesign-firstscreen}, which has
+(Figure \ref{fig:redesign-firstscreen}), which has
 increased in size and become green, making it more prominent as the recommended
 option. We believe that this will help the majority of Tor users. 
 Although some of our participants in environments had chosen to connect
@@ -537,11 +539,13 @@ it previously took up a significant portion of the bridge configuration screen.
 
 A progress indicator at the top of the window indicates which configuration step
 the user is on. It serves to clarify the independence of bridges and proxies,
-which need to be configured separately. In the event of a failure, the user is
+which need to be configured separately
+
+In the event of a failure, the user is
 returned to the first step of the process -- the bridge configuration -- to
 avoid misleading users into thinking the proxy settings are the culprit. Previously,
 the user had to manually click to go backward in the dialog to configure bridges.
-Even in the rare event that the proxy is the issue for the connection setting, the user
+In the rare event that the proxy is the issue for the connection setting, the user
 will be directed to the proxy page naturally through the flow of the UI. \\
 
 \noindent {\bfseries Designing for failure cases}
@@ -632,7 +636,7 @@ One exciting analysis we will perform is to build a Markov model of the UI flow 
 
 \noindent {\bfseries Deciding which design choices to incorporate} We have discussed how we will decide if a design change is beneficial enough to incorporate. Intuitively, changes which lead to higher success rates, faster time to completion, less clicking, less window traversal, and positive changes in behavior will be incorporated. If they have the converse of these effects, those changes will not be incorporated. However, when changes do result in a statistically significant improvement or challenge, we have chosen to incorporate changes if they provide cohesion with other changes which do have positive effects. If changes seem to be uncorrelated to positive effects and do not show statistical significance, we will not incorporate those changes. \\
 
-\noindent {\bfseries Looking Forward} We will help incorporate changes into the Tor browser. Since we have developer support, it is not expected that we implement our changes, but we will advise them on any changes that they make. We hope that our work is able to help people more easily access the free Internet. 
+\noindent {\bfseries Looking Forward} We will help incorporate changes into the Tor Browser. Since we have developer support, it is not expected that we implement our changes, but we will advise them on any changes that they make. We hope that our work is able to help people more easily access the free Internet. 
 
 \section{Resources}
 \noindent Our online artifacts of the work done during this class, Fall 2015,
