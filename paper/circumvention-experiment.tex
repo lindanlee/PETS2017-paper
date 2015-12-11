@@ -122,7 +122,6 @@ needed in restricted cases, such as corporate environments.\\
 \noindent {\bfseries Configuration Flow}
 
 \begin{figure*}[t]
-\label{fig:interface}
   \centering
     \includegraphics[width=\textwidth]{../torconfig.png}
     \caption{This flow chart shows all of the possible paths taken through the
@@ -132,6 +131,7 @@ needed in restricted cases, such as corporate environments.\\
     transitions between the states indicate which user action causes that
     transition. Annotations for the error states can be found by following
 \href{https://github.com/lindanlee/circumvention-ux-tor/blob/master/torconfig.dot}{this hyperlink}.}
+\label{fig:interface}
 \end{figure*}
 
 As bridges and proxies can be configured independently or together, there are
@@ -166,11 +166,11 @@ not know if they need a bridge or not, but that they are equipped to answer if t
 current network environment censors the Tor Network. 
 
 \begin{figure}[h]
-\label{fig:bridges}
   \centering
     \includegraphics[width=0.5\textwidth]{configuration-screenshot.png}
     \caption{The Tor Bridges Configuration window of the Tor configuration
     interface.}
+\label{fig:bridges}
 \end{figure}
 
 Next, users are asked to configure bridges by selecting a transport type from a
@@ -392,10 +392,10 @@ We noticed four common challenges that our participants have had with the interf
 \end{itemize}
 
 \begin{figure}[t]
-\label{fig:error}
   \centering
     \includegraphics[width=0.5\textwidth]{error.png}
     \caption{An example of a technical error message which our participants did not understand.}
+\label{fig:error}
 \end{figure}
 
 These common four problems were illustrated by our participants concretely:
@@ -458,11 +458,11 @@ Since this piece of automation offers a significant increase in usability for ou
 into our design (Figure \ref{fig:redesign-proxy}). \\
 
 \begin{figure}[h]
-\label{fig:redesign-proxy}
   \centering
     \includegraphics[width=0.5\textwidth]{redesign-proxy.png}
     \caption{the proxy configuration screen, with an option to automatically
         ``Import from another browser''}
+\label{fig:redesign-proxy}
 \end{figure}
 
 \noindent {\bfseries Building a better mental model}
@@ -487,10 +487,10 @@ This results in a more streamlined interface with fewer windows
 and fewer clicks required for our participants. \\
 
 \begin{figure}[h]
-\label{fig:redesign-noproxy}
   \centering
     \includegraphics[width=0.5\textwidth]{redesign-noproxy.png}
     \caption{The default option is now to ``Proceed without proxy settings.''}
+\label{fig:redesign-noproxy}
 \end{figure}
 
 \noindent {\bfseries Clarifying paths through the interface}
@@ -511,11 +511,11 @@ A similar aesthetic applies to the connect button seen after custom
 configuration.
 
 \begin{figure}[h]
-\label{fig:redesign-firstscreen}
   \centering
     \includegraphics[width=0.5\textwidth]{redesign-firstscreen.png}
     \caption{the initial connection screen. Note the prominence given to the
     ``Connect'' button.}
+\label{fig:redesign-firstscreen}
 \end{figure}
 
 To help lessen the cognitive load and use a proportionate amount of space,
@@ -530,11 +530,11 @@ we have now incorporated the custom bridge configuration in the dropdown menu
 it previously took up a significant portion of the bridge configuration screen. 
 
 \begin{figure}[h]
-\label{fig:redesign-bridges}
   \centering
     \includegraphics[width=0.5\textwidth]{redesign-bridges.png}
     \caption{the bridge selection screen, with the option to ``Add Custom
     Bridge''}
+\label{fig:redesign-bridges}
 \end{figure}
 
 A progress indicator at the top of the window indicates which configuration step
@@ -567,10 +567,10 @@ attempt (drawn from the log) is displayed, to aid in understanding and
 debugging.
 
 \begin{figure}[h]
-\label{fig:redesign-waiting}
   \centering
     \includegraphics[width=0.5\textwidth]{redesign-waiting.png}
     \caption{the new connection screen}
+\label{fig:redesign-waiting}
 \end{figure}
 
 In the event that the connection attempt fails, messages from the log are
@@ -581,10 +581,10 @@ a failed connection, which are to retry without changing settings and to reconfi
 the connection. \\
 
 \begin{figure}[h]
-\label{fig:redesign-failure}
   \centering
     \includegraphics[width=0.5\textwidth]{redesign-failure.png}
     \caption{the screen displayed when a connection failed}
+\label{fig:redesign-failure}
 \end{figure}
 
 
@@ -621,17 +621,17 @@ to improve this interface. Any improvements will be incorporated into the Tor Br
 One exciting analysis we will perform is to build a Markov model of the UI flow chart (Figure \ref{fig:markov} shows a simplified illustration). We believe that this will be helpful in communicating participant behavior in aggregate since it will show the change in the UI flow structure, as well as how participants decisions have changed (e.g., in the old interface, a participant in a censorship environment which does not block Tor has a 0.4 chance of choosing ``connect,'' whereas in the new interface, the probability is 0.6). We have other visualizations in mind to display all participants' window traversal at a glance (Figure \ref{fig:bar} shows a simplified illustration), as well as other analyses.\\
 
 \begin{figure}[t]
-\label{fig:markov}
   \centering
     \includegraphics[width=0.5\textwidth]{markov.png}
     \caption{An illustration on a planned analysis using the quantitative survey data. This illustration shows two possible user interfaces and uses a Markov model to reflect the aggregate user behavior. We believe that this will be an concrete way to predict user behaviors, which is valuable feedback for if the interface is guiding users in a desired UI path.}
+\label{fig:markov}
 \end{figure}
 
 \begin{figure}[t]
-\label{fig:bar}
   \centering
     \includegraphics[width=0.5\textwidth]{screen-bar.png}
     \caption{An illustration of how we plan to visualize large-scale UI flows as a succinct way to display all participants' window traversal. We plan to color code the screens so that the reader can see trends at a glance, such as how the UI path for participants in a mild censorship environment with the old design compare to the UI flow for the participants in a mild censorship environment with a new design. It also can communicate how much work was required of a user to configure a connection.}
+\label{fig:bar}
 \end{figure}
 
 \noindent {\bfseries Deciding which design choices to incorporate} We have discussed how we will decide if a design change is beneficial enough to incorporate. Intuitively, changes which lead to higher success rates, faster time to completion, less clicking, less window traversal, and positive changes in behavior will be incorporated. If they have the converse of these effects, those changes will not be incorporated. However, when changes do result in a statistically significant improvement or challenge, we have chosen to incorporate changes if they provide cohesion with other changes which do have positive effects. If changes seem to be uncorrelated to positive effects and do not show statistical significance, we will not incorporate those changes. \\
@@ -667,17 +667,16 @@ are below:
 \section*{A1: Configuration Interface Windows}
 
 \begin{figure}[h]
-\label{fig:window1}
   \centering
     \includegraphics[width=0.5\textwidth]{window1.png}
     \caption{Window 1: the first configuration window shown to the user upon
     starting Tor Browser for the first time. Note that the interface's default choice
     is to connect directly through Tor. The interface also gives additional guidance
     to help users answer this question.}
+\label{fig:window1}
 \end{figure}
 
 \begin{figure}[h]
-\label{fig:window2}
   \centering
     \includegraphics[width=0.5\textwidth]{window2.png}
     \caption{Window 2: This is the next window shown if a user chooses to configure 
@@ -685,10 +684,10 @@ are below:
     and also advises users to click ``No'' if they are unsure. The user can navigate to the 
     previous window by clicking ``Go Back,'' and continue configuration by clicking 
     ``Continue.''}
+\label{fig:window2}
 \end{figure}
 
 \begin{figure}[h]
-\label{fig:window3}
   \centering
     \includegraphics[width=0.5\textwidth]{window3.png}
     \caption{Window 3: This is the window shown when a user answers that a bridge 
@@ -698,10 +697,10 @@ are below:
     a transport type, when the interface clearly is asking for bridge configuration. The user 
     can navigate to the previous window by clicking ``Go Back,'' and continue configuration 
     by clicking  ``Continue.''}
+\label{fig:window3}
 \end{figure}
 
 \begin{figure}[h]
-\label{fig:window4}
   \centering
     \includegraphics[width=0.5\textwidth]{window4.png}
     \caption{Window 4: This is the window shown after a user has deemed that a bridge
@@ -710,10 +709,10 @@ are below:
     there is text to guide the users on how to answer this question. The user 
     can navigate to the previous window by clicking ``Go Back,'' and continue configuration 
     by clicking  ``Continue.''}
+\label{fig:window4}
 \end{figure}
 
 \begin{figure}[h]
-\label{fig:window5}
   \centering
     \includegraphics[width=0.5\textwidth]{window5.png}
     \caption{Window 5: This is the window shown when a user answers that a proxy is 
@@ -721,5 +720,6 @@ are below:
     where there were for bridges. Additionally, since this is the last window in the configuration
     interface, the options to navigate to other windows are to simply ``go back,'' or to 
     connect to the Tor Network.}
+\label{fig:window5}
 \end{figure}
 \end{document}
