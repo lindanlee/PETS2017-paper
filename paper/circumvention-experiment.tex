@@ -41,17 +41,13 @@ We specifically examine its usability as a censorship circumvention tool,
 an essential facet for adoption and use.  
 We focus our analysis on the connection configuration interface of Tor Browser,
 as censorship circumvention requires correct transport configurations.
-We will conduct a large-scale user study examining how 60-100 users
-navigate Tor's configuration wizard to complete typical browsing tasks
-in three different adversarial settings. Our study combines quantitative measurements (interface
-paths taken to success, time to success, and which configuration was chosen) and
-qualitative measurements (if users were comfortable with use, what was most confusing, and 
-if they would use the browser again). The first phase of the study evaluated if and how
-easily users can circumvent censorship using Tor Browser. The second phase
-of the study will test the improvements to the interface. 
-Our goal is to integrate positive usability changes into the Tor Browser. Since
-the configuration interface is modular and does not require changes to the Tor Browser
-functionality, these changes will be easy to deploy. 
+The first phase of the study evaluated if and how easily users can circumvent censorship 
+using Tor Browser; the results of conducting our experiment and the interface redesign
+is presented in this paper. The second phase
+of the study will test the improvements to the interface, which has yet to happen. However, we take
+some time to describe our plans. 
+Our goal is to integrate positive usability changes into the Tor Browser, making
+censorship circumvention an easier process for users around the world. 
 
 \end{abstract}
 
@@ -165,7 +161,7 @@ This phrasing of the question carries the assumption that people will
 not know if they need a bridge or not, but that they are equipped to answer if their
 current network environment censors the Tor Network. 
 
-\begin{figure}[h]
+\begin{figure}[t]
 \label{fig:bridges}
   \centering
     \includegraphics[width=0.5\textwidth]{configuration-screenshot.png}
@@ -304,32 +300,31 @@ indicator of successful censorship circumvention.
 Participants' screens are recorded to capture how they configure
 their browser.
 
-After users complete the browsing tasks (or time runs out), we conduct an
-interview, collecting qualitative feedback from
-participants about their browsing experience as a whole
-and the configuration interface specifically.
-We ask questions such as
+After users complete the browsing tasks (or time runs out), we conducted an
+interview asking participants about their censorship circumvention experience.
+We were able to tailor the interview to the particular participant, since we were able to
+observe our participants' sessions. This way, we could follow up and ask participants
+about reasons for taking particular actions and verify any hypothesis we had about 
+the participant (such as ``they didn't know what to do on window 3'').  We did
+ask a couple question across all participants: 
 ``What was the most challenging part of connecting?''
 and
 ``What is one change you would recommend?''
 
 
 \subsection{Interface design and iteration}
-After completing the qualitative user studies, we analyzed their results to
-identify common themes and problems. Based on these, we then designed
-improvements to the Tor launcher interface.
-
-To do this, we used an iterative design process, starting with low-fidelity
-(paper and pencil) prototypes and then proceeding to higher-fidelity versions.
-At each stage, the prototype was clickable, allowing for more realistic
-simulation.
-
-We collected feedback from researchers, professors, and Tor users and developers
+After completing the qualitative user studies, we analyzed the results to
+identify common themes and problems. These were the basis of our interface 
+redesign. To do this, we used an iterative design process, starting with low-fidelity
+(paper and pencil) prototypes and then proceeding to higher-fidelity (realistic clickable mockups)
+prototypes.We collected feedback from researchers, professors, and Tor users and developers
 through the Tor project's mailing lists. We then iterated on the design by
 incorporating the comments and suggestions we received into the next version of
-the interface.
+the interface. We plan to take some qualitative measurements of the new design
+by having some participants think aloud while they use our realistic mockup. This is 
+to get any feedback before we launch our quantitative interface evaluation.
 
-\subsection{Quantitative evaluation of improvements}
+\subsection{Quantitative interface evaluation}
 Once the new design of the user interface is finalized, we will conduct a
 large-scale quantitative evaluation, to test whether the improvements had a
 measurable effect on people's ability to connect to the Tor network.
@@ -339,11 +334,8 @@ qualitative portion of the study, described above. However, rather than
 conducting open-ended interviews at the end of the tasks, participants will be
 asked to fill out a brief survey. Furthermore, the interface will be
 instrumented to collect metrics and statistics for use in analysis and
-hypothesis testing.
-Some examples of metrics collected include the time spent on each screen, which
-paths the user followed, which interface elements they interacted with, and how
-often they did so. These will be analyzed in conjunction with high-level metrics
-(was the user able to connect to Tor successfully?).
+hypothesis testing. Such metrics include the time spent on each screen, which
+paths were taken, which interface elements were interacted with, etc.
 
 Participants will be split across several different experimental conditions.
 Some will be testing the improved user interface, while those in the control
@@ -365,7 +357,7 @@ The IRB protocol to run this user study has been approved (2014-12-6995).
 
 \section{Initial Results}
 
-The qualitative interface evaluation yielded hours of observations, as well as
+The qualitative interface evaluation yielded hours of observations and
 interview data, for a set of 16 pre-selected, diverse participants taking
 various UI paths in different simulated censorship environments. This section
 discusses the insights gathered from the qualitative interface evaluation, which
@@ -455,7 +447,7 @@ Since this piece of automation offers a significant increase in usability for ou
 (addressing our most common failure case) with no apparent risks, we have incorporated it
 into our design (Figure \ref{fig:redesign-proxy}). \\
 
-\begin{figure}[h]
+\begin{figure}[t]
 \label{fig:redesign-proxy}
   \centering
     \includegraphics[width=0.5\textwidth]{redesign-proxy.png}
@@ -484,7 +476,7 @@ the respective configuration screens (Figure \ref{fig:redesign-noproxy}).
 This results in a more streamlined interface with fewer windows
 and fewer clicks required for our participants. \\
 
-\begin{figure}[h]
+\begin{figure}[t]
 \label{fig:redesign-noproxy}
   \centering
     \includegraphics[width=0.5\textwidth]{redesign-noproxy.png}
@@ -508,7 +500,7 @@ the majority of censorship today can be circumvented with a direct connection.
 A similar aesthetic applies to the connect button seen after custom
 configuration.
 
-\begin{figure}[h]
+\begin{figure}[t]
 \label{fig:redesign-firstscreen}
   \centering
     \includegraphics[width=0.5\textwidth]{redesign-firstscreen.png}
@@ -527,7 +519,7 @@ we have now incorporated the custom bridge configuration in the dropdown menu
 (Figure \ref{fig:redesign-bridges});
 it previously took up a significant portion of the bridge configuration screen. 
 
-\begin{figure}[h]
+\begin{figure}[t]
 \label{fig:redesign-bridges}
   \centering
     \includegraphics[width=0.5\textwidth]{redesign-bridges.png}
@@ -535,9 +527,10 @@ it previously took up a significant portion of the bridge configuration screen.
     Bridge''}
 \end{figure}
 
-A progress indicator at the top of the window indicates which configuration step
-the user is on. It serves to clarify the independence of bridges and proxies,
-which need to be configured separately. In the event of a failure, the user is
+A progress indicator at the top of the window indicates various steps necessary
+for configuring a connection. In addition to communicating to the user what the various 
+steps of configuration are from the beginning, this indicator also serves to clarify the independence of
+bridges and proxies, which need to be configured separately. In the event of a failure, the user is
 returned to the first step of the process -- the bridge configuration -- to
 avoid misleading users into thinking the proxy settings are the culprit. Previously,
 the user had to manually click to go backward in the dialog to configure bridges.
@@ -546,7 +539,7 @@ will be directed to the proxy page naturally through the flow of the UI. \\
 
 \noindent {\bfseries Designing for failure cases}
 
-Many users were led astray by interface elements that were unhelpful or
+Users were led astray by interface elements that were unhelpful or
 misleading if the program encountered connection problems. Our design seeks to
 prevent such confusion by anticipating failures and providing specific instructions
 for our participants on their next steps.
@@ -562,7 +555,7 @@ been accomplished so far. Additionally, the current status of the connection
 attempt (drawn from the log) is displayed, to aid in understanding and
 debugging.
 
-\begin{figure}[h]
+\begin{figure}[t]
 \label{fig:redesign-waiting}
   \centering
     \includegraphics[width=0.5\textwidth]{redesign-waiting.png}
@@ -576,7 +569,7 @@ includes a separate button for common next steps which are able to resolve
 a failed connection, which are to retry without changing settings and to reconfigure 
 the connection. \\
 
-\begin{figure}[h]
+\begin{figure}[t]
 \label{fig:redesign-failure}
   \centering
     \includegraphics[width=0.5\textwidth]{redesign-failure.png}
