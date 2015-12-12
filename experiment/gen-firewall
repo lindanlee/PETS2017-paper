@@ -63,6 +63,8 @@ torbrowser_addresses = [
     "178.209.52.110",
     "83.212.101.3",
     "104.131.108.182",
+    # Not yet default but will be: https://bugs.torproject.org/17747
+    "109.105.109.165",
 ]
 
 block_ips(dirauth_addresses, "Tor directory authorities")
