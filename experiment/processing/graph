@@ -1,0 +1,30 @@
+#!/usr/bin/env python2
+
+import datetime
+import json
+import re
+import sys
+
+def parse_date_string(s):
+    m = re.match(r'^(.*)(\.\d\d\d)Z$', s)
+    d = datetime.datetime.strptime(m.group(1), "%Y-%m-%dT%H:%M:%S")
+    return d.replace(microsecond=int(float(m.group(2)) * 1000000))
+
+current_page = "start";
+
+def parse_inst(f):
+    global current_page
+    print current_page;
+    for line in f:
+        parts = line.strip().split(" ", 2)
+        if parts[0] != "INST":
+            continue
+        date = parse_date_string(parts[1])
+        event = json.loads(parts[2])
+        if event["type"] == "pageshow":
+            print current_page, "->", event["target_id"];
+            current_page = event["target_id"]
+
+print "digraph G {"
+parse_inst(sys.stdin)
+print "}"
