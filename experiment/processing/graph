@@ -1,5 +1,13 @@
 #!/usr/bin/env python2
 
+# * if the configuration was eventually successful
+# * total time to successful configuration
+# * if failure, ultimate reason for failure
+# * number of tries until success
+# * causes for errors
+# * if participants listened to our directions (ie choosing the next bridge, or anything on the error screen)
+# * all paths taken through the interface
+
 import datetime
 import json
 import re
