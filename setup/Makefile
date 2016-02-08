@@ -9,7 +9,7 @@ $(OUTPUT_OLD_EXE):
 
 # This is a browser bundle altered to include Tor Launcher
 # instrumentation logging.
-torbrowser-%-5.0.3_en-US.exe: $(ORIG_EXE) torbrowser.nsi torbrowser.ico
+torbrowser-%-5.0.3_en-US.exe: $(ORIG_EXE) tor-launcher-%.xpi torbrowser.nsi torbrowser.ico
 	rm -rf "$(WORKDIR)"
 	mkdir -p "$(WORKDIR)"
 
@@ -23,6 +23,9 @@ torbrowser-%-5.0.3_en-US.exe: $(ORIG_EXE) torbrowser.nsi torbrowser.ico
 # to run. Therefore copy libssp-0.dll into both places before repacking.
 # libssp-0.dll is the only file where this happens in Tor Browser 5.0.3.
 	cp -f "$(WORKDIR)/\$$_OUTDIR/Browser/libssp-0.dll" "$(WORKDIR)/\$$_OUTDIR/Browser/TorBrowser/Tor/libssp-0.dll"
+
+# Install the altered tor-launcher.xpi.
+	cp -f "tor-launcher-$*.xpi" "$(WORKDIR)/\$$_OUTDIR/Browser/TorBrowser/Data/Browser/profile.default/extensions/tor-launcher@torproject.org.xpi"
 
 # Rebuild with NSIS.
 	cp -f torbrowser.nsi torbrowser.ico "$(WORKDIR)/"
