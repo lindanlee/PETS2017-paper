@@ -1,11 +1,15 @@
-OUTPUT_EXE = torbrowser-uxtest-5.0.3_en-US.exe
 ORIG_EXE = torbrowser-install-5.0.3_en-US.exe
+# This is the "old" Tor Launcher interface, not changed except for added
+# instrumentation.
+OUTPUT_OLD_EXE = torbrowser-old-5.0.3_en-US.exe
 
 WORKDIR = work
 
+$(OUTPUT_OLD_EXE):
+
 # This is a browser bundle altered to include Tor Launcher
 # instrumentation logging.
-$(OUTPUT_EXE): $(ORIG_EXE) torbrowser.nsi torbrowser.ico
+torbrowser-%-5.0.3_en-US.exe: $(ORIG_EXE) torbrowser.nsi torbrowser.ico
 	rm -rf "$(WORKDIR)"
 	mkdir -p "$(WORKDIR)"
 
@@ -25,7 +29,7 @@ $(OUTPUT_EXE): $(ORIG_EXE) torbrowser.nsi torbrowser.ico
 	ln -s "\$$_OUTDIR" "$(WORKDIR)/Tor Browser"
 	cd "$(WORKDIR)" && makensis torbrowser.nsi
 
-	mv "$(WORKDIR)/torbrowser-install.exe" "$(OUTPUT_EXE)"
+	mv "$(WORKDIR)/torbrowser-install.exe" "$@"
 
 torbrowser-install-%_en-US.exe:
 	@echo "Missing $@. Download it from"
@@ -33,6 +37,6 @@ torbrowser-install-%_en-US.exe:
 	@false
 
 clean:
-	rm -f "$(OUTPUT_EXE)"
+	rm -f "$(OUTPUT_OLD_EXE)"
 
 .PHONY: clean
