@@ -24,6 +24,11 @@ torbrowser-%-5.0.3_en-US.exe: $(ORIG_EXE) tor-launcher-%.xpi torbrowser.nsi torb
 # libssp-0.dll is the only file where this happens in Tor Browser 5.0.3.
 	cp -f "$(WORKDIR)/\$$_OUTDIR/Browser/libssp-0.dll" "$(WORKDIR)/\$$_OUTDIR/Browser/TorBrowser/Tor/libssp-0.dll"
 
+# Fix the meek-amazon bridge fingerprint that has changed since 5.0.3
+# was current.
+# https://bugs.torproject.org/17473
+	sed -i -e 's/4EE0CC769EB4B15A872F742EDE27D298A59DCADE/B9E7141C594AF25699E0079C1F0146F409495296/' "$(WORKDIR)/\$$_OUTDIR/Browser/TorBrowser/Data/Browser/profile.default/preferences/extension-overrides.js"
+
 # Install the altered tor-launcher.xpi.
 	cp -f "tor-launcher-$*.xpi" "$(WORKDIR)/\$$_OUTDIR/Browser/TorBrowser/Data/Browser/profile.default/extensions/tor-launcher@torproject.org.xpi"
 
