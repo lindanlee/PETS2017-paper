@@ -14,7 +14,8 @@ import re
 import sys
 
 class Record(object):
-    def __init__(self, date, event):
+    def __init__(self, run_id, date, event):
+        self.run_id = date
         self.date = date
         self.event = event
 
@@ -36,12 +37,13 @@ def parse_date_string(s):
 def parse_records(f):
     records = []
     for line in f:
-        parts = line.strip().split(" ", 2)
+        parts = line.strip().split(" ", 3)
         if parts[0] != "INST":
             continue
-        date = parse_date_string(parts[1])
-        event = json.loads(parts[2])
-        records.append(Record(date, event))
+        run_id = parts[1]
+        date = parse_date_string(parts[2])
+        event = json.loads(parts[3])
+        records.append(Record(run_id, date, event))
     return records
 
 def is_event_wanted(event):
