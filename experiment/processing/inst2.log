@@ -1,118 +1,118 @@
-INST 2016-02-17T01:57:21.700Z {"type":"start"}
-INST 2016-02-17T01:57:22.000Z {"type":"select","target_tagname":"menulist","target_id":"proxyType","value":""}
-INST 2016-02-17T01:57:22.000Z {"type":"wizardnext","target_tagname":"wizard","target_id":"TorNetworkSettings"}
-INST 2016-02-17T01:57:22.000Z {"type":"pageshow","target_tagname":"wizardpage","target_id":"first"}
-INST 2016-02-17T01:57:22.500Z {"type":"load","target_id":"configuration"}
-INST 2016-02-17T01:57:22.500Z {"type":"select","target_tagname":"menulist","target_id":"defaultBridgeType","value":"obfs3"}
-INST 2016-02-17T01:57:25.500Z {"type":"click","target_tagname":"button","target_id":"configure_button","detail":1}
-INST 2016-02-17T01:57:25.500Z {"type":"pagehide","target_tagname":"wizardpage","target_id":"first"}
-INST 2016-02-17T01:57:25.500Z {"type":"pageadvanced","target_tagname":"wizardpage","target_id":"first"}
-INST 2016-02-17T01:57:25.500Z {"type":"wizardnext","target_tagname":"wizard","target_id":"TorNetworkSettings"}
-INST 2016-02-17T01:57:25.500Z {"type":"pageshow","target_tagname":"wizardpage","target_id":"bridges"}
-INST 2016-02-17T01:57:25.500Z {"type":"command","target_tagname":"button","target_id":"configure_button"}
-INST 2016-02-17T01:57:37.900Z {"type":"click","target_tagname":"wizard","target_id":"TorNetworkSettings","detail":1}
-INST 2016-02-17T01:57:37.900Z {"type":"pagehide","target_tagname":"wizardpage","target_id":"bridges"}
-INST 2016-02-17T01:57:37.900Z {"type":"pageadvanced","target_tagname":"wizardpage","target_id":"bridges"}
-INST 2016-02-17T01:57:37.900Z {"type":"wizardnext","target_tagname":"wizard","target_id":"TorNetworkSettings"}
-INST 2016-02-17T01:57:37.900Z {"type":"pageshow","target_tagname":"wizardpage","target_id":"bridgeSettings"}
-INST 2016-02-17T01:57:37.900Z {"type":"command","target_tagname":"wizard","target_id":"TorNetworkSettings"}
-INST 2016-02-17T01:57:40.600Z {"type":"popupshown","target_tagname":"menupopup","target_id":"defaultBridgeType_menuPopup"}
-INST 2016-02-17T01:57:41.200Z {"type":"mouseover","target_tagname":"menuitem","target_id":"","value":"flashproxy"}
-INST 2016-02-17T01:57:41.300Z {"type":"mouseout","target_tagname":"menuitem","target_id":"","value":"flashproxy"}
-INST 2016-02-17T01:57:41.300Z {"type":"mouseover","target_tagname":"menuitem","target_id":"","value":"fte"}
-INST 2016-02-17T01:57:41.400Z {"type":"mouseout","target_tagname":"menuitem","target_id":"","value":"fte"}
-INST 2016-02-17T01:57:41.400Z {"type":"mouseover","target_tagname":"menuitem","target_id":"","value":"fte-ipv6"}
-INST 2016-02-17T01:57:41.500Z {"type":"mouseout","target_tagname":"menuitem","target_id":"","value":"fte-ipv6"}
-INST 2016-02-17T01:57:41.500Z {"type":"mouseover","target_tagname":"menuitem","target_id":"","value":"meek-amazon"}
-INST 2016-02-17T01:57:42.100Z {"type":"select","target_tagname":"menulist","target_id":"defaultBridgeType","value":"meek-amazon"}
-INST 2016-02-17T01:57:42.200Z {"type":"command","target_tagname":"menuitem","target_id":"","value":"meek-amazon"}
-INST 2016-02-17T01:57:42.200Z {"type":"popuphidden","target_tagname":"menupopup","target_id":"defaultBridgeType_menuPopup"}
-INST 2016-02-17T01:57:42.200Z {"type":"mouseout","target_tagname":"menuitem","target_id":"","value":"meek-amazon"}
-INST 2016-02-17T01:57:43.100Z {"type":"click","target_tagname":"wizard","target_id":"TorNetworkSettings","detail":1}
-INST 2016-02-17T01:57:43.100Z {"type":"pagehide","target_tagname":"wizardpage","target_id":"bridgeSettings"}
-INST 2016-02-17T01:57:43.100Z {"type":"pageadvanced","target_tagname":"wizardpage","target_id":"bridgeSettings"}
-INST 2016-02-17T01:57:43.100Z {"type":"wizardnext","target_tagname":"wizard","target_id":"TorNetworkSettings"}
-INST 2016-02-17T01:57:43.100Z {"type":"pageshow","target_tagname":"wizardpage","target_id":"proxy"}
-INST 2016-02-17T01:57:43.100Z {"type":"command","target_tagname":"wizard","target_id":"TorNetworkSettings"}
-INST 2016-02-17T01:57:45.100Z {"type":"click","target_tagname":"radio","target_id":"proxyRadioYes","detail":1}
-INST 2016-02-17T01:57:45.100Z {"type":"command","target_tagname":"radio","target_id":"proxyRadioYes"}
-INST 2016-02-17T01:57:45.800Z {"type":"click","target_tagname":"wizard","target_id":"TorNetworkSettings","detail":1}
-INST 2016-02-17T01:57:45.800Z {"type":"pagehide","target_tagname":"wizardpage","target_id":"proxy"}
-INST 2016-02-17T01:57:45.900Z {"type":"pageadvanced","target_tagname":"wizardpage","target_id":"proxy"}
-INST 2016-02-17T01:57:45.900Z {"type":"wizardnext","target_tagname":"wizard","target_id":"TorNetworkSettings"}
-INST 2016-02-17T01:57:45.900Z {"type":"pageshow","target_tagname":"wizardpage","target_id":"proxyYES"}
-INST 2016-02-17T01:57:45.900Z {"type":"command","target_tagname":"wizard","target_id":"TorNetworkSettings"}
-INST 2016-02-17T01:57:47.700Z {"type":"click","target_tagname":"wizard","target_id":"TorNetworkSettings","detail":1}
-INST 2016-02-17T01:57:47.700Z {"type":"pagehide","target_tagname":"wizardpage","target_id":"proxyYES"}
-INST 2016-02-17T01:57:47.700Z {"type":"pagerewound","target_tagname":"wizardpage","target_id":"proxyYES"}
-INST 2016-02-17T01:57:47.700Z {"type":"wizardback","target_tagname":"wizard","target_id":"TorNetworkSettings"}
-INST 2016-02-17T01:57:47.700Z {"type":"pageshow","target_tagname":"wizardpage","target_id":"proxy"}
-INST 2016-02-17T01:57:47.700Z {"type":"command","target_tagname":"wizard","target_id":"TorNetworkSettings"}
-INST 2016-02-17T01:57:48.700Z {"type":"click","target_tagname":"radio","target_id":"proxyRadioNo","detail":1}
-INST 2016-02-17T01:57:48.700Z {"type":"command","target_tagname":"radio","target_id":"proxyRadioNo"}
-INST 2016-02-17T01:57:50.500Z {"type":"click","target_tagname":"wizard","target_id":"TorNetworkSettings","detail":1}
-INST 2016-02-17T01:57:50.500Z {"type":"pagehide","target_tagname":"wizardpage","target_id":"proxy"}
-INST 2016-02-17T01:57:50.500Z {"type":"pageadvanced","target_tagname":"wizardpage","target_id":"proxy"}
-INST 2016-02-17T01:57:50.500Z {"type":"wizardfinish","target_tagname":"wizard","target_id":"TorNetworkSettings"}
-INST 2016-02-17T01:57:50.600Z {"type":"load","target_id":"progress_bar"}
-INST 2016-02-17T01:57:52.300Z {"type":"progresschanged","target_tagname":"progressmeter","target_id":"progressMeter","value":"5"}
-INST 2016-02-17T01:57:52.300Z {"type":"progresschanged","target_tagname":"progressmeter","target_id":"progressMeter","value":"10"}
-INST 2016-02-17T01:57:53.600Z {"type":"progresschanged","target_tagname":"progressmeter","target_id":"progressMeter","value":"10"}
-INST 2016-02-17T01:57:53.600Z {"type":"alert_show","target_id":"tor_bootstrap_failed","value":"Tor failed to establish a Tor network connection.\n\nEstablishing an encrypted directory connection failed (identity mismatch - 0.0.2.0:2)."}
-INST 2016-02-17T01:58:21.000Z {"type":"alert_exit","target_id":"tor_bootstrap_failed","value":"Tor failed to establish a Tor network connection.\n\nEstablishing an encrypted directory connection failed (identity mismatch - 0.0.2.0:2)."}
-INST 2016-02-17T01:58:21.000Z {"type":"command","target_tagname":"wizard","target_id":"TorNetworkSettings"}
-INST 2016-02-17T01:58:26.800Z {"type":"click","target_tagname":"wizard","target_id":"TorNetworkSettings","detail":1}
-INST 2016-02-17T01:58:26.800Z {"type":"pagehide","target_tagname":"wizardpage","target_id":"proxy"}
-INST 2016-02-17T01:58:26.800Z {"type":"pagerewound","target_tagname":"wizardpage","target_id":"proxy"}
-INST 2016-02-17T01:58:26.800Z {"type":"wizardback","target_tagname":"wizard","target_id":"TorNetworkSettings"}
-INST 2016-02-17T01:58:26.800Z {"type":"pageshow","target_tagname":"wizardpage","target_id":"bridgeSettings"}
-INST 2016-02-17T01:58:26.800Z {"type":"command","target_tagname":"wizard","target_id":"TorNetworkSettings"}
-INST 2016-02-17T01:58:27.900Z {"type":"popupshown","target_tagname":"menupopup","target_id":"defaultBridgeType_menuPopup"}
-INST 2016-02-17T01:58:28.900Z {"type":"mouseover","target_tagname":"menuitem","target_id":"","value":"flashproxy"}
-INST 2016-02-17T01:58:29.000Z {"type":"mouseout","target_tagname":"menuitem","target_id":"","value":"flashproxy"}
-INST 2016-02-17T01:58:29.000Z {"type":"mouseover","target_tagname":"menuitem","target_id":"","value":"fte"}
-INST 2016-02-17T01:58:29.000Z {"type":"mouseout","target_tagname":"menuitem","target_id":"","value":"fte"}
-INST 2016-02-17T01:58:29.000Z {"type":"mouseover","target_tagname":"menuitem","target_id":"","value":"fte-ipv6"}
-INST 2016-02-17T01:58:29.100Z {"type":"mouseout","target_tagname":"menuitem","target_id":"","value":"fte-ipv6"}
-INST 2016-02-17T01:58:29.100Z {"type":"mouseover","target_tagname":"menuitem","target_id":"","value":"meek-amazon"}
-INST 2016-02-17T01:58:29.100Z {"type":"mouseout","target_tagname":"menuitem","target_id":"","value":"meek-amazon"}
-INST 2016-02-17T01:58:29.100Z {"type":"mouseover","target_tagname":"menuitem","target_id":"","value":"meek-azure"}
-INST 2016-02-17T01:58:29.200Z {"type":"mouseout","target_tagname":"menuitem","target_id":"","value":"meek-azure"}
-INST 2016-02-17T01:58:29.200Z {"type":"mouseover","target_tagname":"menuitem","target_id":"","value":"meek-google"}
-INST 2016-02-17T01:58:29.300Z {"type":"mouseout","target_tagname":"menuitem","target_id":"","value":"meek-google"}
-INST 2016-02-17T01:58:29.300Z {"type":"mouseover","target_tagname":"menuitem","target_id":"","value":"obfs3"}
-INST 2016-02-17T01:58:29.400Z {"type":"mouseout","target_tagname":"menuitem","target_id":"","value":"obfs3"}
-INST 2016-02-17T01:58:29.400Z {"type":"mouseover","target_tagname":"menuitem","target_id":"","value":"obfs4"}
-INST 2016-02-17T01:58:29.700Z {"type":"select","target_tagname":"menulist","target_id":"defaultBridgeType","value":"obfs4"}
-INST 2016-02-17T01:58:29.700Z {"type":"command","target_tagname":"menuitem","target_id":"","value":"obfs4"}
-INST 2016-02-17T01:58:29.700Z {"type":"popuphidden","target_tagname":"menupopup","target_id":"defaultBridgeType_menuPopup"}
-INST 2016-02-17T01:58:29.700Z {"type":"mouseout","target_tagname":"menuitem","target_id":"","value":"obfs4"}
-INST 2016-02-17T01:58:30.500Z {"type":"click","target_tagname":"wizard","target_id":"TorNetworkSettings","detail":1}
-INST 2016-02-17T01:58:30.500Z {"type":"pagehide","target_tagname":"wizardpage","target_id":"bridgeSettings"}
-INST 2016-02-17T01:58:30.500Z {"type":"pageadvanced","target_tagname":"wizardpage","target_id":"bridgeSettings"}
-INST 2016-02-17T01:58:30.500Z {"type":"wizardnext","target_tagname":"wizard","target_id":"TorNetworkSettings"}
-INST 2016-02-17T01:58:30.500Z {"type":"pageshow","target_tagname":"wizardpage","target_id":"proxy"}
-INST 2016-02-17T01:58:30.500Z {"type":"command","target_tagname":"wizard","target_id":"TorNetworkSettings"}
-INST 2016-02-17T01:58:31.100Z {"type":"click","target_tagname":"wizard","target_id":"TorNetworkSettings","detail":1}
-INST 2016-02-17T01:58:31.100Z {"type":"pagehide","target_tagname":"wizardpage","target_id":"proxy"}
-INST 2016-02-17T01:58:31.100Z {"type":"pageadvanced","target_tagname":"wizardpage","target_id":"proxy"}
-INST 2016-02-17T01:58:31.100Z {"type":"wizardfinish","target_tagname":"wizard","target_id":"TorNetworkSettings"}
-INST 2016-02-17T01:58:31.300Z {"type":"load","target_id":"progress_bar"}
-INST 2016-02-17T01:58:32.700Z {"type":"progresschanged","target_tagname":"progressmeter","target_id":"progressMeter","value":"15"}
-INST 2016-02-17T01:58:32.800Z {"type":"progresschanged","target_tagname":"progressmeter","target_id":"progressMeter","value":"20"}
-INST 2016-02-17T01:58:33.000Z {"type":"progresschanged","target_tagname":"progressmeter","target_id":"progressMeter","value":"25"}
-INST 2016-02-17T01:58:33.800Z {"type":"progresschanged","target_tagname":"progressmeter","target_id":"progressMeter","value":"45"}
-INST 2016-02-17T01:58:34.000Z {"type":"progresschanged","target_tagname":"progressmeter","target_id":"progressMeter","value":"51"}
-INST 2016-02-17T01:58:34.000Z {"type":"progresschanged","target_tagname":"progressmeter","target_id":"progressMeter","value":"51"}
-INST 2016-02-17T01:58:34.100Z {"type":"progresschanged","target_tagname":"progressmeter","target_id":"progressMeter","value":"51"}
-INST 2016-02-17T01:58:34.200Z {"type":"progresschanged","target_tagname":"progressmeter","target_id":"progressMeter","value":"57"}
-INST 2016-02-17T01:58:34.500Z {"type":"progresschanged","target_tagname":"progressmeter","target_id":"progressMeter","value":"57"}
-INST 2016-02-17T01:58:34.600Z {"type":"progresschanged","target_tagname":"progressmeter","target_id":"progressMeter","value":"63"}
-INST 2016-02-17T01:58:34.600Z {"type":"progresschanged","target_tagname":"progressmeter","target_id":"progressMeter","value":"69"}
-INST 2016-02-17T01:58:34.600Z {"type":"progresschanged","target_tagname":"progressmeter","target_id":"progressMeter","value":"73"}
-INST 2016-02-17T01:58:35.400Z {"type":"progresschanged","target_tagname":"progressmeter","target_id":"progressMeter","value":"80"}
-INST 2016-02-17T01:58:35.400Z {"type":"progresschanged","target_tagname":"progressmeter","target_id":"progressMeter","value":"90"}
-INST 2016-02-17T01:58:36.400Z {"type":"progresschanged","target_tagname":"progressmeter","target_id":"progressMeter","value":"100"}
-INST 2016-02-17T01:58:36.700Z {"type":"unload","target_id":"progress_bar"}
-INST 2016-02-17T01:58:36.700Z {"type":"command","target_tagname":"wizard","target_id":"TorNetworkSettings"}
-INST 2016-02-17T01:58:36.700Z {"type":"unload","target_id":"configuration"}
+INST 0000000000000001 2016-02-17T01:57:21.700Z {"type":"start"}
+INST 0000000000000001 2016-02-17T01:57:22.000Z {"type":"select","target_tagname":"menulist","target_id":"proxyType","value":""}
+INST 0000000000000001 2016-02-17T01:57:22.000Z {"type":"wizardnext","target_tagname":"wizard","target_id":"TorNetworkSettings"}
+INST 0000000000000001 2016-02-17T01:57:22.000Z {"type":"pageshow","target_tagname":"wizardpage","target_id":"first"}
+INST 0000000000000001 2016-02-17T01:57:22.500Z {"type":"load","target_id":"configuration"}
+INST 0000000000000001 2016-02-17T01:57:22.500Z {"type":"select","target_tagname":"menulist","target_id":"defaultBridgeType","value":"obfs3"}
+INST 0000000000000001 2016-02-17T01:57:25.500Z {"type":"click","target_tagname":"button","target_id":"configure_button","detail":1}
+INST 0000000000000001 2016-02-17T01:57:25.500Z {"type":"pagehide","target_tagname":"wizardpage","target_id":"first"}
+INST 0000000000000001 2016-02-17T01:57:25.500Z {"type":"pageadvanced","target_tagname":"wizardpage","target_id":"first"}
+INST 0000000000000001 2016-02-17T01:57:25.500Z {"type":"wizardnext","target_tagname":"wizard","target_id":"TorNetworkSettings"}
+INST 0000000000000001 2016-02-17T01:57:25.500Z {"type":"pageshow","target_tagname":"wizardpage","target_id":"bridges"}
+INST 0000000000000001 2016-02-17T01:57:25.500Z {"type":"command","target_tagname":"button","target_id":"configure_button"}
+INST 0000000000000001 2016-02-17T01:57:37.900Z {"type":"click","target_tagname":"wizard","target_id":"TorNetworkSettings","detail":1}
+INST 0000000000000001 2016-02-17T01:57:37.900Z {"type":"pagehide","target_tagname":"wizardpage","target_id":"bridges"}
+INST 0000000000000001 2016-02-17T01:57:37.900Z {"type":"pageadvanced","target_tagname":"wizardpage","target_id":"bridges"}
+INST 0000000000000001 2016-02-17T01:57:37.900Z {"type":"wizardnext","target_tagname":"wizard","target_id":"TorNetworkSettings"}
+INST 0000000000000001 2016-02-17T01:57:37.900Z {"type":"pageshow","target_tagname":"wizardpage","target_id":"bridgeSettings"}
+INST 0000000000000001 2016-02-17T01:57:37.900Z {"type":"command","target_tagname":"wizard","target_id":"TorNetworkSettings"}
+INST 0000000000000001 2016-02-17T01:57:40.600Z {"type":"popupshown","target_tagname":"menupopup","target_id":"defaultBridgeType_menuPopup"}
+INST 0000000000000001 2016-02-17T01:57:41.200Z {"type":"mouseover","target_tagname":"menuitem","target_id":"","value":"flashproxy"}
+INST 0000000000000001 2016-02-17T01:57:41.300Z {"type":"mouseout","target_tagname":"menuitem","target_id":"","value":"flashproxy"}
+INST 0000000000000001 2016-02-17T01:57:41.300Z {"type":"mouseover","target_tagname":"menuitem","target_id":"","value":"fte"}
+INST 0000000000000001 2016-02-17T01:57:41.400Z {"type":"mouseout","target_tagname":"menuitem","target_id":"","value":"fte"}
+INST 0000000000000001 2016-02-17T01:57:41.400Z {"type":"mouseover","target_tagname":"menuitem","target_id":"","value":"fte-ipv6"}
+INST 0000000000000001 2016-02-17T01:57:41.500Z {"type":"mouseout","target_tagname":"menuitem","target_id":"","value":"fte-ipv6"}
+INST 0000000000000001 2016-02-17T01:57:41.500Z {"type":"mouseover","target_tagname":"menuitem","target_id":"","value":"meek-amazon"}
+INST 0000000000000001 2016-02-17T01:57:42.100Z {"type":"select","target_tagname":"menulist","target_id":"defaultBridgeType","value":"meek-amazon"}
+INST 0000000000000001 2016-02-17T01:57:42.200Z {"type":"command","target_tagname":"menuitem","target_id":"","value":"meek-amazon"}
+INST 0000000000000001 2016-02-17T01:57:42.200Z {"type":"popuphidden","target_tagname":"menupopup","target_id":"defaultBridgeType_menuPopup"}
+INST 0000000000000001 2016-02-17T01:57:42.200Z {"type":"mouseout","target_tagname":"menuitem","target_id":"","value":"meek-amazon"}
+INST 0000000000000001 2016-02-17T01:57:43.100Z {"type":"click","target_tagname":"wizard","target_id":"TorNetworkSettings","detail":1}
+INST 0000000000000001 2016-02-17T01:57:43.100Z {"type":"pagehide","target_tagname":"wizardpage","target_id":"bridgeSettings"}
+INST 0000000000000001 2016-02-17T01:57:43.100Z {"type":"pageadvanced","target_tagname":"wizardpage","target_id":"bridgeSettings"}
+INST 0000000000000001 2016-02-17T01:57:43.100Z {"type":"wizardnext","target_tagname":"wizard","target_id":"TorNetworkSettings"}
+INST 0000000000000001 2016-02-17T01:57:43.100Z {"type":"pageshow","target_tagname":"wizardpage","target_id":"proxy"}
+INST 0000000000000001 2016-02-17T01:57:43.100Z {"type":"command","target_tagname":"wizard","target_id":"TorNetworkSettings"}
+INST 0000000000000001 2016-02-17T01:57:45.100Z {"type":"click","target_tagname":"radio","target_id":"proxyRadioYes","detail":1}
+INST 0000000000000001 2016-02-17T01:57:45.100Z {"type":"command","target_tagname":"radio","target_id":"proxyRadioYes"}
+INST 0000000000000001 2016-02-17T01:57:45.800Z {"type":"click","target_tagname":"wizard","target_id":"TorNetworkSettings","detail":1}
+INST 0000000000000001 2016-02-17T01:57:45.800Z {"type":"pagehide","target_tagname":"wizardpage","target_id":"proxy"}
+INST 0000000000000001 2016-02-17T01:57:45.900Z {"type":"pageadvanced","target_tagname":"wizardpage","target_id":"proxy"}
+INST 0000000000000001 2016-02-17T01:57:45.900Z {"type":"wizardnext","target_tagname":"wizard","target_id":"TorNetworkSettings"}
+INST 0000000000000001 2016-02-17T01:57:45.900Z {"type":"pageshow","target_tagname":"wizardpage","target_id":"proxyYES"}
+INST 0000000000000001 2016-02-17T01:57:45.900Z {"type":"command","target_tagname":"wizard","target_id":"TorNetworkSettings"}
+INST 0000000000000001 2016-02-17T01:57:47.700Z {"type":"click","target_tagname":"wizard","target_id":"TorNetworkSettings","detail":1}
+INST 0000000000000001 2016-02-17T01:57:47.700Z {"type":"pagehide","target_tagname":"wizardpage","target_id":"proxyYES"}
+INST 0000000000000001 2016-02-17T01:57:47.700Z {"type":"pagerewound","target_tagname":"wizardpage","target_id":"proxyYES"}
+INST 0000000000000001 2016-02-17T01:57:47.700Z {"type":"wizardback","target_tagname":"wizard","target_id":"TorNetworkSettings"}
+INST 0000000000000001 2016-02-17T01:57:47.700Z {"type":"pageshow","target_tagname":"wizardpage","target_id":"proxy"}
+INST 0000000000000001 2016-02-17T01:57:47.700Z {"type":"command","target_tagname":"wizard","target_id":"TorNetworkSettings"}
+INST 0000000000000001 2016-02-17T01:57:48.700Z {"type":"click","target_tagname":"radio","target_id":"proxyRadioNo","detail":1}
+INST 0000000000000001 2016-02-17T01:57:48.700Z {"type":"command","target_tagname":"radio","target_id":"proxyRadioNo"}
+INST 0000000000000001 2016-02-17T01:57:50.500Z {"type":"click","target_tagname":"wizard","target_id":"TorNetworkSettings","detail":1}
+INST 0000000000000001 2016-02-17T01:57:50.500Z {"type":"pagehide","target_tagname":"wizardpage","target_id":"proxy"}
+INST 0000000000000001 2016-02-17T01:57:50.500Z {"type":"pageadvanced","target_tagname":"wizardpage","target_id":"proxy"}
+INST 0000000000000001 2016-02-17T01:57:50.500Z {"type":"wizardfinish","target_tagname":"wizard","target_id":"TorNetworkSettings"}
+INST 0000000000000001 2016-02-17T01:57:50.600Z {"type":"load","target_id":"progress_bar"}
+INST 0000000000000001 2016-02-17T01:57:52.300Z {"type":"progresschanged","target_tagname":"progressmeter","target_id":"progressMeter","value":"5"}
+INST 0000000000000001 2016-02-17T01:57:52.300Z {"type":"progresschanged","target_tagname":"progressmeter","target_id":"progressMeter","value":"10"}
+INST 0000000000000001 2016-02-17T01:57:53.600Z {"type":"progresschanged","target_tagname":"progressmeter","target_id":"progressMeter","value":"10"}
+INST 0000000000000001 2016-02-17T01:57:53.600Z {"type":"alert_show","target_id":"tor_bootstrap_failed","value":"Tor failed to establish a Tor network connection.\n\nEstablishing an encrypted directory connection failed (identity mismatch - 0.0.2.0:2)."}
+INST 0000000000000001 2016-02-17T01:58:21.000Z {"type":"alert_exit","target_id":"tor_bootstrap_failed","value":"Tor failed to establish a Tor network connection.\n\nEstablishing an encrypted directory connection failed (identity mismatch - 0.0.2.0:2)."}
+INST 0000000000000001 2016-02-17T01:58:21.000Z {"type":"command","target_tagname":"wizard","target_id":"TorNetworkSettings"}
+INST 0000000000000001 2016-02-17T01:58:26.800Z {"type":"click","target_tagname":"wizard","target_id":"TorNetworkSettings","detail":1}
+INST 0000000000000001 2016-02-17T01:58:26.800Z {"type":"pagehide","target_tagname":"wizardpage","target_id":"proxy"}
+INST 0000000000000001 2016-02-17T01:58:26.800Z {"type":"pagerewound","target_tagname":"wizardpage","target_id":"proxy"}
+INST 0000000000000001 2016-02-17T01:58:26.800Z {"type":"wizardback","target_tagname":"wizard","target_id":"TorNetworkSettings"}
+INST 0000000000000001 2016-02-17T01:58:26.800Z {"type":"pageshow","target_tagname":"wizardpage","target_id":"bridgeSettings"}
+INST 0000000000000001 2016-02-17T01:58:26.800Z {"type":"command","target_tagname":"wizard","target_id":"TorNetworkSettings"}
+INST 0000000000000001 2016-02-17T01:58:27.900Z {"type":"popupshown","target_tagname":"menupopup","target_id":"defaultBridgeType_menuPopup"}
+INST 0000000000000001 2016-02-17T01:58:28.900Z {"type":"mouseover","target_tagname":"menuitem","target_id":"","value":"flashproxy"}
+INST 0000000000000001 2016-02-17T01:58:29.000Z {"type":"mouseout","target_tagname":"menuitem","target_id":"","value":"flashproxy"}
+INST 0000000000000001 2016-02-17T01:58:29.000Z {"type":"mouseover","target_tagname":"menuitem","target_id":"","value":"fte"}
+INST 0000000000000001 2016-02-17T01:58:29.000Z {"type":"mouseout","target_tagname":"menuitem","target_id":"","value":"fte"}
+INST 0000000000000001 2016-02-17T01:58:29.000Z {"type":"mouseover","target_tagname":"menuitem","target_id":"","value":"fte-ipv6"}
+INST 0000000000000001 2016-02-17T01:58:29.100Z {"type":"mouseout","target_tagname":"menuitem","target_id":"","value":"fte-ipv6"}
+INST 0000000000000001 2016-02-17T01:58:29.100Z {"type":"mouseover","target_tagname":"menuitem","target_id":"","value":"meek-amazon"}
+INST 0000000000000001 2016-02-17T01:58:29.100Z {"type":"mouseout","target_tagname":"menuitem","target_id":"","value":"meek-amazon"}
+INST 0000000000000001 2016-02-17T01:58:29.100Z {"type":"mouseover","target_tagname":"menuitem","target_id":"","value":"meek-azure"}
+INST 0000000000000001 2016-02-17T01:58:29.200Z {"type":"mouseout","target_tagname":"menuitem","target_id":"","value":"meek-azure"}
+INST 0000000000000001 2016-02-17T01:58:29.200Z {"type":"mouseover","target_tagname":"menuitem","target_id":"","value":"meek-google"}
+INST 0000000000000001 2016-02-17T01:58:29.300Z {"type":"mouseout","target_tagname":"menuitem","target_id":"","value":"meek-google"}
+INST 0000000000000001 2016-02-17T01:58:29.300Z {"type":"mouseover","target_tagname":"menuitem","target_id":"","value":"obfs3"}
+INST 0000000000000001 2016-02-17T01:58:29.400Z {"type":"mouseout","target_tagname":"menuitem","target_id":"","value":"obfs3"}
+INST 0000000000000001 2016-02-17T01:58:29.400Z {"type":"mouseover","target_tagname":"menuitem","target_id":"","value":"obfs4"}
+INST 0000000000000001 2016-02-17T01:58:29.700Z {"type":"select","target_tagname":"menulist","target_id":"defaultBridgeType","value":"obfs4"}
+INST 0000000000000001 2016-02-17T01:58:29.700Z {"type":"command","target_tagname":"menuitem","target_id":"","value":"obfs4"}
+INST 0000000000000001 2016-02-17T01:58:29.700Z {"type":"popuphidden","target_tagname":"menupopup","target_id":"defaultBridgeType_menuPopup"}
+INST 0000000000000001 2016-02-17T01:58:29.700Z {"type":"mouseout","target_tagname":"menuitem","target_id":"","value":"obfs4"}
+INST 0000000000000001 2016-02-17T01:58:30.500Z {"type":"click","target_tagname":"wizard","target_id":"TorNetworkSettings","detail":1}
+INST 0000000000000001 2016-02-17T01:58:30.500Z {"type":"pagehide","target_tagname":"wizardpage","target_id":"bridgeSettings"}
+INST 0000000000000001 2016-02-17T01:58:30.500Z {"type":"pageadvanced","target_tagname":"wizardpage","target_id":"bridgeSettings"}
+INST 0000000000000001 2016-02-17T01:58:30.500Z {"type":"wizardnext","target_tagname":"wizard","target_id":"TorNetworkSettings"}
+INST 0000000000000001 2016-02-17T01:58:30.500Z {"type":"pageshow","target_tagname":"wizardpage","target_id":"proxy"}
+INST 0000000000000001 2016-02-17T01:58:30.500Z {"type":"command","target_tagname":"wizard","target_id":"TorNetworkSettings"}
+INST 0000000000000001 2016-02-17T01:58:31.100Z {"type":"click","target_tagname":"wizard","target_id":"TorNetworkSettings","detail":1}
+INST 0000000000000001 2016-02-17T01:58:31.100Z {"type":"pagehide","target_tagname":"wizardpage","target_id":"proxy"}
+INST 0000000000000001 2016-02-17T01:58:31.100Z {"type":"pageadvanced","target_tagname":"wizardpage","target_id":"proxy"}
+INST 0000000000000001 2016-02-17T01:58:31.100Z {"type":"wizardfinish","target_tagname":"wizard","target_id":"TorNetworkSettings"}
+INST 0000000000000001 2016-02-17T01:58:31.300Z {"type":"load","target_id":"progress_bar"}
+INST 0000000000000001 2016-02-17T01:58:32.700Z {"type":"progresschanged","target_tagname":"progressmeter","target_id":"progressMeter","value":"15"}
+INST 0000000000000001 2016-02-17T01:58:32.800Z {"type":"progresschanged","target_tagname":"progressmeter","target_id":"progressMeter","value":"20"}
+INST 0000000000000001 2016-02-17T01:58:33.000Z {"type":"progresschanged","target_tagname":"progressmeter","target_id":"progressMeter","value":"25"}
+INST 0000000000000001 2016-02-17T01:58:33.800Z {"type":"progresschanged","target_tagname":"progressmeter","target_id":"progressMeter","value":"45"}
+INST 0000000000000001 2016-02-17T01:58:34.000Z {"type":"progresschanged","target_tagname":"progressmeter","target_id":"progressMeter","value":"51"}
+INST 0000000000000001 2016-02-17T01:58:34.000Z {"type":"progresschanged","target_tagname":"progressmeter","target_id":"progressMeter","value":"51"}
+INST 0000000000000001 2016-02-17T01:58:34.100Z {"type":"progresschanged","target_tagname":"progressmeter","target_id":"progressMeter","value":"51"}
+INST 0000000000000001 2016-02-17T01:58:34.200Z {"type":"progresschanged","target_tagname":"progressmeter","target_id":"progressMeter","value":"57"}
+INST 0000000000000001 2016-02-17T01:58:34.500Z {"type":"progresschanged","target_tagname":"progressmeter","target_id":"progressMeter","value":"57"}
+INST 0000000000000001 2016-02-17T01:58:34.600Z {"type":"progresschanged","target_tagname":"progressmeter","target_id":"progressMeter","value":"63"}
+INST 0000000000000001 2016-02-17T01:58:34.600Z {"type":"progresschanged","target_tagname":"progressmeter","target_id":"progressMeter","value":"69"}
+INST 0000000000000001 2016-02-17T01:58:34.600Z {"type":"progresschanged","target_tagname":"progressmeter","target_id":"progressMeter","value":"73"}
+INST 0000000000000001 2016-02-17T01:58:35.400Z {"type":"progresschanged","target_tagname":"progressmeter","target_id":"progressMeter","value":"80"}
+INST 0000000000000001 2016-02-17T01:58:35.400Z {"type":"progresschanged","target_tagname":"progressmeter","target_id":"progressMeter","value":"90"}
+INST 0000000000000001 2016-02-17T01:58:36.400Z {"type":"progresschanged","target_tagname":"progressmeter","target_id":"progressMeter","value":"100"}
+INST 0000000000000001 2016-02-17T01:58:36.700Z {"type":"unload","target_id":"progress_bar"}
+INST 0000000000000001 2016-02-17T01:58:36.700Z {"type":"command","target_tagname":"wizard","target_id":"TorNetworkSettings"}
+INST 0000000000000001 2016-02-17T01:58:36.700Z {"type":"unload","target_id":"configuration"}
