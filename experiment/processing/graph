@@ -47,11 +47,15 @@ def parse_records(f):
 def is_event_wanted(event):
     if event["type"] in ("mouseover", "mouseout"):
         return False
-    if event["type"] in ("pagehide", "pageadvanced"):
+    if event["type"] in ("popupshown", "popuphidden"):
+        return False
+    if event["type"] in ("pagehide", "pageadvanced", "pagerewound"):
         return False
     if event["type"] in ("load", "unload") and event["target_id"] == "configuration":
         return False
     if event["type"] in ("click", "command") and event["target_tagname"] in ("menuitem", "wizard"):
+        return False
+    if event["type"] == "command" and event["target_tagname"] == "button":
         return False
     return True
 
