@@ -1,8 +1,3 @@
-### TODO: 
-* run experiment to evaluate the current configuration interface. 
-* run an experiment to evaluate an improved interface.
-* run an experiment to evaluate an alternate interface. 
-
 ### Censorship environments: 
 
 1. websites are blocked >> CONNECT == SUCCESS  
@@ -10,14 +5,8 @@
 3. website, tor public relays, and tor hard coded bridges are blocked >> MEEK OR OWN BRIDGE ADDRESS == SUCCESS   
 
 ### Participant tasks: 
-* Google search for the population of Zimbabwe.
-* On YouTube, find a video playing Bach’s “Ode to Joy.”
-* Find the Amazon best-sellers in “Movies & TV.”
-* On Yahoo, find the exchange rate of Dollars to Euros.
-* Find the Wikipedia “History” portal’s featured article.
-* On Twitter, find the currently trending topics.
-* On Bing Maps, find directions from Times Square to
-Carnegie Hall.
+* Go to cnn.com (non-blocked website) and write the headline. 
+* Go to wikipedia.org (blocked website) and write down what the topic of the day is.
 
 ### Hypotheses: 
 

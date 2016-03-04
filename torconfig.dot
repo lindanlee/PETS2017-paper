@@ -3,7 +3,7 @@ digraph torconfig {
 	"start screen" -> "progress (0)" [label=CONNECT];
 	"progress (0)" -> "start screen" [label=cancel];
 	"progress (0)" -> "progress (0)" [label="timeout?!"];
-	"progress (0)" -> "s0";
+	"progress (0)" -> "s0"; #no bridge no proxy connection
 	"start screen" -> "bridge config (1)" [label=CONFIGURE];
 	"bridge config (1)" -> q1 [label=quit];
 	"bridge config (1)" -> "bridge config (2)" [label=YES];
@@ -21,10 +21,10 @@ digraph torconfig {
 	"local proxy (1)" -> "bridge config (2)" [label="back\nbridge=yes"];
 	"local proxy (1)" -> q3 [label=quit];
 	"local proxy (1)" -> "progress (1)" [label="CONNECT\nproxy=no"];
-	"progress (1)" -> "s1";
+	"progress (1)" -> "s1"; #bridge no proxy connection 
 	"progress (1)" -> "e0"; #unspecified bridges
 	"progress (1)" -> "e1"; #syntax error
-	"progress (1)" -> "e2"; #bad ip address
+	"progress (1)" -> "e2"; #custom bridge: good syntax, bad ip address
 	"progress (1)" -> "e4"; #bridge blocked in country
 	"local proxy (1)" -> "local proxy (2)" [label="NEXT\nproxy=yes"];	
 	"local proxy (2)" -> "local proxy (1)" [label="back\nproxy=yes"];
@@ -32,7 +32,7 @@ digraph torconfig {
 	"local proxy (2)" -> "progress (2)" [label="CONNECT\nproxy-info=stuff"];
 	"progress (2)" -> "e5"; #blank proxy input
 	"progress (2)" -> "e6"; #no proxy type
-	"progress (2)" -> "e7"; #selected proxy type, bad adddress syntax
+	"progress (2)" -> "e7"; #selected proxy type, bad address syntax
 	"progress (2)" -> "e8"; #selected proxy type, good address syntax, bad ip address, blank port
 	"progress (2)" -> "e9"; #selected proxy type, good address syntax, bad ip address, good port
 	"progress (2)" -> "e10"; #selected proxy type, good address syntax, bad ip address, bad port
@@ -44,7 +44,7 @@ digraph torconfig {
 	"local proxy (1)'" -> "bridge config (1)" [label="back\nbridge=no"];
 	"local proxy (1)'" -> "q3'" [label=quit];
 	"local proxy (1)'" -> "progress (1)'" [label="CONNECT\nproxy=no"];
-	"progress (1)'" -> "s1'";
+	"progress (1)'" -> "s0'"; #no bridge no rpoxy connection 
 	"progress (1)'" -> "e0'"; #unspecified bridges
 	"progress (1)'" -> "e1'"; #syntax error
 	"progress (1)'" -> "e2'"; #bad ip address
