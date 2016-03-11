@@ -589,6 +589,26 @@ reduced text, and reduced visual clutter.
 We believe these changes are cohesive with our design
 and will be beneficial for the user.\\
 
+\section{Quantitative Testing}
+{\color {red} TODO}
+
+\section{Evaluation}
+{\color {red} TODO, write about what worked, what didn't, and what we recommend.}
+
+\section{Discussion}
+{\color {red} 
+Talk about how the design was a conservative version. And why the conservative choices were made. For at-risk users, maintainability, etc.
+
+Additional potential changes that could be made to the browser: 
+\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt 
+\item {\bfseries Tell people to click connect.} On the first screen, there are no instructions for the user on what to do. There is a description of what each option means, but there is no guidance on what they should do. Ideally, we would people to click connect, and then try the manual configuration if a direct connection fails. But communicating this may put some users at risk. I would argue that the benefit is higher than the risk. 
+\item {\bfseries Auto-configure after connect.} After a person has already clicked connect and the connection was unsuccessful, they have already been logged. I am assuming that the significant difference is between being logged trying to connect to Tor or not at all, rather than the number of connection attempts made. This would greatly save our users a lot of headache. 
+\item{\bfseries Hide the proxy screen.} Don't give users the option to configure a proxy unless it has been detected that it would be necessary. The amount of people who use proxies is low, but then ... this would not give users control in the beginning of the configuration process. 
+\item{\bfseries Ask about the risk.} Rather than having the configuration dialog be manual by default, just ask if the users are at risk if the process was automated. If they are not at risk, we can do it automatically, and the at-risk users can configure manually. The issue with this is that people may not answer this question honestly, or they might not know the correct answer to this question. 
+\item{\bfseries Ask if they are qualified to make decisions.} Asking users if they know which bridge to choose, and choosing for them if they say they don't know. We probably know better than they do. But there are ethical implications of choosing bridges for them rather them making the mistakes themselves. The issue with this is that people may not answer honestly. 
+\end{itemize}
+}
+
 \section{Future Work}
 
 The work summarized is only a part of the process of improving the Tor configuration
