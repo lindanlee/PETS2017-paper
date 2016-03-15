@@ -65,11 +65,11 @@ $(OR_ADDRESSES_JSON):
 hosts: gen-hosts
 	"./$<" > "$@"
 
-setup-1-old.bat: build-setup
-	"./$<" 1 old > "$@"
+setup-1-old.bat: build-setup $(OR_ADDRESSES_JSON)
+	"./$<" 1 old "$(OR_ADDRESSES_JSON)" > "$@"
 
-setup-1-new.bat: build-setup
-	"./$<" 1 new > "$@"
+setup-1-new.bat: build-setup $(OR_ADDRESSES_JSON)
+	"./$<" 1 new "$(OR_ADDRESSES_JSON)" > "$@"
 
 clean:
 	rm -f "$(OUTPUT_ZIP)" "$(OUTPUT_OLD_EXE)" "$(OUTPUT_NEW_EXE)"

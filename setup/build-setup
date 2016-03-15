@@ -40,9 +40,10 @@ DIRAUTH_ADDRESSES = (
 
 def usage(f=sys.stdout):
     print >> f, """\
-Usage: %s <env> <tb_var>
+Usage: %s <env> <tb_var> <or_addresses>
   <env> is the censorship environment: "1", "2", or "3".
-  <tb_var> is "old" or "new".\
+  <tb_var> is "old" or "new".
+  <or_addresses> is the filename of an Onionoo JSON file.\
 """ % sys.argv[0]
 
 # How to use the "netsh advfirewall firewall" context instead of the "netsh
@@ -55,7 +56,7 @@ def block_ips(name, ips):
 
 opts, args = getopt.gnu_getopt(sys.argv[1:], "")
 try:
-    env, tb_var = args
+    env, tb_var, or_addresses_filename = args
 except ValueError:
     usage(sys.stderr)
     sys.exit(1)
