@@ -23,7 +23,10 @@
 
 \begin{document}
 
-\title{An Inclusive, Usable Redesign of the Tor Configuration Launcher}
+%what I really want to say is that the interesting aspect of this usable design is that we had to 
+%account for people who wouldn't need to use this launcher at all and also for at-risk users.
+%... but in one catchy title. I can't think of one.
+\title{Designing for Multiple Use and At-Risk Users: Tor Configuration Launcher}
 \numberofauthors{1}
 \author{
  \alignauthor Linda N. Lee, David Fifield, Nathan Malkin \\
@@ -40,13 +43,31 @@
 \keywords{User Studies, Tor, Security, Censorship, Anonymity}
 
 \section{Introduction}
+Introduce what Tor is, and what the configuration interface does in the Tor Browser Bundle. Explain the story of how it began as an anonymity tool, but it has since changed to become a censorship circumvention tool. Give statistics of how many people use it (although we can't say how many for what reason exactly), and interesting trends, such as a spike in use around election times or some big political event. 
+
+Explain the state of censorship circumvention today, and what governments do to Tor (block it, etc.). Mention the current consequences of people if they try to connect to Tor.
+
+Then drive home why it is important for the interface to be usable. And that there have been previous work on Tor Browser, but not any previous work done for its usability as a censorship circumvention tool, or anything about the Tor configuration launcher. Tor is also an anonymity tool which takes no metrics about how the tor launcher is used.
+
+A couple-sentence summary of our experiment, which had three phases of qualitative testing, iterative design, and quantitative testing. We got a new design that does a, b, c, which helped our participant through statistic x, y, z. Mention that some changes have already been made to the launcher as a result of this study and that this will be incorporated into the tor browser bundle soon. 
+
+\section{The Configuration Interface}
+
+\subsection{What it's trying to do}
+\subsection{Why certain decisions were made}
+\subsection{Observations} 
+Mention here that there are people who do not need to use the interface at all, and there are people who are at risk. 
+
+
 We need to design for at least three types of users: users who use Tor for anonymity, users who use Tor for censorship circumvention who are not at risk, users who use Tor for censorship circumvention who are at risk. 
 
 What makes this design unique is that we have to handle two use cases (anonymity and censorship circumvention) and that there are at-risk users we need to consider. We can't lean toward helping them configure their connection all the time because a lot of people use Tor for anonymity or casual browsing, and to do this would be over-fitting to the censorship evasion population (and technically, is a burden on bridges). We also cannot automate anything, unless we want to put users at risk. Also, for maintainability, we would ideally love it if users could just choose their bridge settings, since any automation or device is bound to be different from country to country and also will become out of date sooner or later. 
 
-\section{The Configuration Interface}
+\subsection{The ideal user path} 
+Write here what each person should do. Casual browsers, anonymity users, censorship circumvention people in various censorship situations, and people who are at risk. Mention how the interface would change if it were to only cater to these people one at a time, and how this is merged as a whole. 
 
 \section{Methodology}
+Have a figure here which shows the whole process. The whole pipeline is problem identification, [qualitative user study, iterative redesign, quantitative study] integration, validation. The part in brackets is part of our study, but we have the whole process in mind. 
 
 \subsection{Evaluation}
 %Some references to keep in mind when explaining:
@@ -60,25 +81,40 @@ What makes this design unique is that we have to handle two use cases (anonymity
 {\color {red} TODO}
 
 \subsection{Logistics} 
-{\bfseries Simulated censorship environments}
+{\bfseries Simulated Censorship Environments}
+write pseudocode for simulating censorship environments! have a figure of: ie e1: block websites, e2: block websites and block all public Tor relays, e3: block websites, public tor relays, hardcoded tor relays in dialog. 
 {\bfseries Online Tasks}
+{\bfseries Recruitment and Payment} 
 
 \section{Results} 
 
 \subsection{Evaluation} 
 \subsection{Design} 
+
+Design Goals: 
+\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt 
+\item {\bfseries Accessible:} Simpler words for non english speakers, centered text for non western users.
+\item {\bfseries Gives advice:} Tell users what they should ideally do. 
+\item {\bfseries Small cognitive load:} Less windows, less clicks required, less time to completion. 
+\item {\bfseries Provides feedback:} Roadmap bar, summary screen, progress bar, what to do on error message. 
+\end{itemize}
+
 \subsection{Validation} 
 \subsection{Recommendations} 
 TODO, write about what worked, what didn't, and what we recommend.
 
 \section{Future Work}
-In addition to merging our code with the source code: 
+{\bfseries Merging Code} In addition to merging our code with the source code: 
 
+{\bfseries Finishing Touches} 
 \begin{itemize} \itemsep1pt \parskip0pt \parsep0pt 
 \item {\bfseries Detecting the need for proxies.} We hacked this together for now. 
 \item {\bfseries Handling rare error cases.} Mention clock drift and proxy connection cases.
 \item {\bfseries Additional user feedback.} Animation in the progress window. 
+\item {\bfseries Stylization.} Comply with design style guides, if any. 
 \end{itemize} 
+
+{\bfseries Measuring Impact} Tor metrics to see if this is helping at the large scale, and for future user study work in general. 
 
 \section{Discussion}
 Talk about how the design was a conservative version. And why the conservative choices were made. For at-risk users, maintainability, etc.
@@ -86,8 +122,14 @@ Talk about how the design was a conservative version. And why the conservative c
 Additional potential changes that could be made to the browser: 
 \begin{itemize} \itemsep1pt \parskip0pt \parsep0pt 
 \item {\bfseries Tell people to click connect.} On the first screen, there are no instructions for the user on what to do. There is a description of what each option means, but there is no guidance on what they should do. Ideally, we would people to click connect, and then try the manual configuration if a direct connection fails. But communicating this may put some users at risk. I would argue that the benefit is higher than the risk. 
-\item {\bfseries Auto-configure after connect.} After a person has already clicked connect and the connection was unsuccessful, they have already been logged. I am assuming that the significant difference is between being logged trying to connect to Tor or not at all, rather than the number of connection attempts made. This would greatly save our users a lot of headache. 
 \item{\bfseries Hide the proxy screen.} Don't give users the option to configure a proxy unless it has been detected that it would be necessary. The amount of people who use proxies is low, but then ... this would not give users control in the beginning of the configuration process. 
+\item{\bfseries Help the at-risk users.} There are people who would benefit from, on the first attempt, connecting with a meek bridge or custom bridge, without trying a vanilla tor connection or the recommended bridge in the dialog. Currently, we guide these people to the correct decision, but after trying the default bridge first. Helping these users to make a connection safely without ever being logged as connecting to Tor would be a benefit, but might be a case of overfitting to these types of users. A majority of users should not use a meek bridge or custom bridge, so it would be unideal to lead all users to this decision.
+\end{itemize} 
+
+Alternative ideas: 
+\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt 
+\item{\bfseries Automate the entire configuration process.} Seriously, this can help load balancing, and all sorts of technicalities, and wouldn't harm most of our users. Most users do not configure that well, anyway and would make the same mistakes. 
+\item {\bfseries Auto-configure after connect.} After a person has already clicked connect and the connection was unsuccessful, they have already been logged. I am assuming that the significant difference is between being logged trying to connect to Tor or not at all, rather than the number of connection attempts made. This would greatly save our users a lot of headache. 
 \item{\bfseries Ask about the risk.} Rather than having the configuration dialog be manual by default, just ask if the users are at risk if the process was automated. If they are not at risk, we can do it automatically, and the at-risk users can configure manually. The issue with this is that people may not answer this question honestly, or they might not know the correct answer to this question. 
 \item{\bfseries Ask if they are qualified to make decisions.} Asking users if they know which bridge to choose, and choosing for them if they say they don't know. We probably know better than they do. But there are ethical implications of choosing bridges for them rather them making the mistakes themselves. The issue with this is that people may not answer honestly. 
 \end{itemize}
