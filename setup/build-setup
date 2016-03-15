@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import getopt
+import json
 import sys
 
 # https://gitweb.torproject.org/builders/tor-browser-bundle.git/tree/Bundle-Data/PTConfigs/bridge_prefs.js?id=tbb-5.0.3-build3
@@ -46,6 +47,20 @@ Usage: %s <env> <tb_var> <or_addresses>
   <or_addresses> is the filename of an Onionoo JSON file.\
 """ % sys.argv[0]
 
+def read_addresses_from_json(f):
+    j = json.load(f)
+    addresses = []
+    for relay in j["relays"]:
+        for or_address in relay["or_addresses"]:
+            addr, port = or_address.rsplit(":", 1)
+            addr = addr.strip("[]")
+            addresses.append(addr)
+    return addresses
+
+def read_addresses_from_json_filename(filename):
+    with open(filename) as f:
+        return read_addresses_from_json(f)
+
 # How to use the "netsh advfirewall firewall" context instead of the "netsh
 # firewall" context to control Windows Firewall behavior in Windows Server 2008
 # and in Windows Vista
@@ -68,6 +83,13 @@ if env in ("3",):
 
 if env in ("2", "3"):
     block_ips("Tor directory authorities", DIRAUTH_ADDRESSES)
+
+    addresses = read_addresses_from_json_filename(or_addresses_filename)
+    # There's some limit on netsh command line length; 500 IPs at a time seems
+    # not to exceed it.
+    for i in range (0, len(addresses), 500):
+        slice = addresses[i:i+500]
+        block_ips("Tor relays %d-%d" % (i, i+500-1), slice)
 
 if env in ("1", "2", "3"):
     print "copy hosts %SystemRoot%\System32\drivers\etc\hosts" 
