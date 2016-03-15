@@ -22,6 +22,22 @@ TORBROWSER_DEFAULT_BRIDGE_ADDRESSES = (
     "104.131.108.182",
 )
 
+# These are from default_authorities in src/or/config.c in tor's source code,
+# as of tag: tor-0.2.10.
+# https://gitweb.torproject.org/tor.git/tree/src/or/config.c?id=tor-0.2.6.10#n848
+DIRAUTH_ADDRESSES = (
+    "128.31.0.39",      # moria1
+    "86.59.21.38",      # tor26
+    "194.109.206.212",  # dizum
+    "82.94.251.203",    # Tonga
+    "131.188.40.189",   # gabelmoo
+    "193.23.244.244",   # dannenberg
+    "208.83.223.34",    # urras
+    "171.25.193.9",     # maatuska
+    "154.35.175.225",   # Faravahar
+    "199.254.238.52",   # longclaw
+)
+
 def usage(f=sys.stdout):
     print >> f, """\
 Usage: %s <env> <tb_var>
@@ -48,6 +64,9 @@ assert env in ("1", "2", "3")
 
 if env in ("3",):
     block_ips("Tor Browser default bridges", TORBROWSER_DEFAULT_BRIDGE_ADDRESSES)
+
+if env in ("2", "3"):
+    block_ips("Tor directory authorities", DIRAUTH_ADDRESSES)
 
 if env in ("1", "2", "3"):
     print "copy hosts %SystemRoot%\System32\drivers\etc\hosts" 
