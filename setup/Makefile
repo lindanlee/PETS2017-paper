@@ -2,10 +2,13 @@ ORIG_EXE = torbrowser-install-5.0.3_en-US.exe
 # This is the "old" Tor Launcher interface, not changed except for added
 # instrumentation.
 OUTPUT_OLD_EXE = torbrowser-old-5.0.3_en-US.exe
+# This is the "new" Tor Launcher interface, with a modified UI plus
+# instrumentation.
+OUTPUT_NEW_EXE = torbrowser-new-5.0.3_en-US.exe
 
 WORKDIR = work
 
-$(OUTPUT_OLD_EXE):
+all: $(OUTPUT_OLD_EXE) $(OUTPUT_NEW_EXE)
 
 # This is a browser bundle altered to include Tor Launcher
 # instrumentation logging.
@@ -45,6 +48,6 @@ torbrowser-install-%_en-US.exe:
 	@false
 
 clean:
-	rm -f "$(OUTPUT_OLD_EXE)"
+	rm -f "$(OUTPUT_OLD_EXE)" "$(OUTPUT_NEW_EXE)"
 
-.PHONY: clean
+.PHONY: all clean
