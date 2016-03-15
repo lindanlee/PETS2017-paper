@@ -1,0 +1,23 @@
+#!/usr/bin/env python
+
+import getopt
+import sys
+
+def usage(f=sys.stdout):
+    print >> f, """\
+Usage: %s <env> <tb_var>
+  <env> is the censorship environment: "1", "2", or "3".
+  <tb_var> is "old" or "new".\
+""" % sys.argv[0]
+
+opts, args = getopt.gnu_getopt(sys.argv[1:], "")
+try:
+    env, tb_var = args
+except ValueError:
+    usage(sys.stderr)
+    sys.exit(1)
+
+assert env in ("1", "2", "3")
+
+if env in ("1", "2", "3"):
+    print "copy hosts %SystemRoot%\System32\drivers\etc\hosts" 

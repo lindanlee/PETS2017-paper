@@ -1,5 +1,6 @@
 OUTPUT_ZIP = tor-ux.zip
-OUTPUT_ZIP_FILES = $(OUTPUT_OLD_EXE) $(OUTPUT_NEW_EXE) ChromeSetup.exe FirefoxSetup.exe vlc-2.2.2-win64.exe hosts
+OUTPUT_ZIP_FILES = $(OUTPUT_OLD_EXE) $(OUTPUT_NEW_EXE) ChromeSetup.exe FirefoxSetup.exe vlc-2.2.2-win64.exe hosts \
+	setup-1-old.bat setup-1-new.bat
 
 ORIG_EXE = torbrowser-install-5.0.3_en-US.exe
 # This is the "old" Tor Launcher interface, not changed except for added
@@ -53,6 +54,12 @@ torbrowser-install-%_en-US.exe:
 
 hosts: gen-hosts
 	"./$<" > "$@"
+
+setup-1-old.bat: build-setup
+	"./$<" 1 old > "$@"
+
+setup-1-new.bat: build-setup
+	"./$<" 1 new > "$@"
 
 clean:
 	rm -f "$(OUTPUT_ZIP)" "$(OUTPUT_OLD_EXE)" "$(OUTPUT_NEW_EXE)"
