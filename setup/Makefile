@@ -13,6 +13,7 @@ OUTPUT_NEW_EXE = torbrowser-new-5.0.3_en-US.exe
 WORKDIR = work
 
 $(OUTPUT_ZIP): $(OUTPUT_ZIP_FILES)
+	rm -f "$@"
 	zip -9r "$@" $^
 
 # This is a browser bundle altered to include Tor Launcher
