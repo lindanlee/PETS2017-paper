@@ -3,12 +3,39 @@
 import getopt
 import sys
 
+# https://gitweb.torproject.org/builders/tor-browser-bundle.git/tree/Bundle-Data/PTConfigs/bridge_prefs.js?id=tbb-5.0.3-build3
+TORBROWSER_DEFAULT_BRIDGE_ADDRESSES = (
+    "83.212.101.3",
+    "169.229.59.74",
+    "169.229.59.75",
+    "109.105.109.163",
+    "192.240.101.106",
+    "50.7.176.114",
+    "131.252.210.150",
+    "128.105.214.161",
+    "128.105.214.162",
+    "128.105.214.163",
+    "2001:49f0:d002:1::2",
+    "2001:49f0:d00a:1::c",
+    "188.226.213.208",
+    "178.209.52.110",
+    "104.131.108.182",
+)
+
 def usage(f=sys.stdout):
     print >> f, """\
 Usage: %s <env> <tb_var>
   <env> is the censorship environment: "1", "2", or "3".
   <tb_var> is "old" or "new".\
 """ % sys.argv[0]
+
+# How to use the "netsh advfirewall firewall" context instead of the "netsh
+# firewall" context to control Windows Firewall behavior in Windows Server 2008
+# and in Windows Vista
+# https://support.microsoft.com/en-us/kb/947709
+
+def block_ips(name, ips):
+    print "netsh advfirewall firewall add rule name=\"%s\" dir=out action=block remoteip=%s" % (name, ",".join(ips))
 
 opts, args = getopt.gnu_getopt(sys.argv[1:], "")
 try:
@@ -18,6 +45,9 @@ except ValueError:
     sys.exit(1)
 
 assert env in ("1", "2", "3")
+
+if env in ("3",):
+    block_ips("Tor Browser default bridges", TORBROWSER_DEFAULT_BRIDGE_ADDRESSES)
 
 if env in ("1", "2", "3"):
     print "copy hosts %SystemRoot%\System32\drivers\etc\hosts" 
