@@ -1,3 +1,6 @@
+OUTPUT_ZIP = tor-ux.zip
+OUTPUT_ZIP_FILES = $(OUTPUT_OLD_EXE) $(OUTPUT_NEW_EXE) ChromeSetup.exe FirefoxSetup.exe vlc-2.2.2-win64.exe
+
 ORIG_EXE = torbrowser-install-5.0.3_en-US.exe
 # This is the "old" Tor Launcher interface, not changed except for added
 # instrumentation.
@@ -8,7 +11,8 @@ OUTPUT_NEW_EXE = torbrowser-new-5.0.3_en-US.exe
 
 WORKDIR = work
 
-all: $(OUTPUT_OLD_EXE) $(OUTPUT_NEW_EXE)
+$(OUTPUT_ZIP): $(OUTPUT_ZIP_FILES)
+	zip -9r "$@" $^
 
 # This is a browser bundle altered to include Tor Launcher
 # instrumentation logging.
@@ -48,6 +52,6 @@ torbrowser-install-%_en-US.exe:
 	@false
 
 clean:
-	rm -f "$(OUTPUT_OLD_EXE)" "$(OUTPUT_NEW_EXE)"
+	rm -f "$(OUTPUT_ZIP)" "$(OUTPUT_OLD_EXE)" "$(OUTPUT_NEW_EXE)"
 
 .PHONY: all clean
