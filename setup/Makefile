@@ -10,6 +10,8 @@ OUTPUT_OLD_EXE = torbrowser-old-5.0.3_en-US.exe
 # instrumentation.
 OUTPUT_NEW_EXE = torbrowser-new-5.0.3_en-US.exe
 
+OR_ADDRESSES_JSON = or_addresses.json
+
 WORKDIR = work
 
 $(OUTPUT_ZIP): $(OUTPUT_ZIP_FILES)
@@ -51,6 +53,13 @@ torbrowser-%-5.0.3_en-US.exe: $(ORIG_EXE) tor-launcher-%.xpi torbrowser.nsi torb
 torbrowser-install-%_en-US.exe:
 	@echo "Missing $@. Download it from"
 	@echo "https://archive.torproject.org/tor-package-archive/torbrowser/$*/$@"
+	@false
+
+$(OR_ADDRESSES_JSON):
+	@echo "Missing $@. Download it from"
+	@echo "https://onionoo.torproject.org/details?fields=or_addresses"
+	@echo "or"
+	@echo "https://onionoo.thecthulhu.com/details?fields=or_addresses"
 	@false
 
 hosts: gen-hosts
