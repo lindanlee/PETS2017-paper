@@ -93,3 +93,48 @@ if env in ("2", "3"):
 
 if env in ("1", "2", "3"):
     print "copy hosts %SystemRoot%\System32\drivers\etc\hosts" 
+
+# Unpacking the .zip file and installing our programs
+#   1. install old or new version of tor
+#   2. install chrome 
+#   3. install firefox
+#   4. install VLC 
+
+# 1 #
+if tb_var == "old": 
+    print "C:\\Users\\ll-admin\\Desktop\\tor-ux\\torbrowser-old-5.0.3_en-US.exe /S"
+elif tb_var == "new": 
+    print "C:\\Users\\ll-admin\\Desktop\\tor-ux\\torbrowser-new-5.0.3_en-US.exe /S"
+else 
+    raise ValueError("tb_var has to be \"old\" or \"new\".")
+
+# 2 #
+print "C:\\Users\\ll-admin\\Desktop\\tor-ux\\ChromeSetup.exe /silent /install"
+
+# 3 # 
+print "C:\\Users\\ll-admin\\Desktop\\tor-ux\\FirefoxSetup.exe -ms"
+
+# 4 #
+# Use the old version of VLC that comes with the desktop image (v 2.1.5)
+# print "C:\\Users\\ll-admin\\Desktop\\tor-ux\\vlc-2.2.2-win64.exe /S"
+
+
+# Setting up the Desktop for the user 
+#   chrome, firefox and vlc put shortcuts on desktop on install 
+#   tor installer has been modified to put shortcuts on desktop on install 
+#   we want all but the VLC shortcuts on the desktop 
+# 
+#   1. delete VLC shortcut off the desktop 
+#   2. copy cursor for screen recording into a fixed place 
+#   2. start the screen recording 
+
+# 1 # 
+print "del \"C:\\Users\\Public\\Desktop\\VLC media player.lnk\""
+
+# 2 # 
+# TODO: fix naming of file, currenty blah.mp4 
+# TODO: add in the reduced fps, cursor, and live caching (commented at end)
+print "\"C:\\Program Files (x86)\\VideoLAN\\VLC\\vlc.exe\" screen:// --sout=\"#transcode{vcodec=h264,acodec=mpga,ab=128,channels=2,samplerate=44100}:file{dst=blah.mp4,no-overwrite}\" --sout-keep" #--screen-fps 10 --screen-mouse-image=C:\Users\Administrator\ux\cursor.png --live-caching 300
+
+
+
