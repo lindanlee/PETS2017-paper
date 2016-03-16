@@ -105,7 +105,7 @@ if tb_var == "old":
     print "C:\\Users\\ll-admin\\Desktop\\tor-ux\\torbrowser-old-5.0.3_en-US.exe /S"
 elif tb_var == "new": 
     print "C:\\Users\\ll-admin\\Desktop\\tor-ux\\torbrowser-new-5.0.3_en-US.exe /S"
-else 
+else:
     raise ValueError("tb_var has to be \"old\" or \"new\".")
 
 # 2 #
