@@ -100,19 +100,21 @@ if env in ("1", "2", "3"):
 #   3. install firefox
 #   4. install VLC 
 
+zip_file_path = "C:\\Users\\ll-admin\\Desktop\\tor-ux\\"
+
 # 1 #
 if tb_var == "old": 
-    print "C:\\Users\\ll-admin\\Desktop\\tor-ux\\torbrowser-old-5.0.3_en-US.exe /S"
+    print "\"" + zip_file_path + "torbrowser-old-5.0.3_en-US.exe\" /S"
 elif tb_var == "new": 
-    print "C:\\Users\\ll-admin\\Desktop\\tor-ux\\torbrowser-new-5.0.3_en-US.exe /S"
+    print "\"" + zip_file_path + "torbrowser-new-5.0.3_en-US.exe\" /S"
 else 
     raise ValueError("tb_var has to be \"old\" or \"new\".")
 
 # 2 #
-print "C:\\Users\\ll-admin\\Desktop\\tor-ux\\ChromeSetup.exe /silent /install"
+print "\"" + zip_file_path + "ChromeSetup.exe\" /silent /install"
 
 # 3 # 
-print "C:\\Users\\ll-admin\\Desktop\\tor-ux\\FirefoxSetup.exe -ms"
+print "\"" + zip_file_path + "FirefoxSetup.exe\" -ms"
 
 # 4 #
 # Use the old version of VLC that comes with the desktop image (v 2.1.5)
@@ -127,14 +129,17 @@ print "C:\\Users\\ll-admin\\Desktop\\tor-ux\\FirefoxSetup.exe -ms"
 #   1. delete VLC shortcut off the desktop 
 #   2. copy cursor for screen recording into a fixed place 
 #   2. start the screen recording 
+ 
+desktop_path = "C:\\Users\\Public\\Desktop\\"
+vlc_path = "C:\\Program Files (x86)\\VideoLAN\\VLC\\"
 
-# 1 # 
-print "del \"C:\\Users\\Public\\Desktop\\VLC media player.lnk\""
+# 1 #
+print "del \"" + desktop_path + "VLC media player.lnk\""
 
 # 2 # 
 # TODO: fix naming of file, currenty blah.mp4 
-# TODO: add in the reduced fps, cursor, and live caching (commented at end)
-print "\"C:\\Program Files (x86)\\VideoLAN\\VLC\\vlc.exe\" screen:// --sout=\"#transcode{vcodec=h264,acodec=mpga,ab=128,channels=2,samplerate=44100}:file{dst=blah.mp4,no-overwrite}\" --sout-keep" #--screen-fps 10 --screen-mouse-image=C:\Users\Administrator\ux\cursor.png --live-caching 300
+# TODO: add in the cursor (commented at end)
+print "\"" + vlc_path + "vlc.exe\" screen:// --sout=\"#transcode{vcodec=h264,acodec=mpga,ab=128,channels=2,samplerate=44100}:file{dst=blah.mp4,no-overwrite}\" --sout-keep --screen-fps 10 --live-caching 300" # --screen-mouse-image=C:\Users\Administrator\ux\cursor.png
 
 
 
