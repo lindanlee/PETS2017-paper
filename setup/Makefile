@@ -3,7 +3,7 @@ OUTPUT_ZIP_FILES = $(OUTPUT_OLD_EXE) $(OUTPUT_NEW_EXE) ChromeSetup.exe FirefoxSe
 	setup-1-old.bat setup-1-new.bat \
 	setup-2-old.bat setup-2-new.bat \
 	setup-3-old.bat setup-3-new.bat \
-	teardown.bat
+	teardown.bat cursor.png
 
 ORIG_EXE = torbrowser-install-5.0.3_en-US.exe
 # This is the "old" Tor Launcher interface, not changed except for added
