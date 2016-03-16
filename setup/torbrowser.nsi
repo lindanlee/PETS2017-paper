@@ -132,6 +132,10 @@ Section "Tor Browser Bundle" SecTBB
   SetOutPath "$INSTDIR\Browser"
   CreateShortCut "$INSTDIR\Start Tor Browser.lnk" "$INSTDIR\Browser\firefox.exe"
 
+  ; Unconditionally create shortcuts, for silent install.
+  CreateShortCut "$SMPROGRAMS\Start Tor Browser.lnk" "$INSTDIR\Browser\firefox.exe" 
+  CreateShortCut "$DESKTOP\Start Tor Browser.lnk" "$INSTDIR\Browser\firefox.exe"
+
 SectionEnd
 
 Function CreateShortcuts

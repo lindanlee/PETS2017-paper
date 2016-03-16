@@ -3,7 +3,7 @@ OUTPUT_ZIP_FILES = $(OUTPUT_OLD_EXE) $(OUTPUT_NEW_EXE) ChromeSetup.exe FirefoxSe
 	setup-1-old.bat setup-1-new.bat \
 	setup-2-old.bat setup-2-new.bat \
 	setup-3-old.bat setup-3-new.bat \
-	teardown.bat
+	teardown.bat cursor.png
 
 ORIG_EXE = torbrowser-install-5.0.3_en-US.exe
 # This is the "old" Tor Launcher interface, not changed except for added
@@ -42,6 +42,10 @@ torbrowser-%-5.0.3_en-US.exe: $(ORIG_EXE) tor-launcher-%.xpi torbrowser.nsi torb
 # was current.
 # https://bugs.torproject.org/17473
 	sed -i -e 's/4EE0CC769EB4B15A872F742EDE27D298A59DCADE/B9E7141C594AF25699E0079C1F0146F409495296/' "$(WORKDIR)/\$$_OUTDIR/Browser/TorBrowser/Data/Browser/profile.default/preferences/extension-overrides.js"
+
+# Disable the "browser is out of date" message.
+	echo 'user_pref("app.update.enabled", false);' >> "$(WORKDIR)/\$$_OUTDIR/Browser/TorBrowser/Data/Browser/profile.default/user.js"
+	echo 'user_pref("extensions.torbutton.no_updates", true);' >> "$(WORKDIR)/\$$_OUTDIR/Browser/TorBrowser/Data/Browser/profile.default/user.js"
 
 # Install the altered tor-launcher.xpi.
 	cp -f "tor-launcher-$*.xpi" "$(WORKDIR)/\$$_OUTDIR/Browser/TorBrowser/Data/Browser/profile.default/extensions/tor-launcher@torproject.org.xpi"
