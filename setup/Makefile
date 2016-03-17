@@ -1,5 +1,5 @@
 OUTPUT_ZIP = tor-ux.zip
-OUTPUT_ZIP_FILES = $(OUTPUT_OLD_EXE) $(OUTPUT_NEW_EXE) ChromeSetup.exe FirefoxSetup.exe vlc-2.2.2-win64.exe hosts \
+OUTPUT_ZIP_FILES = $(OUTPUT_OLD_EXE) $(OUTPUT_NEW_EXE) ChromeSetup.exe FirefoxSetup.exe hosts \
 	setup-1-old.bat setup-1-new.bat \
 	setup-2-old.bat setup-2-new.bat \
 	setup-3-old.bat setup-3-new.bat \
