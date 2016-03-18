@@ -135,7 +135,7 @@ vlc_path = "C:\\Program Files (x86)\\VideoLAN\\VLC\\"
 # 2 # 
 # TODO: fix naming of file, currenty blah.mp4 
 # TODO: add in the cursor (commented at end)
-print "\"" + vlc_path + "vlc.exe\" screen:// --sout=\"#transcode{vcodec=h264,acodec=mpga,ab=128,channels=2,samplerate=44100}:file{dst=blah.mp4,no-overwrite}\" --sout-keep --screen-fps 10 --live-caching 300 --qt-start-minimized" #--screen-mouse-image=C:\Users\Administrator\ux\cursor.png
+print "start \"\" \"" + vlc_path + "vlc.exe\" screen:// --sout=\"#transcode{vcodec=h264,acodec=mpga,ab=128,channels=2,samplerate=44100}:file{dst=blah.mp4,no-overwrite}\" --sout-keep --screen-fps 10 --live-caching 300 --qt-start-minimized" #--screen-mouse-image=C:\Users\Administrator\ux\cursor.png
 
 
 
