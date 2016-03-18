@@ -100,7 +100,7 @@ if env in ("1", "2", "3"):
 #   3. install firefox
 #   4. install VLC 
 
-zip_file_path = "C:\\Users\\ll-admin\\Desktop\\tor-ux\\"
+zip_file_path = "%USERPROFILE%\\Desktop\\tor-ux\\"
 
 # 1 #
 if tb_var == "old": 
@@ -129,7 +129,7 @@ print "\"" + zip_file_path + "FirefoxSetup.exe\" -ms"
 #   1. copy cursor for screen recording into a fixed place 
 #   2. start the screen recording 
  
-desktop_path = "C:\\Users\\Public\\Desktop\\"
+desktop_path = "%PUBLIC%\\Desktop\\"
 vlc_path = "C:\\Program Files (x86)\\VideoLAN\\VLC\\"
 
 # 2 # 
