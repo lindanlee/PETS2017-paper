@@ -104,7 +104,8 @@ if env in ("1", "2", "3"):
 #   3. install firefox
 #   4. install VLC 
 
-zip_file_path = "%USERPROFILE%\\Desktop\\tor-ux\\"
+zip_file_path = "R:\\lee\\tor-ux"
+#zip_file_path = "%USERPROFILE%\\Desktop\\tor-ux\\"
 
 # 1 #
 if tb_var == "old": 
