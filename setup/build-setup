@@ -94,6 +94,10 @@ if env in ("2", "3"):
 if env in ("1", "2", "3"):
     print "copy hosts %SystemRoot%\System32\drivers\etc\hosts" 
 
+    # Generate and store an ID for this set of measurements.
+    print "set \"runid=%ComputerName%-%DATE:~10,4%%DATE:~4,2%%DATE:~7,2%-%TIME:~0,2%%TIME:~3,2%%TIME:~6,2%\""
+    print "echo %runid%>runid.txt"
+
 # Unpacking the .zip file and installing our programs
 #   1. install old or new version of tor
 #   2. install chrome 
@@ -133,9 +137,9 @@ desktop_path = "%PUBLIC%\\Desktop\\"
 vlc_path = "C:\\Program Files (x86)\\VideoLAN\\VLC\\"
 
 # 2 # 
-# TODO: fix naming of file, currenty blah.mp4 
 # TODO: add in the cursor (commented at end)
-print "start \"\" \"" + vlc_path + "vlc.exe\" screen:// --sout=\"#transcode{vcodec=h264,acodec=mpga,ab=128,channels=2,samplerate=44100}:file{dst=blah.mp4,no-overwrite}\" --sout-keep --screen-fps 10 --live-caching 300 --qt-start-minimized" #--screen-mouse-image=C:\Users\Administrator\ux\cursor.png
+
+print "start \"\" \"" + vlc_path + "vlc.exe\" screen:// --sout=\"#transcode{vcodec=h264,acodec=mpga,ab=128,channels=2,samplerate=44100}:file{dst=%runid%.mp4,no-overwrite}\" --sout-keep --screen-fps 10 --live-caching 300 --qt-start-minimized --one-instance" #--screen-mouse-image=C:\Users\Administrator\ux\cursor.png
 
 
 
