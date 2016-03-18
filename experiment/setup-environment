@@ -138,7 +138,6 @@ elif level == 1:
 else:
     assert False 
 
-
 ### install Tor Browser
 
 ### install VLC
