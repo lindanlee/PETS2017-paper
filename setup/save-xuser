@@ -27,8 +27,6 @@ print "del /q \"" + upload_dir + "\""
 print "rmdir \"" + upload_dir + "\""
 print "mkdir \"" + upload_dir + "\""
 print "copy \"%runid%.mp4\" \"" + upload_dir + "\""
-print "copy \"%USERPROFILE%\\Desktop\\Tor Browser\\Browser\\inst.log\" \"" + upload_dir + "\\%runid%-inst.log\""
+print "copy \"" + log_path + "\" \"" + upload_dir + "\\%runid%-inst.log\""
+print "copy \""+ log_path +"\" \"" + s_drive + "\\%runid%-inst.log\""
 print "s3-uploader.exe"
-
-# 2 # 
-print "copy \"%runid%.mp4\" \"" + s_drive + "\""
