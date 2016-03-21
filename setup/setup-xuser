@@ -10,12 +10,20 @@ Usage: %s <tb_var>
   <tb_var> is "old" or "new".\
 """ % sys.argv[0]
 
+opts, args = getopt.gnu_getopt(sys.argv[1:], "")
+try:
+    tb_var, = args
+except ValueError:
+    usage(sys.stderr)
+    sys.exit(1)
+
 # Unpacking the .zip file and installing our programs
 #   1. install old or new version of tor
 #   2. start VLC screen recording
 
 zip_file_path = "R:\\lee\\"
 #zip_file_path = "%USERPROFILE%\\Desktop\\tor-ux\\"
+vlc_path = "C:\\Program Files (x86)\\VideoLAN\\VLC"
 
 # 1 #
 if tb_var == "old": 
@@ -27,7 +35,7 @@ else:
 
 # 2 #
 # this doesn't record the cursor on the screen.
-print "start \"\" \"" + vlc_path + "vlc.exe\" screen:// --sout=\"#transcode{vcodec=h264,acodec=mpga,ab=128,channels=2,samplerate=44100}:file{dst=%runid%.mp4,no-overwrite}\" --sout-keep --screen-fps 10 --live-caching 300 --qt-start-minimized --one-instance" #--screen-mouse-image=C:\Users\Administrator\ux\cursor.png
+print "start \"\" \"" + vlc_path + "\\vlc.exe\" screen:// --sout=\"#transcode{vcodec=h264,acodec=mpga,ab=128,channels=2,samplerate=44100}:file{dst=%runid%.mp4,no-overwrite}\" --sout-keep --screen-fps 10 --live-caching 300 --qt-start-minimized --one-instance" #--screen-mouse-image=C:\Users\Administrator\ux\cursor.png
 
 
 
