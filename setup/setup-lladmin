@@ -73,7 +73,7 @@ def block_ips(name, ips):
 
 opts, args = getopt.gnu_getopt(sys.argv[1:], "")
 try:
-    env, tb_var, or_addresses_filename = args
+    env, or_addresses_filename = args
 except ValueError:
     usage(sys.stderr)
     sys.exit(1)
