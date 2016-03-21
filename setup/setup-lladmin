@@ -96,10 +96,6 @@ if env in ("2", "3"):
 if env in ("1", "2", "3"):
     print "copy R:\lee\hosts %SystemRoot%\System32\drivers\etc\hosts" 
 
-    # Generate and store an ID for this set of measurements.
-    print "set \"runid=%ComputerName%-%DATE:~10,4%%DATE:~4,2%%DATE:~7,2%-%TIME:~0,2%%TIME:~3,2%%TIME:~6,2%\""
-    print "echo %runid%>runid.txt"
-
 # Unpacking the .zip file and installing our programs
 #   1. install chrome 
 #   2. install firefox

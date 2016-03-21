@@ -13,15 +13,12 @@ Usage: %s
 upload_dir = "%TEMP%\\upload"
 s_drive = "S:\\lee"
 vlc_path = "C:\\Program Files (x86)\\VideoLAN\\VLC"
+log_path = "%USERPROFILE%\\Desktop\\Tor Browser\\Browser\\inst.log"
 
 # Save the files.
-#   1. save the video and log onto our amazon s3 servers.  
-#   2. back up the logs onto the xlab sdrive (not enough room for videos).
-
-# 1 # 
 
 # https://stackoverflow.com/questions/130116/windows-batch-commands-to-read-first-line-from-text-file/7827243#7827243
-print "set /p runid=<runid.txt"
+print "set /p runid=<%USERPROFILE%\\runid.txt"
 print "\"" + vlc_path + "\\vlc.exe\" --one-instance vlc://quit"
 # Give VLC some time to shut down cleanly. Otherwise it doesn't manage to write
 # the end of the video file.
