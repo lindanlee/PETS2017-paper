@@ -1,7 +1,9 @@
 OUTPUT_ZIP = tor-ux.zip
 OUTPUT_ZIP_FILES = $(OUTPUT_OLD_EXE) $(OUTPUT_NEW_EXE) ChromeSetup.exe FirefoxSetup.exe hosts \
-	setup-1.bat setup-2.bat setup-3.bat \
-	save.bat s3-uploader.exe \
+	setup-lladmin-1.bat setup-lladmin-2.bat setup-lladmin-3.bat \
+	setup-xuser-old.bat setup-xuser-new.bat\
+	save-xuser.bat \
+	s3-uploader.exe \
 
 ORIG_EXE = torbrowser-install-5.0.3_en-US.exe
 # This is the "old" Tor Launcher interface, not changed except for added
@@ -71,16 +73,22 @@ $(OR_ADDRESSES_JSON):
 hosts: gen-hosts
 	"./$<" > "$@"
 
-setup-1.bat: setup-lladmin $(OR_ADDRESSES_JSON)
+setup-lladmin-1.bat: setup-lladmin $(OR_ADDRESSES_JSON)
 	"./$<" 1 "$(OR_ADDRESSES_JSON)" > "$@"
 
-setup-2.bat: setup-lladmin $(OR_ADDRESSES_JSON)
+setup-lladmin-2.bat: setup-lladmin $(OR_ADDRESSES_JSON)
 	"./$<" 2 "$(OR_ADDRESSES_JSON)" > "$@"
 
-setup-3.bat: setup-lladmin $(OR_ADDRESSES_JSON)
+setup-lladmin-3.bat: setup-lladmin $(OR_ADDRESSES_JSON)
 	"./$<" 3 "$(OR_ADDRESSES_JSON)" > "$@"
 
-save.bat: save-xuser
+setup-xuser-old.bat: setup-xuser 
+	"./$<" "old" > "$@"
+
+setup-xuser-new.bat: setup-xuser 
+	"./$<" "new" > "$@"
+
+save-xuser.bat: save-xuser
 	"./$<" > "$@"
 
 clean:
