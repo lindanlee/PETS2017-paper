@@ -66,6 +66,9 @@ def read_addresses_from_json_filename(filename):
 # and in Windows Vista
 # https://support.microsoft.com/en-us/kb/947709
 
+#rules can be found at: 
+#control panel > system security>windows firewall > advanced settings > outbound rules
+
 def block_ips(name, ips):
     print "netsh advfirewall firewall add rule name=\"%s\" dir=out action=block remoteip=%s" % (name, ",".join(ips))
 
@@ -92,7 +95,7 @@ if env in ("2", "3"):
         block_ips("Tor relays %d-%d" % (i, i+500-1), slice)
 
 if env in ("1", "2", "3"):
-    print "copy hosts %SystemRoot%\System32\drivers\etc\hosts" 
+    print "copy R:\lee\hosts %SystemRoot%\System32\drivers\etc\hosts" 
 
     # Generate and store an ID for this set of measurements.
     print "set \"runid=%ComputerName%-%DATE:~10,4%%DATE:~4,2%%DATE:~7,2%-%TIME:~0,2%%TIME:~3,2%%TIME:~6,2%\""
@@ -104,7 +107,7 @@ if env in ("1", "2", "3"):
 #   3. install firefox
 #   4. install VLC 
 
-zip_file_path = "R:\\lee\\tor-ux"
+zip_file_path = "R:\\lee\\"
 #zip_file_path = "%USERPROFILE%\\Desktop\\tor-ux\\"
 
 # 1 #
@@ -131,15 +134,17 @@ print "\"" + zip_file_path + "FirefoxSetup.exe\" -ms"
 #   tor installer has been modified to put shortcuts on desktop on install 
 #   we want all but the VLC shortcuts on the desktop 
 # 
-#   1. copy cursor for screen recording into a fixed place 
+#   1. copy tor onto the desktop
 #   2. start the screen recording 
  
 desktop_path = "%PUBLIC%\\Desktop\\"
 vlc_path = "C:\\Program Files (x86)\\VideoLAN\\VLC\\"
 
+# 1 # 
+print "copy \"%USERPROFILE%\\Desktop\\Start Tor Browser.lnk\" \"%PUBLIC\\Desktop\""  
+
 # 2 # 
 # TODO: add in the cursor (commented at end)
-
 print "start \"\" \"" + vlc_path + "vlc.exe\" screen:// --sout=\"#transcode{vcodec=h264,acodec=mpga,ab=128,channels=2,samplerate=44100}:file{dst=%runid%.mp4,no-overwrite}\" --sout-keep --screen-fps 10 --live-caching 300 --qt-start-minimized --one-instance" #--screen-mouse-image=C:\Users\Administrator\ux\cursor.png
 
 

@@ -65,3 +65,7 @@ for i in range (0, len(addresses), 500):
     remove_firewall_rule("Tor relays %d-%d" % (i, i+500-1))
 
 print "del %SystemRoot%\System32\drivers\etc\hosts" 
+
+# uninstall Tor Browser 
+print "rmdir /Q /S \"%USERPROFILE%\\Desktop\\Tor Browser\""
+print "del \"%USERPROFILE%\\Desktop\\Start Tor Browser.lnk\""
