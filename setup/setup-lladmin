@@ -1,0 +1,117 @@
+#!/usr/bin/env python
+
+import getopt
+import json
+import sys
+
+# https://gitweb.torproject.org/builders/tor-browser-bundle.git/tree/Bundle-Data/PTConfigs/bridge_prefs.js?id=tbb-5.0.3-build3
+TORBROWSER_DEFAULT_BRIDGE_ADDRESSES = (
+    "83.212.101.3",
+    "169.229.59.74",
+    "169.229.59.75",
+    "109.105.109.163",
+    "192.240.101.106",
+    "50.7.176.114",
+    "131.252.210.150",
+    "128.105.214.161",
+    "128.105.214.162",
+    "128.105.214.163",
+    "2001:49f0:d002:1::2",
+    "2001:49f0:d00a:1::c",
+    "188.226.213.208",
+    "178.209.52.110",
+    "104.131.108.182",
+)
+
+# These are from default_authorities in src/or/config.c in tor's source code,
+# as of tag: tor-0.2.10.
+# https://gitweb.torproject.org/tor.git/tree/src/or/config.c?id=tor-0.2.6.10#n848
+DIRAUTH_ADDRESSES = (
+    "128.31.0.39",      # moria1
+    "86.59.21.38",      # tor26
+    "194.109.206.212",  # dizum
+    "82.94.251.203",    # Tonga
+    "131.188.40.189",   # gabelmoo
+    "193.23.244.244",   # dannenberg
+    "208.83.223.34",    # urras
+    "171.25.193.9",     # maatuska
+    "154.35.175.225",   # Faravahar
+    "199.254.238.52",   # longclaw
+)
+
+def usage(f=sys.stdout):
+    print >> f, """\
+Usage: %s <env> <or_addresses>
+  <env> is the censorship environment: "1", "2", or "3".
+  <or_addresses> is the filename of an Onionoo JSON file.\
+""" % sys.argv[0]
+
+def read_addresses_from_json(f):
+    j = json.load(f)
+    addresses = []
+    for relay in j["relays"]:
+        for or_address in relay["or_addresses"]:
+            addr, port = or_address.rsplit(":", 1)
+            addr = addr.strip("[]")
+            addresses.append(addr)
+    return addresses
+
+def read_addresses_from_json_filename(filename):
+    with open(filename) as f:
+        return read_addresses_from_json(f)
+
+# How to use the "netsh advfirewall firewall" context instead of the "netsh
+# firewall" context to control Windows Firewall behavior in Windows Server 2008
+# and in Windows Vista
+# https://support.microsoft.com/en-us/kb/947709
+
+#rules can be found at: 
+#control panel > system security>windows firewall > advanced settings > outbound rules
+
+def block_ips(name, ips):
+    print "netsh advfirewall firewall add rule name=\"%s\" dir=out action=block remoteip=%s" % (name, ",".join(ips))
+
+opts, args = getopt.gnu_getopt(sys.argv[1:], "")
+try:
+    env, tb_var, or_addresses_filename = args
+except ValueError:
+    usage(sys.stderr)
+    sys.exit(1)
+
+assert env in ("1", "2", "3")
+
+if env in ("3",):
+    block_ips("Tor Browser default bridges", TORBROWSER_DEFAULT_BRIDGE_ADDRESSES)
+
+if env in ("2", "3"):
+    block_ips("Tor directory authorities", DIRAUTH_ADDRESSES)
+
+    addresses = read_addresses_from_json_filename(or_addresses_filename)
+    # There's some limit on netsh command line length; 500 IPs at a time seems
+    # not to exceed it.
+    for i in range (0, len(addresses), 500):
+        slice = addresses[i:i+500]
+        block_ips("Tor relays %d-%d" % (i, i+500-1), slice)
+
+if env in ("1", "2", "3"):
+    print "copy R:\lee\hosts %SystemRoot%\System32\drivers\etc\hosts" 
+
+    # Generate and store an ID for this set of measurements.
+    print "set \"runid=%ComputerName%-%DATE:~10,4%%DATE:~4,2%%DATE:~7,2%-%TIME:~0,2%%TIME:~3,2%%TIME:~6,2%\""
+    print "echo %runid%>runid.txt"
+
+# Unpacking the .zip file and installing our programs
+#   1. install chrome 
+#   2. install firefox
+
+zip_file_path = "R:\\lee\\"
+#zip_file_path = "%USERPROFILE%\\Desktop\\tor-ux\\"
+
+# 1 #
+print "\"" + zip_file_path + "ChromeSetup.exe\" /silent /install"
+
+# 2 # 
+print "\"" + zip_file_path + "FirefoxSetup.exe\" -ms"
+
+
+
