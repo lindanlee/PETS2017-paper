@@ -1,10 +1,7 @@
 OUTPUT_ZIP = tor-ux.zip
 OUTPUT_ZIP_FILES = $(OUTPUT_OLD_EXE) $(OUTPUT_NEW_EXE) ChromeSetup.exe FirefoxSetup.exe hosts \
-	setup-1-old.bat setup-1-new.bat \
-	setup-2-old.bat setup-2-new.bat \
-	setup-3-old.bat setup-3-new.bat \
-	teardown.bat cursor.png\
-	s3-uploader.exe
+	setup-1.bat setup-2.bat setup-3.bat \
+	save.bat s3-uploader.exe \
 
 ORIG_EXE = torbrowser-install-5.0.3_en-US.exe
 # This is the "old" Tor Launcher interface, not changed except for added
@@ -74,26 +71,17 @@ $(OR_ADDRESSES_JSON):
 hosts: gen-hosts
 	"./$<" > "$@"
 
-setup-1-old.bat: build-setup $(OR_ADDRESSES_JSON)
-	"./$<" 1 old "$(OR_ADDRESSES_JSON)" > "$@"
+setup-1.bat: setup-lladmin $(OR_ADDRESSES_JSON)
+	"./$<" 1 "$(OR_ADDRESSES_JSON)" > "$@"
 
-setup-1-new.bat: build-setup $(OR_ADDRESSES_JSON)
-	"./$<" 1 new "$(OR_ADDRESSES_JSON)" > "$@"
+setup-2.bat: setup-lladmin $(OR_ADDRESSES_JSON)
+	"./$<" 2 "$(OR_ADDRESSES_JSON)" > "$@"
 
-setup-2-old.bat: build-setup $(OR_ADDRESSES_JSON)
-	"./$<" 2 old "$(OR_ADDRESSES_JSON)" > "$@"
+setup-3.bat: setup-lladmin $(OR_ADDRESSES_JSON)
+	"./$<" 3 "$(OR_ADDRESSES_JSON)" > "$@"
 
-setup-2-new.bat: build-setup $(OR_ADDRESSES_JSON)
-	"./$<" 2 new "$(OR_ADDRESSES_JSON)" > "$@"
-
-setup-3-old.bat: build-setup $(OR_ADDRESSES_JSON)
-	"./$<" 3 old "$(OR_ADDRESSES_JSON)" > "$@"
-
-setup-3-new.bat: build-setup $(OR_ADDRESSES_JSON)
-	"./$<" 3 new "$(OR_ADDRESSES_JSON)" > "$@"
-
-teardown.bat: build-teardown $(OR_ADDRESSES_JSON)
-	"./$<" "$(OR_ADDRESSES_JSON)" > "$@"
+save.bat: save-xuser
+	"./$<" > "$@"
 
 clean:
 	rm -f "$(OUTPUT_ZIP)" "$(OUTPUT_OLD_EXE)" "$(OUTPUT_NEW_EXE)"
