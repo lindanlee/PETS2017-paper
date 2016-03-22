@@ -4,6 +4,12 @@ import getopt
 import json
 import sys
 
+# Note: if you want the firewall rules to work with Tor 0.2.8 or later, you will
+# additionally have to block the hard-coded fallback directory mirrors. Or you
+# can set "UseDefaultFallbackDirs 0" in torrc.
+# https://lists.torproject.org/pipermail/tor-dev/2016-March/010594.html
+# https://trac.torproject.org/projects/tor/wiki/doc/FallbackDirectoryMirrors
+
 # https://gitweb.torproject.org/builders/tor-browser-bundle.git/tree/Bundle-Data/PTConfigs/bridge_prefs.js?id=tbb-5.0.3-build3
 TORBROWSER_DEFAULT_BRIDGE_ADDRESSES = (
     "83.212.101.3",
