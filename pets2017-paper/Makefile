@@ -1,4 +1,4 @@
-circumvention-experiment.pdf: circumvention-experiment.tex circumvention-experiment.bib
+pets2017-paper.pdf: pets2017-paper.tex pets2017-paper.bib
 
 PDFLATEX = pdflatex -halt-on-error -file-line-error
 BIBTEX = bibtex
@@ -9,6 +9,6 @@ BIBTEX = bibtex
 	$(PDFLATEX) $*
 
 clean:
-	rm -f circumvention-experiment.pdf
+	rm -f pets2017-paper.pdf
 
 .PHONY: clean
