@@ -28,8 +28,10 @@ vlc_path = "C:\\Program Files (x86)\\VideoLAN\\VLC"
 # 1 #
 if tb_var == "old": 
     print "\"" + zip_file_path + "torbrowser-old-5.0.3_en-US.exe\" /S"
+    print "echo OLD>%USERPROFILE%\\version.txt"	
 elif tb_var == "new": 
     print "\"" + zip_file_path + "torbrowser-new-5.0.3_en-US.exe\" /S"
+    print "echo NEW>%USERPROFILE%\\version.txt"	
 else: 
     raise ValueError("tb_var has to be \"old\" or \"new\".")
 
@@ -37,9 +39,11 @@ else:
 # Generate and store an ID for this set of measurements.
 print "set \"runid=%ComputerName%-%DATE:~10,4%%DATE:~4,2%%DATE:~7,2%-%TIME:~0,2%%TIME:~3,2%%TIME:~6,2%\""
 print "echo %runid%>%USERPROFILE%\\runid.txt"
+print "set /p version=<%USERPROFILE%\\version.txt"
+print "set /p env=<C:\\Users\\environment.txt"
 
 # this doesn't record the cursor on the screen.
-print "start \"\" \"" + vlc_path + "\\vlc.exe\" screen:// --sout=\"#transcode{vcodec=h264,acodec=mpga,ab=128,channels=2,samplerate=44100}:file{dst=%runid%.mp4,no-overwrite}\" --sout-keep --screen-fps 10 --live-caching 300 --qt-start-minimized --one-instance" #--screen-mouse-image=C:\Users\Administrator\ux\cursor.png
+print "start \"\" \"" + vlc_path + "\\vlc.exe\" screen:// --sout=\"#transcode{vcodec=h264,acodec=mpga,ab=128,channels=2,samplerate=44100}:file{dst=%USERPROFILE%\\%env%-%version%-%runid%.mp4,no-overwrite}\" --sout-keep --screen-fps 10 --live-caching 300 --qt-start-minimized --one-instance" #--screen-mouse-image=C:\Users\Administrator\ux\cursor.png
 
 
 

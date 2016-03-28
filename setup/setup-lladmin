@@ -102,6 +102,13 @@ if env in ("2", "3"):
 if env in ("1", "2", "3"):
     print "copy R:\lee\hosts %SystemRoot%\System32\drivers\etc\hosts" 
 
+if (env == "1"): 
+    print "echo E1>C:\\Users\\environment.txt"  
+elif (env == "2"): 
+    print "echo E2>C:\\Users\\environment.txt"  
+else: #env == "3"
+    print "echo E3>C:\\Users\\environment.txt"  
+
 # Unpacking the .zip file and installing our programs
 #   1. install chrome 
 #   2. install firefox

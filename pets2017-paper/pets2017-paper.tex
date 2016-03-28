@@ -75,34 +75,117 @@ Currently, x\% of users fail and with the current interface for reasons a, b, an
 \section{Goals/Evaluation Criteria} 
 \begin{enumerate} \itemsep1pt \parskip0pt \parsep0pt
     \item {\bfseries Task Completion} Almost all can successfully connect to Tor
-    \item {\bfseries Time to Completion} Time to complete, east of user for the average user. 
+    \item {\bfseries Time to Completion} Time to completion. 
     \item {\bfseries Safe for High-Risk Users} It should be possible to configure Tor with the interface that it doesn't leak that they are using Tor. 
 \end{enumerate}
 
 \section{Qualitative Analysis of the Existing Interface (Study 1)}
 \subsection{Motivation} 
 \subsection{Methodology} 
-{\color {red} 
-What to talk about in this section: 
-\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt 
-\item experiment design
-\item censorship environments
-\item user tasks
-\item user screening and recruitment
-\item payment
-\item no risks to user, irb approved
-\end{itemize} 
-}
+\subsubsection{Simulated censorship environments}
+We simulated three censorship environments for our experiment.
+These reproducible, stable environments are informed by our experience 
+with pluggable transports and knowledge of commonly seen censorship 
+techniques. Their goal in our user study is not to replicate the network 
+environment in any particular country, but to require our participants to 
+configure Tor Browser in distinct configurations. 
 
-\subsection{Results} 
+\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
+\item {\bfseries Mild censorship} 
+(Representative of countries such as France and Australia.)
+Certain domains are blocked. Reaching these 
+domains requires a censorship circumvention 
+tool. The default option to ``connect'' to the Tor network 
+directly will circumvent this censor. Additional correct
+bridge or proxy configurations are optional. 
+
+\item {\bfseries Intermediate censorship} 
+(Representative of countries such as Tunisia.)
+Certain domains are blocked. Censorship circumvention
+tools such as Tor are blocked. Since all public Tor
+relay nodes are blocked, the default option to ``connect'' to the Tor network
+directly will fail. Any choice of a hard-coded bridge
+or a valid non-public bridge will circumvent this censor.  
+Additional correct proxy configuration is optional.
+
+\item {\bfseries Comprehensive censorship} 
+(Representative of countries such as China and Syria.)
+Certain domains are blocked. Censorship circumvention tools
+are thoroughly blocked. Tor is blocked by blocking all public
+Tor relay nodes, and the censor has examined source code to block
+all hard-coded bridge relays in the configuration interface. The default option
+to ``connect'' to the Tor network directly will fail. Most bridges will fail,
+but ``meek-amazon,'' ``meek-azure,'' and ``meek-google'' still work.
+This is because domain-fronting requires censors to block entire CDNs to also
+block this transport (which will cause huge collateral blocking damage), making
+it resistant to aggressive censorship environments.
+(See ~\cite{fifield2015blocking} for additional details.)\\
+\end{itemize}
+
+\subsubsection{Procedure}
+We conducted a qualitative evaluation of the interface by creating an environment 
+for users to interact with the configuration interface in a censored environment, 
+observing their interactions in real time without interacting with the participants, 
+and following up with interviews about their experiences.
+Using established best practices from the field of user experience research
+(\cite{howmanyusers}), we recruited five users for each censorship environment.
+We pre-screened our participants to have a good mix of gender, age, technical
+background, and familiarity with Tor in each environment. 
+
+%Some references to keep in mind when explaining:
+%\href{why 5 users}{http://www.nngroup.com/articles/how-many-test-users/}
+%\href{screening}{http://www.userfocus.co.uk/articles/screeners.html}
+%\href{summative and usability mixed model}{http://www.usabilitybok.org/summative-usability-testing}
+
+The 1-hour, single-participant procedure begins when a participant enters a small 
+room with a single computer, which is equipped with Chrome, Firefox, Internet Explorer, 
+Chrome, and VLC (for screen recording). A participant is firstly informed of 
+the risks of the study and consenting to data collection. If they consent, the 
+experiment begins. The participant is informed that they are in a
+simulated censorship environment, where some websites are blocked. We
+instruct them to visit a sample blocked website and a sample non-blocked website on a
+non-Tor browser of their choice to illustrate the situation.
+
+After illustrating the censorship environment, participants are asked to 
+complete a worksheet that asks to visit one blocked website and one non-blocked website. 
+We chose Wikipedia's featured article of the day as the blocked website and 
+the CNN homepage as our non-blocked website because the familiarity 
+that most users have with these websites makes the browsing task relatively easy, 
+which focuses participants' attention to configuring Tor Browser. 
+
+After instructions, researchers stepped out of the room so that there was no interaction
+between the participant and researcher for the rest of the session. Participants' screens 
+were recorded and streamed to another room, where the researchers were able to 
+observe how a participant configured their browser. Participants had an 
+average of 45 minutes to complete their worksheet. 
+At this point, the participants do not know the details of their censorship environment,
+only that they are actively being censored. We believe that this is representative 
+of the mental model of users in censored countries, and therefore chose to simulate 
+this for the experiment. Ultimately, participants needed to configure Tor Browser to 
+circumvent the simulated censorship. 
+
+After users completed the browsing tasks or have spent the rest of the time
+trying to configure Tor Browser, we interviewed participants about their experience.
+We asked three standard questions asking about their general experience, 
+confusing interface features, and soliciting feedback for improvements. We followed up
+with specific questions we had for a particular participant from observing their screen. 
+This was to verify any hypothesis we had about the participant (i.e. ``they didn't know what to do on window 3'').  
+
+\subsubsection{Results} 
+%\begin{enumerate} \itemsep1pt \parskip0pt \parsep0pt
+%    \item {\bfseries Task Completion} Almost all can successfully connect to Tor
+%    \item {\bfseries Time to Completion} Time to complete, ease of user for the average user. 
+%    \item {\bfseries Safe for High-Risk Users} It should be possible to configure Tor with the interface that it doesn't leak %that they are using Tor. 
+%\end{enumerate}
+
 {\color {red}
 We noticed four common challenges:  
 
 \begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
-\item {\bfseries Challenge 1:} People don't know how to choose between ``connect directly'' versus ``configure'' on the first screen. As seen in Figure \ref{fig:window1}, there is some guidance for the users, but we found this largely unhelpful since people do not understand the text on the screen. 
-\item {\bfseries Challenge 2:} People feel compelled to set up a bridge, even if they don't need one, because they do not know how censorship works. Participants knew that they were censored to some degree since we had simulated censorship of websites. However, bridges are only necessary when the government has taken active steps to censor Tor itself.
-\item {\bfseries Challenge 3:} When their first attempt to connect fails, the interface directs people to the last window they saw before the connection failure. The problem is not necessarily where the interface directs users, misguiding them. It was common for the interface to redirect users to the proxy window in Figure \ref{fig:window5}, even when they needed to pick another bridge. 
-\item {\bfseries Challenge 4:} When the first attempt to connect fails, people did not know what to do or what to try next. The feedback given to users was not understood (see Figure \ref{fig:error}) and also did not guide users into specific actions (such as trying a different bridge, trying the same configuration again, try connecting directly, etc.).
+\item {\bfseries Challenge 1:} Users don't know how to choose between connecting directly to the Tor network or manually configuring their connection (Figure \ref{fig:window1}). The text was unread or not understood by most users. When the user read the text, they found no instructions, but were given information to make a decision for themselves, which they did not feel equipped to do.  
+\item {\bfseries Challenge 2:} Users feel compelled to set up a bridge, even if they don't need one. We believe this is due to the text on the first screen, which refers to a ``censored internee connection'' (Figure \ref{fig:window1}). Bridges are only necessary when the government actively censored Tor relays, but participants are not able to determine the difference between a censor that blocks websites and a censor that blocks websites and the Tor network. 
+\item {\bfseries Challenge 3:} Users did not know what to do after a failure. Error messages (see Figure \ref{fig:error}) did not guide users into taking specific actions (such as trying a different bridge, trying the same configuration again, try connecting directly, etc.).
+\item {\bfseries Challenge 4:} Users draw incorrect conclusions after a failed connection. The interface passively re-displayed the last window seen before the attempted connection (Figure \ref{fig:window4} or \ref{fig:window5}), regardless of the error.
 \end{itemize}
 }
 
@@ -214,16 +297,16 @@ Therefore we patched the correct fingerprint in the later experiment.
 
 \section{Discussion} 
 
-Additional changes that could be made: 
+If we had more concrete information on the number of high-risk users or users who need to configure a proxy, we would have made additional changes in the prototype. Since we lacked this information, the following changes did not make it into our prototype, but are worth discussing. Depending on the number of high-risk users or proxy-configuring users, these additional changes may be helpful: 
 \begin{itemize} \itemsep1pt \parskip0pt \parsep0pt 
-\item {\bfseries Tell people to click connect.} On the first screen, there are no instructions for the user on what to do. There is a description of what each option means, but there is no guidance on what they should do. Ideally, we would people to click connect, and then try the manual configuration if a direct connection fails. But communicating this may put some users at risk. Based on the results, is the benefit greater than the risk?  
+\item {\bfseries Tell people to click connect.} On the first screen, the user needs to decide to connect or configure. Although there is a description of what each option entails and when one may consider using that option, there are no instructions for the user on what to do. Ideally, we would people to click connect, and then try the manual configuration if a direct connection fails. We currently do not communicate this because may put some users at risk. However, it is believed that a majority of the users will succeed if they click connect on the first screen, and giving them instructions on what to do can lessen their cognitive load during the configuration process. 
 \item{\bfseries Hide the proxy screen.} Don't give users the option to configure a proxy unless it has been detected that it would be necessary. The amount of people who use proxies is low, but then ... this would not give users control in the beginning of the configuration process. 
 \item{\bfseries Help the at-risk users.} There are people who would benefit from, on the first attempt, connecting with a meek bridge or custom bridge, without trying a vanilla tor connection or the recommended bridge in the dialog. Currently, we guide these people to the correct decision, but after trying the default bridge first. Helping these users to make a connection safely without ever being logged as connecting to Tor would be a benefit, but might be a case of overfitting to these types of users. A majority of users should not use a meek bridge or custom bridge, so it would be unideal to lead all users to this decision.
 \end{itemize} 
 
-Alternative approaches to interacting with the user: 
+We took an approach that optimized for the average case user yet was conservative in automation to allow at-risk users to possibly connect without leaking that they use Tor. We believe that this is a sound approach to interacting with the user and the one we would recommend personally. However, there are alternative approaches to interacting with the user that may be of interest:  
 \begin{itemize} \itemsep1pt \parskip0pt \parsep0pt 
-\item{\bfseries Automate the entire configuration process.} Seriously, this can help load balancing, and all sorts of technicalities, and wouldn't harm most of our users. Most users do not configure that well, anyway and would make the same mistakes. 
+\item{\bfseries Automate the entire configuration process.} This sounds like a radical idea, but it really isn't. Today, this wouldn't harm most of our users. Our study finds that most users do not configure better than we do and would leak that they are using Tor anyway. 
 \item {\bfseries Auto-configure after connect.} After a person has already clicked connect and the connection was unsuccessful, they have already been logged. I am assuming that the significant difference is between being logged trying to connect to Tor or not at all, rather than the number of connection attempts made. This would greatly save our users a lot of headache. 
 \item{\bfseries Ask about the risk.} Rather than having the configuration dialog be manual by default, just ask if the users are at risk if the process was automated. If they are not at risk, we can do it automatically, and the at-risk users can configure manually. The issue with this is that people may not answer this question honestly, or they might not know the correct answer to this question. 
 \item{\bfseries Ask if they are qualified to make decisions.} Asking users if they know which bridge to choose, and choosing for them if they say they don't know. We probably know better than they do. But there are ethical implications of choosing bridges for them rather them making the mistakes themselves. The issue with this is that people may not answer honestly. 

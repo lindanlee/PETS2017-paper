@@ -19,6 +19,8 @@ log_path = "%USERPROFILE%\\Desktop\\Tor Browser\\Browser\\inst.log"
 
 # https://stackoverflow.com/questions/130116/windows-batch-commands-to-read-first-line-from-text-file/7827243#7827243
 print "set /p runid=<%USERPROFILE%\\runid.txt"
+print "set /p version=<%USERPROFILE%\\version.txt"
+print "set /p env=<C:\\Users\\environment.txt"
 print "\"" + vlc_path + "\\vlc.exe\" --one-instance vlc://quit"
 # Give VLC some time to shut down cleanly. Otherwise it doesn't manage to write
 # the end of the video file.
@@ -26,7 +28,7 @@ print "timeout 20 /nobreak"
 print "del /q \"" + upload_dir + "\""
 print "rmdir \"" + upload_dir + "\""
 print "mkdir \"" + upload_dir + "\""
-print "copy \"%runid%.mp4\" \"" + upload_dir + "\""
-print "copy \"" + log_path + "\" \"" + upload_dir + "\\%runid%-inst.log\""
-print "copy \""+ log_path +"\" \"" + s_drive + "\\%runid%-inst.log\""
+print "copy \"%USERPROFILE%\\%env%-%version%-%runid%.mp4\" \"" + upload_dir + "\""
+print "copy \"" + log_path + "\" \"" + upload_dir + "\\%env%-%version%-%runid%-inst.log\""
+print "copy \""+ log_path +"\" \"" + s_drive + "\\%env%-%version%-%runid%-inst.log\""
 print "s3-uploader.exe"
