@@ -82,7 +82,8 @@ Currently, x\% of users fail and with the current interface for reasons a, b, an
 \section{Qualitative Analysis of the Existing Interface (Study 1)}
 \subsection{Motivation} 
 \subsection{Methodology} 
-\subsubsection{Simulated censorship environments}
+\subsubsection{Setup}
+\label{sec:setup}
 We simulated three censorship environments for our experiment.
 These reproducible, stable environments are informed by our experience 
 with pluggable transports and knowledge of commonly seen censorship 
@@ -121,6 +122,8 @@ block this transport (which will cause huge collateral blocking damage), making
 it resistant to aggressive censorship environments.
 (See ~\cite{fifield2015blocking} for additional details.)\\
 \end{itemize}
+
+\subsubsection{Recruitment}
 
 \subsubsection{Procedure}
 We conducted a qualitative evaluation of the interface by creating an environment 
@@ -225,19 +228,20 @@ What to talk about in this section:
 Talk about how the design as a conservative design. And why the conservative choices were made. For at-risk users, maintainability, etc.
 }
 
-\section{Quantitative Analysis of the Interfaces (Study 2)}
+\section{Quantitative Analyses of the Interfaces (Study 2)}
 
 \subsection{Motivation} 
 
 \subsection{Methodology} 
-{\color {red} 
-What to talk about in this section: 
-\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt 
-\item experiment design
-\item how we chose our metrics
-\item how we collected our metrics
-\end{itemize} 
-}
+\subsubsection{Setup}
+For consistency, we simulated the same three censorship environments from 
+our qualitative user study. Details of the mild, intermediate, and advanced 
+censorship environments and what configurations are necessary for a 
+successful connection can be found in Section \ref{sec:setup}. 
+
+\subsubsection{Recruitment}
+\subsubsection{Procedure}
+\subsubsection{Results}
 
 % $ grep 'default_bridge\.' tor-browser_en-US/Browser/TorBrowser/Data/Browser/profile.default/preferences/extension-overrides.js | awk -F. '{print $4}' | sort | uniq -c
 %       5 flashproxy
