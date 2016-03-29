@@ -82,12 +82,43 @@ Currently, {\color {red} TODO}\% of users fail and with the current interface fo
 \subsection{Network Components} 
 \subsection{Censorship Environments} 
 
-\section{Goals/Evaluation Criteria} 
+\section{Goals/Evaluation Criteria}
+We evaluate the existing and redesigned Tor Browser configuration interface 
+through the empirical evaluation and heuristic evaluation criteria below. The
+empirical evaluation criteria were considered during our qualitative and 
+quantitative user studies, whereas the heuristic evaluation was considered during
+the redesign process. 
+
+Since there is risk associated with making an unobfuscated 
+connection with the Tor network, the configuration process is not automated.
+Our empirical evaluation criteria for the Tor Browser configuration
+interface are from common metrics that measure ease of use with a special 
+consideration for high-risk users: 
 \begin{enumerate} \itemsep1pt \parskip0pt \parsep0pt
     \item {\bfseries Task Completion} Almost all can successfully connect to Tor
     \item {\bfseries Time to Completion} Time to completion. 
     \item {\bfseries Safe for High-Risk Users} It should be possible to configure Tor with the interface that it doesn't leak that they are using Tor. 
 \end{enumerate}
+
+A heuristic evaluation is a rule-based evaluation which leverages standards
+developed over trial and error that have shown to work in the User Interface design 
+community. We draw from Jacob Nielsen's ten heuristics ({\color {red} CITE THIS}
+and other industry standards to form the following heuristic evaluation criteria: 
+\begin{enumerate} \itemsep1pt \parskip0pt \parsep0pt
+    \item {\bfseries Visibility of System Status} provide feedback on what the system is doing.
+    \item {\bfseries User Control and Freedom} allow users to override system, supports undo and redo actions. 
+    \item {\bfseries Understandable Language} ~6th grade reading level. 
+    \item {\bfseries Minimal Design} surpressing rarely used information to reduce cognitive load. 
+    \item {\bfseries Error Management} expressing errors in plain language and offering a solution. 
+    \item {\bfseries Help and Documentation} provide contextual help and easy access to information. 
+\end{enumerate}
+
+An empirical evaluation of the problems with the existing Tor Browser 
+configuration interface through user observation and interviews can be 
+found in section {\color{red} TODO}. A heuristic evaluation of the existing interface
+and new interface can be found  in section {\color{red} TODO}. We empirically show 
+that the redesigned interface improves completion rate, reduces time to completion, 
+and provides a safe path for at-risk users in section {\color{red} TODO}. 
 
 \section{Qualitative Analysis of the Existing Interface (Study 1)}
 We performed qualitative research as an exploratory effort to gain an 
