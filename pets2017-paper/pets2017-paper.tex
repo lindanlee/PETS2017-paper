@@ -202,6 +202,8 @@ We asked three standard questions asking about their general experience,
 confusing interface features, and soliciting feedback for improvements. We followed up
 with specific questions we had for a particular participant from observing their screen. 
 This was to verify any hypothesis we had about the participant (i.e. ``they didn't know what to do on window 3'').  
+After their interview, participants were informed that the experiment was over and 
+given their payment of \$30. 
 
 \subsubsection{Results} 
 %\begin{enumerate} \itemsep1pt \parskip0pt \parsep0pt
@@ -275,7 +277,68 @@ censorship environments and what configurations are necessary for a
 successful connection can be found in Section \ref{sec:setup}. 
 
 \subsubsection{Recruitment}
+We recruited 20 users for each censorship environment
+and interface combination, resulting in a total of 120 users. This decision 
+was due to both data analysis considerations (large enough to have good effect size, 
+with a minimum of 20 to be able to assume normal distributions) and funding
+limitations. 
+
+We recruited half of our users from Craigslist, and half of our participants from 
+the Xlab participant pool. It is standard for Xlab experiments to be run with Xlab
+participants, who have been verified of their identity and have good attendance
+rate. Although Xlab participants are not limited to UC Berkeley students and staff,
+a majority of the participants are from campus. For this reason, we chose to recruit 
+half of our participants from Craigslist to ensure a diverse set of participants. 
+The recruitment text can be found in Appendix \ref{quantitative-recruitment}. 
+
+We chose our participants on who had responded to our listing first and their
+availability for experiment sessions. We collected their demographic information
+with an exit survey that participants took after the experiment. 
+
+Out of our {\color {red} TODO} participants, ages ranged from {\color {red} TODO}
+(sigma = {\color {red} TODO}). {\color {red} TODO} of our participants had at least
+a college education, and the most common jobs included {\color {red} TODO} and
+{\color {red} TODO}. 
+
 \subsubsection{Procedure}
+Similarly to the qualitative experiment, we conducted a quantitative evaluation 
+of the interface by creating an environment  for users to interact with the 
+configuration interface in a censored environment. The focus of this environment 
+was to collect a dataset of metrics to evaluate the two interfaces. 
+
+The 1-hour, multi-participant procedure begins when all participants are sitting at their
+respective computers in Xlab. Each computer is equipped with an old or modified version
+of Tor Browser, Chrome, Firefox, Internet Explorer,  Chrome, and VLC (for screen recording). 
+Participants are firstly informed of the risks of the study and consenting to data collection.  At
+this time, participants are given the chance to leave the laboratory if they do not consent to 
+the experiment conditions. When every participant left in the room has turned in their consent
+form, the experiment formally begins. A researcher informs the participants that they are in a
+simulated censorship environment, where some websites and services are blocked. 
+For the full script of what participants have heard, see Appendix \ref{quantitative-script}. We
+instruct them to visit a sample blocked website on a non-Tor browser of their choice to illustrate 
+the situation.
+
+After illustrating the censorship environment, participants are asked to 
+complete a worksheet that asks to visit one blocked website. 
+Similar to the qualitative study, we chose Wikipedia's featured article of the day 
+as the blocked website because the familiarity 
+that most users have with these websites makes the browsing task relatively easy, 
+which focuses participants' attention to configuring Tor Browser. 
+
+After instructions, researchers maintained minimal interactions with the participants, 
+only answering logistical questions. Participants had an 
+average of 40 minutes to complete their worksheet. 
+The participants do not know the details of their censorship environment,
+only that they are actively being censored. Participants needed to configure Tor Browser to 
+circumvent the simulated censorship. 
+
+After users completed the browsing tasks, they take a short exit survey (Appendix \ref{quantitative-exit-survey})
+collecting their demographics. All users were instructed to sit until the end of the experiment,
+regardless of when they had completed their task. This was to ensure that others were not 
+aware of when other participants had finished their tasks. After the 40 minutes were up, 
+participants were officially informed that their time was up, and were given their payment of 
+\$30. 
+
 \subsubsection{Results}
 
 % $ grep 'default_bridge\.' tor-browser_en-US/Browser/TorBrowser/Data/Browser/profile.default/preferences/extension-overrides.js | awk -F. '{print $4}' | sort | uniq -c
@@ -420,8 +483,8 @@ We asked our participants these questions after they were given time to configur
 In addition to these questions, we asked our participants about specific questions based on their observation, usually regarding a specific choice in action, a particular screen they seemed stuck on, and any errors they encountered during the configuration process. 
 
 \section{Quantitative User Recruitment Posting}
-\label{qualitative-recruitment}
-We are recruiting up to 40 participants for a user study at UC Berkeley. The experiment will involve basic Internet browsing tasks. You are not eligible if you have participated in a previous session on 3/23.\\
+\label{quantitative-recruitment}
+We are recruiting up to 40 participants for a user study at UC Berkeley. The experiment will involve basic Internet browsing tasks. You are not eligible if you have participated in our previous sessions.\\
 
 \indent Payment: \$30 Amazon gift card\\
 \indent Duration: 1 hour \\
