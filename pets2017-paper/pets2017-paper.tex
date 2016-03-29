@@ -206,13 +206,13 @@ After their interview, participants were informed that the experiment was over a
 given their payment of \$30. 
 
 \subsubsection{Results} 
+
 %\begin{enumerate} \itemsep1pt \parskip0pt \parsep0pt
 %    \item {\bfseries Task Completion} Almost all can successfully connect to Tor
 %    \item {\bfseries Time to Completion} Time to complete, ease of user for the average user. 
 %    \item {\bfseries Safe for High-Risk Users} It should be possible to configure Tor with the interface that it doesn't leak %that they are using Tor. 
 %\end{enumerate}
 
-{\color {red}
 We noticed four common challenges:  
 
 \begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
@@ -221,7 +221,31 @@ We noticed four common challenges:
 \item {\bfseries Challenge 3:} Users did not know what to do after a failure. Error messages (see Figure \ref{fig:error}) did not guide users into taking specific actions (such as trying a different bridge, trying the same configuration again, try connecting directly, etc.).
 \item {\bfseries Challenge 4:} Users draw incorrect conclusions after a failed connection. The interface passively re-displayed the last window seen before the attempted connection (Figure \ref{fig:window4} or \ref{fig:window5}), regardless of the error.
 \end{itemize}
-}
+
+Relevant participant quotes: 
+\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
+\item{{\bfseries P1}:``figuring out if the progress bar wasn't moving because the connection was censored, of if it was just slow''}
+\item{{\bfseries P2}: "I don't know what any of those means (list of bridges), I don't know what that (proxy) means at all."}
+\item{{\bfseries P3}: ``The vocabulary is really challenging, for someone not doing IT work. Good thing I'm really curious. because I was able to use trial and error.''} 
+\item{{\bfseries P4}: ``When I saw obfs3 as the recommended option, the next option logically for me was obfs4.'}
+\item{{\bfseries P5}: ``I tried the pluggable transport that used google, because I noticed that google was working (when I was using a non-Tor browser).''}
+\item{{\bfseries P6}: ``The progress bar had no feedback for me. I didn't know why I was getting back `establishing encrypted directory'--what does that mean for me?''}
+\item{{\bfseries P6}: ``How long does this actually take (to connect)? This took way too long, and I didn't know how long it should take.''}
+\item{{\bfseries P7}: ``The bridge screen was the most challenging. It seemed very technical to me. I don't know what a bridge is. Since it (obfs3) said recommended, it helped actually, and I selected it because it was chosen. I saw the custom bridges option, but I didn't know what to enter there so I went with this (obfs3).''}
+\item{{\bfseries P8}: ``I have no clue what's the difference between flashrpoxy, fte, etc. I need to know why the built-in ones aren't working. And why do I need a custom bridge if there are options built in?''}
+\item{{\bfseries P9}: ``Configure seemed manual, so I clicked connect.''} %c1
+\item{{\bfseries P10}: ``I was censored, so I picked the configure.''} %c1
+\item{{\bfseries P11}: ``Is this question (does your ISP censor your Internet connection) really necessary? I just selected that I have a censored connection, why do they ask me again?''}
+\item{{\bfseries P11}: ``I think you can only answer this question (does this computer need a local proxy) if you know what a local proxy is. Otherwise, you have no chance.''}
+\item{{\bfseries P12}: ``I decided which options to choose by process of elimination with trial and error.'' }
+\item{{\bfseries P13}: ``I don't remember what I did. I figured it out? What? <laughs> Oh man, that's crazy.''}
+\item{{\bfseries P14}: ``The words were confusing. I don't really understand computers. I don't know what configure means in this setting. Hmm, is it going to crash? When you see connect, you want to click it because you really want it to connect.''}
+\item{{\bfseries P15}: ``Give this to a couple of people who know how to do this. They can feel elite... they only want the elite to use some computer things.''}
+\item{{\bfseries P15}: ``I didn't know if this computer had any proxy information. I wasn't able to find it if it did.''}
+\item{{\bfseries P16}: ``Because I never configured a proxy or worked with that stuff, I was just going to keep clicking and pray.''}
+\item{{\bfseries P16}: ``There doesn't seem to be a timeout on any of this stuff. Am I waiting long enough? It should work immediately.''}
+\end{itemize} 
+
 
 \section{Redesigning the Configuration Interface}
 
