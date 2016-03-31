@@ -15,7 +15,7 @@ import sys
 
 class Record(object):
     def __init__(self, run_id, date, event):
-        self.run_id = date
+        self.run_id = run_id
         self.date = date
         self.event = event
 
