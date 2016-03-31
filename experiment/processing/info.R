@@ -30,3 +30,13 @@ with(participants, aggregate(success, list(env=env, version=version), pctsummary
 cat("\n")
 cat(sprintf("success rate per condition per pool\n"))
 with(participants, aggregate(success, list(env=env, version=version, pool=pool), pctsummary))
+
+cat("\n")
+cat(sprintf("ANOVA of success by env and version\n"))
+summary(aov(success ~ env+version, data=participants))
+
+for (env in levels(participants$env)) {
+	cat("\n")
+	cat(sprintf("t-test of means in env %s\n", as.character(env)))
+	try(print(with(participants[participants$env==env, ], t.test(success[version=="NEW"], success[version=="OLD"]))))
+}
