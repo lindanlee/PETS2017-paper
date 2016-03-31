@@ -1,0 +1,31 @@
+#!/usr/bin/env python
+
+# Prints the elapsed time before the first successful bootstrap, if any.
+
+import getopt
+import sys
+
+import inst
+
+def process(records):
+    assert len(records) > 0
+    start_date = records[0].date
+    progress = 0
+    for r in records:
+        if r.event["type"] == "progresschanged":
+            progress = int(r.event["value"])
+        elif r.event["type"] == "unload" and r.event["target_id"] == "configuration":
+            if progress >= 100:
+                return r.date - start_date
+    return None
+
+_, args = getopt.gnu_getopt(sys.argv[1:], "")
+
+filename, = args
+with open(filename) as f:
+    elapsed = process(inst.parse_records(f))
+
+if elapsed is not None:
+    print elapsed.total_seconds()
+else:
+    sys.exit(1)
