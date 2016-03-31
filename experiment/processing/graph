@@ -9,6 +9,7 @@
 # * all paths taken through the interface
 
 import datetime
+import getopt
 import json
 import re
 import sys
@@ -81,8 +82,11 @@ def parse_inst_log(f):
 def quote(s):
     return '"' + re.sub(r'[\\"]', lambda m: "\\"+m.group(), s) + '"'
 
-edges = parse_inst_log(sys.stdin)
-print "digraph G {"
-for e in edges:
-    print "\t%s -> %s [label=%s]" % (e.src, e.dst, quote(e.via))
-print "}"
+_, args = getopt.gnu_getopt(sys.argv[1:], "")
+
+for f in inst.input_files(args):
+    edges = parse_inst_log(f)
+    print "digraph G {"
+    for e in edges:
+        print "\t%s -> %s [label=%s]" % (e.src, e.dst, quote(e.via))
+    print "}"

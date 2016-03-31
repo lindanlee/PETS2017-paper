@@ -1,6 +1,7 @@
 import datetime
 import json
 import re
+import sys
 
 class Record(object):
     def __init__(self, exec_id, date, event):
@@ -25,3 +26,12 @@ def parse_records(f):
         event = json.loads(parts[3])
         records.append(Record(exec_id, date, event))
     return records
+
+# Return an iterator over input files (stdin if no files are named).
+def input_files(args):
+    if not args:
+        yield sys.stdin
+        return
+    for filename in args:
+        with open(filename) as f:
+            yield f
