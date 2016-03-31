@@ -55,17 +55,36 @@ and average completion time to {\color {red} TODO} minutes.
 \keywords{User Studies, Tor, Security, Censorship, Anonymity}
 
 \section{Introduction}
-{\color {red} 
-Introduce what Tor is, and what the configuration interface does in the Tor Browser Bundle. Explain the story of how it began as an anonymity tool, but it has since changed to become a censorship circumvention tool. Give statistics of how many people use it (although we can't say how many for what reason exactly), and interesting trends, such as a spike in use around election times or some big political event. 
-}
+Tor is primarily known as the most widely used anonymity tool today. 
+For this reason, user studies on Tor have been solely about the usability of Tor as an
+anonymity tool. Norcie~\cite{norcie2012eliminating} conducted an experiment which identified 
+``stopping points'' in Tor Browser, documenting points when people would get frustrated enough
+to stop using Tor. To our knowledge, that has been the only published user study of Tor. 
+Since then, Tor has had a lot of updates. There have been been no published usability evaluations of
+Tor Browser since the introduction of the 4.0 series, which introduced radical UI changes. 
+Lee and Fifield \cite {uxsprint} ran a small pilot study testing the download, install, and user interface of Tor Browser. 
+This study uncovered a number of bugs and stopping points. Changes made are reflected in series 
+5.1 and later. There has been no work done on Tor as a censorship circumvention tool. 
 
-This study aims to understand of what is confusing about the configuration process and what find changes make the process easier. Our study consists of three stages. User interactions with the current interface in various censorship environments generated the problems we address in the study. User feedback and observations of users steered the design process for an improved configuration interface. User metrics, such as success rate and time to completion, measured how well the interfaces served their purpose. 
+Many features of Tor have not been evaluated through user
+research --- such as advanced web tasks (e.g., accessing hidden services), the
+configuration menu to connect to the Tor network, configuring automatic
+updates, and identity/cookie management. Rather than selecting the features to
+study in isolation, we decided to focus on an important use case of Tor browser: censorship circumvention. 
+Internet censorship is pervasive across the world today \cite{faris2008measuring}. 
+Although Tor was not designed to be a censorship circumvention tool, users started
+using it as one, since Tor's role as a proxy to anonymize
+people also worked to circumvent censorship. Now, circumventing censorship is a
+common use case for Tor, and current censorship circumvention methods are
+incorporated into Tor, making it a viable censorship circumvention tool even in the face
+of adversaries. In fact, some countries unsuccessfully attempt to block Tor for this reason \cite{winter2012great}. 
+To our knowledge, this is the first user study investigating the usability of Tor as a 
+censorship circumvention tool.
 
-{\color {red}
-Explain the state of censorship circumvention today, and what governments do to Tor (block it, etc.). Mention the current consequences of people if they try to connect to Tor. Then drive home why it is important for the interface to be usable. And that there have been previous work on Tor Browser, but not any previous work done for its usability as a censorship circumvention tool.
-}
+We believe that this is a great opportunity for user research. This study aims to understand of what is confusing about the configuration process and what find changes make the process easier. Our study consists of three stages. User interactions with the current interface in various censorship environments generated the problems we address in the study. User feedback and observations of users steered the design process for an improved configuration interface. User metrics, such as success rate and time to completion, measured how well the interfaces served their purpose.  
 
-Currently, {\color {red} TODO}\% of users fail and with the current interface for reasons {\color {red} TODO}, {\color {red} TODO}, and {\color {red} TODO}. Of those that do succeed, the average time to completion is {\color {red} TODO}. This can lead to a bad user experience, users quitting Tor, or causing high-risk users to make mistakes. With the new design, only {\color {red} TODO}\% of users fail to configure successfully and the average time to completion is {\color {red} TODO}. Tor has already implemented some of these changes. 
+Currently, {\color {red} TODO}\% of users fail and with the current interface for reasons {\color {red} TODO}, {\color {red} TODO}, and {\color {red} TODO}. Of those that do succeed, the average time to completion is {\color {red} TODO}. This can lead to a bad user experience, users quitting Tor, or causing high-risk users to make mistakes. With the new design, only {\color {red} TODO}\% of users fail to configure successfully and the average time to completion is {\color {red} TODO}. Tor has already implemented some of these changes.
+
 
 \section{Background} 
 
@@ -92,6 +111,9 @@ Currently, {\color {red} TODO}\% of users fail and with the current interface fo
 \subsection{Network Components} 
 
 \subsection{Censorship Environments} 
+{\color {red}
+Explain the state of censorship circumvention today, and what governments do to Tor (block it, etc.). Mention the current consequences of people if they try to connect to Tor. Then drive home why it is important for the interface to be usable. And that there have been previous work on Tor Browser, but not any previous work done for its usability as a censorship circumvention tool.
+}
 
 \section{Goals/Evaluation Criteria}
 We evaluate the existing and redesigned Tor Browser configuration interface 
