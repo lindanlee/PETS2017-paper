@@ -13,11 +13,7 @@ import json
 import re
 import sys
 
-class Record(object):
-    def __init__(self, run_id, date, event):
-        self.run_id = run_id
-        self.date = date
-        self.event = event
+import inst
 
 # src and dst are vertices; i.e. pages or states in the interface.
 # via is a string indicating an action that moved you from src to dst.
@@ -27,24 +23,6 @@ class Edge(object):
         self.src = src
         self.dst = dst
         self.via = via
-
-def parse_date_string(s):
-    m = re.match(r'^(.*)(\.\d\d\d)Z$', s)
-    d = datetime.datetime.strptime(m.group(1), "%Y-%m-%dT%H:%M:%S")
-    return d.replace(microsecond=int(float(m.group(2)) * 1000000))
-
-# Returns a list of Records.
-def parse_records(f):
-    records = []
-    for line in f:
-        parts = line.strip().split(" ", 3)
-        if parts[0] != "INST":
-            continue
-        run_id = parts[1]
-        date = parse_date_string(parts[2])
-        event = json.loads(parts[3])
-        records.append(Record(run_id, date, event))
-    return records
 
 def is_event_wanted(event):
     if event["type"] in ("mouseover", "mouseout"):
@@ -76,7 +54,7 @@ def get_id(event):
         return event["target_id"]
 
 def parse_inst_log(f):
-    records = parse_records(f)
+    records = inst.parse_records(f)
     # For now, assert that we have exactly one "start" event, in the first
     # record.
     assert len(records) > 0
