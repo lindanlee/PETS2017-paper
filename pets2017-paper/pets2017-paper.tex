@@ -88,29 +88,83 @@ Currently, {\color {red} TODO}\% of users fail and with the current interface fo
 
 \section{Background} 
 
-\subsection{The Interface} 
+\subsection{Interacting Network Components} 
+For context, we will give the definition of bridges, pluggable transports, and proxies. 
+Keep in mind that this is the kind of information that a user might need to know to be able
+to configure correctly. Note that bridges, pluggable transports, and proxies are technical 
+concepts which may be unfamiliar to the average user, and that bridges and pluggable
+transports are completely Tor-specific concepts. 
+
+Bridges are unlisted Tor relays that make it possible for a user to connect
+to the Tor network even if a censor blocks all publicly listed Tor relays. There used 
+to be plain relays which were exactly similar to public relays, but were unlisted. However, 
+censors in countries which blocked Tor generally were motivated enough to aggressively
+block Tor in other ways, such as traffic analysis. For this reason, a bridge is usually associated
+with a pluggable transport that circumvents deep packet inspection. Transports can
+assist by obfuscating traffic or reflecting traffic through a content distribution network. 
+Proxies help bypass local network restrictions and are typically only
+needed in restricted cases, such as corporate environments.
+
+\subsection{The Configuration Interface} 
+The Tor Browser provides a configuration interface to guide users through setting up 
+their connection to the
+Tor network. While most can connect to Tor using the
+dialog's default settings, users in certain censorship environments must
+make use of additional settings, such as bridges, proxies, or both. 
+Our study explores how the average user circumvents censorship
+through this interface.
+
+As bridges and proxies can be configured independently or together, there are
+four main ways to set up a connection:
+
+\begin{enumerate} \itemsep1pt \parskip0pt \parsep0pt
+    \item With a bridge and proxy
+    \item With a bridge but no proxy
+    \item Without a bridge but with a proxy
+    \item Without either a bridge or proxy
+\end{enumerate}
+
+The launcher interface asks a series of questions to
+determine which of these configuration states a user requires.
+The four high-level states correspond to five distinct paths through the
+configuration interface. (The latter option -- connecting with neither a bridge
+nor proxy -- contributes two separate paths.) Each path branches further
+depending on user-specific inputs. Figure \ref{fig:old-flow} illustrates the
+possible paths. 
+
+When the configuration window opens, a user is given the option to connect
+directly to the Tor network by clicking ``Connect'', or to click ``Configure''
+``if this computer's Internet connection is censored or proxied'' (Figure
+\ref{fig:window1}).
+
+If they choose the latter, the next screen asks, ``Does your Internet Service
+Provider (ISP) block or otherwise censor connection to the Tor network?''
+(Figure \ref{fig:window2}). Though this sounds repetitive, it is meant to
+identify and divert users who need only a proxy (and no bridge).
+This phrasing of the question carries the assumption that people will
+not know if they need a bridge or not, but that they are equipped to answer if their
+current network environment censors the Tor Network. 
+
+Next, users are asked to configure bridges by selecting a transport type from a
+dropdown menu or entering the IP address of a custom bridge in a textbox (Figure
+\ref{fig:bridges}).
+Finally, users are asked whether they need a local proxy (Figure
+\ref{fig:window4}) and (if they answered yes) to configure it (Figure
+\ref{fig:window5}).
+
+Note that a user can decide to click ``Configure'' on the first screen, but then
+opt out of both bridges and proxies.
+In this case, connecting after these configuration steps
+would be equivalent to clicking ``Connect'' on the first screen. 
 
 \begin{figure*}[t]
+	\label{fig:old-flow}
 	\centering
 		\includegraphics[width=1.0\textwidth]{old-flow.pdf} 
 		\caption{old flow} 
 \end{figure*} 
 
-{\color {red} storyboard of the old interface 
-
-\begin{enumerate} \itemsep1pt \parskip0pt \parsep0pt
-    \item No bridge, no proxy
-    \item with bridge, no proxy
-    \item No bridge, with proxy
-    \item With bridge, with proxy
-\end{enumerate}
-}
-
-\subsection{Kinds of Users} 
-
-\subsection{Network Components} 
-
-\subsection{Censorship Environments} 
+\subsection{Censorship Today} 
 {\color {red}
 Explain the state of censorship circumvention today, and what governments do to Tor (block it, etc.). Mention the current consequences of people if they try to connect to Tor. Then drive home why it is important for the interface to be usable. And that there have been previous work on Tor Browser, but not any previous work done for its usability as a censorship circumvention tool.
 }
@@ -343,6 +397,22 @@ time to completion, which we do by some proxy detection, giving specific directi
 ...
 
 Only use the following if it helps explain some things. Make sure the tone of things are positive, and explain that making a good interface is harder than it seems.\\
+
+%\noindent {\bfseries Design choices}
+%The launcher interface utilizes a number of techniques to aid users and simplify
+%the choices they have to make. Help buttons and a support email address that
+%appears on every screen are meant to assist users that get stuck in the process.
+%The interface also makes good use of defaults, for example by emphasizing that
+%certain options ``will work in most situations.''
+%
+%Still, there remains potential for confusion, especially with the more advanced
+%configuration options.
+%Bridges, pluggable transports, and proxies are never defined for the user,
+%arguably because they might not read or understand these definitions.
+%This can lead to users confusing these terms, or not understanding
+%the relations between them. Additionally, there is limited explanation of 
+%what pluggable transport types to choose from if the default one fails or how to 
+%find proxy settings, which will be required of some users. 
 
 {\bfseries What it's trying to do}
 \begin{enumerate} \itemsep1pt \parskip0pt \parsep0pt
