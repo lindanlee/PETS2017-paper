@@ -1,3 +1,5 @@
+library(ggplot2)
+
 options(width=160)
 
 participants <- read.csv("participants.csv")
@@ -16,6 +18,15 @@ cat(sprintf("number of participants: %d (%d good, %d bad)\n",
 
 # From now on we use only the good participants.
 participants <- participants[participants$good, ]
+
+# Assign DNFs the maximum time.
+participants$time_to_success[is.na(participants$time_to_success)] <- 40*60
+
+p <- ggplot(participants, aes(x=sprintf("%s-%s", env, version), y=time_to_success))
+p <- p + geom_point(size=1, alpha=0.8, position=position_jitter(width=0.2))
+p <- p + coord_flip()
+p <- p + xlab("environment and version")
+ggsave("time_to_success.pdf", p, width=5, height=4)
 
 # participants
 
