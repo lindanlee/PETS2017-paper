@@ -22,10 +22,11 @@ participants <- participants[participants$good, ]
 # Assign DNFs the maximum time.
 participants$time_to_success[is.na(participants$time_to_success)] <- 40*60
 
-p <- ggplot(participants, aes(x=sprintf("%s-%s", env, version), y=time_to_success))
-p <- p + geom_point(size=1, alpha=0.8, position=position_jitter(width=0.2))
+p <- ggplot(participants, aes(x=sprintf("%s-%s", env, version), y=time_to_success, color=success))
+p <- p + geom_point(size=1, alpha=0.6, position=position_jitter(width=0.2))
 p <- p + coord_flip()
 p <- p + xlab("environment and version")
+p <- p + theme_minimal()
 ggsave("time_to_success.pdf", p, width=5, height=4)
 
 # participants
