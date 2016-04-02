@@ -84,7 +84,7 @@ def quote(s):
 
 _, args = getopt.gnu_getopt(sys.argv[1:], "")
 
-for f in inst.input_files(args):
+for _, f in inst.input_files(args):
     edges = parse_inst_log(f)
     print "digraph G {"
     for e in edges:

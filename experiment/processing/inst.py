@@ -27,11 +27,11 @@ def parse_records(f):
         records.append(Record(exec_id, date, event))
     return records
 
-# Return an iterator over input files (stdin if no files are named).
+# Return an iterator over input (filename, file) tuples (stdin if no files are named).
 def input_files(args):
     if not args:
-        yield sys.stdin
+        yield "stdin", sys.stdin
         return
     for filename in args:
         with open(filename) as f:
-            yield f
+            yield filename, f
