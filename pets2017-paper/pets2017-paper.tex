@@ -323,29 +323,53 @@ We noticed four common challenges:
 \item {\bfseries Challenge 4:} Users draw incorrect conclusions after a failed connection. The interface passively re-displayed the last window seen before the attempted connection (Figure \ref{fig:window4} or \ref{fig:window5}), regardless of the error.
 \end{itemize}
 
-Relevant participant quotes: 
-\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
-\item{{\bfseries P1}:``figuring out if the progress bar wasn't moving because the connection was censored, of if it was just slow''}
-\item{{\bfseries P2}: "I don't know what any of those means (list of bridges), I don't know what that (proxy) means at all."}
-\item{{\bfseries P3}: ``The vocabulary is really challenging, for someone not doing IT work. Good thing I'm really curious. because I was able to use trial and error.''} 
-\item{{\bfseries P4}: ``When I saw obfs3 as the recommended option, the next option logically for me was obfs4.'}
-\item{{\bfseries P5}: ``I tried the pluggable transport that used google, because I noticed that google was working (when I was using a non-Tor browser).''}
-\item{{\bfseries P6}: ``The progress bar had no feedback for me. I didn't know why I was getting back `establishing encrypted directory'--what does that mean for me?''}
-\item{{\bfseries P6}: ``How long does this actually take (to connect)? This took way too long, and I didn't know how long it should take.''}
-\item{{\bfseries P7}: ``The bridge screen was the most challenging. It seemed very technical to me. I don't know what a bridge is. Since it (obfs3) said recommended, it helped actually, and I selected it because it was chosen. I saw the custom bridges option, but I didn't know what to enter there so I went with this (obfs3).''}
-\item{{\bfseries P8}: ``I have no clue what's the difference between flashrpoxy, fte, etc. I need to know why the built-in ones aren't working. And why do I need a custom bridge if there are options built in?''}
-\item{{\bfseries P9}: ``Configure seemed manual, so I clicked connect.''} %c1
-\item{{\bfseries P10}: ``I was censored, so I picked the configure.''} %c1
-\item{{\bfseries P11}: ``Is this question (does your ISP censor your Internet connection) really necessary? I just selected that I have a censored connection, why do they ask me again?''}
-\item{{\bfseries P11}: ``I think you can only answer this question (does this computer need a local proxy) if you know what a local proxy is. Otherwise, you have no chance.''}
-\item{{\bfseries P12}: ``I decided which options to choose by process of elimination with trial and error.'' }
-\item{{\bfseries P13}: ``I don't remember what I did. I figured it out? What? <laughs> Oh man, that's crazy.''}
-\item{{\bfseries P14}: ``The words were confusing. I don't really understand computers. I don't know what configure means in this setting. Hmm, is it going to crash? When you see connect, you want to click it because you really want it to connect.''}
-\item{{\bfseries P15}: ``Give this to a couple of people who know how to do this. They can feel elite... they only want the elite to use some computer things.''}
-\item{{\bfseries P15}: ``I didn't know if this computer had any proxy information. I wasn't able to find it if it did.''}
-\item{{\bfseries P16}: ``Because I never configured a proxy or worked with that stuff, I was just going to keep clicking and pray.''}
-\item{{\bfseries P16}: ``There doesn't seem to be a timeout on any of this stuff. Am I waiting long enough? It should work immediately.''}
-\end{itemize} 
+%configure vs connect
+\begin{quotation}
+\noindent{\bfseries P10}: \textit{``I was censored, so I picked the configure.''}\\
+\noindent{\bfseries P9}: \textit{``Configure seemed manual, so I clicked connect.''}\\
+\noindent{\bfseries P14}:\textit{``The words were confusing. I don't really understand computers. I don't know what configure means in this setting. Hmm, is it going to crash? When you see connect, you want to click it because you really want it to connect..''} 
+\end{quotation}
+
+%time
+\begin{quotation}
+\noindent{\bfseries P16}:\textit{``There doesn't seem to be a timeout on any of this stuff. Am I waiting long enough? It should work immediately.''}\\
+\noindent{\bfseries P6}:\textit{``How long does this actually take (to connect)? This took way too long, and I didn't know how long it should take.''}\\
+\noindent{\bfseries P1}:\textit{``It was hard to figure out if the progress bar wasn't moving because the connection was censored, of if it was just slow.''}\\
+\end{quotation}
+
+%lack of knowledge 
+\begin{quotation}
+\noindent{\bfseries P16}:\textit{``Because I never configured a proxy or worked with that stuff, I was just going to keep clicking and pray.''}\\
+\noindent{\bfseries P12}:\textit{``I decided which options to choose by process of elimination with trial and error..''}\\
+\noindent{\bfseries P2}:\textit{"I don't know what any of those means (list of bridges), I don't know what that (proxy)
+ means at all."}\\
+ \noindent{\bfseries P3}:\textit{``The vocabulary is really challenging, for someone not doing IT work.''}\\
+ \noindent{\bfseries P4}:\textit{``The progress bar had no feedback for me. I didn't know why I was getting back `establishing encrypted directory'--what does that mean for me?''}
+\end{quotation} 
+
+%misc
+\begin{quotation}
+\noindent{\bfseries P15}:\textit{``Give this to a couple of people who know how to do this. They can feel elite... they only want the elite to use some computer things..''} \\
+\noindent{\bfseries P13}:\textit{``I don't remember what I did. I figured it out? What? <laughs> Oh man, that's crazy..''} 
+\noindent{\bfseries P11}:\textit{``Is this question (does your ISP censor your Internet connection) really necessary? I just selected that I have a censored connection, why do they ask me again?''}
+\end{quotation}
+
+%bridges
+\begin{quotation} 
+\noindent{\bfseries P7}:\textit{``The bridge screen was the most challenging. It seemed very technical to me. I don't know what a bridge is. Since it (obfs3) said recommended, it helped actually, and I selected it because it was chosen. I saw the custom bridges option, but I didn't know what to enter there so I went with this (obfs3).''}\\
+\noindent{\bfseries P8}:\textit{``I have no clue what's the difference between flashrpoxy, fte, etc. I need to know why the built-in ones aren't working. And why do I need a custom bridge if there are options built in?'}
+\end{quotation} 
+
+\begin{quotation}
+\noindent{\bfseries P4}:\textit{``When I saw obfs3 as the recommended option, the next option logically for me was obfs4.''}\\
+\noindent{\bfseries P5}:\textit{``I tried the pluggable transport that used google, because I noticed that google was working (when I was using a non-Tor browser).''}
+\end{quotation} 
+
+%proxies
+\begin{quotation}
+\noindent{\bfseries P11}:\textit{``I think you can only answer this question (does this computer need a local proxy) if you know what a local proxy is. Otherwise, you have no chance..''} \\
+\noindent{\bfseries P15}:\textit{``I didn't know if this computer had any proxy information. I wasn't able to find it if it did..''}\\ 
+\end{quotation}
 
 
 \section{Redesigning the Configuration Interface}
