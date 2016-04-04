@@ -1,4 +1,6 @@
-pets2017-paper.pdf: pets2017-paper.tex pets2017-paper.bib
+FIGS = *.png old-flow.pdf new-flow.pdf
+
+pets2017-paper.pdf: pets2017-paper.tex pets2017-paper.bib $(FIGS)
 
 PDFLATEX = pdflatex -halt-on-error -file-line-error
 BIBTEX = bibtex
