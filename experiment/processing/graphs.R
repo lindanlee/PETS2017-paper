@@ -5,7 +5,7 @@ source("common.R")
 height <- 1.5
 
 # Assign DNFs a maximum time_to_success.
-cap_time_to_success <- function(participants, maxtime) {
+clamp_time_to_success <- function(participants, maxtime) {
 	df <- data.frame(participants)
 	df$time_to_success[is.na(df$time_to_success)] <- maxtime
 	df
@@ -26,3 +26,6 @@ participants$label <- factor(sprintf("%s-%s", participants$env, participants$ver
 
 p <- time_to_success_plot(participants)
 ggsave("time_to_success.pdf", p, width=textwidth, height=height)
+
+p <- time_to_success_plot(clamp_time_to_success(participants, 40*60))
+ggsave("time_to_success_clamped.pdf", p, width=textwidth, height=height)
