@@ -13,16 +13,20 @@ pctsummary <- function(x) {
 	sprintf("%d/%d = %5.1f%%", sum(x), length(x), 100*mean(x))
 }
 
+# Assign DNFs a maximum time_to_success.
+cap_time_to_success <- function(participants, maxtime) {
+	df <- data.frame(participants)
+	df$time_to_success[is.na(df$time_to_success)] <- maxtime
+	df
+}
+
 cat(sprintf("number of participants: %d (%d good, %d bad)\n",
 	length(participants$good), sum(participants$good), sum(!participants$good)))
 
 # From now on we use only the good participants.
 participants <- participants[participants$good, ]
 
-# Assign DNFs the maximum time.
-participants$time_to_success[is.na(participants$time_to_success)] <- 40*60
-
-p <- ggplot(participants, aes(x=sprintf("%s-%s", env, version), y=time_to_success, color=success))
+p <- ggplot(cap_time_to_success(participants, 40*60), aes(x=sprintf("%s-%s", env, version), y=time_to_success, color=success))
 p <- p + geom_point(size=1, alpha=0.6, position=position_jitter(width=0.2))
 p <- p + coord_flip()
 p <- p + xlab("environment and version")
