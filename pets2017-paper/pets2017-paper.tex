@@ -105,7 +105,7 @@ assist by obfuscating traffic or reflecting traffic through a content distributi
 Proxies help bypass local network restrictions and are typically only
 needed in restricted cases, such as corporate environments.
 
-\subsection{The Configuration Interface} 
+\subsection{The Current Configuration Interface} 
 The Tor Browser provides a configuration interface to guide users through setting up 
 their connection to the
 Tor network. While most can connect to Tor using the
@@ -124,38 +124,18 @@ four main ways to set up a connection:
     \item Without either a bridge or proxy
 \end{enumerate}
 
-The launcher interface asks a series of questions to
-determine which of these configuration states a user requires.
-The four high-level states correspond to five distinct paths through the
-configuration interface. (The latter option -- connecting with neither a bridge
-nor proxy -- contributes two separate paths.) Each path branches further
-depending on user-specific inputs. Figure \ref{fig:old-flow} illustrates the
-possible paths. 
+The interface asks a series of questions to determine which of these configuration states a user requires. The first decision that a user needs to make is if they should connect directly to the Tor network or go through the process of  configuring a bridge and a proxy. The interface asks users questions along the way throughout the configuration to help guide their process on what components they would need to configure. For a successful configuration, users are required to know the following: 
 
-When the configuration window opens, a user is given the option to connect
-directly to the Tor network by clicking ``Connect'', or to click ``Configure''
-``if this computer's Internet connection is censored or proxied'' (Figure
-\ref{fig:window1}).
+\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
+	\item{Whether to connect directly or configure a connection.} 
+	\item{If the Tor Network is censored by their ISP.}
+	\item{Which bridges work in the current environment.} 
+	\item{If no bridges work, how to get a custom bridge.} 
+	\item{If a proxy is required to access the Internet.}
+	\item{If a proxy is required, the proxy settings.}
+\end{itemize}
 
-If they choose the latter, the next screen asks, ``Does your Internet Service
-Provider (ISP) block or otherwise censor connection to the Tor network?''
-(Figure \ref{fig:window2}). Though this sounds repetitive, it is meant to
-identify and divert users who need only a proxy (and no bridge).
-This phrasing of the question carries the assumption that people will
-not know if they need a bridge or not, but that they are equipped to answer if their
-current network environment censors the Tor Network. 
-
-Next, users are asked to configure bridges by selecting a transport type from a
-dropdown menu or entering the IP address of a custom bridge in a textbox (Figure
-\ref{fig:bridges}).
-Finally, users are asked whether they need a local proxy (Figure
-\ref{fig:window4}) and (if they answered yes) to configure it (Figure
-\ref{fig:window5}).
-
-Note that a user can decide to click ``Configure'' on the first screen, but then
-opt out of both bridges and proxies.
-In this case, connecting after these configuration steps
-would be equivalent to clicking ``Connect'' on the first screen. 
+This puts the majority of the burden of knowing the correct technical information and configuring the connection correctly on the user. Although burdensome, the interface takes the approach of guiding the user through this technical process in order to give users their own agency in configuring their connection. No automation means that the user can have control over when there will be network traces of their activity trying to connect to Tor, and being able to connect successfully to the Tor the first time, provided they have all of the relevant information. 
 
 \begin{figure*}[t]
 	\label{fig:old-flow}
@@ -414,24 +394,6 @@ Only use the following if it helps explain some things. Make sure the tone of th
 %what pluggable transport types to choose from if the default one fails or how to 
 %find proxy settings, which will be required of some users. 
 
-{\bfseries What it's trying to do}
-\begin{enumerate} \itemsep1pt \parskip0pt \parsep0pt
-    \item separate people who use Tor for anonymity and for censorship 
-    \item if anonymity, to connect people directly
-    \item if censorship, guide users to make the correct configuration
-    \item minimize network traces to protect high-risk users
-\end{enumerate}
-
-
-{\bfseries Why certain decisions were made}
-{\color {red} 
-\begin{enumerate} \itemsep1pt \parskip0pt \parsep0pt
-    \item {\bfseries Asking the User} asking users about their situation rather than hardcoding or probing
-    \item {\bfseries No Explicit Advice} no suggestion of what to try and in what order
-    \item {\bfseries No Automation} manual configuration of bridges and proxies required
-    \item {\bfseries Optimizing for the Average Case} connect, bridges before proxy
-\end{enumerate}
-}
 
 What to talk about in this section: 
 \begin{itemize} \itemsep1pt \parskip0pt \parsep0pt 
