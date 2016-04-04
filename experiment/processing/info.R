@@ -49,6 +49,16 @@ summary(aov(success ~ env+version, data=participants))
 
 for (env in levels(participants$env)) {
 	cat("\n")
-	cat(sprintf("t-test of means in env %s\n", as.character(env)))
+	cat(sprintf("t-test of success rate in env %s\n", as.character(env)))
 	try(print(with(participants[participants$env==env, ], t.test(success[version=="NEW"], success[version=="OLD"]))))
+}
+
+cat("\n")
+cat(sprintf("ANOVA of time_to_success by env and version\n"))
+summary(aov(time_to_success ~ env+version, data=participants))
+
+for (env in levels(participants$env)) {
+	cat("\n")
+	cat(sprintf("t-test of time_to_success in env %s\n", as.character(env)))
+	try(print(with(participants[participants$env==env, ], t.test(time_to_success[version=="NEW"], time_to_success[version=="OLD"]))))
 }
