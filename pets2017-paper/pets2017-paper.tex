@@ -335,33 +335,45 @@ When a participant chooses to configure their connection, their next step is to 
 
 \begin{quotation}
 \noindent P7:\textit{``The bridge screen was the most challenging. It seemed very technical to me. I don't know what a bridge is.''}\\
+
 \noindent P12:\textit{``I decided which options to choose by process of elimination with trial and error.''}
 \end{quotation} 
 
-When a participant chooses to configure a bridge, they are faced with a list of options without much explanation. 
+On the bridge configuration screen, participants need to choose between configuring a built-in bridge versus a custom bridge. Participants were unsure of the difference between a built-in bridge and a custom bridge and also why one would use a custom bridge. Most participants chose to go with the built-in bridge and chose obfs3 as their transport, because those were the default options on the screen. 
+
 \begin{quotation} 
-\noindent P7:\textit{``Since it (obfs3) said recommended, it helped actually, and I selected it because it was chosen. I saw the custom bridges option, but I didn't know what to enter there so I went with this (obfs3).''}\\
-\noindent P8:\textit{``I have no clue what's the difference between flashpoxy, fte, etc. I need to know why the built-in ones aren't working. And why do I need a custom bridge if there are options built in?'}
+\noindent P8:\textit{``I have no clue what's the difference between flashpoxy, fte, etc. I need to know why the built-in ones aren't working. And why do I need a custom bridge if there are options built in?'}\\
+
+\noindent P7:\textit{``Since it (obfs3) said recommended, it helped actually, and I selected it because it was chosen. I saw the custom bridges option, but I didn't know what to enter there so I went with this (obfs3).''}
 \end{quotation} 
+
+Participants in the advanced censorship environment were required to select a meek bridge (not the default) or to configure a custom bridge. After the first pluggable transport failed and if the participants deduced that the source of the failed connection was a mis-configured bridge, the pluggable transport names only confused participants and caused odd behaviors. Participants chose bridges in every order imaginable: at random, in order of the list starting from the default, in order of the list starting from the top, at random, choosing accessible sounding names first (i.e. meek-amazon over fte), and choosing non-accessible sounding names first (i.e. fte over meek-amazon). 
 
 \begin{quotation}
 \noindent P4:\textit{``When I saw obfs3 as the recommended option, the next option logically for me was obfs4.''}\\
+
 \noindent P5:\textit{``I tried the pluggable transport that used google, because I noticed that google was working (when I was using a non-Tor browser).''}
 \end{quotation} 
 
+Providing explicit guidance on in which order participants should try the bridges will be critical in helping a user succeed in configuring their connection. Rather than letting the user choose, the interface can guide the users by telling them to choose specific bridges if the default doesn't work, and in what order. Our participants were resilient in trying to configure a connection for up to 40 minutes, but we believe that this is a byproduct of the experimental setting and compensation. \\
+
 \noindent {\bfseries Proxy Configuration} 
-If users did not successfully connect on their first attempt, they did not know what to do next. Error messages (see Figure \ref{fig:error}) did not guide users into taking specific actions (such as trying a different bridge, trying the same configuration again, try connecting directly, etc.). Because no information was given, our participants drew their own (incorrect) conclusions after a failed connection. Since the interface passively re-displayed a proxy-related window seen after an attempted connection regardless of the error, many participants were convinced that they needed a proxy to connect to the Tor network.
 %proxies
 \begin{quotation}
 \noindent P11:\textit{``I think you can only answer this question (does this computer need a local proxy) if you know what a local proxy is. Otherwise, you have no chance..''} \\
+
 \noindent P15:\textit{``I didn't know if this computer had any proxy information. I wasn't able to find it if it did..''}\\ 
 \end{quotation}
+
+If users did not successfully connect on their first attempt, they did not know what to do next. Error messages did not guide users into taking specific actions (such as trying a different bridge, trying the same configuration again, try connecting directly, etc.). Because no information was given, our participants drew their own (incorrect) conclusions after a failed connection. Since the interface passively re-displayed a proxy-related window seen after an attempted connection regardless of the error, many participants were convinced that they needed a proxy to connect to the Tor network.\\
 
 \noindent{\bfseries Sources of Frustration} 
 %time
 \begin{quotation}
 \noindent P16:\textit{``There doesn't seem to be a timeout on any of this stuff. Am I waiting long enough? It should work immediately.''}\\
+
 \noindent P6:\textit{``How long does this actually take (to connect)? This took way too long, and I didn't know how long it should take.''}\\
+
 \noindent P1:\textit{``It was hard to figure out if the progress bar wasn't moving because the connection was censored, of if it was just slow.''}\\
 \end{quotation}
 
@@ -369,8 +381,11 @@ If users did not successfully connect on their first attempt, they did not know 
 \begin{quotation}
 \noindent P2:\textit{"I don't know what any of those means (list of bridges), I don't know what that (proxy)
  means at all."}\\
+ 
  \noindent P3:\textit{``The vocabulary is really challenging, for someone not doing IT work.''}\\
+ 
  \noindent P4:\textit{``The progress bar had no feedback for me. I didn't know why I was getting back `establishing encrypted directory'--what does that mean for me?''}\\
+ 
  \noindent P16:\textit{``Because I never configured a proxy or worked with that stuff, I was just going to keep clicking and pray.''}
 \end{quotation} 
 
