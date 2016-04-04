@@ -87,14 +87,18 @@ Currently, {\color {red} TODO}\% of users fail and with the current interface fo
 
 
 \section{Background} 
-In this section, we talk about network components that circumvent censorship, Tor Browser 5.0.3 configuration interface that guides users to configure those network components to make a connection to the Tor Network, and the current state of Internet censorship which had impact on both the deployed and redesigned configuration interface. 
+In this section, we talk about the current state of Internet censorship, interface network components that circumvent censorship, and the Tor Browser 5.0.3 configuration interface that guides users to configure those network components to make a connection to the Tor Network. 
+
+\subsection{Censorship Today} 
+Internet censorship is widespread throughout the world. Although there are corporations, parental controls, and other forms of censorship, the most common form of censorship is done by a nation-state power, usually without the consent of the people in that residing nation. Currently {\color {red} TODO} governments implement some sort of Internet censorship in their country. The most commonly censored categories of websites are {\color {red} TODO} ({\color {red} TODO}\%), {\color {red} TODO} ({\color {red} TODO}\%), {\color {red} TODO} ({\color {red} TODO}\%), {\color {red} TODO} ({\color {red} TODO}\%), and {\color {red} TODO} ({\color {red} TODO}\%).  Reactions from Internet censorship range from feeling safe that bad sites are blocked automatically for their citizens to being outraged that access to information and free speech have been infringed upon. The risks associated with circumventing Internet censorship, is largely based on the geographic location, how prevalent censorship circumvention is, and who you are. 
+
+{\color{red} Link sources, talk about arms race between censors and censorship circumvention tools.} 
 
 \subsection{Interacting Network Components} 
-For context, we will give the definition of bridges, pluggable transports, and proxies. 
-Keep in mind that this is the kind of information that a user might need to know to be able
-to configure correctly. Note that bridges, pluggable transports, and proxies are technical 
-concepts which may be unfamiliar to the average user, and that bridges and pluggable
-transports are completely Tor-specific concepts. 
+For context, we define bridges, pluggable transports, and proxies, network components that 
+circumvent censorship and interact with the Tor configuration interface. 
+Bridges and pluggable transports are completely Tor-specific concepts, whereas a proxy is not.  
+This information is necessary to configure connections to Tor in censored environments. 
 
 Bridges are unlisted Tor relays that make it possible for a user to connect
 to the Tor network even if a censor blocks all publicly listed Tor relays. There used 
@@ -108,14 +112,9 @@ needed in restricted cases, such as corporate environments.
 
 \subsection{The Current Configuration Interface} 
 The Tor Browser provides a configuration interface to guide users through setting up 
-their connection to the
-Tor network. While most can connect to Tor using the
+their connection. While most can connect to Tor using the
 dialog's default settings, users in certain censorship environments must
-make use of additional settings, such as bridges, proxies, or both. 
-Our study explores how the average user circumvents censorship
-through this interface.
-
-As bridges and proxies can be configured independently or together, there are
+make use of additional settings, such as bridges, proxies, or both. As bridges and proxies can be configured independently or together, there are
 four main ways to set up a connection:
 
 \begin{enumerate} \itemsep1pt \parskip0pt \parsep0pt
@@ -136,7 +135,7 @@ The interface asks a series of questions to determine which of these configurati
 	\item{If a proxy is required, the proxy settings.}
 \end{itemize}
 
-This puts the majority of the burden of knowing the correct technical information and configuring the connection correctly on the user. Although burdensome, the interface takes the approach of guiding the user through this technical process in order to give users their own agency in configuring their connection. No automation means that the user can have control over when there will be network traces of their activity trying to connect to Tor, and being able to connect successfully to the Tor the first time, provided they have all of the relevant information. 
+This puts the majority of the burden of knowing the correct technical information and configuring the connection correctly on the user. Note that bridges, pluggable transports, and proxies are technical concepts that probably are unfamiliar to the average user. Although burdensome, the interface takes the approach of guiding the user through this technical process in order to give users their own agency in configuring their connection. Since there is risk associated with making an unobfuscated connection with the Tor network, the configuration process is not automated. No automation means that the user can have control over when there will be network traces of their activity trying to connect to Tor, and being able to connect successfully to the Tor the first time, provided they have all of the relevant information. 
 
 \begin{figure*}[t]
 	\label{fig:old-flow}
@@ -144,11 +143,6 @@ This puts the majority of the burden of knowing the correct technical informatio
 		\includegraphics[width=1.0\textwidth]{old-flow.pdf} 
 		\caption{old flow} 
 \end{figure*} 
-
-\subsection{Censorship Today} 
-{\color {red}
-Explain the state of censorship circumvention today, and what governments do to Tor (block it, etc.). Mention the current consequences of people if they try to connect to Tor. Then drive home why it is important for the interface to be usable. And that there have been previous work on Tor Browser, but not any previous work done for its usability as a censorship circumvention tool.
-}
 
 \section{Goals/Evaluation Criteria}
 We evaluate the existing and redesigned Tor Browser configuration interface 
