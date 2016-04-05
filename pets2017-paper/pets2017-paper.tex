@@ -592,6 +592,33 @@ Here, non-finishing participants are assigned a time of 40 minutes.
 \label{fig:time_to_success_clamped}
 \end{figure}
 
+\begin{figure}
+\centering
+\includegraphics{time_to_success_ecdf}
+% From info.R:
+% success rate of E1-NEW after 1m30.0s: 100.0%
+% success rate of E1-OLD after 1m30.0s:  57.9%
+% success rate of E2-NEW after 10m00.0s:  78.9%
+% success rate of E2-OLD after 10m00.0s:  68.4%
+% success rate of E3-NEW after 10m00.0s:  25.0%
+% success rate of E3-OLD after 10m00.0s:  20.0%
+% success rate of E2-NEW after 20m00.0s:  89.5%
+% success rate of E2-OLD after 20m00.0s:  78.9%
+% success rate of E3-NEW after 20m00.0s:  45.0%
+% success rate of E3-OLD after 20m00.0s:  25.0%
+\caption{
+Cumulative success rates over time.
+We stopped participants after 40 minutes;
+this graph shows what the success rate would have been
+at different cutoff times.
+For example, every E1-NEW participant finished within 90 seconds,
+but only 58\% of E1-OLD had finished by that time.
+After 10 minutes, 79\% of E2-NEW and 68\% of E2-OLD had finished.
+After 20 minutes, 45\% of E3-NEW and only 25\% of E3-OLD had finished.
+}
+\label{fig:time_to_success_ecdf}
+\end{figure}
+
 {\color {red} 
 What to talk about: 
 \begin{itemize} \itemsep1pt \parskip0pt \parsep0pt 
