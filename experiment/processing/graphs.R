@@ -12,11 +12,15 @@ clamp_time_to_success <- function(participants, maxtime) {
 }
 
 time_to_success_plot <- function(participants) {
-	p <- ggplot(participants, aes(x=label, y=time_to_success/60))
+	minutes_to_success <- participants$time_to_success/60
+	p <- ggplot(data.frame(participants, minutes_to_success), aes(x=label, y=minutes_to_success), environment=environment())
 	p <- p + geom_boxplot(color="gray70", outlier.size=0)
 	p <- p + geom_point(size=0.8, alpha=0.6)
 	p <- p + coord_flip()
+	p <- p + scale_y_continuous(limits=c(0, max(minutes_to_success, na.rm=T)+9))
 	p <- p + labs(title=NULL, x=NULL, y="Minutes to first success")
+	counts <- aggregate(data.frame(participants, n=1)[, c("success", "n")], by=list(label=participants$label), sum)
+	p <- p + geom_text(data=counts, aes(x=label, y=max(minutes_to_success, na.rm=T)+9, label=sprintf("%d/%d DNF", n-success, n)), hjust=1, size=2, alpha=0.6)
 	p <- common_theme(p)
 	p
 }
