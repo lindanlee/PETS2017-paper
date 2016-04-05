@@ -145,6 +145,7 @@ This puts the majority of the burden of knowing the correct technical informatio
 \end{figure*} 
 
 \section{Goals/Evaluation Criteria}
+\label{sec:goals}
 We evaluate the existing and redesigned Tor Browser configuration interface 
 through the empirical evaluation and heuristic evaluation criteria below. The
 empirical evaluation criteria were considered during our qualitative and 
@@ -158,10 +159,9 @@ and other industry standards to form the following heuristic evaluation criteria
 \begin{enumerate} \itemsep1pt \parskip0pt \parsep0pt
     \item {\bfseries Visibility of System Status} provide feedback on what the system is doing.
     \item {\bfseries User Control and Freedom} allow users to override system, supports undo and redo actions. 
-    \item {\bfseries Understandable Language} ~6th grade reading level. 
-    \item {\bfseries Minimal Design} surpressing rarely used information to reduce cognitive load. 
     \item {\bfseries Error Management} expressing errors in plain language and offering a solution. 
-    \item {\bfseries Help and Documentation} provide contextual help and easy access to information. 
+    \item {\bfseries Understandable Language} ~6th grade reading level. 
+    \item {\bfseries Minimal Design} suppressing rarely used information to reduce cognitive load. 
 \end{enumerate}
 
 Our empirical evaluation criteria for the Tor Browser configuration
@@ -413,7 +413,20 @@ In addition to the text being not as helpful as it would have been had users bee
 %\end{quotation}
 
 \section{Redesigning the Configuration Interface}
-We believe that the interface is too technical for users to understand and overburdens users with tasks. From our observations in this qualitative study, our goal in redesigning the interface was to making the vocabulary more accessible to the average user, requiring the user to make fewer decisions, and automating parts of configuration that don't increase risk to high-risk users. 
+%skip talking about the process of redesigning the interface. It isn't that interesting. 
+
+% Heuristic evaluation metrics, from above: 
+% \begin{enumerate} \itemsep1pt \parskip0pt \parsep0pt
+%     \item {\bfseries Visibility of System Status} provide feedback on what the system is doing.
+%     \item {\bfseries User Control and Freedom} allow users to override system, supports undo and redo actions. 
+%     \item {\bfseries Error Management} expressing errors in plain language and offering a solution. 
+%     \item {\bfseries Understandable Language} ~6th grade reading level. 
+%     \item {\bfseries Minimal Design} suppressing rarely used information to reduce cognitive load. 
+% \end{enumerate}
+
+Tor Browser 5.0.3. configuration interface does not adequately meet our heuristic evaluation criteria from Section ~\ref{sec:goals}: visibility of system status, user control and freedom, error management, understandable language, and minimal design. The configuration used for a connection is not visible to the users before they connect or while they are connecting, full control but little guidance through the configuration process confuse users, error messages do not express errors in plain language of offers solutions, the text was too technical for an average user to understand, and the interface has room be simplified visually.  
+
+Currently, the interface overburdens users. Our goals in redesigning the interface was to making the system status visible to the user, retain user freedom but give guidance, make the vocabulary more accessible, offer solutions upon errors, and to require the user to make fewer decisions overall. To achieve these goals, we made the following changes: 
 
 \begin{figure*}[t]
 	\centering
@@ -421,26 +434,20 @@ We believe that the interface is too technical for users to understand and overb
 		\caption{new flow} 
 \end{figure*} 
 
-%skip talking about the process of redesigning the interface. It isn't that interesting. 
-{\color {red} 
+\begin{enumerate} \itemsep1pt \parskip0pt \parsep0pt 
+\item {\bfseries Added system status visibility.} Before any attempt to connect to the Tor network, a summary screen displays if a bridge or proxy is configured, and if so, what the configurations are. The progress screen also displays the configurations while the connection attempt is being made. 
+\item {\bfseries Added guidance on choosing connect vs configure.} We labeled the configure option as advanced, manual, and only for heavily censored situations. 
+\item {\bfseries Got rid of proxy and bridge questions.}  We removed the bridge and proxy questions, which were highly technical and challenging for users to answer. There are two less windows in the interface.
+\item {\bfseries Added auto-detect for proxies.} Auto-detection of proxies can be done locally, by scanning system files. This is safe even for at-risk users, and greatly simplifies the configuration process. 
+\item {\bfseries Switched ordering to configure proxies first.} To build up the users' mental model, we configure network components in a topologically sequential. Proxies were put after bridge configuration because only a small fraction of users require proxies. With auto-detection, configuring a proxy before a bridge will not burden the users. 
+\item {\bfseries Added explicit advice on choosing bridges.} The default bridge is still obfs3. There is added text that advises users to try a meek bridge if obfs3 does not work. This advice is tailored for our participants who were in the advanced censorship environment. 
+\item {\bfseries Added more feedback to the progress bar.} The progress bar shows network components involved in connecting to the Tor network and gives feedback to the user as they are correctly configured. For instance, a user can can now see that the bridge was configured correctly, and they just need to wait to connect to the Tor network. Upon failure, users can see which components that have succeeded and which have failed. 
+\item {\bfseries Added instructions on what to try next on errors.} When an error occurs, advice on what to try next is shown to the user. Such advice includes trying the connection again, choosing a different bridge, or trying a connection without a proxy. 
+\item {\bfseries Reduced overall amount of text and made text less technical.} We make the text more accessible by focusing on instructing users through the configuration process, at the sacrifice of explaining technical concepts to users. Since users generally couldn't understand the technical concepts enough to influence their decisions, giving direct guidance may be a better option.  
+\item {\bfseries Reduced visual clutter.} Whenever we could, we minimized the amount of text on the screen, hid additional fields until the relevant options were chosen, and made additional stylistic simplifications. 
+\end{enumerate} 
 
-Changes made: 
-
-\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt 
-\item Made first screen more clear to help users decide on connect vs configure. 
-\item Got rid of question screens. 
-\item Put the proxy first. It makes sense topologically. 
-\item Added auto-detect for proxies. 
-\item Gave explicit advice on how to choose bridges. 
-\item Added a summary screen. 
-\item Added a topological progress bar that works every time. 
-\item Gives instructions on what to try next after failure. 
-\item Greatly reduced text and made text easier to read. 
-\item Less visual clutter for users. Hide things until user clicks on them. 
-\end{itemize} 
-
-The design is a conservative design which accounts for at-risk users, backward compatibility, and maintainability. 
-}
+The redesigned interface maintains the approach taken by the deployed interface of asking the users about their situation, which is in the spirit of the deployed interface. The designed interface conservatively interacts with users by automating only safe configuration processes and still allowing users to have control over configuring all interacting network components. The design requires more maintenance because of the explicit advice given on which order to select bridges and advice on error messages, which may changes as the censorship environments change. For additional changes that can be made and alternate approaches for interacting with the user, see Section ~\ref{sec:discussion}. 
 
 \section{Quantitative Analyses of the Interfaces (Study 2)}
 \label{sec:quantitative}
@@ -663,7 +670,7 @@ user study experiment. OR, maybe this section isn't even necessary.\\
 }
 
 \section{Discussion} 
-
+\label{sec:discussion}
 If we had more concrete information on the number of high-risk users or users who need to configure a proxy, we would have made additional changes in the prototype. Since we lacked this information, the following changes did not make it into our prototype, but are worth discussing. Depending on the number of high-risk users or proxy-configuring users, these additional changes may be helpful: 
 \begin{itemize} \itemsep1pt \parskip0pt \parsep0pt 
 \item {\bfseries Tell people to click connect.} On the first screen, the user needs to decide to connect or configure. Although there is a description of what each option entails and when one may consider using that option, there are no instructions for the user on what to do. Ideally, we would people to click connect, and then try the manual configuration if a direct connection fails. We currently do not communicate this because may put some users at risk. However, it is believed that a majority of the users will succeed if they click connect on the first screen, and giving them instructions on what to do can lessen their cognitive load during the configuration process. 
