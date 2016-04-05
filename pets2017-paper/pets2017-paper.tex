@@ -420,48 +420,24 @@ We believe that the interface is too technical for users to understand and overb
 		\caption{new flow} 
 \end{figure*} 
 
-{\color {red} 
-Talk about the problems from the previous results section, and how we plan to change them,
-along with a heuristic evaluation of the interface. 
+%skip talking about the process of redesigning the interface. It isn't that interesting. 
 
-Talk about the process of designing a new interface, and how we tested it with BLUES and the
-Tor Developers. 
-
-Talk about the improvements in heuristics from the existing to the redesigned interface, along 
-with hopes of what we want our empirical goals to be (to increase success rate and to minimize
-time to completion, which we do by some proxy detection, giving specific directions, etc.). 
-
-...
-
-Only use the following if it helps explain some things. Make sure the tone of things are positive, and explain that making a good interface is harder than it seems.\\
-
-%\noindent {\bfseries Design choices}
-%The launcher interface utilizes a number of techniques to aid users and simplify
-%the choices they have to make. Help buttons and a support email address that
-%appears on every screen are meant to assist users that get stuck in the process.
-%The interface also makes good use of defaults, for example by emphasizing that
-%certain options ``will work in most situations.''
-%
-%Still, there remains potential for confusion, especially with the more advanced
-%configuration options.
-%Bridges, pluggable transports, and proxies are never defined for the user,
-%arguably because they might not read or understand these definitions.
-%This can lead to users confusing these terms, or not understanding
-%the relations between them. Additionally, there is limited explanation of 
-%what pluggable transport types to choose from if the default one fails or how to 
-%find proxy settings, which will be required of some users. 
-
-
-What to talk about in this section: 
+Changes made: 
 \begin{itemize} \itemsep1pt \parskip0pt \parsep0pt 
-\item Talk about the process of translating observations and feedback into feature changes. 
-\item Polishing the interface by working with a designer, using heuristics, and using technical information. 
-\item Iterative design and feedback cycle. 
-\item How we made a functional, instrumented prototype (forking from the interface repo on github and hacking on it) and instrumented the old prototype. 
+\item Made first screen more clear to help users decide on connect vs configure. 
+\item Got rid of question screens. 
+\item Put the proxy first. It makes sense topologically. 
+\item Added auto-detect for proxies. 
+\item Gave explicit advice on how to choose bridges. 
+\item Added a summary screen. 
+\item Added a topological progress bar that works every time. 
+\item Gives instructions on what to try next after failure. 
+\item Greatly reduced text and made text easier to read. 
+\item Less visual clutter for users. Hide things until user clicks on them. 
 \end{itemize} 
 
 Talk about how the design as a conservative design. And why the conservative choices were made. For at-risk users, maintainability, etc.
-}
+
 
 \section{Quantitative Analyses of the Interfaces (Study 2)}
 \label{sec:quantitative}
