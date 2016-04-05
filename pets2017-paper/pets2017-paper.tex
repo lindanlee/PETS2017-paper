@@ -191,6 +191,8 @@ a new interface which addresses these problems and gives foundation
 for hypotheses to test in quantitative research. 
 
 \subsection{Methodology} 
+In this section, we talk about the details of our qualitative user study, such as the censorship environments we placed our users in, how we pre-screened and selected our participants, and the procedure for the experiment. 
+
 \subsubsection{Setup}
 \label{sec:setup}
 We simulated three censorship environments for our experiment.
@@ -307,10 +309,10 @@ This was to verify any hypothesis we had about the participant (i.e. ``they didn
 After their interview, participants were informed that the experiment was over and 
 given their payment of \$30. 
 
-\subsubsection{Results} 
+\subsection{Results} 
 In this section, we discuss problems encountered by our participants at each step of the configuration process and solutions to those problems. We conclude with our goals for improving the configuration interface. Because of the small sample size of qualitative studies, we can only state that these are problems that participants can encounter when configuring. We confirm the statistical significance of some of the problems in our quantitative study (section ~\ref {sec:quantitative}. All quotes are paraphrased from live transcriptions of participant interviews.\\
 
-\noindent {\bfseries Connect vs. Configure} 
+\subsubsection{Connect vs. Configure} 
 The first task for our participants was to decide between connecting directly to the Tor network or configuring their connection. Text in the interface tells people that connecting directly ``will work in most situations'' and instructs to configure a bridge or proxy if the ``Internet connection is censored or proxied.'' We found that a majority of our participants did not take the time to read the text on the screen and that if they did, the text did not always soundly influence their decision.
 
 The participant across all censorship environments connected directly to the Tor network. When they did, they did so because they were taking the path of least resistance first or intimidated by the configuration process. 
@@ -330,7 +332,7 @@ This mistake can results in users struggling through the rest of the interface s
 
 Making the choice between connect and configure clearer for users has the possibility to save time and keep users safer. Waiting for a failed connection takes about couple minutes, so users can save at least that time by making the correct decision the first time. Users who need to configure can benefit from not clicking connect, which keeps them safer by not leaving a detectable network trace that indicates that they are trying to use Tor to circumvent censorship.\\
 
-\noindent {\bfseries Bridge Configuration} 
+\subsubsection{Bridge Configuration} 
 When a participant chooses to configure their connection, their next step is to determine whether they need to configure a bridge, and to configure one if necessary. Answering yes to ``Does your Internet Service Provider (ISP) block of otherwise censor connections to the Tor Network'' directs to a bridge configuration screen, whereas answering no skips that screen. We observed that multiple participants struggled with the technical language on the screen, and ultimately decided to try trial and error. Most participants with the default option to not configure a bridge. 
 
 \begin{quotation}
@@ -357,7 +359,7 @@ Participants in the advanced censorship environment were required to select a me
 
 Providing explicit guidance on in which order participants should try the bridges will be critical in helping a user succeed in configuring their connection. Rather than letting the user choose, the interface can guide the users by telling them to choose specific bridges if the default doesn't work, and in what order. Our participants were resilient in trying to configure a connection for up to 40 minutes, but we believe that this is a byproduct of the experimental setting and compensation. \\
 
-\noindent {\bfseries Proxy Configuration} 
+\subsubsection{Proxy Configuration} 
 After the bridge configuration, the participant again is asked to answer a question to determine if they need a proxy and if so, to configure one. This question also was too technical for some participants.
 
 \begin{quotation}
@@ -368,7 +370,7 @@ None of our censorship environments required our participants to configure a pro
 
 None of the participants who attempted to configure a proxy were successful. Many of the participants followed the directions in the interface to look at the Internet settings in another browser to see whether it is configure to use a local proxy, but they never found the proxy information since none of the other browsers had the information. What further frustrated the situation was that the other browsers did not explicitly state that no proxy was configured, which caused many of our participants to search for proxy settings.\\
 
-\noindent{\bfseries Progress Bar} 
+\subsubsection{Progress Bar} 
 Users were generally displeased with the lack of feedback on the progress bar. The process seemed to take too long for them, even in the ideal case in which a user chose the correct configuration in the first attempt. If users chose particular wrong configurations (i.e. a syntactically valid but nonfunctional proxy), they would be waiting for an indefinite period of time, because there is no timeout. 
 
 \begin{quotation}
@@ -390,7 +392,8 @@ Ensuring that the progress bar faithfully displays the current status can encour
 
 Providing participants with feedback about taking specific actions (such as trying a different bridge, trying the same configuration again, try connecting directly, etc. can prevent participants from unnecessarily configuring a proxy and to connect successfully.\\
 
-\noindent{\bfseries User Communication Failure} Many participants, including participants who were pre-screened for high technical ability and previous experience with using Tor, were not familiar with the vocabulary. 
+\subsubsection{User Communication} 
+Many participants, including participants who were pre-screened for high technical ability and previous experience with using Tor, were not familiar with the vocabulary. 
 \begin{quotation}
 \noindent P2:\textit{"I don't know what any of those means (list of bridges),or what that (proxy)
  means at all."}\\
@@ -403,9 +406,6 @@ Providing participants with feedback about taking specific actions (such as tryi
 \end{quotation} 
 In addition to the text being not as helpful as it would have been had users been able to understand, this discouraged our users during the process.\\
 
-\noindent{\bfseries Final Thoughts}
-We believe that the interface is too technical for users to understand and overburdens users with tasks. From our observations in this qualitative study, our goal in redesigning the interface was to making the vocabulary more accessible to the average user, requiring the user to make fewer decisions, and automating parts of configuration that don't increase risk to high-risk users. 
-
 %\begin{quotation}
 %\noindent{\bfseries P15}:\textit{``Give this to a couple of people who know how to do this. They can feel elite... they only want the elite to use some computer things..''} \\
 %\noindent{\bfseries P13}:\textit{``I don't remember what I did. I figured it out? What? <laughs> Oh man, that's crazy..''}\\
@@ -413,6 +413,7 @@ We believe that the interface is too technical for users to understand and overb
 %\end{quotation}
 
 \section{Redesigning the Configuration Interface}
+We believe that the interface is too technical for users to understand and overburdens users with tasks. From our observations in this qualitative study, our goal in redesigning the interface was to making the vocabulary more accessible to the average user, requiring the user to make fewer decisions, and automating parts of configuration that don't increase risk to high-risk users. 
 
 \begin{figure*}[t]
 	\centering
@@ -423,6 +424,7 @@ We believe that the interface is too technical for users to understand and overb
 %skip talking about the process of redesigning the interface. It isn't that interesting. 
 
 Changes made: 
+
 \begin{itemize} \itemsep1pt \parskip0pt \parsep0pt 
 \item Made first screen more clear to help users decide on connect vs configure. 
 \item Got rid of question screens. 
@@ -436,7 +438,7 @@ Changes made:
 \item Less visual clutter for users. Hide things until user clicks on them. 
 \end{itemize} 
 
-Talk about how the design as a conservative design. And why the conservative choices were made. For at-risk users, maintainability, etc.
+The design is a conservative design which accounts for at-risk users, backward compatibility, and maintainability. 
 
 
 \section{Quantitative Analyses of the Interfaces (Study 2)}
@@ -451,6 +453,8 @@ study and to examine the differences in success rate, time to completion,
 and configuration choices between the two versions. 
 
 \subsection{Methodology} 
+In this section, we talk about the details of our quantitative user study, such as the censorship environments we placed our users in, how we recruited our 124 participants, and the procedure for the experiment. 
+
 \subsubsection{Setup}
 For consistency, we simulated the same three censorship environments from 
 our qualitative user study. Details of the mild, intermediate, and advanced 
@@ -585,13 +589,33 @@ Here, non-finishing participants are assigned a time of 40 minutes.
 }
 \end{figure}
 
-{\color {red} This will be the main part of the paper--where we report on the data that we collected through the xlab experiment. Some of the questions we want to answer are: did the new interface improve success rate? did the new interface only help certain people? Did people take longer or shorter in the new version? Did we shift participants' behaviors in the new interface? Are the way people approach trying different configurations affected? are there existing problems for both interfaces? (we know for sure that users still not receiving feedback is an issue. I don't know how many of our participants actually saw our helpful error messages, since they took minutes to pop up, and some never pop up at all..)} 
+{\color {red} 
+What to talk about: 
+\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt 
+\item{Did the new interface improve the success rate?}
+\item{Did the new interface help in only certain environments or certain people?}
+\item{Did the new interface improve the time to success?}
+\item{What are remaining issues?} 
+\item{What people did while configuring the interface}
+\item{Where people downloaded Tor browser if they did it themselves} 
+\item{Xlab versus craigslist} 
+\end{itemize} 
+
+Graph: 
+\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt 
+\item{success rate}
+\item{time to success: distribution}
+\item{time to success: cdf and cutoffs at 2 min, 10 min, 20 min?}  
+\item{time spent on each screen}
+\item{order pluggable transports were chosen}
+\item{transitions between windows for all participants}
+\end{itemize} 
+} 
 
 \section{Future Work} 
 {\color {red}
 Wait to fill this section out until we have finished analyzing the data from the quantitative
-user study experiment. A lot of the future work can be in reference to this. Or, we can even
-talk about what is in the discussion section. ... OR, maybe this section isn't even necessary.\\
+user study experiment. OR, maybe this section isn't even necessary.\\
 
 \noindent {\bfseries Changing the Current Interface} merge, push. \\
 
