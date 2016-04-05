@@ -6,6 +6,14 @@ pctsummary <- function(x) {
 	sprintf("%d/%d = %5.1f%%", sum(x), length(x), 100*mean(x))
 }
 
+format_minutes <- function(x) {
+	sprintf("%dm%04.1fs", x %/% 60, x %% 60)
+}
+
+median_time_summary <- function(x) {
+	format_minutes(median(x, na.rm=T))
+}
+
 cat(sprintf("number of participants: %d (%d good, %d bad)\n",
 	length(participants$good), sum(participants$good), sum(!participants$good)))
 
@@ -43,3 +51,8 @@ for (env in levels(participants$env)) {
 	cat(sprintf("t-test of time_to_success in env %s\n", as.character(env)))
 	try(print(with(participants[participants$env==env, ], t.test(time_to_success[version=="NEW"], time_to_success[version=="OLD"]))))
 }
+
+
+cat("\n")
+cat(sprintf("median time to success per condition\n"))
+with(participants, aggregate(time_to_success, list(env=env, version=version), median_time_summary))
