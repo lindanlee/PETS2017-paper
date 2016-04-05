@@ -29,7 +29,7 @@ participants <- filter_participants(read_participants())
 participants$label <- factor(sprintf("%s-%s", participants$env, participants$version), levels=c("E3-OLD", "E3-NEW", "E2-OLD", "E2-NEW", "E1-OLD", "E1-NEW"))
 
 p <- time_to_success_plot(participants)
-ggsave("time_to_success.pdf", p, width=textwidth, height=height)
+ggsave("time_to_success.pdf", p, width=textwidth, height=height, device=cairo_pdf)
 
 p <- time_to_success_plot(clamp_time_to_success(participants, 40*60))
-ggsave("time_to_success_clamped.pdf", p, width=textwidth, height=height)
+ggsave("time_to_success_clamped.pdf", p, width=textwidth, height=height, device=cairo_pdf)
