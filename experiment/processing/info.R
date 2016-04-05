@@ -2,8 +2,12 @@ source("common.R")
 
 participants <- read_participants()
 
+format_percent <- function(x) {
+	sprintf("%5.1f%%", 100*x)
+}
+
 pctsummary <- function(x) {
-	sprintf("%d/%d = %5.1f%%", sum(x), length(x), 100*mean(x))
+	sprintf("%d/%d = %s", sum(x), length(x), format_percent(mean(x)))
 }
 
 format_minutes <- function(x) {
@@ -56,3 +60,33 @@ for (env in levels(participants$env)) {
 cat("\n")
 cat(sprintf("median time to success per condition\n"))
 with(participants, aggregate(time_to_success, list(env=env, version=version), median_time_summary))
+
+
+time_ecdf <- function(participants, env, version) {
+	ecdf(
+		ifelse(!is.na(participants$time_to_success),
+			participants$time_to_success,
+			2*max(participants$time_to_success, na.rm=T)
+		)[participants$env==env & participants$version==version]
+	)
+}
+
+ecdf.e1.new <- time_ecdf(participants, "E1", "NEW")
+ecdf.e1.old <- time_ecdf(participants, "E1", "OLD")
+ecdf.e2.new <- time_ecdf(participants, "E2", "NEW")
+ecdf.e2.old <- time_ecdf(participants, "E2", "OLD")
+ecdf.e3.new <- time_ecdf(participants, "E3", "NEW")
+ecdf.e3.old <- time_ecdf(participants, "E3", "OLD")
+
+cat("\n")
+max.e1.new <- max(participants$time_to_success[participants$env=="E1" & participants$version=="NEW"])
+cat(sprintf("maximum time for E1-NEW: %s\n", format_minutes(max.e1.new)))
+for (t in c(max.e1.new, 90, 10*60, 20*60)) {
+	cat("\n")
+	cat(sprintf("success rate of E1-NEW after %s: %s\n", format_minutes(t), format_percent(ecdf.e1.new(t))))
+	cat(sprintf("success rate of E1-OLD after %s: %s\n", format_minutes(t), format_percent(ecdf.e1.old(t))))
+	cat(sprintf("success rate of E2-NEW after %s: %s\n", format_minutes(t), format_percent(ecdf.e2.new(t))))
+	cat(sprintf("success rate of E2-OLD after %s: %s\n", format_minutes(t), format_percent(ecdf.e2.old(t))))
+	cat(sprintf("success rate of E3-NEW after %s: %s\n", format_minutes(t), format_percent(ecdf.e3.new(t))))
+	cat(sprintf("success rate of E3-OLD after %s: %s\n", format_minutes(t), format_percent(ecdf.e3.old(t))))
+}
