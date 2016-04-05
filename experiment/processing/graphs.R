@@ -1,4 +1,6 @@
 library(ggplot2)
+library(scales)
+library(RColorBrewer)
 
 source("common.R")
 
@@ -35,3 +37,33 @@ ggsave("time_to_success.pdf", p, width=textwidth, height=height, device=cairo_pd
 
 p <- time_to_success_plot(clamp_time_to_success(participants, 40*60))
 ggsave("time_to_success_clamped.pdf", p, width=textwidth, height=height, device=cairo_pdf)
+
+
+# Assign each environment a color (E1=blue, E2=orange, E3=green), with NEW
+# being more saturated and OLD being less saturated.
+palette <- c(
+	brewer.pal(3, "Blues")[c(3,2)],
+	brewer.pal(3, "Oranges")[c(3,2)],
+	brewer.pal(3, "BuGn")[c(3,2)]
+)
+names(palette) <- levels(participants$label)
+
+max_minutes <- max(participants$time_to_success, na.rm=T) / 60
+# Artificially add a success time that is way off the scale for all
+# participants that were not successful. Otherwise the ecdf will ignore the NAs
+# and cause all the curves to rise to 100%. The artificial points will be
+# hidden off the edge of the graph by coord_cartesian.
+participants$time_to_success[is.na(participants$time_to_success)] <- max(participants$time_to_success, na.rm=T)*2
+minutes_to_success <- participants$time_to_success/60
+p <- ggplot(participants, aes(x=minutes_to_success, color=label))
+p <- p + geom_step(stat="ecdf", size=0.5)
+p <- p + coord_cartesian(xlim=c(0, max_minutes))
+p <- p + scale_y_continuous(labels=percent)
+p <- p + scale_color_manual(values=palette)
+# p <- p + guides(color=guide_legend(override.aes=list(size=2, title=NULL)))
+p <- p + guides(color=F)
+p <- p + labs(title=NULL, x="Minutes elapsed", y="Successful participants")
+p <- p + annotate(geom="text", x=c(1), y=c(0.86), label=c("E1-\nNEW"), hjust=1, vjust=0, size=2, lineheight=0.8, alpha=0.6)
+p <- p + annotate(geom="text", x=c(3.3, 14, 15.3, 23, 24.7), y=c(0.87, 0.91, 0.71, 0.61, 0.32), label=c("E1-OLD", "E2-NEW", "E2-OLD", "E3-NEW", "E3-OLD"), hjust=0, vjust=0, size=2, alpha=0.6)
+p <- common_theme(p)
+ggsave("time_to_success_ecdf.pdf", p, width=textwidth, height=height, device=cairo_pdf)
