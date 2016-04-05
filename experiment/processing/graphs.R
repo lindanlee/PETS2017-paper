@@ -18,6 +18,7 @@ time_to_success_plot <- function(participants) {
 	p <- p + geom_point(size=0.8, alpha=0.6)
 	p <- p + coord_cartesian(ylim=c(0, max(minutes_to_success, na.rm=T)+9))
 	p <- p + coord_flip()
+	p <- p + scale_x_discrete(limits=rev(levels(participants$label)))
 	p <- p + labs(title=NULL, x=NULL, y="Minutes to first success")
 	counts <- aggregate(data.frame(participants, n=1)[, c("success", "n")], by=list(label=participants$label), sum)
 	p <- p + geom_text(data=counts, aes(x=label, y=max(minutes_to_success, na.rm=T)+9, label=sprintf("%d/%d DNF", n-success, n)), hjust=1, size=2, alpha=0.6)
@@ -26,7 +27,7 @@ time_to_success_plot <- function(participants) {
 }
 
 participants <- filter_participants(read_participants())
-participants$label <- factor(sprintf("%s-%s", participants$env, participants$version), levels=c("E3-OLD", "E3-NEW", "E2-OLD", "E2-NEW", "E1-OLD", "E1-NEW"))
+participants$label <- factor(sprintf("%s-%s", participants$env, participants$version), levels=c("E1-NEW", "E1-OLD", "E2-NEW", "E2-OLD", "E3-NEW", "E3-OLD"))
 
 p <- time_to_success_plot(participants)
 ggsave("time_to_success.pdf", p, width=textwidth, height=height, device=cairo_pdf)
