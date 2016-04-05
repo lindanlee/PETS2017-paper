@@ -81,12 +81,26 @@ ecdf.e3.old <- time_ecdf(participants, "E3", "OLD")
 cat("\n")
 max.e1.new <- max(participants$time_to_success[participants$env=="E1" & participants$version=="NEW"])
 cat(sprintf("maximum time for E1-NEW: %s\n", format_minutes(max.e1.new)))
-for (t in c(max.e1.new, 90, 10*60, 20*60)) {
-	cat("\n")
-	cat(sprintf("success rate of E1-NEW after %s: %s\n", format_minutes(t), format_percent(ecdf.e1.new(t))))
-	cat(sprintf("success rate of E1-OLD after %s: %s\n", format_minutes(t), format_percent(ecdf.e1.old(t))))
-	cat(sprintf("success rate of E2-NEW after %s: %s\n", format_minutes(t), format_percent(ecdf.e2.new(t))))
-	cat(sprintf("success rate of E2-OLD after %s: %s\n", format_minutes(t), format_percent(ecdf.e2.old(t))))
-	cat(sprintf("success rate of E3-NEW after %s: %s\n", format_minutes(t), format_percent(ecdf.e3.new(t))))
-	cat(sprintf("success rate of E3-OLD after %s: %s\n", format_minutes(t), format_percent(ecdf.e3.old(t))))
+
+ecdfs <- list(
+	"E1-NEW"=ecdf.e1.new,
+	"E1-OLD"=ecdf.e1.old,
+	"E2-NEW"=ecdf.e2.new,
+	"E2-OLD"=ecdf.e2.old,
+	"E3-NEW"=ecdf.e3.new,
+	"E3-OLD"=ecdf.e3.old
+)
+
+cat("\n")
+cat("\\begin{tabular}{l r r r r}\n")
+cat("& \\multicolumn{1}{c}{1.5~m} & \\multicolumn{1}{c}{10~m} & \\multicolumn{1}{c}{20~m} & \\multicolumn{1}{c}{40~m} \\\\\n")
+cat("\\noalign{\\hrule}\n")
+for (e in names(ecdfs)) {
+	cat(e)
+	# We fudge the 40 minute column because the last E3-OLD finished just a few seconds after.
+	for (t in c(90, 10*60, 20*60, max(participants$time_to_success, na.rm=T))) {
+		cat(sprintf(" & %.f\\%%", 100*ecdfs[[e]](t)))
+	}
+	cat(sprintf(" \\\\\n"))
 }
+cat("\\end{tabular}\n")
