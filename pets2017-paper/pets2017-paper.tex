@@ -1,44 +1,54 @@
-\documentclass{template}
+\documentclass[USenglish,oneside,twocolumn]{article}
 \usepackage{color}
 \usepackage[hyphens]{url}
 \usepackage{longtable}
 \usepackage{graphicx}
 \usepackage{enumitem}
 \usepackage{pdfpages}
-\usepackage{hyperref}
+%\usepackage{hyperref}
 
-\def\etal{{\it et al.~}}
-\newenvironment{packed_enum}{
-\begin{enumerate}
-  \setlength{\itemsep}{1pt}
-  \setlength{\parskip}{0pt}
-  \setlength{\parsep}{0pt}
-}{\end{enumerate}}
-\newenvironment{packed_item}{
-\begin{itemize}
-  \setlength{\itemsep}{1pt}
-  \setlength{\parskip}{0pt}
-  \setlength{\parsep}{0pt}
-}{\end{itemize}}
+\usepackage[utf8]{inputenc}%(only for the pdftex engine)
+%\RequirePackage[no-math]{fontspec}%(only for the luatex or the xetex engine)
+\usepackage[big]{dgruyter_NEW}
+ 
+\DOI{foobar}
 
+\cclogo{\includegraphics{by-nc-nd.pdf}}
+  
 \begin{document}
+ 
+  \author*[1]{Linda Lee}
 
-%what I really want to say is that the interesting aspect of this usable design is that we had to 
-%account for people who wouldn't need to use this launcher at all and also for at-risk users.
-%... but in one catchy title. I can't think of one.
-\title{Tor's Usability for Censorship Circumvention}
-\numberofauthors{1}
-\author{
- \alignauthor Linda N. Lee, David Fifield, Nathan Malkin \\
-   \vspace{0.5em}
-   \affaddr{University of California, Berkeley} \\
-   \affaddr{\{lnl,fifield,nmalkin\}@cs.berkeley.edu}\\
-}
-\maketitle
+  \author[2]{David Fifield}
 
-\begin{abstract}
-\indent \indent
-Tor has grown beyond its original purpose as an anonymity tool and has 
+  \author[3]{Nathan Malkin}
+
+  \author[4]{Ganesh Iver}
+
+  \author[5]{Serge Egelman}
+  
+  \author[6]{David Wagner}
+
+  \affil[1]{Affil, E-mail: lnl@cs.berkeley.edu}
+
+  \affil[2]{Affil, E-mail: fifield@eecs.berkeley.edu}
+
+  \affil[3]{Affil, E-mail: nmalkin@cs.berkeley.edu}
+
+  \affil[4]{Affil, E-mail: ganesh.v@berkeley.edu}
+  
+  \affil[5]{Affil, E-mail: egelman@cs.berkeley.edu}
+   
+  \affil[6]{Affil, E-mail: daw@cs.berkeley.edu}
+
+  \title{\huge Tor's Usability for Censorship Circumvention}
+
+  \runningtitle{Tor's Usability for Censorship Circumvention}
+
+  %\subtitle{...}
+
+  \begin{abstract}
+{Tor has grown beyond its original purpose as an anonymity tool and has 
 since become an important censorship circumvention tool. It is now listed
 as one of the ways that normal people use Tor \cite{whotor}.
 We specifically examine its usability as a censorship circumvention tool,
@@ -49,10 +59,25 @@ configuration interface has a success rate of {\color {red} TODO}\% with the
 successful users having an average completion time of {\color {red} TODO} minutes. 
 In this paper, we explore common challenges users faced during the configuration
 process and redesign the interface to improve success rate to {\color {red} TODO}\% 
-and average completion time to {\color {red} TODO} minutes.
+and average completion time to {\color {red} TODO} minutes.}
 \end{abstract}
+  \keywords{User Studies, Tor, Security, Censorship, Anonymity}
+%  \classification[PACS]{}
+ % \communicated{...}
+ % \dedication{...}
 
-\keywords{User Studies, Tor, Security, Censorship, Anonymity}
+  \journalname{Proceedings on Privacy Enhancing Technologies}
+\DOI{Editor to enter DOI}
+  \startpage{1}
+  \received{..}
+  \revised{..}
+  \accepted{..}
+
+  \journalyear{2015}
+  \journalvolume{2015}
+  \journalissue{2}
+
+\maketitle
 
 \section{Introduction}
 Tor is primarily known as the most widely used anonymity tool today. 
@@ -794,5 +819,4 @@ This survey is part of a research project being conducted by the University of C
 \end{enumerate}
 
 Thank you for participating in our experiment. You are now done! Please sit at your desk for the remainder of the experiment. Our researchers will formally announce the end of the experiment. 
-
 \end{document}
