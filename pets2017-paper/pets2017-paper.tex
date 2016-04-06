@@ -80,24 +80,8 @@ and average completion time to {\color {red} TODO} minutes.}
 \maketitle
 
 \section{Introduction}
-Tor is primarily known as the most widely used anonymity tool today. 
-For this reason, user studies on Tor have been solely about the usability of Tor as an
-anonymity tool. Norcie~\cite{norcie2012eliminating} conducted an experiment which identified 
-``stopping points'' in Tor Browser, documenting points when people would get frustrated enough
-to stop using Tor. To our knowledge, that has been the only published user study of Tor. 
-Since then, Tor has had a lot of updates. There have been been no published usability evaluations of
-Tor Browser since the introduction of the 4.0 series, which introduced radical UI changes. 
-Lee and Fifield~\cite {uxsprint} ran a small pilot study testing the download, install, and user interface of Tor Browser. 
-This study uncovered a number of bugs and stopping points. Changes made are reflected in series 
-5.1 and later. There has been no work done on Tor as a censorship circumvention tool. 
 
-Many features of Tor have not been evaluated through user
-research --- such as advanced web tasks (e.g., accessing hidden services), the
-configuration menu to connect to the Tor network, configuring automatic
-updates, and identity/cookie management. Rather than selecting the features to
-study in isolation, we decided to focus on an important use case of Tor browser: censorship circumvention. 
-Internet censorship is pervasive across the world today~\cite{faris2008measuring}. 
-Although Tor was not designed to be a censorship circumvention tool, users started
+Although Tor ~/cite{dingledine2004tor} was not designed to be a censorship circumvention tool, users started
 using it as one, since Tor's role as a proxy to anonymize
 people also worked to circumvent censorship. Now, circumventing censorship is a
 common use case for Tor, and current censorship circumvention methods are
@@ -106,16 +90,33 @@ of adversaries. In fact, some countries unsuccessfully attempt to block Tor for 
 To our knowledge, this is the first user study investigating the usability of Tor as a 
 censorship circumvention tool.
 
-We believe that this is a great opportunity for user research. This study aims to understand of what is confusing about the configuration process and what find changes make the process easier. Our study consists of three stages. User interactions with the current interface in various censorship environments generated the problems we address in the study. User feedback and observations of users steered the design process for an improved configuration interface. User metrics, such as success rate and time to completion, measured how well the interfaces served their purpose.  
+We believe that this is a great opportunity for user research. We have the opportunity to help users circumvent censorship more easily and provide them with extra security features, such as anonymity. Not only does improving the interface help the user trying to circumvent censorship, it helps other users who use Tor as an anonymity system by increasing the number of overall users ~\cite{dingledine2006anonymity}. This study aims to understand of what is confusing about the configuration process and what find changes make the process easier. Our study consists of three stages. User interactions with the current interface in various censorship environments generated the problems we address in the study. User feedback and observations of users steered the design process for an improved configuration interface. User metrics, such as success rate and time to completion, measured how well the interfaces served their purpose.  
 
 Currently, {\color {red} TODO}\% of users fail and with the current interface for reasons {\color {red} TODO}, {\color {red} TODO}, and {\color {red} TODO}. Of those that do succeed, the average time to completion is {\color {red} TODO}. This can lead to a bad user experience, users quitting Tor, or causing high-risk users to make mistakes. With the new design, only {\color {red} TODO}\% of users fail to configure successfully and the average time to completion is {\color {red} TODO}. Tor has already implemented some of these changes.
 
+\section{Related Work} 
+There have been been no published usability evaluations of
+Tor Browser since the 4.0 series, which introduced radical UI changes. 
+The most recent usability effort is an unpublished pilot study  by Lee and Fifield~\cite {uxsprint} 
+that tests the download, install, and  user interface of Tor Browser.  This study uncovered a number of bugs~\cite{uxsprint2015-tickets}. Changes made are reflected in series 5.1 and later. 
+
+There have been three published user studies on Tor to our knowledge. Clark et. al examines various deployment
+options for Tor Browser, such as Vidalia, Privoxy, Torbutton, and Foxyproxy, and found that none of them 
+were satisfactory from a usability perspective. Fabian et. al show that Tor's added latency 
+~\cite{dingledine2009performance} causes users
+to be frustrated, cancel requests more often, and prevent user adoption. Norcie et. al found found that 
+64\% of users are unable to continue with installation or browsing at least once due to difficulties. 
+
+Previous user studies have not focused on specific features in isolation, while we choose to focus our study on 
+the configuration interface. The configuration interface in isolation is the censorship circumvention 
+interface, as it guides users through setting up network components required to circumvent censorship. 
+This study examines that interface, and effectively, the usability of Tor as a censorship circumvention tool. 
 
 \section{Background} 
 In this section, we talk about the current state of Internet censorship, interface network components that circumvent censorship, and the Tor Browser 5.0.3 configuration interface that guides users to configure those network components to make a connection to the Tor Network. 
 
 \subsection{Censorship Today} 
-Internet censorship is widespread throughout the world. Although there are corporations, parental controls, and other forms of censorship, the most common form of censorship is done by a nation-state power, usually without the consent of the people in that residing nation. Currently {\color {red} TODO} governments implement some sort of Internet censorship in their country. The most commonly censored categories of websites are {\color {red} TODO} ({\color {red} TODO}\%), {\color {red} TODO} ({\color {red} TODO}\%), {\color {red} TODO} ({\color {red} TODO}\%), {\color {red} TODO} ({\color {red} TODO}\%), and {\color {red} TODO} ({\color {red} TODO}\%).  Reactions from Internet censorship range from feeling safe that bad sites are blocked automatically for their citizens to being outraged that access to information and free speech have been infringed upon. The risks associated with circumventing Internet censorship, is largely based on the geographic location, how prevalent censorship circumvention is, and who you are. 
+Internet censorship is widespread throughout the world ~\cite{faris2008measuring}. Although there are corporations, parental controls, and other forms of censorship, the most common form of censorship is done by a nation-state power, usually without the consent of the people in that residing nation. Currently {\color {red} TODO} governments implement some sort of Internet censorship in their country. The most commonly censored categories of websites are {\color {red} TODO} ({\color {red} TODO}\%), {\color {red} TODO} ({\color {red} TODO}\%), {\color {red} TODO} ({\color {red} TODO}\%), {\color {red} TODO} ({\color {red} TODO}\%), and {\color {red} TODO} ({\color {red} TODO}\%).  Reactions from Internet censorship range from feeling safe that bad sites are blocked automatically for their citizens to being outraged that access to information and free speech have been infringed upon. The risks associated with circumventing Internet censorship, is largely based on the geographic location, how prevalent censorship circumvention is, and who you are. 
 
 {\color{red} Link sources, talk about arms race between censors and censorship circumvention tools.} 
 
@@ -179,7 +180,7 @@ the redesign process.
 
 A heuristic evaluation is a rule-based evaluation that leverages standards
 that have shown to work in the User Interface design 
-community. We draw from Jacob Nielsen's ten heuristics ({\color {red} CITE THIS})
+community. We draw from Jacob Nielsen's ten heuristics~\cite{nielsen1994heuristic}
 and other industry standards to form the following heuristic evaluation criteria: \\
 
 \begin{enumerate}
@@ -218,7 +219,18 @@ a new interface which addresses these problems and gives foundation
 for hypotheses to test in quantitative research. 
 
 \subsection{Methodology} 
-In this section, we talk about the details of our qualitative user study, such as the censorship environments we placed our users in, how we pre-screened and selected our participants, and the procedure for the experiment. 
+In this section, we talk about the details of our qualitative user study, such as the inspection of the interface, censorship environments we placed our users in, how we pre-screened and selected our participants, and the procedure for the experiment. 
+
+\subsubsection{Inspection} 
+A combination of usability inspection methods~\cite{nielsen1994usability}
+ were used prepare for the user study. Two researchers conducted a pluralistic 
+walkthrough and stepped through various censorship
+scenarios, discussing which elements would be involved for that use case, and walking 
+through the configuration process. After compiling all the possible paths through the 
+interface {\color {red} digraph here?}, feature inspection was performed to list sequences
+of features used to accomplish typical tasks, taking note of long sequences or cumbersome
+steps. To focus our observations, a heuristic evaluation was performed to mark design issues 
+that may cause confusion for users during our study. 
 
 \subsubsection{Setup}
 \label{sec:setup}
@@ -678,6 +690,9 @@ Graph:
 \end{itemize} 
 } 
 
+\section{Limitations} 
+{\color {red} our study was only run on windows machines. our participants were not motivated like real users would be in real environments to succeed, but also may have been too motivated since they were getting paid. We didn't intentionally test the cases in which the user is required to configure a custom bridge or proxy. Our users were recruited from one geographic location, and their first language is English.} 
+
 \section{Future Work} 
 Throughout the qualitative user study, redesign of the interface, and the quantitative user study, we collaborated and communicated with Tor developers. Redesigning the configuration interface was a mutual interest. In fact, Tor version {\color{red} 5.?.?} incorporated textual and navigational changes based on our redesigned interface. We plan to continue our work with Tor developers to integrate changes we found to be helpful. This process will entail debugging our code, merging changes with the current version of Tor, making high-fidelity graphics that align with style guides, and finalizing the advice to give to users in the interface. 
 
@@ -693,7 +708,7 @@ If we had more concrete information on the number of high-risk users or users wh
 \item{\bfseries Help the at-risk users.} There are people who would benefit from, on the first attempt, connecting with a meek bridge or custom bridge, without trying a vanilla tor connection or the recommended bridge in the dialog. Currently, we guide these people to the correct decision, but after trying the default bridge first. Helping these users to make a connection safely without ever being logged as connecting to Tor would be a benefit, but might be a case of overfitting to these types of users. A majority of users should not use a meek bridge or custom bridge, so it would be unideal to lead all users to this decision.
 \end{itemize} 
 
-We took an approach that optimized for the average case user yet was conservative in automation to allow at-risk users to possibly connect without leaking that they use Tor. We believe that this is a sound approach to interacting with the user and the one we would recommend personally. However, there are alternative approaches to interacting with the user that may be of interest:  \\
+We took an approach that optimized for the average case user yet was conservative in automation to allow at-risk users to possibly connect without leaking that they use Tor. We believe that this is a sound approach to interacting with the user and the one we would recommend personally. However, there are alternative approaches to interacting with the user that may be of interest: \\
 
 \begin{itemize}
 \item{\bfseries Automate the entire configuration process.} This sounds like a radical idea, but it really isn't. Today, this wouldn't harm most of our users. Our study finds that most users do not configure better than we do and would leak that they are using Tor anyway. 
@@ -702,17 +717,8 @@ We took an approach that optimized for the average case user yet was conservativ
 \item{\bfseries Ask if they are qualified to make decisions.} Asking users if they know which bridge to choose, and choosing for them if they say they don't know. We probably know better than they do. But there are ethical implications of choosing bridges for them rather them making the mistakes themselves. The issue with this is that people may not answer honestly. 
 \end{itemize}
 
-
-\section{Related Work} 
-{\color {red} TODO} 
-
 \section {Acknowledgments}
-{\color {red} Rowie for setting up Xlab, Ganesh for helping us redesign the Interface, Nima, Isa, Georg, and the UX team for giving feedback, and Cecile for reviewing the UI of circumvention tools.} 
-
-% Rowie
-% Ganesh
-% Nima, Isa, Georg, Tor UX team. 
-% Cecile Basnage for review of the UI of circumvention tools.
+{\color {red} Rowilma del Castillo for setting up Xlab, Nima Fatemi, Isa (?), Georg (?), and the UX team for giving feedback, and Cecile Basnage for reviewing the UI of circumvention tools.} 
 
 \section{Conclusion} 
 {\color {red} I am a fan of not having long, rambling conclusions. I leave
