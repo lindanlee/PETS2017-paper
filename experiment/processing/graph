@@ -1,0 +1,29 @@
+#!/usr/bin/env python
+
+# * if the configuration was eventually successful
+# * total time to successful configuration
+# * if failure, ultimate reason for failure
+# * number of tries until success
+# * causes for errors
+# * if participants listened to our directions (ie choosing the next bridge, or anything on the error screen)
+# * all paths taken through the interface
+
+import csv
+import getopt
+import re
+import sys
+
+import inst
+
+def quote(s):
+    return '"' + re.sub(r'[\\"]', lambda m: "\\"+m.group(), s) + '"'
+
+if __name__ == '__main__':
+    _, args = getopt.gnu_getopt(sys.argv[1:], "")
+
+    for _, f in inst.input_files(args):
+        csvr = csv.DictReader(f)
+        print("digraph G {")
+        for row in csvr:
+            print("\t%s -> %s [label=%s]" % (row["src"], row["dst"], quote(row["via"])))
+        print("}")

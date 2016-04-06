@@ -4,14 +4,78 @@
 This script generates a CSV with every edge/transition in the experiment.
 """
 
+import collections
 import csv
+import datetime
 import getopt
 import os
 import os.path
 import re
 import sys
 
-import graph
+import inst
+
+# src and dst are vertices; i.e. pages or states in the interface.
+# via is a string indicating an action that moved you from src to dst.
+# src and dst can be the same.
+Edge = collections.namedtuple('Edge', ['run', 'timestamp', 'src', 'dst', 'via'])
+
+def is_event_wanted(event):
+    if event["type"] in ("mouseover", "mouseout"):
+        return False
+    if event["type"] in ("popupshown", "popuphidden"):
+        return False
+    if event["type"] in ("pagehide", "pageadvanced", "pagerewound"):
+        return False
+    if event["type"] in ("load", "unload") and event["target_id"] == "configuration":
+        return False
+    if event["type"] in ("click", "command") and event.get("target_tagname") in ("menuitem", "wizard", None):
+        return False
+    if event["type"] == "command" and event["target_tagname"] == "button":
+        return False
+    return True
+
+def get_id(event):
+    """
+    Canonicalizes event target
+    """
+    if event["type"] == "start":
+        return ""
+    elif event["type"] in ("mouseover", "mouseout"):
+        return event["value"]
+    elif event["type"] == "select":
+        return "%s.%s" % (event["target_id"], event.get("value", '""'))
+    elif event["type"] == "progresschanged" or (event["type"] == "click" and event["target_tagname"] == "menuitem"):
+        return event["value"]
+    elif event["type"] == "unload" and event["target_id"] == "progress_bar":
+        return "finish"
+    else:
+        return event["target_id"]
+
+def parse_inst_log(f):
+    records = inst.parse_records(f)
+    # For now, assert that we have exactly one "start" event, in the first
+    # record.
+    assert len(records) > 0
+    assert records[0].event["type"] == "start"
+    #for record in records[1:]:
+    #    assert record.event["type"] != "start"
+
+    records = [record for record in records if is_event_wanted(record.event)]
+
+    edges = []
+
+    current_state = "start"
+    for r in records:
+        if r.event["type"] in ("pageshow", "load", "unload"):
+            current_state = get_id(r.event)
+            # Change previous edge to point to this new state.
+            edges[-1] = edges[-1]._replace(dst=current_state)
+        else:
+            e = Edge(r.exec_id, r.date, current_state, current_state, ("%s %s" % (r.event["type"], get_id(r.event))).strip())
+            edges.append(e)
+
+    return edges
 
 log_filename = re.compile(r'(?P<env>E\d)-(?P<interface>\w\w\w)-(?P<seat>X\d\d)-(?P<runid>\d{8}-\d{6})-inst.log$')
 
@@ -27,7 +91,7 @@ def main():
             raise ValueError("cannot parse filename: {}".format(filename))
 
         with open(filename) as file:
-            edges = graph.parse_inst_log(file)
+            edges = parse_inst_log(file)
 
         for edge in edges:
             fields = edge._asdict()
