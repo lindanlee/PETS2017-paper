@@ -41,6 +41,9 @@ def is_event_wanted(event):
     return True
 
 def get_id(event):
+    """
+    Canonicalizes event target
+    """
     if event["type"] == "start":
         return ""
     elif event["type"] in ("mouseover", "mouseout"):
