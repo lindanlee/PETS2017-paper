@@ -8,6 +8,7 @@
 # * if participants listened to our directions (ie choosing the next bridge, or anything on the error screen)
 # * all paths taken through the interface
 
+import collections
 import datetime
 import getopt
 import json
@@ -19,11 +20,7 @@ import inst
 # src and dst are vertices; i.e. pages or states in the interface.
 # via is a string indicating an action that moved you from src to dst.
 # src and dst can be the same.
-class Edge(object):
-    def __init__(self, src, dst, via):
-        self.src = src
-        self.dst = dst
-        self.via = via
+Edge = collections.namedtuple('Edge', ['run', 'timestamp', 'src', 'dst', 'via'])
 
 def is_event_wanted(event):
     if event["type"] in ("mouseover", "mouseout"):
@@ -34,7 +31,7 @@ def is_event_wanted(event):
         return False
     if event["type"] in ("load", "unload") and event["target_id"] == "configuration":
         return False
-    if event["type"] in ("click", "command") and event["target_tagname"] in ("menuitem", "wizard"):
+    if event["type"] in ("click", "command") and event.get("target_tagname") in ("menuitem", "wizard", None):
         return False
     if event["type"] == "command" and event["target_tagname"] == "button":
         return False
@@ -49,7 +46,7 @@ def get_id(event):
     elif event["type"] in ("mouseover", "mouseout"):
         return event["value"]
     elif event["type"] == "select":
-        return "%s.%s" % (event["target_id"], event["value"] or '""')
+        return "%s.%s" % (event["target_id"], event.get("value", '""'))
     elif event["type"] == "progresschanged" or (event["type"] == "click" and event["target_tagname"] == "menuitem"):
         return event["value"]
     elif event["type"] == "unload" and event["target_id"] == "progress_bar":
@@ -75,9 +72,9 @@ def parse_inst_log(f):
         if r.event["type"] in ("pageshow", "load", "unload"):
             current_state = get_id(r.event)
             # Change previous edge to point to this new state.
-            edges[-1].dst = current_state
+            edges[-1] = edges[-1]._replace(dst=current_state)
         else:
-            e = Edge(current_state, current_state, ("%s %s" % (r.event["type"], get_id(r.event))).strip())
+            e = Edge(r.exec_id, r.date, current_state, current_state, ("%s %s" % (r.event["type"], get_id(r.event))).strip())
             edges.append(e)
 
     return edges
@@ -85,11 +82,12 @@ def parse_inst_log(f):
 def quote(s):
     return '"' + re.sub(r'[\\"]', lambda m: "\\"+m.group(), s) + '"'
 
-_, args = getopt.gnu_getopt(sys.argv[1:], "")
+if __name__ == '__main__':
+    _, args = getopt.gnu_getopt(sys.argv[1:], "")
 
-for _, f in inst.input_files(args):
-    edges = parse_inst_log(f)
-    print "digraph G {"
-    for e in edges:
-        print "\t%s -> %s [label=%s]" % (e.src, e.dst, quote(e.via))
-    print "}"
+    for _, f in inst.input_files(args):
+        edges = parse_inst_log(f)
+        print("digraph G {")
+        for e in edges:
+            print("\t%s -> %s [label=%s]" % (e.src, e.dst, quote(e.via)))
+        print("}")

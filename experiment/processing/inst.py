@@ -9,6 +9,9 @@ class Record(object):
         self.date = date
         self.event = event
 
+    def __repr__(self):
+        return "%s,%s,%s" % (self.exec_id, self.date, self.event)
+
 def parse_date_string(s):
     m = re.match(r'^(.*)(\.\d\d\d)Z$', s)
     d = datetime.datetime.strptime(m.group(1), "%Y-%m-%dT%H:%M:%S")
