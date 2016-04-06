@@ -12,11 +12,11 @@ import graph
 LOG_DIR = 'logs'
 OUTPUT_FILENAME = 'all_edges.csv'
 
-log_filename = re.compile(r'(?P<env>E\d)-(?P<interface>\w\w\w)-(?P<seat>X\d\d)-(?P<run_id>\d{8}-\d{6})-inst.log$')
+log_filename = re.compile(r'(?P<env>E\d)-(?P<interface>\w\w\w)-(?P<seat>X\d\d)-(?P<runid>\d{8}-\d{6})-inst.log$')
 
 def main():
     out = open(OUTPUT_FILENAME, 'w')
-    output_format = '{seat},{run_id},{timestamp},{src},{dst},{via}\n'
+    output_format = '{seat},{runid},{timestamp},{src},{dst},{via}\n'
     out.write(output_format)
 
     for filename in os.listdir(LOG_DIR):
@@ -27,7 +27,7 @@ def main():
 
             for edge in edges:
                 fields = edge._asdict()
-                fields.update({'seat': match.group('seat'), 'run_id': match.group('run_id')})
+                fields.update({'seat': match.group('seat'), 'runid': match.group('runid')})
 
                 line = output_format.format_map(fields)
                 out.write(line)
