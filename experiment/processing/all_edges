@@ -5,32 +5,36 @@ This script generates a CSV with every edge/transition in the experiment.
 """
 
 import csv
+import getopt
 import os
+import os.path
 import re
 import sys
 
 import graph
 
-LOG_DIR = 'logs'
-
 log_filename = re.compile(r'(?P<env>E\d)-(?P<interface>\w\w\w)-(?P<seat>X\d\d)-(?P<runid>\d{8}-\d{6})-inst.log$')
 
 def main():
+    _, filenames = getopt.gnu_getopt(sys.argv[1:], "")
+
     csvw = csv.DictWriter(sys.stdout, fieldnames=("seat", "runid", "timestamp", "src", "dst", "via"))
     csvw.writeheader()
 
-    for filename in os.listdir(LOG_DIR):
-        match = log_filename.match(filename)
-        if match:
-            with open(os.path.join(LOG_DIR, filename)) as file:
-                edges = graph.parse_inst_log(file)
+    for filename in filenames:
+        match = log_filename.match(os.path.basename(filename))
+        if match is None:
+            raise ValueError("cannot parse filename: {}".format(filename))
 
-            for edge in edges:
-                fields = edge._asdict()
-                fields.update({'seat': match.group('seat'), 'runid': match.group('runid')})
+        with open(filename) as file:
+            edges = graph.parse_inst_log(file)
 
-                del fields["run"]
-                csvw.writerow(fields)
+        for edge in edges:
+            fields = edge._asdict()
+            fields.update({'seat': match.group('seat'), 'runid': match.group('runid')})
+
+            del fields["run"]
+            csvw.writerow(fields)
 
 if __name__ == '__main__':
     main()
