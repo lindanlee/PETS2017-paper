@@ -4,6 +4,7 @@
 This script generates a CSV with every edge/transition in the experiment.
 """
 
+import csv
 import os
 import re
 import sys
@@ -15,8 +16,8 @@ LOG_DIR = 'logs'
 log_filename = re.compile(r'(?P<env>E\d)-(?P<interface>\w\w\w)-(?P<seat>X\d\d)-(?P<runid>\d{8}-\d{6})-inst.log$')
 
 def main():
-    output_format = '{seat},{runid},{timestamp},{src},{dst},{via}\n'
-    sys.stdout.write(output_format)
+    csvw = csv.DictWriter(sys.stdout, fieldnames=("seat", "runid", "timestamp", "src", "dst", "via"))
+    csvw.writeheader()
 
     for filename in os.listdir(LOG_DIR):
         match = log_filename.match(filename)
@@ -28,8 +29,8 @@ def main():
                 fields = edge._asdict()
                 fields.update({'seat': match.group('seat'), 'runid': match.group('runid')})
 
-                line = output_format.format_map(fields)
-                sys.stdout.write(line)
+                del fields["run"]
+                csvw.writerow(fields)
 
 if __name__ == '__main__':
     main()
