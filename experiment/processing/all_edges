@@ -6,18 +6,17 @@ This script generates a CSV with every edge/transition in the experiment.
 
 import os
 import re
+import sys
 
 import graph
 
 LOG_DIR = 'logs'
-OUTPUT_FILENAME = 'all_edges.csv'
 
 log_filename = re.compile(r'(?P<env>E\d)-(?P<interface>\w\w\w)-(?P<seat>X\d\d)-(?P<runid>\d{8}-\d{6})-inst.log$')
 
 def main():
-    out = open(OUTPUT_FILENAME, 'w')
     output_format = '{seat},{runid},{timestamp},{src},{dst},{via}\n'
-    out.write(output_format)
+    sys.stdout.write(output_format)
 
     for filename in os.listdir(LOG_DIR):
         match = log_filename.match(filename)
@@ -30,9 +29,7 @@ def main():
                 fields.update({'seat': match.group('seat'), 'runid': match.group('runid')})
 
                 line = output_format.format_map(fields)
-                out.write(line)
-
-    out.close()
+                sys.stdout.write(line)
 
 if __name__ == '__main__':
     main()
