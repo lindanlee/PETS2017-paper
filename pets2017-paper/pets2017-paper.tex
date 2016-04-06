@@ -29,17 +29,17 @@
   
   \author[6]{David Wagner}
 
-  \affil[1]{Affil, E-mail: lnl@cs.berkeley.edu}
+  \affil[1]{University of Caifornia Berkeley, E-mail: lnl@cs.berkeley.edu}
 
-  \affil[2]{Affil, E-mail: fifield@eecs.berkeley.edu}
+  \affil[2]{University of Caifornia Berkeley, E-mail: fifield@eecs.berkeley.edu}
 
-  \affil[3]{Affil, E-mail: nmalkin@cs.berkeley.edu}
+  \affil[3]{University of Caifornia Berkeley, E-mail: nmalkin@cs.berkeley.edu}
 
-  \affil[4]{Affil, E-mail: ganesh.v@berkeley.edu}
+  \affil[4]{University of Caifornia Berkeley, E-mail: ganesh.v@berkeley.edu}
   
-  \affil[5]{Affil, E-mail: egelman@cs.berkeley.edu}
+  \affil[5]{University of Caifornia Berkeley and International Computer Science Institute, E-mail: egelman@cs.berkeley.edu}
    
-  \affil[6]{Affil, E-mail: daw@cs.berkeley.edu}
+  \affil[6]{University of Caifornia Berkeley, E-mail: daw@cs.berkeley.edu}
 
   \title{\huge Tor's Usability for Censorship Circumvention}
 
@@ -140,19 +140,19 @@ Tor Browser provides a configuration interface to guide users through setting up
 their connection. While most can connect to Tor using the
 dialog's default settings, users in certain censorship environments must
 make use of additional settings, such as bridges, proxies, or both. As bridges and proxies can be configured independently or together, there are
-four main ways to set up a connection:
+four ways to set up a connection:\\
 
-\begin{enumerate} \itemsep1pt \parskip0pt \parsep0pt
+\begin{enumerate}
     \item With a bridge and proxy
     \item With a bridge but no proxy
     \item Without a bridge but with a proxy
     \item Without either a bridge or proxy
 \end{enumerate}
 
-The interface asks a series of questions to determine which of these configuration states a user requires. The first decision that a user needs to make is if they should connect directly to the Tor network or go through the process of  configuring a bridge and a proxy. The interface asks users questions along the way throughout the configuration to help guide their process on what components they would need to configure. For a successful configuration, users are required to know (or find out) the following: 
+The interface asks a series of questions to determine which of these configuration states a user requires. The first decision that a user needs to make is if they should connect directly to the Tor network or go through the process of  configuring a bridge and a proxy. The interface asks users questions along the way throughout the configuration to help guide their process on what components they would need to configure. For a successful configuration, users are required to know (or find out) the following:\\
 
-\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
-	\item{Whether to connect directly or configure a connection.} 
+\begin{itemize}
+	\item{Whether they need to configure a connection.} 
 	\item{If the Tor Network is censored by their ISP.}
 	\item{Which bridges work in the current environment.} 
 	\item{If no bridges work, how to get a custom bridge.} 
@@ -180,22 +180,24 @@ the redesign process.
 A heuristic evaluation is a rule-based evaluation that leverages standards
 that have shown to work in the User Interface design 
 community. We draw from Jacob Nielsen's ten heuristics ({\color {red} CITE THIS})
-and other industry standards to form the following heuristic evaluation criteria: 
-\begin{enumerate} \itemsep1pt \parskip0pt \parsep0pt
-    \item {\bfseries Visibility of System Status} provide feedback on what the system is doing.
-    \item {\bfseries User Control and Freedom} allow users to override system, supports undo and redo actions. 
-    \item {\bfseries Error Management} expressing errors in plain language and offering a solution. 
-    \item {\bfseries Understandable Language} ~6th grade reading level. 
-    \item {\bfseries Minimal Design} suppressing rarely used information to reduce cognitive load. 
+and other industry standards to form the following heuristic evaluation criteria: \\
+
+\begin{enumerate}
+    \item  {\bfseries Visibility of system status}: provide feedback on what the system is doing.
+    \item  {\bfseries User control and freedom}: allow users to override system, supports undo and redo actions. 
+    \item  {\bfseries Error management}: expressing errors in plain language and offering a solution. 
+    \item  {\bfseries Understandable language}: ~6th grade reading level. 
+    \item  {\bfseries Minimal design}: suppressing rarely used information to reduce cognitive load. 
 \end{enumerate}
 
 Our empirical evaluation criteria for the Tor Browser configuration
 interface are from common metrics that measure ease of use with a special 
-consideration for high-risk users: 
-\begin{enumerate} \itemsep1pt \parskip0pt \parsep0pt
-    \item {\bfseries Task Completion} Almost all can successfully connect to Tor
-    \item {\bfseries Time to Completion} Time to completion. 
-    \item {\bfseries Safe for High-Risk Users} It should be possible to configure Tor with the interface that it doesn't leak that they are using Tor. 
+consideration for high-risk users: \\
+
+\begin{enumerate}
+    \item {\bfseries Task Completion}: Almost all can successfully connect to Tor
+    \item {\bfseries  Time to Completion}: Time to completion. 
+    \item {\bfseries Safe for High-Risk Users}: It should be possible to configure Tor with the interface that it doesn't leak that they are using Tor. 
 \end{enumerate}
 
 An exploration of the problems with the existing Tor Browser 
@@ -225,10 +227,10 @@ These reproducible, stable environments are informed by our experience
 with pluggable transports and knowledge of commonly seen censorship 
 techniques. Their goal in our user study is not to replicate the network 
 environment in any particular country, but to require our participants to 
-configure Tor Browser in distinct configurations. 
+configure Tor Browser in distinct configurations. \\
 
 \begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
-\item {\bfseries Mild censorship} 
+\item {\bfseries Mild censorship (E1)}: 
 (Representative of countries such as France and Australia.)
 Certain domains are blocked. Reaching these 
 domains requires a censorship circumvention 
@@ -236,7 +238,7 @@ tool. The default option to ``connect'' to the Tor network
 directly will circumvent this censor. Additional correct
 bridge or proxy configurations are optional. 
 
-\item {\bfseries Intermediate censorship} 
+\item {\bfseries Intermediate censorship (E2)}: 
 (Representative of countries such as Tunisia.)
 Certain domains are blocked. Censorship circumvention
 tools such as Tor are blocked. Since all public Tor
@@ -245,7 +247,7 @@ directly will fail. Any choice of a hard-coded bridge
 or a valid non-public bridge will circumvent this censor.  
 Additional correct proxy configuration is optional.
 
-\item {\bfseries Comprehensive censorship} 
+\item {\bfseries Comprehensive censorship (E3)}:
 (Representative of countries such as China and Syria.)
 Certain domains are blocked. Censorship circumvention tools
 are thoroughly blocked. Tor is blocked by blocking all public
@@ -453,7 +455,7 @@ In addition to the text being not as helpful as it would have been had users bee
 
 Tor Browser 5.0.3. configuration interface does not adequately meet our heuristic evaluation criteria from Section~\ref{sec:goals}: visibility of system status, user control and freedom, error management, understandable language, and minimal design. The configuration used for a connection is not visible to the users before they connect or while they are connecting, full control but little guidance through the configuration process confuse users, error messages do not express errors in plain language nor offer solutions, the text was too technical for an average user to understand, and the interface has room to be simplified visually.  
 
-Currently, the interface overburdens users. Our goals in redesigning the interface was to making the system status visible to the user, retain user freedom but give guidance, make the vocabulary more accessible, offer solutions upon errors, and to require the user to make fewer decisions overall. To achieve these goals, we made the following changes: 
+Currently, the interface overburdens users. Our goals in redesigning the interface was to making the system status visible to the user, retain user freedom but give guidance, make the vocabulary more accessible, offer solutions upon errors, and to require the user to make fewer decisions overall. To achieve these goals, we made the following changes: \\
 
 \begin{figure*}[t]
 	\centering
@@ -657,7 +659,7 @@ After 20 minutes, 45\% of E3-NEW and only 25\% of E3-OLD had finished.
 
 {\color {red} 
 What to talk about: 
-\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt 
+\begin{itemize}
 \item{Did the new interface improve the success rate?}
 \item{Did the new interface help in only certain environments or certain people?}
 \item{Did the new interface improve the time to success?}
@@ -668,7 +670,7 @@ What to talk about:
 \end{itemize} 
 
 Graph: 
-\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt 
+\begin{itemize}
 \item{success rate}
 \item{time spent on each screen}
 \item{order pluggable transports were chosen}
@@ -683,15 +685,17 @@ Ideally, we want users in censorship environments across the world to succeed in
 
 \section{Discussion} 
 \label{sec:discussion}
-If we had more concrete information on the number of high-risk users or users who need to configure a proxy, we would have made additional changes in the prototype. Since we lacked this information, the following changes did not make it into our prototype, but are worth discussing. Depending on the number of high-risk users or proxy-configuring users, these additional changes may be helpful: 
-\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt 
+If we had more concrete information on the number of high-risk users or users who need to configure a proxy, we would have made additional changes in the prototype. Since we lacked this information, the following changes did not make it into our prototype, but are worth discussing. Depending on the number of high-risk users or proxy-configuring users, these additional changes may be helpful: \\
+
+\begin{itemize}
 \item {\bfseries Tell people to click connect.} On the first screen, the user needs to decide to connect or configure. Although there is a description of what each option entails and when one may consider using that option, there are no instructions for the user on what to do. Ideally, we would people to click connect, and then try the manual configuration if a direct connection fails. We currently do not communicate this because it may put some users at risk. However, it is believed that a majority of the users will succeed if they click connect on the first screen, and giving them instructions on what to do can lessen their cognitive load during the configuration process. 
 \item{\bfseries Hide the proxy screen.} Don't give users the option to configure a proxy unless it has been detected that it would be necessary. The amount of people who use proxies is low, but then \ldots this would not give users control in the beginning of the configuration process. 
 \item{\bfseries Help the at-risk users.} There are people who would benefit from, on the first attempt, connecting with a meek bridge or custom bridge, without trying a vanilla tor connection or the recommended bridge in the dialog. Currently, we guide these people to the correct decision, but after trying the default bridge first. Helping these users to make a connection safely without ever being logged as connecting to Tor would be a benefit, but might be a case of overfitting to these types of users. A majority of users should not use a meek bridge or custom bridge, so it would be unideal to lead all users to this decision.
 \end{itemize} 
 
-We took an approach that optimized for the average case user yet was conservative in automation to allow at-risk users to possibly connect without leaking that they use Tor. We believe that this is a sound approach to interacting with the user and the one we would recommend personally. However, there are alternative approaches to interacting with the user that may be of interest:  
-\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt 
+We took an approach that optimized for the average case user yet was conservative in automation to allow at-risk users to possibly connect without leaking that they use Tor. We believe that this is a sound approach to interacting with the user and the one we would recommend personally. However, there are alternative approaches to interacting with the user that may be of interest:  \\
+
+\begin{itemize}
 \item{\bfseries Automate the entire configuration process.} This sounds like a radical idea, but it really isn't. Today, this wouldn't harm most of our users. Our study finds that most users do not configure better than we do and would leak that they are using Tor anyway. 
 \item {\bfseries Auto-configure after connect.} After a person has already clicked connect and the connection was unsuccessful, they have already been logged. I am assuming that the significant difference is between being logged trying to connect to Tor or not at all, rather than the number of connection attempts made. This would greatly save our users a lot of headache. 
 \item{\bfseries Ask about the risk.} Rather than having the configuration dialog be manual by default, just ask if the users are at risk if the process was automated. If they are not at risk, we can do it automatically, and the at-risk users can configure manually. The issue with this is that people may not answer this question honestly, or they might not know the correct answer to this question. 
@@ -731,15 +735,13 @@ To complete this worksheet, you will need to set up Tor browser (on your desktop
 \section{Qualitative User Study Recruitment Posting} 
 \label{qualitative-recruitment}
 We are recruiting participants for an in-person research study at the University of California, Berkeley. You will need to come in to our lab and perform tasks on a computer for an hour or less. You will be compensated \$30 for participating. 
-No special knowledge and no technical experience is required. 
-
-If you are interested, fill out the survey at \textit{<survey link>}. 
+No special knowledge and no technical experience is required. If you are interested, fill out the survey at \textit{<survey link>}. 
 
 \section{Qualitative User Study Prescreening Survey} 
 \label{qualitative-prescreening}
-We are recruiting participants for an in-person research study at the University of California, Berkeley. You will need to come in to our lab and perform tasks on a computer for an hour or less. You will be compensated \$30 for participating. No special knowledge and no technical experience is required.
+We are recruiting participants for an in-person research study at the University of California, Berkeley. You will need to come in to our lab and perform tasks on a computer for an hour or less. You will be compensated \$30 for participating. No special knowledge and no technical experience is required.\\
 
-\begin{enumerate} \itemsep1pt \parskip0pt \parsep0pt 
+\begin{enumerate}
 \item{Please select when you are available. We will assign you an hour experiment time slot during one of those times.}
 \item{I am able to provide my own transportation to the University of California, Berkeley campus.}
 \item{Thank you for your interest! Please provide an email address where we can contact you to share more logistical details.}
@@ -764,9 +766,9 @@ To circumvent censorship successfully, you will need to set up Tor browser corre
 Before you start, do you have any questions about what you are asked to do? 
 
 \section{Post-Experiment Standard Interview Questions}
-We asked our participants these questions after they were given time to configure Tor Browser. 
+We asked our participants these questions after they were given time to configure Tor Browser. \\
 
-\begin{enumerate} \itemsep1pt \parskip0pt \parsep0pt 
+\begin{enumerate}
 \item{Can you talk us through what you did along with what you were thinking at the time?}
 \item{What was most challenging part of connecting?}
 \item{Were there any unfamiliar terms?}
@@ -807,9 +809,9 @@ Before you start, do you have any questions about what you are asked to do?
 \label{quantitative-exit-survey}
 We'd like to know more about you.  All of your answers will be stored separately from any identifying information in order to protect your confidentiality.
 
-This survey is part of a research project being conducted by the University of California, Berkeley. If you have any questions about your rights or treatment as a research participant in this study, please contact the University of California at Berkeley's Committee for Protection of Human Subjects at 510-642-7461, or email subjects@berkeley.edu. If you agree to participate, please click Next below.
+This survey is part of a research project being conducted by the University of California, Berkeley. If you have any questions about your rights or treatment as a research participant in this study, please contact the University of California at Berkeley's Committee for Protection of Human Subjects at 510-642-7461, or email subjects@berkeley.edu. If you agree to participate, please click Next below.\\
 
-\begin{enumerate} \itemsep1pt \parskip0pt \parsep0pt 
+\begin{enumerate}
 \item{What is your participant ID? (This can be found on the sticker ont he left hand corner of the desk you are currently sitting at.)}
 \item{What is your gender?}
 \item{What is your age?}
