@@ -82,7 +82,7 @@ log_filename = re.compile(r'(?P<env>E\d)-(?P<interface>\w\w\w)-(?P<seat>X\d\d)-(
 def main():
     _, filenames = getopt.gnu_getopt(sys.argv[1:], "")
 
-    csvw = csv.DictWriter(sys.stdout, fieldnames=("seat", "runid", "timestamp", "src", "dst", "via"))
+    csvw = csv.DictWriter(sys.stdout, fieldnames=("seat", "runid", "elapsed", "src", "dst", "via"))
     csvw.writeheader()
 
     for filename in filenames:
@@ -93,11 +93,18 @@ def main():
         with open(filename) as file:
             edges = parse_inst_log(file)
 
+        if len(edges) > 0:
+            start_date = edges[0].timestamp
         for edge in edges:
-            fields = edge._asdict()
-            fields.update({'seat': match.group('seat'), 'runid': match.group('runid')})
-
-            del fields["run"]
+            elapsed = (edge.timestamp - start_date).total_seconds()
+            fields = {
+                "seat": match.group("seat"),
+                "runid": match.group("runid"),
+                "elapsed": "%.1f" % elapsed,
+                "src": edge.src,
+                "dst": edge.dst,
+                "via": edge.via,
+            }
             csvw.writerow(fields)
 
 if __name__ == '__main__':
