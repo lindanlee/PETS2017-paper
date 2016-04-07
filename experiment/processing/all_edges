@@ -18,7 +18,7 @@ import inst
 # src and dst are vertices; i.e. pages or states in the interface.
 # via is a string indicating an action that moved you from src to dst.
 # src and dst can be the same.
-Edge = collections.namedtuple('Edge', ['run', 'timestamp', 'src', 'dst', 'via'])
+Edge = collections.namedtuple('Edge', ['exec_id', 'timestamp', 'src', 'dst', 'via'])
 
 def is_event_wanted(event):
     if event["type"] in ("mouseover", "mouseout"):
@@ -82,7 +82,7 @@ log_filename = re.compile(r'(?P<env>E\d)-(?P<interface>\w\w\w)-(?P<seat>X\d\d)-(
 def main():
     _, filenames = getopt.gnu_getopt(sys.argv[1:], "")
 
-    csvw = csv.DictWriter(sys.stdout, fieldnames=("seat", "runid", "elapsed", "src", "dst", "via"))
+    csvw = csv.DictWriter(sys.stdout, fieldnames=("seat", "runid", "exec_count", "elapsed", "src", "dst", "via"))
     csvw.writeheader()
 
     for filename in filenames:
@@ -95,11 +95,17 @@ def main():
 
         if len(edges) > 0:
             start_date = edges[0].timestamp
+        current_exec_id = None
+        exec_count = 0
         for edge in edges:
+            if edge.exec_id != current_exec_id:
+                exec_count += 1
+                current_exec_id = edge.exec_id
             elapsed = (edge.timestamp - start_date).total_seconds()
             fields = {
                 "seat": match.group("seat"),
                 "runid": match.group("runid"),
+                "exec_count": exec_count,
                 "elapsed": "%.1f" % elapsed,
                 "src": edge.src,
                 "dst": edge.dst,
