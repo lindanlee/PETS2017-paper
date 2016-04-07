@@ -77,7 +77,7 @@ def parse_inst_log(f):
 
     return edges
 
-log_filename = re.compile(r'(?P<env>E\d)-(?P<interface>\w\w\w)-(?P<seat>X\d\d)-(?P<runid>\d{8}-\d{6})-inst.log$')
+log_filename = re.compile(r'(?P<env>E\d)-(?P<version>\w\w\w)-(?P<seat>X\d\d)-(?P<runid>\d{8}-\d{6})-inst.log$')
 
 def main():
     _, filenames = getopt.gnu_getopt(sys.argv[1:], "")
