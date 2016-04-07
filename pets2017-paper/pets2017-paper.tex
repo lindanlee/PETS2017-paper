@@ -90,7 +90,9 @@ of adversaries. In fact, some countries unsuccessfully attempt to block Tor for 
 To our knowledge, this is the first user study investigating the usability of Tor as a 
 censorship circumvention tool.
 
-We believe that this is a great opportunity for user research. We have the opportunity to help users circumvent censorship more easily and provide them with extra security features, such as anonymity. Not only does improving the interface help the user trying to circumvent censorship, it helps other users who use Tor as an anonymity system by increasing the number of overall users ~\cite{dingledine2006anonymity}. This study aims to understand of what is confusing about the configuration process and what find changes make the process easier. Our study consists of three stages. User interactions with the current interface in various censorship environments generated the problems we address in the study. User feedback and observations of users steered the design process for an improved configuration interface. User metrics, such as success rate and time to completion, measured how well the interfaces served their purpose.  
+We believe that this is a great opportunity for user research. We have the opportunity to help users circumvent censorship more easily and provide them with extra security features, such as anonymity. Not only does improving the interface help the user trying to circumvent censorship, it helps other users who use Tor as an anonymity system by increasing the number of overall users ~\cite{dingledine2006anonymity}. 
+
+This study aims to understand of what is confusing about the configuration process and what find changes make the process easier. Our study consists of three stages. User interactions with the current interface in various censorship environments generated the problems we address in the study. User feedback and observations of users steered the design process for an improved configuration interface. User metrics, such as success rate and time to completion, measured how well the interfaces served their purpose.  
 
 Currently, {\color {red} TODO}\% of users fail and with the current interface for reasons {\color {red} TODO}, {\color {red} TODO}, and {\color {red} TODO}. Of those that do succeed, the average time to completion is {\color {red} TODO}. This can lead to a bad user experience, users quitting Tor, or causing high-risk users to make mistakes. With the new design, only {\color {red} TODO}\% of users fail to configure successfully and the average time to completion is {\color {red} TODO}. Tor has already implemented some of these changes.
 
@@ -276,8 +278,9 @@ it resistant to aggressive censorship environments.
 \subsubsection{Recruitment}
 Using established best practices from the field of user experience research~\cite{howmanyusers},
 we recruited 5 participants for each censorship environment.
-We pre-screened our participants for diversity of gender, age, technical expertise,
-and familiarity with Tor in each simluated censorship environment. 
+We pre-screened ~\cite{screening} our participants for diversity of gender, age, technical expertise,
+and familiarity with Tor in each simluated censorship environment for our summative
+usability test~\cite{summative}. 
 
 We recruited our users from Craigslist. The recruitment text can be found in 
 Appendix~\ref{qualitative-recruitment}. The recruitment posting contained a 
@@ -297,11 +300,6 @@ a college education, and the most common jobs included {\color {red} TODO} and
 and {\color {red} TODO} had used Tor previously. {\color {red} TODO} out of 
 16 did not use any circumvention tools, and no more than {\color {red} TODO} 
 knew any more than {\color {red} TODO} technological terms.
-
-%Some references to keep in mind when explaining:
-%\href{why 5 users}{http://www.nngroup.com/articles/how-many-test-users/}
-%\href{screening}{http://www.userfocus.co.uk/articles/screeners.html}
-%\href{summative and usability mixed model}{http://www.usabilitybok.org/summative-usability-testing}
 
 \subsubsection{Procedure}
 We conducted a qualitative evaluation of the interface by creating an environment 
@@ -407,12 +405,12 @@ After the bridge configuration, the participant again is asked to answer a quest
 \noindent P11:\textit{``I think you can only answer this question (does this computer need a local proxy) if you know what a local proxy is. Otherwise, you have no chance..''}
 \end{quotation}
 
-None of our censorship environments required our participants to configure a proxy for a successful connection. And upon the first attempt at configuration, most chose the default value of not configuring a proxy.  However, the most common reason for failing to connect was that participants spent time configuring a proxy when they needed to adjust  bridge settings instead. Currently, no information was given upon failing to connect, which caused our participants to draw their own (incorrect) conclusions after a failed connection. Since the interface passively re-displayed a proxy-related window seen after an attempted connection regardless of the error, many participants were convinced that they needed a proxy to connect to the Tor network.
+All who chose to configure a proxy were successful. Many of the participants followed the directions in the interface to look at the Internet settings in another browser to see whether it is configure to use a local proxy, but they never found the proxy information since none of the other browsers had the information. What further frustrated the situation was that the other browsers did not explicitly state that no proxy was configured, which caused many of our participants to search for proxy settings.
 
-None of the participants who attempted to configure a proxy were successful. Many of the participants followed the directions in the interface to look at the Internet settings in another browser to see whether it is configure to use a local proxy, but they never found the proxy information since none of the other browsers had the information. What further frustrated the situation was that the other browsers did not explicitly state that no proxy was configured, which caused many of our participants to search for proxy settings.\\
+None of our censorship environments required our participants to configure a proxy for a successful connection. Upon the first attempt at configuration, most chose the default value of not configuring a proxy. However, trying to unsuccessfuly configure a proxy was the most common reason for failing to connect. Since the interface passively re-displayed a proxy-related window seen after an attempted connection regardless of the error, many participants were convinced that they needed a proxy to connect to the Tor network. Users did not check their incorrect assumption ~\cite{wason1960failure}. This false assumption can be fixed by giving information on what needs to be configured~\cite{reeder2005user}. \\
 
 \subsubsection{Progress Bar} 
-Users were generally displeased with the lack of feedback on the progress bar. The process seemed to take too long for them, even in the ideal case in which a user chose the correct configuration in the first attempt. If users chose particular wrong configurations (i.e. a syntactically valid but nonfunctional proxy), they would be waiting for an indefinite period of time, because there is no timeout. 
+Users were generally displeased with the lack of feedback on the progress bar. Users do tolerate delays if they are for security reasons, but only to a certain extent and if they understand the security reason ~\cite{egelmanplease}. Participants in our study usually did not understand the security reason, and experienced huge delays on the order of minutes, even in the ideal case in which a user chose the correct configuration in the first attempt. If users chose particular wrong configurations (i.e. a syntactically valid but nonfunctional proxy), they would be waiting for an indefinite period of time, because there is no timeout. 
 
 \begin{quotation}
 \noindent P16:\textit{``There doesn't seem to be a timeout on any of this stuff. Am I waiting long enough? It should work immediately.''}\\
@@ -421,6 +419,7 @@ Users were generally displeased with the lack of feedback on the progress bar. T
 \end{quotation}
 
 As a technical artifact of how the progress bar is implemented, the progress bar remains empty on subsequent attempts to connect to the Tor Network until the percent progress supersedes the last displayed progress value (i.e. a participant who saw 30\% progress on their first attempt would see 0\% progress in the progress bar until subsequent attempts got at least 40\% progress). The negative feedback of a 0\% progress bar would cause users to assume that their subsequent attempts were wrong, even if they were correct. 
+
 \begin{quotation}
 \noindent P1:\textit{``It was hard to figure out if the progress bar wasn't moving because the connection was censored, or if it was just slow.''}
 \end{quotation}
@@ -445,7 +444,7 @@ Many participants, including participants who were pre-screened for high technic
  
  \noindent P16:\textit{``Because I never configured a proxy or worked with that stuff, I was just going to keep clicking and pray.''}
 \end{quotation} 
-In addition to the text being not as helpful as it would have been had users been able to understand, this discouraged our users during the process.\\
+In addition to the text being not as helpful as it would have been had users been able to understand, this discouraged our users during the process. Communicating the relevant information in an understandable way is difficult, bu is critical for the usability of a system ~\cite{molich1990improving}.\\
 
 %\begin{quotation}
 %\noindent{\bfseries P15}:\textit{``Give this to a couple of people who know how to do this. They can feel elite\ldots they only want the elite to use some computer things..''} \\
