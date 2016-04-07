@@ -81,7 +81,7 @@ and average completion time to {\color {red} TODO} minutes.}
 
 \section{Introduction}
 
-Although Tor ~/cite{dingledine2004tor} was not designed to be a censorship circumvention tool, users started
+Although Tor~\cite{dingledine2004tor} was not designed to be a censorship circumvention tool, users started
 using it as one, since Tor's role as a proxy to anonymize
 people also worked to circumvent censorship. Now, circumventing censorship is a
 common use case for Tor, and current censorship circumvention methods are
@@ -474,6 +474,18 @@ Currently, the interface overburdens users. Our goals in redesigning the interfa
 		\caption{new flow} 
 \end{figure*} 
 
+\begin{figure*}[t]
+	\centering
+		\includegraphics[width=1.0\textwidth]{bridge-screens.pdf} 
+		\caption{bridge screens} 
+\end{figure*} 
+
+\begin{figure*}[t]
+	\centering
+		\includegraphics[width=1.0\textwidth]{proxy-screens.pdf} 
+		\caption{proxy-screens} 
+\end{figure*} 
+
 \begin{enumerate} \itemsep1pt \parskip0pt \parsep0pt 
 \item {\bfseries Added system status visibility.} Before any attempt to connect to the Tor network, a summary screen displays if a bridge or proxy is configured, and if so, what the configurations are. The progress screen also displays the configurations while the connection attempt is being made. 
 \item {\bfseries Added guidance on choosing connect vs configure.} We labeled the configure option as advanced, manual, and only for heavily censored situations. 
@@ -721,7 +733,7 @@ We took an approach that optimized for the average case user yet was conservativ
 \end{itemize}
 
 \section {Acknowledgments}
-{\color {red} Rowilma del Castillo for setting up Xlab, Nima Fatemi, Isa (?), Georg (?), and the UX team for giving feedback, and Cecile Basnage for reviewing the UI of circumvention tools.} 
+{\color {red} Rowilma del Castillo for setting up Xlab, Nima Fatemi, Isabella Bagueros, Georg Koppen, and the UX team for giving feedback, and Cecile Basnage for reviewing the UI of circumvention tools.} 
 
 \section{Conclusion} 
 {\color {red} I am a fan of not having long, rambling conclusions. I leave
