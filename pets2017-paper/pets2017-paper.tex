@@ -125,8 +125,25 @@ Internet censorship is widespread throughout the world ~\cite{faris2008measuring
 \subsection{Interacting Network Components} 
 For context, we define bridges, pluggable transports, and proxies, network components that 
 circumvent censorship and interact with the Tor configuration interface. 
+These components are shown in Fig.~\ref{fig:topology}.
 Bridges and pluggable transports are completely Tor-specific concepts, whereas a proxy is not.  
 This information is necessary to configure connections to Tor in censored environments. 
+
+\begin{figure}
+\centering
+{\color{red} TODO}
+% \includegraphics{topology}
+\caption{
+The chain of components involved in connecting to a website over Tor.
+Most users do not need a proxy;
+similarly only those users who face a censor need a bridge.
+In the diagram, ``Tor'' represents all three anonymizing hops through the Tor network.
+We have shown the bridge as separate component
+because of the special role it plays.
+When a bridge is used, it takes the place of the first Tor hop.
+}
+\label{fig:topology}
+\end{figure}
 
 Bridges are unlisted Tor relays that make it possible for a user to connect
 to the Tor network even if a censor blocks all publicly listed Tor relays. There used 
