@@ -66,3 +66,11 @@ p <- p + labs(title=NULL, x="Minutes elapsed", y="Successful participants")
 p <- p + annotate(geom="text", x=c(1, 3.3, 14, 15.3, 23, 24.7), y=c(0.86, 0.87, 0.91, 0.71, 0.61, 0.32), label=c("E1-\nNEW", "E1-OLD", "E2-NEW", "E2-OLD", "E3-NEW", "E3-OLD"), hjust=c(1, 0, 0, 0, 0, 0), vjust=0, size=2, lineheight=0.8)
 p <- common_theme(p)
 ggsave("time_to_success_ecdf.pdf", p, width=textwidth, height=height, device=cairo_pdf)
+
+#only plot data before first success
+participants.edges.order <- participants.edges.order[participants.edges.order$time_from_start <= participants.edges.order$time_to_success, ]
+p <- ggplot(data=participants.edges.order, aes(x=time_from_start/60, y=interaction(time_to_success,version,env), color=(src)))
+p <- p + geom_path()
+p <- p + labs(title=NULL, x="Minutes", y="Participants")
+p <- p + scale_y_reverse()
+ggsave("all-participant-edges.pdf", p, width=textwidth*2, height=height*5, device=cairo_pdf)
