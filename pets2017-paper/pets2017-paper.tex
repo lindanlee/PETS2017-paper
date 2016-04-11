@@ -23,7 +23,7 @@
 
   \author[3]{Nathan Malkin}
 
-  \author[4]{Ganesh Iver}
+  \author[4]{Ganesh Iyer}
 
   \author[5]{Serge Egelman}
   
@@ -104,10 +104,10 @@ that tests the download, install, and  user interface of Tor Browser.  This stud
 
 There have been three published user studies on Tor to our knowledge. Clark et. al examines various deployment
 options for Tor Browser, such as Vidalia, Privoxy, Torbutton, and Foxyproxy, and found that none of them 
-were satisfactory from a usability perspective. Fabian et. al show that Tor's added latency 
+were satisfactory from a usability perspective ~\cite{clark2007usability}. Fabian et. al show that Tor's added latency 
 ~\cite{dingledine2009performance} causes users
 to be frustrated, cancel requests more often, and prevent user adoption. Norcie et. al found found that 
-64\% of users are unable to continue with installation or browsing at least once due to difficulties. 
+64\% of users are unable to continue with installation or browsing at least once due to difficulties ~\cite{norcie2012eliminating}. 
 
 Previous user studies have not focused on specific features in isolation, while we choose to focus our study on 
 the configuration interface. The configuration interface in isolation is the censorship circumvention 
@@ -118,9 +118,7 @@ This study examines that interface, and effectively, the usability of Tor as a c
 In this section, we talk about the current state of Internet censorship, interface network components that circumvent censorship, and the Tor Browser 5.0.3 configuration interface that guides users to configure those network components to make a connection to the Tor Network. 
 
 \subsection{Censorship Today} 
-Internet censorship is widespread throughout the world ~\cite{faris2008measuring}. Although there are corporations, parental controls, and other forms of censorship, the most common form of censorship is done by a nation-state power, usually without the consent of the people in that residing nation. Currently {\color {red} TODO} governments implement some sort of Internet censorship in their country. The most commonly censored categories of websites are {\color {red} TODO} ({\color {red} TODO}\%), {\color {red} TODO} ({\color {red} TODO}\%), {\color {red} TODO} ({\color {red} TODO}\%), {\color {red} TODO} ({\color {red} TODO}\%), and {\color {red} TODO} ({\color {red} TODO}\%).  Reactions from Internet censorship range from feeling safe that bad sites are blocked automatically for their citizens to being outraged that access to information and free speech have been infringed upon. The risks associated with circumventing Internet censorship, is largely based on the geographic location, how prevalent censorship circumvention is, and who you are. 
-
-{\color{red} Link sources, talk about arms race between censors and censorship circumvention tools.} 
+Internet censorship is widespread throughout the world ~\cite{faris2008measuring}. Although there are corporations, parental controls, and other forms of censorship, the most common form of censorship is done by a nation-state power, usually without the consent of the people in that residing nation.  Reactions from Internet censorship range from feeling safe that bad sites are blocked automatically for their citizens to being outraged that access to information and free speech have been infringed upon. The risks associated with circumventing Internet censorship, is largely based on the geographic location, how prevalent censorship circumvention is, and who you are. 
 
 \subsection{Interacting Network Components} 
 For context, we define bridges, pluggable transports, and proxies, network components that 
@@ -131,8 +129,7 @@ This information is necessary to configure connections to Tor in censored enviro
 
 \begin{figure}
 \centering
-{\color{red} TODO}
-% \includegraphics{topology}
+ \includegraphics[width=0.5\textwidth]{topology.png}
 \caption{
 The chain of components involved in connecting to a website over Tor.
 Most users do not need a proxy;
@@ -768,21 +765,21 @@ Ideally, we want users in censorship environments across the world to succeed in
 
 \section{Discussion} 
 \label{sec:discussion}
-If we had more concrete information on the number of high-risk users or users who need to configure a proxy, we would have made additional changes in the prototype. Since we lacked this information, the following changes did not make it into our prototype, but are worth discussing. Depending on the number of high-risk users or proxy-configuring users, these additional changes may be helpful: \\
+The following additional changes may be helpful: \\
 
 \begin{itemize}
-\item {\bfseries Tell people to click connect.} On the first screen, the user needs to decide to connect or configure. Although there is a description of what each option entails and when one may consider using that option, there are no instructions for the user on what to do. Ideally, we would people to click connect, and then try the manual configuration if a direct connection fails. We currently do not communicate this because it may put some users at risk. However, it is believed that a majority of the users will succeed if they click connect on the first screen, and giving them instructions on what to do can lessen their cognitive load during the configuration process. 
-\item{\bfseries Hide the proxy screen.} Don't give users the option to configure a proxy unless it has been detected that it would be necessary. The amount of people who use proxies is low, but then \ldots this would not give users control in the beginning of the configuration process. 
-\item{\bfseries Help the at-risk users.} There are people who would benefit from, on the first attempt, connecting with a meek bridge or custom bridge, without trying a vanilla tor connection or the recommended bridge in the dialog. Currently, we guide these people to the correct decision, but after trying the default bridge first. Helping these users to make a connection safely without ever being logged as connecting to Tor would be a benefit, but might be a case of overfitting to these types of users. A majority of users should not use a meek bridge or custom bridge, so it would be unideal to lead all users to this decision.
+\item {\bfseries Tell people what to do.} Since a majority of the users will succeed if they click connect on the first screen, replacing the information about choices with explicit instructions to connect can lessen their cognitive load during the configuration process. 
+\item{\bfseries Hide infrequently used options.} Hide the proxy screen and do not the option to configure a proxy unless it has been detected as necessary.
+\item{\bfseries Tailor for at-risk users.} Currently, the interface is for the average user. We guide at-risk users to the correct configuration, but suggesting that they try the default first. However, this isn't ideal. 
 \end{itemize} 
 
-We took an approach that optimized for the average case user yet was conservative in automation to allow at-risk users to possibly connect without leaking that they use Tor. We believe that this is a sound approach to interacting with the user and the one we would recommend personally. However, there are alternative approaches to interacting with the user that may be of interest: \\
+We took an approach that optimized for the average case user yet was conservative enough in automation to allow users to connect without leaking that they use Tor. However, there are alternative approaches: \\
 
 \begin{itemize}
-\item{\bfseries Automate the entire configuration process.} This sounds like a radical idea, but it really isn't. Today, this wouldn't harm most of our users. Our study finds that most users do not configure better than we do and would leak that they are using Tor anyway. 
-\item {\bfseries Auto-configure after connect.} After a person has already clicked connect and the connection was unsuccessful, they have already been logged. I am assuming that the significant difference is between being logged trying to connect to Tor or not at all, rather than the number of connection attempts made. This would greatly save our users a lot of headache. 
-\item{\bfseries Ask about the risk.} Rather than having the configuration dialog be manual by default, just ask if the users are at risk if the process was automated. If they are not at risk, we can do it automatically, and the at-risk users can configure manually. The issue with this is that people may not answer this question honestly, or they might not know the correct answer to this question. 
-\item{\bfseries Ask if they are qualified to make decisions.} Asking users if they know which bridge to choose, and choosing for them if they say they don't know. We probably know better than they do. But there are ethical implications of choosing bridges for them rather them making the mistakes themselves. The issue with this is that people may not answer honestly. 
+\item{\bfseries Automate the configuration.} This sounds like a radical idea, but it really isn't. Today, this wouldn't harm most of our users. Our study finds that most users do not configure better than we do and would leak that they are using Tor anyway. 
+\item {\bfseries Automate after failure.} After an unsuccessful connection attempt, the user has already indicated that they are connecting to Tor on the network. Assuming that the significant difference is between being logged trying to connect to Tor or not at all, we can automate the entire configuration process thereafter without increasing risk. This may save our users a lot of headache. 
+\item{\bfseries Ask about the risk.} Ask if the users if they would be at risk if the process was automated, and automate the configuration process for all who are not at risk. The ones at risk will configure manually. The complication with this approach is that users may not be qualified to answer this question or may not trust Tor to answer honestly. 
+\item{\bfseries Ask if users if they know what to do.} We ask users if they know how to configure a bridge and proxy, and automate the configuration process if they do not. However, there are ethical implications of making mistakes on behalf of the users if there is risk involved. 
 \end{itemize}
 
 \section {Acknowledgments}
