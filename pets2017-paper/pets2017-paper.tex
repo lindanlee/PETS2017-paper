@@ -458,7 +458,7 @@ Users were generally displeased with the lack of feedback on the progress bar. U
 Additionally, the progress bar remains empty on subsequent attempts to connect to the Tor Network until the percent progress supersedes the last displayed progress value (i.e. a participant who saw 30\% progress on their first attempt would see 0\% progress in the progress bar until subsequent attempts got at least 40\% progress). The negative feedback of a 0\% progress bar would cause users to assume that their subsequent attempts were wrong, even if they were correct. 
 
 \subsubsection{User Communication} 
-Many participants, including participants who were pre-screened for high technical ability and previous experience with using Tor, were not familiar with the vocabulary. 
+Many participants, including participants who were pre-screened as having high technical ability and previous experience with using Tor, were not familiar with the vocabulary. 
 \begin{quotation}
 \noindent P2:\textit{"I don't know what any of those means (list of bridges),or what that (proxy)
  means at all."}\\
@@ -487,9 +487,9 @@ This discouraged our users during the process and did not communicate its intend
 %     \item {\bfseries Minimal Design} suppressing rarely used information to reduce cognitive load. 
 % \end{enumerate}
 
-Tor Browser 5.0.3. configuration interface does not adequately meet our heuristic evaluation criteria from Section~\ref{sec:goals}: visibility of system status, user control and freedom, error management, understandable language, and minimal design. The configuration used for a connection is not visible to the users before they connect or while they are connecting, full control but little guidance through the configuration process confuse users, error messages do not express errors in plain language nor offer solutions, the text was too technical for an average user to understand, and the interface has room to be simplified visually.  
+Tor Browser 5.0.3. configuration interface does not adequately meet our heuristic evaluation criteria from Section~\ref{sec:goals}: visibility of system status, user control and freedom, error management, understandable language, and minimal design. The configuration used for a connection is not visible to the users before they connect or while they are connecting. Users had full control but little guidance. Error messages do not express errors in plain language nor offer solutions. The text was too technical for an average user to understand. The interface can be simplified visually.  
 
-Currently, the interface overburdens users. Our goals in redesigning the interface was to making the system status visible to the user, retain user freedom but give guidance, make the vocabulary more accessible, offer solutions upon errors, and to require the user to make fewer decisions overall. To achieve these goals, we made the following changes: \\
+Our goals in redesigning the interface was to making the system status visible to the user, retain user freedom but give guidance, make the vocabulary more accessible, offer solutions upon errors, and to require the user to make fewer decisions overall. To achieve these goals, we made the following changes: \\
 
 \begin{figure*}[t]
 	\centering
@@ -512,17 +512,17 @@ Currently, the interface overburdens users. Our goals in redesigning the interfa
 \begin{enumerate} \itemsep1pt \parskip0pt \parsep0pt 
 \item {\bfseries Added system status visibility.} Before any attempt to connect to the Tor network, a summary screen displays if a bridge or proxy is configured, and if so, what the configurations are. The progress screen also displays the configurations while the connection attempt is being made. 
 \item {\bfseries Added guidance on choosing connect vs configure.} We labeled the configure option as advanced, manual, and only for heavily censored situations. 
-\item {\bfseries Got rid of proxy and bridge questions.}  We removed the bridge and proxy questions, which were highly technical and challenging for users to answer. There are two less windows in the interface.
+\item {\bfseries Got rid of proxy and bridge questions.}  We removed the bridge and proxy questions, which were highly technical and challenging for users to answer. There are two less screens in the interface.
 \item {\bfseries Added auto-detect for proxies.} Auto-detection of proxies can be done locally, by scanning system files. This is safe even for at-risk users, and greatly simplifies the configuration process. 
-\item {\bfseries Switched ordering to configure proxies first.} To build up the users' mental model, we configure network components in a topologically sequential. Proxies were put after bridge configuration because only a small fraction of users require proxies. With auto-detection, configuring a proxy before a bridge will not burden the users. 
+\item {\bfseries Switched ordering to configure proxies first.} To build up the users' mental model, we configure network components in a topologically sequential. Previously, proxies were put after bridge configuration because only a small fraction of users require proxies. With auto-detection, configuring a proxy before a bridge will not burden the users. 
 \item {\bfseries Added explicit advice on choosing bridges.} The default bridge is still obfs3. There is added text that advises users to try a meek bridge if obfs3 does not work. This advice is tailored for our participants who were in the advanced censorship environment. 
-\item {\bfseries Added more feedback to the progress bar.} The progress bar shows network components involved in connecting to the Tor network and gives feedback to the user as they are correctly configured. For instance, a user can can now see that the bridge was configured correctly, and they just need to wait to connect to the Tor network. Upon failure, users can see which components that have succeeded and which have failed. 
-\item {\bfseries Added instructions on what to try next on errors.} When an error occurs, advice on what to try next is shown to the user. Such advice includes trying the connection again, choosing a different bridge, or trying a connection without a proxy. 
-\item {\bfseries Reduced overall amount of text and made text less technical.} We make the text more accessible by focusing on instructing users through the configuration process, at the sacrifice of explaining technical concepts to users. Since users generally couldn't understand the technical concepts enough to influence their decisions, giving direct guidance may be a better option.  
-\item {\bfseries Reduced visual clutter.} Whenever we could, we minimized the amount of text on the screen, hid additional fields until the relevant options were chosen, and made additional stylistic simplifications. 
+\item {\bfseries Added clear feedback to the progress bar.} We switched the continuous progress bar to a discrete checkpoint based progress bat that network components involved in connecting to the Tor network. This aligns with the metal model we are trying to build. As connections are made with components, the progress bar displays a green check, giving immediate feedback to the user. For instance, a user can can now see that the bridge was configured correctly, and they just need to wait to connect to the Tor network. Upon failure, users can see which components that have succeeded and which have failed.
+\item {\bfseries Added instructions on what to try next on errors.} When an error occurs, text advice on what to try next is shown to the user. Such advice includes trying the connection again, choosing a different bridge, or trying a connection without a proxy. 
+\item {\bfseries Reduced overall amount of text and made text less technical.} We make the text more task-centric by focusing on instructing users through the configuration process, at the sacrifice of explaining technical concepts to users. Since users generally couldn't understand the technical concepts enough to influence their decisions, giving direct guidance may be a better option.  
+\item {\bfseries Reduced visual clutter.} We showed options on an as-needed basis and we minimized the amount of text on the screen. For instance, additional fields were hidden until the relevant options were chosen. Additional stylistic simplifications were made, such as removing grouping boxes. 
 \end{enumerate} 
 
-The redesigned interface maintains the approach taken by the deployed interface of asking the users about their situation, which is in the spirit of the deployed interface. The designed interface conservatively interacts with users by automating only safe configuration processes and still allowing users to have control over configuring all interacting network components. The design requires more maintenance because of the explicit advice given on which order to select bridges and advice on error messages, which may change as the censorship environments change. For additional changes that can be made and alternate approaches for interacting with the user, see Section~\ref{sec:discussion}. 
+The redesigned interface conservatively interacts with users by automating only safe configuration processes and still allowing users to have control over configuring all interacting network components. The design requires more maintenance because of the explicit advice given on which order to select bridges and advice on error messages, which may change as the censorship environments change. For additional changes that can be made and alternate approaches for interacting with the user, see Section~\ref{sec:discussion}. 
 
 \section{Quantitative Analyses of the Interfaces (Study 2)}
 \label{sec:quantitative}
@@ -598,10 +598,8 @@ the situation.
 
 After illustrating the censorship environment, participants are asked to 
 complete a worksheet that asks to visit one blocked website. 
-Similar to the qualitative study, we chose Wikipedia's featured article of the day 
-as the blocked website because the familiarity 
-that most users have with these websites makes the browsing task relatively easy, 
-which focuses participants' attention to configuring Tor Browser. 
+To mirror the qualitative study, we chose Wikipedia's featured article of the day 
+as the blocked website. 
 
 After instructions, researchers maintained minimal interactions with the participants, 
 only answering logistical questions. Participants had
@@ -615,7 +613,7 @@ collecting their demographics. All users were instructed to sit until the end of
 regardless of when they had completed their task. This was to ensure that others were not 
 aware of when other participants had finished their tasks. After the 40 minutes were up, 
 participants were officially informed that their time was up, and were given their payment of 
-\$30. 
+\$30 for their time. 
 
 \subsubsection{Changes During the Experiment} 
 
@@ -674,15 +672,15 @@ in the time alloted.
 \label{fig:time_to_success}
 \end{figure}
 
-\begin{figure}
-\centering
-\includegraphics{time_to_success_clamped}
-\caption{
-Time to first success, by censorship environment and interface.
-Here, non-finishing participants are assigned a time of 40 minutes.
-}
-\label{fig:time_to_success_clamped}
-\end{figure}
+%\begin{figure}
+%\centering
+%\includegraphics{time_to_success_clamped}
+%\caption{
+%Time to first success, by censorship environment and interface.
+%Here, non-finishing participants are assigned a time of 40 minutes.
+%}
+%\label{fig:time_to_success_clamped}
+%\end{figure}
 
 \begin{figure}
 \centering
@@ -737,7 +735,7 @@ Graph:
 \section{Limitations} 
 The interface was only tested on windows machines, which were the only types of machines available machines in Xlab. The configuration interface uses the native operating system's elements and their respective styling, so an interface looks slightly different across different operating systems. Participants who are not accustomed to using Windows machines may have been slower than usual to complete the given task, but this effect should affect all of our conditions equally. 
 
-Our study was conducted in an inorganic setting, which can cause our participants to be under or over-motivated. Our participants had a monetary incentive  to connect to Tor, whereas as a real user in a censored environment would Tor to reach a particular website or service. Additionally, the presence of researchers may have placed social pressure to attempt connect for the whole duration of the session, when they would have given up if they were not in a laboratory setting.   
+Our study was conducted in an inorganic setting, which can cause our participants to be under or over-motivated. Our participants had a monetary incentive to connect to Tor, whereas as a real user in a censored environment would want to reach a particular website or service. Additionally, the presence of researchers may have placed social pressure to attempt connect for the whole duration of the session, when they may have given up if they were not in a laboratory setting.   
 
 We did not test cases in which the user is required to configure a custom bridge or proxy. Our participants were from one geographic location in the United States and are able to speak English.
 
