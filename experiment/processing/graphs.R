@@ -31,6 +31,11 @@ time_to_success_plot <- function(participants) {
 
 participants <- filter_participants(read_participants())
 participants$label <- factor(sprintf("%s-%s", participants$env, participants$version), levels=c("E1-NEW", "E1-OLD", "E2-NEW", "E2-OLD", "E3-NEW", "E3-OLD"))
+participants$pid <- factor(sprintf("%s-%s-%s-%s", participants$env, participants$version, participants$seat, participants$runid))
+participants$pid <- factor(participants$pid, levels=participants$pid[order(participants$env, participants$version, participants$time_to_success)])
+
+edges <- read_edges()
+edges <- merge(edges, participants, by=c("seat", "runid"), all=T)
 
 p <- time_to_success_plot(participants)
 ggsave("time_to_success.pdf", p, width=textwidth, height=height, device=cairo_pdf)
@@ -67,10 +72,19 @@ p <- p + annotate(geom="text", x=c(1, 3.3, 14, 15.3, 23, 24.7), y=c(0.86, 0.87, 
 p <- common_theme(p)
 ggsave("time_to_success_ecdf.pdf", p, width=textwidth, height=height, device=cairo_pdf)
 
-#only plot data before first success
-participants.edges.order <- participants.edges.order[participants.edges.order$time_from_start <= participants.edges.order$time_to_success, ]
-p <- ggplot(data=participants.edges.order, aes(x=time_from_start/60, y=interaction(time_to_success,version,env), color=(src)))
-p <- p + geom_path()
-p <- p + labs(title=NULL, x="Minutes", y="Participants")
-p <- p + scale_y_reverse()
-ggsave("all-participant-edges.pdf", p, width=textwidth*2, height=height*5, device=cairo_pdf)
+
+edges <- edges[order(edges$time_from_start), ]
+# Keep only the edges up to the first success.
+edges <- edges[is.na(edges$time_to_success) | edges$time_from_start <= edges$time_to_success, ]
+edges$duration <- ave(edges$time_from_start, edges$seat, edges$runid, FUN=function(z) {
+	c(z[2:length(z)], z[length(z)]) - z
+})
+
+# TODO: Make DNFs go all the way to 40 minutes.
+p <- ggplot(edges, aes(x=pid, xend=pid, y=time_from_start/60, yend=(time_from_start+duration)/60, color=src))
+p <- p + geom_segment(size=1.5, lineend="butt")
+# p <- p + geom_point(color="black", size=1.5, shape="|")
+p <- p + coord_flip()
+p <- p + labs(title=NULL, x="Participants", y="Minutes elapsed")
+p <- common_theme(p)
+ggsave("all-participant-edges.pdf", p, width=textwidth*2, height=9)

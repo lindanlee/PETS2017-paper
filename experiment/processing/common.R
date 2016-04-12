@@ -10,19 +10,20 @@ read_participants <- function() {
 	participants <- read.csv("participants.csv")
 	sessions <- read.csv("sessions.csv")
 	success <- read.csv("success.csv")
-	edges <- read.csv("edges.csv")
 
 	participants <- merge(participants, sessions, by=c("session"), all=T)
 	participants <- merge(participants, success, by=c("seat", "runid"), all=T)
-	participants.edges <- merge(participants, edges, by=c("seat","runid"), all.y=T)
-	participants.edges.order = participants.edges[order(
-	  participants.edges$env,participants.edges$version,participants.edges$time_to_success),]
 	participants
 }
 
 # Return only the participants marked "good".
 filter_participants <- function(participants) {
 	participants[participants$good, ]
+}
+
+# Read edges.csv into one big data frame.
+read_edges <- function() {
+	read.csv("edges.csv")
 }
 
 common_theme <- function(p) {
