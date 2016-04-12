@@ -61,16 +61,14 @@ palette <- c(
 )
 names(palette) <- levels(participants$label)
 
-max_minutes <- max(participants$time_to_success, na.rm=T) / 60
 # Artificially add a success time that is way off the scale for all
 # participants that were not successful. Otherwise the ecdf will ignore the NAs
 # and cause all the curves to rise to 100%. The artificial points will be
 # hidden off the edge of the graph by coord_cartesian.
-participants$time_to_success[is.na(participants$time_to_success)] <- max(participants$time_to_success, na.rm=T)*2
-minutes_to_success <- participants$time_to_success/60
+minutes_to_success <- pmin(participants$time_to_success, maxtime*2, na.rm=T) / 60
 p <- ggplot(participants, aes(x=minutes_to_success, color=label))
 p <- p + geom_step(stat="ecdf", size=0.5)
-p <- p + coord_cartesian(xlim=c(0, max_minutes))
+p <- p + coord_cartesian(xlim=c(0, maxtime)/60)
 p <- p + scale_y_continuous(labels=percent)
 p <- p + scale_color_manual(values=palette)
 # p <- p + guides(color=guide_legend(override.aes=list(size=2, title=NULL)))
