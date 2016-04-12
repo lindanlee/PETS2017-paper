@@ -34,6 +34,11 @@ participants$label <- factor(sprintf("%s-%s", participants$env, participants$ver
 participants$pid <- factor(sprintf("%s-%s-%s-%s", participants$env, participants$version, participants$seat, participants$runid))
 participants$pid <- factor(participants$pid, levels=participants$pid[order(participants$env, participants$version, participants$time_to_success)])
 
+# This is the length of the experiment, after which to cut off measurements.
+# It's actually just a few seconds after 40 minutes, because one E3 just
+# squeaked by.
+maxtime <- max(40*60, participants$time_to_success, na.rm=T)
+
 edges <- read_edges()
 edges <- merge(edges, participants, by=c("seat", "runid"), all.y=T)
 if (any(is.na(edges$pid))) {
@@ -43,7 +48,7 @@ if (any(is.na(edges$pid))) {
 p <- time_to_success_plot(participants)
 ggsave("time_to_success.pdf", p, width=columnwidth, height=height, device=cairo_pdf)
 
-p <- time_to_success_plot(clamp_time_to_success(participants, 40*60))
+p <- time_to_success_plot(clamp_time_to_success(participants, maxtime))
 ggsave("time_to_success_clamped.pdf", p, width=columnwidth, height=height, device=cairo_pdf)
 
 
@@ -95,12 +100,22 @@ map_screens <- function(x) {
 	y
 }
 
+# Remove edges that start after maxtime, and trim those that overlap it
+# so their start time plus their duration exactly reaches maxtime.
+trim_edges <- function(edges, maxtime) {
+	edges <- edges[edges$time_from_start <= maxtime, ]
+	edges$duration <- ifelse(edges$time_from_start + edges$duration > maxtime, maxtime - edges$time_from_start, edges$duration)
+	edges
+}
+
 edges <- edges[order(edges$sequence, edges$time_from_start), ]
-# Keep only the edges up to the first success.
-edges <- edges[is.na(edges$time_to_success) | edges$time_from_start <= edges$time_to_success, ]
 edges$duration <- ave(edges$time_from_start, edges$seat, edges$runid, FUN=function(z) {
 	c(z[2:length(z)], z[length(z)]) - z
 })
+# Keep only the edges up to the first success.
+edges <- edges[is.na(edges$time_to_success) | edges$time_from_start <= edges$time_to_success, ]
+# Cut off the logs at our time limit.
+edges <- trim_edges(edges, maxtime)
 # Ignore "not_running" and "starting", so they just show up as blank.
 edges <- edges[!(edges$dst %in% c("not_running", "starting")), ]
 edges$src <- map_screens(edges$src)
