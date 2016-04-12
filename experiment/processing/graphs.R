@@ -107,8 +107,9 @@ edges$src <- map_screens(edges$src)
 edges$dst <- map_screens(edges$dst)
 
 # TODO: Make DNFs go all the way to 40 minutes.
-p <- ggplot(edges, aes(x=pid, xend=pid, y=time_from_start/60, yend=(time_from_start+duration)/60, color=dst))
-p <- p + geom_segment(size=1.5, lineend="butt")
+p <- ggplot(edges, aes(x=pid, xend=pid, y=time_from_start/60, yend=(time_from_start+duration)/60))
+p <- p + geom_line(size=0.2, color="black")
+p <- p + geom_segment(size=1.5, lineend="butt", aes(color=dst))
 # p <- p + geom_point(color="black", size=1.5, shape="|")
 p <- p + coord_flip()
 p <- p + labs(title=NULL, x="Participants", y="Minutes elapsed")
