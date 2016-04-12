@@ -80,7 +80,8 @@ ggsave("time_to_success_ecdf.pdf", p, width=columnwidth, height=height, device=c
 map_screens <- function(x) {
 	y <- factor(x)
 	levels(y) <- list(
-		"start"="start",
+		"not running"="not_running",
+		"starting"="starting",
 		"first"="first",
 		"bridge 1"="bridges",
 		"bridge 2"="bridgeSettings",
@@ -89,20 +90,21 @@ map_screens <- function(x) {
 		"proxy 2"="proxyYES",
 		"summary"="summary",
 		"progress"=c("progress_bar", "inlineprogress"),
-		"finish"="finish",
 		"error"="errorPanel"
 	)
 	y
 }
 
 edges <- edges[order(edges$sequence, edges$time_from_start), ]
-edges$src <- map_screens(edges$src)
-edges$dst <- map_screens(edges$dst)
 # Keep only the edges up to the first success.
 edges <- edges[is.na(edges$time_to_success) | edges$time_from_start <= edges$time_to_success, ]
 edges$duration <- ave(edges$time_from_start, edges$seat, edges$runid, FUN=function(z) {
 	c(z[2:length(z)], z[length(z)]) - z
 })
+# Ignore "not_running" and "starting", so they just show up as blank.
+edges <- edges[!(edges$dst %in% c("not_running", "starting")), ]
+edges$src <- map_screens(edges$src)
+edges$dst <- map_screens(edges$dst)
 
 # TODO: Make DNFs go all the way to 40 minutes.
 p <- ggplot(edges, aes(x=pid, xend=pid, y=time_from_start/60, yend=(time_from_start+duration)/60, color=src))

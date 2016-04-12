@@ -27,7 +27,7 @@ def is_event_wanted(event):
         return False
     if event["type"] in ("pagehide", "pageadvanced", "pagerewound"):
         return False
-    if event["type"] in ("load", "unload") and event["target_id"] == "configuration":
+    if event["type"] in ("load") and event["target_id"] == "configuration":
         return False
     if event["type"] in ("click", "command") and event.get("target_tagname") in ("menuitem", "wizard", None):
         return False
@@ -40,15 +40,15 @@ def get_id(event):
     Canonicalizes event target
     """
     if event["type"] == "start":
-        return ""
+        return "starting"
     elif event["type"] in ("mouseover", "mouseout"):
         return event["value"]
     elif event["type"] == "select":
         return "%s.%s" % (event["target_id"], event.get("value", '""'))
     elif event["type"] == "progresschanged" or (event["type"] == "click" and event["target_tagname"] == "menuitem"):
         return event["value"]
-    elif event["type"] == "unload" and event["target_id"] == "progress_bar":
-        return "finish"
+    elif event["type"] == "unload" and event["target_id"] == "configuration":
+        return "not_running"
     else:
         return event["target_id"]
 
@@ -63,11 +63,15 @@ def parse_inst_log(f):
 
     records = [record for record in records if is_event_wanted(record.event)]
 
+    current_state = "not_running"
     edges = []
 
-    current_state = "start"
     for r in records:
-        if r.event["type"] in ("pageshow", "load", "unload"):
+        if r.event["type"] == "start":
+            e = Edge(r.exec_id, r.date, current_state, current_state, ("%s %s" % (r.event["type"], get_id(r.event))).strip())
+            edges.append(e)
+            current_state = "starting"
+        if r.event["type"] in ("start", "pageshow", "load", "unload"):
             current_state = get_id(r.event)
             # Change previous edge to point to this new state.
             edges[-1] = edges[-1]._replace(dst=current_state)
