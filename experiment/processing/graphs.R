@@ -76,7 +76,7 @@ p <- common_theme(p)
 ggsave("time_to_success_ecdf.pdf", p, width=columnwidth, height=height, device=cairo_pdf)
 
 
-edges <- edges[order(edges$time_from_start), ]
+edges <- edges[order(edges$sequence, edges$time_from_start), ]
 # Keep only the edges up to the first success.
 edges <- edges[is.na(edges$time_to_success) | edges$time_from_start <= edges$time_to_success, ]
 edges$duration <- ave(edges$time_from_start, edges$seat, edges$runid, FUN=function(z) {
