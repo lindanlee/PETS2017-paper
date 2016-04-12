@@ -1,4 +1,4 @@
-FIGS = *.png old-flow.pdf new-flow.pdf time_to_success.pdf time_to_success_clamped.pdf
+FIGS = *.png old-flow.pdf new-flow.pdf time_to_success.pdf time_to_success_clamped.pdf all-participant-edges.pdf
 
 pets2017-paper.pdf: pets2017-paper.tex pets2017-paper.bib $(FIGS)
 
