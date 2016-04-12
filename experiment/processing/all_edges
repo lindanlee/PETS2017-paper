@@ -82,7 +82,7 @@ log_filename = re.compile(r'(?P<env>E\d)-(?P<version>\w\w\w)-(?P<seat>X\d\d)-(?P
 def main():
     _, filenames = getopt.gnu_getopt(sys.argv[1:], "")
 
-    csvw = csv.DictWriter(sys.stdout, fieldnames=("seat", "runid", "exec_count", "time_from_start", "time_from_last_edge", "src", "dst", "via"))
+    csvw = csv.DictWriter(sys.stdout, fieldnames=("seat", "runid", "exec_count", "sequence", "time_from_start", "time_from_last_edge", "src", "dst", "via"))
     csvw.writeheader()
 
     for filename in filenames:
@@ -98,16 +98,19 @@ def main():
             last_edge_date = edges[0].timestamp
         current_exec_id = None
         exec_count = 0
+        sequence = 0
         for edge in edges:
             if edge.exec_id != current_exec_id:
                 exec_count += 1
                 current_exec_id = edge.exec_id
+            sequence += 1
             time_from_start = (edge.timestamp - start_date).total_seconds()
             time_from_last_edge = (edge.timestamp - last_edge_date).total_seconds()
             fields = {
                 "seat": match.group("seat"),
                 "runid": match.group("runid"),
                 "exec_count": exec_count,
+                "sequence": sequence,
                 "time_from_start": "%.1f" % time_from_start,
                 "time_from_last_edge": "%.1f" % time_from_last_edge,
                 "src": edge.src,
