@@ -35,7 +35,10 @@ participants$pid <- factor(sprintf("%s-%s-%s-%s", participants$env, participants
 participants$pid <- factor(participants$pid, levels=participants$pid[order(participants$env, participants$version, participants$time_to_success)])
 
 edges <- read_edges()
-edges <- merge(edges, participants, by=c("seat", "runid"), all=T)
+edges <- merge(edges, participants, by=c("seat", "runid"), all.y=T)
+if (any(is.na(edges$pid))) {
+	stop("found NAs in edges$pid")
+}
 
 p <- time_to_success_plot(participants)
 ggsave("time_to_success.pdf", p, width=textwidth, height=height, device=cairo_pdf)
