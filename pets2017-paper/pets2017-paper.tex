@@ -354,25 +354,16 @@ After their interview, participants were informed that the experiment was over a
 given their payment of~\$30 for their time. 
 
 \subsection{Results} 
-In this section, we discuss problems encountered by our participants at each step of the configuration process and solutions to those problems. We conclude with our goals for improving the configuration interface. Because of the small sample size of qualitative studies, we can only state that these are problems that participants can encounter when configuring. We confirm the statistical significance of some of the problems in our quantitative study (Section~\ref{sec:quantitative}). All quotes are paraphrased from live transcriptions of participant interviews.\\
-
-%% The old initial results section. Dave prefers this one. 
+In this section, we discuss problems encountered by our participants at each step of the configuration process and solutions to those problems. We conclude with our goals for improving the configuration interface. Because of the small sample size of qualitative studies, we can only state that these are problems that participants can encounter when configuring. All quotes are paraphrased from live transcriptions of participant interviews.\\
 
 %We noticed four common challenges:  
-
+%
 %\begin{itemize}
-%\item {\bfseries Challenge 1:} People don't know how to choose between ``connect directly'' versus ``configure'' on the first screen. As seen in Figure \ref{fig:window1}, there is some guidance for the users, but we found this largely unhelpful since people do not understand the text on the screen. 
-%\item {\bfseries Challenge 2:} People feel compelled to set up a bridge, even if they don't need one, because they do not know how censorship works. Participants knew that they were censored to some degree since we had simulated censorship of websites. However, bridges are only necessary when the government has taken active steps to censor Tor itself.
-%\item {\bfseries Challenge 3:} When their first attempt to connect fails, the interface directs people to the last window they saw before the connection failure. The problem is not necessarily where the interface directs users, misguiding them. It was common for the interface to redirect users to the proxy window in Figure \ref{fig:window5}, even when they needed to pick another bridge. 
-%\item {\bfseries Challenge 4:} When the first attempt to connect fails, people did not know what to do or what to try next. The feedback given to users was not understood (see Figure \ref{fig:error}) and also did not guide users into specific actions (such as trying a different bridge, trying the same configuration again, try connecting directly, etc.).
+%\item {\bfseries Challenge 1:} People are not qualified to answer the bridge and proxy questions asked or to choose between the transport choices given.  
+%\item {\bfseries Challenge 2:} People feel compelled to configure a connection, even if they don't need one. 
+%\item {\bfseries Challenge 3:} It was common for users to configure proxies, rather than trouble shooting bridges. 
+%\item {\bfseries Challenge 4:} When the first attempt to connect fails, people did not know what to do or what to try next. The feedback did not guide users into specific actions.
 %\end{itemize}
-
-%\begin{figure}[t]
-%  \centering
-%    \includegraphics[width=0.5\textwidth]{error.png}
-%    \caption{An example of a technical error message which our participants did not understand.}
-%\label{fig:error}
-%\end{figure}
 
 %These problems were illustrated by our participants:
 
@@ -458,13 +449,21 @@ Additionally, the progress bar remains empty on subsequent attempts to connect t
 
 \subsubsection{User Communication} 
 Many participants, including participants who were pre-screened as having high technical ability and previous experience with using Tor, were not familiar with the vocabulary. 
+
+\begin{figure}[t]
+  \centering
+    \includegraphics[width=0.5\textwidth]{error.png}
+    \caption{An example of a technical error message which our participants did not understand.}
+\label{fig:error}
+\end{figure}
+
 \begin{quotation}
 \noindent P2:\textit{"I don't know what any of those means (list of bridges),or what that (proxy)
  means at all."}\\
  
  \noindent P3:\textit{``The vocabulary is really challenging, for someone not doing IT work.''}\\
  
- \noindent P4:\textit{``The progress bar had no feedback for me. I didn't know why I was getting back `establishing encrypted directory'--what does that mean?''}\\
+ \noindent P4:\textit{``I didn't know why I was getting back `establishing encrypted directory'--what does that mean?''}\\
 \end{quotation} 
 This discouraged our users during the process and did not communicate its intended message. 
 
@@ -759,7 +758,7 @@ Ideally, we want users in censorship environments across the world to succeed in
 
 \section{Discussion} 
 \label{sec:discussion}
-The following additional changes may be helpful: \\
+The following changes were considered, but not tested. We chose to redesign the interface in a conservative way for deployability reasons. However, these changes may be helpful for a user: \\
 
 \begin{itemize}
 \item {\bfseries Tell people what to do.} Since a majority of the users will succeed if they click connect on the first screen, replacing the information about choices with explicit instructions to connect can lessen their cognitive load during the configuration process. 
