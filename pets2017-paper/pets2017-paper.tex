@@ -540,7 +540,7 @@ Other changes improve empirical goals from Section~\ref{sec:goals}: task complet
 \item {\bfseries Added clear feedback to the progress bar.} We switched the continuous progress bar to a discrete checkpoint based progress bar that shows network components involved in connecting to the Tor network. This aligns with the mental model we are trying to build. As connections are made with components, the progress bar displays a green check, giving immediate feedback to the user. For instance, a user can can now see that the bridge was configured correctly, and they just need to wait to connect to the Tor network. Upon failure, users can see which components have succeeded and which have failed.
 \end{enumerate}
 
-The redesigned interface conservatively interacts with users by automating only safe configuration processes and still allowing users to have control over configuring all interacting network components. The design requires more maintenance because of the explicit advice given on which order to select bridges and advice on error messages, which may change as the censorship environments change. For additional changes that can be made and alternate approaches for interacting with the user, see Section~\ref{sec:discussion}. 
+The redesigned interface conservatively interacts with users by automating only safe configuration processes and still allowing users to have control over configuring all interacting network components. The design requires more maintenance because of the explicit advice given on which order to select bridges and advice on error messages, which may change as the censorship environments change. 
 
 \section{Quantitative Analyses of the Interfaces (Study 2)}
 \label{sec:quantitative}
