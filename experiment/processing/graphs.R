@@ -76,7 +76,28 @@ p <- common_theme(p)
 ggsave("time_to_success_ecdf.pdf", p, width=columnwidth, height=height, device=cairo_pdf)
 
 
+# Maps instrumentation screen names into something presentable.
+map_screens <- function(x) {
+	y <- factor(x)
+	levels(y) <- list(
+		"start"="start",
+		"first"="first",
+		"bridge 1"="bridges",
+		"bridge 2"="bridgeSettings",
+		"bridge help"="bridgeHelp",
+		"proxy 1"="proxy",
+		"proxy 2"="proxyYES",
+		"summary"="summary",
+		"progress"=c("progress_bar", "inlineprogress"),
+		"finish"="finish",
+		"error"="errorPanel"
+	)
+	y
+}
+
 edges <- edges[order(edges$sequence, edges$time_from_start), ]
+edges$src <- map_screens(edges$src)
+edges$dst <- map_screens(edges$dst)
 # Keep only the edges up to the first success.
 edges <- edges[is.na(edges$time_to_success) | edges$time_from_start <= edges$time_to_success, ]
 edges$duration <- ave(edges$time_from_start, edges$seat, edges$runid, FUN=function(z) {
