@@ -41,10 +41,10 @@ if (any(is.na(edges$pid))) {
 }
 
 p <- time_to_success_plot(participants)
-ggsave("time_to_success.pdf", p, width=textwidth, height=height, device=cairo_pdf)
+ggsave("time_to_success.pdf", p, width=columnwidth, height=height, device=cairo_pdf)
 
 p <- time_to_success_plot(clamp_time_to_success(participants, 40*60))
-ggsave("time_to_success_clamped.pdf", p, width=textwidth, height=height, device=cairo_pdf)
+ggsave("time_to_success_clamped.pdf", p, width=columnwidth, height=height, device=cairo_pdf)
 
 
 # Assign each environment a color (E1=blue, E2=orange, E3=green), with NEW
@@ -73,7 +73,7 @@ p <- p + guides(color=F)
 p <- p + labs(title=NULL, x="Minutes elapsed", y="Successful participants")
 p <- p + annotate(geom="text", x=c(1, 3.3, 14, 15.3, 23, 24.7), y=c(0.86, 0.87, 0.91, 0.71, 0.61, 0.32), label=c("E1-\nNEW", "E1-OLD", "E2-NEW", "E2-OLD", "E3-NEW", "E3-OLD"), hjust=c(1, 0, 0, 0, 0, 0), vjust=0, size=2, lineheight=0.8)
 p <- common_theme(p)
-ggsave("time_to_success_ecdf.pdf", p, width=textwidth, height=height, device=cairo_pdf)
+ggsave("time_to_success_ecdf.pdf", p, width=columnwidth, height=height, device=cairo_pdf)
 
 
 edges <- edges[order(edges$time_from_start), ]
@@ -90,4 +90,4 @@ p <- p + geom_segment(size=1.5, lineend="butt")
 p <- p + coord_flip()
 p <- p + labs(title=NULL, x="Participants", y="Minutes elapsed")
 p <- common_theme(p)
-ggsave("all-participant-edges.pdf", p, width=textwidth*2, height=9)
+ggsave("all-participant-edges.pdf", p, width=textwidth, height=textheight-0.75)
