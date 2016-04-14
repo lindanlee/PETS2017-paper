@@ -287,6 +287,27 @@ aggressive censorship environments resistant blocking entire CDNs.
 (See ~\cite{fifield2015blocking} for additional details.)
 \end{itemize}
 
+\begin{figure}
+\centering
+\begin{tabular}{r c c c}
+& E1 & E2 & E3 \\
+% \noalign{\hrule}
+websites blocked & X & & \\
+public relays blocked & X & X & \\
+default bridges blocked & X & X & X \\
+\end{tabular}
+\caption{
+Summary of our simulated censorship environments.
+E1 only requires participants to click ``Connect'';
+E2 requires selection of an included bridge;
+and E3 requires selection of a specific included bridge,
+or manual configuration of a custom bridge.
+E2's blocking is a superset of E1's;
+similarly E3's is a superset of E2's.
+}
+\label{tab:environments}
+\end{figure}
+
 These reproducible, stable environments are informed by our experience 
 with pluggable transports and knowledge of commonly seen censorship 
 techniques. Their goal in our user study is not to replicate the network 
