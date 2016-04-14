@@ -525,7 +525,6 @@ We added a summary screen as a last step before initiating a connection.\\
 \textbf{Pr}: progress bar.
 }
 \label{fig:flow}
->>>>>>> 845d3b293a5528b3f8846455e62291664425500c
 \end{figure*} 
 
 \begin{figure*}[t]
@@ -763,29 +762,33 @@ failed to connect successfully were not used to calculate the median time
 to success.}
 \end{table}
 
-\begin{figure}
-\centering
-\includegraphics{time_to_success}
-\caption{
-Time to first success, by censorship environment and interface.
-The dots show the raw completion times;
-while the boxplots show the medians and interquartile ranges.
-The ``DNF'' figures at the right
-show the number of participants who did not finish
-in the time alloted.
-}
-\label{fig:time_to_success}
-\end{figure}
-
 %\begin{figure}
 %\centering
-%\includegraphics{time_to_success_clamped}
+%\includegraphics{time_to_success}
 %\caption{
 %Time to first success, by censorship environment and interface.
-%Here, non-finishing participants are assigned a time of 40 minutes.
+%The dots show the raw completion times;
+%while the boxplots show the medians and interquartile ranges.
+%The ``DNF'' figures at the right
+%show the number of participants who did not finish
+%in the time alloted.
 %}
-%\label{fig:time_to_success_clamped}
+%\label{fig:time_to_success}
 %\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{time_to_success_clamped}
+\caption{
+Time to first success, by censorship environment and interface.
+The dots show the raw completion times,
+while the boxplots show the medians and interquartile ranges.
+The ``DNF'' figures at the right show the number of participants 
+who did not finish in the time alloted.
+Here, non-finishing participants are assigned a time of 40 minutes.
+}
+\label{fig:time_to_success_clamped}
+\end{figure}
 
 \begin{figure}
 \centering
