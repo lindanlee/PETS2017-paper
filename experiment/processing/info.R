@@ -78,20 +78,21 @@ cat("*********************\n")
 # Linear regression: 
     # is a model (can predict time to success based on ver, env, pool)
 
+# x is success rate
 success_rates = with(participants, aggregate(success, list(env=env, version=version), pct))
 
 cat("\n")
-cat("success rates and env \n")
+cat("impact of environment on success rates\n")
 kruskal.test(x ~ env, data=success_rates)
 
-cat("success rate and version \n")
+cat("impact of version on success rates \n")
 wilcox.test(x ~ version, data=success_rates)
 
 cat("\n\n\n\n")
-cat("time to completion and env \n")
+cat("impact of environment on times to completion \n")
 kruskal.test(time_to_success ~ env, data=participants)
 
-cat("time to completion and version \n")
+cat("impact of version on times to completion \n")
 wilcox.test(time_to_success ~ version, data=participants)
 
 cat("\n\n\n\n")
