@@ -10,6 +10,10 @@ pctsummary <- function(x) {
 	sprintf("%d/%d = %s", sum(x), length(x), format_percent(mean(x)))
 }
 
+pct <- function(x) {
+  mean(x)
+}
+
 format_minutes <- function(x) {
 	sprintf("%dm%04.1fs", x %/% 60, x %% 60)
 }
@@ -17,6 +21,11 @@ format_minutes <- function(x) {
 median_time_summary <- function(x) {
 	format_minutes(median(x, na.rm=T))
 }
+
+cat("\n\n\n\n\n\n")
+cat("***********\n")
+cat("* SUMMARY *\n")
+cat("***********\n")
 
 cat(sprintf("number of participants: %d (%d good, %d bad)\n",
 	length(participants$good), sum(participants$good), sum(!participants$good)))
@@ -37,30 +46,62 @@ cat(sprintf("success rate per condition per pool\n"))
 with(participants, aggregate(success, list(env=env, version=version, pool=pool), pctsummary))
 
 cat("\n")
-cat(sprintf("ANOVA of success by env and version\n"))
-summary(aov(success ~ env+version, data=participants))
-
-for (env in levels(participants$env)) {
-	cat("\n")
-	cat(sprintf("t-test of success rate in env %s\n", as.character(env)))
-	try(print(with(participants[participants$env==env, ], t.test(success[version=="NEW"], success[version=="OLD"]))))
-}
-
-cat("\n")
-cat(sprintf("ANOVA of time_to_success by env and version\n"))
-summary(aov(time_to_success ~ env+version, data=participants))
-
-for (env in levels(participants$env)) {
-	cat("\n")
-	cat(sprintf("t-test of time_to_success in env %s\n", as.character(env)))
-	try(print(with(participants[participants$env==env, ], t.test(time_to_success[version=="NEW"], time_to_success[version=="OLD"]))))
-}
-
-
-cat("\n")
 cat(sprintf("median time to success per condition\n"))
 with(participants, aggregate(time_to_success, list(env=env, version=version), median_time_summary))
 
+cat("\n")
+max.e1.new <- max(participants$time_to_success[participants$env=="E1" & participants$version=="NEW"])
+cat(sprintf("maximum time for E1-NEW: %s\n", format_minutes(max.e1.new)))
+
+cat("\n\n\n\n\n\n")
+cat("*********************\n")
+cat("* STATISTICAL TESTS *\n")
+cat("*********************\n")
+
+# Mann-Whitney-Wilcox:
+    # does not assume a normal distribution.
+    # compares 2 groups of independent measures.
+    # measures must be continuous (success rates, time to success)
+
+# Kruskal-Wallis: 
+    # does not assume a normal distribution. 
+    # compares >2 groups of independent measures. 
+    # measures must be continuous (success rates, time to success)
+
+# Logistic regression: 
+    # is a classifier (can predict success/fail based on ver, env, pool)
+
+# Linear regression: 
+    # is a model (can predict time to success based on ver, env, pool)
+
+success_rates = with(participants, aggregate(success, list(env=env, version=version), pct))
+
+cat("\n")
+cat("success rates and env \n")
+kruskal.test(x ~ env, data=success_rates)
+
+cat("success rate and version \n")
+wilcox.test(x ~ version, data=success_rates)
+
+cat("\n\n\n\n")
+cat("time to completion and env \n")
+kruskal.test(time_to_success ~ env, data=participants)
+
+cat("time to completion and version \n")
+wilcox.test(time_to_success ~ version, data=participants)
+
+cat("\n\n\n\n")
+cat("logistic regression predicting success by ver, env, pool \n")
+#glm()
+
+cat("\n")
+cat("linear regression predicting time to success by ver, env, pool \n")
+#lm()
+
+cat("\n\n\n\n\n\n")
+cat("***************\n")
+cat("* OTHER STUFF *\n")
+cat("***************\n")
 
 time_ecdf <- function(participants, env, version) {
 	ecdf(
@@ -77,10 +118,6 @@ ecdf.e2.new <- time_ecdf(participants, "E2", "NEW")
 ecdf.e2.old <- time_ecdf(participants, "E2", "OLD")
 ecdf.e3.new <- time_ecdf(participants, "E3", "NEW")
 ecdf.e3.old <- time_ecdf(participants, "E3", "OLD")
-
-cat("\n")
-max.e1.new <- max(participants$time_to_success[participants$env=="E1" & participants$version=="NEW"])
-cat(sprintf("maximum time for E1-NEW: %s\n", format_minutes(max.e1.new)))
 
 ecdfs <- list(
 	"E1-NEW"=ecdf.e1.new,
@@ -104,3 +141,4 @@ for (e in names(ecdfs)) {
 	cat(sprintf(" \\\\\n"))
 }
 cat("\\end{tabular}\n")
+cat("\n\n\n\n\n\n")
