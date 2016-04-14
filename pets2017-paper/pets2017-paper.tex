@@ -418,24 +418,6 @@ given their payment of~\$30 for their time.
 \subsection{Results} 
 In this section, we discuss problems encountered by our participants at each step of the configuration process and solutions to those problems. We conclude with our goals for improving the configuration interface. Because of the small sample size of qualitative studies, we can only state that these are problems that participants can encounter when configuring. All quotes are not verbatim, but from best-effort live transcriptions of participant interviews.
 
-%We noticed four common challenges:  
-%
-%\begin{itemize}
-%\item {\bfseries Challenge 1:} People are not qualified to answer the bridge and proxy questions asked or to choose between the transport choices given.  
-%\item {\bfseries Challenge 2:} People feel compelled to configure a connection, even if they don't need one. 
-%\item {\bfseries Challenge 3:} It was common for users to configure proxies, rather than trouble shooting bridges. 
-%\item {\bfseries Challenge 4:} When the first attempt to connect fails, people did not know what to do or what to try next. The feedback did not guide users into specific actions.
-%\end{itemize}
-
-%These problems were illustrated by our participants:
-
-%\begin{itemize}
-%\item {\bfseries Proof of Challenge 1:} Of the five participants who could click directly to the network, three participants (P3,P4,P10) did not choose to connect directly.  Of the eleven participants who needed to configure their connection, eight (P1, P5, P6, P7, P8, P11, P13, P14, P16) chose to connect directly. One participant (P12) clicks configure, but answers the questions in such a way that it creates a direct connection. Only one (P15) chose to configure when they needed to.
-%\item {\bfseries Proof of Challenge 2:} Five participants were placed in a censored environment which did not block Tor. Three of the five (P3, P4, P10) configured a bridge for their connection. Of the other two, one participant (P2) was convinced that configuring a bridge was the correct course of action, but was intimidated at the thought of doing so and was pleasantly surprised when a direct connection succeeded; only one participant (P9) believed that a direct connection would work. 
-%\item {\bfseries Proof of Challenge 3:} All three of our participants who failed to circumvent the simulated censorship environment (P14, P15, P16) spent 25-30 minutes trying to correctly configure a proxy, which was never necessary to connect to the Tor network. Out of the five participants who needed to fix their bridge settings, there were only two participants (P5, P6) who eventually were able to figure out that their bridge settings needed to be adjusted.
-%\item {\bfseries Proof of Challenge 4:} One participant (P14) tried the same configuration seven times, even though those settings failed each time. Another participant (P12) tries the same configuration three times, and only manages to connect through a technical artifact of the experiment even though that should not have worked. Both of these participants emphasized that they did not know what they should be doing. Other participants' interview responses also indicate a lack of feedback after failure cases (P8, P15, P16). 
-%\end{itemize}
-
 \subsubsection{User Communication} 
 Many participants, including participants who were pre-screened as having high technical ability and previous experience with using Tor, were not familiar with the vocabulary. 
 
@@ -557,14 +539,6 @@ Tor Browser 5.0.3. configuration interface does not adequately meet our heuristi
 \item {\bfseries Cosmetic Problem}: The interface can be simplified visually.  
  \end{itemize} 
 
-%HEURISTICS
-%\begin{enumerate}
-%    \item  {\bfseries Visibility of system status}: provide feedback on what the system is doing. 
-%    \item  {\bfseries Error management}: expressing errors in plain language and offering a solution. 
-%    \item  {\bfseries Understandable language}: explaining the task, rather than technical concepts. 
-%    \item  {\bfseries Simple design}: showing options on an as-needed basis. 
-%\end{enumerate}
-
 To fix the aforementioned problems, we made the following changes: \\
 
 \begin{enumerate}
@@ -573,13 +547,6 @@ To fix the aforementioned problems, we made the following changes: \\
 \item {\bfseries Added system status visibility.} Before any attempt to connect to the Tor network, a summary screen displays if a bridge or proxy is configured, and if so, what the configurations are. The progress screen also displays the configurations while the connection attempt is being made. 
 \item {\bfseries Reduced visual clutter.} We showed options on an as-needed basis and we minimized the amount of text on the screen. For instance, additional fields were hidden until the relevant options were chosen. Additional stylistic simplifications were made, such as removing grouping boxes. 
 \end{enumerate} 
-
-%EMPIRICALS
-%\begin{enumerate}
-%    \item {\bfseries Task Completion}: Almost all can successfully connect to Tor
-%    \item {\bfseries  Time to Completion}: Time to completion. 
-%    \item {\bfseries Safe for High-Risk Users}: It should be possible to configure Tor with the interface that it doesn't leak that they are using Tor. 
-%\end{enumerate}
 
 Other changes improve empirical goals from Section~\ref{sec:goals}: task completion, time to completion, and safe for high-risk users. 5-6 improve task completion, 7-8 reduce time to completion, and 9-10 builds users' mental models of censorship circumvention and network components involved. Users' full control of the configuration process remains preserved.\\
 
