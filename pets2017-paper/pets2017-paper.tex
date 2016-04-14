@@ -91,7 +91,7 @@ of adversaries. In fact, some countries unsuccessfully attempt to block Tor for 
 To our knowledge, this is the first user study investigating the usability of Tor as a 
 censorship circumvention tool.
 
-We believe that this is a great opportunity for user research. We have the opportunity to help users circumvent censorship more easily and provide them with extra security features, such as anonymity. Not only does improving the interface help the user trying to circumvent censorship, it helps other users who use Tor as an anonymity system by increasing the number of overall users ~\cite{dingledine2006anonymity}. 
+We believe that this is a great opportunity for user research. We have the opportunity to help users circumvent censorship more easily and provide them with extra security features, such as anonymity. Not only does improving the interface help the user trying to circumvent censorship, it helps other users who use Tor as an anonymity system by increasing the number of overall users~\cite{dingledine2006anonymity}. 
 
 This study aims to understand of what is confusing about the configuration process and what find changes make the process easier. Our study consists of three stages. User interactions with the current interface in various censorship environments generated the problems we address in the study. User feedback and observations of users steered the design process for an improved configuration interface. User metrics, such as success rate and time to completion, measured how well the interfaces served their purpose.  
 
@@ -113,11 +113,11 @@ and provides a safe path for at-risk users in Section~{\color{red} TODO}.
 \section{Related Work} 
 There have been three published user studies on Tor. Clark et. al examined various deployment
 options for Tor Browser, such as Vidalia, Privoxy, Torbutton, and Foxyproxy, and found that none of them 
-were satisfactory from a usability perspective ~\cite{clark2007usability}. Fabian et. al show that Tor's added latency 
+were satisfactory from a usability perspective~\cite{clark2007usability}. Fabian et. al show that Tor's added latency 
 ~\cite{dingledine2009performance} causes users
-to be frustrated, cancel requests more often, and prevents user adoption ~\cite{fabian2010privately}. 
+to be frustrated, cancel requests more often, and prevents user adoption~\cite{fabian2010privately}. 
 Norcie et. al found found that 
-64\% of users are unable to continue with installation or browsing at least once due to difficulties ~\cite{norcie2012eliminating}. 
+64\% of users are unable to continue with installation or browsing at least once due to difficulties~\cite{norcie2012eliminating}. 
 
 There have been been no published usability evaluations of
 Tor Browser since the 4.0 series, which introduced radical UI changes. 
@@ -132,7 +132,7 @@ This study examines that interface, and effectively, the usability of Tor as a c
 This section examines Internet censorship, interface network components that circumvent censorship, and the Tor Browser 5.0.3 configuration interface. 
 
 \subsection{Censorship Today} 
-Internet censorship is widespread throughout the world ~\cite{faris2008measuring}. Although there are corporations, parental controls, and other forms of censorship, the most common form of censorship is done by a nation-state power, usually without the consent of the people in that residing nation. The risks associated with circumventing Internet censorship are largely based on geographic location, prevalence of censorship circumvention, and political status. 
+Internet censorship is widespread throughout the world~\cite{faris2008measuring}. Although there are corporations, parental controls, and other forms of censorship, the most common form of censorship is done by a nation-state power, usually without the consent of the people in that residing nation. The risks associated with circumventing Internet censorship are largely based on geographic location, prevalence of censorship circumvention, and political status. 
 
 \subsection{Interacting Network Components} 
 Bridges, pluggable transports, and proxies are network components that 
@@ -283,7 +283,7 @@ This is because domain-fronting requires censors to block entire CDNs to also
 block this transport, which causes huge collateral blocking damage that
 makes the censorship very visible and inconvenient. Currently, even
 aggressive censorship environments resistant blocking entire CDNs.
-(See ~\cite{fifield2015blocking} for additional details.)
+(See~\cite{fifield2015blocking} for additional details.)
 \end{itemize}
 
 \begin{figure}
@@ -316,7 +316,7 @@ so that interface paths are tested.
 \subsection{Recruitment}
 Using established practices from the field of user experience research~\cite{howmanyusers},
 we recruited 5 participants for each censorship environment.
-We pre-screened ~\cite{screening} our participants for diversity of gender, age, technical expertise,
+We pre-screened~\cite{screening} our participants for diversity of gender, age, technical expertise,
 and self-reported familiarity with Tor in each simluated censorship environment for our summative
 usability test~\cite{summative}. 
 
@@ -351,7 +351,7 @@ experiment begins. A researcher reads a script (Appendix~\ref{qualitative-script
 informs the participant of the simulated censorship environment and
 instruct them to visit a sample blocked website and a sample non-blocked website on a
 non-Tor browser of their choice to illustrate the situation. Then, participants are asked to 
-complete a worksheet (Appendix ~\ref{participant-worksheet}) that gives information
+complete a worksheet (Appendix~\ref{participant-worksheet}) that gives information
 on their censorship environment and instructs them
 to visit one blocked website and one non-blocked website.
  
@@ -473,7 +473,7 @@ After the bridge configuration, the participant is asked if they need a proxy an
 \noindent P11:\textit{``I think you can only answer this question (does this computer need a local proxy) if you know what a local proxy is. Otherwise, you have no chance..''}
 \end{quotation}
 
-For our participants, trying to unsuccessfully configure a proxy was the only mistake that resulted in failure. On the first attempt at configuration, most chose to not configure a proxy. Since the interface passively re-displayed a proxy-related window after an attempted connection regardless of the error, participants incorrectly assumed that they needed a proxy. Participants did not check their incorrect assumption ~\cite{wason1960failure}. All who chose to configure a proxy were unsuccessful. 
+For our participants, trying to unsuccessfully configure a proxy was the only mistake that resulted in failure. On the first attempt at configuration, most chose to not configure a proxy. Since the interface passively re-displayed a proxy-related window after an attempted connection regardless of the error, participants incorrectly assumed that they needed a proxy. Participants did not check their incorrect assumption~\cite{wason1960failure}. All who chose to configure a proxy were unsuccessful. 
 
 \begin{quotation}
 \noindent P15:\textit{``I didn't know if this computer had any proxy information. I wasn't able to find it if it did.''}
@@ -482,7 +482,7 @@ For our participants, trying to unsuccessfully configure a proxy was the only mi
 None of our censorship environments required our participants to configure a proxy for a successful connection. Participants followed the directions to look at the Internet settings, but they never found the (nonexistent) information.
 
 \subsubsection{Progress Bar} 
-Users were generally displeased with the lack of feedback on the progress bar. Users do tolerate delays if they are for security reasons, but only if they understand the reason ~\cite{egelmanplease}. Participants in our study usually did not understand the security reason, and experienced delays up to 2 minutes, even in the ideal case in which a user chose the correct configuration on the first attempt. If users chose particular wrong configurations (i.e. a syntactically valid but nonfunctional proxy), they would be waiting for an indefinite period of time. 
+Users were generally displeased with the lack of feedback on the progress bar. Users do tolerate delays if they are for security reasons, but only if they understand the reason~\cite{egelmanplease}. Participants in our study usually did not understand the security reason, and experienced delays up to 2 minutes, even in the ideal case in which a user chose the correct configuration on the first attempt. If users chose particular wrong configurations (i.e. a syntactically valid but nonfunctional proxy), they would be waiting for an indefinite period of time. 
 
 \begin{quotation}
 \noindent P16:\textit{``There doesn't seem to be a timeout on any of this stuff. Am I waiting long enough? It should work immediately.''}\\
@@ -513,7 +513,7 @@ Additionally, the progress bar remains empty on subsequent attempts to connect t
 		\caption{proxy-screens} 
 \end{figure*} 
 
-Tor Browser 5.0.3. configuration interface does not adequately meet our heuristic evaluation criteria from Section~\ref{sec:goals}: visibility of system status, user control and freedom, error management, understandable language, and minimal design. We rate the severity of the issue by its frequency, impact, and persistence ~\cite{nielsen1994heuristic}:\\
+Tor Browser 5.0.3. configuration interface does not adequately meet our heuristic evaluation criteria from Section~\ref{sec:goals}: visibility of system status, user control and freedom, error management, understandable language, and minimal design. We rate the severity of the issue by its frequency, impact, and persistence~\cite{nielsen1994heuristic}:\\
 
 \begin{itemize}
 \item {\bfseries Major Problem}: Error messages do not express errors in plain language nor offer solutions. 
