@@ -18,6 +18,10 @@ format_minutes <- function(x) {
 	sprintf("%dm%04.1fs", x %/% 60, x %% 60)
 }
 
+format_minutes_colons <- function(x) {
+	sprintf("%d:%02.f", x %/% 60, x %% 60)
+}
+
 median_time_summary <- function(x) {
 	format_minutes(median(x, na.rm=T))
 }
@@ -102,6 +106,26 @@ cat("\n\n\n\n\n\n")
 cat("***************\n")
 cat("* OTHER STUFF *\n")
 cat("***************\n")
+
+cat("\n")
+tt <- with(participants, aggregate(success, list(env=env, version=version), FUN=length))
+tt <- merge(tt, with(participants, aggregate(success, list(env=env, version=version), FUN=sum)), by=c("env", "version"))
+tt <- merge(tt, with(participants, aggregate(time_to_success, list(env=env, version=version), FUN=function(z) {median(z, na.rm=T)})), by=c("env", "version"))
+names(tt) <- c("env", "version", "n", "n_success", "median_time_to_success")
+
+cat("\n")
+cat("\\begin{tabular}{l r r r r}\n")
+cat("& \\multicolumn{2}{c}{success rate} & \\multicolumn{1}{c}{median time} \\\\\n")
+cat("& \\multicolumn{2}{c}{after 40 minutes} & \\multicolumn{1}{c}{to success} \\\\\n")
+cat("\\noalign{\\hrule}\n")
+for (i in 1:nrow(tt)) {
+	cat(sprintf("%s-%s & %d/%d & %.f\\%% & %s \\\\\n",
+		tt$env[[i]], tt$version[[i]],
+		tt$n_success[[i]], tt$n[[i]], 100 * tt$n_success[[i]] / tt$n[[i]],
+		format_minutes_colons(tt$median_time_to_success[[i]])))
+}
+cat("\\end{tabular}\n")
+
 
 time_ecdf <- function(participants, env, version) {
 	ecdf(
