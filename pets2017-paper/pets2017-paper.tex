@@ -225,13 +225,6 @@ bridge specifications.
 Fig.~\ref{fig:bridge-options} shows the bridge options
 presented to a user in Tor Browser~5.0.3.
 
-\begin{figure*}[t]
-	\centering
-		\includegraphics[width=1.0\textwidth]{old-flow.pdf} 
-		\caption{old flow} 
-	\label{fig:old-flow}
-\end{figure*} 
-
 \section{Goals/Evaluation Criteria}
 \label{sec:goals}
 We evaluate the existing and redesigned Tor Browser configuration interface 
@@ -512,6 +505,14 @@ Users were generally displeased with the lack of feedback on the progress bar. U
 Additionally, the progress bar remains empty on subsequent attempts to connect to the Tor Network until the percent progress supersedes the last displayed progress value (i.e. a participant who saw 30\% progress on their first attempt would see 0\% progress in the progress bar until subsequent attempts got at least 40\% progress). The negative feedback of a 0\% progress bar would cause users to assume that their subsequent attempts were wrong, even if they were correct. 
 
 \section{Redesigning the Configuration Interface}
+
+\begin{figure*}[t]
+	\centering
+		\includegraphics[width=.85\textwidth]{old-flow.pdf} 
+		\caption{old flow} 
+	\label{fig:old-flow}
+\end{figure*} 
+
 \begin{figure*}[t]
 	\centering
 		\includegraphics[width=1.0\textwidth]{new-flow.pdf} 
@@ -520,13 +521,13 @@ Additionally, the progress bar remains empty on subsequent attempts to connect t
 
 \begin{figure*}[t]
 	\centering
-		\includegraphics[width=1.0\textwidth]{bridge-screens.pdf} 
+		\includegraphics[width=.8\textwidth]{bridge-screens.pdf} 
 		\caption{bridge screens} 
 \end{figure*} 
 
 \begin{figure*}[t]
 	\centering
-		\includegraphics[width=1.0\textwidth]{proxy-screens.pdf} 
+		\includegraphics[width=.8\textwidth]{proxy-screens.pdf} 
 		\caption{proxy-screens} 
 \end{figure*} 
 
