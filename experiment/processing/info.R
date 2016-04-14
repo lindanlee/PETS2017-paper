@@ -96,11 +96,19 @@ wilcox.test(time_to_success ~ version, data=participants)
 
 cat("\n\n\n\n")
 cat("logistic regression predicting success by ver, env, pool \n")
-#glm()
+#just env, version, pool, and success columns
+participants_glm_subset <- subset(participants,select=c(5,6,9,10))
+model <- glm(success ~.,family=binomial(link='logit'),data=participants_glm_subset)
+summary(model)
+#cat("\n\n\n")
+#anova(model)
 
-cat("\n")
+cat("\n\n\n\n")
 cat("linear regression predicting time to success by ver, env, pool \n")
-#lm()
+#just env, version, pool, and time_to_success columns
+participants_lm_subset <- subset(participants,select=c(5,6,9,11))
+model <- lm(time_to_success ~.,data=participants_lm_subset)
+summary(model)
 
 cat("\n\n\n\n\n\n")
 cat("***************\n")
