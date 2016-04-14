@@ -275,49 +275,60 @@ of features used to accomplish typical tasks, taking note of long sequences or c
 steps. To focus our observations, a heuristic evaluation was performed to mark design issues 
 that may cause confusion for users during our study. 
 
-\subsection{Setup}
-\label{sec:setup}
-We simulated three censorship environments for our qualitative and quantitative user studies. \\
+\subsection{Censorship Environments}
+\label{sec:environments}
+We simulated three censorship environments,
+which we labeled ``E1,'' ``E2,'' and ``E3''
+in order of increasing severity.
+We designed the environments to be representative
+of what, in our estimation, are important real-world
+cases of censorship, but they are not intended to imitate
+any particular country's censorship exactly.
 
-\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
-\item {\bfseries Mild censorship (E1)}: 
-(Representative of countries such as France and Australia.)
-Certain domains are blocked. Reaching these 
-domains requires a censorship circumvention 
-tool like Tor, but Tor is not explicitly blocked. 
-The default option to ``connect'' to the Tor network 
-directly will circumvent this censor. Additional correct
-bridge or proxy configurations are optional. 
+\smallskip
 
-\item {\bfseries Intermediate censorship (E2)}: 
-(Representative of countries such as Tunisia.)
-Certain domains are blocked. Censorship circumvention
-tools such as Tor are blocked. Since all public Tor
-relay nodes are blocked, the default option to ``connect'' to the Tor network
-directly will fail. Any choice of a hard-coded bridge
-or a valid non-public bridge will circumvent this censor.  
-Additional correct proxy configuration is optional.
+\begin{description}
+\item[E1: Mild censorship]
+The E1 environment only blocks some websites,
+as if by DNS poisoning.
+We blocked subdomains of torproject.org
+and wikipedia.org.
+(Reading a page on en.wikipedia.org was the participants' main goal.)
+To succeed in this environment,
+participants had only to click ``Connect'' on the first screen;
+additional configuration was possible but unnecessary.
+% (Representative of countries such as France and Australia.)
 
-\item {\bfseries Comprehensive censorship (E3)}:
-(Representative of countries such as China and Syria.)
-Certain domains are blocked. Censorship circumvention tools
-are thoroughly blocked. Tor is blocked by blocking all public
-Tor relay nodes, and the censor has examined source code to block
-all hard-coded bridge relays in the configuration interface. The default option
-to ``connect'' to the Tor network directly will fail. Most bridges will fail,
-but ``meek-amazon,'' ``meek-azure,'' and ``meek-google'' still work.
-This is because domain-fronting requires censors to block entire CDNs to also
-block this transport, which causes huge collateral blocking damage that
-makes the censorship very visible and inconvenient. Currently, even
-aggressive censorship environments resistant blocking entire CDNs.
-(See~\cite{fifield2015blocking} for additional details.)
-\end{itemize}
+\item[E2: Intermediate censorship]
+The E2 environment blocks websites as in E1;
+and additionally blocks the IP addresses of public Tor relays
+and directory authorities, simulating a censor that knows
+about circumvention and tries to stop it.
+In this environment, simply clicking ``Connect'' will not work;
+participants had at least to select a built-in bridge
+(any type other than ``flashproxy'' would work).
+A custom bridge would work but was not necessary.
+% (Representative of countries such as Tunisia.)
 
-These reproducible, stable environments are informed by our experience 
-with pluggable transports and knowledge of commonly seen censorship 
-techniques. Their goal in our user study is not to replicate the network 
-environment in any particular country, but to require our distinct configurations
-so that interface paths are tested.
+\item[E3: Comprehensive censorship]
+The E3 environment blocks websites and Tor relays as in E1 and E2;
+and additionally blocks the built-in default bridge IP addresses
+found in the Tor Browser source code.
+To succeed in this environment, participants had either to select
+one of the ``meek'' built-in bridges (no other type would work),
+or to acquire their own custom bridge and enter it manually.
+% (Representative of countries such as China and Syria.)
+\end{description}
+
+\smallskip
+
+Table~\ref{tab:environments} summarizes what is blocked
+in each environment.
+We used features of the Windows operating system to implement
+the above environments.
+To simulate website blocking, we added entries to the hosts file,
+mapping domain names to the address 127.0.0.1.
+For IP address blocking, we used Windows Firewall rules.
 
 \begin{table}
 \centering
@@ -331,8 +342,8 @@ default bridges blocked & & & X \\
 \caption{
 Summary of our simulated censorship environments.
 E1 only requires participants to click ``Connect'';
-E2 requires selection of an included bridge;
-and E3 requires selection of a specific included bridge,
+E2 requires selection of a built-in bridge;
+and E3 requires selection of a specific type of built-in bridge,
 or manual configuration of a custom bridge.
 E2's blocking is a superset of E1's;
 similarly E3's is a superset of E2's.
@@ -593,7 +604,7 @@ This section shows the details of our quantitative user study, such as the censo
 We simulated the same three censorship environments from 
 our qualitative user study. Details of the mild, intermediate, and advanced 
 censorship environments and what configurations are necessary for a 
-successful connection can be found in Section~\ref{sec:setup}. 
+successful connection can be found in Section~\ref{sec:environments}.
 
 We instrumented Tor Launcher 5.0.3 and our redesigned Tor Launcher.
 The instrumentation logs recorded every meaningful interaction with the interface---every
