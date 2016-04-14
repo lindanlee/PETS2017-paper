@@ -135,6 +135,7 @@ This section examines Internet censorship, interface network components that cir
 Internet censorship is widespread throughout the world~\cite{faris2008measuring}. Although there are corporations, parental controls, and other forms of censorship, the most common form of censorship is done by a nation-state power, usually without the consent of the people in that residing nation. The risks associated with circumventing Internet censorship are largely based on geographic location, prevalence of censorship circumvention, and political status. 
 
 \subsection{Interacting Network Components} 
+\label{sec:components}
 Bridges, pluggable transports, and proxies are network components that 
 circumvent censorship and interact with the Tor configuration interface. 
 These components are shown in Fig.~\ref{fig:topology}.
@@ -508,15 +509,23 @@ Additionally, the progress bar remains empty on subsequent attempts to connect t
 
 \begin{figure*}[t]
 	\centering
-		\includegraphics[width=.85\textwidth]{old-flow.pdf} 
-		\caption{old flow} 
-	\label{fig:old-flow}
-\end{figure*} 
-
-\begin{figure*}[t]
-	\centering
+		\includegraphics[width=.85\textwidth]{old-flow.pdf}
+\hrule
 		\includegraphics[width=1.0\textwidth]{new-flow.pdf} 
-		\caption{new flow} 
+\caption{
+Comparison of user flow in the ``OLD'' and ``NEW'' interfaces.
+We collapsed the two bridge screens into one;
+similarly the two proxy screens.
+We swapped the order of the bridge and proxy configuration
+so it matches the order of network components (Section~\ref{sec:components}).
+We added a summary screen as a last step before initiating a connection.\\
+\textbf{F}: first screen;
+\textbf{B/B1/B2}: bridge screens;
+\textbf{P/P1/P2}: proxy screens;
+\textbf{S}: summary screen;
+\textbf{Pr}: progress bar.
+}
+\label{fig:flow}
 \end{figure*} 
 
 \begin{figure*}[t]
