@@ -191,6 +191,40 @@ A series of questions determines which configuration a user requires. The interf
 
 This puts the burden of knowing technical information and configuring correctly on the user. Note that bridges, pluggable transports, and proxies are technical concepts that are likely unfamiliar to the average user. Although burdensome, the interface takes the approach of guiding the user through this technical process in order to give users their own agency in configuring their connection. There has been no previous work to explore the option of automation, but a manual configuration was preferred by Tor developers since it allows the user can have control over the process. If a user had all the relevant information, they would be able to connect without obvious network traces of attempting to connect to Tor. 
 
+\begin{figure}
+\small
+\begin{itemize}
+\renewcommand{\labelitemi}{$\circ$}
+\item Connect with provided bridges\\
+Transport type:
+\begin{itemize}
+\item flashproxy
+\item fte
+\item fte-ipv6
+\item meek-amazon
+\item meek-azure
+\item meek-google
+\item obfs3 (recommended)
+\item obfs4
+\item scramblesuit
+\end{itemize}
+\item Enter custom bridges\qquad\fbox{Help}\\
+\end{itemize}
+\caption{
+Bridge selection options in Tor Browser~5.0.3.
+The obscure strings under ``Connect with provided bridges'' denote various
+built-in circumvention technologies (``pluggable transports'').
+Under ``Enter custom bridges'', there is a space to paste in
+a bridge specification that was obtained out of band.
+The ``Help'' button displays instructions on obtaining such
+bridge specifications.
+}
+\label{fig:bridge-options}
+\end{figure}
+
+Fig.~\ref{fig:bridge-options} shows the bridge options
+presented to a user in Tor Browser~5.0.3.
+
 \begin{figure*}[t]
 	\centering
 		\includegraphics[width=1.0\textwidth]{old-flow.pdf} 
