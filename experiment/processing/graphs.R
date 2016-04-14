@@ -79,18 +79,24 @@ p <- common_theme(p)
 ggsave("time_to_success_ecdf.pdf", p, width=columnwidth, height=height, device=cairo_pdf)
 
 
-# Maps instrumentation screen names into something presentable.
-map_screens <- function(x) {
+# Canonicalize screen names from the OLD and NEW interfaces.
+canonicalize_screens <- function(version, x) {
 	y <- factor(x)
+	# In the NEW interface, the screen that's logged as "bridges"
+	# corresponds more closely to the "bridgeSettings" screen in the OLD
+	# interface than it does the OLD "bridges" screen. Similarly NEW
+	# "proxy" corresponds to OLD "proxyYES".
+	y[version=="NEW" & y=="bridges"] <- "bridgeSettings"
+	y[version=="NEW" & y=="proxy"] <- "proxyYES"
 	levels(y) <- list(
-		"not running"="not_running",
+		"not_running"="not_running",
 		"starting"="starting",
 		"first"="first",
-		"bridge 1"="bridges",
-		"bridge 2"="bridgeSettings",
-		"bridge help"="bridgeHelp",
-		"proxy 1"="proxy",
-		"proxy 2"="proxyYES",
+		"bridges"="bridges",
+		"bridgeSettings"="bridgeSettings",
+		"bridgeHelp"="bridgeHelp",
+		"proxy"="proxy",
+		"proxyYES"="proxyYES",
 		"summary"="summary",
 		"progress"=c("progress_bar", "inlineprogress"),
 		"error"="errorPanel"
@@ -116,8 +122,8 @@ edges <- edges[is.na(edges$time_to_success) | edges$time_from_start <= edges$tim
 edges <- trim_edges(edges, maxtime)
 # Ignore "not_running" and "starting", so they just show up as blank.
 edges <- edges[!(edges$dst %in% c("not_running", "starting")), ]
-edges$src <- map_screens(edges$src)
-edges$dst <- map_screens(edges$dst)
+edges$src <- canonicalize_screens(edges$version, edges$src)
+edges$dst <- canonicalize_screens(edges$version, edges$dst)
 
 state.palette <- brewer.pal(length(levels(edges$dst)), "Set1")
 
@@ -128,7 +134,17 @@ p <- p + geom_segment(data=edges, size=1.5, lineend="butt", aes(x=pid, xend=pid,
 p <- p + geom_point(data=participants[is.na(participants$time_to_success), ], aes(x=pid, y=maxtime/60), shape=4)
 p <- p + coord_flip()
 p <- p + scale_y_continuous(breaks=pretty_breaks(n=10))
-p <- p + scale_color_manual(values=state.palette)
+p <- p + scale_color_manual(values=state.palette, labels=c(
+	"first"="first (F)",
+	"bridges"="bridge yes/no (B1)",
+	"bridgeSettings"="bridge settings (B2/B)",
+	"bridgeHelp"="bridge help (BH)",
+	"proxy"="proxy yes/no (P1)",
+	"proxyYES"="proxy settings (P2/P)",
+	"summary"="summary (S)",
+	"progress"="progress (Pr)",
+	"error"="error"
+))
 p <- p + labs(title=NULL, x="Participants", y="Minutes elapsed")
 p <- common_theme(p)
 p <- p + theme(panel.grid.minor.x=element_blank())
