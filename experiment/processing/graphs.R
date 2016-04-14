@@ -95,7 +95,7 @@ map_screens <- function(x) {
 		"progress"=c("progress_bar", "inlineprogress"),
 		"error"="errorPanel"
 	)
-	y
+	droplevels(y)
 }
 
 # Remove edges that start after maxtime, and trim those that overlap it
@@ -119,6 +119,8 @@ edges <- edges[!(edges$dst %in% c("not_running", "starting")), ]
 edges$src <- map_screens(edges$src)
 edges$dst <- map_screens(edges$dst)
 
+state.palette <- brewer.pal(length(levels(edges$dst)), "Set1")
+
 p <- ggplot()
 p <- p + geom_segment(data=participants, size=0.2, color="black", aes(x=pid, xend=pid, y=0, yend=ifelse(!is.na(time_to_success), time_to_success, maxtime)/60))
 p <- p + geom_segment(data=edges, size=1.5, lineend="butt", aes(x=pid, xend=pid, y=time_from_start/60, yend=(time_from_start+duration)/60, color=dst))
@@ -126,6 +128,7 @@ p <- p + geom_segment(data=edges, size=1.5, lineend="butt", aes(x=pid, xend=pid,
 p <- p + geom_point(data=participants[is.na(participants$time_to_success), ], aes(x=pid, y=maxtime/60), shape=4)
 p <- p + coord_flip()
 p <- p + scale_y_continuous(breaks=pretty_breaks(n=10))
+p <- p + scale_color_manual(values=state.palette)
 p <- p + labs(title=NULL, x="Participants", y="Minutes elapsed")
 p <- common_theme(p)
 p <- p + theme(panel.grid.minor.x=element_blank())
