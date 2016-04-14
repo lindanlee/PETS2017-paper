@@ -135,6 +135,7 @@ This section examines Internet censorship, interface network components that cir
 Internet censorship is widespread throughout the world~\cite{faris2008measuring}. Although there are corporations, parental controls, and other forms of censorship, the most common form of censorship is done by a nation-state power, usually without the consent of the people in that residing nation. The risks associated with circumventing Internet censorship are largely based on geographic location, prevalence of censorship circumvention, and political status. 
 
 \subsection{Interacting Network Components} 
+\label{sec:components}
 Bridges, pluggable transports, and proxies are network components that 
 circumvent censorship and interact with the Tor configuration interface. 
 These components are shown in Fig.~\ref{fig:topology}.
@@ -508,24 +509,24 @@ Additionally, the progress bar remains empty on subsequent attempts to connect t
 
 \begin{figure*}[t]
 	\centering
-		\includegraphics[width=.85\textwidth]{old-flow.pdf} 
-		\caption{The current configuration interface has six screens. The first screen (F), bridge 
-		question screen (B1), bridge configuration screen (B2), proxy question screen (P1), proxy configuration
-		screen (P2), and a progress bar (Pr). If users answer yes to questions on B1 and P1, the 
-		interface deems that they do need to configure a bridge or proxy and direct users to B2 and P2, respectively. 
-		If they answer no, the interface deems that they do not need to configure a bridge or proxy and 
-		they are directed to P1, Pr, respectively.}
-	\label{fig:old-flow}
-\end{figure*} 
-
-\begin{figure*}[t]
-	\centering
+		\includegraphics[width=.85\textwidth]{old-flow.pdf}
+\hrule
 		\includegraphics[width=1.0\textwidth]{new-flow.pdf} 
-		\caption{The redesigned configuration interface has five screens. The first screen (F), proxy configuration
-		screen (P), a bridge configuration screen (B), summary screen (S), and a progress bar (Pr). The proxy 
-		screen detects the need for a proxy and tells participants if they need to configure one, eliminating the need
-		for a proxy question. The bridge configuration screen has the option to not configure a bridge, which 
-		eliminates the need for a bridge question screen.} 
+\caption{
+Comparison of user flow in the ``OLD'' and ``NEW'' interfaces.
+We collapsed the two bridge screens into one;
+similarly the two proxy screens.
+We swapped the order of the bridge and proxy configuration
+so it matches the order of network components (Section~\ref{sec:components}).
+We added a summary screen as a last step before initiating a connection.\\
+\textbf{F}: first screen;
+\textbf{B/B1/B2}: bridge screens;
+\textbf{P/P1/P2}: proxy screens;
+\textbf{S}: summary screen;
+\textbf{Pr}: progress bar.
+}
+\label{fig:flow}
+>>>>>>> 845d3b293a5528b3f8846455e62291664425500c
 \end{figure*} 
 
 \begin{figure*}[t]
