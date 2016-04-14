@@ -513,8 +513,8 @@ Additionally, the progress bar remains empty on subsequent attempts to connect t
 		\includegraphics[width=1.0\textwidth]{new-flow.pdf} 
 \caption{
 Comparison of user flow in the ``OLD'' and ``NEW'' interfaces.
-We collapsed the two bridge screens into one;
-similarly the two proxy screens.
+We collapsed the two bridge screens into one 
+and also collapsed the two proxy screens into one.
 We swapped the order of the bridge and proxy configuration
 so it matches the order of network components (Section~\ref{sec:components}).
 We added a summary screen as a last step before initiating a connection.\\
@@ -530,13 +530,20 @@ We added a summary screen as a last step before initiating a connection.\\
 \begin{figure*}[t]
 	\centering
 		\includegraphics[width=.8\textwidth]{bridge-screens.pdf} 
-		\caption{bridge screens} 
+		\caption{In the ``OLD'' interface, users are asked, ``Does your Internet Service Provide (ISP) block or 
+		otherwise censor connections to the Tor Network?'' (B1). A ``Yes'' determines that a bridge should 
+		be configured and directs to the bridge configuration screen (B2). 
+		The ``NEW'' interface gives users advice on configuring bridges
+		while giving the option of not configuring a bridge, on one screen (B).} 
 \end{figure*} 
 
 \begin{figure*}[t]
 	\centering
 		\includegraphics[width=.8\textwidth]{proxy-screens.pdf} 
-		\caption{proxy-screens} 
+		\caption{In the ``OLD'' interface, users are asked, ``Does this computer need a local proxy to connect
+		to the Internet?'' (P1). A ``Yes'' determines that a proxy should be configured and directs to the 
+		proxy configuration screen (P2). The ``NEW'' interface checks the local machine for if a proxy configured,
+		and informs the user if the proxy is required, and if so, what those settings are (P).'' }
 \end{figure*} 
 
 Tor Browser 5.0.3. configuration interface does not adequately meet our heuristic evaluation criteria from Section~\ref{sec:goals}: visibility of system status, user control and freedom, error management, understandable language, and minimal design. We rate the severity of the issue by its frequency, impact, and persistence~\cite{nielsen1994heuristic}:\\
@@ -847,8 +854,6 @@ except for those we cut off after approximately 40 minutes.
 \end{figure} 
 
 \section{Discussion} 
-{\color {red} TODO: improvements.} \\
-{\color {red} TODO: subjective observations.} \\
 {\color {red} TODO: remaining issues.} \\
 {\color {red} recommendations are below.} \\
 
