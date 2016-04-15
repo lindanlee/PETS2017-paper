@@ -18,6 +18,14 @@ import inst
 def quote(s):
     return '"' + re.sub(r'[\\"]', lambda m: "\\"+m.group(), s) + '"'
 
+def get_via(row):
+    if row["event_type"] == "select":
+        return "%s %s.%s" % (row["event_type"], row["event_target"], row["event_value"])
+    elif row["event_type"] == "progresschanged":
+        return "%s %s" % (row["event_type"], row["event_value"])
+    else:
+        return "%s %s" % (row["event_type"], row["event_target"])
+
 if __name__ == '__main__':
     _, args = getopt.gnu_getopt(sys.argv[1:], "")
 
@@ -25,5 +33,5 @@ if __name__ == '__main__':
         csvr = csv.DictReader(f)
         print("digraph G {")
         for row in csvr:
-            print("\t%s -> %s [label=%s]" % (row["src"], row["dst"], quote(row["via"])))
+            print("\t%s -> %s [label=%s]" % (row["src"], row["dst"], quote(get_via(row).strip())))
         print("}")

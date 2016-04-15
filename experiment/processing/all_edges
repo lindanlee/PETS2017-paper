@@ -18,7 +18,7 @@ import inst
 # src and dst are vertices; i.e. pages or states in the interface.
 # via is a string indicating an action that moved you from src to dst.
 # src and dst can be the same.
-Edge = collections.namedtuple('Edge', ['exec_id', 'timestamp', 'src', 'dst', 'via'])
+Edge = collections.namedtuple('Edge', ['exec_id', 'timestamp', 'src', 'dst', 'event_type', 'event_target', 'event_value'])
 
 def is_event_wanted(event):
     if event["type"] in ("mouseover", "mouseout"):
@@ -43,10 +43,6 @@ def get_id(event):
         return "starting"
     elif event["type"] in ("mouseover", "mouseout"):
         return event["value"]
-    elif event["type"] == "select":
-        return "%s.%s" % (event["target_id"], event.get("value", '""'))
-    elif event["type"] == "progresschanged" or (event["type"] == "click" and event["target_tagname"] == "menuitem"):
-        return event["value"]
     elif event["type"] == "unload" and event["target_id"] == "configuration":
         return "not_running"
     else:
@@ -68,7 +64,7 @@ def parse_inst_log(f):
 
     for r in records:
         if r.event["type"] == "start":
-            e = Edge(r.exec_id, r.date, current_state, current_state, ("%s %s" % (r.event["type"], get_id(r.event))).strip())
+            e = Edge(r.exec_id, r.date, current_state, current_state, r.event["type"], get_id(r.event), r.event.get("value", ""))
             edges.append(e)
             current_state = "starting"
         if r.event["type"] in ("start", "pageshow", "load", "unload"):
@@ -76,7 +72,7 @@ def parse_inst_log(f):
             # Change previous edge to point to this new state.
             edges[-1] = edges[-1]._replace(dst=current_state)
         else:
-            e = Edge(r.exec_id, r.date, current_state, current_state, ("%s %s" % (r.event["type"], get_id(r.event))).strip())
+            e = Edge(r.exec_id, r.date, current_state, current_state, r.event["type"], get_id(r.event), r.event.get("value", ""))
             edges.append(e)
 
     return edges
@@ -86,7 +82,7 @@ log_filename = re.compile(r'(?P<env>E\d)-(?P<version>\w\w\w)-(?P<seat>X\d\d)-(?P
 def main():
     _, filenames = getopt.gnu_getopt(sys.argv[1:], "")
 
-    csvw = csv.DictWriter(sys.stdout, fieldnames=("seat", "runid", "exec_count", "sequence", "time_from_start", "time_from_last_edge", "src", "dst", "via"))
+    csvw = csv.DictWriter(sys.stdout, fieldnames=("seat", "runid", "exec_count", "sequence", "time_from_start", "time_from_last_edge", "src", "dst", "event_type", "event_target", "event_value"))
     csvw.writeheader()
 
     for filename in filenames:
@@ -119,7 +115,9 @@ def main():
                 "time_from_last_edge": "%.1f" % time_from_last_edge,
                 "src": edge.src,
                 "dst": edge.dst,
-                "via": edge.via,
+                "event_type": edge.event_type,
+                "event_target": edge.event_target,
+                "event_value": edge.event_value,
             }
             csvw.writerow(fields)
             last_edge_date = edge.timestamp
