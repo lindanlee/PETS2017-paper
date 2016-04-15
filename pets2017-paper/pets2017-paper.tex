@@ -329,38 +329,9 @@ consideration for high-risk users: \\
     \item {\bfseries Safe for High-Risk Users}: It should be possible to configure Tor with the interface that it doesn't leak that they are using Tor. 
 \end{enumerate}
 
-\section{Qualitative Analysis of the Existing Interface (Study 1)}
-\label{sec:qualitative}
-
-We performed qualitative research as an exploratory effort to gain an 
-understanding of underlying problems, such as reasons for confusion 
-during the configuration process and motivations for particular choices in 
-configuration. We did this through observing each participant as they 
-interacted with Tor Browser 5.0.3 interface and interviewed them about
-their experience. This study provides insights into particular problems with 
-the current Tor Browser configuration interface, and helps us to design
-a new interface which addresses these problems and gives foundation
-for hypotheses to test in quantitative research. 
-
-All our experiments use (modified versions of)
-Tor Browser~5.0.3, which was the current stable release at the time we began~\cite{torbrowser-503}.
-Though there were new releases during the course of the experiments,
-we stuck with 5.0.3 so as not to introduce potential confounding factors.
-
-\subsection{Inspection}
-A combination of usability inspection methods~\cite{nielsen1994usability}
-were used to prepare for the user study. Two researchers conducted a pluralistic 
-walkthrough and stepped through various censorship
-scenarios, discussing which elements would be involved for that use case, and walking 
-through the configuration process. After compiling all the possible paths through the 
-interface, feature inspection was performed to list sequences
-of features used to accomplish typical tasks, taking note of long sequences or cumbersome
-steps. To focus our observations, a heuristic evaluation was performed to mark design issues 
-that may cause confusion for users during our study. 
-
 \subsection{Censorship Environments}
 \label{sec:environments}
-We simulated three censorship environments,
+In each experiment, we simulated three censorship environments,
 which we labeled ``E1,'' ``E2,'' and ``E3''
 in order of increasing severity.
 We designed the environments to be representative
@@ -433,6 +404,35 @@ similarly E3's is a superset of E2's.
 }
 \label{tab:environments}
 \end{table}
+
+\section{Qualitative Analysis of the Existing Interface (Study 1)}
+\label{sec:qualitative}
+
+We performed qualitative research as an exploratory effort to gain an 
+understanding of underlying problems, such as reasons for confusion 
+during the configuration process and motivations for particular choices in 
+configuration. We did this through observing each participant as they 
+interacted with Tor Browser 5.0.3 interface and interviewed them about
+their experience. This study provides insights into particular problems with 
+the current Tor Browser configuration interface, and helps us to design
+a new interface which addresses these problems and gives foundation
+for hypotheses to test in quantitative research. 
+
+All our experiments use (modified versions of)
+Tor Browser~5.0.3, which was the current stable release at the time we began~\cite{torbrowser-503}.
+Though there were new releases during the course of the experiments,
+we stuck with 5.0.3 so as not to introduce potential confounding factors.
+
+\subsection{Inspection}
+A combination of usability inspection methods~\cite{nielsen1994usability}
+were used to prepare for the user study. Two researchers conducted a pluralistic 
+walkthrough and stepped through various censorship
+scenarios, discussing which elements would be involved for that use case, and walking 
+through the configuration process. After compiling all the possible paths through the 
+interface, feature inspection was performed to list sequences
+of features used to accomplish typical tasks, taking note of long sequences or cumbersome
+steps. To focus our observations, a heuristic evaluation was performed to mark design issues 
+that may cause confusion for users during our study. 
 
 \subsection{Recruitment}
 Using established practices from the field of user experience research~\cite{howmanyusers},
