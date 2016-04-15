@@ -151,7 +151,7 @@ This information is necessary to configure connections to Tor in censored enviro
 
 \begin{figure}
 \centering
-\includegraphics{topology}
+\includegraphics{topology.pdf}
 \caption{
 The chain of components involved in connecting to a website over Tor.
 Most users do not need a proxy;
@@ -716,6 +716,8 @@ if it does not match.
 Therefore we patched the correct fingerprint in the later experiment.
 
 \subsection{Results} 
+
+%basic statistics (BAD SO FAR)
 Results from statistical analyses say: 
 \begin{itemize} 
 	\item{{\bfseries impact of censorship environment on success rate is not significant.} 
@@ -728,6 +730,59 @@ Results from statistical analyses say:
 	Mann-Whitney, W = 991, p-value = 0.3197}
 \end{itemize} 
 
+% impacts of adding in a summary page 
+adding in a summary screen causes people to think about their configuration.
+summary to bridge settings: 13 \% (15/119)
+summary to progress: 86 \% (102/119)
+summary to summary: 1 \% (2/119)
+
+%how much time participants in aggregate spent in progress bar 
+overall, participants spent 65\% of their time in the progress bar. 
+e1 participants spent 28\% of their time in the progress bar. 
+e2 participants spent 74\% of their time in the progress bar. 
+e3 participants spent 63\% of their time in the progress bar. 
+new participants spent 78\% of their time in the progress bar. 
+old participants spent 57 \% of their time in the progress bar. 
+
+% how much time participants spent on average would be nice. (maybe I can do this later). 
+%	i.e. the average participant in e1 spent x\% of their time in the progress bar. 
+
+% overall time spent configuring a proxy
+overall, participants spent 18\% of their overall time configuring a proxy. 
+e1 participants spent 16\% of their overall time configuring a proxy. 
+e2 participants spent 10\% of their overall time configuring a proxy. 
+e3 participants spent 21\% of their overall time configuring a proxy.  
+new participants spent 7\% of their overall time configuring a proxy.  
+old participants spent 25 \% of their overall time configuring a proxy. 
+
+% ``active'' time spent configuring a proxy
+overall, participants spent 52\% of their active time configuring a proxy. 
+e1 participants spent 22\% of their active time configuring a proxy. 
+e2 participants spent 40\% of their active time configuring a proxy. 
+e3 participants spent 57\% of their active time configuring a proxy.  
+new participants spent 31\% of their active time configuring a proxy.  
+old participants spent 58\% of their active time configuring a proxy. 
+
+> sum(proxy_edges$duration)/sum(active_edges$duration)*100
+[1] 51.5947
+> sum(proxy_edges[proxy_edges[,"env"]=="E1",]$duration)/sum(active_edges[active_edges[,"env"]=="E1",]$duration)*100
+[1] 22.37932
+> sum(proxy_edges[proxy_edges[,"env"]=="E2",]$duration)/sum(active_edges[active_edges[,"env"]=="E2",]$duration)*100
+[1] 40.37673
+> # e3 % on proxy screen ("active time")
+> sum(proxy_edges[proxy_edges[,"env"]=="E3",]$duration)/sum(active_edges[active_edges[,"env"]=="E3",]$duration)*100
+[1] 56.61874
+> # new % on proxy screen ("active time")
+> sum(proxy_edges[proxy_edges[,"version"]=="NEW",]$duration)/sum(active_edges[active_edges[,"version"]=="NEW",]$duration)*100
+[1] 31.20091
+> # old % on proxy screen ("active time")
+> sum(proxy_edges[proxy_edges[,"version"]=="OLD",]$duration)/sum(active_edges[active_edges[,"version"]=="OLD",]$duration)*100
+[1] 58.14161
+
+% how much time participants spent on average during their ``active time'' would be nice (maybe I can do this later). 
+% 	i.e. the average participant in new spent x\% of their active time configuring a proxy. 
+
+% looking at all factors' impact on success rate
 A logistic regression model showing effects of censorship environment, interface version,
 and recruitment pool on success finds that a difficult censorship environment is the most
 significant factor in a participant failing. Xlab participants were more likely to succeed. 
@@ -743,6 +798,7 @@ poolxlab       1.1218     0.5968   1.880   0.0601 .
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
+% looking at all factors' impact on time to completion
 A linear regression model showing effects of censorship environment, interface version, 
 and recruitment pool on success finds that a difficult censorship environment is the most
 significant factor in taking a long time to complete the task. Participants with the old version

@@ -4,30 +4,11 @@ library(RColorBrewer)
 
 source("common.R")
 
+##################
+# INITIALIZATION #
+##################
+
 height <- 1.5
-
-# Assign DNFs a maximum time_to_success.
-clamp_time_to_success <- function(participants, maxtime) {
-	df <- data.frame(participants)
-	df$time_to_success[is.na(df$time_to_success)] <- maxtime
-	df
-}
-
-time_to_success_plot <- function(participants) {
-	minutes_to_success <- participants$time_to_success/60
-	max_minutes <- max(minutes_to_success, na.rm=T)+9
-	p <- ggplot(data.frame(participants, minutes_to_success), aes(x=label, y=minutes_to_success), environment=environment())
-	p <- p + geom_boxplot(color="gray70", outlier.size=0)
-	p <- p + geom_point(size=0.8, alpha=0.6)
-	p <- p + coord_cartesian(ylim=c(0, max_minutes))
-	p <- p + coord_flip()
-	p <- p + scale_x_discrete(limits=rev(levels(participants$label)))
-	p <- p + labs(title=NULL, x=NULL, y="Minutes to first success")
-	counts <- aggregate(data.frame(participants, n=1)[, c("success", "n")], by=list(label=participants$label), sum)
-	p <- p + geom_text(data=counts, aes(x=label, y=max_minutes, label=sprintf("%d/%d DNF", n-success, n)), hjust=1, size=2, alpha=0.6)
-	p <- common_theme(p)
-	p
-}
 
 participants <- filter_participants(read_participants())
 participants$label <- factor(sprintf("%s-%s", participants$env, participants$version), levels=c("E1-NEW", "E1-OLD", "E2-NEW", "E2-OLD", "E3-NEW", "E3-OLD"))
@@ -42,7 +23,34 @@ maxtime <- max(40*60, participants$time_to_success, na.rm=T)
 edges <- read_edges()
 edges <- merge(edges, participants, by=c("seat", "runid"), all.y=T)
 if (any(is.na(edges$pid))) {
-	stop("found NAs in edges$pid")
+  stop("found NAs in edges$pid")
+}
+
+###################
+# TIME TO SUCCESS #
+###################
+
+# Assign DNFs a maximum time_to_success.
+clamp_time_to_success <- function(participants, maxtime) {
+  df <- data.frame(participants)
+  df$time_to_success[is.na(df$time_to_success)] <- maxtime
+  df
+}
+
+time_to_success_plot <- function(participants) {
+  minutes_to_success <- participants$time_to_success/60
+  max_minutes <- max(minutes_to_success, na.rm=T)+9
+  p <- ggplot(data.frame(participants, minutes_to_success), aes(x=label, y=minutes_to_success), environment=environment())
+  p <- p + geom_boxplot(color="gray70", outlier.size=0)
+  p <- p + geom_point(size=0.8, alpha=0.6)
+  p <- p + coord_cartesian(ylim=c(0, max_minutes))
+  p <- p + coord_flip()
+  p <- p + scale_x_discrete(limits=rev(levels(participants$label)))
+  p <- p + labs(title=NULL, x=NULL, y="Minutes to first success")
+  counts <- aggregate(data.frame(participants, n=1)[, c("success", "n")], by=list(label=participants$label), sum)
+  p <- p + geom_text(data=counts, aes(x=label, y=max_minutes, label=sprintf("%d/%d DNF", n-success, n)), hjust=1, size=2, alpha=0.6)
+  p <- common_theme(p)
+  p
 }
 
 p <- time_to_success_plot(participants)
@@ -78,6 +86,94 @@ p <- p + annotate(geom="text", x=c(1, 3.3, 14, 15.3, 23, 24.7), y=c(0.86, 0.87, 
 p <- common_theme(p)
 ggsave("time_to_success_ecdf.pdf", p, width=columnwidth, height=height, device=cairo_pdf)
 
+##################
+# SUMMARY SCREEN # (HACKY)
+##################
+
+summary_edges <- edges[edges[,"src"]== "summary",]
+
+# % time on summary screen = time spent on summary screen / total time spent on screens * 100 
+sum(summary_edges$duration)/sum(edges$duration)*100
+
+# dst from summary distribution
+sum(summary_edges$dst == "bridgeSettings")/nrow(summary_edges)*100
+sum(summary_edges$dst == "progress")/nrow(summary_edges)*100
+sum(summary_edges$dst == "summary")/nrow(summary_edges)*100
+barplot(height=table(summary_edges$dst))
+
+################
+# PROXY SCREEN # (HACKY)
+################
+
+proxy_edges <- edges[edges[,"src"] %in% c("proxy","proxyYES"),]
+
+# % time on proxy screen (overall) = time spent on proxy screen / total time spent on screens * 100 
+sum(proxy_edges$duration)/sum(edges$duration)*100
+
+# e1 % on proxy screen (overall)
+sum(proxy_edges[proxy_edges[,"env"]=="E1",]$duration)/sum(edges[edges[,"env"]=="E1",]$duration)*100
+
+# e2 % on proxy screen (overall)
+sum(proxy_edges[proxy_edges[,"env"]=="E2",]$duration)/sum(edges[edges[,"env"]=="E2",]$duration)*100
+
+# e3 % on proxy screen (overall)
+sum(proxy_edges[proxy_edges[,"env"]=="E3",]$duration)/sum(edges[edges[,"env"]=="E3",]$duration)*100
+
+# new % on proxy screen (overall)
+sum(proxy_edges[proxy_edges[,"version"]=="NEW",]$duration)/sum(edges[edges[,"version"]=="NEW",]$duration)*100
+
+# old % on proxy screen (overall)
+sum(proxy_edges[proxy_edges[,"version"]=="OLD",]$duration)/sum(edges[edges[,"version"]=="OLD",]$duration)*100
+
+
+# "active time" is anytime that people are not on the progress screen.
+active_edges <- edges[edges[,"src"] != "progress",]
+
+# % time on proxy screen ("active time") = time spent on proxy screen / total time spent on screens * 100 
+sum(proxy_edges$duration)/sum(active_edges$duration)*100
+
+# e1 % on proxy screen ("active time")
+sum(proxy_edges[proxy_edges[,"env"]=="E1",]$duration)/sum(active_edges[active_edges[,"env"]=="E1",]$duration)*100
+
+# e2 % on proxy screen ("active time")
+sum(proxy_edges[proxy_edges[,"env"]=="E2",]$duration)/sum(active_edges[active_edges[,"env"]=="E2",]$duration)*100
+
+# e3 % on proxy screen ("active time")
+sum(proxy_edges[proxy_edges[,"env"]=="E3",]$duration)/sum(active_edges[active_edges[,"env"]=="E3",]$duration)*100
+
+# new % on proxy screen ("active time")
+sum(proxy_edges[proxy_edges[,"version"]=="NEW",]$duration)/sum(active_edges[active_edges[,"version"]=="NEW",]$duration)*100
+
+# old % on proxy screen ("active time")
+sum(proxy_edges[proxy_edges[,"version"]=="OLD",]$duration)/sum(active_edges[active_edges[,"version"]=="OLD",]$duration)*100
+
+###################
+# PROGRESS SCREEN # (HACKY)
+###################
+
+progress_edges <- edges[edges[,"src"]== "progress",]
+
+# % time on progress screen = time spent on progress screen / total time spent on screens * 100
+sum(progress_edges$duration)/sum(edges$duration)*100
+
+# e1 % on progress screen
+sum(progress_edges[progress_edges[,"env"]=="E1",]$duration)/sum(edges[edges[,"env"]=="E1",]$duration)*100
+
+# e2 % on progress screen
+sum(progress_edges[progress_edges[,"env"]=="E2",]$duration)/sum(edges[edges[,"env"]=="E2",]$duration)*100
+
+# e3 % on progress screen
+sum(progress_edges[progress_edges[,"env"]=="E3",]$duration)/sum(edges[edges[,"env"]=="E3",]$duration)*100
+
+# new % on progress screen
+sum(progress_edges[progress_edges[,"version"]=="NEW",]$duration)/sum(edges[edges[,"version"]=="NEW",]$duration)*100
+
+# old % on progress screen
+sum(progress_edges[progress_edges[,"version"]=="OLD",]$duration)/sum(edges[edges[,"version"]=="OLD",]$duration)*100
+
+#############
+# ALL EDGES #
+#############
 
 # Canonicalize screen names from the OLD and NEW interfaces.
 canonicalize_screens <- function(version, x) {
