@@ -1,0 +1,115 @@
+#!/usr/bin/env python
+
+# Shows what bridge/proxy configurations were attempted.
+
+import csv
+import getopt
+import sys
+
+import inst
+
+BRIDGE_NONE, BRIDGE_DEFAULT, BRIDGE_CUSTOM = "none", "default", "custom"
+
+STATES = {}
+# We don't know whether an attempt was successful until reading further into the
+# log. OUTPUT_BUFFER stores the most recent attempt, which we haven't output
+# yet. log_success modifies the most recent attempt to set attempt_successful=T.
+# log_attempt pushes out the most recent attempt before setting OUTPUT_BUFFER to
+# the new attempt.
+OUTPUT_BUFFER = None
+
+class State(object):
+    def __init__(self):
+        self.progress = 0
+
+        self.bridge_yesno = False
+        self.bridge_radio_state = BRIDGE_NONE
+
+        self.bridge_default_selection = "obfs3"
+        self.bridge_custom_entry = None
+
+def output_record(csvw, d):
+    d["attempt_successful"] = fmt_bool(d["attempt_successful"])
+    d["bridge_yesno"] = fmt_bool(d["bridge_yesno"])
+    csvw.writerow(d)
+
+def log_attempt(csvw, r, state):
+    global OUTPUT_BUFFER
+    if OUTPUT_BUFFER:
+        output_record(csvw, OUTPUT_BUFFER)
+    OUTPUT_BUFFER = {
+        "seat": r["seat"],
+        "runid": r["runid"],
+        "attempt_successful": False,
+        "time_from_start": r["time_from_start"],
+        "bridge_yesno": state.bridge_yesno,
+        "bridge_radio_state": state.bridge_radio_state,
+        "bridge_default_selection": state.bridge_default_selection,
+        "bridge_custom_entry": state.bridge_custom_entry,
+    }
+
+def log_success(csvw, r):
+    assert r["seat"] == OUTPUT_BUFFER["seat"]
+    assert r["runid"] == OUTPUT_BUFFER["runid"]
+    OUTPUT_BUFFER["attempt_successful"] = True
+
+# Assumes that records are sorted by timestamp for the same (seat, runid).
+def process(csvr, csvw):
+    for r in csvr:
+        key = (r["seat"], r["runid"])
+        if key not in STATES:
+            STATES[key] = State()
+        state = STATES[key]
+
+        if r["event_type"] == "command":
+            if r["event_target"] == "bridgeRadioNone":
+                state.bridge_yesno = False
+                state.bridge_radio_state = BRIDGE_NONE
+            elif r["event_target"] == "bridgeRadioDefault":
+                state.bridge_yesno = True
+                state.bridge_radio_state = BRIDGE_DEFAULT
+            elif r["event_target"] == "bridgeRadioCustom":
+                state.bridge_yesno = True
+                state.bridge_radio_state = BRIDGE_CUSTOM
+            elif r["event_target"] == "bridgesRadioNo":
+                state.bridge_yesno = False
+            elif r["event_target"] == "bridgesRadioYes":
+                state.bridge_yesno = True
+                if state.bridge_radio_state not in (BRIDGE_DEFAULT, BRIDGE_CUSTOM):
+                    state.bridge_radio_state = BRIDGE_DEFAULT
+
+        if r["event_type"] == "select" and r["event_target"] == "defaultBridgeType":
+            state.bridge_default_selection = r["event_value"]
+
+        if r["event_type"] == "change" and r["event_target"] == "bridgeList":
+            state.bridge_custom_entry = r["event_value"]
+
+        if r["dst"] == "inlineprogress" and r["event_type"] == "wizardnext":
+            log_attempt(csvw, r, state)
+        elif r["dst"] == "progress_bar" and r["event_type"] == "click" and r["event_target"] == "connect_button":
+            log_attempt(csvw, r, state)
+        elif r["dst"] == "progress_bar" and r["event_type"] == "wizardfinish":
+            log_attempt(csvw, r, state)
+
+        if r["event_type"] == "progresschanged":
+            state.progress = int(r["event_value"])
+        if r["dst"] == "not_running":
+            if state.progress >= 100:
+                log_success(csvw, r)
+
+def fmt_bool(b):
+    if b:
+        return "T"
+    else:
+        return "F"
+
+if __name__ == '__main__':
+    _, args = getopt.gnu_getopt(sys.argv[1:], "")
+
+    csvw = csv.DictWriter(sys.stdout, fieldnames=("seat", "runid", "attempt_successful", "time_from_start", "bridge_yesno", "bridge_radio_state", "bridge_default_selection", "bridge_custom_entry"))
+    csvw.writeheader()
+    for _, f in inst.input_files(args):
+        process(csv.DictReader(f), csvw)
+    # Flush the remaining element in OUTPUT_BUFFER.
+    if OUTPUT_BUFFER:
+        output_record(csvw, OUTPUT_BUFFER)
