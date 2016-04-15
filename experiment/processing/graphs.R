@@ -134,7 +134,7 @@ p <- p + geom_segment(data=edges, size=1.5, lineend="butt", aes(x=pid, xend=pid,
 p <- p + geom_point(data=participants[is.na(participants$time_to_success), ], aes(x=pid, y=maxtime/60), shape=4)
 p <- p + coord_flip()
 p <- p + scale_y_continuous(breaks=pretty_breaks(n=10))
-p <- p + scale_color_manual(values=state.palette, labels=c(
+p <- p + scale_color_manual("Current screen", values=state.palette, labels=c(
 	"first"="first (F)",
 	"bridges"="bridge yes/no (B1)",
 	"bridgeSettings"="bridge settings (B2/B)",
