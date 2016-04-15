@@ -1108,13 +1108,13 @@ Thank you for participating in our experiment. You are now done! Please sit at y
 \begin{figure}[h]
 \label{autoresponder1}
 \includegraphics[width=0.5\textwidth]{../experiment/processing/failed-participants/20160325-140813-bridgeresponder-redacted.png}
-\caption{The message that E3-NEW-X23-20160328-155924 sent to the bridge auto-responder. A correct message is a ``get bridges'' in the body of the message, with any non-empty subject. Since this request was incorrectly formatted, there was no reply.}
+\caption{The message that E3-NEW-X23-20160328-155924 attempted to send to the bridge auto-responder. The message was sent to the wrong address: bridges@bridges.torproject.org instead of bridges@torproject.org.}
 \end{figure} 
 
 \begin{figure}[h]
 \label{autoresponder2}
 \includegraphics[width=0.5\textwidth]{../experiment/processing/failed-participants/20160328-133857-bridgeresponder-redacted.png}
-\caption{The message that E3-OLD-X12-20160325-140813 sent to the bridge auto-responder. A correct message is a ``get bridges'' in the body of the message, with any non-empty subject. Since this request was incorrectly formatted, there was no reply.}
+\caption{The message that E3-OLD-X12-20160325-140813 accidentally sent to the helpdesk rather than the bridge auto-responder. The participant should have used the address bridges@torproject.org, not help@rt.torproject.org. Since the helpdesk address is not an auto-responder, there was no reply.}
 \end{figure} 
 
 \begin{figure}[h]
