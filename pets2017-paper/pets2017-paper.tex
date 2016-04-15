@@ -14,6 +14,13 @@
 \DOI{foobar}
 
 \cclogo{\includegraphics{by-nc-nd.pdf}}
+
+% Format a participant quotation. It should be inside a quotation environment.
+\newcommand{\pquote}[2]{
+\begin{quotation}
+\noindent #1:~\textit{``#2''}
+\end{quotation}
+}
   
 \begin{document}
  
@@ -452,86 +459,59 @@ Many participants, including participants who were pre-screened as having high t
 \label{fig:error}
 \end{figure}
 
-\begin{quotation}
-\noindent P2:\textit{"I don't know what any of those means (list of bridges),or what that (proxy)
- means at all."}\\
- 
- \noindent P3:\textit{``The vocabulary is really challenging, for someone not doing IT work.''}\\
- 
- \noindent P4:\textit{``I didn't know why I was getting back `establishing encrypted directory'--what does that mean?''}\\
-\end{quotation} 
+\pquote{P2}{I don't know what any of those means (list of bridges),or what that (proxy) means at all.}
+\pquote{P3}{The vocabulary is really challenging, for someone not doing IT work.}
+\pquote{P4}{I didn't know why I was getting back `establishing encrypted directory'---what does that mean?}
 The text in the interface intended to guide users through the process was not understood by our participants. The text also gave our participants a sense that the process intimidating for people who did not have a technical background. 
 
 \subsubsection{Connect vs. Configure} 
 The first task for our participants was to decide between connecting directly to the Tor network or configuring their connection. Text in the interface tells people that connecting directly ``will work in most situations'' and instructs to configure a bridge or proxy if the ``Internet connection is censored or proxied.'' We found that a majority of our participants did not take the time to read the text on the screen and that if they did, the text did not always soundly influence their decision.
 
 Participants across all censorship environments connected directly to the Tor network. When they did, they did so because they were taking the path of least resistance first or intimidated by the configuration process. 
-\begin{quotation}
-\noindent P9: \textit{``Configure seemed manual, so I clicked connect.''}\\
-
-\noindent P14:\textit{``The words were confusing. I don't really understand computers. I don't know what configure means in this setting. Hmm, is it going to crash? When you see connect, you want to click it because you really want it to connect.''} 
-\end{quotation}
+\pquote{P9}{Configure seemed manual, so I clicked connect.}
+\pquote{P14}{The words were confusing. I don't really understand computers. I don't know what configure means in this setting. Hmm, is it going to crash? When you see connect, you want to click it because you really want it to connect.}
 
 Bridges are only necessary when Tor relays are censored, but participants are not able to determine when this happens, or what the difference between a blocked website and a blocked relay. Participant 10 and several other participants in the mild censorship environment opted to configure a connection when a direct connection to the Tor network would have worked. 
 
-\begin{quotation}
-\noindent P10: \textit{``I was censored, so I picked the configure.''}
-\end{quotation}
+\pquote{P10}{I was censored, so I picked the configure.}
 
 Users do not make the optimal choice between connect and configure. This leads to discouragement from attempting a failed connection and wasted time spent waiting for feedback, which lessen the chance for a successful connection. 
 
 \subsubsection{Bridge Configuration} 
 When a participant chooses to configure their connection, their next step is to determine whether they need to configure a bridge, and to configure one if necessary. Answering yes to ``Does your Internet Service Provider (ISP) block or otherwise censor connections to the Tor Network'' directs to a bridge configuration screen, whereas answering no skips that screen. We observed that multiple participants struggled with the technical language on the screen, and ultimately decided to try process of elimination. Most participants went with the default option to not configure a bridge. 
 
-\begin{quotation}
-\noindent P7:\textit{``The bridge screen was the most challenging. It seemed very technical to me. I don't know what a bridge is.''}\\
-
-\noindent P12:\textit{``I decided which options to choose by process of elimination with trial and error.''}
-\end{quotation} 
+\pquote{P7}{The bridge screen was the most challenging. It seemed very technical to me. I don't know what a bridge is.}
+\pquote{P12}{I decided which options to choose by process of elimination with trial and error.}
 
 On the bridge configuration screen, participants need to choose between configuring a built-in bridge versus a custom bridge. Participants were unsure of the difference between a built-in bridge and a custom bridge and also why one would use a custom bridge. Most chose obfs3 as their transport, because those were the default options on the screen. 
 
-\begin{quotation} 
-\noindent P8:\textit{``I have no clue what's the difference between flashpoxy, fte, etc. I need to know why the built-in ones aren't working. And why do I need a custom bridge if there are options built in?'}\\
-
-\noindent P7:\textit{``Since it (obfs3) said recommended, it helped actually, and I selected it because it was chosen. I saw the custom bridges option, but I didn't know what to enter there so I went with this (obfs3).''}
-\end{quotation} 
+\pquote{P8}{I have no clue what's the difference between flashpoxy, fte, etc. I need to know why the built-in ones aren't working. And why do I need a custom bridge if there are options built in?}
+\pquote{P7}{Since it (obfs3) said recommended, it helped actually, and I selected it because it was chosen. I saw the custom bridges option, but I didn't know what to enter there so I went with this (obfs3).}
 
 Participants in the advanced censorship environment were required to select a meek bridge (not the default) or to configure a custom bridge. After the first pluggable transport failed and even if the participants deduced that the source of the failed connection was a mis-configured bridge, the pluggable transport names only confused participants and caused odd behaviors. Participants chose transports at random, in order of the list starting from the default, in order of the list starting from the top, choosing familiar-sounding transports first (i.e. meek-amazon over fte), and choosing technical-sounding transports first (i.e. fte over meek-amazon). 
 
-\begin{quotation}
-\noindent P4:\textit{``When I saw obfs3 as the recommended option, the next option logically for me was obfs4.''}\\
-
-\noindent P5:\textit{``I tried the pluggable transport that used google, because I noticed that google was working (when I was using a non-Tor browser).''}
-\end{quotation} 
+\pquote{P4}{When I saw obfs3 as the recommended option, the next option logically for me was obfs4.}
+\pquote{P5}{I tried the pluggable transport that used google, because I noticed that google was working (when I was using a non-Tor browser).}
 
 Users are not qualified to choose transports in an educated order. When our participants chose incorrectly, they spent time testing their wrong hypothesis and got discouraged with each wrong decision. Our participants were resilient and tried for 40 minutes, but we believe that this is a byproduct of the experimental setting and compensation.
 
 \subsubsection{Proxy Configuration} 
 After the bridge configuration, the participant is asked if they need a proxy and if so, to configure one. This question also was too technical for most participants.
 
-\begin{quotation}
-\noindent P11:\textit{``I think you can only answer this question (does this computer need a local proxy) if you know what a local proxy is. Otherwise, you have no chance..''}
-\end{quotation}
+\pquote{P11}{I think you can only answer this question (does this computer need a local proxy) if you know what a local proxy is. Otherwise, you have no chance..}
 
 For our participants, trying to unsuccessfully configure a proxy was the only mistake that resulted in failure. On the first attempt at configuration, most chose to not configure a proxy. Since the interface passively re-displayed a proxy-related window after an attempted connection regardless of the error, participants incorrectly assumed that they needed a proxy. Participants did not check their incorrect assumption~\cite{wason1960failure}. All who chose to configure a proxy were unsuccessful. 
 
-\begin{quotation}
-\noindent P15:\textit{``I didn't know if this computer had any proxy information. I wasn't able to find it if it did.''}
-\end{quotation}
+\pquote{P15}{I didn't know if this computer had any proxy information. I wasn't able to find it if it did.}
 
 None of our censorship environments required our participants to configure a proxy for a successful connection. Participants followed the directions to look at the Internet settings, but they never found the (nonexistent) information.
 
 \subsubsection{Progress Bar} 
 Users were generally displeased with the lack of feedback on the progress bar. Users do tolerate delays if they are for security reasons, but only if they understand the reason~\cite{egelmanplease}. Participants in our study usually did not understand the security reason, and experienced delays up to 2 minutes, even in the ideal case in which a user chose the correct configuration on the first attempt. If users chose particular wrong configurations (i.e. a syntactically valid but nonfunctional proxy), they would be waiting for an indefinite period of time. 
 
-\begin{quotation}
-\noindent P16:\textit{``There doesn't seem to be a timeout on any of this stuff. Am I waiting long enough? It should work immediately.''}\\
-
-\noindent P6:\textit{``How long does this actually take (to connect)? This took way too long, and I didn't know how long it should take.''}
-
-\noindent P1:\textit{``It was hard to figure out if the progress bar wasn't moving because the connection was censored, or if it was just slow.''}
-\end{quotation}
+\pquote{P16}{There doesn't seem to be a timeout on any of this stuff. Am I waiting long enough? It should work immediately.}
+\pquote{P6}{How long does this actually take (to connect)? This took way too long, and I didn't know how long it should take.}
+\pquote{P1}{It was hard to figure out if the progress bar wasn't moving because the connection was censored, or if it was just slow.}
 
 Additionally, the progress bar remains empty on subsequent attempts to connect to the Tor Network until the percent progress supersedes the last displayed progress value (i.e. a participant who saw 30\% progress on their first attempt would see 0\% progress in the progress bar until subsequent attempts got at least 40\% progress). The negative feedback of a 0\% progress bar would cause users to assume that their subsequent attempts were wrong, even if they were correct. 
 
