@@ -6,3 +6,4 @@ pets2017-paper.pdf
 *.log
 *.out
 *.synctex.gz
+.Rhistory
