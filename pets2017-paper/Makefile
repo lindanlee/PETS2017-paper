@@ -6,8 +6,8 @@ PDFLATEX = pdflatex -halt-on-error -file-line-error
 BIBTEX = bibtex
 %.pdf: %.tex
 	$(PDFLATEX) $*
-	$(PDFLATEX) $*
 	$(BIBTEX) $*
+	$(PDFLATEX) $*
 	$(PDFLATEX) $*
 
 clean:
