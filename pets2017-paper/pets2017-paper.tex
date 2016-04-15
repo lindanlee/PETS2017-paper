@@ -135,19 +135,27 @@ Previous user studies have not focused on specific features in isolation, while 
 the configuration interface. The configuration interface guides users through setting up network components required to circumvent censorship. 
 This study examines that interface, and effectively, the usability of Tor as a censorship circumvention tool. 
 
-\section{Background} 
-This section examines Internet censorship, interface network components that circumvent censorship, and the Tor Browser 5.0.3 configuration interface. 
+\section{Circumvention and Tor}
 
-\subsection{Censorship Today} 
-Internet censorship is widespread throughout the world~\cite{faris2008measuring}. Although there are corporations, parental controls, and other forms of censorship, the most common form of censorship is done by a nation-state power, usually without the consent of the people in that residing nation. The risks associated with circumventing Internet censorship are largely based on geographic location, prevalence of censorship circumvention, and political status. 
+Censors of the Internet typically seek to block certain network resources such as websites.
+They use various technical means, for example falsifying DNS responses,
+blocking IP addresses, filtering keywords, and detecting protocols by deep packet inspection.
+Internet users, naturally, try to evade a censor's blocks,
+also employing a variety of technical means.
 
-\subsection{Interacting Network Components} 
-\label{sec:components}
-Bridges, pluggable transports, and proxies are network components that 
-circumvent censorship and interact with the Tor configuration interface. 
-These components are shown in Fig.~\ref{fig:topology}.
-Bridges and pluggable transports are completely Tor-specific concepts, whereas a proxy is not.  
-This information is necessary to configure connections to Tor in censored environments. 
+Tor is an anonymity network that has also grown into
+a role as a vehicle for censorship circumvention.
+Tor routes user traffic through a random series of relays
+in a way that makes it difficult for an observer to connect source and destination.
+Tor, in its native form, is easy for censors to block,
+because the list of relays and their IP addresses is public.
+However, combined with \emph{bridges} and
+\emph{pluggable transports}, it becomes challenging to block access to Tor.
+
+Bridges are unlisted Tor relays that make it possible for a user to connect
+to the Tor network even if a censor blocks all publicly listed Tor relays.
+Pluggable transports are special protocols that run on bridges and obfuscate
+Tor's network protocol to make it difficult to detect.
 
 \begin{figure}
 \centering
@@ -164,16 +172,22 @@ When a bridge is used, it takes the place of the first Tor hop.
 \label{fig:topology}
 \end{figure}
 
-Bridges are unlisted Tor relays that make it possible for a user to connect
-to the Tor network even if a censor blocks all publicly listed Tor relays. 
-Censors in countries which blocked Tor generally were motivated enough to aggressively
-block Tor in other ways, such as traffic analysis. For this reason, a bridge is usually associated
-with a pluggable transport that circumvents deep packet inspection. Transports can
-assist by obfuscating traffic or reflecting traffic through a content distribution network. 
-Proxies help bypass local network restrictions and are typically only
-needed in certain cases, such as corporate environments.
+Fig.~\ref{fig:topology} illustrates the interacting components.
+In addition to those components already mentioned,
+a user may need a local proxy in order to connect outside the local network.
+The terminology can be confusing:
+technically a Tor client is also a proxy,
+and so is a pluggable transport bridge.
+By ``proxy'' we mean an ordinary unobfuscated proxy such
+as a SOCKS or HTTP proxy.
+A proxy is only needed in certain managed networks,
+such as some corporate or university networks.
+An important distinction is that the proxy usually lies within the censor's control;
+the bridge outside.
 
-\subsection{The Current Configuration Interface} 
+% Bridges and pluggable transports are not limited to Tor...
+
+\subsection{Tor Browser and Tor Launcher}
 
 For most users, the recommended way to use Tor is through Tor Browser~\cite{torbrowser},
 a modified Firefox browser that includes a built-in Tor client.
@@ -218,6 +232,8 @@ and not make it obvious that they are using Tor.
 However, this design decision puts the burden of technical knowledge and correct configuration on the user.
 The technical concepts of bridges, pluggable transports, and proxies are likely unfamiliar to the average user.
 
+\subsection{Bridges and pluggable transports}
+
 \begin{figure}
 \small
 \begin{itemize}
@@ -249,8 +265,43 @@ bridge specifications.
 \label{fig:bridge-options}
 \end{figure}
 
-Fig.~\ref{fig:bridge-options} shows the bridge options
-presented to a user in Tor Browser~5.0.3.
+Tor Launcher gives access to a variety of sophisticated
+circumvention mechanisms.
+Fig.~\ref{fig:bridge-options} paraphrases the bridge configuration
+interface as it existed at the time we did our study
+and lists the available pluggable transports.
+Some transports connect directly to a static IP address,
+transforming traffic to defeat its on-the-wire identification as Tor;
+they rely on the secrecy of their IP addresses for their effectiveness.
+These include ``fte'' and ``fte-ipv6''~\cite{fte},
+which make Tor look like another protocol such as HTTP; and
+``obfs3''~\cite{obfs3}, ``obfs4''~\cite{obfs4}, and ``scramblesuit''~\cite{scramblesuit},
+which encrypt Tor to look like random noise.
+Other transports do not depend on connecting to a static IP address:
+``flashproxy''~\cite{flashproxy} connects through third parties' web browsers,
+and the three ``meek''~\cite{fifield2015blocking} options route traffic
+through content delivery networks.
+
+Configuring a bridge requires providing one or more
+``bridge lines,'' short specifications of a bridge
+including its IP address, transport type, and other metadata.
+For ease of use, the options under ``Connect with provided bridges''
+activate ready-made, built-in bridge lines,
+hard-coded into the browser.
+Choosing ``obfs3,'' for example, activates a handful
+of bridges that use obfs3, without the user needing
+to find and paste in obfs3 bridge lines.
+A censor can of course block the IP addresses of the default bridge lines
+(except ``flashproxy'' and ``meek,'' which work differently).
+If the built-in bridges do not work, a user can obtain bridge lines
+through out-of-band channels, for instance by email~\cite{bridgedb}.
+
+The ``flashproxy'' transport, because of the way it works,
+requires users to take special technical steps before using it.
+Unlike the other options, it does not work out of the box
+in most situations, including during our experiments.
+For our participants, its presence at the top of the list
+was an inviting failure mode.
 
 \section{Goals/Evaluation Criteria}
 \label{sec:goals}
@@ -290,6 +341,11 @@ their experience. This study provides insights into particular problems with
 the current Tor Browser configuration interface, and helps us to design
 a new interface which addresses these problems and gives foundation
 for hypotheses to test in quantitative research. 
+
+All our experiments use (modified versions of)
+Tor Browser~5.0.3, which was the current stable release at the time we began.
+Though there were new releases during the course of the experiments,
+we stuck with 5.0.3 so as not to introduce potential confounding factors.
 
 \subsection{Inspection}
 A combination of usability inspection methods~\cite{nielsen1994usability}
@@ -525,7 +581,7 @@ Comparison of user flow in the ``OLD'' and ``NEW'' interfaces.
 We collapsed the two bridge screens into one 
 and also collapsed the two proxy screens into one.
 We swapped the order of the bridge and proxy configuration
-so it matches the order of network components (Section~\ref{sec:components}).
+so it matches the order of network components (compare with Fig.~\ref{fig:topology}).
 We added a summary screen as a last step before initiating a connection.\\
 \textbf{F}: first screen;
 \textbf{B/B1/B2}: bridge screens;
