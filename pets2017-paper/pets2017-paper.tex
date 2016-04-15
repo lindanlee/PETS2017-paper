@@ -894,7 +894,7 @@ These non-conservative changes may be helpful for a user, and would benefit from
 \item{\bfseries Tailor for at-risk users.} Currently, the interface is for the average user. We guide at-risk users to the correct configuration, but suggesting that they try the default first. However, this isn't ideal. 
 \end{itemize} 
 
-{\color {red} Speculation of why certain things happened--long progress bar (there was no feedback so people assumed that they had to wait), transport selections (people in the new interface didn't see the advice sometimes), etc.} 
+Despite giving 5 of the participants downloaded Tor 
 
 \section{Limitations} 
 The interface was only tested on Windows machines, which were the only types of machines in Xlab. The configuration interface uses the native operating system's elements and their respective styling, so an interface looks slightly different across different operating systems. Participants who are not accustomed to using Windows machines may have been slower than usual to complete the given task, but this effect should affect all of our conditions equally. 
@@ -1005,7 +1005,7 @@ If you are interested: 1. Email lnl@berkeley.edu with the sessions you are able 
 \label{quantitative-script} 
 Imagine you live in an oppressive country that censors part of the Internet. We have simulated this in the laboratory by blocking certain websites and services.  The purpose of this experiment is to evaluate the use of Tor browser, which is a browser that can circumvent censorship and let you visit blocked websites. Currently, torproject is blocked (you can check this by going to torproject.org on a standard browser, like Firefox, Chrome, or Internet Explorer). 
 
-To circumvent censorship successfully, you will need to set up Tor browser correctly and use it to get to Wikipedia. If you are able to reach the website, then you know that you have successfully circumvented censorship. Fill out the question on the worksheet. This isn't intended to be hard, just write what you see. We want to just check you saw the website. 
+To circumvent censorship successfully, you will need to set up Tor browser correctly and use it to get to Wikipedia. Tor is already installed for you. On the desktop, you should see a globe icon that says ``Start Tor Browser.'' If you are able to reach the website, then you know that you have successfully circumvented censorship. Fill out the question on the worksheet. This isn't intended to be hard, just write what you see. We want to just check you saw the website. 
 
 Afterward, we ask you to take a short survey to collect some information about you. The link is also on your worksheet.
 We will give you time to complete this task. If you finish early, we ask that you sit at your desk until the remainder of the hour. Since we are recording your screen, we ask that you don't do anything personal afterward, like checking your email.
@@ -1027,4 +1027,114 @@ This survey is part of a research project being conducted by the University of C
 \end{enumerate}
 
 Thank you for participating in our experiment. You are now done! Please sit at your desk for the remainder of the experiment. Our researchers will formally announce the end of the experiment. 
+
+\section{Failed Participants} 
+\label{failed-participants}
+
+Thought that they needed a proxy: 
+\begin{enumerate}
+\item E2-OLD-X10-20160328-132828
+\item E3-NEW-X18-20160330-170145
+\item E3-NEW-X17-20160328-160037
+\item E3-OLD-X06-20160325-175101
+\item E3-OLD-X06-20160330-181926
+\item E3-OLD-X24-20160328-155926
+\end{enumerate} 
+
+Only tried connecting directly: 
+\begin{enumerate}
+\item E2-NEW-X21-20160323-133257 
+\item E2-OLD-X04-20160330-181928
+\item E2-OLD-X10-20160331-153028
+\item E3-NEW-X05-20160324-132535
+\item E3-NEW-X17-20160323-133002
+\item E3-OLD-X06-20160328-132053
+\item E3-OLD-X06-20160330-161525 
+\item E3-OLD-X12-20160330-182011
+\end{enumerate} 
+
+Didn't know what to do after connecting directly and default bridge: 
+\begin{enumerate}
+\item E3-NEW-X11-20160330-161511
+\item E3-NEW-X11-20160331-174655
+\item E3-NEW-X23-20160323-133346
+\item E3-OLD-X06-20160331-174650
+\item E3-OLD-X12-20160331-153055
+\item E3-OLD-X30-20160328-134412
+\end{enumerate} 
+
+Failed to use the bridges@torproject.org autoresponder: 
+\begin{enumerate}
+\item E3-NEW-X23-20160328-155924 (Figure \ref{autoresponder1})
+\item E3-OLD-X12-20160325-140813 (Figure \ref{autoresponder2})
+\item E3-OLD-X24-20160328-133857 (Figure \ref{autoresponder3})
+\end{enumerate}   
+
+\begin{figure}[h]
+\label{autoresponder1}
+\includegraphics[width=0.5\textwidth]{../experiment/processing/failed-participants/20160325-140813-bridgeresponder-redacted.png}
+\caption{The message that E3-NEW-X23-20160328-155924 sent to the bridge auto-responder. A correct message is a ``get bridges'' in the body of the message, with any non-empty subject. Since this request was incorrectly formatted, there was no reply.}
+\end{figure} 
+
+\begin{figure}[h]
+\label{autoresponder2}
+\includegraphics[width=0.5\textwidth]{../experiment/processing/failed-participants/20160328-133857-bridgeresponder-redacted.png}
+\caption{The message that E3-OLD-X12-20160325-140813 sent to the bridge auto-responder. A correct message is a ``get bridges'' in the body of the message, with any non-empty subject. Since this request was incorrectly formatted, there was no reply.}
+\end{figure} 
+
+\begin{figure}[h]
+\label{autoresponder3}
+\includegraphics[width=0.5\textwidth]{../experiment/processing/failed-participants/20160328-155924-bridgeresponder.png}
+\caption{The message that E3-OLD-X24-20160328-133857 sent to the bridge auto-responder. A correct message is a ``get bridges'' in the body of the message, with any non-empty subject. Since this request was incorrectly formatted, there was no reply.}
+\end{figure} 
+
+\section{Tor Downloads}
+\label{tor-downloads}
+
+Participants that downloaded Tor: 
+\begin{enumerate}
+\item E1-OLD-X32-20160328-134531(Figure \ref{mirror})
+\item E2-NEW-X21-20160323-133257 (Figure \ref{techspot})
+\item E2-OLD-X10-20160323-132505 (Figure \ref{downloadio})
+\item E2-OLD-X28-20160328-134111 (Figure \ref{driverupdate})
+\item E3-NEW-X11-20160330-161511 (Figure \ref{softsonic})
+\end{enumerate} 
+
+\begin{figure}[h]
+\label{downloadio}
+\includegraphics[width=0.5\textwidth]{../experiment/processing/bad-participants/X10-20160323-132505-1downloadio.png}
+\caption{X10-20160323-132505 attempted downloaded Tor Browser from TechSpot.com, but clicked on one 
+a download link which was not from TechSpot.com. The download was from 1download.io, a suspicious source.}
+\end{figure} 
+
+\begin{figure}[h]
+\label{driverupdate}
+\includegraphics[width=0.5\textwidth]{../experiment/processing/bad-participants/X28-20160328-134111-driverupdate.png}
+\caption{X28-20160328-134111 downloaded Tor Browser from DriverUpdate, a suspicious source. Two executables
+are downloaded, and the website instructs the user to run an executable named ``DriverUpdate-setup.exe,'' which the
+participant dutifully does before running the Tor Browser executable.}
+\end{figure} 
+
+\begin{figure}[h]
+\label{mirror}
+\includegraphics[width=0.5\textwidth]{../experiment/processing/bad-participants/X32-20160328-134531-mirror.png}
+\caption{X32-20160328-134531 downloaded Tor Browser from a legitimate Tor Browser mirror,www.torservers.net/mirrors.}
+\end{figure}
+
+\begin{figure}[h]
+\label{techspot}
+\includegraphics[width=0.5\textwidth]{../experiment/processing/bad-participants/20160323-133257-techspot.png}
+\caption{E2-NEW-X21-20160323-133257 downloaded Tor Browser from TechSpot, clicking on the download link from 
+TechSpot (the white ``Direct Download'' button). X10-20160323-132505 in Figure \ref{downloadio} clicked the blue ``Download Now'' button and downloaded from a different source.}
+\end{figure}
+
+\begin{figure}[h]
+\label{softsonic}
+\includegraphics[width=0.5\textwidth]{../experiment/processing/bad-participants/20160330-161511-softsonic.png}
+\caption{E3-NEW-X11-20160330-161511 downloaded Tor Browser from Softsonic, a reputable-looking but
+unconfirmed site.}
+\end{figure}
+
+
+
 \end{document}
