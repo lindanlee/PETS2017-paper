@@ -26,6 +26,55 @@ if (any(is.na(edges$pid))) {
   stop("found NAs in edges$pid")
 }
 
+# Remove edges that start after maxtime, and trim those that overlap it
+# so their start time plus their duration exactly reaches maxtime.
+trim_edges <- function(edges, maxtime) {
+  edges <- edges[edges$time_from_start <= maxtime, ]
+  edges$duration <- ifelse(edges$time_from_start + edges$duration > maxtime, maxtime - edges$time_from_start, edges$duration)
+  edges
+}
+
+edges <- edges[order(edges$sequence, edges$time_from_start), ]
+edges$duration <- ave(edges$time_from_start, edges$seat, edges$runid, FUN=function(z) {
+  c(z[2:length(z)], z[length(z)]) - z
+})
+# Keep only the edges up to the first success.
+edges <- edges[is.na(edges$time_to_success) | edges$time_from_start <= edges$time_to_success, ]
+# Cut off the logs at our time limit.
+edges <- trim_edges(edges, maxtime)
+# Ignore "not_running" and "starting", so they just show up as blank.
+edges <- edges[!(edges$dst %in% c("not_running", "starting")), ]
+
+# Canonicalize screen names from the OLD and NEW interfaces.
+canonicalize_screens <- function(version, x) {
+  y <- factor(x)
+  # In the NEW interface, the screen that's logged as "bridges"
+  # corresponds more closely to the "bridgeSettings" screen in the OLD
+  # interface than it does the OLD "bridges" screen. Similarly NEW
+  # "proxy" corresponds to OLD "proxyYES".
+  y[version=="NEW" & y=="bridges"] <- "bridgeSettings"
+  y[version=="NEW" & y=="proxy"] <- "proxyYES"
+  levels(y) <- list(
+    "not_running"="not_running",
+    "starting"="starting",
+    "first"="first",
+    "bridges"="bridges",
+    "bridgeSettings"="bridgeSettings",
+    "bridgeHelp"="bridgeHelp",
+    "proxy"="proxy",
+    "proxyYES"="proxyYES",
+    "summary"="summary",
+    "progress"=c("progress_bar", "inlineprogress"),
+    "error"="errorPanel"
+  )
+  droplevels(y)
+}
+
+edges$src <- canonicalize_screens(edges$version, edges$src)
+edges$dst <- canonicalize_screens(edges$version, edges$dst)
+
+
+
 ###################
 # TIME TO SUCCESS #
 ###################
@@ -86,11 +135,65 @@ p <- p + annotate(geom="text", x=c(1, 3.3, 14, 15.3, 23, 24.7), y=c(0.86, 0.87, 
 p <- common_theme(p)
 ggsave("time_to_success_ecdf.pdf", p, width=columnwidth, height=height, device=cairo_pdf)
 
-##################
-# SUMMARY SCREEN # (HACKY)
-##################
+############################
+# SCREEN SPECIFIC ANALYSES #
+############################
 
+# BUILDING THE DATA FRAME 
+
+# recall: edges <- read_edges()
+# "active time" is anytime that people are not on the progress screen.
+active_edges <- edges[edges[,"src"] != "progress",]
+progress_edges <- edges[edges[,"src"]== "progress",]
+proxy_edges <- edges[edges[,"src"] %in% c("proxy","proxyYES"),]
+bridge_edges <-  edges[edges[,"src"] %in% c("bridges","bridgeSettings","bridgeHelp"),]
 summary_edges <- edges[edges[,"src"]== "summary",]
+
+total_time_per_user <- aggregate(edges$duration ~ edges$userid, edges, sum)
+active_time_per_user <- aggregate(active_edges$duration ~ active_edges$userid, active_edges, sum)
+progress_time_per_user <- aggregate(progress_edges$duration ~ progress_edges$userid, progress_edges, sum)
+proxy_time_per_user <- aggregate(proxy_edges$duration ~ proxy_edges$userid, proxy_edges, sum)
+bridge_time_per_user <- aggregate(bridge_edges$duration ~ bridge_edges$userid, bridge_edges, sum)
+summary_time_per_user <- aggregate(summary_edges$duration ~ summary_edges$userid, summary_edges, sum)
+
+screen_time_per_user <- participants[c("userid","env","version","pool")]
+screen_time_per_user <- merge(screen_time_per_user, total_time_per_user, by=c(1), all=T)
+screen_time_per_user <- merge(screen_time_per_user, active_time_per_user, by=c(1), all=T)
+screen_time_per_user <- merge(screen_time_per_user, progress_time_per_user, by=c(1), all=T)
+screen_time_per_user <- merge(screen_time_per_user, proxy_time_per_user, by=c(1), all=T)
+screen_time_per_user <- merge(screen_time_per_user, bridge_time_per_user, by=c(1), all=T)
+screen_time_per_user <- merge(screen_time_per_user, summary_time_per_user, by=c(1), all=T)
+screen_time_per_user[is.na(screen_time_per_user)] <- 0
+
+# PROGRESS SCREEN 
+
+# % time on progress screen: total, e1, e2, e3, new, old
+sum(progress_edges$duration)/sum(edges$duration)*100
+sum(progress_edges[progress_edges[,"env"]=="E1",]$duration)/sum(edges[edges[,"env"]=="E1",]$duration)*100
+sum(progress_edges[progress_edges[,"env"]=="E2",]$duration)/sum(edges[edges[,"env"]=="E2",]$duration)*100
+sum(progress_edges[progress_edges[,"env"]=="E3",]$duration)/sum(edges[edges[,"env"]=="E3",]$duration)*100
+sum(progress_edges[progress_edges[,"version"]=="NEW",]$duration)/sum(edges[edges[,"version"]=="NEW",]$duration)*100
+sum(progress_edges[progress_edges[,"version"]=="OLD",]$duration)/sum(edges[edges[,"version"]=="OLD",]$duration)*100
+
+# PROXY SCREEN
+
+# % time spent on proxy screen: overall, e1, e2, e3, new, old
+sum(proxy_edges$duration)/sum(edges$duration)*100
+sum(proxy_edges[proxy_edges[,"env"]=="E1",]$duration)/sum(edges[edges[,"env"]=="E1",]$duration)*100
+sum(proxy_edges[proxy_edges[,"env"]=="E2",]$duration)/sum(edges[edges[,"env"]=="E2",]$duration)*100
+sum(proxy_edges[proxy_edges[,"env"]=="E3",]$duration)/sum(edges[edges[,"env"]=="E3",]$duration)*100
+sum(proxy_edges[proxy_edges[,"version"]=="NEW",]$duration)/sum(edges[edges[,"version"]=="NEW",]$duration)*100
+sum(proxy_edges[proxy_edges[,"version"]=="OLD",]$duration)/sum(edges[edges[,"version"]=="OLD",]$duration)*100
+
+# % active time spent on proxy screen: overall, e1, e2, e3, old
+sum(proxy_edges$duration)/sum(active_edges$duration)*100
+sum(proxy_edges[proxy_edges[,"env"]=="E1",]$duration)/sum(active_edges[active_edges[,"env"]=="E1",]$duration)*100
+sum(proxy_edges[proxy_edges[,"env"]=="E2",]$duration)/sum(active_edges[active_edges[,"env"]=="E2",]$duration)*100
+sum(proxy_edges[proxy_edges[,"env"]=="E3",]$duration)/sum(active_edges[active_edges[,"env"]=="E3",]$duration)*100
+sum(proxy_edges[proxy_edges[,"version"]=="NEW",]$duration)/sum(active_edges[active_edges[,"version"]=="NEW",]$duration)*100
+sum(proxy_edges[proxy_edges[,"version"]=="OLD",]$duration)/sum(active_edges[active_edges[,"version"]=="OLD",]$duration)*100
+
+# SUMMARY SCREEN 
 
 # % time on summary screen = time spent on summary screen / total time spent on screens * 100 
 sum(summary_edges$duration)/sum(edges$duration)*100
@@ -101,125 +204,9 @@ sum(summary_edges$dst == "progress")/nrow(summary_edges)*100
 sum(summary_edges$dst == "summary")/nrow(summary_edges)*100
 barplot(height=table(summary_edges$dst))
 
-################
-# PROXY SCREEN # (HACKY)
-################
-
-proxy_edges <- edges[edges[,"src"] %in% c("proxy","proxyYES"),]
-
-# % time on proxy screen (overall) = time spent on proxy screen / total time spent on screens * 100 
-sum(proxy_edges$duration)/sum(edges$duration)*100
-
-# e1 % on proxy screen (overall)
-sum(proxy_edges[proxy_edges[,"env"]=="E1",]$duration)/sum(edges[edges[,"env"]=="E1",]$duration)*100
-
-# e2 % on proxy screen (overall)
-sum(proxy_edges[proxy_edges[,"env"]=="E2",]$duration)/sum(edges[edges[,"env"]=="E2",]$duration)*100
-
-# e3 % on proxy screen (overall)
-sum(proxy_edges[proxy_edges[,"env"]=="E3",]$duration)/sum(edges[edges[,"env"]=="E3",]$duration)*100
-
-# new % on proxy screen (overall)
-sum(proxy_edges[proxy_edges[,"version"]=="NEW",]$duration)/sum(edges[edges[,"version"]=="NEW",]$duration)*100
-
-# old % on proxy screen (overall)
-sum(proxy_edges[proxy_edges[,"version"]=="OLD",]$duration)/sum(edges[edges[,"version"]=="OLD",]$duration)*100
-
-
-# "active time" is anytime that people are not on the progress screen.
-active_edges <- edges[edges[,"src"] != "progress",]
-
-# % time on proxy screen ("active time") = time spent on proxy screen / total time spent on screens * 100 
-sum(proxy_edges$duration)/sum(active_edges$duration)*100
-
-# e1 % on proxy screen ("active time")
-sum(proxy_edges[proxy_edges[,"env"]=="E1",]$duration)/sum(active_edges[active_edges[,"env"]=="E1",]$duration)*100
-
-# e2 % on proxy screen ("active time")
-sum(proxy_edges[proxy_edges[,"env"]=="E2",]$duration)/sum(active_edges[active_edges[,"env"]=="E2",]$duration)*100
-
-# e3 % on proxy screen ("active time")
-sum(proxy_edges[proxy_edges[,"env"]=="E3",]$duration)/sum(active_edges[active_edges[,"env"]=="E3",]$duration)*100
-
-# new % on proxy screen ("active time")
-sum(proxy_edges[proxy_edges[,"version"]=="NEW",]$duration)/sum(active_edges[active_edges[,"version"]=="NEW",]$duration)*100
-
-# old % on proxy screen ("active time")
-sum(proxy_edges[proxy_edges[,"version"]=="OLD",]$duration)/sum(active_edges[active_edges[,"version"]=="OLD",]$duration)*100
-
-###################
-# PROGRESS SCREEN # (HACKY)
-###################
-
-progress_edges <- edges[edges[,"src"]== "progress",]
-
-# % time on progress screen = time spent on progress screen / total time spent on screens * 100
-sum(progress_edges$duration)/sum(edges$duration)*100
-
-# e1 % on progress screen
-sum(progress_edges[progress_edges[,"env"]=="E1",]$duration)/sum(edges[edges[,"env"]=="E1",]$duration)*100
-
-# e2 % on progress screen
-sum(progress_edges[progress_edges[,"env"]=="E2",]$duration)/sum(edges[edges[,"env"]=="E2",]$duration)*100
-
-# e3 % on progress screen
-sum(progress_edges[progress_edges[,"env"]=="E3",]$duration)/sum(edges[edges[,"env"]=="E3",]$duration)*100
-
-# new % on progress screen
-sum(progress_edges[progress_edges[,"version"]=="NEW",]$duration)/sum(edges[edges[,"version"]=="NEW",]$duration)*100
-
-# old % on progress screen
-sum(progress_edges[progress_edges[,"version"]=="OLD",]$duration)/sum(edges[edges[,"version"]=="OLD",]$duration)*100
-
 #############
 # ALL EDGES #
 #############
-
-# Canonicalize screen names from the OLD and NEW interfaces.
-canonicalize_screens <- function(version, x) {
-	y <- factor(x)
-	# In the NEW interface, the screen that's logged as "bridges"
-	# corresponds more closely to the "bridgeSettings" screen in the OLD
-	# interface than it does the OLD "bridges" screen. Similarly NEW
-	# "proxy" corresponds to OLD "proxyYES".
-	y[version=="NEW" & y=="bridges"] <- "bridgeSettings"
-	y[version=="NEW" & y=="proxy"] <- "proxyYES"
-	levels(y) <- list(
-		"not_running"="not_running",
-		"starting"="starting",
-		"first"="first",
-		"bridges"="bridges",
-		"bridgeSettings"="bridgeSettings",
-		"bridgeHelp"="bridgeHelp",
-		"proxy"="proxy",
-		"proxyYES"="proxyYES",
-		"summary"="summary",
-		"progress"=c("progress_bar", "inlineprogress"),
-		"error"="errorPanel"
-	)
-	droplevels(y)
-}
-
-# Remove edges that start after maxtime, and trim those that overlap it
-# so their start time plus their duration exactly reaches maxtime.
-trim_edges <- function(edges, maxtime) {
-	edges <- edges[edges$time_from_start <= maxtime, ]
-	edges$duration <- ifelse(edges$time_from_start + edges$duration > maxtime, maxtime - edges$time_from_start, edges$duration)
-	edges
-}
-
-edges <- edges[order(edges$sequence, edges$time_from_start), ]
-edges$duration <- ave(edges$time_from_start, edges$seat, edges$runid, FUN=function(z) {
-	c(z[2:length(z)], z[length(z)]) - z
-})
-# Keep only the edges up to the first success.
-edges <- edges[is.na(edges$time_to_success) | edges$time_from_start <= edges$time_to_success, ]
-# Cut off the logs at our time limit.
-edges <- trim_edges(edges, maxtime)
-# Ignore "not_running" and "starting", so they just show up as blank.
-edges <- edges[!(edges$dst %in% c("not_running", "starting")), ]
-edges$src <- canonicalize_screens(edges$version, edges$src)
-edges$dst <- canonicalize_screens(edges$version, edges$dst)
 
 state.palette <- brewer.pal(length(levels(edges$dst)), "Set1")
 
