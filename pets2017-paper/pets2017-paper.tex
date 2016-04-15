@@ -761,23 +761,7 @@ e1 participants spent 22\% of their active time configuring a proxy.
 e2 participants spent 40\% of their active time configuring a proxy. 
 e3 participants spent 57\% of their active time configuring a proxy.  
 new participants spent 31\% of their active time configuring a proxy.  
-old participants spent 58\% of their active time configuring a proxy. 
-
-> sum(proxy_edges$duration)/sum(active_edges$duration)*100
-[1] 51.5947
-> sum(proxy_edges[proxy_edges[,"env"]=="E1",]$duration)/sum(active_edges[active_edges[,"env"]=="E1",]$duration)*100
-[1] 22.37932
-> sum(proxy_edges[proxy_edges[,"env"]=="E2",]$duration)/sum(active_edges[active_edges[,"env"]=="E2",]$duration)*100
-[1] 40.37673
-> # e3 % on proxy screen ("active time")
-> sum(proxy_edges[proxy_edges[,"env"]=="E3",]$duration)/sum(active_edges[active_edges[,"env"]=="E3",]$duration)*100
-[1] 56.61874
-> # new % on proxy screen ("active time")
-> sum(proxy_edges[proxy_edges[,"version"]=="NEW",]$duration)/sum(active_edges[active_edges[,"version"]=="NEW",]$duration)*100
-[1] 31.20091
-> # old % on proxy screen ("active time")
-> sum(proxy_edges[proxy_edges[,"version"]=="OLD",]$duration)/sum(active_edges[active_edges[,"version"]=="OLD",]$duration)*100
-[1] 58.14161
+old participants spent 58\% of their active time configuring a proxy.
 
 % how much time participants spent on average during their ``active time'' would be nice (maybe I can do this later). 
 % 	i.e. the average participant in new spent x\% of their active time configuring a proxy. 
