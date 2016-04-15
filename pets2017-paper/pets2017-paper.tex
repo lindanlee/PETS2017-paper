@@ -773,41 +773,43 @@ Therefore we patched the correct fingerprint in the later experiment.
 
 \subsection{Results} 
 
-%how much time participants in aggregate spent in progress bar 
-overall, participants spent 65\% of their time in the progress bar. 
-e1 participants spent 28\% of their time in the progress bar. 
-e2 participants spent 74\% of their time in the progress bar. 
-e3 participants spent 63\% of their time in the progress bar. 
-new participants spent 78\% of their time in the progress bar. 
-old participants spent 57 \% of their time in the progress bar. 
+\begin{table}
+\centering
+	\begin{tabular}{c r r r r r}
+	 & First & Proxy & Bridge & Summary & Progress \\
+	\noalign{\hrule}
+	All &  8\% & 18\% & 8\% & 1\% & 65\% \\
+	NEW & 9\% & 7\% & 4\% & 2\% &  78\% \\
+	OLD & 7\% & 25\% & 11\% & 0\% & 57\% \\
+	E1 & 32\% & 16\% & 23\% & 1\% & 28\% \\
+	E2 & 7\% & 10\% & 8\% & 1\% & 74\% \\
+	E3 & 7\% & 21\% & 8\% & 1\% & 63\% \\
+	\end{tabular}
+\caption{overall time} 
+\end{table}
 
-% how much time participants spent on average would be nice. (maybe I can do this later). 
-%	i.e. the average participant in e1 spent x\% of their time in the progress bar. 
-
-% overall time spent configuring a proxy
-overall, participants spent 18\% of their overall time configuring a proxy. 
-e1 participants spent 16\% of their overall time configuring a proxy. 
-e2 participants spent 10\% of their overall time configuring a proxy. 
-e3 participants spent 21\% of their overall time configuring a proxy.  
-new participants spent 7\% of their overall time configuring a proxy.  
-old participants spent 25 \% of their overall time configuring a proxy. 
-
-% ``active'' time spent configuring a proxy
-overall, participants spent 52\% of their active time configuring a proxy. 
-e1 participants spent 22\% of their active time configuring a proxy. 
-e2 participants spent 40\% of their active time configuring a proxy. 
-e3 participants spent 57\% of their active time configuring a proxy.  
-new participants spent 31\% of their active time configuring a proxy.  
-old participants spent 58\% of their active time configuring a proxy.
-
-% how much time participants spent on average during their ``active time'' would be nice (maybe I can do this later). 
-% 	i.e. the average participant in new spent x\% of their active time configuring a proxy. 
+\begin{table}
+\centering
+	\begin{tabular}{c r r r r }
+	 & First & Proxy & Bridge & Summary \\
+	\noalign{\hrule}
+	All & 23\% & 52\% & 23\% & 2\% \\
+	NEW & 40\% & 31\% & 19\% & 9\% \\ 
+	OLD & 17\% & 58\% & 25\% & 0\% \\
+	E1 & 45\% & 22\% & 32\% & 1\% \\
+	E2 & 27\% & 40\% & 29\% & 3\% \\
+	E3 & 20\% & 57\% & 21\% & 2\% \\
+	\end{tabular}
+\caption{active time} 
+\end{table}
 
 % impacts of adding in a summary page 
 adding in a summary screen causes people to think about their configuration.
 summary to bridge settings: 13 \% (15/119)
 summary to progress: 86 \% (102/119)
 summary to summary: 1 \% (2/119)
+
+% new people still spent time configuring their proxy! 
 
 %%% SUCCESS RATE 
 % TODO: impact of env on success (chi squared?.. Serge might be wrong on this) 
@@ -822,52 +824,6 @@ summary to summary: 1 \% (2/119)
 % TODO:  time to success graph with right clamped ``active time''
 % TODO:  impact of env on time to success 
 % TODO: impact of version on time to success 
-
-
-% basic statistics (BAD, NEED CHI SQUARED NOT KRUSKAL AND EXCLUDED DNFs)
-%Results from statistical analyses say: 
-%\begin{itemize} 
-%	\item{{\bfseries impact of censorship environment on success rate is not significant.} 
-%	Kruskal-Wallis, chi-squared = 4.7059, df = 2, p-value = 0.09509}
-%	\item{{\bfseries impact of censorship environment on time to completion is significant.} 
-%	Kruskal-Wallis, chi-squared = 64.565, df = 2, p-value = 9.547e-15}
-%	\item{{\bfseries impact of configuration version on success rate is not significant.}
-%	Mann-Whitney, W = 5.5, p-value = 0.8248}
-%	\item{{\bfseries impact of configuration interface on time to completion is not significant.} 
-%	Mann-Whitney, W = 991, p-value = 0.3197}
-%\end{itemize} 
-
-% looking at all factors' impact on success rate (SUCCESS RATHER THAN SUCCESS RATE?)
-%A logistic regression model showing effects of censorship environment, interface version,
-%and recruitment pool on success finds that a difficult censorship environment is the most
-%significant factor in a participant failing. Xlab participants were more likely to succeed. 
-%Participants with the old version of the interface were more likely to fail. 
-%
-%Coefficients:
-%             Estimate Std. Error z value Pr(>|z|)  
-%(Intercept)   19.4556  1684.3342   0.012   0.9908  
-%envE2        -17.3458  1684.3342  -0.010   0.9918  
-%envE3        -19.2652  1684.3341  -0.011   0.9909  
-%versionOLD    -0.7095     0.5793  -1.225   0.2206  
-%poolxlab       1.1218     0.5968   1.880   0.0601 .
-%---
-%Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-% looking at all factors' impact on time to completion (BAD, EXCLUDED DNFs)
-%A linear regression model showing effects of censorship environment, interface version, 
-%and recruitment pool on success finds that a difficult censorship environment is the most
-%significant factor in taking a long time to complete the task. Participants with the old version
-%of the interface and participants recruited from Xlab were likely to take longer. 
-%
-%Coefficients:
-%            Estimate Std. Error t value Pr(>|t|)    
-%(Intercept)   -42.79      86.70  -0.494  0.62280    
-%envE2         300.65      90.13   3.336  0.00124 ** 
-%envE3         923.66     100.94   9.150 1.68e-14 ***
-%versionOLD    104.78      78.70   1.331  0.18642    
-%poolxlab       92.41      78.88   1.172  0.24445    
-%---
-%Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 \begin{table}
 \centering
