@@ -167,29 +167,49 @@ Proxies help bypass local network restrictions and are typically only
 needed in certain cases, such as corporate environments.
 
 \subsection{The Current Configuration Interface} 
-Tor Browser provides a configuration interface to guide users through setting up 
-their connection. While most can connect to Tor using a direct connection, users in certain censorship environments must
-make use of additional settings, such as bridges, proxies, or both. As bridges and proxies can be configured independently or together, there are four ways to set up a connection:\\
 
-\begin{enumerate}
-    \item With a bridge and proxy
-    \item With a bridge but no proxy
-    \item Without a bridge but with a proxy
-    \item Without either a bridge or proxy
-\end{enumerate}
+For most users, the recommended way to use Tor is through Tor Browser~\cite{torbrowser},
+a modified Firefox browser that includes a built-in Tor client.
+Tor Browser has a special software component that
+Tor Launcher starts, stops, and otherwise controls
+an underlying Tor process.
+This component is called Tor Launcher
+and it is the primary target of our study.
+% Tor Launcher is also used by Tor Messenger~\cite{tormessenger},
+% an instant messaging client.
 
-A series of questions determines which configuration a user requires. The interface asks users questions along the way throughout the configuration to select components they would need to configure. For a successful configuration, users are required to know (or find out) the following:\\
+Tor Launcher has a graphical user interface,
+displayed at its first startup, that asks the user
+to configure two important settings before connecting to Tor
+for the first time:
+what proxy to use (if any) and what bridge to use (if any).
+The correct configuration settings will vary depending
+on the user and their circumstances.
+A graphical wizard asks a series of questions to guide
+users in finding the correct configuration.
+Most Tor users do not require a bridge nor a proxy and
+can simply click the ``Connect'' shortcut on
+the first page to bypass all configuration.
+Others, though, need to know or find out
+all these pieces of information:
 
 \begin{itemize}
 	\item{Whether they are censored} 
-	\item{If the Tor Network is censored by their ISP}
+	\item{Whether the Tor network is censored by their ISP}
 	\item{Which bridges work in the current environment} 
 	\item{If no bridges work, how to get a custom bridge} 
-	\item{If a proxy is required to access the Internet}
+	\item{Whether a proxy is required to access the Internet}
 	\item{If a proxy is required, the proxy settings}
 \end{itemize}
 
-This puts the burden of knowing technical information and configuring correctly on the user. Note that bridges, pluggable transports, and proxies are technical concepts that are likely unfamiliar to the average user. Although burdensome, the interface takes the approach of guiding the user through this technical process in order to give users their own agency in configuring their connection. There has been no previous work to explore the option of automation, but a manual configuration was preferred by Tor developers since it allows the user can have control over the process. If a user had all the relevant information, they would be able to connect without obvious network traces of attempting to connect to Tor. 
+While these steps can in principle be automated to some degree,
+the interface eschews automatic configuration through network probing
+in favor of guided manual configuration,
+in order to give users their own agency in configuring their connection.
+A knowledgeable user can connect while minimizing their network trace
+and not make it obvious that they are using Tor.
+However, this design decision puts the burden of technical knowledge and correct configuration on the user.
+The technical concepts of bridges, pluggable transports, and proxies are likely unfamiliar to the average user.
 
 \begin{figure}
 \small
@@ -211,7 +231,7 @@ Transport type:
 \item Enter custom bridges\qquad\fbox{Help}\\
 \end{itemize}
 \caption{
-Bridge selection options in Tor Browser~5.0.3.
+Bridge selection options in Tor Launcher, as it appeared in Tor Browser~5.0.3.
 The obscure strings under ``Connect with provided bridges'' denote various
 built-in circumvention technologies (``pluggable transports'').
 Under ``Enter custom bridges'', there is a space to paste in
