@@ -143,6 +143,7 @@ ggsave("time_to_success_ecdf.pdf", p, width=columnwidth, height=height, device=c
 # 1: group edges by their source
 # 2: get the total time each user spent on a particular screen 
 # 3: create data frame "screen time per user" which has the time a user spent on each screen 
+# 4: (TODO) historgram plot function
 
 # 1 
 active_edges <- edges[edges[,"src"] != "progress",] # "active time" is anytime that people are not on the progress screen.
@@ -169,11 +170,22 @@ screen_time_per_user <- merge(screen_time_per_user, bridge_time_per_user, by=c(1
 screen_time_per_user <- merge(screen_time_per_user, summary_time_per_user, by=c(1), all=T)
 screen_time_per_user[is.na(screen_time_per_user)] <- 0
 
+# 4
+# time_histogram <- function(time) {
+#   p <- hist(time)
+#   p <- p + xlim=c(0,40)
+#   p <- p + ylim=c(0,120)
+#   p <- p + xlab="Minutes" 
+#   p <- p + ylab="Number of Participants"
+#   p <- common_theme(p)
+#   p
+# }
+
 # PROGRESS SCREEN 
-  # 1: minutes  TOTAL time was spent on the PROGRESS screen, across users. (total, e1, e2, e3,new, old)
-  # 2: % TOTAL time was spent on the PROGRESS screen, across users. (total, e1, e2, e3,new, old)
-  # 3: minutes TOTAL time was spent on the PROGRESS screen, by each user. (total, e1, e2, e3,new, old)
-  # 4: % TOTAL time was spent on the PROGRESS screen, by each user. (total, e1, e2, e3,new, old)
+  # 1: minutes  TOTAL time on PROGRESS screen, across users. (total, e1, e2, e3,new, old)
+  # 2: % TOTAL time on PROGRESS screen, across users. (total, e1, e2, e3,new, old)
+  # 3: minutes TOTAL time on PROGRESS screen, by user. (total, e1, e2, e3,new, old)
+  # 4: % TOTAL time on PROGRESS screen, by user. (total, e1, e2, e3,new, old)
 
 # 1 
 progress_time_all = sum(progress_edges$duration)/60
@@ -200,12 +212,12 @@ user_progress_time_e3 <- screen_time_per_user[screen_time_per_user[,"env"]=="E3"
 user_progress_time_new <- screen_time_per_user[screen_time_per_user[,"version"]=="NEW",]$`progress_edges$duration`/60
 user_progress_time_old <- screen_time_per_user[screen_time_per_user[,"version"]=="OLD",]$`progress_edges$duration`/60
 
-hist(user_progress_time_all)
-hist(user_progress_time_e1)
-hist(user_progress_time_e2)
-hist(user_progress_time_e3)
-hist(user_progress_time_new)
-hist(user_progress_time_old)
+hist(user_progress_time_all, xlim=c(0,40), ylim=c(0,80))
+hist(user_progress_time_e1, xlim=c(0,40), ylim=c(0,40))
+hist(user_progress_time_e2, xlim=c(0,40), ylim=c(0,40))
+hist(user_progress_time_e3, xlim=c(0,40), ylim=c(0,40))
+hist(user_progress_time_new, xlim=c(0,40), ylim=c(0,40))
+hist(user_progress_time_old, xlim=c(0,40), ylim=c(0,40))
 
 # 4
 p_user_progress_time_all <- screen_time_per_user$`progress_edges$duration`/screen_time_per_user$`edges$duration`*100
@@ -215,17 +227,19 @@ p_user_progress_time_e3 <- screen_time_per_user[screen_time_per_user[,"env"]=="E
 p_user_progress_time_new <- screen_time_per_user[screen_time_per_user[,"version"]=="NEW",]$`progress_edges$duration`/screen_time_per_user[screen_time_per_user[,"version"]=="NEW",]$`edges$duration`*100
 p_user_progress_time_old <- screen_time_per_user[screen_time_per_user[,"version"]=="OLD",]$`progress_edges$duration`/screen_time_per_user[screen_time_per_user[,"version"]=="OLD",]$`edges$duration`*100
 
-hist(p_user_progress_time_all)
-hist(p_user_progress_time_e1)
-hist(p_user_progress_time_e2)
-hist(p_user_progress_time_e3)
-hist(p_user_progress_time_new)
-hist(p_user_progress_time_old)
+hist(p_user_progress_time_all, xlim=c(0,100), ylim=c(0,20))
+hist(p_user_progress_time_e1, xlim=c(0,100), ylim=c(0,15))
+hist(p_user_progress_time_e2, xlim=c(0,100), ylim=c(0,15))
+hist(p_user_progress_time_e3, xlim=c(0,100), ylim=c(0,15))
+hist(p_user_progress_time_new, xlim=c(0,100), ylim=c(0,15))
+hist(p_user_progress_time_old, xlim=c(0,100), ylim=c(0,15))
 
 
 # PROXY SCREEN
+# 1: % TOTAL time on PROXY screen, across users. (total, e1, e2, e3,new, old)
+# 2: % TOTAL time on PROXY screen, by user. (total, e1, e2, e3,new, old)
 
-# % time spent on proxy screen: overall, e1, e2, e3, new, old
+# 1
 sum(proxy_edges$duration)/sum(edges$duration)*100
 sum(proxy_edges[proxy_edges[,"env"]=="E1",]$duration)/sum(edges[edges[,"env"]=="E1",]$duration)*100
 sum(proxy_edges[proxy_edges[,"env"]=="E2",]$duration)/sum(edges[edges[,"env"]=="E2",]$duration)*100
@@ -233,7 +247,7 @@ sum(proxy_edges[proxy_edges[,"env"]=="E3",]$duration)/sum(edges[edges[,"env"]=="
 sum(proxy_edges[proxy_edges[,"version"]=="NEW",]$duration)/sum(edges[edges[,"version"]=="NEW",]$duration)*100
 sum(proxy_edges[proxy_edges[,"version"]=="OLD",]$duration)/sum(edges[edges[,"version"]=="OLD",]$duration)*100
 
-# % active time spent on proxy screen: overall, e1, e2, e3, old
+# 2
 sum(proxy_edges$duration)/sum(active_edges$duration)*100
 sum(proxy_edges[proxy_edges[,"env"]=="E1",]$duration)/sum(active_edges[active_edges[,"env"]=="E1",]$duration)*100
 sum(proxy_edges[proxy_edges[,"env"]=="E2",]$duration)/sum(active_edges[active_edges[,"env"]=="E2",]$duration)*100
@@ -241,12 +255,46 @@ sum(proxy_edges[proxy_edges[,"env"]=="E3",]$duration)/sum(active_edges[active_ed
 sum(proxy_edges[proxy_edges[,"version"]=="NEW",]$duration)/sum(active_edges[active_edges[,"version"]=="NEW",]$duration)*100
 sum(proxy_edges[proxy_edges[,"version"]=="OLD",]$duration)/sum(active_edges[active_edges[,"version"]=="OLD",]$duration)*100
 
+
+# BRIDGE SCREEN
+# 1: % TOTAL time on BRIDGE screen, by user. (total, e1, e2, e3,new, old)
+# 2: % ACTIVE time on BRIDGE screen, by user. (total, e1, e2, e3,new, old)
+
+# 1
+sum(bridge_edges$duration)/sum(edges$duration)*100
+sum(bridge_edges[bridge_edges[,"env"]=="E1",]$duration)/sum(edges[edges[,"env"]=="E1",]$duration)*100
+sum(bridge_edges[bridge_edges[,"env"]=="E2",]$duration)/sum(edges[edges[,"env"]=="E2",]$duration)*100
+sum(bridge_edges[bridge_edges[,"env"]=="E3",]$duration)/sum(edges[edges[,"env"]=="E3",]$duration)*100
+sum(bridge_edges[bridge_edges[,"version"]=="NEW",]$duration)/sum(edges[edges[,"version"]=="NEW",]$duration)*100
+sum(bridge_edges[bridge_edges[,"version"]=="OLD",]$duration)/sum(edges[edges[,"version"]=="OLD",]$duration)*100
+
+# 2
+sum(bridge_edges$duration)/sum(active_edges$duration)*100
+sum(bridge_edges[bridge_edges[,"env"]=="E1",]$duration)/sum(active_edges[active_edges[,"env"]=="E1",]$duration)*100
+sum(bridge_edges[bridge_edges[,"env"]=="E2",]$duration)/sum(active_edges[active_edges[,"env"]=="E2",]$duration)*100
+sum(bridge_edges[bridge_edges[,"env"]=="E3",]$duration)/sum(active_edges[active_edges[,"env"]=="E3",]$duration)*100
+sum(bridge_edges[bridge_edges[,"version"]=="NEW",]$duration)/sum(active_edges[active_edges[,"version"]=="NEW",]$duration)*100
+sum(bridge_edges[bridge_edges[,"version"]=="OLD",]$duration)/sum(active_edges[active_edges[,"version"]=="OLD",]$duration)*100
+
+
 # SUMMARY SCREEN 
+# 1: % TOTAL time on SUMMARY screen, by user. (total, e1, e2, e3,new, old)
+# 2: % ACTIVE time on SUMMARY screen, by user. (total, e1, e2, e3,new, old)
+# 3: distribution of destinations from summary screen 
 
-# % time on summary screen = time spent on summary screen / total time spent on screens * 100 
-sum(summary_edges$duration)/sum(edges$duration)*100
+# 1
+sum(summary_edges$duration)/sum(active_edges$duration)*100
+sum(summary_edges[summary_edges[,"env"]=="E1",]$duration)/sum(active_edges[active_edges[,"env"]=="E1",]$duration)*100
+sum(summary_edges[summary_edges[,"env"]=="E2",]$duration)/sum(active_edges[active_edges[,"env"]=="E2",]$duration)*100
+sum(summary_edges[summary_edges[,"env"]=="E3",]$duration)/sum(active_edges[active_edges[,"env"]=="E3",]$duration)*100
 
-# dst from summary distribution
+# 2 
+sum(summary_edges$duration)/sum(active_edges$duration)*100
+sum(summary_edges[summary_edges[,"env"]=="E1",]$duration)/sum(active_edges[active_edges[,"env"]=="E1",]$duration)*100
+sum(summary_edges[summary_edges[,"env"]=="E2",]$duration)/sum(active_edges[active_edges[,"env"]=="E2",]$duration)*100
+sum(summary_edges[summary_edges[,"env"]=="E3",]$duration)/sum(active_edges[active_edges[,"env"]=="E3",]$duration)*100
+
+# 3
 sum(summary_edges$dst == "bridgeSettings")/nrow(summary_edges)*100
 sum(summary_edges$dst == "progress")/nrow(summary_edges)*100
 sum(summary_edges$dst == "summary")/nrow(summary_edges)*100
