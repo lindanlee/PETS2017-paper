@@ -888,11 +888,11 @@ except for those we cut off after approximately 40 minutes.
 
 These non-conservative changes may be helpful for a user, and would benefit from future research: \\
 
-\begin{itemize}
+\begin{description}
 \item {\bfseries Tell people what to do.} Since a majority of the users will succeed if they click connect on the first screen, replacing the information about choices with explicit instructions to connect can lessen their cognitive load during the configuration process. 
 \item{\bfseries Hide infrequently used options.} Hide the proxy screen and do not the option to configure a proxy unless it has been detected as necessary.
 \item{\bfseries Tailor for at-risk users.} Currently, the interface is for the average user. We guide at-risk users to the correct configuration, but suggesting that they try the default first. However, this isn't ideal. 
-\end{itemize} 
+\end{description} 
 
 Despite giving 5 of the participants downloaded Tor 
 
@@ -908,12 +908,12 @@ Throughout the qualitative user study, redesign of the interface, and the quanti
 
 We took an approach that optimized for the average case user yet was conservative enough in automation to allow users to connect without leaking that they use Tor. Additional user studies that focus specifically on users in heavily censored environments, or increasing the amount of automation in the configuration process can yield to higher rates of success and faster time to success. We encourage future work to explore some of the non-conservative changes and alternate approaches that we were not able to test in these series of experiments.\\
 
-\begin{itemize}
+\begin{description}
 \item{\bfseries Automate the configuration.} This sounds like a radical idea, but this wouldn't harm users today. Additionally, our study finds that most users would leak that they are using Tor when trying to circumvent an advanced censor. 
 \item {\bfseries Automate after failure.} After an unsuccessful connection attempt, the user has already indicated that they are connecting to Tor on the network. Assuming that the significant difference is between being logged trying to connect to Tor or not at all, we can automate the entire configuration process thereafter without increasing risk. This may save our users a lot of headache. 
 \item{\bfseries Ask about the risk.} Ask the users if they would be at risk if the process was automated, and automate the configuration process for all who are not at risk. The ones at risk will configure manually. The complication with this approach is that users may not be qualified to answer this question or may not trust Tor to answer honestly. 
 \item{\bfseries Ask if users if they know what to do.} We ask users if they know how to configure a bridge and proxy, and automate the configuration process if they do not. However, there are ethical implications of making mistakes on behalf of the users if there is risk involved. 
-\end{itemize}
+\end{description}
 
 Ideally, we want users in censorship environments across the world to succeed in connecting to the Tor network in a couple of minutes. We believe that this is possible with continued improvements to the interface. 
 
@@ -1031,18 +1031,8 @@ Thank you for participating in our experiment. You are now done! Please sit at y
 \section{Failed Participants} 
 \label{failed-participants}
 
-Thought that they needed a proxy: 
-\begin{enumerate}
-\item E2-OLD-X10-20160328-132828
-\item E3-NEW-X18-20160330-170145
-\item E3-NEW-X17-20160328-160037
-\item E3-OLD-X06-20160325-175101
-\item E3-OLD-X06-20160330-181926
-\item E3-OLD-X24-20160328-155926
-\end{enumerate} 
-
-Only tried connecting directly: 
-\begin{enumerate}
+{\bfseries Cause 1}: only tried connecting directly (8/23): 
+\begin{itemize}
 \item E2-NEW-X21-20160323-133257 
 \item E2-OLD-X04-20160330-181928
 \item E2-OLD-X10-20160331-153028
@@ -1051,24 +1041,34 @@ Only tried connecting directly:
 \item E3-OLD-X06-20160328-132053
 \item E3-OLD-X06-20160330-161525 
 \item E3-OLD-X12-20160330-182011
-\end{enumerate} 
+\end{itemize} 
 
-Didn't know what to do after connecting directly and default bridge: 
-\begin{enumerate}
+{\bfseries Cause 2}: didn't know what to do after connecting directly and default bridge (6/23): 
+\begin{itemize}
 \item E3-NEW-X11-20160330-161511
 \item E3-NEW-X11-20160331-174655
 \item E3-NEW-X23-20160323-133346
 \item E3-OLD-X06-20160331-174650
 \item E3-OLD-X12-20160331-153055
 \item E3-OLD-X30-20160328-134412
-\end{enumerate} 
+\end{itemize} 
 
-Failed to use the bridges@torproject.org autoresponder: 
-\begin{enumerate}
+{\bfseries Cause 3}: Thought that they needed a proxy (6/23): 
+\begin{itemize}
+\item E2-OLD-X10-20160328-132828
+\item E3-NEW-X18-20160330-170145
+\item E3-NEW-X17-20160328-160037
+\item E3-OLD-X06-20160325-175101
+\item E3-OLD-X06-20160330-181926
+\item E3-OLD-X24-20160328-155926
+\end{itemize} 
+
+{\bfseries Cause 4}: used the bridges autoresponder incorrectly (3/23): 
+\begin{itemize}
 \item E3-NEW-X23-20160328-155924 (Figure \ref{autoresponder1})
 \item E3-OLD-X12-20160325-140813 (Figure \ref{autoresponder2})
 \item E3-OLD-X24-20160328-133857 (Figure \ref{autoresponder3})
-\end{enumerate}   
+\end{itemize}   
 
 \begin{figure}[h]
 \label{autoresponder1}
@@ -1091,14 +1091,23 @@ Failed to use the bridges@torproject.org autoresponder:
 \section{Tor Downloads}
 \label{tor-downloads}
 
-Participants that downloaded Tor: 
-\begin{enumerate}
+Participants that downloaded Tor (5/124): 
+\begin{itemize}
 \item E1-OLD-X32-20160328-134531(Figure \ref{mirror})
 \item E2-NEW-X21-20160323-133257 (Figure \ref{techspot})
 \item E2-OLD-X10-20160323-132505 (Figure \ref{downloadio})
 \item E2-OLD-X28-20160328-134111 (Figure \ref{driverupdate})
 \item E3-NEW-X11-20160330-161511 (Figure \ref{softsonic})
-\end{enumerate} 
+\end{itemize} 
+
+Sources of downloads: 
+\begin{itemize}
+\item {\bfseries techspot.com -> 1download.io}: the ad firefox yahoo ad result for ``tor browser downloads.'' 
+\item {\bfseries driverupdate.net}: the 5th chrome google search result for ``tor browser download.'' 
+\item {\bfseries www.torservers.net/mirrors}: the first chrome google search result for ``tor browser mirror.''
+\item {\bfseries techspot.com}: the 5th chrome google search result for ``tor browser download.''
+\item {\bfseries softsonic.com}: the 2nd firefox yahoo search result for ``tor browser.''
+\end{itemize}
 
 \begin{figure}[h]
 \label{downloadio}
