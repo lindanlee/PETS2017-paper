@@ -2,7 +2,7 @@ GRAPHS = time_to_success.pdf time_to_success_clamped.pdf time_to_success_ecdf.pd
 
 all: $(GRAPHS)
 
-$(GRAPHS): graphs.R common.R
+$(GRAPHS): graphs.R common.R *.csv
 	Rscript "$<"
 
 .PHONY: all
