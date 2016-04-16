@@ -5,4 +5,10 @@ all: $(GRAPHS)
 $(GRAPHS): graphs.R common.R *.csv
 	Rscript "$<"
 
+edges.csv: all_edges logs/*.log
+	"./$<" logs/*.log > "$@"
+
+attempts.csv: attempts edges.csv
+	"./$<" edges.csv > "$@"
+
 .PHONY: all
