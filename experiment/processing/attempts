@@ -28,9 +28,18 @@ class State(object):
         self.bridge_default_selection = "obfs3"
         self.bridge_custom_entry = None
 
+        self.proxy_yesno = False
+
+        self.proxy_type = None
+        self.proxy_addr = None
+        self.proxy_port = None
+        self.proxy_username = None
+        self.proxy_password = None
+
 def output_record(csvw, d):
     d["attempt_successful"] = fmt_bool(d["attempt_successful"])
     d["bridge_yesno"] = fmt_bool(d["bridge_yesno"])
+    d["proxy_yesno"] = fmt_bool(d["proxy_yesno"])
     csvw.writerow(d)
 
 def log_attempt(csvw, r, state):
@@ -46,6 +55,12 @@ def log_attempt(csvw, r, state):
         "bridge_radio_state": state.bridge_radio_state,
         "bridge_default_selection": state.bridge_default_selection,
         "bridge_custom_entry": state.bridge_custom_entry,
+        "proxy_yesno": state.proxy_yesno,
+        "proxy_type": state.proxy_type,
+        "proxy_addr": state.proxy_addr,
+        "proxy_port": state.proxy_port,
+        "proxy_username": state.proxy_username,
+        "proxy_password": state.proxy_password,
     }
 
 def log_success(csvw, r):
@@ -78,11 +93,39 @@ def process(csvr, csvw):
                 if state.bridge_radio_state not in (BRIDGE_DEFAULT, BRIDGE_CUSTOM):
                     state.bridge_radio_state = BRIDGE_DEFAULT
 
-        if r["event_type"] == "select" and r["event_target"] == "defaultBridgeType":
-            state.bridge_default_selection = r["event_value"]
+            elif r["event_target"] == "proxyRadioNo":
+                state.proxy_yesno = False
+            elif r["event_target"] == "proxyRadioYes":
+                state.proxy_yesno = True
 
-        if r["event_type"] == "change" and r["event_target"] == "bridgeList":
-            state.bridge_custom_entry = r["event_value"]
+        if r["event_type"] == "select":
+            if r["event_target"] == "defaultBridgeType":
+                state.bridge_default_selection = r["event_value"]
+            elif r["event_target"] == "proxyType":
+                state.proxy_type = r["event_value"]
+
+        if r["event_type"] == "change":
+            if r["event_target"] == "bridgeList":
+                state.bridge_custom_entry = r["event_value"]
+            elif r["event_target"] == "proxyAddr":
+                state.proxy_addr = r["event_value"]
+            elif r["event_target"] == "proxyPort":
+                state.proxy_port = r["event_value"]
+            elif r["event_target"] == "proxyUsername":
+                state.proxy_username = r["event_value"]
+            elif r["event_target"] == "proxyPassword":
+                state.proxy_password = r["event_value"]
+
+        # If they entered invalid proxy values, then the interface shows an
+        # error message and clears the proxy settings.
+        # Perhaps the same thing could happen with the bridge screen, but we
+        # didn't see it.
+        if r["event_type"] == "alert_show" and r["event_target"] == "failed_to_save_settings" and r["src"] == "proxyYES":
+            state.proxy_yesno = False
+            state.proxy_addr = None
+            state.proxy_port = None
+            state.proxy_username = None
+            state.proxy_password = None
 
         if r["dst"] == "inlineprogress" and r["event_type"] == "wizardnext":
             log_attempt(csvw, r, state)
@@ -106,7 +149,11 @@ def fmt_bool(b):
 if __name__ == '__main__':
     _, args = getopt.gnu_getopt(sys.argv[1:], "")
 
-    csvw = csv.DictWriter(sys.stdout, fieldnames=("seat", "runid", "attempt_successful", "time_from_start", "bridge_yesno", "bridge_radio_state", "bridge_default_selection", "bridge_custom_entry"))
+    csvw = csv.DictWriter(sys.stdout, fieldnames=(
+        "seat", "runid", "attempt_successful", "time_from_start",
+        "bridge_yesno", "bridge_radio_state", "bridge_default_selection", "bridge_custom_entry",
+        "proxy_yesno", "proxy_type", "proxy_addr", "proxy_port", "proxy_username", "proxy_password",
+    ))
     csvw.writeheader()
     for _, f in inst.input_files(args):
         process(csv.DictReader(f), csvw)
