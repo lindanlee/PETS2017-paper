@@ -60,6 +60,9 @@ def parse_inst_log(f):
     records = [record for record in records if is_event_wanted(record.event)]
 
     current_state = "not_running"
+    # In the OLD interface, canceling the progress bar returns you to the most
+    # recent wizard screen.
+    pre_progress_state = "first"
     edges = []
 
     for r in records:
@@ -67,10 +70,17 @@ def parse_inst_log(f):
             e = Edge(r.exec_id, r.date, current_state, current_state, r.event["type"], get_id(r.event), r.event.get("value", ""))
             edges.append(e)
             current_state = "starting"
+            pre_progress_state = current_state
         if r.event["type"] in ("start", "pageshow", "load", "unload"):
             current_state = get_id(r.event)
             # Change previous edge to point to this new state.
             edges[-1] = edges[-1]._replace(dst=current_state)
+            if not (r.event["type"] == "load" and r.event["target_id"] == "progress_bar"):
+                pre_progress_state = current_state
+        elif r.event["type"] == "dialogcancel" and r.event["target_id"] == "TorProgress":
+            e = Edge(r.exec_id, r.date, current_state, pre_progress_state, r.event["type"], get_id(r.event), r.event.get("value", ""))
+            edges.append(e)
+            current_state = pre_progress_state
         else:
             e = Edge(r.exec_id, r.date, current_state, current_state, r.event["type"], get_id(r.event), r.event.get("value", ""))
             edges.append(e)
