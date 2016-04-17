@@ -68,7 +68,14 @@ def parse_inst_log(f):
 
     for r in records:
         if r.event["type"] == "start":
-            e = Edge(r.exec_id, r.date, current_state, current_state, r.event["type"], get_id(r.event), r.event.get("value", ""))
+            if current_state != "not_running":
+                # Somehow the program stopped running without us noticing it.
+                # Insert an artificial "quit" edge just before this "start" one.
+                # We don't know what time to use; just use the current time.
+                e = Edge(edges[-1].exec_id, r.date, current_state, "not_running", "quit", "", "")
+                edges.append(e)
+                current_state = "not_running"
+            e = Edge(r.exec_id, r.date, current_state, "starting", r.event["type"], get_id(r.event), r.event.get("value", ""))
             edges.append(e)
             current_state = "starting"
             pre_progress_state = current_state
