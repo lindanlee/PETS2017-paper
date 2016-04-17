@@ -91,7 +91,10 @@ time_to_success_plot <- function(participants) {
   max_minutes <- max(minutes_to_success, na.rm=T)+9
   p <- ggplot(data.frame(participants, minutes_to_success), aes(x=label, y=minutes_to_success), environment=environment())
   p <- p + geom_boxplot(color="gray70", outlier.size=0)
-  p <- p + geom_point(size=0.8, alpha=0.6)
+  p <- p + geom_point(alpha=0.6, aes(size=success, color=success, shape=success))
+  p <- p + scale_size_manual(values=c("TRUE"=0.8, "FALSE"=1.0), guide=F)
+  p <- p + scale_color_manual(values=c("TRUE"="black", "FALSE"="red3"), guide=F)
+  p <- p + scale_shape_manual(values=c("TRUE"=19, "FALSE"=4), guide=F)
   p <- p + coord_cartesian(ylim=c(0, max_minutes))
   p <- p + coord_flip()
   p <- p + scale_x_discrete(limits=rev(levels(participants$label)))
