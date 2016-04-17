@@ -117,6 +117,7 @@ cat("* OTHER STUFF *\n")
 cat("***************\n")
 
 cat("\n")
+# replace "participants" with "clamp_time_to_success(participants, maxtime)" to get median success times with DNFs = 40mins.
 tt <- with(participants, aggregate(success, list(env=env, version=version), FUN=length))
 tt <- merge(tt, with(participants, aggregate(success, list(env=env, version=version), FUN=sum)), by=c("env", "version"))
 tt <- merge(tt, with(participants, aggregate(time_to_success, list(env=env, version=version), FUN=function(z) {median(z, na.rm=T)})), by=c("env", "version"))
