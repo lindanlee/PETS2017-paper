@@ -99,6 +99,7 @@ time_to_success_plot <- function(participants) {
   counts <- aggregate(data.frame(participants, n=1)[, c("success", "n")], by=list(label=participants$label), sum)
   p <- p + geom_text(data=counts, aes(x=label, y=max_minutes, label=sprintf("%d/%d DNF", n-success, n)), hjust=1, size=2, alpha=0.6)
   p <- common_theme(p)
+  p <- p + theme(panel.grid.major.y=element_blank())
   p
 }
 
