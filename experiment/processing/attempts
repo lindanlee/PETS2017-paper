@@ -1,7 +1,10 @@
 #!/usr/bin/env python
 
 # Shows what bridge/proxy configurations were attempted.
+# It doesn't show the attempts that ended in a "failed_to_save_settings" error
+# rather than a progress bar.
 
+import copy
 import csv
 import getopt
 import sys
@@ -11,6 +14,7 @@ import inst
 BRIDGE_NONE, BRIDGE_DEFAULT, BRIDGE_CUSTOM = "none", "default", "custom"
 
 STATES = {}
+SAVED_STATES = {}
 # We don't know whether an attempt was successful until reading further into the
 # log. OUTPUT_BUFFER stores the most recent attempt, which we haven't output
 # yet. log_success modifies the most recent attempt to set attempt_successful=T.
@@ -72,8 +76,15 @@ def log_success(csvw, r):
 def process(csvr, csvw):
     for r in csvr:
         key = (r["seat"], r["runid"])
-        if key not in STATES:
-            STATES[key] = State()
+        # Create a default saved state if none exists yet.
+        if key not in SAVED_STATES:
+            SAVED_STATES[key] = State()
+
+        if r["event_type"] == "start":
+            assert key not in STATES
+            # Restore from saved state.
+            STATES[key] = copy.deepcopy(SAVED_STATES[key])
+
         state = STATES[key]
 
         if r["event_type"] == "command":
@@ -116,22 +127,12 @@ def process(csvr, csvw):
             elif r["event_target"] == "proxyPassword":
                 state.proxy_password = r["event_value"]
 
-        # If they entered invalid proxy values, then the interface shows an
-        # error message and clears the proxy settings.
-        # Perhaps the same thing could happen with the bridge screen, but we
-        # didn't see it.
-        if r["event_type"] == "alert_show" and r["event_target"] == "failed_to_save_settings" and r["src"] == "proxyYES":
-            state.proxy_yesno = False
-            state.proxy_addr = None
-            state.proxy_port = None
-            state.proxy_username = None
-            state.proxy_password = None
-
-        if r["dst"] == "inlineprogress" and r["event_type"] == "wizardnext":
-            log_attempt(csvw, r, state)
-        elif r["dst"] == "progress_bar" and r["event_type"] == "click" and r["event_target"] == "connect_button":
-            log_attempt(csvw, r, state)
-        elif r["dst"] == "progress_bar" and r["event_type"] == "wizardfinish":
+        if (r["dst"] == "inlineprogress" and r["event_type"] == "wizardnext") or \
+            (r["dst"] == "progress_bar" and r["event_type"] == "click" and r["event_target"] == "connect_button") or \
+            (r["dst"] == "progress_bar" and r["event_type"] == "wizardfinish"):
+            # At this point the entered settings have been saved (they are what
+            # will be restored when the program restarts).
+            SAVED_STATES[key] = copy.deepcopy(state)
             log_attempt(csvw, r, state)
 
         if r["event_type"] == "progresschanged":
@@ -139,6 +140,7 @@ def process(csvr, csvw):
         if r["dst"] == "not_running":
             if state.progress >= 100:
                 log_success(csvw, r)
+            del STATES[key]
 
 def fmt_bool(b):
     if b:
