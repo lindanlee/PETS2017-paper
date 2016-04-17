@@ -179,20 +179,20 @@ screen_time_per_user[is.na(screen_time_per_user)] <- 0
   # 4: % TOTAL time on PROGRESS screen, by user. (total, e1, e2, e3,new, old)
 
 # 1 
-progress_time_all = sum(progress_edges$duration)/60
-progress_time_e1 = sum(progress_edges[progress_edges[,"env"]=="E1",]$duration)/60
-progress_time_e2 =sum(progress_edges[progress_edges[,"env"]=="E2",]$duration)/60
-progress_time_e3 =sum(progress_edges[progress_edges[,"env"]=="E3",]$duration)/60
-progress_time_new =sum(progress_edges[progress_edges[,"version"]=="NEW",]$duration)/60
-progress_time_old =sum(progress_edges[progress_edges[,"version"]=="OLD",]$duration)/60
+sum(progress_edges$duration)/60
+sum(progress_edges[progress_edges[,"env"]=="E1",]$duration)/60
+sum(progress_edges[progress_edges[,"env"]=="E2",]$duration)/60
+sum(progress_edges[progress_edges[,"env"]=="E3",]$duration)/60
+sum(progress_edges[progress_edges[,"version"]=="NEW",]$duration)/60
+sum(progress_edges[progress_edges[,"version"]=="OLD",]$duration)/60
 
 # 2
-p_progress_time_all = sum(progress_edges$duration)/sum(edges$duration)*100
-p_progress_time_e1 = sum(progress_edges[progress_edges[,"env"]=="E1",]$duration)/sum(edges[edges[,"env"]=="E1",]$duration)*100
-p_progress_time_e2 =sum(progress_edges[progress_edges[,"env"]=="E2",]$duration)/sum(edges[edges[,"env"]=="E2",]$duration)*100
-p_progress_time_e3 =sum(progress_edges[progress_edges[,"env"]=="E3",]$duration)/sum(edges[edges[,"env"]=="E3",]$duration)*100
-p_progress_time_new =sum(progress_edges[progress_edges[,"version"]=="NEW",]$duration)/sum(edges[edges[,"version"]=="NEW",]$duration)*100
-p_progress_time_old =sum(progress_edges[progress_edges[,"version"]=="OLD",]$duration)/sum(edges[edges[,"version"]=="OLD",]$duration)*100
+sum(progress_edges$duration)/sum(edges$duration)*100
+sum(progress_edges[progress_edges[,"env"]=="E1",]$duration)/sum(edges[edges[,"env"]=="E1",]$duration)*100
+sum(progress_edges[progress_edges[,"env"]=="E2",]$duration)/sum(edges[edges[,"env"]=="E2",]$duration)*100
+sum(progress_edges[progress_edges[,"env"]=="E3",]$duration)/sum(edges[edges[,"env"]=="E3",]$duration)*100
+sum(progress_edges[progress_edges[,"version"]=="NEW",]$duration)/sum(edges[edges[,"version"]=="NEW",]$duration)*100
+sum(progress_edges[progress_edges[,"version"]=="OLD",]$duration)/sum(edges[edges[,"version"]=="OLD",]$duration)*100
 
 
 # 3
