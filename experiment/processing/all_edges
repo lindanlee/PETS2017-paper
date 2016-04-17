@@ -119,7 +119,7 @@ log_filename = re.compile(r'(?P<env>E\d)-(?P<version>\w\w\w)-(?P<seat>X\d\d)-(?P
 def main():
     _, filenames = getopt.gnu_getopt(sys.argv[1:], "")
 
-    csvw = csv.DictWriter(sys.stdout, fieldnames=("seat", "runid", "exec_count", "sequence", "time_from_start", "time_from_last_edge", "src", "dst", "event_type", "event_target", "event_value"))
+    csvw = csv.DictWriter(sys.stdout, fieldnames=("seat", "runid", "exec_count", "sequence", "time_from_start", "src", "dst", "event_type", "event_target", "event_value"))
     csvw.writeheader()
 
     for filename in filenames:
@@ -132,7 +132,6 @@ def main():
 
         if len(edges) > 0:
             start_date = edges[0].timestamp
-            last_edge_date = edges[0].timestamp
         current_exec_id = None
         exec_count = 0
         sequence = 0
@@ -142,14 +141,12 @@ def main():
                 current_exec_id = edge.exec_id
             sequence += 1
             time_from_start = (edge.timestamp - start_date).total_seconds()
-            time_from_last_edge = (edge.timestamp - last_edge_date).total_seconds()
             fields = {
                 "seat": match.group("seat"),
                 "runid": match.group("runid"),
                 "exec_count": exec_count,
                 "sequence": sequence,
                 "time_from_start": "%.1f" % time_from_start,
-                "time_from_last_edge": "%.1f" % time_from_last_edge,
                 "src": edge.src,
                 "dst": edge.dst,
                 "event_type": edge.event_type,
@@ -157,7 +154,6 @@ def main():
                 "event_value": edge.event_value,
             }
             csvw.writerow(fields)
-            last_edge_date = edge.timestamp
 
 if __name__ == '__main__':
     main()
