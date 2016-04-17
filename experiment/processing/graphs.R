@@ -172,17 +172,6 @@ screen_time_per_user <- merge(screen_time_per_user, bridge_time_per_user, by=c(1
 screen_time_per_user <- merge(screen_time_per_user, summary_time_per_user, by=c(1), all=T)
 screen_time_per_user[is.na(screen_time_per_user)] <- 0
 
-# 4
-# time_histogram <- function(time) {
-#   p <- hist(time)
-#   p <- p + xlim=c(0,40)
-#   p <- p + ylim=c(0,120)
-#   p <- p + xlab="Minutes" 
-#   p <- p + ylab="Number of Participants"
-#   p <- common_theme(p)
-#   p
-# }
-
 # PROGRESS SCREEN 
   # 1: minutes  TOTAL time on PROGRESS screen, across users. (total, e1, e2, e3,new, old)
   # 2: % TOTAL time on PROGRESS screen, across users. (total, e1, e2, e3,new, old)
@@ -214,13 +203,6 @@ user_progress_time_e3 <- screen_time_per_user[screen_time_per_user[,"env"]=="E3"
 user_progress_time_new <- screen_time_per_user[screen_time_per_user[,"version"]=="NEW",]$`progress_edges$duration`/60
 user_progress_time_old <- screen_time_per_user[screen_time_per_user[,"version"]=="OLD",]$`progress_edges$duration`/60
 
-hist(user_progress_time_all, xlim=c(0,40), ylim=c(0,80))
-hist(user_progress_time_e1, xlim=c(0,40), ylim=c(0,40))
-hist(user_progress_time_e2, xlim=c(0,40), ylim=c(0,40))
-hist(user_progress_time_e3, xlim=c(0,40), ylim=c(0,40))
-hist(user_progress_time_new, xlim=c(0,40), ylim=c(0,40))
-hist(user_progress_time_old, xlim=c(0,40), ylim=c(0,40))
-
 # 4
 p_user_progress_time_all <- screen_time_per_user$`progress_edges$duration`/screen_time_per_user$`edges$duration`*100
 p_user_progress_time_e1 <- screen_time_per_user[screen_time_per_user[,"env"]=="E1",]$`progress_edges$duration`/screen_time_per_user[screen_time_per_user[,"env"]=="E1",]$`edges$duration`*100
@@ -228,13 +210,6 @@ p_user_progress_time_e2 <- screen_time_per_user[screen_time_per_user[,"env"]=="E
 p_user_progress_time_e3 <- screen_time_per_user[screen_time_per_user[,"env"]=="E3",]$`progress_edges$duration`/screen_time_per_user[screen_time_per_user[,"env"]=="E3",]$`edges$duration`*100
 p_user_progress_time_new <- screen_time_per_user[screen_time_per_user[,"version"]=="NEW",]$`progress_edges$duration`/screen_time_per_user[screen_time_per_user[,"version"]=="NEW",]$`edges$duration`*100
 p_user_progress_time_old <- screen_time_per_user[screen_time_per_user[,"version"]=="OLD",]$`progress_edges$duration`/screen_time_per_user[screen_time_per_user[,"version"]=="OLD",]$`edges$duration`*100
-
-hist(p_user_progress_time_all, xlim=c(0,100), ylim=c(0,20))
-hist(p_user_progress_time_e1, xlim=c(0,100), ylim=c(0,15))
-hist(p_user_progress_time_e2, xlim=c(0,100), ylim=c(0,15))
-hist(p_user_progress_time_e3, xlim=c(0,100), ylim=c(0,15))
-hist(p_user_progress_time_new, xlim=c(0,100), ylim=c(0,15))
-hist(p_user_progress_time_old, xlim=c(0,100), ylim=c(0,15))
 
 # FIRST SCREEN
 # 1: % TOTAL time on FIRST screen, across users. (total, e1, e2, e3,new, old)
