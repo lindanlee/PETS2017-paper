@@ -774,19 +774,17 @@ Therefore we patched the correct fingerprint in the later experiment.
 \subsection{Results} 
 Out of our 124 participants,  we have 116 valid data points. {\color {red} TODO} participants downloaded their own version of Tor, and {\color {red} TODO} participants did not sign the consent form. We have 58 valid participants who tested the new interface, and 58 who tested the old interface. 38 participants were in E1, 38 participants were in E2, and 40 participants were in E3. Table~\ref{table:participant-summary} summarizes participants' success based on their interface version and environment combination. 
 
-The impact of the version on success rate is (significant,not significant). 
-The impact of the environment on success rate is (significant,not significant). 
-% SUCCESS
-% TODO: impact of version on success (chi squared?.. Serge might be wrong on this) 
-% TODO: impact of env on success (chi squared?.. Serge might be wrong on this) 
-
 Talk about why we chose to assign the max time of 40 minutes to did not finish. 
 The impact of the version on time to completion is (significant,not significant). 
 The impact of the environment on time to completion is (significant,not significant).
 Figure~\ref{fig:time_to_success_clamped}
-%%% RIGHT CLAMP TIME 
-% TODO:  impact of env on time to success 
-% TODO: impact of version on time to success 
+
+%stats
+impact of version on success: not significant (W = 5.5, p-value = 0.8248)
+impact of version on time to success: not significant (W = 1399, p-value = 0.1175)
+
+impact of env on success: not significant (Kruskal-Wallis chi-squared = 4.7059, df = 2, p-value = 0.09509)
+impact of env on time to success : significant ( Kruskal-Wallis chi-squared = 80.926, df = 2, p-value < 2.2e-16)
 
 \begin{table}
 \centering
@@ -906,11 +904,8 @@ except for those we cut off after approximately 40 minutes.
 People spent a lot of time just waiting at the progress bar. 
 
 Talk about the notion of ``active time,'' which is just time not spent on the progress screen. 
-The impact of the version on active time is (significant,not significant). 
-The impact of the environment on active time is (significant,not significant).
-%%% RIGHT CLAMP ACTIVE TIME 
-% TODO:  impact of env on time to success 
-% TODO: impact of version on time to success
+The impact of the version on active time is significant (W = 997, p-value = 0.0001571)
+The impact of the environment on active time is significant (Kruskal-Wallis chi-squared = 51.978, df = 2, p-value = 5.166e-12)
 
 \begin{table}
 \centering

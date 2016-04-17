@@ -272,7 +272,7 @@ kruskal.test(screen_time_per_user$`active_edges$duration` ~ env, data=screen_tim
 cat("\n\n\n\n")
 cat("logistic regression predicting success by ver, env, pool \n")
 #just env, version, pool, and success columns
-participants_glm_subset <- subset(participants,select=c(5,6,9,10))
+participants_glm_subset <- subset(clamp_time_to_success(participants, maxtime),select=c(5,6,9,10))
 model <- glm(success ~.,family=binomial(link='logit'),data=participants_glm_subset)
 summary(model)
 #cat("\n\n\n")
@@ -281,7 +281,7 @@ summary(model)
 cat("\n\n\n\n")
 cat("linear regression predicting time to success by ver, env, pool \n")
 #just env, version, pool, and time_to_success columns
-participants_lm_subset <- subset(participants,select=c(5,6,9,11))
+participants_lm_subset <- subset(clamp_time_to_success(participants, maxtime),select=c(5,6,9,11))
 model <- lm(time_to_success ~.,data=participants_lm_subset)
 summary(model)
 
