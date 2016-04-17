@@ -13,7 +13,7 @@ height <- 1.5
 participants <- filter_participants(read_participants())
 participants$label <- factor(sprintf("%s-%s", participants$env, participants$version), levels=c("E1-NEW", "E1-OLD", "E2-NEW", "E2-OLD", "E3-NEW", "E3-OLD"))
 participants$pid <- factor(sprintf("%s-%s-%s-%s", participants$env, participants$version, participants$seat, participants$session))
-participants$pid <- factor(participants$pid, levels=participants$pid[order(participants$env, participants$version, participants$time_to_success)])
+participants$pid <- factor(participants$pid, levels=participants$pid[rev(order(participants$env, participants$version, participants$time_to_success))])
 
 # This is the length of the experiment, after which to cut off measurements.
 # It's actually just a few seconds after 40 minutes, because one E3 just
