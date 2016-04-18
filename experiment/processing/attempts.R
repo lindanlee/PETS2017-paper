@@ -17,6 +17,29 @@ attempts$bridge_default_selection[!attempts$bridge_yesno] <- NA
 # Show first successful attempts.
 # attempts[attempts$attempt_successful, c("env", "version", "runid", "attempt_successful", "time_from_start", "bridge_yesno", "bridge_radio_state", "bridge_default_selection", "bridge_custom_entry", "proxy_yesno", "proxy_type", "proxy_addr", "proxy_port")]
 
+# How many attempts were failures 
+sum(attempts$attempt_successful == "FALSE")/nrow(attempts)*100
+
+# How many FIRST attempts were direct. 
+first_attempts <- subset(attempts, subset = !duplicated(attempts[c("userid")]))
+first_attempts_new <-  first_attempts[first_attempts[,"version"]=="NEW",]
+first_attempts_old <- first_attempts[first_attempts[,"version"]=="OLD",]
+first_attempts_e1 <- first_attempts[first_attempts[,"env"]=="E1",]
+first_attempts_e2 <- first_attempts[first_attempts[,"env"]=="E2",]
+first_attempts_e3 <- first_attempts[first_attempts[,"env"]=="E3",]
+
+sum(first_attempts$bridge_radio_state == "none")#/nrow(first_attempts)*100
+sum(first_attempts_new$bridge_radio_state == "none")#/nrow(first_attempts_new)*100
+sum(first_attempts_old$bridge_radio_state == "none")#/nrow(first_attempts_old)*100
+
+# How many FIRST attempts were failures. 
+sum(first_attempts$attempt_successful == "FALSE")/nrow(first_attempts)*100
+sum(first_attempts_new$attempt_successful == "FALSE")/nrow(first_attempts_new)*100
+sum(first_attempts_old$attempt_successful == "FALSE")/nrow(first_attempts_old)*100
+sum(first_attempts_e1$attempt_successful == "FALSE")/nrow(first_attempts_e1)*100
+sum(first_attempts_e2$attempt_successful == "FALSE")/nrow(first_attempts_e2)*100
+sum(first_attempts_e3$attempt_successful == "FALSE")/nrow(first_attempts_e3)*100
+
 successful.attempts <- attempts[attempts$attempt_successful, ]
 successful.attempts$label <- sprintf("%s, %s",
 	# bridge label

@@ -202,6 +202,7 @@ sum(bridge_edges[bridge_edges[,"version"]=="OLD",]$duration)/sum(active_edges[ac
 # 1: % TOTAL time on SUMMARY screen, across users. (total, e1, e2, e3,new, old)
 # 2: % ACTIVE time on SUMMARY screen, across users. (total, e1, e2, e3,new, old)
 # 3: distribution of destinations from summary screen 
+# 4: if old interface users clicked back from proxyYES/proxy.
 
 # 1
 sum(summary_edges$duration)/sum(edges$duration)*100
@@ -220,11 +221,15 @@ sum(summary_edges[summary_edges[,"version"]=="NEW",]$duration)/sum(active_edges[
 sum(summary_edges[summary_edges[,"version"]=="OLD",]$duration)/sum(active_edges[active_edges[,"version"]=="OLD",]$duration)*100
 
 # 3
-summary_edges <- summary_edges[summary_edges$dst != "summary", ]
 sum(summary_edges$dst == "bridgeSettings")/nrow(summary_edges)*100
 sum(summary_edges$dst == "progress")/nrow(summary_edges)*100
 barplot(height=table(summary_edges$dst))
 
+#4 
+proxy_edges_transitions <- proxy_edges[!proxy_edges[,"dst"] %in% c("proxy","proxyYES"),]
+proxy_edges_transitions <- proxy_edges_transitions[proxy_edges_transitions[,"version"]=="OLD",]
+sum(proxy_edges_transitions$dst == "progress")/nrow(proxy_edges_transitions)*100
+sum(proxy_edges_transitions$dst != "progress")/nrow(proxy_edges_transitions)*100
 
 cat("\n\n\n\n\n\n")
 cat("*********************\n")
