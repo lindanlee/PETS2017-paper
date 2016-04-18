@@ -13,7 +13,8 @@ height <- 1.5
 participants <- filter_participants(read_participants())
 participants$label <- factor(sprintf("%s-%s", participants$env, participants$version), levels=c("E1-NEW", "E1-OLD", "E2-NEW", "E2-OLD", "E3-NEW", "E3-OLD"))
 participants$pid <- factor(sprintf("%s-%s-%s-%s", participants$env, participants$version, participants$seat, participants$session))
-participants$pid <- factor(participants$pid, levels=participants$pid[rev(order(participants$env, participants$version, participants$time_to_success))])
+pid_order <- rev(order(participants$env, participants$version, participants$time_to_success))
+participants$pid <- factor(participants$pid, levels=participants$pid[pid_order])
 
 edges <- read_edges()
 edges <- merge(edges, participants, by=c("seat", "runid"), all.y=T)
@@ -352,6 +353,7 @@ p <- p + geom_segment(data=edges, size=1.5, lineend="butt", aes(x=pid, xend=pid,
 # p <- p + geom_point(color="black", size=1.5, shape="|")
 p <- p + geom_point(data=participants[is.na(participants$time_to_success), ], aes(x=pid, y=maxtime/60), shape=4)
 p <- p + coord_flip()
+p <- p + scale_x_discrete(labels=sprintf("%s-%s", participants$env[pid_order], participants$version[pid_order]))
 p <- p + scale_y_continuous(breaks=pretty_breaks(n=10))
 p <- p + scale_color_manual("Current screen", values=state.palette, labels=c(
 	"first"="first (F)",
