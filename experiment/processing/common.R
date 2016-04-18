@@ -34,6 +34,13 @@ read_edges <- function() {
 	read.csv("edges.csv")
 }
 
+# Assign DNFs a maximum time_to_success.
+clamp_time_to_success <- function(participants, maxtime) {
+  df <- data.frame(participants)
+  df$time_to_success[is.na(df$time_to_success)] <- maxtime
+  df
+}
+
 common_theme <- function(p) {
 	p <- p + theme_minimal()
 	p <- p + theme(text=element_text(size=8))

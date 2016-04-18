@@ -74,13 +74,6 @@ state.palette <- brewer.pal(length(levels(edges$dst)), "Set1")
 # TIME TO SUCCESS #
 ###################
 
-# Assign DNFs a maximum time_to_success.
-clamp_time_to_success <- function(participants, maxtime) {
-  df <- data.frame(participants)
-  df$time_to_success[is.na(df$time_to_success)] <- maxtime
-  df
-}
-
 time_to_success_plot <- function(participants) {
   minutes_to_success <- participants$time_to_success/60
   max_minutes <- max(minutes_to_success, na.rm=T)+9
