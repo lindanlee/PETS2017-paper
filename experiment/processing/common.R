@@ -8,6 +8,11 @@ textwidth <- 483.6967 / 72.27
 textheight <- 661.97234 / 72.27
 columnwidth <- 236.1578 / 72.27
 
+# This is the length of the experiment, after which to cut off measurements.
+# It's actually just a few seconds after 40 minutes, because one E3 just
+# squeaked by.
+maxtime <- 40*60 + 8
+
 # Read all the participant CSV files into one big data frame.
 read_participants <- function() {
 	participants <- read.csv("participants.csv")

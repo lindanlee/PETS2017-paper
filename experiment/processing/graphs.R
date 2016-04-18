@@ -15,11 +15,6 @@ participants$label <- factor(sprintf("%s-%s", participants$env, participants$ver
 participants$pid <- factor(sprintf("%s-%s-%s-%s", participants$env, participants$version, participants$seat, participants$session))
 participants$pid <- factor(participants$pid, levels=participants$pid[rev(order(participants$env, participants$version, participants$time_to_success))])
 
-# This is the length of the experiment, after which to cut off measurements.
-# It's actually just a few seconds after 40 minutes, because one E3 just
-# squeaked by.
-maxtime <- max(40*60, participants$time_to_success, na.rm=T)
-
 edges <- read_edges()
 edges <- merge(edges, participants, by=c("seat", "runid"), all.y=T)
 if (any(is.na(edges$pid))) {
