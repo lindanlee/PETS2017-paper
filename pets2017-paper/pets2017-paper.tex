@@ -729,47 +729,6 @@ regardless of when they had completed their task. After the 40 minutes were up,
 participants were officially informed that their time was up, and were given their payment of 
 \$30 for their time. 
 
-\subsection{Changes During the Experiment} 
-
-% $ grep 'default_bridge\.' tor-browser_en-US/Browser/TorBrowser/Data/Browser/profile.default/preferences/extension-overrides.js | awk -F. '{print $4}' | sort | uniq -c
-%       5 flashproxy
-%       6 fte
-%       2 fte-ipv6
-%       1 meek-amazon
-%       1 meek-azure
-%       1 meek-google
-%       5 obfs3
-%       3 obfs4
-%       2 scramblesuit
-% The 5 flashproxy lines are effectively 1.
-Tor Browser 5.0.3 came configured with default bridges:
-1 flashproxy;
-8 fte;
-3 meek;
-5 obfs3;
-3 obfs4;
-and 2 scramblesuit.
-In the time since 5.0.3 was released and our later experiment,
-two of the obfs4 bridges and one of the scramblesuit bridges stopped running.
-% These are the bridges that stopped running. schanenlied is known and intentional.
-% 188.226.213.208 in known and intentional: https://bugs.torproject.org/17318. Maybe
-% it was not even running at the time of 5.0.3.
-% mercurius4 is probably not running by accident.
-% schanenlied:
-% obfs4 178.209.52.110:443 67E72FF33D7D41BF11C569646A0A7B4B188340DF cert=Z+cv8z19Qb8RxWlkagp7SxiDQN++b7D2Tntowhf+j4D15/kLuj3EoSSGvuREGPc3h60Ofw iat-mode=0
-% mercurius4:
-% obfs4 104.131.108.182:56880 EF577C30B9F788B0E1801CF7E433B3B77792B77A cert=0SFhfDQrKjUJP8Qq6wrwSICEPf3Vl/nJRsYxWbg3QRoSqhl2EB78MPS2lQxbXY4EW1wwXA iat-mode=0
-% (nickname unknown):
-% scramblesuit 188.226.213.208:54278 AA5A86C1490296EF4FACA946CC5A182FCD1C5B1E password=MD2VRP7WXAMSG7MKIGMHI4CB4BMSNO7T
-This left enough bridges that participants in the later experiment would be able to connect
-under the same circumstances as those in the earlier experiment.
-We did not modify the set of bridges between the experiments,
-with one exception.
-One of the meek bridges changed its bridge identity fingerprint;
-Tor clients check the identity fingerprint and refuse to connect
-if it does not match.
-Therefore we patched the correct fingerprint in the later experiment.
-
 \subsection{Results} 
 Out of our 124 recruited participants, 116 provided valid data. We have 58 participants who tested the new interface, and 58 who tested the old interface. 38 participants were in E1, 38 participants were in E2, and 40 participants were in E3. Since our experiment ended after 40 minutes, we chose to assign the max time of 40 minutes to participants who did not succeed. Table~\ref{table:participant-summary} summarizes the rate of success and time to success for our participants' based on their interface version and environment combination. 
 
