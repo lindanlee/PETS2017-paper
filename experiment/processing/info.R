@@ -68,6 +68,8 @@ cat("****************************\n")
 # 3: create data frame "screen time per user" which has the time a user spent on each screen 
 # 4: (TODO) historgram plot function
 
+edges <- filter_edges(read_edges(), participants)
+
 # 1 
 active_edges <- edges[edges[,"src"] != "progress",] # "active time" is anytime that people are not on the progress screen.
 progress_edges <- edges[edges[,"src"]== "progress",]
