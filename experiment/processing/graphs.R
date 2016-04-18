@@ -16,58 +16,10 @@ participants$pid <- factor(sprintf("%s-%s-%s-%s", participants$env, participants
 pid_order <- rev(order(participants$env, participants$version, participants$time_to_success))
 participants$pid <- factor(participants$pid, levels=participants$pid[pid_order])
 
-edges <- read_edges()
-edges <- merge(edges, participants, by=c("seat", "runid"), all.y=T)
+edges <- filter_edges(read_edges(), participants)
 if (any(is.na(edges$pid))) {
   stop("found NAs in edges$pid")
 }
-
-# Remove edges that start after maxtime, and trim those that overlap it
-# so their start time plus their duration exactly reaches maxtime.
-trim_edges <- function(edges, maxtime) {
-  edges <- edges[edges$time_from_start <= maxtime, ]
-  edges$duration <- ifelse(edges$time_from_start + edges$duration > maxtime, maxtime - edges$time_from_start, edges$duration)
-  edges
-}
-
-edges <- edges[order(edges$sequence, edges$time_from_start), ]
-edges$duration <- ave(edges$time_from_start, edges$seat, edges$runid, FUN=function(z) {
-  c(z[2:length(z)], z[length(z)]) - z
-})
-# Keep only the edges up to the first success.
-edges <- edges[is.na(edges$time_to_success) | edges$time_from_start <= edges$time_to_success, ]
-# Cut off the logs at our time limit.
-edges <- trim_edges(edges, maxtime)
-# Ignore "not_running" and "starting", so they just show up as blank.
-edges <- edges[!(edges$dst %in% c("not_running", "starting")), ]
-
-# Canonicalize screen names from the OLD and NEW interfaces.
-canonicalize_screens <- function(version, x) {
-  y <- factor(x)
-  # In the NEW interface, the screen that's logged as "bridges"
-  # corresponds more closely to the "bridgeSettings" screen in the OLD
-  # interface than it does the OLD "bridges" screen. Similarly NEW
-  # "proxy" corresponds to OLD "proxyYES".
-  y[version=="NEW" & y=="bridges"] <- "bridgeSettings"
-  y[version=="NEW" & y=="proxy"] <- "proxyYES"
-  levels(y) <- list(
-    "not_running"="not_running",
-    "starting"="starting",
-    "first"="first",
-    "bridges"="bridges",
-    "bridgeSettings"="bridgeSettings",
-    "bridgeHelp"="bridgeHelp",
-    "proxy"="proxy",
-    "proxyYES"="proxyYES",
-    "summary"="summary",
-    "progress"=c("progress_bar", "inlineprogress"),
-    "error"="errorPanel"
-  )
-  droplevels(y)
-}
-
-edges$src <- canonicalize_screens(edges$version, edges$src)
-edges$dst <- canonicalize_screens(edges$version, edges$dst)
 
 state.palette <- brewer.pal(length(levels(edges$dst)), "Set1")
 
