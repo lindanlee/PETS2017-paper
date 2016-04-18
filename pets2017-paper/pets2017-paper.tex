@@ -592,7 +592,16 @@ We added a summary screen as a last step before initiating a connection.\\
 \label{fig:flow}
 \end{figure*} 
 
-\begin{figure*}[t]
+Tor Browser 5.0.3. configuration interface does not adequately meet our heuristic evaluation criteria from Section~\ref{sec:goals}: visibility of system status, user control and freedom, error management, understandable language, and minimal design. We rate the severity of the issue by its frequency, impact, and persistence~\cite{nielsen1994heuristic}:\\
+
+\begin{itemize}
+\item {\bfseries Major Problem}: Error messages do not express errors in plain language nor offer solutions. 
+\item {\bfseries Major Problem}: The text was too technical for an average user to understand. 
+\item {\bfseries Minor Problem}: The configuration is not visible to the users before they connect or while they are connecting.
+\item {\bfseries Cosmetic Problem}: The interface can be simplified visually.  
+ \end{itemize} 
+ 
+ \begin{figure*}[h]
 	\centering
 		\includegraphics[width=.8\textwidth]{bridge-screens.pdf} 
 		\caption{In the ``OLD'' interface, users are asked, ``Does your Internet Service Provide (ISP) block or 
@@ -602,7 +611,7 @@ We added a summary screen as a last step before initiating a connection.\\
 		while giving the option of not configuring a bridge, on one screen (B).} 
 \end{figure*} 
 
-\begin{figure*}[t]
+\begin{figure*}[h]
 	\centering
 		\includegraphics[width=.8\textwidth]{proxy-screens.pdf} 
 		\caption{In the ``OLD'' interface, users are asked, ``Does this computer need a local proxy to connect
@@ -610,15 +619,6 @@ We added a summary screen as a last step before initiating a connection.\\
 		proxy configuration screen (P2). The ``NEW'' interface checks the local machine's proxy settings,
 		and informs the user whether a proxy is required, and if so, what those settings are (P).}
 \end{figure*} 
-
-Tor Browser 5.0.3. configuration interface does not adequately meet our heuristic evaluation criteria from Section~\ref{sec:goals}: visibility of system status, user control and freedom, error management, understandable language, and minimal design. We rate the severity of the issue by its frequency, impact, and persistence~\cite{nielsen1994heuristic}:\\
-
-\begin{itemize}
-\item {\bfseries Major Problem}: Error messages do not express errors in plain language nor offer solutions. 
-\item {\bfseries Major Problem}: The text was too technical for an average user to understand. 
-\item {\bfseries Minor Problem}: The configuration is not visible to the users before they connect or while they are connecting.
-\item {\bfseries Cosmetic Problem}: The interface can be simplified visually.  
- \end{itemize} 
 
 To fix the aforementioned problems, we made the following changes: \\
 
@@ -964,16 +964,14 @@ We took an approach that optimized for the average case user yet was conservativ
 
 Ideally, we want users in censorship environments across the world to succeed in connecting to the Tor network in a couple of minutes. We believe that this is possible with continued improvements to the interface. 
 
-\section {Acknowledgments}
-{\color {red} Rowilma del Castillo for setting up Xlab, Nima Fatemi, Isabela Bagueros, Georg Koppen, and the UX team for giving feedback, and Cecile Basnage for reviewing the UI of circumvention tools.} 
-{\color {red} Tor Browser devs for taking our recommendations to heart and implementing changes.}
+%\section {Acknowledgments}
+%{\color {red} Rowilma del Castillo for setting up Xlab, Nima Fatemi, Isabela Bagueros, Georg Koppen, and the UX team for giving feedback, and Cecile Basnage for reviewing the UI of circumvention tools.} 
+%{\color {red} Tor Browser devs for taking our recommendations to heart and implementing changes.}
 
 \section{Conclusion} 
-{\color {red} I am a fan of not having long, rambling conclusions. I leave
-that for the discussion section. This section is more of a courtesy to the 
-people who read the abstract, look at the figures, and then read the 
-conclusion. Think of something to tell those people here. Something along
-the lines of a tl;dr summary of the paper.} 
+We conducted a series of experiments to improve the Tor launcher configuration interface, which helps users circumvent censorship using Tor Browser. The qualitative user study interviews a screened 16 participants about their experience trying to circumvent mild, intermediate, and heavy censorship with the current interface, giving insight into common struggles, such as difficulty in answering technical questions, feeling unqualified to make technical choices, and not receiving feedback in the event of a failed configuration. This feedback is used to guide the redesign of the configuration interface. 
+
+We test the impact of our changes on 124 participants in the quantitative user study to find that that the changes made cause a statistically significant reduction in the time participants spent configuring their connection, with no decrease in success rates. We observe and quantify common behavioral trends based on logs and video recordings of our participants, and offer recommendations that we believe will greatly increase the success rate and time to success for future users. 
 
 \bibliographystyle{abbrv}
 \nocite{*}
