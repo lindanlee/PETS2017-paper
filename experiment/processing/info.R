@@ -1,4 +1,5 @@
-source("common.R")
+library(coin)
+csource("common.R")
 
 participants <- read_participants()
 
@@ -227,6 +228,8 @@ wilcox.test(time_to_success ~ version, data=clamp_time_to_success(participants, 
 
 cat("impact of version on active time \n")
 wilcox.test(screen_time_per_user$`active_edges$duration` ~ version, data=screen_time_per_user)
+wilcox_test(screen_time_per_user$`active_edges$duration` ~ version, data=screen_time_per_user)
+
 
 cat("\n\n\n\n")
 cat("impact of environment on success rates\n")
