@@ -95,9 +95,9 @@ def parse_inst_log(f):
                 # "configuration" gets an unload event, there's no unload event
                 # for "progress_bar". But it's also possible for "progress_bar"
                 # to be the only thing loaded.
+                e = Edge(r.exec_id, r.date, current_state, "not_running", r.event["type"], get_id(r.event), r.event.get("value", ""))
+                edges.append(e)
                 current_state = "not_running"
-                # Change previous edge to point to this new state.
-                edges[-1] = edges[-1]._replace(dst=current_state)
                 loaded = set()
         elif r.event["type"] in ("start", "pageshow"):
             current_state = get_id(r.event)
