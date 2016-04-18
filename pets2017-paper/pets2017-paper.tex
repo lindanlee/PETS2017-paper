@@ -58,16 +58,16 @@
 
   \begin{abstract}
 {Tor has grown beyond its original purpose as an anonymity tool and has 
-since become an important censorship circumvention tool. It is now listed
-as one of the ways that normal people use Tor.
-We specifically examine its usability as a censorship circumvention tool,
-an essential facet for adoption and use. We focus our analysis on the connection 
-configuration interface of Tor Browser. We find that the Tor Browser 5.0.3. connection
-configuration interface has a success rate of {\color {red} TODO}\% with the 
-successful users having an average completion time of {\color {red} TODO} minutes. 
-In this paper, we explore common challenges users faced during the configuration
-process and redesign the interface to improve success rate to {\color {red} TODO}\% 
-and average completion time to {\color {red} TODO} minutes.}
+since become an important censorship circumvention tool. We conducted a series of 
+experiments to improve the Tor launcher configuration interface, which configures network components
+that circumvent censorship. A 16-participant experiment and interview
+identifies common user struggles while circumventing censorship.
+We use as feedback to redesign the configuration interface.
+We test the impact of our
+changes on 124 participants to find that our changes results in a significant reduction 
+in the spent configuring a connection, while maintaining the same rate of success. We
+conclude with recommendations for changes to the current configuration interface and discuss
+alternative configuration processes with different balances of risk, automation, and user input.}
 \end{abstract}
   \keywords{User Studies, Tor, Security, Censorship, Anonymity}
 %  \classification[PACS]{}
@@ -90,19 +90,12 @@ and average completion time to {\color {red} TODO} minutes.}
 \section{Introduction}
 
 Although Tor~\cite{dingledine2004tor} was not designed to be a censorship circumvention tool, users started
-using it as one, since Tor's role as a proxy to anonymize
-people also worked to circumvent censorship. Now, circumventing censorship is a
-common use case for Tor, and current censorship circumvention methods are
-incorporated into Tor, making it a viable censorship circumvention tool even in the face
-of adversaries. In fact, some countries unsuccessfully attempt to block Tor for this reason~\cite{winter2012great}. 
+using it as one, since Tor's anonymizing functionality also circumvented censorship. In fact, some countries unsuccessfully attempt to block Tor for this reason~\cite{winter2012great}. Today, Tor's network of unlisted relays and various methods of obfuscation making it a viable censorship circumvention tool even in the face of nation-state level adversaries.
+ 
 To our knowledge, this is the first user study investigating the usability of Tor as a 
-censorship circumvention tool.
-
-We believe that this is a great opportunity for user research. We have the opportunity to help users circumvent censorship more easily and provide them with extra security features, such as anonymity. Not only does improving the interface help the user trying to circumvent censorship, it helps other users who use Tor as an anonymity system by increasing the number of overall users~\cite{dingledine2006anonymity}. 
+censorship circumvention tool. We believe that this is a great opportunity for user research, both for investigating a case study of how users circumvent censorship, but also to help Tor users circumvent censorship more easily and provide them with extra security features, such as anonymity. Not only does improving the interface help the user trying to circumvent censorship, it helps other users who use Tor as an anonymity system by increasing the number of overall users~\cite{dingledine2006anonymity}. 
 
 This study aims to understand of what is confusing about the configuration process and what find changes make the process easier. Our study consists of three stages. User interactions with the current interface in various censorship environments generated the problems we address in the study. User feedback and observations of users steered the design process for an improved configuration interface. User metrics, such as success rate and time to completion, measured how well the interfaces served their purpose.  
-
-Currently, {\color {red} TODO}\% of users fail and with the current interface for reasons {\color {red} TODO}, {\color {red} TODO}, and {\color {red} TODO}. Of those that do succeed, the average time to completion is {\color {red} TODO}. This can lead to a bad user experience, users quitting Tor, or causing high-risk users to make mistakes. With the new design, only {\color {red} TODO}\% of users fail to configure successfully and the average time to completion is {\color {red} TODO}. Tor has already implemented some of these changes.
 
 The qualitative user study gives insight into possible issues with
 the deployed interface. 
@@ -110,12 +103,6 @@ The redesign process was guided by the participant observations,
 heuristic evaluations and empirical goals. 
 Quantitative user studies provide empirical evaluations of the deployed
 and redesigned interface. 
-
-An exploration of the problems with the existing Tor Browser 
-configuration interface through user observation and interviews can be 
-found in Section~{\color{red} TODO}. A heuristic evaluation of the existing interface and new interface is in Section~{\color{red} TODO}. We empirically show 
-that the redesigned interface improves completion rate, reduces time to completion, 
-and provides a safe path for at-risk users in Section~{\color{red} TODO}. 
 
 \section{Related Work} 
 There have been three published user studies on Tor. Clark et. al examined various deployment
