@@ -776,19 +776,17 @@ Therefore we patched the correct fingerprint in the later experiment.
 \subsection{Results} 
 Out of our 124 participants,  we have 116 valid data points. {\color {red} TODO} participants downloaded their own version of Tor, and {\color {red} TODO} participants did not sign the consent form. We have 58 valid participants who tested the new interface, and 58 who tested the old interface. 38 participants were in E1, 38 participants were in E2, and 40 participants were in E3. Table~\ref{table:participant-summary} summarizes participants' success based on their interface version and environment combination. 
 
-The impact of the version on success rate is (significant,not significant). 
-The impact of the environment on success rate is (significant,not significant). 
-% SUCCESS
-% TODO: impact of version on success (chi squared?.. Serge might be wrong on this) 
-% TODO: impact of env on success (chi squared?.. Serge might be wrong on this) 
-
 Talk about why we chose to assign the max time of 40 minutes to did not finish. 
 The impact of the version on time to completion is (significant,not significant). 
 The impact of the environment on time to completion is (significant,not significant).
 Figure~\ref{fig:time_to_success_clamped}
-%%% RIGHT CLAMP TIME 
-% TODO:  impact of env on time to success 
-% TODO: impact of version on time to success 
+
+%stats
+impact of version on success: not significant (W = 5.5, p-value = 0.8248)
+impact of version on time to success: not significant (W = 1399, p-value = 0.1175)
+
+impact of env on success: not significant (Kruskal-Wallis chi-squared = 4.7059, df = 2, p-value = 0.09509)
+impact of env on time to success : significant ( Kruskal-Wallis chi-squared = 80.926, df = 2, p-value < 2.2e-16)
 
 \begin{table}
 \centering
@@ -797,12 +795,12 @@ Figure~\ref{fig:time_to_success_clamped}
 	& \multicolumn{2}{c}{success rate} & \multicolumn{1}{c}{median time} \\
 	& \multicolumn{2}{c}{after 40 minutes} & \multicolumn{1}{c}{to success} \\
 	\noalign{\hrule}
-	E1-NEW & 19/19 & 100\% & 0:20 \\
-	E1-OLD & 19/19 & 100\% & 1:01 \\
-	E2-NEW & 18/19 & 95\% & 3:32 \\
-	E2-OLD & 16/19 & 84\% & 5:00 \\
-	E3-NEW & 13/20 & 65\% & 20:56 \\
-	E3-OLD & 10/20 & 50\% & 40:08 \\
+	E1-NEW & 19/19 & 100\% & 0:20 \\ % medians of only finished: 0:20 
+	E1-OLD & 19/19 & 100\% & 1:01 \\ %medians of only finished: 1:01
+	E2-NEW & 18/19 & 95\% & 3:32 \\ %medians of only finished: 3:22
+	E2-OLD & 16/19 & 84\% & 5:00 \\ %medians of only finished: 3:13
+	E3-NEW & 13/20 & 65\% & 20:56 \\ %medians of only finished: 12:38
+	E3-OLD & 10/20 & 50\% & 40:08 \\ %medians of only finished: 18:16 
 	\end{tabular}
 \caption{
 A summary of participants' success in circumventing censorship
@@ -908,71 +906,56 @@ except for those we cut off after approximately 40 minutes.
 \label{fig:all-participant-edges}
 \end{figure*}
 
-\begin{figure} 
-%\includegraphics{}
-{\color {red} TODO} 
-\caption{order pluggable transports were chosen}
-\end{figure} 
-
 \section{Discussion} 
 
 People spent a lot of time just waiting at the progress bar. 
 
 Talk about the notion of ``active time,'' which is just time not spent on the progress screen. 
-The impact of the version on active time is (significant,not significant). 
-The impact of the environment on active time is (significant,not significant).
-%%% RIGHT CLAMP ACTIVE TIME 
-% TODO:  impact of env on time to success 
-% TODO: impact of version on time to success
+The impact of the version on active time is significant (W = 997, p-value = 0.0001571)
+The impact of the environment on active time is significant (Kruskal-Wallis chi-squared = 51.978, df = 2, p-value = 5.166e-12)
 
-\begin{figure}
-\centering
-\includegraphics{time_to_success_clamped}
-\caption{
-{\color{red} MAKE THIS FOR ACTIVE TIME}
-}
-\label{fig:active_time_clamped}
-\end{figure}
-
-%TODO: turn it into a stacked bar chart with same colors as all-participant-edges
 \begin{table}
 \centering
 	\begin{tabular}{c r r r r r}
 	 & First & Proxy & Bridge & Summary & Progress \\
 	\noalign{\hrule}
-	All &  8\% & 18\% & 8\% & 1\% & 65\% \\
+	All &  10\% & 24\% & 8\% & 1\% & 57\% \\
 	NEW & 9\% & 7\% & 4\% & 2\% &  78\% \\
-	OLD & 7\% & 25\% & 11\% & 0\% & 57\% \\
-	E1 & 32\% & 16\% & 23\% & 1\% & 28\% \\
-	E2 & 7\% & 10\% & 8\% & 1\% & 74\% \\
-	E3 & 7\% & 21\% & 8\% & 1\% & 63\% \\
+	OLD & 10\% & 35\% & 11\% & 0\% & 45\% \\
+	E1 & 33\% & 16\% & 23\% & 1\% & 27\% \\
+	E2 & 11\% & 18\% & 8\% & 1\% & 63\% \\
+	E3 & 8\% & 27\% & 8\% & 1\% & 57\% \\
 	\end{tabular}
 \caption{overall time} 
 \label{table:overall_time}
 \end{table}
 
-%TODO: turn it into a stacked bar chart with same colors as all-participant-edges
 \begin{table}
 \centering
 	\begin{tabular}{c r r r r }
 	 & First & Proxy & Bridge & Summary \\
 	\noalign{\hrule}
-	All & 23\% & 52\% & 23\% & 2\% \\
+	All & 22\% & 57\% & 19\% & 2\% \\
 	NEW & 40\% & 31\% & 19\% & 9\% \\ 
-	OLD & 17\% & 58\% & 25\% & 0\% \\
+	OLD & 18\% & 63\% & 19\% & 0\% \\
 	E1 & 45\% & 22\% & 32\% & 1\% \\
-	E2 & 27\% & 40\% & 29\% & 3\% \\
-	E3 & 20\% & 57\% & 21\% & 2\% \\
+	E2 & 29\% & 48\% & 20\% & 2\% \\
+	E3 & 19\% & 61\% & 18\% & 2\% \\
 	\end{tabular}
 \caption{active time} 
 \label{table:active_time}
 \end{table}
 
+
 % impacts of making the proxy page ``automated'' 
 New people still spent time configuring their proxy!  
 
 % impacts of making bridge page collapsed 
-This is unclear. And people didn't really see our advice that we put on the page.
+This is unclear. 
+
+% impacts of giving people advice on which transport to choose.
+10 people in the new interface chose meek as their second bridge (10/15, 66\%). 
+5 people in the old interface chose meek as their second bridge (5/13, 38\%). 
 
 % impacts of adding in a summary page 
 adding in a summary screen causes people to think about their configuration.
