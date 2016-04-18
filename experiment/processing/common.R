@@ -67,7 +67,7 @@ canonicalize_screens <- function(version, x) {
 filter_edges <- function(edges, participants) {
 	edges <- merge(edges, participants, by=c("seat", "runid"), all.y=T)
 	# Keep only the edges up to the first success.
-	edges <- edges[is.na(edges$time_to_success) | edges$time_from_start <= edges$time_to_success, ]
+	edges <- edges[is.na(edges$time_to_success) | edges$time_from_start < edges$time_to_success, ]
 	# Cut off the logs at our time limit.
 	edges <- trim_edges(edges, maxtime)
 	# Ignore "not_running" and "starting", so they just show up as blank.
@@ -87,7 +87,7 @@ clamp_time_to_success <- function(participants, maxtime) {
 # Remove edges that start after maxtime, and trim those that overlap it
 # so their start time plus their duration exactly reaches maxtime.
 trim_edges <- function(edges, maxtime) {
-	edges <- edges[edges$time_from_start <= maxtime, ]
+	edges <- edges[edges$time_from_start < maxtime, ]
 	edges$duration <- ifelse(edges$time_from_start + edges$duration > maxtime, maxtime - edges$time_from_start, edges$duration)
 	edges
 }
