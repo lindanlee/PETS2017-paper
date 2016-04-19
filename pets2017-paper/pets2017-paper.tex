@@ -107,13 +107,6 @@ that collected data on user interactions with the interface to quantify the impa
 
 In the Tor Browser 5.0.3 configuration interface, users don't know if they require additional configuration to circumvent censorship, make incorrect assumptions based on interface layout, and do not know what to do in the event of a failure. We redesign the interface to build users' mental models, provide instructive text, and assist on error. These changes decreased the time participants spent configuring their connections, with no decrease in success rates. We conclude with recommendations of changes that we believe will help the most users circumvent censorship and connect to Tor. 
 
-\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
-\item {\bfseries Challenge 1:} People don't know how to choose between ``connect directly'' versus ``configure'' on the first screen. As seen in Figure \ref{fig:window1}, there is some guidance for the users, but we found this largely unhelpful since people do not understand the text on the screen. 
-\item {\bfseries Challenge 2:} People feel compelled to set up a bridge, even if they don't need one, because they do not know how censorship works. Participants knew that they were censored to some degree since we had simulated censorship of websites. However, bridges are only necessary when the government has taken active steps to censor Tor itself.
-\item {\bfseries Challenge 3:} When their first attempt to connect fails, the interface directs people to the last window they saw before the connection failure. The problem is not necessarily where the interface directs users, misguiding them. It was common for the interface to redirect users to the proxy window in Figure \ref{fig:window5}, even when they needed to pick another bridge. 
-\item {\bfseries Challenge 4:} When the first attempt to connect fails, people did not know what to do or what to try next. The feedback given to users was not understood (see Figure \ref{fig:error}) and also did not guide users into specific actions (such as trying a different bridge, trying the same configuration again, try connecting directly, etc.).
-\end{itemize}
-
 \section{Related Work} 
 There have been three published user studies on Tor. Clark et~al.~\cite{clark2007usability} examined various deployment
 options for Tor Browser, such as Vidalia, Privoxy, Torbutton, and FoxyProxy, and found that none of them 
