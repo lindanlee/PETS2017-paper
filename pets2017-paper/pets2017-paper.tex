@@ -95,19 +95,24 @@ Users started using Tor~\cite{dingledine2004tor} as a censorship circumvention t
  
 This is the first user study investigating the usability of Tor as a censorship circumvention tool. Our experiments are both a great a case study of observing users circumvent censorship, and a step to help current Tor users by making censorship circumvention easier. All Tor users will benefit from improving the configuration interface, and therefore increasing the adoption of Tor as a censorship circumvention tool. Users who successfully use Tor to circumvent censorship will be provided with extra security features that other censorship circumvention tools do not provide, while users who use Tor as an anonymity system benefit from an increased the number of overall users on the Tor network~\cite{dingledine2006anonymity}.
 
-Our study consists of two user studies set in three simulated environments
-of mild to severe censorship.
-Study participants had to circumvent censorship and access a blocked website
-by configuring Tor Browser correctly.
-The various levels of censorship required various levels of manual configuration,
-ranging from almost none to detailed and specific settings.
-
+This paper details two user studies, and a redesign of the Tor configuration interface. 
+Both user studies are set in three simulated censorship environments
+that required various levels of manual configuration to circumvent.  
+Participants were instructed to circumvent censorship and access a blocked website
+by configuring Tor Browser and using it to visit the website.
 The first user study is a small-scale, one-on-one experiment that collected 
 behavioral patterns and failure cases with the interface through user observations
 and interviews (Section~\ref{sec:qualitative}). This feedback was used to make changes to the interface (Section~\ref{redesign}). The second user study is a large-scale, data-centric user study
 that collected data on user interactions with the interface to quantify the impact of the design changes (Section~\ref{sec:quantitative}).
 
-Our study finds that that users had difficulty in answering technical questions, feel unqualified to make technical choices, and cannot tell why their connection is failing. We made ten design changes that aimed to provide additional feedback, unburden the user, and build a user's understanding of the process. Our changes decreased the time participants spent configuring their connections, with no decrease in success rates. We conclude with a recommendation of changes that we believe will increase the usability of Tor Browser's configuration interface. 
+In the Tor Browser 5.0.3 configuration interface, users don't know if they require additional configuration to circumvent censorship, make incorrect assumptions based on interface layout, and do not know what to do in the event of a failure. We redesign the interface to build users' mental models, provide instructive text, and assist on error. These changes decreased the time participants spent configuring their connections, with no decrease in success rates. We conclude with recommendations of changes that we believe will help the most users circumvent censorship and connect to Tor. 
+
+\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
+\item {\bfseries Challenge 1:} People don't know how to choose between ``connect directly'' versus ``configure'' on the first screen. As seen in Figure \ref{fig:window1}, there is some guidance for the users, but we found this largely unhelpful since people do not understand the text on the screen. 
+\item {\bfseries Challenge 2:} People feel compelled to set up a bridge, even if they don't need one, because they do not know how censorship works. Participants knew that they were censored to some degree since we had simulated censorship of websites. However, bridges are only necessary when the government has taken active steps to censor Tor itself.
+\item {\bfseries Challenge 3:} When their first attempt to connect fails, the interface directs people to the last window they saw before the connection failure. The problem is not necessarily where the interface directs users, misguiding them. It was common for the interface to redirect users to the proxy window in Figure \ref{fig:window5}, even when they needed to pick another bridge. 
+\item {\bfseries Challenge 4:} When the first attempt to connect fails, people did not know what to do or what to try next. The feedback given to users was not understood (see Figure \ref{fig:error}) and also did not guide users into specific actions (such as trying a different bridge, trying the same configuration again, try connecting directly, etc.).
+\end{itemize}
 
 \section{Related Work} 
 There have been three published user studies on Tor. Clark et~al.~\cite{clark2007usability} examined various deployment
