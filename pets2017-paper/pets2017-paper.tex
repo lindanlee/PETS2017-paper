@@ -59,8 +59,8 @@
   \begin{abstract}
 {Tor has grown beyond its original purpose as an anonymity tool and has 
 become a widely-used censorship circumvention tool.
-This is the first study to examine Tor's usability as a censorship circumvention tool, 
-rather than an anonymity tool. We evaluate, redesign, and test the interface by
+This is the first study to examine Tor's usability as a censorship circumvention tool.
+We evaluate, redesign, and test the Tor 5.0.3 configuration interface by
 placing users in simulated censorship environments, instruct them to use Tor
 to circumvent censorship, and measuring their interactions with the interface.
 A 16-participant qualitative user study identifies common user struggles while circumventing censorship.
@@ -91,21 +91,20 @@ alternative configuration processes with different balances of risk, automation,
 
 \section{Introduction}
 
-Users started using Tor~\cite{dingledine2004tor} as a censorship circumvention tool because Tor's anonymizing functionality also coincidentally circumvented censorship. In fact, censorship circumvention became a common enough use case for Tor that many countries attempt to block Tor for that reason~\cite{winter2012great}. Today, Tor is aware of these users and explicitly provides support for circumventing censorship through a network of unlisted relays as entry points into the Tor network, various methods of obfuscation to make connections to the Tor network indistinguishable, and employs advanced techniques to resist blocking.
+
+Tor~\cite{dingledine2004tor} is an anonymity network that routes traffic through a series of relays
+that makes it difficult to observe the source and destination. Tor's anonymizing functionality coincidentally also circumvented censorship. Eventually, censorship circumvention became a common enough use case for Tor that many countries attempt to block Tor for that reason~\cite{winter2012great}. Today, Tor explicitly provides support for censorship circumvention through a network of unlisted relays as entry points into the Tor network, various methods of obfuscation to make connections to the Tor network indistinguishable, and advanced techniques to resist blocking.
  
 This is the first user study investigating the usability of Tor as a censorship circumvention tool. Our experiments are both a great a case study of observing users circumvent censorship, and a step to help current Tor users by making censorship circumvention easier. All Tor users will benefit from improving the configuration interface, and therefore increasing the adoption of Tor as a censorship circumvention tool. Users who successfully use Tor to circumvent censorship will be provided with extra security features that other censorship circumvention tools do not provide, while users who use Tor as an anonymity system benefit from an increased the number of overall users on the Tor network~\cite{dingledine2006anonymity}.
 
-This paper details two user studies, and a redesign of the Tor configuration interface. 
-Both user studies are set in three simulated censorship environments
-that required various levels of manual configuration to circumvent.  
-Participants were instructed to circumvent censorship and access a blocked website
-by configuring Tor Browser and using it to visit the website.
+We evaluate, redesign, and test the Tor 5.0.3 configuration interface by
+measuring participants' interactions with the interface in various censorship environments.
 The first user study is a small-scale, one-on-one experiment that collected 
 behavioral patterns and failure cases with the interface through user observations
 and interviews (Section~\ref{sec:qualitative}). This feedback was used to make changes to the interface (Section~\ref{redesign}). The second user study is a large-scale, data-centric user study
 that collected data on user interactions with the interface to quantify the impact of the design changes (Section~\ref{sec:quantitative}).
 
-In the Tor Browser 5.0.3 configuration interface, users don't know if they require additional configuration to circumvent censorship, make incorrect assumptions based on interface layout, and do not know what to do in the event of a failure. We redesign the interface to build users' mental models, provide instructive text, and assist on error. These changes decreased the time participants spent configuring their connections, with no decrease in success rates. We conclude with recommendations of changes that we believe will help the most users circumvent censorship and connect to Tor. 
+We find that users don't know if they require additional configuration to circumvent censorship, make incorrect assumptions based on interface layout, and do not know what to do in the event of a failure. We redesign the interface to build users' mental models, provide instructive text, and assist on error. These changes decreased the time participants spent configuring their connections, with no decrease in success rates. We conclude with recommendations of changes that we believe will help the most users circumvent censorship and connect to Tor. 
 
 \section{Related Work} 
 There have been three published user studies on Tor. Clark et~al.~\cite{clark2007usability} examined various deployment
@@ -130,27 +129,34 @@ This study examines that interface with a focus on circumvention,
 though we believe that this research and the changes we recommend
 can be beneficial for non-circumventing users as well.
 
-\section{Circumvention and Tor}
+\section{Background}
+This section talks about how the configuration interface relates to Tor, what the network components are involved in censorship circumvention, and which configuration settings required to bypass levels of Tor-adverse censorship environments. 
 
-Censors of the Internet typically seek to block certain network resources such as websites.
-They use various technical means, for example falsifying DNS responses,
-blocking IP addresses, filtering keywords, and detecting protocols by deep packet inspection.
-Internet users, naturally, try to evade a censor's blocks,
-also employing a variety of technical means.
+\subsection{Tor, Tor Browser, and Tor Launcher}
+The recommended way to use Tor is through Tor Browser~\cite{torbrowser},
+a modified Firefox browser that includes a built-in Tor client.
+Tor Browser has a software component called Tor Launcher that
+starts, stops, and otherwise controls the underlying Tor processes.
+Tor Launcher's graphical user interface gives access to a variety of 
+sophisticated circumvention mechanisms, asking the user
+to configure two a proxy and bridge (if any) before connecting to Tor
+for the first time. This is the target of our study. 
 
-Tor is an anonymity network that has also grown into
-a role as a vehicle for censorship circumvention.
-Tor routes user traffic through a random series of relays
-in a way that makes it difficult for an observer to connect source and destination.
-Tor, in its native form, is easy for censors to block,
-because the list of relays and their IP addresses is public.
-However, combined with \emph{bridges} and
-\emph{pluggable transports}, it becomes challenging to block access to Tor.
+In principle, the process of configuring a proxy and bridge can be automated, but
+the interface eschews automatic configuration through network probing
+in favor of guided manual configuration to give users agency in configuring their connection.
+A knowledgeable user can minimize their network trace and hide that they are connecting to Tor.
+However, this burdens on the user to grapple with technical concepts such as 
+of bridges, pluggable transports, and proxies and to configure their connection correctly.
 
-Bridges are unlisted Tor relays that make it possible for a user to connect
-to the Tor network even if a censor blocks all publicly listed Tor relays.
-Pluggable transports are special protocols that run on bridges and obfuscate
-Tor's network protocol to make it difficult to detect.
+\subsection{Bridges, Pluggable Transports, and Proxies} 
+Internet censors seek to block network resources, such as websites, through 
+a variety of means, such as falsifying DNS responses, blocking IP addresses, 
+filtering keywords, and detecting protocols by deep packet inspection.
+Censors can block the Tor network by blocking the list of Tor relays, which 
+are public. However, it becomes challenging to block access to Tor when
+the Tor network is augmented with \emph{bridges} and \emph{pluggable transports}.
+Fig.~\ref{fig:topology} illustrates the interacting components.
 
 \begin{figure}
 \centering
@@ -167,65 +173,35 @@ When a bridge is used, it takes the place of the first Tor hop.
 \label{fig:topology}
 \end{figure}
 
-Fig.~\ref{fig:topology} illustrates the interacting components.
-In addition to those components already mentioned,
-a user may need a local proxy in order to connect outside the local network.
-The terminology can be confusing:
-technically a Tor client is also a proxy,
-and so is a pluggable transport bridge.
-By ``proxy'' we mean an ordinary unobfuscated proxy such
-as a SOCKS or HTTP proxy.
-A proxy is only needed in certain managed networks,
-such as some corporate or university networks.
-An important distinction is that the proxy usually lies within the censor's control;
-the bridge outside.
+Bridges are unlisted Tor relays that make it possible for a user to connect
+to the Tor network even if a censor blocks all publicly listed Tor relays.
+Pluggable transports are special protocols that run on bridges and obfuscate
+Tor's network protocol to make it difficult to detect. 
+Configuring a bridge requires providing one or more
+``bridge lines,'' a specification of a bridge that
+includes its IP address, transport type, and other metadata.
+For ease of use, the interface has hard-coded options for 
+the user to choose a group of bridges that use a particular
+pluggable transport. For example, choosing  the hard-coded``obfs3'' option
+configures a handful of bridges that use obfs3 pluggable transport.
+Some censors block the IP addresses of the hard-coded bridges by looking
+at the source code for those addresses (except ``flashproxy'' and ``meek,'' which work differently).
+If the built-in bridges do not work, a user can obtain bridge lines
+through out-of-band channels, for instance by email~\cite{bridgedb}.
 
-\subsection{Tor Browser and Tor Launcher}
-
-For most users, the recommended way to use Tor is through Tor Browser~\cite{torbrowser},
-a modified Firefox browser that includes a built-in Tor client.
-Tor Browser has a special software component that
-Tor Launcher starts, stops, and otherwise controls
-an underlying Tor process.
-This component is called Tor Launcher
-and it is the primary target of our study.
-% Tor Launcher is also used by Tor Messenger~\cite{tormessenger},
-% an instant messaging client.
-
-Tor Launcher has a graphical user interface,
-displayed at its first startup, that asks the user
-to configure two important settings before connecting to Tor
-for the first time:
-what proxy to use (if any) and what bridge to use (if any).
-The correct configuration settings will vary depending
-on the user and their circumstances.
-A graphical wizard asks a series of questions to guide
-users in finding the correct configuration.
-Most Tor users do not require a bridge nor a proxy and
-can simply click the ``Connect'' shortcut on
-the first page to bypass all configuration.
-Others, though, need to know or find out
-all these pieces of information:
-
-\begin{itemize}
-	\item{Whether they are censored} 
-	\item{Whether the Tor network is censored by their ISP}
-	\item{Which bridges work in the current environment} 
-	\item{If no bridges work, how to get a custom bridge} 
-	\item{Whether a proxy is required to access the Internet}
-	\item{If a proxy is required, the proxy settings}
-\end{itemize}
-
-While these steps can in principle be automated to some degree,
-the interface eschews automatic configuration through network probing
-in favor of guided manual configuration,
-in order to give users their own agency in configuring their connection.
-A knowledgeable user can connect while minimizing their network trace
-and not make it obvious that they are using Tor.
-However, this design decision puts the burden of technical knowledge and correct configuration on the user.
-The technical concepts of bridges, pluggable transports, and proxies are likely unfamiliar to the average user.
-
-\subsection{Bridges and pluggable transports}
+Fig.~\ref{fig:bridge-options} paraphrases the bridge configuration
+options at the time of the study and lists the available pluggable transports.
+Some transports connect directly to a static IP address,
+obfuscating traffic to defeat on-the-wire identification;
+they rely on the secrecy of their IP addresses for their effectiveness.
+These include ``fte'' and ``fte-ipv6''~\cite{fte},
+which make Tor look like another protocol such as HTTP; and
+``obfs3''~\cite{obfs3}, ``obfs4''~\cite{obfs4}, and ``scramblesuit''~\cite{scramblesuit},
+which encrypt Tor to look like random noise.
+Other transports work differently and do not depend on connecting to a static IP address:
+``flashproxy''~\cite{flashproxy} connects through third parties' web browsers,
+and the three ``meek''~\cite{fifield2015blocking} options route traffic
+through content delivery networks.
 
 \begin{figure}
 \small
@@ -258,43 +234,42 @@ bridge lines.
 \label{fig:bridge-options}
 \end{figure}
 
-Tor Launcher gives access to a variety of sophisticated
-circumvention mechanisms.
-Fig.~\ref{fig:bridge-options} paraphrases the bridge configuration
-interface as it existed at the time we did our study
-and lists the available pluggable transports.
-Some transports connect directly to a static IP address,
-obfuscating traffic to defeat on-the-wire identification;
-they rely on the secrecy of their IP addresses for their effectiveness.
-These include ``fte'' and ``fte-ipv6''~\cite{fte},
-which make Tor look like another protocol such as HTTP; and
-``obfs3''~\cite{obfs3}, ``obfs4''~\cite{obfs4}, and ``scramblesuit''~\cite{scramblesuit},
-which encrypt Tor to look like random noise.
-Other transports work differently and do not depend on connecting to a static IP address:
-``flashproxy''~\cite{flashproxy} connects through third parties' web browsers,
-and the three ``meek''~\cite{fifield2015blocking} options route traffic
-through content delivery networks.
+In addition to tor-specific components, a proxy may be necessary to connect 
+outside the local network in certain managed networks, such as corporate or university networks.
+Configuring a proxy requires providing the proxy protocol, ip address, port and additional optional
+fields. There is no assistance or automation with this process. The user must locate the 
+proxy information and correctly format this information into the configuration interface. 
+  
+Technically the Tor client, pluggable transport bridge, and proxy are all
+proxies. In this paper, ``proxy'' refers to a local, ordinary unobfuscated proxy such
+as a SOCKS or HTTP proxy. An important distinction is that the local proxy lies within the 
+censor's control.
 
-Configuring a bridge requires providing one or more
-``bridge lines,'' short specifications of a bridge
-including its IP address, transport type, and other metadata.
-For ease of use, the options under ``Connect with provided bridges''
-activate ready-made, built-in bridge lines,
-hard-coded into the browser.
-Choosing ``obfs3,'' for example, activates a handful
-of bridges that use obfs3, without the user needing
-to find and paste in obfs3 bridge lines.
-A censor can of course block the IP addresses of the default bridge lines
-(except ``flashproxy'' and ``meek,'' which work differently).
-If the built-in bridges do not work, a user can obtain bridge lines
-through out-of-band channels, for instance by email~\cite{bridgedb}.
+\subsection{Circumventing Censorship with Tor}
+There are many valid configuration settings to connect to the Tor network.
+For instance, a user who does not need a bridge or proxy to circumvent censorship
+can connect to Tor with a bridge and proxy, provided that they have been configured correctly. 
+The minimum amount of configuration required, and therefore, the set of valid configuration settings,
+vary depending on the censorship environment. At the maximum, users will need to know or find out:\\
 
-The ``flashproxy'' transport, because of the way it works,
-requires users to take special technical steps before using it.
-Unlike the other options, it does not work out of the box
-in most situations, including during our experiments.
-For our participants, its presence at the top of the list
-was an inviting failure mode.
+\begin{itemize}
+	\item{Whether they are censored} 
+	\item{Whether the Tor network is censored by their ISP}
+	\item{Which groups of hard-coded bridges work in their environment} 
+	\item{If no hard-coded bridges work, how to get and enter in a custom bridge} 
+	\item{Whether a proxy is required to access the Internet}
+	\item{If a proxy is required, and if so, the proxy settings}
+\end{itemize}
+
+Uncensored users and users in censorship environments that do not explicitly 
+block Tor do not require a bridge nor a proxy and can bypass the configuration process.
+Users in censorship environments that explicitly block Tor but has not blocked the 
+hard-coded bridges in the Tor Launcher source code are required to use a 
+a hard-coded bridge or custom bridge to connect to Tor. Users in a censorship environment that has explicitly 
+blocked Tor relays and hard-coded bridges will be required to configure a meek-bridge (which 
+routes traffic through content delivery networks and therefore resists blocking via collateral damage) or 
+configure a custom bridge to connect to Tor.
+
 
 \section{Goals/Evaluation Criteria}
 \label{sec:goals}
@@ -524,6 +499,13 @@ Here we discuss the problems our participants encountered at each step of the co
 We outline our goals for improving the configuration interface.
 Participant quotations come from live transcription during the post-experiment interview
 and are not necessarily verbatim.
+
+%\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
+%\item {\bfseries Challenge 1:} People don't know how to choose between ``connect directly'' versus ``configure'' on the first screen. As seen in Figure \ref{fig:window1}, there is some guidance for the users, but we found this largely unhelpful since people do not understand the text on the screen. 
+%\item {\bfseries Challenge 2:} People feel compelled to set up a bridge, even if they don't need one, because they do not know how censorship works. Participants knew that they were censored to some degree since we had simulated censorship of websites. However, bridges are only necessary when the government has taken active steps to censor Tor itself.
+%\item {\bfseries Challenge 3:} When their first attempt to connect fails, the interface directs people to the last window they saw before the connection failure. The problem is not necessarily where the interface directs users, misguiding them. It was common for the interface to redirect users to the proxy window in Figure \ref{fig:window5}, even when they needed to pick another bridge. 
+%\item {\bfseries Challenge 4:} When the first attempt to connect fails, people did not know what to do or what to try next. The feedback given to users was not understood (see Figure \ref{fig:error}) and also did not guide users into specific actions (such as trying a different bridge, trying the same configuration again, try connecting directly, etc.).
+%\end{itemize}
 
 \subsubsection{User Communication} 
 Many participants, including participants who were pre-screened for high technical ability and previous experience with using Tor, were not familiar with the vocabulary:
