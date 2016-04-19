@@ -681,9 +681,13 @@ The redesigned interface conservatively interacts with users by automating only 
 
 \section{Quantitative Analyses of the Interfaces (Study 2)}
 \label{sec:quantitative}
-We performed quantitative research to quantify the existing problems
-and the impact of our redesign. Specifically, we collected all events, transitions, 
-and state for Tor Browser 5.0.3 and the redesigned Tor Browser.
+Having identified problems with the existing interface
+and done a redesign in an attempt to ameliorate them,
+we did research to quantify the existing problems
+and the impact of our changes.
+This study involved a larger number of users,
+again in simulated censorship environments,
+split between the old and new interface.
 
 \subsection{Setup}
 We simulated the same three censorship environments from 
@@ -691,38 +695,40 @@ our qualitative user study. Details of the E1, E2, and E3
 censorship environments and what configurations are necessary for a 
 successful connection can be found in Section~\ref{sec:environments}.
 
-We instrumented Tor Launcher 5.0.3 and our redesigned Tor Launcher.
-The instrumentation logs recorded every meaningful interaction with the interface---every
+We added special instrumentation logging to both interfaces.
+The instrumentation logs recorded every meaningful interaction---every
 button press, every menu selection, every screen change---along with a timestamp.
 The logs enabled us to calculate statistics such as the success rate
-for each condition. We also recorded the participants' computer screens 
+and time spent on each screen.
+We also recorded the participants' computer screens
 throughout the experiment to capture non-interface activity such as 
 web searching and inspection of system networking settings.
 
-We ran our experiment at Xlab, the Experimental Social Science Laboratory at University of 
-California, Berkeley. The Xlab allows researchers to run experiments on 36 participants at a time.
-There are 36 Windows machines in rows of 4, which are separated by cubicle walls. 
-We provided the scripts to set up the simulated censorship environment, install necessary software, 
-start the video recording, and save the logs and videos. Our experiment was not limited by Xlab
-requirements. However, the configuration interface relies on OS-provided features but testing 
-was only done on Windows machines, as a byproduct of using Xlab. 
+We ran our experiment at Xlab, the Experimental Social Science Laboratory at the University of 
+California, Berkeley.
+The Xlab has 36 Windows~7 laptops, separated from each other by cubicle walls. 
+We wrote scripts to automatically set up the simulated censorship environment, install necessary software, 
+start the video recording, and save the logs and videos.
+% Our experiment was not limited by Xlab requirements.
+% [What does that mean?]
+Though Tor Browser runs on other operating systems,
+testing was only done on Windows, as a byproduct of using Xlab. 
 
 \subsection{Recruitment}
-We recruited about 20 users for each censorship environment
-and interface combination, resulting in a total of 124 users. 
-Data analysis considerations deem 20 participants in each 
-6 interface version and simulated censorship combination a 
-minimum to be able to assume normal distributions and 60 participants
-testing each interface is large enough to have adequate effect size.
+We recruited 124 participants, about 20 for each
+of the six combinations of censorship environment
+and interface revision.
+Data analysis considerations deem 20 participants per combination a 
+minimum to be able to assume normal distributions, and 60 participants
+per interface revision is large enough to have an adequate effect size.
 
 We recruited half of our users from Craigslist, and half of our participants from 
 the Xlab participant pool. Although Xlab participants are not limited to UC Berkeley students and staff,
 a majority of the participants are from campus. For this reason, we chose to recruit 
 half of our participants from Craigslist to ensure a diverse set of participants. 
 The recruitment text can be found in Appendix~\ref{quantitative-recruitment}. 
-
 Out of our 124 participants, 59 were recruited from the Xlab pool and the other 65 were
-recruited from Craigslist. Ages ranged from 18 to 68
+recruited from Craigslist. Ages ranged from 18 to~68 years
 ($\mu = 28.9$, $\sigma = 12$). 56.8\% were male and 
 84.8\% of our participants had at least a college education.
 
