@@ -184,8 +184,6 @@ such as some corporate or university networks.
 An important distinction is that the proxy usually lies within the censor's control;
 the bridge outside.
 
-% Bridges and pluggable transports are not limited to Tor...
-
 \subsection{Tor Browser and Tor Launcher}
 
 For most users, the recommended way to use Tor is through Tor Browser~\cite{torbrowser},
@@ -257,9 +255,9 @@ Bridge selection options in Tor Launcher, as it appeared in Tor Browser~5.0.3.
 The obscure strings under ``Connect with provided bridges'' denote various
 built-in circumvention technologies (``pluggable transports'').
 Under ``Enter custom bridges'', there is a space to paste in
-a bridge specification that was obtained out of band.
-The ``Help'' button displays instructions on obtaining such
-bridge specifications.
+a bridge line, obtained out of band.
+The ``Help'' button displays instructions on obtaining
+bridge lines.
 }
 \label{fig:bridge-options}
 \end{figure}
@@ -270,13 +268,13 @@ Fig.~\ref{fig:bridge-options} paraphrases the bridge configuration
 interface as it existed at the time we did our study
 and lists the available pluggable transports.
 Some transports connect directly to a static IP address,
-transforming traffic to defeat its on-the-wire identification as Tor;
+obfuscating traffic to defeat on-the-wire identification;
 they rely on the secrecy of their IP addresses for their effectiveness.
 These include ``fte'' and ``fte-ipv6''~\cite{fte},
 which make Tor look like another protocol such as HTTP; and
 ``obfs3''~\cite{obfs3}, ``obfs4''~\cite{obfs4}, and ``scramblesuit''~\cite{scramblesuit},
 which encrypt Tor to look like random noise.
-Other transports do not depend on connecting to a static IP address:
+Other transports work differently and do not depend on connecting to a static IP address:
 ``flashproxy''~\cite{flashproxy} connects through third parties' web browsers,
 and the three ``meek''~\cite{fifield2015blocking} options route traffic
 through content delivery networks.
@@ -304,7 +302,13 @@ was an inviting failure mode.
 
 \section{Goals/Evaluation Criteria}
 \label{sec:goals}
-We evaluate the existing and redesigned Tor Browser configuration interface 
+In the course of our experiments we evaluated two versions
+of the Tor Launcher interface.
+The first, which we have labeled ``OLD'' in figures and tables,
+is the version that is being distributed to users now.
+The second, ``NEW'', is the prototype we revised and redesigned
+in order to provide better usability.
+We evaluate the old and new interfaces
 through the empirical evaluation and heuristic evaluation criteria below. 
 
 A heuristic evaluation is a rule-based evaluation based on time-tested standards
@@ -312,10 +316,10 @@ in the user interface design community. We draw from Jacob Nielsen's ten heurist
 and other industry standards to form the following heuristic evaluation criteria: \\
 
 \begin{enumerate}
-    \item  {\bfseries Visibility of system status}: provide feedback on what the system is doing. 
-    \item  {\bfseries Error management}: expressing errors in plain language and offering a solution. 
-    \item  {\bfseries Understandable language}: explaining the task, rather than technical concepts. 
-    \item  {\bfseries Simple design}: showing options on an as-needed basis. 
+    \item  {\bfseries Visibility of system status}: Provide feedback on what the system is doing. 
+    \item  {\bfseries Error management}: Expressing errors in plain language and offering a solution. 
+    \item  {\bfseries Understandable language}: Explaining the task, rather than technical concepts. 
+    \item  {\bfseries Simple design}: Showing options on an as-needed basis. 
 \end{enumerate}
 
 Our empirical evaluation criteria for the Tor Browser configuration
@@ -323,9 +327,9 @@ interface are from common metrics that measure ease of use with a special
 consideration for high-risk users: \\
 
 \begin{enumerate}
-    \item {\bfseries Task Completion}: Almost all can successfully connect to Tor
-    \item {\bfseries  Time to Completion}: Time to completion. 
-    \item {\bfseries Safe for High-Risk Users}: It should be possible to configure Tor with the interface that it doesn't leak that they are using Tor. 
+    \item {\bfseries Task completion rate}: Almost all can successfully connect to Tor.
+    \item {\bfseries  Time to completion}: Measured between program startup and successful connection to Tor.
+    \item {\bfseries Safety for high-risk users}: It should be possible to configure Tor without leaking the fact that the user is using Tor. 
 \end{enumerate}
 
 \subsection{Censorship Environments}
