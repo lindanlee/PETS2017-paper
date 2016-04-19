@@ -95,40 +95,44 @@ Although Tor~\cite{dingledine2004tor} was not designed to be a censorship circum
 using it as one, since Tor's anonymizing functionality also circumvented censorship. In fact, some countries unsuccessfully attempt to block Tor for this reason~\cite{winter2012great}. Today, Tor's network of unlisted relays and various methods of obfuscation making it a viable censorship circumvention tool even in the face of nation-state level adversaries.
  
 To our knowledge, this is the first user study investigating the usability of Tor as a 
-censorship circumvention tool. We believe that this is a great opportunity for user research, both for investigating a case study of investigating the usability of a censorship circumvention tool, and also to help current Tor users censorship circumvention more easily. Not only will this allow for easier censorship circumvention, users who use tor will be provided with extra security features that other censorship circumvention tools do not provide, such as anonymity. Additionally, increasing the adoption of Tor as a censorship circumvention tool benefits other users who use Tor as an anonymity system by increasing the number of overall users on the Tor network~\cite{dingledine2006anonymity}. 
+censorship circumvention tool. We believe that this is a great opportunity for user research, both for investigating a case study of investigating the usability of a censorship circumvention tool, and also to help current Tor users censorship circumvention more easily. Not only will this allow for easier censorship circumvention, users who use Tor will be provided with extra security features that other censorship circumvention tools do not provide, such as anonymity. Additionally, increasing the adoption of Tor as a censorship circumvention tool benefits other users who use Tor as an anonymity system by increasing the number of overall users on the Tor network~\cite{dingledine2006anonymity}.
 
-Our study consists of two user studies set in three simulated censorship environments 
-of varying levels of difficulty to circumvent. The mild, intermediate, and comprehensive 
-environments required participants to connect, configure manually with default settings
-and recommendations, and to configure manually without using defaults or recommendations. 
-In both experiments, participants are informed that they are being censored, and that their 
-goal is to reach a censored website by circumventing the censorship environment through
-configuring Tor Browser. 
+Our study consists of two user studies set in three simulated environments
+of mild to severe censorship.
+Study participants had to circumvent censorship and access a blocked website
+by configuring Tor Browser correctly.
+The various levels of censorship required various levels of manual configuration,
+ranging from almost none to detailed and specific settings.
 
 The first user study is a small-scale, one-on-one experiment that collected 
 behavioral patterns and failure cases with the interface through user observations
-and interviews(Section~\ref{sec:qualitative}). This feedback was used to make changes to the interface (Section~\ref{redesign}). The second user study is a large-scale, data-centric user study
-that collected data on user interactions with the interface to quantify the impact of the design changes (Section~\ref{quantitative}).
+and interviews (Section~\ref{sec:qualitative}). This feedback was used to make changes to the interface (Section~\ref{redesign}). The second user study is a large-scale, data-centric user study
+that collected data on user interactions with the interface to quantify the impact of the design changes (Section~\ref{sec:quantitative}).
 
 Our study finds that that users had difficulty in answering technical questions, feel unqualified to make technical choices, and cannot tell why their connection is failing. We made ten design changes that aimed to provide additional feedback, unburden the user, and build a user's understanding of the process. Our changes decreased the time participants spent configuring their connections, with no decrease in success rates. We conclude with a recommendation of changes that we believe will increase the usability of Tor Browser's configuration interface. 
 
 \section{Related Work} 
-There have been three published user studies on Tor. Clark et. al examined various deployment
+There have been three published user studies on Tor. Clark et~al.~\cite{clark2007usability} examined various deployment
 options for Tor Browser, such as Vidalia, Privoxy, Torbutton, and Foxyproxy, and found that none of them 
-were satisfactory from a usability perspective~\cite{clark2007usability}. Fabian et. al show that Tor's added
+were satisfactory from a usability perspective. Fabian et~al.~\cite{fabian2010privately} show that Tor's added
 latency~\cite{dingledine2009performance} causes users
-to be frustrated, cancel requests more often, and prevents user adoption~\cite{fabian2010privately}. 
-Norcie et. al found found that 
-64\% of users are unable to continue with installation or browsing at least once due to difficulties~\cite{norcie2012eliminating}. 
+to be frustrated, cancel requests more often, and prevents user adoption. 
+Norcie et~al.~\cite{norcie2012eliminating} found found that 
+64\% of users are unable to continue with installation or browsing at least once due to difficulties.
 
 There have been been no published usability evaluations of
 Tor Browser since the 3.5 series, which introduced radical UI changes~\cite{torbrowser-35}.
-The most recent usability effort is an unpublished pilot study  by Lee and Fifield~\cite {uxsprint} 
-that tests the download, install, and  user interface of Tor Browser.  This study uncovered a number of issues~\cite{uxsprint2015-tickets}. Changes made are reflected in series 5.1 and later. 
+The most recent usability effort is an unpublished pilot study by Lee and Fifield~\cite{uxsprint} 
+that tested the downloading, installation, and browsing tasks in Tor Browser.  This study uncovered a number of issues~\cite{uxsprint2015-tickets},
+some of which influenced changes in Tor Browser version~5.1 and later.
 
-Previous user studies have not focused on specific features in isolation, while we choose to focus our study on 
-the configuration interface. The configuration interface guides users through setting up network components required to circumvent censorship. 
-This study examines that interface, and effectively, the usability of Tor as a censorship circumvention tool. 
+Previous user studies have been on the whole browsing experience,
+without focusing on specific features in isolation.
+We choose to focus our study on 
+the browser's configuration interface, which guides users through setting up network components required to circumvent censorship. 
+This study examines that interface with a focus on circumvention,
+though we believe that this research and the changes we recommend
+can be beneficial for non-circumventing users as well.
 
 \section{Circumvention and Tor}
 
