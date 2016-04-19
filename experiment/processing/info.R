@@ -1,5 +1,5 @@
 library(coin)
-csource("common.R")
+source("common.R")
 
 participants <- read_participants()
 
