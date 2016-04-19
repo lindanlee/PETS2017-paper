@@ -271,47 +271,50 @@ routes traffic through content delivery networks and therefore resists blocking 
 configure a custom bridge to connect to Tor.
 
 
-\section{Goals/Evaluation Criteria}
+\section{Evaluation Criteria and Goals}
 \label{sec:goals}
-In the course of our experiments we evaluated two versions
-of the Tor Launcher interface.
+The series of user studies evaluated two versions of the Tor Launcher interface.
 The first, which we have labeled ``OLD'' in figures and tables,
 is the current version being distributed with Tor Browser.
 The second, ``NEW'', is the prototype we revised and redesigned
-in order to provide better usability.
-We evaluate the old and new interfaces
-through the empirical evaluation and heuristic evaluation criteria below. 
+in order to provide better usability. Below are the empirical and 
+heuristic evaluation criteria we use to assess the interfaces. 
+
+Our empirical evaluation criteria for the Tor Browser configuration
+interface are from common metrics that measure ease of use: \\
+
+\begin{enumerate}
+    \item {\bfseries Task completion rate:} What percentage of users can successfully connect to Tor in a given condition.
+    \item {\bfseries  Time to completion:} How long it takes between program startup and a successful connection to Tor.
+    \item {\bfseries Active configuration time:} How much time a user spends actively configuring network components to connect to Tor. 
+\end{enumerate}
 
 A heuristic evaluation is a rule-based evaluation based on time-tested standards
 in the user interface design community. We draw from Jacob Nielsen's ten heuristics~\cite{nielsen1994heuristic}
 and other industry standards to form the following heuristic evaluation criteria: \\
 
 \begin{enumerate}
-    \item  {\bfseries Visibility of system status:} Provide feedback on what the system is doing. 
-    \item  {\bfseries Error management:} Expressing errors in plain language and offering a solution. 
-    \item  {\bfseries Understandable language:} Explaining the task, rather than technical concepts. 
-    \item  {\bfseries Simple design:} Showing options on an as-needed basis. 
+    \item  {\bfseries Visibility of system status:} There is feedback on system state is and what the system is doing. 
+    \item  {\bfseries Error management:}  Errors are in plain language and offers a solution. 
+    \item  {\bfseries Understandable language:} Users are able to understand the text and concepts mentioned in the interface. 
 \end{enumerate}
 
-Our empirical evaluation criteria for the Tor Browser configuration
-interface are from common metrics that measure ease of use with a special 
-consideration for high-risk users: \\
+An ideal interface would guide users though the configuration process while communicating system state and managing errors along the way. Users would be able to connect to the Tor network in a couple of minutes. 
 
-\begin{enumerate}
-    \item {\bfseries Task completion rate:} Almost all can successfully connect to Tor.
-    \item {\bfseries  Time to completion:} Measured between program startup and successful connection to Tor.
-    \item {\bfseries Safety for high-risk users:} It should be possible to configure Tor without leaking the fact that the user is using Tor. 
-\end{enumerate}
-
-\subsection{Censorship Environments}
+\section{Experimental Setup}
 \label{sec:environments}
-In each experiment, we simulated three censorship environments,
-which we labeled ``E1,'' ``E2,'' and ``E3''
-in order of increasing severity.
+For our experiments, we use (modified versions of) Tor Browser~5.0.3, 
+the most recent stable release at the time~\cite{torbrowser-503}.
+Though there were new releases during the experiments,
+we tested the same version across all participants to not introduce
+confounding factors.
+
+For both user studies, we simulated three censorship environments,
+which we refer to as ``E1,'' ``E2,'' and ``E3,'' in order of increasing severity.
 We designed the environments to be representative
 of what, in our estimation, are important real-world
-cases of censorship, but they are not intended to imitate
-any particular country's censorship exactly.
+cases of censorship. They are not intended to imitate
+any particular country's censorship environment.
 
 \smallskip
 
@@ -350,10 +353,9 @@ or to acquire their own custom bridge and enter it manually.
 
 \smallskip
 
-Table~\ref{tab:environments} summarizes what is blocked
-in each environment.
-We used features of the Windows operating system to implement
-the above environments.
+Table~\ref{tab:environments} summarizes our simulated censorship
+environments. We used features of the Windows operating system 
+to implement the above blocking behaviors.
 To simulate website blocking, we added entries to the hosts file,
 mapping domain names to the address 127.0.0.1.
 For IP address blocking, we used Windows Firewall rules.
@@ -378,11 +380,6 @@ similarly E3's is a superset of E2's.
 }
 \label{tab:environments}
 \end{table}
-
-All our experiments use (modified versions of)
-Tor Browser~5.0.3, which was the most recent stable release at the time we began~\cite{torbrowser-503}.
-Though there were new releases during the course of the experiments,
-we stuck with 5.0.3 so as not to introduce potential confounding factors.
 
 \section{Qualitative Analysis of the Existing Interface (Study 1)}
 \label{sec:qualitative}
