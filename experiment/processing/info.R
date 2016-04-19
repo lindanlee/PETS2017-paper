@@ -72,12 +72,12 @@ cat("****************************\n")
 edges <- filter_edges(read_edges(), participants)
 
 # 1 
-active_edges <- edges[edges[,"src"] != "progress",] # "active time" is anytime that people are not on the progress screen.
-progress_edges <- edges[edges[,"src"]== "progress",]
-first_edges <- edges[edges[,"src"]== "first",]
-proxy_edges <- edges[edges[,"src"] %in% c("proxy","proxyYES"),]
-bridge_edges <-  edges[edges[,"src"] %in% c("bridges","bridgeSettings","bridgeHelp"),]
-summary_edges <- edges[edges[,"src"]== "summary",]
+active_edges <- edges[edges[,"dst"] != "progress",] # "active time" is anytime that people are not on the progress screen.
+progress_edges <- edges[edges[,"dst"]== "progress",]
+first_edges <- edges[edges[,"dst"]== "first",]
+proxy_edges <- edges[edges[,"dst"] %in% c("proxy","proxyYES"),]
+bridge_edges <-  edges[edges[,"dst"] %in% c("bridges","bridgeSettings","bridgeHelp"),]
+summary_edges <- edges[edges[,"dst"]== "summary",]
 
 # 2
 total_time_per_user <- aggregate(edges$duration ~ edges$userid, edges, sum)

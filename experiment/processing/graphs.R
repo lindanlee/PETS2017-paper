@@ -20,6 +20,10 @@ edges <- filter_edges(read_edges(), participants)
 if (any(is.na(edges$pid))) {
   stop("found NAs in edges$pid")
 }
+# Ignore "not_running" and "starting", so they just show up as blank.
+edges <- edges[!(edges$dst %in% c("not_running", "starting")), ]
+edges$src <- canonicalize_screens(edges$version, edges$src)
+edges$dst <- canonicalize_screens(edges$version, edges$dst)
 
 state.palette <- brewer.pal(length(levels(edges$dst)), "Set1")
 
@@ -132,4 +136,5 @@ p <- p + labs(title=NULL, x=NULL, y="Minutes elapsed")
 p <- common_theme(p)
 p <- p + theme(panel.grid.minor.x=element_blank())
 p <- p + theme(panel.grid.major.y=element_blank())
+p
 ggsave("all-participant-edges.pdf", p, width=textwidth, height=textheight-0.75, device=cairo_pdf)

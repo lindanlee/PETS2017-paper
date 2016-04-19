@@ -71,9 +71,9 @@ filter_edges <- function(edges, participants) {
 	# Cut off the logs at our time limit.
 	edges <- trim_edges(edges, maxtime)
 	# Ignore "not_running" and "starting", so they just show up as blank.
-	edges <- edges[!(edges$dst %in% c("not_running", "starting")), ]
-	edges$src <- canonicalize_screens(edges$version, edges$src)
-	edges$dst <- canonicalize_screens(edges$version, edges$dst)
+	#edges <- edges[!(edges$dst %in% c("not_running", "starting")), ]
+	#edges$src <- canonicalize_screens(edges$version, edges$src)
+	#edges$dst <- canonicalize_screens(edges$version, edges$dst)
 	edges
 }
 
