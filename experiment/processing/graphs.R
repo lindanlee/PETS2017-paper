@@ -128,7 +128,7 @@ p <- p + scale_color_manual("Current screen", values=state.palette, labels=c(
 	"progress"="progress (Pr)",
 	"error"="error"
 ))
-p <- p + labs(title=NULL, x="Participants", y="Minutes elapsed")
+p <- p + labs(title=NULL, x=NULL, y="Minutes elapsed")
 p <- common_theme(p)
 p <- p + theme(panel.grid.minor.x=element_blank())
 p <- p + theme(panel.grid.major.y=element_blank())
