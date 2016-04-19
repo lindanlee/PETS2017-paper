@@ -316,10 +316,10 @@ in the user interface design community. We draw from Jacob Nielsen's ten heurist
 and other industry standards to form the following heuristic evaluation criteria: \\
 
 \begin{enumerate}
-    \item  {\bfseries Visibility of system status}: Provide feedback on what the system is doing. 
-    \item  {\bfseries Error management}: Expressing errors in plain language and offering a solution. 
-    \item  {\bfseries Understandable language}: Explaining the task, rather than technical concepts. 
-    \item  {\bfseries Simple design}: Showing options on an as-needed basis. 
+    \item  {\bfseries Visibility of system status:} Provide feedback on what the system is doing. 
+    \item  {\bfseries Error management:} Expressing errors in plain language and offering a solution. 
+    \item  {\bfseries Understandable language:} Explaining the task, rather than technical concepts. 
+    \item  {\bfseries Simple design:} Showing options on an as-needed basis. 
 \end{enumerate}
 
 Our empirical evaluation criteria for the Tor Browser configuration
@@ -327,9 +327,9 @@ interface are from common metrics that measure ease of use with a special
 consideration for high-risk users: \\
 
 \begin{enumerate}
-    \item {\bfseries Task completion rate}: Almost all can successfully connect to Tor.
-    \item {\bfseries  Time to completion}: Measured between program startup and successful connection to Tor.
-    \item {\bfseries Safety for high-risk users}: It should be possible to configure Tor without leaking the fact that the user is using Tor. 
+    \item {\bfseries Task completion rate:} Almost all can successfully connect to Tor.
+    \item {\bfseries  Time to completion:} Measured between program startup and successful connection to Tor.
+    \item {\bfseries Safety for high-risk users:} It should be possible to configure Tor without leaking the fact that the user is using Tor. 
 \end{enumerate}
 
 \subsection{Censorship Environments}
@@ -624,13 +624,13 @@ The apparent negative progress caused users to assume that their subsequent atte
 		and informs the user whether a proxy is required, and if so, what those settings are (P).}
 \end{figure*}
 
-Tor Browser 5.0.3. configuration interface does not adequately meet our heuristic evaluation criteria from Section~\ref{sec:goals}: visibility of system status, user control and freedom, error management, understandable language, and minimal design. We rate the severity of the issue by its frequency, impact, and persistence~\cite{nielsen1994heuristic}:\\
+The Tor Browser configuration interface does not adequately meet our heuristic evaluation criteria from Section~\ref{sec:goals}: visibility of system status, user control and freedom, error management, understandable language, and minimal design. We rate the severity of each issue by its frequency, impact, and persistence~\cite{nielsen1994heuristic}:\\
 
 \begin{itemize}
-\item {\bfseries Major Problem}: Error messages do not express errors in plain language nor offer solutions. 
-\item {\bfseries Major Problem}: The text was too technical for an average user to understand. 
-\item {\bfseries Minor Problem}: The configuration is not visible to the users before they connect or while they are connecting.
-\item {\bfseries Cosmetic Problem}: The interface can be simplified visually. 
+\item {\bfseries Major Problem:} Error messages do not express errors in plain language nor offer solutions. 
+\item {\bfseries Major Problem:} The text was too technical for an average user to understand. 
+\item {\bfseries Minor Problem:} The configuration is not visible to the users before they connect or while they are connecting.
+\item {\bfseries Cosmetic Problem:} The interface can be simplified visually. 
  \end{itemize} 
  
  \label{redesign}
@@ -1179,17 +1179,17 @@ Participants that downloaded Tor (5/124):
 
 Sources of downloads: 
 \begin{itemize}
-\item {\bfseries techspot.com -> 1download.io:} the ad firefox yahoo ad result for ``tor browser downloads.'' 
-\item {\bfseries driverupdate.net:} the 5th chrome google search result for ``tor browser download.'' 
-\item {\bfseries www.torservers.net/mirrors:} the first chrome google search result for ``tor browser mirror.''
-\item {\bfseries techspot.com:} the 5th chrome google search result for ``tor browser download.''
-\item {\bfseries softsonic.com:} the 2nd firefox yahoo search result for ``tor browser.''
+\item {\bfseries techspot.com} $\rightarrow$ {\bfseries 1download.io}: an advertisement in the Yahoo search results for ``tor browser downloads''.
+\item {\bfseries driverupdate.net}: the fifth Google search result for ``tor browser download''.
+\item {\bfseries www.torservers.net/mirrors}: the first google search result for ``tor browser mirror''.
+\item {\bfseries techspot.com}: the fifth Google search result for ``tor browser download''.
+\item {\bfseries softsonic.com}: the second Yahoo search result for ``tor browser''.
 \end{itemize}
 
 \begin{figure}[h]
 \includegraphics[width=0.5\textwidth]{../experiment/processing/bad-participants/X10-20160323-132505-1downloadio.png}
-\caption{E2-OLD-X10-20160323-1400 attempted downloaded Tor Browser from TechSpot.com, but clicked on one 
-a download link which was not from TechSpot.com. The download was from 1download.io, a suspicious source.}
+\caption{E2-OLD-X10-20160323-1400 attempted to download Tor Browser from TechSpot.com, but clicked on
+a download link which was not from TechSpot.com. The download was from another site, 1download.io.}
 \label{downloadio}
 \end{figure} 
 
@@ -1203,7 +1203,7 @@ participant dutifully does before running the Tor Browser executable.}
 
 \begin{figure}[h]
 \includegraphics[width=0.5\textwidth]{../experiment/processing/bad-participants/X32-20160328-134531-mirror.png}
-\caption{E1-OLD-X32-20160328-1400 downloaded Tor Browser from a legitimate Tor Browser mirror,www.torservers.net/mirrors.}
+\caption{E1-OLD-X32-20160328-1400 downloaded Tor Browser from a legitimate Tor Browser mirror, \url{www.torservers.net/mirrors}.}
 \label{mirror}
 \end{figure}
 
