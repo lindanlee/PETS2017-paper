@@ -653,21 +653,22 @@ We added a summary screen as a last step before initiating a connection.\\
 \label{fig:flow}
 \end{figure*} 
 
-To fix the aforementioned problems, we made the following changes: \\
+To fix the aforementioned problems, we made the following changes,
+in a revised interface we labeled ``NEW'': \\
 
 \begin{enumerate}
-\item {\bfseries Added instructions on what to try next on errors.} When an error occurs, text advice on what to try next is shown to the user. Such advice includes trying the connection again, choosing a different bridge, or trying a connection without a proxy. 
-\item {\bfseries Reduced overall amount of text and made text less technical.} We make the text more task-centric by focusing on instructing users through the configuration process. Since users generally couldn't understand the technical concepts enough to influence their decisions, giving direct guidance may be a better option. 
-\item {\bfseries Added system status visibility.} Before any attempt to connect to the Tor network, a summary screen displays if a bridge or proxy is configured, and if so, what the configurations are. The progress screen also displays the configurations while the connection attempt is being made. 
-\item {\bfseries Reduced visual clutter.} We showed options on an as-needed basis and we minimized the amount of text on the screen. For instance, additional fields were hidden until the relevant options were chosen. Additional stylistic simplifications were made, such as removing grouping boxes. 
+\item {\bfseries Added instructions on what to try next on errors.} When an error occurs, text advice on what to try next is shown to the user. The advice may be to try the connection again, to choose a different bridge, or to try a connection without a proxy. 
+\item {\bfseries Reduced the overall amount of text and made text less technical.} We make the text more task-centric by focusing on instructing users through the configuration process. Since users generally could not understand the technical concepts enough to influence their decisions, giving direct guidance may be a better option. 
+\item {\bfseries Added system status visibility.} Before beginning any connection attempt, a summary screen displays the current bridge and proxy settings. The same information is shown on the progress screen while the connection is in progress.
+\item {\bfseries Reduced visual clutter.} We showed options on an as-needed basis and we minimized the amount of text on the screen. For instance, additional fields are hidden until the relevant options were chosen.
 \end{enumerate} 
 
-Other changes improve empirical goals from Section~\ref{sec:goals}: task completion, time to completion, and safe for high-risk users. Items 5 and~6 improve task completion; 7 and~8 reduce time to completion; and 9 and~10 build users' mental models of censorship circumvention and the network components involved. Users' full control of the configuration process remains preserved.\\ 
+Other changes improve empirical goals from Section~\ref{sec:goals}: task completion rate, time to completion, and safety for high-risk users. Items 5 and~6 improve task completion; 7 and~8 reduce time to completion; and 9 and~10 build users' mental models of censorship circumvention and the network components involved. Users retain full control of the configuration process.\\ 
 
 \begin{enumerate}
 \setcounter{enumi}{4}
-\item {\bfseries Added guidance on choosing connect vs configure.} We labeled the configure option as advanced, manual, and only for heavily censored situations. 
-\item {\bfseries Added explicit advice on choosing bridge transports.} The default bridge is still obfs3. There is added text that advises users to try a meek bridge if obfs3 does not work. 
+\item {\bfseries Added guidance on choosing connect versus configure.} We labeled the configure option as being advanced, manual, and suitable only for heavily censored situations. 
+\item {\bfseries Added explicit advice on choosing bridge transports.} The recommended bridge type is still obfs3. We added text that advises users to try a meek bridge if obfs3 does not work. 
 
 \item {\bfseries Eliminated technical questions.}  We removed questions that determined whether a bridge and proxy should be configured, which were highly technical and challenging for users to answer. There are two fewer screens in the interface.
 \item {\bfseries Added auto-detect for proxies.} Auto-detection of proxies can be done locally, by scanning system files. This is safe even for at-risk users, and greatly simplifies the configuration process. 
