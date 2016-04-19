@@ -797,7 +797,7 @@ as the proxy setting.
 
 
 \subsubsection{Time to Success} 
-Although the median times to completion for participants of the new interface are less than those with the old interface (Table~\ref{table:participant-summary}), this difference is not statistically significant. The level of censorship had a significant impact on the time to success. The more difficult the censorship environment, the longer participants took to configure their connection (Kruskal--Wallis $\chi^2 = 80.926$, $\mbox{df} = 2$, $p < 10^{-15}$). The distribution of participants' time to success can be seen in Figure~\ref{fig:time_to_success_clamped}.
+Although the median times to completion for participants of the new interface are less than those with the old interface (Table~\ref{table:participant-summary}), this difference is not statistically significant. The level of censorship had a significant impact on the time to success. The more difficult the censorship environment, the longer participants took to configure their connection (Kruskal--Wallis $\chi^2 = 80.926$, $\mbox{df} = 2$, $p < 10^{-15}$). The distribution of participants' time to success can be seen in Fig.~\ref{fig:time_to_success_clamped}.
 %impact of version on time to success: not significant ($W = 1569$, $p = 0.07796$)
 %impact of env on time to success : significant (Kruskal--Wallis $\chi^2 = 80.926$, $\mbox{df} = 2$, $p < 10^{-15})
 
@@ -816,7 +816,7 @@ for the purpose of computing the median.
 \label{fig:time_to_success_clamped}
 \end{figure}
 
-In our experiment, participants had 40 minutes to circumvent censorship. Figure~\ref{fig:time_to_success_ecdf} shows the cumulative success rates over time. Participants were less and less likely to succeed as time went on. Users in the wild will likely not be motivated to configure their connection for 40 minutes. Table~\ref{table:less_time} shows that if users were only willing to put in a minute or so of their time, users in intermediate and heavily censored environments will be unable to connect. Even if users were willing to dedicate 10 minutes to configuring their connection, most users in heavily censored environments will be unable to connect. Ideally, users should be able to connect to Tor within a couple of minutes, regardless of their censorship environment. We propose ideas on how to achieve this in section~\ref{recommendations}. 
+In our experiment, participants had 40 minutes to circumvent censorship. Fig.~\ref{fig:time_to_success_ecdf} shows the cumulative success rates over time. Participants were less and less likely to succeed as time went on. Users in the wild will likely not be motivated to configure their connection for 40 minutes. Table~\ref{table:less_time} shows that if users were only willing to put in a minute or so of their time, users in intermediate and heavily censored environments will be unable to connect. Even if users were willing to dedicate 10 minutes to configuring their connection, most users in heavily censored environments will be unable to connect. Ideally, users should be able to connect to Tor within a couple of minutes, regardless of their censorship environment. We propose ideas on how to achieve this in section~\ref{recommendations}. 
 
 \begin{figure}
 \centering
@@ -852,7 +852,7 @@ After 20 minutes, 45\% of E3-NEW and only 25\% of E3-OLD had finished.}
 \end{table}
 
 \subsubsection{Additional information} 
-We summarize each participant's actions throughout the experiment in Figure~\ref{fig:all-participant-edges}. Each row in Figure~\ref{fig:all-participant-edges} corresponds to a participant in our experiment. The bar represents a participants' path through the interface, illustrating time spent on each screen, transitions between screens, how many attempts were made, and if they were eventually successful. 
+We summarize each participant's actions throughout the experiment in Fig.~\ref{fig:all-participant-edges}. Each row in Fig.~\ref{fig:all-participant-edges} corresponds to a participant in our experiment. The bar represents a participants' path through the interface, illustrating time spent on each screen, transitions between screens, how many attempts were made, and if they were eventually successful. 
 
 \begin{figure*}
 \centering
@@ -1114,9 +1114,9 @@ Thought that they needed a proxy (6/23):
 
 Used the bridges auto-responder incorrectly (3/23): 
 \begin{itemize}
-\item E3-NEW-X23-20160328-155924 (Figure~\ref{autoresponder1})
-\item E3-OLD-X12-20160325-140813 (Figure~\ref{autoresponder2})
-\item E3-OLD-X24-20160328-133857 (Figure~\ref{autoresponder3})
+\item E3-NEW-X23-20160328-155924 (Fig.~\ref{autoresponder1})
+\item E3-OLD-X12-20160325-140813 (Fig.~\ref{autoresponder2})
+\item E3-OLD-X24-20160328-133857 (Fig.~\ref{autoresponder3})
 \end{itemize}   
 
 \begin{figure}[h]
@@ -1142,11 +1142,11 @@ Used the bridges auto-responder incorrectly (3/23):
 
 Participants that downloaded Tor (5/124): 
 \begin{itemize}
-\item E1-OLD-X32-20160328-134531(Figure \ref{mirror})
-\item E2-NEW-X21-20160323-133257 (Figure \ref{techspot})
-\item E2-OLD-X10-20160323-132505 (Figure \ref{downloadio})
-\item E2-OLD-X28-20160328-134111 (Figure \ref{driverupdate})
-\item E3-NEW-X11-20160330-161511 (Figure \ref{softsonic})
+\item E1-OLD-X32-20160328-134531(Fig.~\ref{mirror})
+\item E2-NEW-X21-20160323-133257 (Fig.~\ref{techspot})
+\item E2-OLD-X10-20160323-132505 (Fig.~\ref{downloadio})
+\item E2-OLD-X28-20160328-134111 (Fig.~\ref{driverupdate})
+\item E3-NEW-X11-20160330-161511 (Fig.~\ref{softsonic})
 \end{itemize} 
 
 Sources of downloads: 
@@ -1183,7 +1183,7 @@ participant dutifully does before running the Tor Browser executable.}
 \label{techspot}
 \includegraphics[width=0.5\textwidth]{../experiment/processing/bad-participants/20160323-133257-techspot.png}
 \caption{E2-NEW-X21-20160323-133257 downloaded Tor Browser from TechSpot, clicking on the download link from 
-TechSpot (the white ``Direct Download'' button). X10-20160323-132505 in Figure \ref{downloadio} clicked the blue ``Download Now'' button and downloaded from a different source.}
+TechSpot (the white ``Direct Download'' button). X10-20160323-132505 in Fig.~\ref{downloadio} clicked the blue ``Download Now'' button and downloaded from a different source.}
 \end{figure}
 
 \begin{figure}[h]
