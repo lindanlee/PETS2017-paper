@@ -72,7 +72,9 @@ cat("****************************\n")
 edges <- filter_edges(read_edges(), participants)
 
 # 1 
-active_edges <- edges[edges[,"dst"] != "progress",] # "active time" is anytime that people are not on the progress screen.
+active_edges <- edges[!(edges[,"dst"] %in% c("not_running", "starting", "progress")),] # "active time" is anytime that people are not on the progress screen.
+not_running_edges <- edges[edges[,"dst"]== "not_running",]
+starting_edges <- edges[edges[,"dst"]== "starting",]
 progress_edges <- edges[edges[,"dst"]== "progress",]
 first_edges <- edges[edges[,"dst"]== "first",]
 proxy_edges <- edges[edges[,"dst"] %in% c("proxy","proxyYES"),]
@@ -82,6 +84,8 @@ summary_edges <- edges[edges[,"dst"]== "summary",]
 # 2
 total_time_per_user <- aggregate(edges$duration ~ edges$userid, edges, sum)
 active_time_per_user <- aggregate(active_edges$duration ~ active_edges$userid, active_edges, sum)
+not_running_time_per_user <- aggregate(not_running_edges$duration ~ not_running_edges$userid, not_running_edges, sum)
+starting_time_per_user <- aggregate(starting_edges$duration ~ starting_edges$userid, starting_edges, sum)
 progress_time_per_user <- aggregate(progress_edges$duration ~ progress_edges$userid, progress_edges, sum)
 first_time_per_user <- aggregate(first_edges$duration ~ first_edges$userid, first_edges, sum)
 proxy_time_per_user <- aggregate(proxy_edges$duration ~ proxy_edges$userid, proxy_edges, sum)
@@ -92,6 +96,8 @@ summary_time_per_user <- aggregate(summary_edges$duration ~ summary_edges$userid
 screen_time_per_user <- participants[c("userid","env","version","pool")]
 screen_time_per_user <- merge(screen_time_per_user, total_time_per_user, by=c(1), all=T)
 screen_time_per_user <- merge(screen_time_per_user, active_time_per_user, by=c(1), all=T)
+screen_time_per_user <- merge(screen_time_per_user, not_running_time_per_user, by=c(1), all=T)
+screen_time_per_user <- merge(screen_time_per_user, starting_time_per_user, by=c(1), all=T)
 screen_time_per_user <- merge(screen_time_per_user, progress_time_per_user, by=c(1), all=T)
 screen_time_per_user <- merge(screen_time_per_user, proxy_time_per_user, by=c(1), all=T)
 screen_time_per_user <- merge(screen_time_per_user, bridge_time_per_user, by=c(1), all=T)

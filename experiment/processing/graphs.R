@@ -22,8 +22,6 @@ if (any(is.na(edges$pid))) {
 }
 # Ignore "not_running" and "starting", so they just show up as blank.
 edges <- edges[!(edges$dst %in% c("not_running", "starting")), ]
-edges$src <- canonicalize_screens(edges$version, edges$src)
-edges$dst <- canonicalize_screens(edges$version, edges$dst)
 
 state.palette <- brewer.pal(length(levels(edges$dst)), "Set1")
 
