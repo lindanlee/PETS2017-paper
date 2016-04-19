@@ -93,16 +93,22 @@ Although Tor~\cite{dingledine2004tor} was not designed to be a censorship circum
 using it as one, since Tor's anonymizing functionality also circumvented censorship. In fact, some countries unsuccessfully attempt to block Tor for this reason~\cite{winter2012great}. Today, Tor's network of unlisted relays and various methods of obfuscation making it a viable censorship circumvention tool even in the face of nation-state level adversaries.
  
 To our knowledge, this is the first user study investigating the usability of Tor as a 
-censorship circumvention tool. We believe that this is a great opportunity for user research, both for investigating a case study of how users circumvent censorship, but also to help Tor users circumvent censorship more easily and provide them with extra security features, such as anonymity. Not only does improving the interface help the user trying to circumvent censorship, it helps other users who use Tor as an anonymity system by increasing the number of overall users~\cite{dingledine2006anonymity}. 
+censorship circumvention tool. We believe that this is a great opportunity for user research, both for investigating a case study of investigating the usability of a censorship circumvention tool, and also to help current Tor users censorship circumvention more easily. Not only will this allow for easier censorship circumvention, users who use tor will be provided with extra security features that other censorship circumvention tools do not provide, such as anonymity. Additionally, increasing the adoption of Tor as a censorship circumvention tool benefits other users who use Tor as an anonymity system by increasing the number of overall users on the Tor network~\cite{dingledine2006anonymity}. 
 
-This study aims to understand of what is confusing about the configuration process and what find changes make the process easier. Our study consists of three stages. User interactions with the current interface in various censorship environments generated the problems we address in the study. User feedback and observations of users steered the design process for an improved configuration interface. User metrics, such as success rate and time to completion, measured how well the interfaces served their purpose.  
+Our study consists of two user studies set in three simulated censorship environments 
+of varying levels of difficulty to circumvent. The mild, intermediate, and comprehensive 
+environments required participants to connect, configure manually with default settings
+and recommendations, and to configure manually without using defaults or recommendations. 
+In both experiments, participants are informed that they are being censored, and that their 
+goal is to reach a censored website by circumventing the censorship environment through
+configuring Tor Browser. 
 
-The qualitative user study gives insight into possible issues with
-the deployed interface. 
-The redesign process was guided by the participant observations, 
-heuristic evaluations and empirical goals. 
-Quantitative user studies provide empirical evaluations of the deployed
-and redesigned interface. 
+The first user study is a small-scale, one-on-one experiment that collected 
+behavioral patterns and failure cases with the interface through user observations
+and interviews(Section~\ref{sec:qualitative}). This feedback was used to make changes to the interface (Section~\ref{redesign}). The second user study is a large-scale, data-centric user study
+that collected data on user interactions with the interface to quantify the impact of the design changes (Section~\ref{quantitative}).
+
+Our study finds that that users had difficulty in answering technical questions, feel unqualified to make technical choices, and cannot tell why their connection is failing. We made ten design changes that aimed to provide additional feedback, unburden the user, and build a user's understanding of the process. Our changes decreased the time participants spent configuring their connections, with no decrease in success rates. We conclude with a recommendation of changes that we believe will increase the usability of Tor Browser's configuration interface. 
 
 \section{Related Work} 
 There have been three published user studies on Tor. Clark et. al examined various deployment
