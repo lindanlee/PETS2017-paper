@@ -565,7 +565,36 @@ Users were generally displeased with the lack of feedback on the progress bar. U
 Additionally, the progress bar remains empty on subsequent attempts to connect to the Tor Network until the percent progress supersedes the last displayed progress value (i.e. a participant who saw 30\% progress on their first attempt would see 0\% progress in the progress bar until subsequent attempts got at least 40\% progress). The negative feedback of a 0\% progress bar would cause users to assume that their subsequent attempts were wrong, even if they were correct. 
 
 \section{Redesigning the Configuration Interface}
+\label{redesign} 
+ \begin{figure*}[t]
+	\centering
+		\includegraphics[width=.8\textwidth]{bridge-screens.pdf} 
+		\caption{In the ``OLD'' interface, users are asked, ``Does your Internet Service Provide (ISP) block or 
+		otherwise censor connections to the Tor Network?'' (B1). A ``Yes'' determines that a bridge should 
+		be configured and directs to the bridge configuration screen (B2). 
+		The ``NEW'' interface gives users advice on configuring bridges
+		while giving the option of not configuring a bridge, on one screen (B).} 
+\end{figure*} 
 
+\begin{figure*}[t]
+	\centering
+		\includegraphics[width=.8\textwidth]{proxy-screens.pdf} 
+		\caption{In the ``OLD'' interface, users are asked, ``Does this computer need a local proxy to connect
+		to the Internet?'' (P1). A ``Yes'' determines that a proxy should be configured and directs to the 
+		proxy configuration screen (P2). The ``NEW'' interface checks the local machine's proxy settings,
+		and informs the user whether a proxy is required, and if so, what those settings are (P).}
+\end{figure*}
+
+Tor Browser 5.0.3. configuration interface does not adequately meet our heuristic evaluation criteria from Section~\ref{sec:goals}: visibility of system status, user control and freedom, error management, understandable language, and minimal design. We rate the severity of the issue by its frequency, impact, and persistence~\cite{nielsen1994heuristic}:\\
+
+\begin{itemize}
+\item {\bfseries Major Problem}: Error messages do not express errors in plain language nor offer solutions. 
+\item {\bfseries Major Problem}: The text was too technical for an average user to understand. 
+\item {\bfseries Minor Problem}: The configuration is not visible to the users before they connect or while they are connecting.
+\item {\bfseries Cosmetic Problem}: The interface can be simplified visually. 
+ \end{itemize} 
+ 
+ \label{redesign}
 \begin{figure*}[t]
 \centering
 \includegraphics[width=.85\textwidth]{old-and-new-flows.png}
@@ -585,34 +614,6 @@ We added a summary screen as a last step before initiating a connection.\\
 \label{fig:flow}
 \end{figure*} 
 
-Tor Browser 5.0.3. configuration interface does not adequately meet our heuristic evaluation criteria from Section~\ref{sec:goals}: visibility of system status, user control and freedom, error management, understandable language, and minimal design. We rate the severity of the issue by its frequency, impact, and persistence~\cite{nielsen1994heuristic}:\\
-
-\begin{itemize}
-\item {\bfseries Major Problem}: Error messages do not express errors in plain language nor offer solutions. 
-\item {\bfseries Major Problem}: The text was too technical for an average user to understand. 
-\item {\bfseries Minor Problem}: The configuration is not visible to the users before they connect or while they are connecting.
-\item {\bfseries Cosmetic Problem}: The interface can be simplified visually.  
- \end{itemize} 
- 
- \begin{figure*}[h]
-	\centering
-		\includegraphics[width=.8\textwidth]{bridge-screens.pdf} 
-		\caption{In the ``OLD'' interface, users are asked, ``Does your Internet Service Provide (ISP) block or 
-		otherwise censor connections to the Tor Network?'' (B1). A ``Yes'' determines that a bridge should 
-		be configured and directs to the bridge configuration screen (B2). 
-		The ``NEW'' interface gives users advice on configuring bridges
-		while giving the option of not configuring a bridge, on one screen (B).} 
-\end{figure*} 
-
-\begin{figure*}[h]
-	\centering
-		\includegraphics[width=.8\textwidth]{proxy-screens.pdf} 
-		\caption{In the ``OLD'' interface, users are asked, ``Does this computer need a local proxy to connect
-		to the Internet?'' (P1). A ``Yes'' determines that a proxy should be configured and directs to the 
-		proxy configuration screen (P2). The ``NEW'' interface checks the local machine's proxy settings,
-		and informs the user whether a proxy is required, and if so, what those settings are (P).}
-\end{figure*} 
-
 To fix the aforementioned problems, we made the following changes: \\
 
 \begin{enumerate}
@@ -622,7 +623,7 @@ To fix the aforementioned problems, we made the following changes: \\
 \item {\bfseries Reduced visual clutter.} We showed options on an as-needed basis and we minimized the amount of text on the screen. For instance, additional fields were hidden until the relevant options were chosen. Additional stylistic simplifications were made, such as removing grouping boxes. 
 \end{enumerate} 
 
-Other changes improve empirical goals from Section~\ref{sec:goals}: task completion, time to completion, and safe for high-risk users. 5-6 improve task completion, 7-8 reduce time to completion, and 9-10 builds users' mental models of censorship circumvention and network components involved. Users' full control of the configuration process remains preserved.\\
+Other changes improve empirical goals from Section~\ref{sec:goals}: task completion, time to completion, and safe for high-risk users. 5-6 improve task completion, 7-8 reduce time to completion, and 9-10 builds users' mental models of censorship circumvention and network components involved. Users' full control of the configuration process remains preserved.\\ 
 
 \begin{enumerate}
 \setcounter{enumi}{4}
@@ -931,11 +932,11 @@ Based on our observations of general behavioral trends and common failure cases,
 \item {\bfseries Automate configuration after failure.} After one unsuccessful attempt, the user has already indicated to their censor that they are connecting to Tor. Automating the configuration process thereafter will have no increase in risk, bu can help a majority of users. 64\% of participants who failed their first attempt. Users in more difficult censorship environments are more likely to benefit from this, as 5\% of participants in the mild censorship environment , 84\% participants in intermediate censorship environment, and 100\% of participants in the heavy censorship environment failed the first time.
 \item{\bfseries Hide infrequently used options.} Informing users that they did not need a proxy was not enough to deter users from spending time on configuring a proxy. Only a small fraction of the Internet population requires a proxy to connect to the Internet. Hiding the proxy screen by default and only showing it after it has been detected as necessary can focus user efforts on configuring bridges.
 \item {\bfseries Be explicit about recommendations.} Being explicit about the order in which a user should choose bridges will result in higher rates of success and lessen cognitive load on the user. Most participants followed recommendations about which bridge to choose, and many did not know what to do after the recommended bridge failed. 
-\item{\bfseries Set a timeout.} Informing users that they have failed earlier will decrease the overall time to success, create an opportunity to give suggestions, and reduce user frustration. 
+\item{\bfseries Set a timeout on the progress bar.} Informing users that they have failed earlier will decrease the overall time to success, create an opportunity to give suggestions, and reduce user frustration. 
 \item{\bfseries Have a user-tolerant auto-responder.} Having the auto-responder default respond with bridges or catching common errors (such as typing ``get bridges'' in the subject line) can help those who need custom bridges. 
 \end{description} 
 
-We believe that these changes have can greatly help future users connect to the Tor network. 
+We believe that these changes have can greatly help future users connect to the Tor network. We also encourage best practices, such as providing a summary screen to let the user know the configuration settings before connecting, having a checklist progress bar to give users feedback on what network component needs configuring, and rewriting screen text and error messages to be more instructive and understandable. 
 
 \section{Limitations} 
 The interface was only tested on Windows machines, which were the only types of machines in Xlab. The configuration interface uses the native operating system's elements and their respective styling, so an interface looks slightly different across different operating systems. Participants who are not accustomed to using Windows machines may have been slower than usual to complete the given task, but this effect should affect all of our conditions equally. 
@@ -1103,27 +1104,27 @@ Thought that they needed a proxy (6/23):
 
 Used the bridges auto-responder incorrectly (3/23): 
 \begin{itemize}
-\item E3-NEW-X23-20160328-155924 (Figure \ref{autoresponder1})
-\item E3-OLD-X12-20160325-140813 (Figure \ref{autoresponder2})
-\item E3-OLD-X24-20160328-133857 (Figure \ref{autoresponder3})
+\item E3-NEW-X23-20160328-155924 (Figure~\ref{autoresponder1})
+\item E3-OLD-X12-20160325-140813 (Figure~\ref{autoresponder2})
+\item E3-OLD-X24-20160328-133857 (Figure~\ref{autoresponder3})
 \end{itemize}   
 
 \begin{figure}[h]
-\label{autoresponder1}
 \includegraphics[width=0.5\textwidth]{../experiment/processing/failed-participants/20160325-140813-bridgeresponder-redacted.png}
 \caption{The message that E3-NEW-X23-20160328-155924 attempted to send to the bridge auto-responder. The message was sent to the wrong address: bridges@bridges.torproject.org instead of bridges@torproject.org.}
+\label{autoresponder1}
 \end{figure} 
 
 \begin{figure}[h]
-\label{autoresponder2}
 \includegraphics[width=0.5\textwidth]{../experiment/processing/failed-participants/20160328-133857-bridgeresponder-redacted.png}
 \caption{The message that E3-OLD-X12-20160325-140813 accidentally sent to the helpdesk rather than the bridge auto-responder. The participant should have used the address bridges@torproject.org, not help@rt.torproject.org. Since the helpdesk address is not an auto-responder, there was no reply.}
+\label{autoresponder2}
 \end{figure} 
 
 \begin{figure}[h]
-\label{autoresponder3}
 \includegraphics[width=0.5\textwidth]{../experiment/processing/failed-participants/20160328-155924-bridgeresponder.png}
 \caption{The message that E3-OLD-X24-20160328-133857 sent to the bridge auto-responder. A correct message is a ``get bridges'' in the body of the message, with any non-empty subject. Since this request was incorrectly formatted, there was no reply.}
+\label{autoresponder3}
 \end{figure} 
 
 \section{Tor Downloads}
