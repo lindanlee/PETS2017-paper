@@ -305,7 +305,7 @@ was an inviting failure mode.
 In the course of our experiments we evaluated two versions
 of the Tor Launcher interface.
 The first, which we have labeled ``OLD'' in figures and tables,
-is the version that is being distributed to users now.
+is the current version being distributed with Tor Browser.
 The second, ``NEW'', is the prototype we revised and redesigned
 in order to provide better usability.
 We evaluate the old and new interfaces
@@ -408,38 +408,40 @@ similarly E3's is a superset of E2's.
 \label{tab:environments}
 \end{table}
 
-\section{Qualitative Analysis of the Existing Interface (Study 1)}
-\label{sec:qualitative}
-
-We performed qualitative research as an exploratory effort to gain an 
-understanding of underlying problems, such as reasons for confusion 
-during the configuration process and motivations for particular choices in 
-configuration. We did this through observing each participant as they 
-interacted with Tor Browser 5.0.3 interface and interviewed them about
-their experience. This study provides insights into particular problems with 
-the current Tor Browser configuration interface, and helps us to design
-a new interface which addresses these problems and gives foundation
-for hypotheses to test in quantitative research. 
-
 All our experiments use (modified versions of)
-Tor Browser~5.0.3, which was the current stable release at the time we began~\cite{torbrowser-503}.
+Tor Browser~5.0.3, which was the most recent stable release at the time we began~\cite{torbrowser-503}.
 Though there were new releases during the course of the experiments,
 we stuck with 5.0.3 so as not to introduce potential confounding factors.
 
+\section{Qualitative Analysis of the Existing Interface (Study 1)}
+\label{sec:qualitative}
+
+We began our research with a qualitative, exploratory effort to gain an 
+understanding of underlying problems, such as reasons for confusion 
+during the configuration process and motivations for particular choices in 
+configuration. We did this through observing each participant as they 
+interacted with Tor Browser's interface, and later interviewed them about
+their experience. This study provided insights into particular problems with 
+the interface
+and gave us a foundation
+for hypotheses to test in quantitative research. 
+Our observations during this study guided us in designing
+a redesigned interface, which we will describe later.
+
 \subsection{Inspection}
-A combination of usability inspection methods~\cite{nielsen1994usability}
-were used to prepare for the user study. Two researchers conducted a pluralistic 
+We used a combination of usability inspection methods~\cite{nielsen1994usability}
+to prepare for the user study. Two researchers conducted a pluralistic 
 walkthrough and stepped through various censorship
 scenarios, discussing which elements would be involved for that use case, and walking 
 through the configuration process. After compiling all the possible paths through the 
-interface, feature inspection was performed to list sequences
+interface, we did feature inspection to list sequences
 of features used to accomplish typical tasks, taking note of long sequences or cumbersome
-steps. To focus our observations, a heuristic evaluation was performed to mark design issues 
-that may cause confusion for users during our study. 
+steps. To focus our observations, we performed a heuristic evaluation to mark design issues 
+likely to cause confusion for users during our study. 
 
 \subsection{Recruitment}
 Using established practices from the field of user experience research~\cite{howmanyusers},
-we recruited 5 participants for each censorship environment.
+we recruited 5 participants for each of the three censorship environments E1, E2, and E3.
 We pre-screened~\cite{screening} our participants for diversity of gender, age, technical expertise,
 and self-reported familiarity with Tor in each simulated censorship environment for our summative
 usability test~\cite{summative}. 
@@ -449,44 +451,52 @@ Appendix~\ref{qualitative-recruitment}. The recruitment posting contained a
 SurveyGizmo online survey that collected information about our participants.
 The complete prescreening survey can be found in Appendix~\ref{qualitative-prescreening}.  
 
-We chose our participants based on the pre-screening information to have 
+We selected participants to have
 at least one person who has never heard of Tor, at least one person who has 
 only heard of Tor, and exactly one person who has previously used Tor in each
-environment. We also tried to evenly distribute any participants who had technical
+censorship
+environment. We tried to evenly distribute any participants who had technical
 expertise or used particular security tools throughout the censorship environments. 
 
-Out of our 16 participants, ages ranged from 20 to~62
+Out of our 16 participants, ages ranged from 20 to~62 years
 ($\mu = 24.5$, $\sigma = 12.6$). 53.3\% were male. 
 93.3\% of our participants had at least
 a college education.
-4 participants had used Tor before,
-5 had heard of Tor but not used it,
+4 participants had used Tor before;
+5 had heard of Tor but not used it;
 and the remaining 8 had never heard of Tor nor used it.
 
 
 \subsection{Procedure}
-We conducted a qualitative evaluation of the interface through real-time observations of 
-users interacting with the configuration interface in a simulated censored environment.
-There was no researcher-user interaction during the experiment. A follow-up interview 
-detailed their thoughts about the configuration process.
+We evaluated the interface through real-time observation of 
+participants interacting with the configuration interface in simulated censored environments.
+A follow-up interview 
+solicited their thoughts about the configuration process.
 
 The one-hour, single-participant procedure begins when a participant enters a small 
 room with a single computer, which is equipped with Tor, Chrome, Firefox, and Internet Explorer.
-A participant is firstly informed of 
-the risks of the study and consenting to data collection. If they consent, the 
-experiment begins. A researcher reads a script (Appendix~\ref{qualitative-script}) that 
+Each participant is informed of 
+the risks and purpose of the study.
+A researcher reads a script (Appendix~\ref{qualitative-script}) that 
 informs the participant of the simulated censorship environment and
-instruct them to visit a sample blocked website and a sample non-blocked website on a
-non-Tor browser of their choice to illustrate the situation. Then, participants are asked to 
+instructs them to visit sample blocked and unblocked websites
+in a standard browser, to show what it looks like when a site is blocked.
+Then, the participant is asked to 
 complete a worksheet (Appendix~\ref{participant-worksheet}) that gives information
 on their censorship environment and instructs them
 to visit one blocked website and one non-blocked website.
+The worksheet informs the participant that the network is censored,
+but does not give details of what is censored or how.
+Participants were able to visit the unblocked website using any familiar browser,
+but had to configure Tor Browser in order to visit the blocked website.
  
-We chose Wikipedia's featured article of the day as the blocked website and 
-the CNN homepage as our non-blocked website because the familiarity 
-that most users have with these websites makes the browsing task relatively easy, 
-which focuses participants' attention to configuring Tor Browser. 
-After instructions, researchers stepped out of the room so that there was no interaction
+For the blocked website, we used the main page of Wikipedia,
+and for the unblocked site we used the CNN homepage.
+We chose these two sites because of their likely familiarity to web users;
+our goal was to evaluate the user interface,
+not to test users with a difficult browsing task.
+After giving the instructions,
+the researchers stepped out of the room so that there was no interaction
 between the participant and researcher for the rest of the session.
 Researchers watched a live video of each participant's screen from another room
 and saved the videos for review; the resulting videos and summaries
@@ -494,26 +504,33 @@ are available from our project page.
 Participants had an 
 average of 45 minutes to complete their worksheet. 
 
-At this point, the participants do not know the details of their censorship environment,
-only that they are actively being censored. Ultimately, participants needed to configure Tor Browser to 
-circumvent the simulated censorship. 
+We refreshed a list of Tor relay IP addresses and added them
+to a firewall blacklist before each session.
+In this first study, we neglected to block the IP addresses
+of the Tor directory authorities, which are the first hosts
+a client contacts when initiating a non-bridge connection.
+This, combined with new relays appearing in the network on an hourly basis,
+enabled a small number of participants to succeed with
+a direct connection when we expected them to fail.
+We fixed this problem in our second study by blocking the directory authorities.
 
-After users completed the browsing tasks or have spent the rest of the time
-trying to configure Tor Browser, we interviewed participants about their experience.
-We performed a live transcription of the interview to avoid recording voices, which is
-considered personally identifying information. 
+After participants completed the browsing tasks, or ran out of time,
+we interviewed them about their experience,
+taking notes of the questions and answers.
 We asked three standard questions asking about their general experience, 
 confusing interface features, and soliciting feedback for improvements. We followed up
-with specific questions we had for a particular participant from observing their screen. 
-This was to verify any hypothesis we had about the participant (i.e. ``they didn't know what to do on window~3'').  
-After their interview, participants were informed that the experiment was over and 
-given their payment of~\$30 for their time. 
+with specific per-participant questions prompted from watching their screen. 
+This was to verify any hypotheses we had (e.g. ``they did not know what to do on window~3'').
+We paid each participant~\$30 for their time. 
 
 \subsection{Results} 
-In this section, we discuss problems encountered by our participants at each step of the configuration process and solutions to those problems. We conclude with our goals for improving the configuration interface. Because of the small sample size of qualitative studies, we can only state that these are problems that participants can encounter when configuring. All quotes are not verbatim, but from best-effort live transcriptions of participant interviews.
+Here we discuss the problems our participants encountered at each step of the configuration process, and solutions to those problems.
+We outline our goals for improving the configuration interface.
+Participant quotations come from live transcription during the post-experiment interview
+and are not necessarily verbatim.
 
 \subsubsection{User Communication} 
-Many participants, including participants who were pre-screened as having high technical ability and previous experience with using Tor, were not familiar with the vocabulary. 
+Many participants, including participants who were pre-screened for high technical ability and previous experience with using Tor, were not familiar with the vocabulary:
 
 \begin{figure}[t]
   \centering
@@ -522,36 +539,39 @@ Many participants, including participants who were pre-screened as having high t
 \label{fig:error}
 \end{figure}
 
-\pquote{P2}{I don't know what any of those means (list of bridges),or what that (proxy) means at all.}
+\pquote{P2}{I don't know what any of those [list of bridges] means, or what that [proxy] means at all.}
 \pquote{P3}{The vocabulary is really challenging, for someone not doing IT work.}
 \pquote{P4}{I didn't know why I was getting back `establishing encrypted directory'---what does that mean?}
-The text in the interface intended to guide users through the process was not understood by our participants. The text also gave our participants a sense that the process intimidating for people who did not have a technical background. 
+Participants did not understand the text in the interface that was intended to guide them. The text also gave our participants a sense that the process is intimidating for people without a technical background. 
 
 \subsubsection{Connect vs. Configure} 
-The first task for our participants was to decide between connecting directly to the Tor network or configuring their connection. Text in the interface tells people that connecting directly ``will work in most situations'' and instructs to configure a bridge or proxy if the ``Internet connection is censored or proxied.'' We found that a majority of our participants did not take the time to read the text on the screen and that if they did, the text did not always soundly influence their decision.
+The first screen in Tor Launcher offers a choice to
+``Connect'' (directly to Tor without a proxy or a bridge),
+or ``Configure'' (bridge and proxy options).
+Text in the interface tells people that connecting directly ``will work in most situations'' and instructs them to configure if the ``Internet connection is censored or proxied.'' We found that a majority of our participants did not take the time to read the text on the screen and that if they did, the text did not always soundly influence their decision.
 
-Participants across all censorship environments connected directly to the Tor network. When they did, they did so because they were taking the path of least resistance first or intimidated by the configuration process. 
+Participants across all censorship environments tried connecting directly. When they did, they did so because they were taking the path of least resistance first, or were intimidated by the configuration process:
 \pquote{P9}{Configure seemed manual, so I clicked connect.}
 \pquote{P14}{The words were confusing. I don't really understand computers. I don't know what configure means in this setting. Hmm, is it going to crash? When you see connect, you want to click it because you really want it to connect.}
 
-Bridges are only necessary when Tor relays are censored, but participants are not able to determine when this happens, or what the difference between a blocked website and a blocked relay. Participant 10 and several other participants in the mild censorship environment opted to configure a connection when a direct connection to the Tor network would have worked. 
+Bridges are only necessary when Tor relays are censored, but participants are not able to determine when this was the case---whether only websites were blocked or relays were blocked as well. Several participants in E1, the mildest censorship environment, chose the ``Configure'' option when ``Connect'' would have worked, using a more complicated configuration than necessary.
 
 \pquote{P10}{I was censored, so I picked the configure.}
 
 Users do not make the optimal choice between connect and configure. This leads to discouragement from attempting a failed connection and wasted time spent waiting for feedback, which lessen the chance for a successful connection. 
 
 \subsubsection{Bridge Configuration} 
-When a participant chooses to configure their connection, their next step is to determine whether they need to configure a bridge, and to configure one if necessary. Answering yes to ``Does your Internet Service Provider (ISP) block or otherwise censor connections to the Tor Network'' directs to a bridge configuration screen, whereas answering no skips that screen. We observed that multiple participants struggled with the technical language on the screen, and ultimately decided to try process of elimination. Most participants went with the default option to not configure a bridge. 
+When a participant chooses the ``Configure'' option, their next step is to determine whether they need to configure a bridge. Answering yes to ``Does your Internet Service Provider (ISP) block or otherwise censor connections to the Tor Network'' sends the user to a bridge configuration screen, whereas answering no skips that screen. We saw that multiple participants struggled with the technical language on the yes-or-no screen, and ultimately decided to try a process of elimination. Most participants went with the default option to not configure a bridge. 
 
 \pquote{P7}{The bridge screen was the most challenging. It seemed very technical to me. I don't know what a bridge is.}
 \pquote{P12}{I decided which options to choose by process of elimination with trial and error.}
 
-On the bridge configuration screen, participants need to choose between configuring a built-in bridge versus a custom bridge. Participants were unsure of the difference between a built-in bridge and a custom bridge and also why one would use a custom bridge. Most chose obfs3 as their transport, because those were the default options on the screen. 
+On the bridge configuration screen, participants need to select a built-in ``provided'' bridge or enter a custom bridge line. Participants were unsure of the difference between provided and custom, and also why one would use a custom bridge. Most chose the built-in obfs3 bridge, which the interface marks as ``recommended.''
 
 \pquote{P8}{I have no clue what's the difference between flashproxy, fte, etc. I need to know why the built-in ones aren't working. And why do I need a custom bridge if there are options built in?}
 \pquote{P7}{Since it (obfs3) said recommended, it helped actually, and I selected it because it was chosen. I saw the custom bridges option, but I didn't know what to enter there so I went with this (obfs3).}
 
-Participants in E3, the most advanced censorship environment, were required to select a meek bridge (not the default) or to configure a custom bridge. After the first pluggable transport failed and even if the participants deduced that the source of the failed connection was a misconfigured bridge, the pluggable transport names only confused participants and caused odd behaviors. Participants chose transports at random, in order of the list starting from the default, in order of the list starting from the top, choosing familiar-sounding transports first (i.e. meek-amazon over fte), and choosing technical-sounding transports first (i.e. fte over meek-amazon). 
+Participants in E3, the most difficult censorship environment, had to use either a meek bridge or a custom bridge. After trying and failing with obfs3, and even if they deduced that the source of the failed connection was a misconfigured bridge, participants were confused by the list of pluggable transport names. Participants used various selection strategies, choosing transports at random, in order, by name familiarity (e.g. meek-amazon over fte), or by how technical the names sounded (e.g. fte over meek-amazon). 
 
 \pquote{P4}{When I saw obfs3 as the recommended option, the next option logically for me was obfs4.}
 \pquote{P5}{I tried the pluggable transport that used google, because I noticed that google was working (when I was using a non-Tor browser).}
@@ -559,24 +579,29 @@ Participants in E3, the most advanced censorship environment, were required to s
 Users are not qualified to choose transports in an educated order. When our participants chose incorrectly, they spent time testing their wrong hypothesis and got discouraged with each wrong decision. Our participants were resilient and tried for 40 minutes, but we believe that this is a byproduct of the experimental setting and compensation.
 
 \subsubsection{Proxy Configuration} 
-After the bridge configuration, the participant is asked if they need a proxy and if so, to configure one. This question also was too technical for most participants.
+After the bridge configuration, the interface asks whether a local proxy is needed. This question also was too technical for most participants.
 
 \pquote{P11}{I think you can only answer this question (does this computer need a local proxy) if you know what a local proxy is. Otherwise, you have no chance.}
 
-For our participants, trying to unsuccessfully configure a proxy was the only mistake that resulted in failure. On the first attempt at configuration, most chose to not configure a proxy. Since the interface passively re-displayed a proxy-related window after an attempted connection regardless of the error, participants incorrectly assumed that they needed a proxy. Participants did not check their incorrect assumption~\cite{wason1960failure}. All who chose to configure a proxy were unsuccessful. 
+For our participants, trying unsuccessfully to configure a proxy was the only mistake that resulted in failure. On the first attempt at configuration, most chose not to configure a proxy. Since the interface passively re-displayed a proxy-related window after a failed connection attempt, regardless of whether the failure was related to a proxy, participants incorrectly assumed that their configuration error lay on that screen. Participants did not check their incorrect assumption~\cite{wason1960failure}. All who chose to configure a proxy were unsuccessful. 
 
 \pquote{P15}{I didn't know if this computer had any proxy information. I wasn't able to find it if it did.}
 
-None of our censorship environments required our participants to configure a proxy for a successful connection. Participants followed the directions to look at the Internet settings, but they never found the (nonexistent) information.
+None of our censorship environments required our participants to configure a proxy for a successful connection. Participants heeded the program's suggestion to look at the settings in another browser, but what they found (a variation on ``use system proxy settings'') was not adequate to answer Tor Browser's question.
 
 \subsubsection{Progress Bar} 
-Users were generally displeased with the lack of feedback on the progress bar. Users do tolerate delays if they are for security reasons, but only if they understand the reason~\cite{egelmanplease}. Participants in our study usually did not understand the security reason, and experienced delays up to 2 minutes, even in the ideal case in which a user chose the correct configuration on the first attempt. If users chose particular wrong configurations (i.e. a syntactically valid but nonfunctional proxy), they would be waiting for an indefinite period of time. 
+Users were generally displeased with the lack of feedback from the progress bar. Users do tolerate delays if they are for security reasons, but only if they understand the reason for the delay~\cite{egelmanplease}. Participants in our study usually did not understand the security reason, and experienced delays up to 2 minutes, even in the ideal case in which a user chose the correct configuration on the first attempt. If users chose particular wrong configurations (i.e. a syntactically valid but nonfunctional proxy), they would be waiting for an indefinite period of time. 
 
 \pquote{P16}{There doesn't seem to be a timeout on any of this stuff. Am I waiting long enough? It should work immediately.}
 \pquote{P6}{How long does this actually take (to connect)? This took way too long, and I didn't know how long it should take.}
 \pquote{P1}{It was hard to figure out if the progress bar wasn't moving because the connection was censored, or if it was just slow.}
 
-Additionally, the progress bar remains empty on subsequent attempts to connect to the Tor Network until the percent progress supersedes the last displayed progress value (i.e. a participant who saw 30\% progress on their first attempt would see 0\% progress in the progress bar until subsequent attempts got at least 40\% progress). The negative feedback of a 0\% progress bar would cause users to assume that their subsequent attempts were wrong, even if they were correct. 
+Additionally, the progress bar has a bug
+that causes it to draw itself only when the level of progress increases.
+If progress bar reaches a certain level,
+then the user closes the window,
+the next time the progress bar appears it will apparenly have regressed to 0\%.
+The apparent negative progress caused users to assume that their subsequent attempts were wrong, even if they were correct. 
 
 \section{Redesigning the Configuration Interface}
 \label{redesign} 
