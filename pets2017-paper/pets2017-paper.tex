@@ -477,13 +477,6 @@ We discuss six common challenges our participants encountered during the configu
 Participant quotations come from live transcription during the post-experiment interview
 and are not necessarily verbatim.\\
 
-%\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
-%\item {\bfseries Challenge 1:} People don't know how to choose between ``connect directly'' versus ``configure'' on the first screen. As seen in Figure \ref{fig:window1}, there is some guidance for the users, but we found this largely unhelpful since people do not understand the text on the screen. 
-%\item {\bfseries Challenge 2:} People feel compelled to set up a bridge, even if they don't need one, because they do not know how censorship works. Participants knew that they were censored to some degree since we had simulated censorship of websites. However, bridges are only necessary when the government has taken active steps to censor Tor itself.
-%\item {\bfseries Challenge 3:} When their first attempt to connect fails, the interface directs people to the last window they saw before the connection failure. The problem is not necessarily where the interface directs users, misguiding them. It was common for the interface to redirect users to the proxy window in Figure \ref{fig:window5}, even when they needed to pick another bridge. 
-%\item {\bfseries Challenge 4:} When the first attempt to connect fails, people did not know what to do or what to try next. The feedback given to users was not understood (see Figure \ref{fig:error}) and also did not guide users into specific actions (such as trying a different bridge, trying the same configuration again, try connecting directly, etc.).
-%\end{itemize}
-
 \noindent {\bfseries Challenge 1: Users did not understand what proxies, bridges, and pluggable transports were.}
 Most participants, including those pre-screened for high technical ability and previous experience with Tor, were not familiar with the vocabulary:
 
@@ -527,6 +520,7 @@ From interviewing our participants, we found that these challenges result becaus
 
 \section{Redesigning the Configuration Interface}
 \label{redesign} 
+
  \begin{figure*}[t]
 	\centering
 		\includegraphics[width=.8\textwidth]{bridge-screens.pdf} 
@@ -546,13 +540,15 @@ From interviewing our participants, we found that these challenges result becaus
 		and informs the user whether a proxy is required, and if so, what those settings are (P).}
 \end{figure*}
 
-The Tor Browser configuration interface does not adequately meet our heuristic evaluation criteria from Section~\ref{sec:goals}: visibility of system status, user control and freedom, error management, understandable language, and minimal design. We rate the severity of each issue by its frequency, impact, and persistence~\cite{nielsen1994heuristic}:\\
+From the result of our qualitative user study, we see that many users struggle with the configuration process. 
+The Tor Browser configuration interface does not adequately meet our criteria from Section~\ref{sec:goals} of
+managing errors gracefully, communicating in understandable language, and giving  users feedback on system state. 
+We rate the severity of each issue by its frequency, impact, and persistence~\cite{nielsen1994heuristic}:\\
 
 \begin{itemize}
 \item {\bfseries Major Problem:} Error messages do not express errors in plain language nor offer solutions. 
-\item {\bfseries Major Problem:} The text was too technical for an average user to understand. 
-\item {\bfseries Minor Problem:} The configuration is not visible to the users before they connect or while they are connecting.
-\item {\bfseries Cosmetic Problem:} The interface can be simplified visually. 
+\item {\bfseries Major Problem:} The concepts mentioned in the interface and the questions that users were required to answer were too technical for the average user. 
+\item {\bfseries Minor Problem:} The configuration is not visible to the users before they attempt to connect to the Tor network or while they are connecting to the Tor network.
  \end{itemize} 
  
  \label{redesign}
@@ -575,31 +571,29 @@ We added a summary screen as a last step before initiating a connection.\\
 \label{fig:flow}
 \end{figure*} 
 
-To fix the aforementioned problems, we made the following changes,
-in a revised interface we labeled ``NEW'': \\
+To address these three aforementioned user interaction problems, we made the following three changes to the configuration interface:  \\
 
 \begin{enumerate}
 \item {\bfseries Added instructions on what to try next on errors.} When an error occurs, text advice on what to try next is shown to the user. The advice may be to try the connection again, to choose a different bridge, or to try a connection without a proxy. 
 \item {\bfseries Reduced the overall amount of text and made text less technical.} We make the text more task-centric by focusing on instructing users through the configuration process. Since users generally could not understand the technical concepts enough to influence their decisions, giving direct guidance may be a better option. 
 \item {\bfseries Added system status visibility.} Before beginning any connection attempt, a summary screen displays the current bridge and proxy settings. The same information is shown on the progress screen while the connection is in progress.
-\item {\bfseries Reduced visual clutter.} We showed options on an as-needed basis and we minimized the amount of text on the screen. For instance, additional fields are hidden until the relevant options were chosen.
 \end{enumerate} 
 
 Other changes improve empirical goals from Section~\ref{sec:goals}: task completion rate, time to completion, and safety for high-risk users. Items 5 and~6 improve task completion; 7 and~8 reduce time to completion; and 9 and~10 build users' mental models of censorship circumvention and the network components involved. Users retain full control of the configuration process.\\ 
 
 \begin{enumerate}
-\setcounter{enumi}{4}
-\item {\bfseries Added guidance on choosing connect versus configure.} We labeled the configure option as being advanced, manual, and suitable only for heavily censored situations. 
+\setcounter{enumi}{3}
+\item {\bfseries Added guidance on choosing connect versus configure.} We labeled the configure option specifically for user in heavily censored situations, to urge users to not assume that a website censorship necessitates configuration.
 \item {\bfseries Added explicit advice on choosing bridge transports.} The recommended bridge type is still obfs3. We added text that advises users to try a meek bridge if obfs3 does not work. 
 
-\item {\bfseries Eliminated technical questions.}  We removed the gating questions that determined whether a bridge and proxy should be configured, which were highly technical and challenging for users to answer. There are two fewer screens in the revised interface.
+\item {\bfseries Eliminated technical questions.}  We removed the gating questions that determined whether a bridge and proxy should be configured, which were highly technical and challenging for users to answer. This are two fewer screens in the revised interface. 
 \item {\bfseries Added auto-detection of proxies.} In principle, the interface can guess whether a proxy is needed by scanning the operating system configuration. This purely local detection does not carry the potential risks of network probing and should be safe even for at-risk users. (In our experiment, we simulated the auto-detection by hard-coding the fact that a proxy was not required.)
 
 \item {\bfseries Switched ordering to configure proxies first.} To build users' mental models, network components are now configured in a topologically sequential order, resembling Fig.~\ref{fig:topology} and the new progress screen. Previously, proxies were put after bridge configuration because only a small fraction of users require proxies. With auto-detection, configuring a proxy before a bridge burden users less than before.
-\item {\bfseries Added clear feedback to the progress bar.} We switched the continuous progress bar to a discrete checkpoint-based progress indicator that shows the network components involved in connecting to the Tor network. This aligns with the mental model we are trying to build. As connections are made with each component, the progress bar displays a green check, giving immediate feedback to the user. For instance, a user can can now see that the bridge was configured correctly, and they just need to wait to connect to the Tor network. Upon failure, users can see which components have succeeded and which have failed.
+\item {\bfseries Added clear feedback to the progress bar.} We switched the continuous progress bar to a discrete checkpoint-based progress indicator that shows the network components involved in connecting to the Tor network. This aligns with the mental model we are trying to build in the user. As connections are made with each component, the progress bar displays a green check, giving immediate feedback to the user. For instance, a user can can now see that the bridge was configured correctly, and they just need to wait to connect to the Tor network. Upon failure, users can see which components have succeeded and which have failed.
 \end{enumerate}
 
-The redesigned interface conservatively interacts with users by automating only those configuration processes that are safe to automate, while still allowing users to have control. The design requires more maintenance because of the explicit advice given on which order to select bridges and advice on error messages, which may change as censorship environments change. 
+These changes result in a redesigned interface which we refer to as ``NEW.'' Note that the new interface preserves all the functionality of the old interface and still allows users to have control over their own network traffic. 
 
 \section{Quantitative Analyses of the Interfaces (Study 2)}
 \label{sec:quantitative}
