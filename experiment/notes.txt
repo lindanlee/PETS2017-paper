@@ -1,0 +1,213 @@
+These are transcriptions of the handwritten notes we took during the experiments.
+
+
+== 20160323-1400
+
+X01 - E1 new
+X02 - E1 old
+X03 - E2 new
+X04 - E2 old
+X05 - E3 new
+X06 - E3 old
+X07 - E1 new
+X08 - E1 old
+X09 - E2 new
+X10 - E2 old
+X11 - E3 new
+X12 - E3 old
+X13 - E1 new
+X14 - E1 old
+X15 - E2 new
+X16 - E2 old
+X17 - E3 new
+X18 - E3 old
+X21 - E2 new
+X23 - E3 new
+
+Read script at 14:10
+Started at 14:13
+
+14:23 - problem with X10 - Firefox opened fullscreen, unable to connect to www.torproject.org.
+Research intervened to Ctrl-W Firefox, explain that www.torproject.org was blocked.
+Some participants started fooling around with the desktop before we read the script.
+
+X21, X23 arrived at 14:30. Read script for them at 14:33. Started at 14:37.
+
+A participant (X07) closed their laptop lid--we prob. should ask them not to logout either.
+Stopped at 14:50. Main group out at 15:00.
+
+Firefox fullscreen issue? Was a problem for multiple people.
+
+Later group out at 15:10.
+
+X14 failed to copy E1-OLD-X14-20160323-132643-inst.log because S: was not accessibly.
+But uploaded to S3.
+Manually mounted S: and copied 15:27.
+
+Did not sign consent: X05, X08
+
+
+== 20160324-1400
+
+5 participants arrived
+
+Occupied X01 X02 X03 X04 X05
+Made sure that Firefox was
+Seated ~14:03
+Started ~14:05
+
+14:26 all appear to have finished, are on phones.
+All surveys turned in, though we suspect one participant did the survey before doing the browser task.
+
+mercurius4 obfs4 bridge (104.131.108.182:56880) was down at the time.
+
+On X04, S: was not mounted and inst.log failed to copy. Copied manually.
+
+At 14:32 asked if all were done.
+All were done, so stopped.
+
+
+== 20160324-1600
+
+Started recordings ~15:50
+Made sure Firefox was not fullscreen.
+Seated at 16:10
+Started at 16:15
+
+X03 asked if it's supposed to take so long; researcher replied that we can't give hints.
+
+mercurius4 obfs4 bridge (104.131.108.182:56880) was down.
+
+Stopped at 16:50.
+
+Occupied X04, X05, X06.
+
+
+== 20160325-1400
+
+For balance, we want
+  E1 new  E1 old  E1 old
+We set up
+  X02 X08 X13
+so as not to have two sitting together.
+One extra arrived, we put on X12 (E3 old).
+
+Seated at 14:15.
+On X08, we forgot to run the setup-xuser-old script until the participant sat down. X08 asked us to repeat the instructions. Left the instruction sheet with them.
+Started 14:19.
+
+mercurius4 obfs4 bridge (104.131.108.182:56880) still down. :(
+→ Occupied: X02 X08 X12 X13
+Stopped 14:54
+All out at 15:01
+
+
+== 20160325-1800
+
+Set up X03 X04 X06 X07 X08
+Seated 18:05
+Started 18:09
+Occupied: X03 X06 X07 X08
+Stopped 18:50
+All out 18:58
+Was past 24:00 UTC, so featured article changed to "Winnipeg".
+X07 failed to copy inst.log because of unmounted S: drive. Copied manually.
+
+
+== 20160328-1400
+
+Xlab participants
+Set up all X01–X36.
+Started checking in 14:14.
+Started 14:16
+Occupied X01–X32
+Room 2: finished script and started experiment 14:20
+
+14:22 X29 showed Firefox open to en.wikipedia.org (blocked).
+Researcher explained that the goal is to set up Tor Browser.
+
+Stopped 15:00.
+
+X28 downloaded their own Tor; no log.
+X32 downloaded their own Tor; no log.
+X06 left before the end of the experiment; wasn't paid.
+
+
+== 20160328-1600
+
+Xlab participants
+Started videos 16:00
+Read script 16:20
+Started 16:22
+Stopped 17:02
+Occupied X01–X29
+
+
+== 20160330-1600
+
+Set up X01–X20
+Started videos 16:15
+Started 16:30
+
+Occupied
+  X01     X03 X04
+  X05 X06     X08
+  X09     X11 X12
+  X13 X14     X16
+  X17 X18     X20
+
+Stopped 17:20
+
+X11 installed their own Tor. (Later, 22:45, looking at the video, they tried our Tor first they have an inst log. So OK.)
+We were missing Xlab signups so we didn't read the end script
+
+X04: we have:
+  E2-OLD-X04-20160330-163058-inst.log
+but no video. C:\Users\X01 contains
+  X2-OLD-X04-20160330-161558.mp4
+(earlier timestamp by 15 minutes)
+This user had closed their laptop and we restarted the setup-xuser-old script.
+
+Also missing video for X18, though we had the log. We shut down X18 before we realized and could investigate further.
+
+X04's video is just 14:45 minutes of the file explorer on the setup-xuser-old script. At 14:32, someone clicks on the script, at terminal window appears with
+  "C:\lee\torbrowser-old-5.0.3-en_US.exe" /S
+and then the video ends.
+
+
+== 20160330-1800
+
+Set up: (expecting 6)
+  X04 X06 X10 X12 X16 X17
+18:00 one unexpected participant arrived, so set up X18 as well.
+Read script 18:42
+Started 18:45
+Stopped 19:25
+
+
+== 20160331-1600
+
+Started videos 15:30
+Set up: X04 X05 X10 X12 X16
+Started 16:09
+Occupied X04 X10 X12 X16
+
+X10 complained that it's taking "too long to connect" and that they are just sitting there.
+X10 said that their interface still hadn't finished loading.
+
+Stopped 16:49
+X04 and X10 hadn't found the survey, research helped.
+
+X04 was in the middle of downloading Tor Browser 5.5.4 installer at the end.
+
+
+== 20160331-1800
+
+Set up X03 X05 X06 X11 X12
+Started videos 17:47
+Started 18:07
+
+18:42 X11 asked why it didn't seem to be doing anything; research replied to try your best and we can't give hints.
+
+Stopped 18:47
+Occupied X03 X05 X06 X11
