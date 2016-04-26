@@ -81,7 +81,7 @@ for (label in unique(df$label)) {
 	}
 	cat(sprintf("\\\\\n"))
 }
-cat(sprintf("DNF ", label))
+cat(sprintf("DNF (did not finish) ", label))
 for (env in c("E1", "E2", "E3")) {
 	for (version in c("NEW", "OLD")) {
 		cat(sprintf("& %s ", omitzero(dnf.tt[env, version])))

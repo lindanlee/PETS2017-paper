@@ -99,9 +99,9 @@ This is the first user study investigating the usability of Tor as a censorship 
 
 We evaluate, redesign, and test the Tor configuration interface by
 measuring participants' interactions with the interface in various censorship environments.
-The first user study is a small-scale, one-on-one experiment that collected 
+The first user study is a small-scale, qualitative experiment that collected 
 behavioral patterns and failure cases with the interface through user observations
-and interviews (Section~\ref{sec:qualitative}). This feedback was used to make changes to the interface (Section~\ref{redesign}). The second user study is a large-scale, many-to-one experiment
+and interviews (Section~\ref{sec:qualitative}). This feedback was used to make changes to the interface (Section~\ref{redesign}). The second user study is a large-scale, quantitative experiment
 that collected data on user interactions with the interface to quantify the impact of the design changes (Section~\ref{sec:quantitative}).
 
 We find that users do not know if they require additional configuration to circumvent censorship, make incorrect assumptions based on interface layout, and do not know what to do in the event of a failure. We redesign the interface to build users' mental models, make the text easier to understand, and provide messages to assist users on error. Our changes decreased the time participants spent configuring their connections, but there was no difference in success rates. We expected the success rate to increase after providing suggestions on what to do next with error messages, but this had no effect since only 1 of 116 users encountered an error message. We conclude with recommendations of changes that we believe will help the most users circumvent censorship and connect to Tor. 
@@ -115,7 +115,7 @@ to be frustrated, cancel requests more often, and prevents user adoption.
 Norcie et~al.~\cite{norcie2012eliminating} found found that 
 64\% of users are unable to continue with installation or browsing at least once due to difficulties.
 
-There have been been no published usability evaluations of
+We do not know of any published usability evaluations of
 Tor Browser since the release of the 3.5 series in 2013, which introduced radical UI changes~\cite{torbrowser-35}.
 The most recent effort is an unpublished pilot study by Lee and Fifield~\cite{uxsprint} 
 that tested the downloading, installation, and browsing tasks in Tor Browser.  This study uncovered a number of issues~\cite{uxsprint2015-tickets},
@@ -141,7 +141,8 @@ for the first time. This is the object of our study.
 
 In principle, the process of configuring a proxy and bridge can be automated, but
 the interface eschews automatic configuration through network probing
-in favor of guided manual configuration to give users agency in configuring their connection.
+in favor of guided manual configuration to give users agency in configuring their connection. 
+Automatic configuration through network probing may put some users in certain regimes at risk. 
 A knowledgeable user can minimize their network trace and hide that they are connecting to Tor.
 However, this requires the user to grapple with technical concepts such as 
 bridges, pluggable transports, and proxies.
@@ -220,12 +221,12 @@ Transport type:
 \end{itemize}
 \caption{
 Bridge selection options in Tor Launcher, as it appeared in Tor Browser~5.0.3.
-The options under ``Transport type'' denote various
+Users are not familiar with the options under ``Transport type'' denote various
 built-in circumvention technologies (``pluggable transports'').
 Under ``Enter custom bridges,'' there is a space to paste in
 a bridge line, obtained out of band.
 The ``Help'' button displays instructions on obtaining
-bridge lines.
+bridge lines. 
 }
 \label{fig:bridge-options}
 \end{figure}
@@ -281,7 +282,7 @@ interface are based on common metrics that measure ease of use: \\
 
 \begin{enumerate}
     \item {\bfseries Task completion rate:} What percentage of users can successfully connect to Tor in a given condition.
-    \item {\bfseries  Time to completion:} How long it takes between program startup and a successful Tor bootstrap, which includes time spent searching online for help and waiting for a the connection to bootstrap.
+    \item {\bfseries  Time to completion:} How long it takes between program startup and a successful Tor bootstrap, which includes time spent searching online for help and waiting for the connection to bootstrap.
     \item {\bfseries Active configuration time:} How much time a user spends actively configuring network components to connect to Tor, which only includes time spent interacting with the interface, excluding the time waiting for the connection to bootstrap.
 \end{enumerate}
 
@@ -314,8 +315,17 @@ any particular country's censorship environment.
 
 \smallskip
 
+% E1
+% (Representative of countries such as France and Australia.)
+% E2 
+% (Representative of countries such as Tunisia.)
+% E3
+% (Representative of countries such as China and Syria.)
+
+
 \begin{description}
 \item[E1: Mild censorship]
+(Representative of countries such as France and Australia.)
 The E1 environment only blocks some websites,
 as if by DNS poisoning.
 We blocked subdomains of torproject.org
@@ -327,6 +337,7 @@ additional configuration was possible but unnecessary.
 % (Representative of countries such as France and Australia.)
 
 \item[E2: Intermediate censorship]
+(Representative of countries such as Tunisia.)
 The E2 environment blocks websites as in E1;
 it additionally blocks the IP addresses of public Tor relays
 and directory authorities, simulating a censor that knows
@@ -338,6 +349,7 @@ A custom bridge would work but was not necessary.
 % (Representative of countries such as Tunisia.)
 
 \item[E3: Comprehensive censorship]
+(Representative of countries such as China and Syria.)
 The E3 environment blocks websites and Tor relays as in E1 and E2;
 and additionally blocks the built-in default bridge IP addresses
 found in the Tor Browser source code.
@@ -606,12 +618,7 @@ web searching and inspection of system networking settings.
 
 \subsection{Recruitment}
 We recruited 124 participants, about 20 for each
-condition.
-Data analysis considerations deem 20 participants per combination a 
-minimum to assume normal distributions, and 60 participants
-per interface revision is adequate to have a meaningful effect size.
-
-We recruited half of our users from Craigslist, and half of our participants from 
+condition. We recruited half of our users from Craigslist, and half of our participants from 
 the Xlab participant pool. Although Xlab participants are not limited to UC Berkeley students and staff,
 a majority of the participants are from campus. For this reason, we chose to recruit 
 half of our participants from Craigslist to ensure a diverse set of participants. 
@@ -675,43 +682,55 @@ failed to connect successfully were assigned the maximum time of 40:08.
 \label{table:participant-summary}
 \end{table}
 
-\subsubsection{Rate of Success} 
-Five more participants with the new interface were able to successfully circumvent censorship and connect to the Tor network. Due to the limited number of participants, this difference is not large enough to rule out the possibility of random chance being the cause for the difference. However, this does suggest that users are equally likely to succeed with the new interface. 
-% impact of version on success: not significant (Mann--Whitney $W = 5.5$, $p = 0.8248$)
-%impact of env on success: not significant (Kruskal--Wallis $\chi^2 = 4.7059$, $\mbox{df} = 2$, $p = 0.09509$)
+\subsubsection{Active Configuration Time} 
+We summarize each participant's actions throughout the experiment in Fig.~\ref{fig:all-participant-edges}. Each row in Fig.~\ref{fig:all-participant-edges} corresponds to a participant in our experiment. The bar represents a participants' path through the interface, illustrating time spent on each screen, transitions between screens, how many attempts were made, and if they were eventually successful. 
 
-Table~\ref{tab:attempts-bridge-proxy} shows the configuration settings of the first successful connection in each environment and interface combination. Note that only four of the default bridges were used to connect successfully for the first time. Users avoid making decisions when a recommendation is given and tend to avoid or fail with more advanced options. Participants who were in environments where the recommended bridge (obfs3) worked did not successfully configure another bridge. Participants who were in environment that required a meek or custom bridge only were able to succeed with a meek bridge.
+\begin{figure*}
+\centering
+% This is a manually edited version of the automatically generated
+% all-participant-edges graphic. It is edited to have better scale labels for
+% the treatments.
+\includegraphics{all-participant-edges-scales}
+\caption{
+Summary of participants' actions throughout the entire experiment.
+Different colors indicate which screen was shown at each moment.
+The narrow black lines show the times when the configuration interface
+was not running; i.e., a participant was doing something else
+such as searching the web in another browser.
+The overall length of the lines show the total time to completion,
+except for those we cut off after approximately 40 minutes
+(marked with a $\times$).
+}
+\label{fig:all-participant-edges}
+\end{figure*}
+
+The time to success was largely dominated by the time spent waiting to connect to Tor, rather than actively configuring the interface. Table ~\ref{table:overall_time} shows the time spent on each screen while participants used the interface, which shows that participants spent 57\% of their overall time at the progress screen. Participants using the new interface and old interface spent approximately the same amount of time overall on the progress screen (359 minutes versus 339 minutes), which accounts for 78\% and 45\% of their overall time, respectively. We attribute this to a combination of instructions that tell the user to ``wait a couple minutes'' because connections usually take a while to bootstrap and the lack of timeout on the progress screen, which were present in both versions of the interface. 
 
 \begin{table}
 \centering
-% Generated by attempts.R, and manually reordered:
-\begin{tabular}{r c c c c c c}
-& \rotatebox{90}{E1-NEW} & \rotatebox{90}{E1-OLD} & \rotatebox{90}{E2-NEW} & \rotatebox{90}{E2-OLD} & \rotatebox{90}{E3-NEW} & \rotatebox{90}{E3-OLD} \\
-no bridge, no proxy & 17 & 13 &  &  &  &  \\
-obfs3, no proxy & 2 & 6 & 18 & 16 &  &  \\
-meek-amazon, no proxy &  &  &  &  & 7 & 4 \\
-meek-google, no proxy &  &  &  &  & 5 & 4 \\
-meek-azure, no proxy &  &  &  &  & 1 & 1 \\
-no bridge, 3rd-party proxy &  &  &  &  &  & 1 \\
-DNF &  &  & 1 & 3 & 7 & 10 \\
-\end{tabular}
-\caption{
-Bridge--proxy combinations that led to the first successful bootstrap
-in each environment and interface.
-Most E1 participants used a direct connection,
-but a few tried a built-in obfs3 bridge.
-All the E2 participants who succeeded,
-did so with obfs3 (the recommended bridge type)---none tried
-a different bridge before obfs3.
-All of the successful E3 participants but one
-used one of the meek bridges.
-The remaining E3 participant succeeded in an unexpected way:
-by searching the web for an open proxy and configuring it
-as the proxy setting.
-}
-\label{tab:attempts-bridge-proxy}
+	\begin{tabular}{c r r r r r}
+	 & First & Proxy & Bridge & Summary & Progress \\
+	\noalign{\hrule}
+	All &  10\% & 24\% & 8\% & 1\% & 57\% \\
+	NEW & 9\% & 7\% & 4\% & 2\% &  78\% \\
+	OLD & 10\% & 35\% & 11\% & 0\% & 45\% \\
+	E1 & 33\% & 16\% & 23\% & 1\% & 27\% \\
+	E2 & 11\% & 18\% & 8\% & 1\% & 63\% \\
+	E3 & 8\% & 27\% & 8\% & 1\% & 57\% \\
+	\end{tabular}
+\caption{Fraction of time spent on each screen.
+Participants spent most of their time on the progress screen, waiting.
+Additionally, participants spent proportionally more time on the proxy screen than on the bridge screen,
+although none of the censorship environments required a proxy.
+Participants spent less time on the proxy screen
+in the ``NEW'' interface (which explicitly stated that they did not need a proxy) compared to the ``OLD.''} 
+\label{table:overall_time}
 \end{table}
 
+Perhaps a more meaningful measurement of time is the amount of time participants actively spent configuring their connection. We define this as the amount of time that participants spent on the interface, except for time spent on the progress screen. This is a simplified notion active configuration time, since some participants searched for help on the web while they were waiting. However, this behavior was equally likely in the new and old interface conditions.
+
+The new interface results a statistically significant reduction in the overall active configuration time (Mann--Whitney $Z = -3.055$, $p = 0.00225$, $r= 0.284$), while maintaining the same probability for success for the user. We believe that getting rid of the technical bridge and proxy questions, instructing participants that they did not need a proxy, and simplifying the interface attributed to the reduction in time. 
+%The impact of the environment on active time is significant (Kruskal--Wallis $\chi^2 = 51.978$, $\mbox{df} = 2$, $p = 10^{-11}$)
 
 \subsubsection{Time to Success} 
 Although the median times to completion for participants of the new interface are less than those with the old interface (Table~\ref{table:participant-summary}), this difference is not statistically significant. The level of censorship had a significant impact on the time to success. The more difficult the censorship environment, the longer participants took to configure their connection (Kruskal--Wallis $\chi^2 = 80.926$, $\mbox{df} = 2$, $p < 10^{-15}$). The distribution of participants' time to success can be seen in Fig.~\ref{fig:time_to_success_clamped}.
@@ -761,69 +780,58 @@ After 20 minutes, 45\% of E3-NEW and only 25\% of E3-OLD had finished.
 \label{fig:time_to_success_ecdf}
 \end{figure}
 
-\subsubsection{Active Configuration Time} 
-We summarize each participant's actions throughout the experiment in Fig.~\ref{fig:all-participant-edges}. Each row in Fig.~\ref{fig:all-participant-edges} corresponds to a participant in our experiment. The bar represents a participants' path through the interface, illustrating time spent on each screen, transitions between screens, how many attempts were made, and if they were eventually successful. 
+\subsubsection{Rate of Success} 
+Five more participants with the new interface were able to successfully circumvent censorship and connect to the Tor network. Due to the limited number of participants, this difference is not large enough to rule out the possibility of random chance being the cause for the difference. However, this does suggest that users are equally likely to succeed with the new interface. 
+% impact of version on success: not significant (Mann--Whitney $W = 5.5$, $p = 0.8248$)
+%impact of env on success: not significant (Kruskal--Wallis $\chi^2 = 4.7059$, $\mbox{df} = 2$, $p = 0.09509$)
 
-\begin{figure*}
-\centering
-% This is a manually edited version of the automatically generated
-% all-participant-edges graphic. It is edited to have better scale labels for
-% the treatments.
-\includegraphics{all-participant-edges-scales}
-\caption{
-Summary of participants' actions throughout the entire experiment.
-Different colors indicate which screen was shown at each moment.
-The narrow black lines show the times when the configuration interface
-was not running; i.e., a participant was doing something else
-such as searching the web in another browser.
-The overall length of the lines show the total time to completion,
-except for those we cut off after approximately 40 minutes
-(marked with a $\times$).
-}
-\label{fig:all-participant-edges}
-\end{figure*}
-
-While we did not find a statistically significant difference between the overall time to success between the old and new versions of the interface, the time to success was largely dominated by the time spent waiting to connect to Tor, rather than actively configuring the interface. Table ~\ref{table:overall_time} shows the time spent on each screen while participants used the interface, which shows that participants spent 57\% of their overall time at the progress screen. Participants using the new interface and old interface spent approximately the same amount of time overall on the progress screen (359 minutes versus 339 minutes), which accounts for 78\% and 45\% of their overall time, respectively. We attribute this to a combination of instructions that tell the user to ``wait a couple minutes'' because connections usually take a while to bootstrap and the lack of timeout on the progress screen which keeps the users waiting indefinitely, which were present in both versions of the interface. 
+Table~\ref{tab:attempts-bridge-proxy} shows the configuration settings of the first successful connection in each environment and interface combination. Note that only four of the default bridges were used to connect successfully for the first time. Users avoid making decisions when a recommendation is given and tend to avoid or fail with more advanced options. Participants who were in environments where the recommended bridge (obfs3) worked did not successfully configure another bridge. Participants who were in environment that required a meek or custom bridge only were able to succeed with a meek bridge.
 
 \begin{table}
 \centering
-	\begin{tabular}{c r r r r r}
-	 & First & Proxy & Bridge & Summary & Progress \\
-	\noalign{\hrule}
-	All &  10\% & 24\% & 8\% & 1\% & 57\% \\
-	NEW & 9\% & 7\% & 4\% & 2\% &  78\% \\
-	OLD & 10\% & 35\% & 11\% & 0\% & 45\% \\
-	E1 & 33\% & 16\% & 23\% & 1\% & 27\% \\
-	E2 & 11\% & 18\% & 8\% & 1\% & 63\% \\
-	E3 & 8\% & 27\% & 8\% & 1\% & 57\% \\
-	\end{tabular}
-\caption{Fraction of time spent on each screen.
-Participants spent most of their time on the progress screen, waiting.
-Additionally, participants spent proportionally more time on the proxy screen than on the bridge screen,
-although none of the censorship environments required a proxy.
-Participants spent less time on the proxy screen
-in the ``NEW'' interface (which explicitly stated that they did not need a proxy) compared to the ``OLD.''} 
-\label{table:overall_time}
+% Generated by attempts.R, and manually reordered:
+\begin{tabular}{r c c c c c c}
+& \rotatebox{90}{E1-NEW} & \rotatebox{90}{E1-OLD} & \rotatebox{90}{E2-NEW} & \rotatebox{90}{E2-OLD} & \rotatebox{90}{E3-NEW} & \rotatebox{90}{E3-OLD} \\
+no bridge, no proxy & 17 & 13 &  &  &  &  \\
+obfs3, no proxy & 2 & 6 & 18 & 16 &  &  \\
+meek-amazon, no proxy &  &  &  &  & 7 & 4 \\
+meek-google, no proxy &  &  &  &  & 5 & 4 \\
+meek-azure, no proxy &  &  &  &  & 1 & 1 \\
+no bridge, 3rd-party proxy &  &  &  &  &  & 1 \\
+DNF (did not finish) &  &  & 1 & 3 & 7 & 10 \\
+\end{tabular}
+\caption{
+Bridge--proxy combinations that led to the first successful bootstrap
+in each environment and interface.
+Most E1 participants used a direct connection,
+but a few tried a built-in obfs3 bridge.
+All the E2 participants who succeeded,
+did so with obfs3 (the recommended bridge type)---none tried
+a different bridge before obfs3.
+All of the successful E3 participants but one
+used one of the meek bridges.
+The remaining E3 participant succeeded in an unexpected way:
+by searching the web for an open proxy and configuring it
+as the proxy setting.
+}
+\label{tab:attempts-bridge-proxy}
 \end{table}
 
-Perhaps a more meaningful measurement of time is the amount of time participants actively spent configuring their connection. We define this as the amount of time that participants spent on the interface, except for time spent on the progress screen. This is a simplified notion active configuration time, since some participants searched for help on the web while they were waiting. However, this behavior was equally likely in the new and old interface conditions.
-
-The new interface results a statistically significant reduction in the overall active configuration time (Mann--Whitney $Z = -3.055$, $p = 0.00225$, $\mbox{effect size} = 0.284$), while maintaining the same probability for success for the user. We believe that getting rid of the technical bridge and proxy questions, instructing participants that they did not need a proxy, and simplifying the interface attributed to the reduction in time. 
-%The impact of the environment on active time is significant (Kruskal--Wallis $\chi^2 = 51.978$, $\mbox{df} = 2$, $p = 10^{-11}$)
+We believe that our change to add advice on what to try next on error messages (such as try the connection again, reconfigure your bridge settings, or try without a proxy) would have improved the rate of success. However, only 1 of 116 participants saw an error during the experiment. That participant, who used the new interface, saw that the bridge configuration was the source of the error, and heeded the interface's advice to reconfigure the bridge options. But since most participants did not see any error messages, any effects they may have had on success rates are not reflected in our results. The addition of a summary screen did cause behavioral changes (13\% of participants saw their current settings, then went back to adjusted them), but this behavioral change did not have a statistically significant impact on success rates. We added pre-preemptive advice to the bridge configuration screen to first try an obfs3 bridge and then a meek bridge, but we suspect that most participants did not read this advice.
 
 \subsection{Discussion} 
 This section details general trends in user behavior, common failure cases, and our recommendations for 
 improving the Tor configuration interface. 
 
 \subsubsection{Observations}
-These are general observations made from our data set of participants, which may have biases.\\
+These are general observations made from our data set of participants, which may or may not be representative of the Tor user base.\\
 
 \begin{description}
 %connect vs configure
 \item {\bfseries Users try the easy path first.} Users still do not seem to know how to differentiate between censored websites and censored Tor relays and try the easy option of connecting directly to the Tor network first, leaking that they are connecting to Tor on the network.  81\% (94 of 116) of first attempts were to connect directly, 86\% (50 of 116) from the new interface and 76\% (44 of 116) from the old interface. It's critical to note that the participants did not believe the interface when it informed them that they did not need a proxy.
 
 % impacts of making the proxy page ``automated'' 
-\item {\bfseries Users wasted time configuring proxies.} Users believed that they needed proxies to connect. This confusion prevented users from configuring their bridges correctly. Participants with the new interface who were explicitly told that they did not need a proxy spent 31\% of their active time configuring proxies and participants in the old interface who did not receive feedback spent 63\%.
+\item {\bfseries Users wasted time configuring proxies.} Users believed that they needed proxies to connect. This confusion prevented users from configuring their bridges correctly. Participants with the new interface who were explicitly told that they did not need a proxy spent 31\% of their active time configuring proxies, perhaps due to not reading the text or not believing the interface. Participants in the old interface who did not receive feedback spent 63\%. 
 
 % impacts of giving people advice on which transport to choose.
 \item {\bfseries Certain transports were chosen with high probability.}
@@ -831,11 +839,11 @@ Of those who tried an obfs3 bridge and failed,
 66\% (10 of 15) participants with the new interface and 38\% (5 of 13) participants with the old interface chose meek as their second bridge. We suspect that flashproxy was a popular choice because it is listed first in the drop-down menu. Many bridges listed at the end of the drop-down menu were not chosen. 
 
 %error messages
-\item {\bfseries There were (almost) no error messages.} Many waited for minutes at the progress screen, but never saw an error message. There were warnings, but those warnings went largely unnoticed by our participants. Across both versions of the interface, only one participant ever saw an error message. 
+\item {\bfseries There were (almost) no error messages.} Many waited for minutes at the progress screen, but never saw an error message. Error messages are intended to appear after a timeout. There were warnings, but those warnings went largely unnoticed by our participants. Across both versions of the interface, only one participant ever saw an error message. 
 
 % progress bar
 \item {\bfseries People waited a long, long time at the progress bar.}
-Some dutifully followed the directions to wait, while others are lost for what to do and choose to wait in frustration. Either way, we think that people spent too much time waiting. 
+From watching the screen capture videos, we see that some participants dutifully followed the directions to wait, while others are lost for what to do and choose to wait in frustration.
 \end{description} 
 
 We are unable to state the efficacy of our attempts to make instructive and understandable error messages due to lack of data. We do not understand why users with the new interface choose to configure proxies after explicitly being told that they do not need one. We notice that users in the new interface were more likely to chose meek bridges. 10 users in the new interface chose a meek-bridge as their second bridge, whereas only 5 users in the old interface did. However, we cannot say if this can be attributed to the advice we added on the bridge configuration screen, due to the small sample size. 
@@ -850,7 +858,7 @@ Failure is common. 20\% (21 of 116) of participants failed entirely. 64\% (74 of
 \item {\bfseries Used the bridges auto-responder incorrectly (2/21)} Three participants in our heavy censorship environment figured that the recommended bridge and most hard-coded bridges were not working and found the auto-responder through the help button. However, they all failed to get a response. For details, see Appendix~\ref{failed-participants}.
 \end{description} 
 
-We discarded data on participants who chose to download their own version of Tor Browser online. Some downloaded their own version without trying the provided one on their desktop, while others did so after feeling frustrated with the provided version. Appendix~\ref{tor-downloads} gives the unfortunate details of where Tor was downloaded when torproject.org was blocked.
+We discarded data on participants who chose to download their own version of Tor Browser online. 5 participants downloaded their own version without trying the provided one on their desktop, while others did so after feeling frustrated with the provided version. Appendix~\ref{tor-downloads} gives the unfortunate details of where Tor was downloaded when torproject.org was blocked.
 
 \subsubsection{Recommendations}
 \label{recommendations}
@@ -894,7 +902,7 @@ We took an approach that optimized for the average case user manually configurin
 \begin{description}
 \item{\bfseries Automate the configuration.} Complete automation of the configuration process, which involves network probing, would not harm users today (as far as we know). Our study finds that most users fail on the first try when trying to circumvent an advanced censor, so this automation may not increase the number of users who leak that they are connecting to the Tor network. 
 \item{\bfseries Ask about the risk.} Automating the configuration process for all who are not at risk and offering manual configuration to those who would like to be more cautious is an alternative to complete automation. The complication with this approach is that we would need to ask the users about the risk involved with connecting to the Tor network. Users may not be qualified to answer this question or may not trust Tor with this information. 
-\item{\bfseries Ask if users if they know what to do.} We ask users if they know how to configure a bridge and proxy, and automate the configuration process if they do not. However, there are ethical implications of making mistakes on behalf of the users if there is risk involved. 
+\item{\bfseries Ask if users know what to do.} Automating the process for users who do not know how to configure a bridge or proxy can be an alternative option. However, there are ethical implications of making mistakes on behalf of users with risk involved. 
 \end{description}
 
 We believe that automation, asking about risk, and identifying struggling users are all integral to making significant improvements to the configuration process. 
@@ -910,7 +918,7 @@ For additional details, such as the censorship simulation code, interview transc
 \section{Conclusion} 
 We conducted a series of experiments to improve the Tor Browser 5.0.3 configuration interface, which helps users circumvent censorship using Tor. A qualitative user study interviews 16 pre-screened participants about their experience trying to circumvent mild, intermediate, and heavy censorship with the current interface, giving insight into common challenges in configuring a connection. These include confusing the necessity of bridges and proxies, assuming that a correct configuration was wrong due to a progress bar bug, and not knowing what to do on failure. This feedback is used to guide the redesign of the configuration interface. 
 
-We test the impact of our changes on 116 participants in a quantitative user study to find that that the changes cause a statistically significant reduction in the time participants spent configuring their connection, with no decrease in success rates. We observe and quantify common behavioral trends based on logs and video recordings of our participants, and offer recommendations that we believe will greatly increase the success rate and time to success for future users. 
+We test the impact of our changes on 116 participants in a quantitative user study to find that the changes cause a statistically significant reduction in the time participants spent configuring their connection, with no decrease in success rates. We observe and quantify common behavioral trends based on logs and video recordings of our participants, and offer recommendations that we believe will greatly increase the success rate and time to success for future users. 
 
 \bibliographystyle{abbrv}
 \bibliography{pets2017-paper}
