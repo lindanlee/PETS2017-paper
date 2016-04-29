@@ -13,12 +13,13 @@ height <- 1.5
 participants <- filter_participants(read_participants())
 participants$label <- factor(sprintf("%s-%s", participants$env, participants$version), levels=c("E1-NEW", "E1-OLD", "E2-NEW", "E2-OLD", "E3-NEW", "E3-OLD"))
 participants$pid <- factor(sprintf("%s-%s-%s-%s", participants$env, participants$version, participants$seat, participants$session))
-pid_order <- rev(order(participants$env, participants$version, participants$time_to_success))
-participants$pid <- factor(participants$pid, levels=participants$pid[pid_order])
+userid_order <- rev(order(participants$env, participants$version, participants$time_to_success))
+participants$userid <- sprintf("P%d", participants$userid)
+participants$userid <- factor(participants$userid, levels=participants$userid[userid_order])
 
 edges <- filter_edges(read_edges(), participants)
-if (any(is.na(edges$pid))) {
-  stop("found NAs in edges$pid")
+if (any(is.na(edges$userid))) {
+  stop("found NAs in edges$userid")
 }
 # Ignore "not_running" and "starting", so they just show up as blank.
 edges <- droplevels(edges[!(edges$dst %in% c("not_running", "starting")), ])
@@ -112,12 +113,11 @@ ggsave("time_per_screen.pdf", p, width=textwidth, height=3, device=cairo_pdf)
 #############
 
 p <- ggplot()
-p <- p + geom_segment(data=participants, size=0.2, color="black", aes(x=pid, xend=pid, y=0, yend=ifelse(!is.na(time_to_success), time_to_success, maxtime)/60))
-p <- p + geom_segment(data=edges, size=1.5, lineend="butt", aes(x=pid, xend=pid, y=time_from_start/60, yend=(time_from_start+duration)/60, color=dst))
+p <- p + geom_segment(data=participants, size=0.2, color="black", aes(x=userid, xend=userid, y=0, yend=ifelse(!is.na(time_to_success), time_to_success, maxtime)/60))
+p <- p + geom_segment(data=edges, size=1.5, lineend="butt", aes(x=userid, xend=userid, y=time_from_start/60, yend=(time_from_start+duration)/60, color=dst))
 # p <- p + geom_point(color="black", size=1.5, shape="|")
-p <- p + geom_point(data=participants[is.na(participants$time_to_success), ], aes(x=pid, y=maxtime/60), shape=4)
+p <- p + geom_point(data=participants[is.na(participants$time_to_success), ], aes(x=userid, y=maxtime/60), shape=4)
 p <- p + coord_flip()
-p <- p + scale_x_discrete(labels=sprintf("%s-%s", participants$env[pid_order], participants$version[pid_order]))
 p <- p + scale_y_continuous(breaks=pretty_breaks(n=10))
 p <- p + scale_color_manual("Current screen", values=state.palette, labels=c(
 	"first"="first (F)",
@@ -134,5 +134,6 @@ p <- p + labs(title=NULL, x=NULL, y="Minutes elapsed")
 p <- common_theme(p)
 p <- p + theme(panel.grid.minor.x=element_blank())
 p <- p + theme(panel.grid.major.y=element_blank())
+p <- p + theme(axis.text.y=element_text(color="gray70"))
 p
 ggsave("all-participant-edges.pdf", p, width=textwidth, height=textheight-0.75, device=cairo_pdf)
