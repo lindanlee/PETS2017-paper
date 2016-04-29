@@ -105,7 +105,6 @@ p <- p + scale_x_discrete("Current screen", labels=c(
 p <- p + coord_flip()
 p <- common_theme(p)
 p <- p + facet_grid(version ~ env)
-p
 ggsave("time_per_screen.pdf", p, width=textwidth, height=3, device=cairo_pdf)
 
 #############
