@@ -85,7 +85,6 @@ ggsave("time_to_success_ecdf.pdf", p, width=columnwidth, height=height, device=c
 
 # GRAPH TIME ON EACH SCREEN 
 
-state.palette <- brewer.pal(length(levels(edges$dst)), "Set1")
 data <- aggregate(edges$duration, list(env=edges$env, version=edges$version, seat=edges$seat, runid=edges$runid, dst=edges$dst), FUN=sum)
 p <- ggplot(data, aes(x=dst, y=x/60, color=dst))
 p <- p + geom_boxplot(outlier.size=0)
