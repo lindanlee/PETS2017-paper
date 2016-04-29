@@ -21,7 +21,7 @@ if (any(is.na(edges$pid))) {
   stop("found NAs in edges$pid")
 }
 # Ignore "not_running" and "starting", so they just show up as blank.
-edges <- edges[!(edges$dst %in% c("not_running", "starting")), ]
+edges <- droplevels(edges[!(edges$dst %in% c("not_running", "starting")), ])
 
 state.palette <- brewer.pal(length(levels(edges$dst)), "Set1")
 
