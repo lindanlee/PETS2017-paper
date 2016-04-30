@@ -85,26 +85,38 @@ ggsave("time_to_success_ecdf.pdf", p, width=columnwidth, height=height, device=c
 
 # GRAPH TIME ON EACH SCREEN 
 
+screen.short.labels = c(
+	"first"="F",
+	"bridges"="B1",
+	"bridgeSettings"="B2\nB",
+	"bridgeHelp"="BH",
+	"proxy"="P1",
+	"proxyYES"="P2\nP",
+	"summary"="S",
+	"progress"="Pr",
+	"error"="E"
+)
+
 data <- aggregate(edges$duration, list(env=edges$env, version=edges$version, seat=edges$seat, runid=edges$runid, dst=edges$dst), FUN=sum)
 p <- ggplot(data, aes(x=dst, y=x/60, color=dst))
 p <- p + geom_boxplot(outlier.size=0)
 p <- p + geom_point(size=1.0, alpha=0.6)
 p <- p + scale_color_manual(values=state.palette, guide=F)
-p <- p + scale_x_discrete("Current screen", labels=c(
-  "first"="F",
-  "bridges"="B1",
-  "bridgeSettings"="B2\nB",
-  "bridgeHelp"="BH",
-  "proxy"="P1",
-  "proxyYES"="P2\nP",
-  "summary"="S",
-  "progress"="Pr",
-  "error"="E"
-))
+p <- p + scale_x_discrete("Current screen", labels=screen.short.labels)
 p <- p + coord_flip()
 p <- common_theme(p)
 p <- p + facet_grid(version ~ env)
 ggsave("time_per_screen.pdf", p, width=textwidth, height=3, device=cairo_pdf)
+
+data <- aggregate(edges$duration, list(env=edges$env, version=edges$version, dst=edges$dst), FUN=sum)
+p <- ggplot(data, aes(x=dst, y=x/ave(x, env, version, FUN=sum), fill=dst))
+p <- p + geom_bar(stat="identity")
+p <- p + scale_fill_manual(values=state.palette, guide=F)
+p <- p + scale_x_discrete("Current screen", labels=screen.short.labels)
+p <- p + scale_y_continuous("Fraction of total time", labels=percent)
+p <- common_theme(p)
+p <- p + facet_grid(version ~ env)
+ggsave("percent_per_screen.pdf", p, width=textwidth, height=3, device=cairo_pdf)
 
 #############
 # ALL EDGES #
