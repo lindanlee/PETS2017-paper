@@ -585,7 +585,7 @@ We split participants by simulated censorship environments,
 and between old and new interfaces.
 
 \subsection{Setup}
-We ran our experiment at Xlab, the Experimental Social Science Laboratory at the University of 
+We ran our experiment at Xlab~\cite{xlab}, the Experimental Social Science Laboratory at the University of 
 California, Berkeley. Xlab has 36 Windows~7 laptops, separated by cubicle walls. 
 Though Tor Browser runs on other operating systems,
 testing was only done on Windows, as a byproduct of using Xlab. 
@@ -873,6 +873,14 @@ the first study was not used to quantify failures or successes,
 but to explore possible problems.
 We fixed this problem in our second study by blocking the directory authorities.
 
+We blocked en.wikipedia.org, the target of the experiment,
+as well as other language-specific subdomains such as
+de.wikipedia.org and fr.wikipedia.org.
+We neglected, however, to block the Simple English Wikipedia
+at simple.wikipedia.org, which one participant found,
+thinking they had completed the task.
+% E2-OLD-X04-20160330-181928
+
 Our study was conducted in a laboratory setting, which can cause our participants to be under or over-motivated. Our participants had a monetary incentive to connect to Tor, whereas a real user in a censored environment would want to reach a particular website or service. The nature of the experiment places social pressure to attempt connect for the whole duration of the session, whereas participants may have given up earlier if they were not in a real-world setting.   
 
 We did not test cases in which the user is required to configure a custom bridge or proxy. Our participants were from one geographic location in the United States and were able to speak English.
@@ -896,7 +904,7 @@ I want to especially thank Rowilma del Castillo of Xlab for supporting the exper
 \section {Resources} 
 For additional details, such as the censorship simulation code, interview transcriptions, and logs of participant interactions, we refer you to the project repository: \\
 
-\noindent https://github.com/lindanlee/circumvention-ux-tor
+\noindent \url{https://github.com/lindanlee/circumvention-ux-tor}
 
 \section{Conclusion} 
 We conducted a series of experiments to improve the Tor Browser 5.0.3 configuration interface, which helps users circumvent censorship using Tor. A qualitative user study interviews 16 pre-screened participants about their experience trying to circumvent mild, intermediate, and heavy censorship with the current interface, giving insight into common challenges in configuring a connection. These include confusing the necessity of bridges and proxies, assuming that a correct configuration was wrong due to a progress bar bug, and not knowing what to do on failure. This feedback is used to guide the redesign of the configuration interface. 
