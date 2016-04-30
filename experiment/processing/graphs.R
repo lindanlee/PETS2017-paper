@@ -145,5 +145,4 @@ p <- common_theme(p)
 p <- p + theme(panel.grid.minor.x=element_blank())
 p <- p + theme(panel.grid.major.y=element_blank())
 p <- p + theme(axis.text.y=element_text(color="gray70"))
-p
 ggsave("all-participant-edges.pdf", p, width=textwidth, height=textheight-0.75, device=cairo_pdf)
