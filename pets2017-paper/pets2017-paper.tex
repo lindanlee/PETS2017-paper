@@ -854,10 +854,10 @@ improving the Tor configuration interface.
 Failure is common. 20\% (21 of 116) of participants were not able to successfully connect to Tor. 64\% (74 of 116) of first attempts to connect failed and 79\% (376 of 462) of total attempts to connect failed. Reasons for failure were determined by a combination of log processing (i.e. configuration settings on attempts) and video observation (i.e. observing what they searched for online). \\ 
 
 \begin{description}
-\item {\bfseries Only connected directly. (7/21)} These participants tried a direct connection. When that failed, they tried the same configuration, over and over, without trying other configurations, no matter how many times they failed. It was common to restart the interface, check Internet settings, and wait between subsequent attempts. 
-\item {\bfseries Didn't know what to do next. (6/21)} After a failed direct connection and a failed default obfs3 bridge connection, these participants did not know what to do next. They often tried those configurations again or gave up. 
-\item {\bfseries Thought that they needed a proxy (5/21)} After a couple failed attempts, these participants assumed that they needed a proxy. They spent the time trying to configure a proxy, usually without trying other bridges. 
-\item {\bfseries Used the bridges auto-responder incorrectly (2/21)} Three participants in our heavy censorship environment figured that the recommended bridge and most hard-coded bridges were not working and found the auto-responder through the help button. However, they all failed to get a response. For details, see Appendix~\ref{failed-participants}.
+\item {\bfseries Only connected directly (7/21): P57, P74, P76, P90, P93, P108, P112} These participants tried a direct connection. When that failed, they tried the same configuration, over and over, no matter how many times they failed. It was common to restart the interface, check Internet settings, and wait between subsequent attempts. 
+\item {\bfseries Didn't know what to do next (6/21): P91, P92, P95, P110, P113, P116} These participants in E3 did not know what to do next after a direct connection and a default obfs3 bridge connection. They often tried those configurations again or gave up. 
+\item {\bfseries Thought that they needed a proxy (5/21): P75, P94, P107, P109, P115} After a couple failed attempts, these participants assumed that they needed a proxy. They spent the time trying to configure a proxy, usually without trying other bridges. 
+\item {\bfseries Used the bridges auto-responder incorrectly (2/21): P96, P111} Two participants in our heavy censorship environment figured that the recommended bridge and most hard-coded bridges were not working and found the auto-responder through the help button. However, they all failed to get a response. For details, see Appendix~\ref{failed-participants}.
 \end{description} 
 
 We discarded data on participants who chose to download their own version of Tor Browser online. 5 participants downloaded their own version without trying the provided one on their desktop, while others did so after feeling frustrated with the provided version. Appendix~\ref{tor-downloads} gives the unfortunate details of where Tor was downloaded when torproject.org was blocked.
@@ -1052,54 +1052,18 @@ This survey is part of a research project being conducted by the University of C
 
 Thank you for participating in our experiment. You are now done! Please sit at your desk for the remainder of the experiment. Our researchers will formally announce the end of the experiment. 
 
-\section{Failed Participants} 
+\section{Custom Bridge Attempts} 
 \label{failed-participants}
-
-Only tried to connect directly (7/21): 
-\begin{itemize}
-\item E2-NEW-X21-20160323-1400
-\item E2-OLD-X04-20160330-1800
-\item E2-OLD-X10-20160331-1600
-\item E3-NEW-X05-20160324-1400
-\item E3-NEW-X17-20160323-1400
-\item E3-OLD-X06-20160330-1600
-\item E3-OLD-X12-20160330-1800
-\end{itemize} 
-
-Didn't know what to do next (6/21): 
-\begin{itemize}
-\item E3-NEW-X11-20160330-1600
-\item E3-NEW-X11-20160331-1800
-\item E3-NEW-X23-20160323-1400
-\item E3-OLD-X06-20160331-1800
-\item E3-OLD-X12-20160331-1600
-\item E3-OLD-X30-20160328-1400
-\end{itemize} 
-
-Thought that they needed a proxy (5/21): 
-\begin{itemize}
-\item E2-OLD-X10-20160328-1400
-\item E3-NEW-X17-20160328-1600
-\item E3-OLD-X06-20160325-1800
-\item E3-OLD-X06-20160330-1800
-\item E3-OLD-X24-20160328-1600
-\end{itemize} 
-
-Used the bridges auto-responder incorrectly (2/21): 
-\begin{itemize}
-\item E3-NEW-X23-20160328-1600 (Fig.~\ref{autoresponder1})
-\item E3-OLD-X12-20160325-1400 (Fig.~\ref{autoresponder2})
-\end{itemize}   
 
 \begin{figure}[h]
 \includegraphics[width=0.5\textwidth]{../experiment/processing/failed-participants/20160325-140813-bridgeresponder-redacted.png}
-\caption{The message that E3-NEW-X23-20160328-1600 attempted to send to the bridge auto-responder. The message was sent to the wrong address: bridges@bridges.torproject.org instead of bridges@torproject.org.}
+\caption{The message that P96 attempted to send to the bridge auto-responder. The message was sent to the wrong address: bridges@bridges.torproject.org instead of bridges@torproject.org.}
 \label{autoresponder1}
 \end{figure} 
 
 \begin{figure}[h]
 \includegraphics[width=0.5\textwidth]{../experiment/processing/failed-participants/20160328-133857-bridgeresponder-redacted.png}
-\caption{The message that E3-OLD-X12-20160325-1400 accidentally sent to the helpdesk rather than the bridge auto-responder. The participant should have used the address bridges@torproject.org, not help@rt.torproject.org. Since the helpdesk address is not an auto-responder, there was no reply.}
+\caption{The message that P111 accidentally sent to the helpdesk rather than the bridge auto-responder. The participant should have used the address bridges@torproject.org, not help@rt.torproject.org. Since the helpdesk address is not an auto-responder, there was no reply.}
 \label{autoresponder2}
 \end{figure} 
 
@@ -1108,53 +1072,53 @@ Used the bridges auto-responder incorrectly (2/21):
 
 Participants that downloaded Tor Browser (5/124): 
 \begin{itemize}
-\item E1-OLD-X32-20160328-1400 (Fig.~\ref{mirror})
-\item E2-NEW-X21-20160323-1400 (Fig.~\ref{techspot})
-\item E2-OLD-X10-20160323-1400 (Fig.~\ref{downloadio})
-\item E2-OLD-X28-20160328-1400 (Fig.~\ref{driverupdate})
-\item E3-NEW-X11-20160330-1600 (Fig.~\ref{softsonic})
+\item P57 (Fig.~\ref{techspot})
+\item P91 (Fig.~\ref{softsonic})
+\item P117, data not used (Fig.~\ref{mirror})
+\item P118, data not used (Fig.~\ref{downloadio})
+\item P119, data not used (Fig.~\ref{driverupdate})
 \end{itemize} 
 
-Sources of downloads: 
-\begin{itemize}
-\item {\bfseries techspot.com} $\rightarrow$ {\bfseries 1download.io}: an advertisement in the Yahoo search results for ``tor browser downloads''.
-\item {\bfseries driverupdate.net}: the fifth Google search result for ``tor browser download''.
-\item {\bfseries www.torservers.net/mirrors}: the first google search result for ``tor browser mirror''.
-\item {\bfseries techspot.com}: the fifth Google search result for ``tor browser download''.
-\item {\bfseries softsonic.com}: the second Yahoo search result for ``tor browser''.
-\end{itemize}
+%Sources of downloads: 
+%\begin{itemize}
+%\item {\bfseries techspot.com} $\rightarrow$ {\bfseries 1download.io}: an advertisement in the Yahoo search results for ``tor browser downloads''.
+%\item {\bfseries driverupdate.net}: the fifth Google search result for ``tor browser download''.
+%\item {\bfseries www.torservers.net/mirrors}: the first google search result for ``tor browser mirror''.
+%\item {\bfseries techspot.com}: the fifth Google search result for ``tor browser download''.
+%\item {\bfseries softsonic.com}: the second Yahoo search result for ``tor browser''.
+%\end{itemize}
 
-\begin{figure}
+\begin{figure}[h]
 \includegraphics[width=0.5\textwidth]{../experiment/processing/bad-participants/X10-20160323-132505-1downloadio.png}
-\caption{E2-OLD-X10-20160323-1400 attempted to download Tor Browser from TechSpot.com, but clicked on
+\caption{P118 attempted to download Tor Browser from TechSpot.com, but clicked on
 a download link which was not from TechSpot.com. The download was from another site, 1download.io.}
 \label{downloadio}
 \end{figure} 
 
-\begin{figure}
+\begin{figure}[h]
 \includegraphics[width=0.5\textwidth]{../experiment/processing/bad-participants/X28-20160328-134111-driverupdate.png}
-\caption{E2-OLD-X28-20160328-1400 downloaded Tor Browser from DriverUpdate, a suspicious source. Two executables
+\caption{P119 downloaded Tor Browser from DriverUpdate, a suspicious source. Two executables
 are downloaded, and the website instructs the user to run an executable named ``DriverUpdate-setup.exe,'' which the
 participant dutifully does before running the Tor Browser executable.}
 \label{driverupdate}
 \end{figure} 
 
-\begin{figure}
+\begin{figure}[h]
 \includegraphics[width=0.5\textwidth]{../experiment/processing/bad-participants/X32-20160328-134531-mirror.png}
-\caption{E1-OLD-X32-20160328-1400 downloaded Tor Browser from a legitimate Tor Browser mirror, \url{www.torservers.net/mirrors}.}
+\caption{P117 downloaded Tor Browser from a legitimate Tor Browser mirror, \url{www.torservers.net/mirrors}.}
 \label{mirror}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h]
 \includegraphics[width=0.5\textwidth]{../experiment/processing/bad-participants/20160323-133257-techspot.png}
-\caption{E2-NEW-X21-20160323-1400 downloaded Tor Browser from TechSpot, clicking on the download link from 
+\caption{P57 downloaded Tor Browser from TechSpot, clicking on the download link from 
 TechSpot (the white ``Direct Download'' button). X10-20160323-132505 in Fig.~\ref{downloadio} clicked the blue ``Download Now'' button and downloaded from a different source.}
 \label{techspot}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h]
 \includegraphics[width=0.5\textwidth]{../experiment/processing/bad-participants/20160330-161511-softsonic.png}
-\caption{E3-NEW-X11-20160330-1600 downloaded Tor Browser from Softsonic, a reputable-looking but
+\caption{P91 downloaded Tor Browser from Softsonic, a reputable-looking but
 unconfirmed site.}
 \label{softsonic}
 \end{figure}
