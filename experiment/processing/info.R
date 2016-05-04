@@ -67,9 +67,9 @@ cat("****************************\n")
 # 1: group edges by their source
 # 2: get the total time each user spent on a particular screen 
 # 3: create data frame "screen time per user" which has the time a user spent on each screen 
-# 4: (TODO) historgram plot function
 
 edges <- filter_edges(read_edges(), participants)
+edges <- trim_edges(trim_edges)
 
 # 1 
 active_edges <- edges[!(edges[,"dst"] %in% c("not_running", "starting", "progress")),] # "active time" is anytime that people are not on the progress screen.
@@ -116,11 +116,12 @@ report_total <- function(label, selected_edges) {
 
 	# % TOTAL time on screen, across users. (total, e1, e2, e3,new, old)
 	subreport_total("TOTAL\tAll", function(z) { T })
-	subreport_total("TOTAL\tE1", function(z) { z$env=="E1" })
-	subreport_total("TOTAL\tE2", function(z) { z$env=="E2" })
-	subreport_total("TOTAL\tE3", function(z) { z$env=="E3" })
-	subreport_total("TOTAL\tNEW", function(z) { z$version=="NEW" })
-	subreport_total("TOTAL\tOLD", function(z) { z$version=="OLD" })
+	subreport_total("TOTAL\tE1,NEW", function(z) { z$env=="E1" & z$version=="NEW"})
+	subreport_total("TOTAL\tE1,OLD", function(z) { z$env=="E1" & z$version=="OLD"})
+	subreport_total("TOTAL\tE2,NEW", function(z) { z$env=="E2" & z$version=="NEW"})
+	subreport_total("TOTAL\tE2,OLD", function(z) { z$env=="E2" & z$version=="OLD"})
+	subreport_total("TOTAL\tE3,NEW", function(z) { z$env=="E3" & z$version=="NEW"})
+	subreport_total("TOTAL\tE3,OLD", function(z) { z$env=="E3" & z$version=="OLD"})
 }
 
 report_active <- function(label, selected_edges) {
@@ -130,11 +131,12 @@ report_active <- function(label, selected_edges) {
 
 	# % ACTIVE time on screen, across users. (total, e1, e2, e3,new, old)
 	subreport_active("ACTIVE\tAll", function(z) { T })
-	subreport_active("ACTIVE\tE1", function(z) { z$env=="E1" })
-	subreport_active("ACTIVE\tE2", function(z) { z$env=="E2" })
-	subreport_active("ACTIVE\tE3", function(z) { z$env=="E3" })
-	subreport_active("ACTIVE\tNEW", function(z) { z$version=="NEW" })
-	subreport_active("ACTIVE\tOLD", function(z) { z$version=="OLD" })
+	subreport_active("TOTAL\tE1,NEW", function(z) { z$env=="E1" & z$version=="NEW"})
+	subreport_active("TOTAL\tE1,OLD", function(z) { z$env=="E1" & z$version=="OLD"})
+	subreport_active("TOTAL\tE2,NEW", function(z) { z$env=="E2" & z$version=="NEW"})
+	subreport_active("TOTAL\tE2,OLD", function(z) { z$env=="E2" & z$version=="OLD"})
+	subreport_active("TOTAL\tE3,NEW", function(z) { z$env=="E3" & z$version=="NEW"})
+	subreport_active("TOTAL\tE3,OLD", function(z) { z$env=="E3" & z$version=="OLD"})
 }
 
 report <- function(label, selected_edges) {
@@ -143,37 +145,7 @@ report <- function(label, selected_edges) {
 }
 
 # PROGRESS SCREEN 
-# 1: minutes  TOTAL time on PROGRESS screen, across users. (total, e1, e2, e3,new, old)
-# 2: % TOTAL time on PROGRESS screen, across users. (total, e1, e2, e3,new, old)
-# 3: minutes TOTAL time on PROGRESS screen, by user. (total, e1, e2, e3,new, old)
-# 4: % TOTAL time on PROGRESS screen, by user. (total, e1, e2, e3,new, old)
-
-# 1 
-sum(progress_edges$duration)/60
-sum(progress_edges[progress_edges[,"env"]=="E1",]$duration)/60
-sum(progress_edges[progress_edges[,"env"]=="E2",]$duration)/60
-sum(progress_edges[progress_edges[,"env"]=="E3",]$duration)/60
-sum(progress_edges[progress_edges[,"version"]=="NEW",]$duration)/60
-sum(progress_edges[progress_edges[,"version"]=="OLD",]$duration)/60
-
-# 2
 report_total("PROGRESS", progress_edges)
-
-# 3
-user_progress_time_all <- screen_time_per_user$`progress_edges$duration`/60
-user_progress_time_e1 <- screen_time_per_user[screen_time_per_user[,"env"]=="E1",]$`progress_edges$duration`/60
-user_progress_time_e2 <- screen_time_per_user[screen_time_per_user[,"env"]=="E2",]$`progress_edges$duration`/60
-user_progress_time_e3 <- screen_time_per_user[screen_time_per_user[,"env"]=="E3",]$`progress_edges$duration`/60
-user_progress_time_new <- screen_time_per_user[screen_time_per_user[,"version"]=="NEW",]$`progress_edges$duration`/60
-user_progress_time_old <- screen_time_per_user[screen_time_per_user[,"version"]=="OLD",]$`progress_edges$duration`/60
-
-# 4
-p_user_progress_time_all <- screen_time_per_user$`progress_edges$duration`/screen_time_per_user$`edges$duration`*100
-p_user_progress_time_e1 <- screen_time_per_user[screen_time_per_user[,"env"]=="E1",]$`progress_edges$duration`/screen_time_per_user[screen_time_per_user[,"env"]=="E1",]$`edges$duration`*100
-p_user_progress_time_e2 <- screen_time_per_user[screen_time_per_user[,"env"]=="E2",]$`progress_edges$duration`/screen_time_per_user[screen_time_per_user[,"env"]=="E2",]$`edges$duration`*100
-p_user_progress_time_e3 <- screen_time_per_user[screen_time_per_user[,"env"]=="E3",]$`progress_edges$duration`/screen_time_per_user[screen_time_per_user[,"env"]=="E3",]$`edges$duration`*100
-p_user_progress_time_new <- screen_time_per_user[screen_time_per_user[,"version"]=="NEW",]$`progress_edges$duration`/screen_time_per_user[screen_time_per_user[,"version"]=="NEW",]$`edges$duration`*100
-p_user_progress_time_old <- screen_time_per_user[screen_time_per_user[,"version"]=="OLD",]$`progress_edges$duration`/screen_time_per_user[screen_time_per_user[,"version"]=="OLD",]$`edges$duration`*100
 
 # FIRST SCREEN
 report("FIRST", first_edges)
@@ -187,15 +159,15 @@ report("BRIDGE", bridge_edges)
 # SUMMARY SCREEN 
 report("SUMMARY", summary_edges)
 
-# 3: distribution of destinations from summary screen 
-# 4: if old interface users clicked back from proxyYES/proxy.
+# 1: distribution of destinations from summary screen 
+# 2: if old interface users clicked back from proxyYES/proxy.
 
-# 3
+# 1
 sum(summary_edges$dst == "bridgeSettings")/nrow(summary_edges)*100
 sum(summary_edges$dst == "progress")/nrow(summary_edges)*100
 barplot(height=table(summary_edges$dst))
 
-#4 
+#2 
 proxy_edges_transitions <- proxy_edges[!proxy_edges[,"dst"] %in% c("proxy","proxyYES"),]
 proxy_edges_transitions <- proxy_edges_transitions[proxy_edges_transitions[,"version"]=="OLD",]
 sum(proxy_edges_transitions$dst == "progress")/nrow(proxy_edges_transitions)*100

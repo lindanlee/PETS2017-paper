@@ -32,7 +32,7 @@ sum(first_attempts$bridge_radio_state == "none")#/nrow(first_attempts)*100
 sum(first_attempts_new$bridge_radio_state == "none")#/nrow(first_attempts_new)*100
 sum(first_attempts_old$bridge_radio_state == "none")#/nrow(first_attempts_old)*100
 
-# How many FIRST attempts were failures. 
+# How many FIRST attempts were failures.
 sum(first_attempts$attempt_successful == "FALSE")/nrow(first_attempts)*100
 sum(first_attempts_new$attempt_successful == "FALSE")/nrow(first_attempts_new)*100
 sum(first_attempts_old$attempt_successful == "FALSE")/nrow(first_attempts_old)*100
