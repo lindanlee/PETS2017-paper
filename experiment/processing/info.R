@@ -104,7 +104,7 @@ screen_time_per_user <- merge(screen_time_per_user, summary_time_per_user, by=c(
 screen_time_per_user[is.na(screen_time_per_user)] <- 0
 
 subreport <- function(label, sublabel, selected_edges, denom_edges, f) {
-	cat(sprintf("%s\t%s\t%s\n", sublabel, label,
+	cat(sprintf("%s\t%s\t%s\t%s\n", sublabel, label, round(sum(selected_edges[f(selected_edges),]$duration)/60),
 		format_percent(sum(selected_edges[f(selected_edges),]$duration)/sum(denom_edges[f(denom_edges),]$duration))))
 }
 
@@ -145,6 +145,9 @@ report <- function(label, selected_edges) {
 
 # PROGRESS SCREEN 
 report_total("PROGRESS", progress_edges)
+
+#ACTIVE TIME (all but progress)
+report_total("ACTIVE",active_edges)
 
 # FIRST SCREEN
 report("FIRST", first_edges)

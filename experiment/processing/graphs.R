@@ -56,7 +56,6 @@ ggsave("time_to_success.pdf", p, width=columnwidth, height=height, device=cairo_
 p <- time_to_success_plot(clamp_time_to_success(participants, maxtime))
 ggsave("time_to_success_clamped.pdf", p, width=columnwidth, height=height, device=cairo_pdf)
 
-
 # Assign each environment a color (E1=blue, E2=orange, E3=green), with NEW
 # being more saturated and OLD being less saturated.
 palette <- c(
