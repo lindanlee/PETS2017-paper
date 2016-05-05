@@ -130,12 +130,12 @@ report_active <- function(label, selected_edges) {
 
 	# % ACTIVE time on screen, across users. (total, e1, e2, e3,new, old)
 	subreport_active("ACTIVE\tAll", function(z) { T })
-	subreport_active("TOTAL\tE1,NEW", function(z) { z$env=="E1" & z$version=="NEW"})
-	subreport_active("TOTAL\tE1,OLD", function(z) { z$env=="E1" & z$version=="OLD"})
-	subreport_active("TOTAL\tE2,NEW", function(z) { z$env=="E2" & z$version=="NEW"})
-	subreport_active("TOTAL\tE2,OLD", function(z) { z$env=="E2" & z$version=="OLD"})
-	subreport_active("TOTAL\tE3,NEW", function(z) { z$env=="E3" & z$version=="NEW"})
-	subreport_active("TOTAL\tE3,OLD", function(z) { z$env=="E3" & z$version=="OLD"})
+	subreport_active("ACTIVE\tE1,NEW", function(z) { z$env=="E1" & z$version=="NEW"})
+	subreport_active("ACTIVE\tE1,OLD", function(z) { z$env=="E1" & z$version=="OLD"})
+	subreport_active("ACTIVE\tE2,NEW", function(z) { z$env=="E2" & z$version=="NEW"})
+	subreport_active("ACTIVE\tE2,OLD", function(z) { z$env=="E2" & z$version=="OLD"})
+	subreport_active("ACTIVE\tE3,NEW", function(z) { z$env=="E3" & z$version=="NEW"})
+	subreport_active("ACTIVE\tE3,OLD", function(z) { z$env=="E3" & z$version=="OLD"})
 }
 
 report <- function(label, selected_edges) {
