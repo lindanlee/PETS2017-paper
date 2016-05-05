@@ -69,7 +69,6 @@ cat("****************************\n")
 # 3: create data frame "screen time per user" which has the time a user spent on each screen 
 
 edges <- filter_edges(read_edges(), participants)
-edges <- trim_edges(trim_edges)
 
 # 1 
 active_edges <- edges[!(edges[,"dst"] %in% c("not_running", "starting", "progress")),] # "active time" is anytime that people are not on the progress screen.
