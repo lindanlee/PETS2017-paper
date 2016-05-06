@@ -21,10 +21,6 @@ edges <- filter_edges(read_edges(), participants)
 if (any(is.na(edges$userid))) {
   stop("found NAs in edges$userid")
 }
-# Ignore "not_running" and "starting", so they just show up as blank.
-edges <- droplevels(edges[!(edges$dst %in% c("not_running", "starting")), ])
-
-state.palette <- brewer.pal(length(levels(edges$dst)), "Set1")
 
 ###################
 # TIME TO SUCCESS #
@@ -84,7 +80,14 @@ ggsave("time_to_success_ecdf.pdf", p, width=columnwidth, height=height, device=c
 
 # GRAPH TIME ON EACH SCREEN 
 
+# Map "starting" to "not_running".
+edges$dst[edges$dst=="starting"] <- "not_running"
+edges <- droplevels(edges)
+
+state.palette <- c("black", brewer.pal(length(levels(edges$dst))-1, "Set1"))
+
 screen.short.labels = c(
+	"not_running"="NR",
 	"first"="F",
 	"bridges"="B1",
 	"bridgeSettings"="B2\nB",
@@ -129,6 +132,7 @@ p <- p + geom_point(data=participants[is.na(participants$time_to_success), ], ae
 p <- p + coord_flip()
 p <- p + scale_y_continuous(breaks=pretty_breaks(n=10))
 p <- p + scale_color_manual("Current screen", values=state.palette, labels=c(
+	"not_running"="not running",
 	"first"="first (F)",
 	"bridges"="bridge yes/no (B1)",
 	"bridgeSettings"="bridge settings (B2/B)",
