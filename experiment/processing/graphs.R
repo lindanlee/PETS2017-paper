@@ -124,6 +124,32 @@ ggsave("percent_per_screen.pdf", p, width=textwidth, height=3, device=cairo_pdf)
 # ALL EDGES #
 #############
 
+scale.names <- c(
+	"not_running",
+	"first",
+	"bridges",
+	"bridgeSettings",
+	"bridgeHelp",
+	"proxy",
+	"proxyYES",
+	"summary",
+	"progress",
+	"error"
+)
+scale.labels <- c(
+	"not running",
+	"first (F)",
+	"bridge yes/no (B1)",
+	"bridge settings (B2/B)",
+	"bridge help (BH)",
+	"proxy yes/no (P1)",
+	"proxy settings (P2/P)",
+	"summary (S)",
+	"progress (Pr)",
+	"error"
+)
+names(scale.labels) <- scale.names
+
 p <- ggplot()
 p <- p + geom_segment(data=participants, size=0.2, color="black", aes(x=userid, xend=userid, y=0, yend=ifelse(!is.na(time_to_success), time_to_success, maxtime)/60))
 p <- p + geom_segment(data=edges, size=1.5, lineend="butt", aes(x=userid, xend=userid, y=time_from_start/60, yend=(time_from_start+duration)/60, color=dst))
@@ -131,18 +157,7 @@ p <- p + geom_segment(data=edges, size=1.5, lineend="butt", aes(x=userid, xend=u
 p <- p + geom_point(data=participants[is.na(participants$time_to_success), ], aes(x=userid, y=maxtime/60), shape=4)
 p <- p + coord_flip()
 p <- p + scale_y_continuous(breaks=pretty_breaks(n=10))
-p <- p + scale_color_manual("Current screen", values=state.palette, labels=c(
-	"not_running"="not running",
-	"first"="first (F)",
-	"bridges"="bridge yes/no (B1)",
-	"bridgeSettings"="bridge settings (B2/B)",
-	"bridgeHelp"="bridge help (BH)",
-	"proxy"="proxy yes/no (P1)",
-	"proxyYES"="proxy settings (P2/P)",
-	"summary"="summary (S)",
-	"progress"="progress (Pr)",
-	"error"="error"
-))
+p <- p + scale_color_manual("Current screen", values=state.palette, labels=scale.labels)
 p <- p + labs(title=NULL, x=NULL, y="Minutes elapsed")
 p <- common_theme(p)
 p <- p + theme(panel.grid.minor.x=element_blank())
