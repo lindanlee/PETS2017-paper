@@ -9,6 +9,9 @@ attempts <- attempts[order(attempts$seat, attempts$runid, attempts$time_from_sta
 # Remove attempts after the first successful one.
 attempts <- attempts[is.na(attempts$time_to_success) | attempts$time_from_start <= attempts$time_to_success, ]
 
+# Hack to make DNF time to successes 40:08
+attempts$time_to_success[is.na(attempts$time_to_success)] <- 40*60 + 8
+
 attempts$bridge_default_selection[!attempts$bridge_yesno] <- NA
 
 # Show all attempts (up to first success).
@@ -22,12 +25,17 @@ sum(attempts$attempt_successful == "FALSE")/nrow(attempts)*100
 
 # How many FIRST attempts were direct. 
 first_attempts <- subset(attempts, subset = !duplicated(attempts[c("userid")]))
-first_attempts_new <-  first_attempts[first_attempts[,"version"]=="NEW",]
-first_attempts_old <- first_attempts[first_attempts[,"version"]=="OLD",]
-first_attempts_e1 <- first_attempts[first_attempts[,"env"]=="E1",]
-first_attempts_e2 <- first_attempts[first_attempts[,"env"]=="E2",]
-first_attempts_e3 <- first_attempts[first_attempts[,"env"]=="E3",]
+# Calculate time saved by automating after the first connection. 
+first_attempts$time_after_first <- first_attempts$time_to_success - first_attempts$time_from_start
 
+first_attempts_E1_NEW <-  first_attempts[first_attempts[,"env"]=="E1" & first_attempts[,"version"]=="NEW",]
+first_attempts_E1_OLD <-  first_attempts[first_attempts[,"env"]=="E1" & first_attempts[,"version"]=="OLD",]
+first_attempts_E2_NEW <-  first_attempts[first_attempts[,"env"]=="E2" & first_attempts[,"version"]=="NEW",]
+first_attempts_E2_OLD <-  first_attempts[first_attempts[,"env"]=="E2" & first_attempts[,"version"]=="OLD",]
+first_attempts_E3_NEW <-  first_attempts[first_attempts[,"env"]=="E3" & first_attempts[,"version"]=="NEW",]
+first_attempts_E3_OLD <-  first_attempts[first_attempts[,"env"]=="E3" & first_attempts[,"version"]=="OLD",]
+
+#? 
 sum(first_attempts$bridge_radio_state == "none")#/nrow(first_attempts)*100
 sum(first_attempts_new$bridge_radio_state == "none")#/nrow(first_attempts_new)*100
 sum(first_attempts_old$bridge_radio_state == "none")#/nrow(first_attempts_old)*100
