@@ -46,9 +46,6 @@ time_to_success_plot <- function(participants) {
   p
 }
 
-p <- time_to_success_plot(participants)
-ggsave("time_to_success.pdf", p, width=columnwidth, height=height, device=cairo_pdf)
-
 p <- time_to_success_plot(clamp_time_to_success(participants, maxtime))
 ggsave("time_to_success_clamped.pdf", p, width=columnwidth, height=height, device=cairo_pdf)
 

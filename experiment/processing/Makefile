@@ -1,4 +1,4 @@
-GRAPHS = time_to_success.pdf time_to_success_clamped.pdf time_to_success_ecdf.pdf all-participant-edges.pdf \
+GRAPHS = time_to_success_clamped.pdf time_to_success_ecdf.pdf all-participant-edges.pdf \
 	time_per_screen.pdf percent_per_screen.pdf
 
 all: $(GRAPHS)
