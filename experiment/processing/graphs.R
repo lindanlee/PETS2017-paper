@@ -51,6 +51,9 @@ time_to_success_plot <- function(edges) {
 p <- time_to_success_plot(edges)
 ggsave("time_to_success_clamped.pdf", p, width=columnwidth, height=height, device=cairo_pdf)
 
+p <- time_to_success_plot(edges[is_active_edge(edges), ])
+ggsave("time_to_success_active_clamped.pdf", p, width=columnwidth, height=height, device=cairo_pdf)
+
 # Assign each environment a color (E1=blue, E2=orange, E3=green), with NEW
 # being more saturated and OLD being less saturated.
 palette <- c(
