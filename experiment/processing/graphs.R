@@ -148,15 +148,28 @@ scale.labels <- c(
 	"progress (Pr)",
 	"error"
 )
+scale.sizes <- c(
+	0.2,
+	1.5,
+	1.5,
+	1.5,
+	1.5,
+	1.5,
+	1.5,
+	1.5,
+	1.5,
+	1.5
+)
 names(scale.labels) <- scale.names
+names(scale.sizes) <- scale.names
 
 p <- ggplot()
-p <- p + geom_segment(data=participants, size=0.2, color="black", aes(x=userid, xend=userid, y=0, yend=ifelse(!is.na(time_to_success), time_to_success, maxtime)/60))
-p <- p + geom_segment(data=edges, size=1.5, lineend="butt", aes(x=userid, xend=userid, y=time_from_start/60, yend=(time_from_start+duration)/60, color=dst))
+p <- p + geom_segment(data=edges, lineend="butt", aes(x=userid, xend=userid, y=time_from_start/60, yend=(time_from_start+duration)/60, color=dst, size=dst))
 # p <- p + geom_point(color="black", size=1.5, shape="|")
 p <- p + geom_point(data=participants[is.na(participants$time_to_success), ], aes(x=userid, y=maxtime/60), shape=4)
 p <- p + coord_flip()
 p <- p + scale_y_continuous(breaks=pretty_breaks(n=10))
+p <- p + scale_size_manual("Current screen", values=scale.sizes, labels=scale.labels)
 p <- p + scale_color_manual("Current screen", values=state.palette, labels=scale.labels)
 p <- p + labs(title=NULL, x=NULL, y="Minutes elapsed")
 p <- common_theme(p)

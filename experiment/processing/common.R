@@ -70,6 +70,8 @@ filter_edges <- function(edges, participants) {
 	edges <- edges[is.na(edges$time_to_success) | edges$time_from_start < edges$time_to_success, ]
 	# Cut off the logs at our time limit.
 	edges <- trim_edges(edges, maxtime)
+	# Pad out the last edge if needed.
+	edges <- pad_edges(edges, maxtime)
 	edges$src <- canonicalize_screens(edges$version, edges$src)
 	edges$dst <- canonicalize_screens(edges$version, edges$dst)
 	edges
@@ -88,6 +90,31 @@ trim_edges <- function(edges, maxtime) {
 	edges <- edges[edges$time_from_start < maxtime, ]
 	edges$duration <- ifelse(edges$time_from_start + edges$duration > maxtime, maxtime - edges$time_from_start, edges$duration)
 	edges
+}
+
+# For those participants with is.na(time_to_success), add an additional
+# edge that goes from the latest edge up to maxtime, whose src and dst
+# are the same as the dst of the latest edge.
+pad_edges <- function(edges, maxtime) {
+	# Get a data frame consisting of only the latest edge for each (seat, runid).
+	# suppressWarnings because ave(..., FUN=max) warns "no non-missing
+	# arguments to max; returning -Inf"; presumably it internally creates
+	# some zero-length vectors and passes them to FUN, even if not using
+	# their output.
+	new.edges <- suppressWarnings(edges[edges$sequence == ave(edges$sequence, edges$seat, edges$runid, FUN=max), ])
+	# Throw out those that don't need padding.
+	new.edges <- new.edges[is.na(new.edges$time_to_success) & new.edges$time_from_start + new.edges$duration < maxtime, ]
+	# Modify the new edge so that it follows the latest edge.
+	new.edges$sequence <- new.edges$sequence + 1
+	new.edges$src <- new.edges$dst
+	new.edges$time_from_start <- new.edges$time_from_start + new.edges$duration
+	new.edges$duration <- maxtime - new.edges$time_from_start
+	new.edges$event_type <- NA
+	new.edges$event_target <- NA
+	new.edges$event_value <- NA
+
+	# Tack the new edges on to the end of the list.
+	rbind(edges, new.edges)
 }
 
 common_theme <- function(p) {
