@@ -26,7 +26,9 @@ if (any(is.na(edges$userid))) {
 # TIME TO SUCCESS #
 ###################
 
-time_to_success_plot <- function(participants) {
+time_to_success_plot <- function(edges) {
+  participants <- aggregate(duration ~ label + success + seat + runid, data=edges, sum)
+  colnames(participants)[colnames(participants)=="duration"] <- "time_to_success"
   minutes_to_success <- participants$time_to_success/60
   max_minutes <- max(minutes_to_success, na.rm=T)+9
   p <- ggplot(data.frame(participants, minutes_to_success), aes(x=label, y=minutes_to_success), environment=environment())
@@ -46,7 +48,7 @@ time_to_success_plot <- function(participants) {
   p
 }
 
-p <- time_to_success_plot(clamp_time_to_success(participants, maxtime))
+p <- time_to_success_plot(edges)
 ggsave("time_to_success_clamped.pdf", p, width=columnwidth, height=height, device=cairo_pdf)
 
 # Assign each environment a color (E1=blue, E2=orange, E3=green), with NEW
