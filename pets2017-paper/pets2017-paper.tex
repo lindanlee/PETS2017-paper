@@ -812,40 +812,64 @@ except for those we cut off after approximately 40 minutes
 \label{fig:all-participant-edges}
 \end{figure*}
 
-The time to success was largely dominated by the time spent waiting to connect to Tor, rather than actively configuring the interface. Logs show that participants spent 64\% of their overall time at the progress screen. 
-Participants using the new interface and old interface spent approximately the same amount of absolute time on the progress screen (359 minutes versus 339 minutes, respectively). 
-Table ~\ref{table:overall_time} shows the percentage of time spent on each screen,
-computed by the total number of minutes all participants spent on each screen. 
+The time to success was largely dominated by the time spent waiting to connect to Tor, rather than actively configuring the interface. Logs show that participants spent 58\% of their overall time at the progress screen. 
+{\color {red} discuss by environment (time on first) and by version (proxy).}
+Table ~\ref{table:median_time} shows the median percentage of time spent on each screen,
+computed independently for each screen. 
 
 We believe participants spent a long time on the progress screen for a combination of reasons. Even with correct configurations, the bootstrap process can take up to two minutes. With incorrect settings, we suspect that participants waited because the interface instructs them ``wait a couple minutes.'' A lack of error messages and timeouts on the progress screen, also caused some users to wait indefinitely. 
 
-\begin{table}
+\begin{table}[t]
 \centering
-	\begin{tabular}{c r r r r r}
-	 & First & Proxy & Bridge & Summary & Progress \\
+	\begin{tabular}{c r r r r}
+	& First & Proxy & Bridge & Progress \\
 	\noalign{\hrule}
-	All &  5\% & 17\% & 6\% & 0\% & 64\% \\
-	E1-NEW & 34\% & 4\% & 6\% & 1\% & 50\% \\
-	E1-OLD & 23\% & 35\% & 9\% & N/A & 21\% \\
-	E2-NEW & 5\% & 4\% & 4\% & 1\% & 80\% \\
-	E2-OLD & 4\% & 22\% & 4\% & N/A & 66\% \\
-	E3-NEW & 6\% & 7\% & 4\% & 1\% & 70\% \\
-	E3-OLD & 4\% & 25\% & 9\% & N/A & 60\% \\
+	All & 7\% & 5\% & 4\% & 58\% \\
+	E1-NEW & 28\% & 0\% & 0\% & 60\% \\
+	E1-OLD & 30\% & 0\% & 0\% & 29\% \\
+	E2-NEW & 6\% & 5\% & 5\% & 80\% \\
+	E2-OLD & 7\% & 18\% & 8\% & 45\% \\
+	E3-NEW & 4\% & 3\% & 5\% & 78\% \\
+	E3-OLD & 3\% & 11\% & 6\% & 60\% \\
+	% (median, total) 
+	%All & (7, 5)\% & (5, 17)\% & (4, 6)\% & (58, 64)\% \\
+	%E1-NEW & (28, 34)\% & (0, 4)\% & (0, 6)\% & (60, 50)\% \\
+	%E1-OLD & (30, 23)\% & (0, 35)\% & (0, 9)\% & (29, 21)\% \\
+	%E2-NEW & (6, 5)\% & (5, 4)\% & (5, 4)\% & (80, 80)\% \\
+	%E2-OLD & (7, 4)\% & (18, 22)\% & (8, 4)\% & (45, 66)\% \\
+	%E3-NEW & (4, 6)\% & (3, 7)\% & (5, 4)\% & (78, 70)\% \\
+	%E3-OLD & (3, 4)\% & (11, 25)\% & (6, 9)\% & (60, 60)\% \\
 	\end{tabular}
-\caption{Fraction of time spent on each screen, 
-computed by the total number of minutes all participants spent on each screen. 
-Participants spent most of their time on the progress screen.
-Additionally, participants spent proportionally more time on the proxy screen than on the bridge screen,
-although none of the censorship environments required a proxy.
-Participants spent less time on the proxy screen
-in the ``NEW'' interface (which explicitly stated that they did not need a proxy) compared to the ``OLD.''} 
-\label{table:overall_time}
+\caption{The median percent of time participants spent on each screen, which is not
+necessarily the median absolute time spent on that screen. 
+This percentage independent for each screen; that is, a participant who spent the median percent 
+of time on one screen may not be the same participant who spent the median percent
+of time on other screens.} 
+\label{table:median_time}
 \end{table}
+
+%\begin{table}[t]
+%\centering
+%	\begin{tabular}{c r r r r}
+%	& First & Proxy & Bridge & Progress \\
+%	\noalign{\hrule}
+%	All & 5\% & 17\% & 6\% & 64\% \\
+%	E1-NEW & 34\% & 4\% & 6\% & 50\% \\
+%	E1-OLD & 23\% & 35\% & 9\% & 21\% \\
+%	E2-NEW & 5\% & 4\% & 4\% & 80\% \\
+%	E2-OLD & 4\% & 22\% & 4\% & 66\% \\
+%	E3-NEW & 6\% & 7\% & 4\% & 70\% \\
+%	E3-OLD & 4\% & 25\% & 9\% & 60\% \\
+%	\end{tabular}
+%\caption{The overall percent of time all participants spent on each screen, computed by
+%dividing the aggregate number of time on a screen by the aggregate time on all screens.} 
+%\label{table:overall_time}
+%\end{table}
 
 \begin{table}
 \centering
 	\begin{tabular}{c r r}
-	 & Total Active Minutes & \% of Overall Time \\
+	 & Total Active Minutes & Total \% of Overall Time \\
 	\noalign{\hrule}
 	All & 381 & 29\% \\ 
 	E1-NEW & 4 & 45\% \\

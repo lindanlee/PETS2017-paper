@@ -83,6 +83,7 @@ summary_edges <- edges[edges[,"dst"]== "summary",]
 # 2
 total_time_per_user <- aggregate(edges$duration ~ edges$userid, edges, sum)
 active_time_per_user <- aggregate(active_edges$duration ~ active_edges$userid, active_edges, sum)
+active_time_per_user[percent_time] <- 
 not_running_time_per_user <- aggregate(not_running_edges$duration ~ not_running_edges$userid, not_running_edges, sum)
 starting_time_per_user <- aggregate(starting_edges$duration ~ starting_edges$userid, starting_edges, sum)
 progress_time_per_user <- aggregate(progress_edges$duration ~ progress_edges$userid, progress_edges, sum)
@@ -98,14 +99,16 @@ screen_time_per_user <- merge(screen_time_per_user, active_time_per_user, by=c(1
 screen_time_per_user <- merge(screen_time_per_user, not_running_time_per_user, by=c(1), all=T)
 screen_time_per_user <- merge(screen_time_per_user, starting_time_per_user, by=c(1), all=T)
 screen_time_per_user <- merge(screen_time_per_user, progress_time_per_user, by=c(1), all=T)
+screen_time_per_user <- merge(screen_time_per_user, first_time_per_user, by=c(1), all=T)
 screen_time_per_user <- merge(screen_time_per_user, proxy_time_per_user, by=c(1), all=T)
 screen_time_per_user <- merge(screen_time_per_user, bridge_time_per_user, by=c(1), all=T)
 screen_time_per_user <- merge(screen_time_per_user, summary_time_per_user, by=c(1), all=T)
 screen_time_per_user[is.na(screen_time_per_user)] <- 0
 
 subreport <- function(label, sublabel, selected_edges, denom_edges, f) {
-	cat(sprintf("%s\t%s\t%s\t%s\n", sublabel, label, round(sum(selected_edges[f(selected_edges),]$duration)/60),
-		format_percent(sum(selected_edges[f(selected_edges),]$duration)/sum(denom_edges[f(denom_edges),]$duration))))
+	cat(sprintf("%s\t%s\t%s\t%s\n", sublabel, label, 
+	            round(sum(selected_edges[f(selected_edges),]$duration)/60),
+	            format_percent(sum(selected_edges[f(selected_edges),]$duration)/sum(denom_edges[f(denom_edges),]$duration))))
 }
 
 report_total <- function(label, selected_edges) {
@@ -139,6 +142,7 @@ report_active <- function(label, selected_edges) {
 }
 
 report <- function(label, selected_edges) {
+  cat(sprintf("-\t-\t-\tall-min\tall-%%\n"))
 	report_total(label, selected_edges)
 	report_active(label, selected_edges)
 }
@@ -146,20 +150,91 @@ report <- function(label, selected_edges) {
 # PROGRESS SCREEN 
 report_total("PROGRESS", progress_edges)
 
+median(screen_time_per_user$`progress_edges$duration`/screen_time_per_user$`edges$duration`)
+median(screen_time_per_user[screen_time_per_user[,"env"]== "E1" & screen_time_per_user[,"version"]== "NEW",]$`progress_edges$duration`/
+         screen_time_per_user[screen_time_per_user[,"env"]== "E1" & screen_time_per_user[,"version"]== "NEW",]$`edges$duration`)
+median(screen_time_per_user[screen_time_per_user[,"env"]== "E1" & screen_time_per_user[,"version"]== "OLD",]$`progress_edges$duration`/
+         screen_time_per_user[screen_time_per_user[,"env"]== "E1" & screen_time_per_user[,"version"]== "OLD",]$`edges$duration`)
+median(screen_time_per_user[screen_time_per_user[,"env"]== "E2" & screen_time_per_user[,"version"]== "NEW",]$`progress_edges$duration`/
+         screen_time_per_user[screen_time_per_user[,"env"]== "E2" & screen_time_per_user[,"version"]== "NEW",]$`edges$duration`)
+median(screen_time_per_user[screen_time_per_user[,"env"]== "E2" & screen_time_per_user[,"version"]== "OLD",]$`progress_edges$duration`/
+         screen_time_per_user[screen_time_per_user[,"env"]== "E2" & screen_time_per_user[,"version"]== "OLD",]$`edges$duration`)
+median(screen_time_per_user[screen_time_per_user[,"env"]== "E3" & screen_time_per_user[,"version"]== "NEW",]$`progress_edges$duration`/
+         screen_time_per_user[screen_time_per_user[,"env"]== "E3" & screen_time_per_user[,"version"]== "NEW",]$`edges$duration`)
+median(screen_time_per_user[screen_time_per_user[,"env"]== "E3" & screen_time_per_user[,"version"]== "OLD",]$`progress_edges$duration`/
+         screen_time_per_user[screen_time_per_user[,"env"]== "E3" & screen_time_per_user[,"version"]== "OLD",]$`edges$duration`)
+
 #ACTIVE TIME (all but progress)
 report_total("ACTIVE",active_edges)
+
+median(screen_time_per_user$`active_edges$duration`/screen_time_per_user$`edges$duration`)
+median(screen_time_per_user[screen_time_per_user[,"env"]== "E1" & screen_time_per_user[,"version"]== "NEW",]$`active_edges$duration`/
+         screen_time_per_user[screen_time_per_user[,"env"]== "E1" & screen_time_per_user[,"version"]== "NEW",]$`edges$duration`)
+median(screen_time_per_user[screen_time_per_user[,"env"]== "E1" & screen_time_per_user[,"version"]== "OLD",]$`active_edges$duration`/
+         screen_time_per_user[screen_time_per_user[,"env"]== "E1" & screen_time_per_user[,"version"]== "OLD",]$`edges$duration`)
+median(screen_time_per_user[screen_time_per_user[,"env"]== "E2" & screen_time_per_user[,"version"]== "NEW",]$`active_edges$duration`/
+         screen_time_per_user[screen_time_per_user[,"env"]== "E2" & screen_time_per_user[,"version"]== "NEW",]$`edges$duration`)
+median(screen_time_per_user[screen_time_per_user[,"env"]== "E2" & screen_time_per_user[,"version"]== "OLD",]$`active_edges$duration`/
+         screen_time_per_user[screen_time_per_user[,"env"]== "E2" & screen_time_per_user[,"version"]== "OLD",]$`edges$duration`)
+median(screen_time_per_user[screen_time_per_user[,"env"]== "E3" & screen_time_per_user[,"version"]== "NEW",]$`active_edges$duration`/
+         screen_time_per_user[screen_time_per_user[,"env"]== "E3" & screen_time_per_user[,"version"]== "NEW",]$`edges$duration`)
+median(screen_time_per_user[screen_time_per_user[,"env"]== "E3" & screen_time_per_user[,"version"]== "OLD",]$`active_edges$duration`/
+         screen_time_per_user[screen_time_per_user[,"env"]== "E3" & screen_time_per_user[,"version"]== "OLD",]$`edges$duration`)
+
 
 # FIRST SCREEN
 report("FIRST", first_edges)
 
+median(screen_time_per_user$`first_edges$duration`/screen_time_per_user$`edges$duration`)
+median(screen_time_per_user[screen_time_per_user[,"env"]== "E1" & screen_time_per_user[,"version"]== "NEW",]$`first_edges$duration`/
+         screen_time_per_user[screen_time_per_user[,"env"]== "E1" & screen_time_per_user[,"version"]== "NEW",]$`edges$duration`)
+median(screen_time_per_user[screen_time_per_user[,"env"]== "E1" & screen_time_per_user[,"version"]== "OLD",]$`first_edges$duration`/
+         screen_time_per_user[screen_time_per_user[,"env"]== "E1" & screen_time_per_user[,"version"]== "OLD",]$`edges$duration`)
+median(screen_time_per_user[screen_time_per_user[,"env"]== "E2" & screen_time_per_user[,"version"]== "NEW",]$`first_edges$duration`/
+         screen_time_per_user[screen_time_per_user[,"env"]== "E2" & screen_time_per_user[,"version"]== "NEW",]$`edges$duration`)
+median(screen_time_per_user[screen_time_per_user[,"env"]== "E2" & screen_time_per_user[,"version"]== "OLD",]$`first_edges$duration`/
+         screen_time_per_user[screen_time_per_user[,"env"]== "E2" & screen_time_per_user[,"version"]== "OLD",]$`edges$duration`)
+median(screen_time_per_user[screen_time_per_user[,"env"]== "E3" & screen_time_per_user[,"version"]== "NEW",]$`first_edges$duration`/
+         screen_time_per_user[screen_time_per_user[,"env"]== "E3" & screen_time_per_user[,"version"]== "NEW",]$`edges$duration`)
+median(screen_time_per_user[screen_time_per_user[,"env"]== "E3" & screen_time_per_user[,"version"]== "OLD",]$`first_edges$duration`/
+         screen_time_per_user[screen_time_per_user[,"env"]== "E3" & screen_time_per_user[,"version"]== "OLD",]$`edges$duration`)
+
+
 # PROXY SCREEN
 report("PROXY", proxy_edges)
+median(screen_time_per_user$`proxy_edges$duration`/screen_time_per_user$`edges$duration`)
+median(screen_time_per_user[screen_time_per_user[,"env"]== "E1" & screen_time_per_user[,"version"]== "NEW",]$`proxy_edges$duration`/
+         screen_time_per_user[screen_time_per_user[,"env"]== "E1" & screen_time_per_user[,"version"]== "NEW",]$`edges$duration`)
+median(screen_time_per_user[screen_time_per_user[,"env"]== "E1" & screen_time_per_user[,"version"]== "OLD",]$`proxy_edges$duration`/
+         screen_time_per_user[screen_time_per_user[,"env"]== "E1" & screen_time_per_user[,"version"]== "OLD",]$`edges$duration`)
+median(screen_time_per_user[screen_time_per_user[,"env"]== "E2" & screen_time_per_user[,"version"]== "NEW",]$`proxy_edges$duration`/
+         screen_time_per_user[screen_time_per_user[,"env"]== "E2" & screen_time_per_user[,"version"]== "NEW",]$`edges$duration`)
+median(screen_time_per_user[screen_time_per_user[,"env"]== "E2" & screen_time_per_user[,"version"]== "OLD",]$`proxy_edges$duration`/
+         screen_time_per_user[screen_time_per_user[,"env"]== "E2" & screen_time_per_user[,"version"]== "OLD",]$`edges$duration`)
+median(screen_time_per_user[screen_time_per_user[,"env"]== "E3" & screen_time_per_user[,"version"]== "NEW",]$`proxy_edges$duration`/
+         screen_time_per_user[screen_time_per_user[,"env"]== "E3" & screen_time_per_user[,"version"]== "NEW",]$`edges$duration`)
+median(screen_time_per_user[screen_time_per_user[,"env"]== "E3" & screen_time_per_user[,"version"]== "OLD",]$`proxy_edges$duration`/
+         screen_time_per_user[screen_time_per_user[,"env"]== "E3" & screen_time_per_user[,"version"]== "OLD",]$`edges$duration`)
 
 # BRIDGE SCREEN
 report("BRIDGE", bridge_edges)
+median(screen_time_per_user$`bridge_edges$duration`/screen_time_per_user$`edges$duration`)
+median(screen_time_per_user[screen_time_per_user[,"env"]== "E1" & screen_time_per_user[,"version"]== "NEW",]$`bridge_edges$duration`/
+         screen_time_per_user[screen_time_per_user[,"env"]== "E1" & screen_time_per_user[,"version"]== "NEW",]$`edges$duration`)
+median(screen_time_per_user[screen_time_per_user[,"env"]== "E1" & screen_time_per_user[,"version"]== "OLD",]$`bridge_edges$duration`/
+         screen_time_per_user[screen_time_per_user[,"env"]== "E1" & screen_time_per_user[,"version"]== "OLD",]$`edges$duration`)
+median(screen_time_per_user[screen_time_per_user[,"env"]== "E2" & screen_time_per_user[,"version"]== "NEW",]$`bridge_edges$duration`/
+         screen_time_per_user[screen_time_per_user[,"env"]== "E2" & screen_time_per_user[,"version"]== "NEW",]$`edges$duration`)
+median(screen_time_per_user[screen_time_per_user[,"env"]== "E2" & screen_time_per_user[,"version"]== "OLD",]$`bridge_edges$duration`/
+         screen_time_per_user[screen_time_per_user[,"env"]== "E2" & screen_time_per_user[,"version"]== "OLD",]$`edges$duration`)
+median(screen_time_per_user[screen_time_per_user[,"env"]== "E3" & screen_time_per_user[,"version"]== "NEW",]$`bridge_edges$duration`/
+         screen_time_per_user[screen_time_per_user[,"env"]== "E3" & screen_time_per_user[,"version"]== "NEW",]$`edges$duration`)
+median(screen_time_per_user[screen_time_per_user[,"env"]== "E3" & screen_time_per_user[,"version"]== "OLD",]$`bridge_edges$duration`/
+         screen_time_per_user[screen_time_per_user[,"env"]== "E3" & screen_time_per_user[,"version"]== "OLD",]$`edges$duration`)
 
 # SUMMARY SCREEN 
 report("SUMMARY", summary_edges)
+median(screen_time_per_user$`summary_edges$duration`/screen_time_per_user$`edges$duration`)
 
 # 1: distribution of destinations from summary screen 
 # 2: if old interface users clicked back from proxyYES/proxy.
