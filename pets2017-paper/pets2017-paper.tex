@@ -762,6 +762,15 @@ for the purpose of computing the median.
 \label{fig:time_to_success_clamped}
 \end{figure}
 
+\begin{figure}[t]
+\centering
+\includegraphics{time_to_success_active_clamped}
+\caption{
+Active-time configuration.
+}
+\label{fig:time_to_success_active_clamped}
+\end{figure}
+
 In our experiment, participants had 40 minutes to circumvent censorship. Fig.~\ref{fig:time_to_success_ecdf} shows the cumulative success rates over time. In practice, faster time to completion would mean more users will succeed, since users will give up after a while. Users in the wild will likely not be motivated to spend 40 minutes trying to configure Tor. If users were only willing to put in a minute or so of their time, users in intermediate and heavily censored environments would be unable to connect. Even if users were willing to dedicate 10 minutes to configuring their connection, most users in heavily censored environments would be unable to connect. Ideally, users should be able to connect to Tor within a few minutes, regardless of their censorship environment. We propose ideas on how to achieve this in section~\ref{recommendations}. 
 
 \begin{figure}[t]

@@ -21,16 +21,14 @@ edges <- filter_edges(read_edges(), participants)
 if (any(is.na(edges$userid))) {
   stop("found NAs in edges$userid")
 }
-# Ignore "not_running" and "starting", so they just show up as blank.
-edges <- droplevels(edges[!(edges$dst %in% c("not_running", "starting")), ])
-
-state.palette <- brewer.pal(length(levels(edges$dst)), "Set1")
 
 ###################
 # TIME TO SUCCESS #
 ###################
 
-time_to_success_plot <- function(participants) {
+time_to_success_plot <- function(edges) {
+  participants <- aggregate(duration ~ label + success + seat + runid, data=edges, sum)
+  colnames(participants)[colnames(participants)=="duration"] <- "time_to_success"
   minutes_to_success <- participants$time_to_success/60
   max_minutes <- max(minutes_to_success, na.rm=T)+9
   p <- ggplot(data.frame(participants, minutes_to_success), aes(x=label, y=minutes_to_success), environment=environment())
@@ -50,11 +48,11 @@ time_to_success_plot <- function(participants) {
   p
 }
 
-p <- time_to_success_plot(participants)
-ggsave("time_to_success.pdf", p, width=columnwidth, height=height, device=cairo_pdf)
-
-p <- time_to_success_plot(clamp_time_to_success(participants, maxtime))
+p <- time_to_success_plot(edges)
 ggsave("time_to_success_clamped.pdf", p, width=columnwidth, height=height, device=cairo_pdf)
+
+p <- time_to_success_plot(edges[is_active_edge(edges), ])
+ggsave("time_to_success_active_clamped.pdf", p, width=columnwidth, height=height, device=cairo_pdf)
 
 # Assign each environment a color (E1=blue, E2=orange, E3=green), with NEW
 # being more saturated and OLD being less saturated.
@@ -84,7 +82,14 @@ ggsave("time_to_success_ecdf.pdf", p, width=columnwidth, height=height, device=c
 
 # GRAPH TIME ON EACH SCREEN 
 
+# Map "starting" to "not_running".
+edges$dst[edges$dst=="starting"] <- "not_running"
+edges <- droplevels(edges)
+
+state.palette <- c("black", brewer.pal(length(levels(edges$dst))-1, "Set1"))
+
 screen.short.labels = c(
+	"not_running"="NR",
 	"first"="F",
 	"bridges"="B1",
 	"bridgeSettings"="B2\nB",
@@ -121,24 +126,53 @@ ggsave("percent_per_screen.pdf", p, width=textwidth, height=3, device=cairo_pdf)
 # ALL EDGES #
 #############
 
+scale.names <- c(
+	"not_running",
+	"first",
+	"bridges",
+	"bridgeSettings",
+	"bridgeHelp",
+	"proxy",
+	"proxyYES",
+	"summary",
+	"progress",
+	"error"
+)
+scale.labels <- c(
+	"not running",
+	"first (F)",
+	"bridge yes/no (B1)",
+	"bridge settings (B2/B)",
+	"bridge help (BH)",
+	"proxy yes/no (P1)",
+	"proxy settings (P2/P)",
+	"summary (S)",
+	"progress (Pr)",
+	"error"
+)
+scale.sizes <- c(
+	0.2,
+	1.5,
+	1.5,
+	1.5,
+	1.5,
+	1.5,
+	1.5,
+	1.5,
+	1.5,
+	1.5
+)
+names(scale.labels) <- scale.names
+names(scale.sizes) <- scale.names
+
 p <- ggplot()
-p <- p + geom_segment(data=participants, size=0.2, color="black", aes(x=userid, xend=userid, y=0, yend=ifelse(!is.na(time_to_success), time_to_success, maxtime)/60))
-p <- p + geom_segment(data=edges, size=1.5, lineend="butt", aes(x=userid, xend=userid, y=time_from_start/60, yend=(time_from_start+duration)/60, color=dst))
+p <- p + geom_segment(data=edges, lineend="butt", aes(x=userid, xend=userid, y=time_from_start/60, yend=(time_from_start+duration)/60, color=dst, size=dst))
 # p <- p + geom_point(color="black", size=1.5, shape="|")
 p <- p + geom_point(data=participants[is.na(participants$time_to_success), ], aes(x=userid, y=maxtime/60), shape=4)
 p <- p + coord_flip()
 p <- p + scale_y_continuous(breaks=pretty_breaks(n=10))
-p <- p + scale_color_manual("Current screen", values=state.palette, labels=c(
-	"first"="first (F)",
-	"bridges"="bridge yes/no (B1)",
-	"bridgeSettings"="bridge settings (B2/B)",
-	"bridgeHelp"="bridge help (BH)",
-	"proxy"="proxy yes/no (P1)",
-	"proxyYES"="proxy settings (P2/P)",
-	"summary"="summary (S)",
-	"progress"="progress (Pr)",
-	"error"="error"
-))
+p <- p + scale_size_manual("Current screen", values=scale.sizes, labels=scale.labels)
+p <- p + scale_color_manual("Current screen", values=state.palette, labels=scale.labels)
 p <- p + labs(title=NULL, x=NULL, y="Minutes elapsed")
 p <- common_theme(p)
 p <- p + theme(panel.grid.minor.x=element_blank())

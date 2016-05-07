@@ -71,7 +71,7 @@ cat("****************************\n")
 edges <- filter_edges(read_edges(), participants)
 
 # 1 
-active_edges <- edges[!(edges[,"dst"] %in% c("not_running", "starting", "progress")),] # "active time" is anytime that people are not on the progress screen.
+active_edges <- edges[is_active_edge(edges), ]
 not_running_edges <- edges[edges[,"dst"]== "not_running",]
 starting_edges <- edges[edges[,"dst"]== "starting",]
 progress_edges <- edges[edges[,"dst"]== "progress",]
