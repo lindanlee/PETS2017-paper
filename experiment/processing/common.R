@@ -117,6 +117,10 @@ pad_edges <- function(edges, maxtime) {
 	rbind(edges, new.edges)
 }
 
+is_active_edge <- function(edges) {
+	!(edges$dst %in% c("not_running", "starting", "progress"))
+}
+
 common_theme <- function(p) {
 	p <- p + theme_minimal()
 	p <- p + theme(text=element_text(size=8))
