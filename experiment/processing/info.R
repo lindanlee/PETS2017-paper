@@ -1,7 +1,7 @@
 library(coin)
 source("common.R")
 
-participants <- read_participants()
+participants <- filter_participants(read_participants())
 
 format_percent <- function(x) {
 	sprintf("%5.1f%%", 100*x)
@@ -276,15 +276,17 @@ success_rates = with(participants, aggregate(success, list(env=env, version=vers
 
 cat("\n")
 cat("impact of version on success rates \n")
-wilcox.test(x ~ version, data=success_rates)
+wilcox.test(x ~ version, data=success_rates, paired=FALSE)
 
 cat("impact of version on times to completion \n")
-wilcox.test(time_to_success ~ version, data=clamp_time_to_success(participants, maxtime))
+clamped_time <- clamp_time_to_success(participants, maxtime)
+#one-tailed mann-whitney U for right-tailed data, with DNFs = 40:08. 
+wilcox.test(time_to_success ~ version, data=clamped_time, paired=FALSE, alternative="less")
 
 cat("impact of version on active time \n")
-wilcox.test(screen_time_per_user$`active_edges$duration` ~ version, data=screen_time_per_user)
-wilcox_test(screen_time_per_user$`active_edges$duration` ~ version, data=screen_time_per_user)
-
+#one-tailed mann-whitney U for right-tailed data, with DNFs = 40:08-time on progress screen.
+wilcox.test(screen_time_per_user$`active_edges$duration` ~ version, data=screen_time_per_user, paired=FALSE, alternative="less")
+wilcox_test(screen_time_per_user$`active_edges$duration` ~ version, data=screen_time_per_user, paired=FALSE, alternative="less")
 
 cat("\n\n\n\n")
 cat("impact of environment on success rates\n")
