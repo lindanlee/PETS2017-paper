@@ -762,15 +762,6 @@ for the purpose of computing the median.
 \label{fig:time_to_success_clamped}
 \end{figure}
 
-\begin{figure}[t]
-\centering
-\includegraphics{time_to_success_active_clamped}
-\caption{
-Active-time configuration.
-}
-\label{fig:time_to_success_active_clamped}
-\end{figure}
-
 In our experiment, participants had 40 minutes to circumvent censorship. Fig.~\ref{fig:time_to_success_ecdf} shows the cumulative success rates over time. In practice, faster time to completion would mean more users will succeed, since users will give up after a while. Users in the wild will likely not be motivated to spend 40 minutes trying to configure Tor. If users were only willing to put in a minute or so of their time, users in intermediate and heavily censored environments would be unable to connect. Even if users were willing to dedicate 10 minutes to configuring their connection, most users in heavily censored environments would be unable to connect. Ideally, users should be able to connect to Tor within a few minutes, regardless of their censorship environment. We propose ideas on how to achieve this in section~\ref{recommendations}. 
 
 \begin{figure}[t]
@@ -800,7 +791,7 @@ After 20 minutes, 45\% of E3-NEW and only 25\% of E3-OLD had finished.
 \end{figure}
 
 \subsubsection{Active Configuration Time} 
-We summarize each participant's actions throughout the experiment in Fig.~\ref{fig:all-participant-edges}. Each row in Fig.~\ref{fig:all-participant-edges} corresponds to a participant in our experiment. The bar represents a participants' path through the interface, illustrating time spent on each screen, transitions between screens, how many attempts were made, and if they were eventually successful. 
+We summarize each participant's actions throughout the experiment in Fig.~\ref{fig:all-participant-edges}. Each row in Fig.~\ref{fig:all-participant-edges} corresponds to a participant. The bar represents a path through the interface, illustrating time spent on each screen, transitions between screens, how many attempts were made, and if they were eventually successful. 
 
 \begin{figure*}
 \centering
@@ -821,12 +812,7 @@ except for those we cut off after approximately 40 minutes
 \label{fig:all-participant-edges}
 \end{figure*}
 
-The time to success was largely dominated by the time spent waiting to connect to Tor, rather than actively configuring the interface. Logs show that participants spent 58\% of their overall time at the progress screen. 
-{\color {red} discuss by environment (time on first) and by version (proxy).}
-Table ~\ref{table:median_time} shows the median percentage of time spent on each screen,
-computed independently for each screen. 
-
-We believe participants spent a long time on the progress screen for a combination of reasons. Even with correct configurations, the bootstrap process can take up to two minutes. With incorrect settings, we suspect that participants waited because the interface instructs them ``wait a couple minutes.'' A lack of error messages and timeouts on the progress screen, also caused some users to wait indefinitely. 
+The overall time was largely dominated by the time spent waiting to connect to Tor, rather than actively configuring the interface. With correct configurations, the bootstrap process can take up to two minutes.  With incorrect configurations, a lack of error messages on the progress screen caused some users to wait indefinitely.  Logs show that participants spent 58\% of their overall time at the progress screen. Table ~\ref{table:median_time} shows the median percentage of time spent on each screen. 
 
 \begin{table}[t]
 \centering
@@ -845,9 +831,19 @@ We believe participants spent a long time on the progress screen for a combinati
 necessarily the median absolute time spent on that screen. 
 This percentage independent for each screen; that is, a participant who spent the median percent 
 of time on one screen may not be the same participant who spent the median percent
-of time on other screens.} 
+of time on other screens. Note that the time spent on the progress bar dominates the 
+time spent in the interface.} 
 \label{table:median_time}
 \end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics{time_to_success_active_clamped}
+\caption{
+Active-time configuration.
+}
+\label{fig:time_to_success_active_clamped}
+\end{figure}
 
 %\begin{table}[t]
 %\centering
@@ -867,26 +863,9 @@ of time on other screens.}
 %\label{table:overall_time}
 %\end{table}
 
-\begin{table}
-\centering
-	\begin{tabular}{c r r}
-	 & Total Active Minutes & Total \% of Overall Time \\
-	\noalign{\hrule}
-	All & 381 & 29\% \\ 
-	E1-NEW & 4 & 45\% \\
-	E1-OLD & 19 & 67\% \\
-	E2-NEW & 15 & 15\% \\
-	E2-OLD & 68 & 31\% \\
-	E3-NEW & 74 & 18\% \\
-	E3-OLD & 200 & 38\% \\
-	\end{tabular}
-\caption{active time {\color {red} add comparable figure to the time to success figure (Fig 9)}.} 
-\label{table:active_time}
-\end{table}
+Perhaps a more meaningful measurement of time is the amount of time participants actively configured their connection. We define this as the time that participants spent interacting with the interface, excluding the time waiting for the connection to bootstrap. Active configuration time for unsuccessful participants were calculated by subtracting the amount of time spent on the progress screen from the maximum experiment time, 40 minutes. This is an approximation, since some participants searched for help on the web after exiting the interface or on the progress screen. 
 
-Perhaps a more meaningful measurement of time is the amount of time participants actively configured their connection. We define this as the time that participants spent interacting with the interface, excluding the time waiting for the connection to bootstrap. This is a simplified notion active configuration time. Some participants searched for help on the web after exiting the interface or on the progress screen. 
-
-{\color {red} TODO: explain how this was calculated: across all participants with all of the new and all of the old aggregated, with DNF's getting 40:08 then subtracting the time they spent on the progress screen). Say it is mann whitney one tailed. } The new interface results a statistically significant reduction in the overall active configuration time. (Mann--Whitney $Z = -2.7$, $p = 0.0032$, $r= 0.25$). We believe that getting rid of the technical questions and telling participants that they did not need a proxy attributed to the reduction in time. 
+We performed a one-tailed Mann--Whitney test to compare the amount of active configuration time between participants who used the new interface and the participants who used the old interface. The new interface results a statistically significant reduction in active configuration time. (Mann--Whitney $Z = -2.7$, $p = 0.0032$, $r= 0.25$). We believe that getting rid of the technical questions and telling participants that they did not need a proxy attributed to the reduction in time. 
 %The impact of the environment on active time is significant (Kruskal--Wallis $\chi^2 = 51.978$, $\mbox{df} = 2$, $p = 10^{-11}$)
 
 \subsection{Discussion} 
