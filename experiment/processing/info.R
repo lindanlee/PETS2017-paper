@@ -276,16 +276,19 @@ success_rates = with(participants, aggregate(success, list(env=env, version=vers
 
 cat("\n")
 cat("impact of version on success rates \n")
-wilcox.test(x ~ version, data=success_rates, paired=FALSE)
+success_chi <- data.frame(c("E1","E2", "E3"), c(1,0.9473684,0.6500000), c(1,0.8421053,0.5000000))
+names(success_chi)[1]<-paste("env")
+names(success_chi)[2]<-paste("success_new")
+names(success_chi)[3]<-paste("success_old")
+chisq.test(success_chi[,2:3])
 
 cat("impact of version on times to completion \n")
 clamped_time <- clamp_time_to_success(participants, maxtime)
-#one-tailed mann-whitney U for right-tailed data, with DNFs = 40:08. 
-wilcox.test(time_to_success ~ version, data=clamped_time, paired=FALSE, alternative="less")
+#one-tailed mann-whitney U for right-tailed data, with DNFs = 40:08.
+wilcox_test(time_to_success ~ version, data=clamped_time, paired=FALSE, alternative="less")
 
 cat("impact of version on active time \n")
 #one-tailed mann-whitney U for right-tailed data, with DNFs = 40:08-time on progress screen.
-wilcox.test(screen_time_per_user$`active_edges$duration` ~ version, data=screen_time_per_user, paired=FALSE, alternative="less")
 wilcox_test(screen_time_per_user$`active_edges$duration` ~ version, data=screen_time_per_user, paired=FALSE, alternative="less")
 
 cat("\n\n\n\n")

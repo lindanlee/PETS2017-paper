@@ -743,7 +743,9 @@ as the proxy setting.
 
 \subsubsection{Time to Success} 
 The median times to completion for participants of the new interface are less than those with the old interface (Table~\ref{table:participant-summary}). Non-finishing participants are assigned the maximum time of 40:08
-for the purpose of computing the median. However, the difference between the medians times to success between new versus old interfaces, in aggregate and in censorship environment, are not statistically significant. The level of censorship, rather than the interface, had a significant impact on the time to success. The more difficult the censorship environment, the longer participants took to configure their connection (Kruskal--Wallis $\chi^2 = 80.926$, $\mbox{df} = 2$, $p < 10^{-15}$). The distribution of participants' time to success can be seen in Fig.~\ref{fig:time_to_success_clamped}.
+for the purpose of computing the median. However, the difference between the medians times to success between new versus old interfaces, in aggregate and in censorship environment, are not statistically significant. The level of censorship, rather than the interface, had a significant impact on the time to success. 
+%The more difficult the censorship environment, the longer participants took to configure their connection (Kruskal--Wallis $\chi^2 = 80.926$, $\mbox{df} = 2$, $p < 10^{-15}$). 
+The distribution of participants' time to success can be seen in Fig.~\ref{fig:time_to_success_clamped}.
 %impact of version on time to success: not significant ($W = 1569$, $p = 0.07796$)
 %impact of env on time to success : significant (Kruskal--Wallis $\chi^2 = 80.926$, $\mbox{df} = 2$, $p < 10^{-15})
 
@@ -1073,6 +1075,22 @@ This survey is part of a research project being conducted by the University of C
 \end{enumerate}
 
 Thank you for participating in our experiment. You are now done! Please sit at your desk for the remainder of the experiment. Our researchers will formally announce the end of the experiment. 
+
+\section{Statistical Tests} 
+From our measurements, we observe that participants with the new interface 
+have a higher rate of success, succeed in less time, and configure their interface in less time. 
+We do not find that the increased rate of success with the new interface or the decreased time to success with the new interface significant. That is, random chance can account for the difference. 
+We do find the the decreased active configuration time to be significant. 
+We describe the methodology for the statistical tests used in this paper to determine the impact of the interface on success rate, time to success, and active time. 
+
+%success rate and version
+Each participant had a boolean variable indicating a successful connection to Tor. Rates of success were calculated by dividing the number of participants who succeeded the condition over the total number of participants in the condition. This gave us six rates of success. E1-NEW, E2-NEW, and E3-NEW rates of success were compared against E1-OLD, E2-OLD, and E3-OLD.  We used a Pearson's Chi-squared test to test the significance of success rates. The difference between success rates of participants with the new interface and participants with the old interface was not significant (X-squared = 0.012599, df = 2, p-value = 0.9937).
+
+%time to success and version
+Time to success was measured as the time from the participants started the Tor launcher interface to the first successful bootstrap to the Tor network. This measurement was 1) non-normal and heavily right-tailed since participants were less and less likely to succeed as time went on and 2) right-censored at 40 minutes, the maximum time of the experiment. Because of the right-tailed nature of the data, we used a one-tailed Mann--Whitney test. Because the Mann--Whitney test does not account for right-censored data, we assigned the participants who did not succeed the maximum time of 40 minutes for the purpose of this test. We do not find the difference of times to success between participants with the new interface and participants with the old interface to be significant (Z = -1.5451, p-value = 0.06116). 
+
+%active time and version
+Active configuration time was measured as the time the participants spent in the Tor launcher interface, except for the time spent the progress screen. For our participants who did not succeed to connect to Tor, subtracted the time spent on the progress screen from the maximum experiment time of 40 minutes. This measurement was also 1) non-normal and heavily right tailed and 2) impacted by right-censored measurement of time to success. Because of the right-tailed nature of the data, we used a one-tailed Mann--Whitney test. We do find the difference of active configuration times between participants with the new interface and participants with the old interface to be significant (Z = -3.4069, p-value = 0.0003286).
 
 \section{Custom Bridge Attempts} 
 \label{failed-participants}
