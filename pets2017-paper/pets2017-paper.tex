@@ -99,16 +99,21 @@ This is the first user study that investigates the usability of Tor as a censors
 
 We evaluate, redesign, and test Tor's configuration interface by
 measuring participants' interactions with the interface in various censorship environments.
-We designed the environments to be representative important real-world
-cases of censorship, but they do not imitate any particular censorship environment.
 The first user study is a small-scale, qualitative experiment that collected 
 behavioral patterns and failure cases with the interface through user observations
 and interviews (Section~\ref{sec:qualitative}). This feedback was used to make changes to the interface (Section~\ref{redesign}). The second user study is a large-scale, quantitative experiment
 that collected data on user interactions with the interface to quantify the impact of the design changes (Section~\ref{sec:quantitative}).
 
-{\color {red} TODO: REDO THIS PARAGRAPH COMPLETELY}
-We find that users do not know if they require additional configuration to circumvent censorship, make incorrect assumptions based on interface layout, and do not know what to do in the event of a failure. We redesign the interface to decrease the technical knowledge required, give explicit advice on configuring network components, and fix misleading feedback that causes users to assume they are wrong when they are right. Our changes decreased the time participants spent configuring their connections, with no difference in success rates. We conclude with recommendations of changes that we believe will help the most users circumvent censorship and connect to Tor. 
-
+In this paper, we contribute the following: \\
+\begin{itemize}
+\item 6 common challenges encountered during the configuration process and their underlying causes
+\item 10 changes to the configuration interface which we hope alleviates the common challenges
+\item 116 logs of real world user attempts to connect to Tor in three different censorship environments
+\item 4 reasons why users failed to connect to Tor
+\item 5 recommendations of configuration interface changes to help more users connect and save time
+\item 5 alternative  approaches to bootstrapping a connection that leverage varying degrees of automation
+\end{itemize}
+We hope that our work helps users circumvent censorship and connect to Tor. 
 
 \section{Related Work} 
 There have been three published user studies on Tor. Clark et~al.~\cite{clark2007usability} examined various deployment
