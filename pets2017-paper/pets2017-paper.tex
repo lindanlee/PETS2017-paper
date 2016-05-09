@@ -133,7 +133,7 @@ some of which influenced changes in Tor Browser version~4.5 and later.
 Previous user studies have considered the whole browsing experience,
 without focusing on specific features in isolation.
 Our study focuses on 
-the browser's configuration interface, which guides users through setting up network components required to circumvent censorship. 
+the browser's configuration interface, which guides users through setting up components required to circumvent censorship. 
 
 \section{Background}
 This section provides the necessary background the configuration interface relates to Tor, the network components that are involved in censorship circumvention, and the configuration settings are required to bypass levels of Tor-adverse censorship environments. 
@@ -141,11 +141,11 @@ This section provides the necessary background the configuration interface relat
 \subsection{Tor, Tor Browser, and Tor Launcher}
 The recommended way to use Tor is through Tor Browser~\cite{torbrowser},
 a modified Firefox browser that includes a built-in Tor client.
-Tor Browser has a software component called Tor Launcher that
+Tor Browser has a component called Tor Launcher that
 starts, stops, and otherwise controls the underlying Tor processes.
-Tor Launcher's graphical user interface gives access to a variety of 
-sophisticated circumvention mechanisms, asking the user
-to configure a proxy and bridge (if necessary) before connecting to Tor
+Tor Launcher's graphical user interface gives access to 
+sophisticated circumvention mechanisms, giving the user
+the option to configure a proxy and bridge before connecting to Tor
 for the first time. This is the object of our study. 
 
 In principle, the process of configuring a proxy and bridge can be automated, but
@@ -247,7 +247,7 @@ In addition to Tor-specific components, a proxy may be necessary to connect
 outside the local network in certain managed environments, such as corporate or university networks.
 Configuring a proxy requires providing the proxy protocol, IP address, port, and additional optional
 fields. There is no assistance or automation with this process. The user must locate the 
-proxy information and correctly input this information into the configuration interface. 
+proxy information and correctly input this information. 
   
 %Technically the Tor client, pluggable transport bridge, and proxy are all
 %proxies. In this paper, ``proxy'' refers to a local, ordinary unobfuscated proxy such
@@ -256,16 +256,16 @@ proxy information and correctly input this information into the configuration in
 
 \subsection{Circumventing Censorship with Tor}
 There are many valid configuration settings to connect to the Tor network.
-For instance, a user who does not need a bridge or proxy to circumvent censorship
+For instance, a user who does not need a bridge or proxy 
 can connect to Tor with a bridge and proxy, provided that they have been configured correctly. 
 The minimum amount of configuration required, therefore, the set of valid configuration settings,
 vary depending on the censorship environment. In the worst case, users must know or find out:\\
 
 \begin{itemize}
-	\item{Whether they are censored} 
+	\item{Whether their Internet connection is censored} 
 	\item{Whether the Tor network is censored by their ISP}
-	\item{Which groups of hard-coded bridges work in their environment} 
-	\item{If no hard-coded bridges work, how to get and enter a custom bridge} 
+	\item{Which hard-coded bridges work in their country} 
+	\item{If no hard-coded bridges work, how to get custom bridge information and connect to it} 
 	\item{Whether a proxy is required to access the Internet}
 	\item{If a proxy is required, and if so, the proxy settings}
 \end{itemize}
@@ -298,7 +298,7 @@ interface are based on common metrics that measure ease of use: \\
     \item {\bfseries Active configuration time:} how much time a user spends actively configuring network components to connect to Tor, which only includes time spent interacting with the interface, excluding the time waiting for the connection to bootstrap. This measures how much of the time spent connecting to the Tor network was spent configuring versus waiting. 
 \end{enumerate}
 
-An ideal interface maximizes the amount of people that successfully connect to the Tor network, while minimizing the time it takes to connect to the Tor network. 
+An ideal interface maximizes the amount of people that successfully connect to the Tor network, while minimizing the time it takes to connect to the Tor network. A trade-off may be required between the total amount of time it takes to connect to Tor and the amount of time users interact with the interface. For instance, a  process with a balanced amount of user input may be faster than a naive but completely automated process.
 
 \section{Experimental Setup}
 \label{sec:environments}
@@ -343,7 +343,7 @@ A custom bridge would work but was not necessary.
 The E3 environment blocks websites and Tor relays like E1 and E2
 and additionally blocks built-in default bridge IP addresses in the Tor Browser source code.
 To succeed in this environment, participants had to select
-one of the ``meek'' built-in bridges (no other type would work)
+one of the ``meek'' built-in bridges (no other type of hard-coded bridges would work)
 or acquire their own custom bridge and enter it manually.
 \end{description}
 
@@ -406,7 +406,7 @@ We pre-screened~\cite{screening} our participants for diversity of gender, age, 
 and self-reported familiarity with Tor in each simulated censorship environment for our summative
 usability test~\cite{summative}. 
 
-We recruited our users from Craigslist, vaguely stating that we wanted to evaluate some piece of software. 
+We recruited our users from Craigslist, vaguely asking to evaluate a piece of software. 
 The recruitment text can be found in Appendix~\ref{qualitative-recruitment}. The recruitment posting contained a 
 SurveyGizmo online survey that collected their demographics, technical expertise, and familiarity with Tor.
 The complete prescreening survey can be found in Appendix~\ref{qualitative-prescreening}.  
@@ -414,12 +414,13 @@ We selected participants in each censorship environment to have at least one per
 at least one person who has only heard of Tor, and exactly one person who has previously used Tor. We tried to evenly distribute any participants who had technical
 expertise or used particular security tools throughout the censorship environments. 
 
-Out of our 16 participants, ages ranged from 20 to~62 years
-($\mu = 24.5$, $\sigma = 12.6$). 53.3\% were male. 
+Of our 16 participants, 53.3\% were male. 
+Ages ranged from 20 to~62 years
+($\mu = 24.5$, $\sigma = 12.6$). 
 93.3\% of our participants had at least
 a college education.
-4 participants had used Tor before;
-5 had heard of Tor but had not used it;
+4 had used Tor before;
+5 had heard of Tor but not used it;
 and the remaining 8 had never heard nor used it.
 
 
@@ -451,12 +452,12 @@ are available from our project page.
 Participants had an average of 45 minutes to complete their worksheet. 
 
 After participants completed the browsing tasks or ran out of time,
-we interviewed them about their experience,
-taking notes of the questions and answers.
+we interviewed them about their experience and
+took notes of the questions and answers.
 We asked three standard questions asking about their general experience, 
 interface features they found confusing, and feedback for improvements. We followed up
 with specific questions prompted from watching their screen. 
-This was to verify any hypotheses we had (e.g. ``they did not know what to do on window~3'').
+This was to verify any hypotheses we had (e.g. ``they did not know what an ISP was'').
 We paid each participant~\$30 for their time. 
 
 \subsection{Results} 
@@ -467,13 +468,6 @@ and are not necessarily verbatim.\\
 \begin{description}
 \item {\bfseries Users did not understand what proxies, bridges, and pluggable transports were.}
 Most participants, including those pre-screened for high technical ability and previous experience with Tor, were not familiar with the vocabulary.
-
-\begin{figure}[t]
-  \centering
-    \includegraphics[width=0.5\textwidth]{error.png}
-    \caption{An example of a technical error message which our participants did not understand.}
-\label{fig:error}
-\end{figure}
 
 \smallskip
 \pquote{P2}{I don't know what any of those [list of bridges] means, or what that [proxy] means at all.}
@@ -522,6 +516,13 @@ From interviewing our participants, we found that these challenges are the resul
 \end{description} 
 
 The challenges users faced in the qualitative experiment and the respective underlying causes are used as feedback for redesigning the configuration interface. 
+
+\begin{figure}[t]
+  \centering
+    \includegraphics[width=0.5\textwidth]{error.png}
+    \caption{An example of a technical error message which our participants did not understand.}
+\label{fig:error}
+\end{figure}
 
 \section{Redesigning the Configuration Interface}
 We make ten changes to the Tor launcher configuration interface to help users connect to Tor. Since users did not know how to connect to Tor, we added advice where our users have previously struggled. Specifically, the following three changes were made to give users more information in during configuration: \\
@@ -589,12 +590,12 @@ Our users had little technical background. We made the following changes to make
 \item Switched ordering to configure proxies first. To build users' mental models, network components are now configured in a topologically sequential order, resembling Fig.~\ref{fig:topology} and the new progress screen. Previously, proxies were put after bridge configuration because only a small fraction of users require proxies. With auto-detection, configuring a proxy before a bridge burdens users less than before.
 \end{enumerate}
 
-These changes result in a redesigned interface which we refer to as ``NEW.'' Note that the new interface preserves all the functionality of the old interface and still allows users to have control over their own network traffic. 
+These changes result in a redesigned interface which we refer to as NEW. Note that the new interface preserves all the functionality of the old interface and still allows users to have control over their own network traffic. 
 
 \section{Quantitative Analyses of the Interfaces (Study 2)}
 \label{sec:quantitative}
 Having identified problems with the existing interface
-and done a redesign in an attempt to ameliorate them,
+and made changes to ameliorate them,
 we quantify the existing problems
 and the impact of our changes with a study involving a larger number of users.
 We split participants by simulated censorship environments,
@@ -643,11 +644,10 @@ To mirror the qualitative study, we chose Wikipedia's featured article of the da
 as the blocked website to visit on their worksheet. 
 
 After instructions, researchers maintained minimal interactions with the participants, 
-only answering logistical questions. Participants had
-about 40 minutes to complete their worksheet.
+only answering logistical questions.
 The participants did not know the details of their censorship environment,
-only that they are actively being censored. Participants needed to configure Tor Browser to 
-circumvent the simulated censorship. 
+only that they are being censored. Participants had 40 minutes to configure Tor Browser to 
+circumvent the simulated censorship and visit the blocked website. 
 
 After users completed the browsing tasks, they took a short exit survey (Appendix~\ref{quantitative-exit-survey})
 that collected their demographics. All users were instructed to sit until the end of the experiment,
@@ -889,8 +889,7 @@ Perhaps a more meaningful measurement of time is the amount of time participants
 We performed a one-tailed Mann--Whitney test to compare the amount of active configuration time between participants who used the new interface and the participants who used the old interface. The new interface results a statistically significant reduction in active configuration time. (Mann--Whitney $Z = -2.7$, $p = 0.0032$, $r= 0.25$). The small effect size may be due to the fact that the reduction in time mostly applied to participants in E3. 
 
 \subsection{Discussion} 
-This section details general trends in user behavior, common failure cases, and our recommendations for 
-improving the Tor configuration interface. 
+We talk about the failure cases and behavioral trends observed in our quantitative user study and recommend some changes to the Tor configuration interface based on those observations. 
 
 \subsubsection{Failures} 
 Failure is common. 20\% (21 of 116) of participants were not able to successfully connect to Tor. 64\% (74 of 116) of first attempts to connect failed and 79\% (376 of 462) of total attempts to connect failed. Reasons for failure were determined by a combination of log processing (i.e. configuration settings on attempts) and video observation (i.e. observing what they searched for online). \\ 
@@ -902,10 +901,11 @@ Failure is common. 20\% (21 of 116) of participants were not able to successfull
 
 \item {\bfseries Thought that they needed a proxy (5/21).} P75, P94, P107, P109, P115 assumed that they needed a proxy. They spent their time trying to configure a proxy, usually without trying other bridges. 
 
-\item {\bfseries Used the bridges auto-responder incorrectly (2/21).} P96, P111, who were in E3, emailed the bridges auto-responder to get custom bridges. However, they formatted the message incorrectly and thus failed to get a response. For details, see Appendix~\ref{failed-participants}.
+\item {\bfseries Used the bridges auto-responder incorrectly (2/21).} P96, P111, who were in E3, emailed the bridges auto-responder to get custom bridges. However, they formatted the message incorrectly and thus failed to get a response (Appendix~\ref{failed-participants}).
+\end{description}
 
 We discarded data on participants who chose to download their own version of Tor Browser online. 5 participants downloaded their own version without trying the provided one on their desktop, while others did so after feeling frustrated with the provided version. Appendix~\ref{tor-downloads} gives the unfortunate details of where Tor was downloaded when torproject.org was blocked.
-\end{description}
+
 
 \subsubsection{Observations}
 We noticed several behavioral patterns in our participants. These may or may not apply to the Tor user base.\\
@@ -941,10 +941,10 @@ Based on our observations of general behavioral trends and common failure cases,
 \item{\bfseries Have a user-tolerant bridge auto-responder.} The bridge auto-responder responds to user requests for custom bridges. Users can make this request by emailing bridges@torproject.org with a non-empty title and ``get bridges'' in the body. Both of our users who tried to get custom bridges this way failed to format their request correctly. Having the auto-responder respond with bridges as a default or recovering from common errors (such as typing ``get bridges'' in the subject line) may help users succeed. 
 \end{description} 
 
-We recommend best practices, such as providing a summary screen to let the user know the configuration settings before connecting, and having a progress bar that gives users feedback on what network component has failed.
+Although we cannot isolate their effects on users, we also recommend notifying a users with the configured settings before connecting and having a progress bar that illustrates when network component have successfully been configured or failed.
 
 \section{Limitations} 
-The interface was only tested on Windows machines. The configuration interface uses the native operating system's elements and their respective styling, so an interface looks slightly different across different operating systems. Participants who are not accustomed to using Windows machines may have been slower to complete the given task, but this affected all conditions equally. 
+The configuration interface uses the native operating system's elements and their respective styling, so an interface looks slightly different across different operating systems. We only tested interface on Windows machines, which were the machines available at Xlab. Participants who are not accustomed to using Windows machines may have been slower to complete the given task, but this affected all conditions equally. 
 
 We refreshed a list of Tor relay IP addresses and added them
 to a firewall blacklist before each session.
