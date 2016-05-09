@@ -896,7 +896,7 @@ improving the Tor configuration interface.
 Failure is common. 20\% (21 of 116) of participants were not able to successfully connect to Tor. 64\% (74 of 116) of first attempts to connect failed and 79\% (376 of 462) of total attempts to connect failed. Reasons for failure were determined by a combination of log processing (i.e. configuration settings on attempts) and video observation (i.e. observing what they searched for online). \\ 
 
 \begin{description}
-\item {\bfseries Only connected directly (7/21).} P57, P74, P76, P90, P93, P108, P112 tried a direct connection. When that failed, they tried the same configuration, over and over, no matter how many times they failed. It was common to restart the interface, check Internet settings, and wait between subsequent attempts.
+\item {\bfseries Only connected directly (7/21).} P57, P74, P76, P90, P93, P108, P112 tried a direct connection. When that failed, they tried the same option, over and over, no matter how many times they failed. It was common to restart the interface, check Internet settings, and wait between subsequent attempts.
 
 \item {\bfseries Only tried recommendations (6/21).} P91, P92, P95, P110, P113, P116, who were in E3, did not know what to do next after a direct connection and a default obfs3 bridge connection. They often tried those configurations again or gave up. 
 
@@ -985,9 +985,12 @@ Our goal was to deploy impactful, tested changes the Tor configuration interface
 We believe that automation, asking about risk, and identifying struggling users could enable significant improvements to the configuration process. 
 
 \section{Conclusion} 
-We conducted a series of experiments to improve the Tor Browser 5.0.3 configuration interface, focusing on users who use Tor to circumvent censorship. We interviewed 16 pre-screened participants about their experience trying to circumvent mild, intermediate, and heavy censorship with the current interface, giving insight into common challenges in configuring Tor. We discovered multiple challenges: users are confused about who to configure bridges and proxies, a progress bar bug that causes users to falsely assume that a (valid) configuration is faulty, and users have a hard time figuring out what to do after their first attempt to connect fails.
+We conducted a series of experiments to improve the Tor Browser 5.0.3 configuration interface, focusing on users who use Tor to circumvent censorship. Since connecting to the Tor network unsuccessfully indicates to network eavesdroppers that users are connecting to Tor, the configuration process is manual to allow users to have control over the network activity. Through interviews and lab studies, we find that users have difficulty configuring network components to circumvent censorship, because they do not know how censorship or Tor works. We detail the common challenges, our changes to the configuration interface address those challenges, and the recommendations we have for Tor in this paper. 
 
-We used this feedback to guide the redesign of the configuration interface. We test the impact of our changes on 116 participants. We found that the changes cause a statistically significant reduction in the time participants spent configuring their connection and spent more of that time configuring the necessary components. We also discuss the common reasons for failing to connect to the Tor network, general behavioral trends of participants across conditions, make suggestions to to improve the Tor interface, and discuss potential opportunities for further research.
+%general advice to other censorship circumvention and call for more research 
+Interacting with a censorship circumvention tool users can be a complex balance of leveraging user input for local information while accounting for user trust of the software and minimizing potential risks.
+When designing censorship circumvention tools, we caution against requiring first-time users to make decisions on software-specific notions (e.g. pluggable transports for Tor), answering questions that assume technical knowledge, or manually configuring components. We encourage the use of simulated censorship environments as a tool for user testing censorship circumvention software. Not only do simulated environments avoids rerouting traffic through a censoring countries' networks, its reproducibility and stability are ideal for experiments. 
+
 
 \section {Resources} 
 For additional details, such as the censorship simulation code, interview transcriptions, and logs of participant interactions, we refer you to the project repository: \\
