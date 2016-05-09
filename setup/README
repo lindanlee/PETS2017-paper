@@ -1,3 +1,13 @@
-Packages needed:
-p7zip-full
-nsis
+These are the scripts we used to create the special instrumented
+releases of Tor Browser. On Debian, install the dependencies:
+	sudo apt-get install p7zip-full nsis
+Then type
+	make
+The output will be a file tor-ux.zip that contains two versions of Tor
+Browser, Firefox, Chrome, and scripts needed to set up firewall rules
+and start and stop screen recording.
+
+One necessary file, s3-uploader.exe, is not included in the repository
+because it contains Amazon S3 credentials. You will need to build your
+own copy with your own credentials from
+https://github.com/nmalkin/s3-uploader.
