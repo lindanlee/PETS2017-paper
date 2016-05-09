@@ -38,3 +38,7 @@ Tor Circumvention UX Experiment
 * show a markov chain version of the configuration tree, before and after changes
 * qualitative analysis on survey answers 
 
+### Patches to Tor Browser:
+
+https://github.com/nmalkin/tor-launcher
+(See branches [instrumented](https://github.com/nmalkin/tor-launcher/tree/instrumented) and [uxtest](https://github.com/nmalkin/tor-launcher/tree/uxtest).)
