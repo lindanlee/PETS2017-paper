@@ -166,19 +166,13 @@ median(screen_time_per_user[screen_time_per_user[,"env"]== "E3" & screen_time_pe
 #ACTIVE TIME (all but progress)
 report_total("ACTIVE",active_edges)
 
-median(screen_time_per_user$`active_edges$duration`/screen_time_per_user$`edges$duration`)
-median(screen_time_per_user[screen_time_per_user[,"env"]== "E1" & screen_time_per_user[,"version"]== "NEW",]$`active_edges$duration`/
-         screen_time_per_user[screen_time_per_user[,"env"]== "E1" & screen_time_per_user[,"version"]== "NEW",]$`edges$duration`)
-median(screen_time_per_user[screen_time_per_user[,"env"]== "E1" & screen_time_per_user[,"version"]== "OLD",]$`active_edges$duration`/
-         screen_time_per_user[screen_time_per_user[,"env"]== "E1" & screen_time_per_user[,"version"]== "OLD",]$`edges$duration`)
-median(screen_time_per_user[screen_time_per_user[,"env"]== "E2" & screen_time_per_user[,"version"]== "NEW",]$`active_edges$duration`/
-         screen_time_per_user[screen_time_per_user[,"env"]== "E2" & screen_time_per_user[,"version"]== "NEW",]$`edges$duration`)
-median(screen_time_per_user[screen_time_per_user[,"env"]== "E2" & screen_time_per_user[,"version"]== "OLD",]$`active_edges$duration`/
-         screen_time_per_user[screen_time_per_user[,"env"]== "E2" & screen_time_per_user[,"version"]== "OLD",]$`edges$duration`)
-median(screen_time_per_user[screen_time_per_user[,"env"]== "E3" & screen_time_per_user[,"version"]== "NEW",]$`active_edges$duration`/
-         screen_time_per_user[screen_time_per_user[,"env"]== "E3" & screen_time_per_user[,"version"]== "NEW",]$`edges$duration`)
-median(screen_time_per_user[screen_time_per_user[,"env"]== "E3" & screen_time_per_user[,"version"]== "OLD",]$`active_edges$duration`/
-         screen_time_per_user[screen_time_per_user[,"env"]== "E3" & screen_time_per_user[,"version"]== "OLD",]$`edges$duration`)
+format_minutes_colons(median(screen_time_per_user$`active_edges$duration`))
+format_minutes_colons(median(screen_time_per_user[screen_time_per_user[,"env"]== "E1" & screen_time_per_user[,"version"]== "NEW",]$`active_edges$duration`))
+format_minutes_colons(median(screen_time_per_user[screen_time_per_user[,"env"]== "E1" & screen_time_per_user[,"version"]== "OLD",]$`active_edges$duration`))
+format_minutes_colons(median(screen_time_per_user[screen_time_per_user[,"env"]== "E2" & screen_time_per_user[,"version"]== "NEW",]$`active_edges$duration`))
+format_minutes_colons(median(screen_time_per_user[screen_time_per_user[,"env"]== "E2" & screen_time_per_user[,"version"]== "OLD",]$`active_edges$duration`))
+format_minutes_colons(median(screen_time_per_user[screen_time_per_user[,"env"]== "E3" & screen_time_per_user[,"version"]== "NEW",]$`active_edges$duration`))
+format_minutes_colons(median(screen_time_per_user[screen_time_per_user[,"env"]== "E3" & screen_time_per_user[,"version"]== "OLD",]$`active_edges$duration`))
 
 
 # FIRST SCREEN
