@@ -65,7 +65,7 @@ placing users in simulated censorship environments, instructing them to use Tor
 to circumvent censorship, and measuring their interactions with the interface.
 A 16-participant qualitative user study identifies common user struggles while circumventing censorship.
 We use the results as feedback to redesign the configuration interface.
-A 116-participant quantitative user study tests the impact of our changes.
+A 115-participant quantitative user study tests the impact of our changes.
 We find that our changes result in a significant reduction 
 in the time spent configuring a connections. We
 conclude with recommendations for changes to the current interface as well as 
@@ -109,7 +109,7 @@ In this paper, we contribute the following:
 \begin{itemize}
 \item 6 common challenges encountered during the configuration process and their underlying causes
 \item 10 changes to the configuration interface which we hope alleviates the common challenges
-\item 116 logs of real world user attempts to connect to Tor in three different censorship environments
+\item 115 logs of real world user attempts to connect to Tor in three different censorship environments
 \item 4 reasons why users failed to connect to Tor
 \item 5 recommendations of configuration interface changes to help more users connect and save time
 \item 5 alternative  approaches to bootstrapping a connection that leverage varying degrees of automation
@@ -656,7 +656,7 @@ participants were officially informed that their time was up, and were given the
 \$30 for their time. 
 
 \subsection{Results} 
-Out of our 124 recruited participants, 116 provided valid data. We have 58 participants who tested the new interface, and 58 who tested the old interface. 38 participants were in E1, 38 participants were in E2, and 40 participants were in E3.
+Out of our 124 recruited participants, 115 provided valid data. We have 58 participants who tested the new interface, and 58 who tested the old interface. 38 participants were in E1, 37 participants were in E2, and 40 participants were in E3.
 Table~\ref{table:participant-summary} summarizes the rate of success and time to success for our participants' based on their interface version and environment combination. 
 
 \begin{table}
@@ -666,12 +666,12 @@ Table~\ref{table:participant-summary} summarizes the rate of success and time to
 	& \multicolumn{2}{c}{success rate} & \multicolumn{1}{c}{median time} \\
 	& \multicolumn{2}{c}{after 40 minutes} & \multicolumn{1}{c}{to success} \\
 	\noalign{\hrule}
-	E1-NEW & 19/19 & 100\% & 0:20 \\ % medians of only finished: 0:20 
-	E1-OLD & 19/19 & 100\% & 1:01 \\ %medians of only finished: 1:01
-	E2-NEW & 18/19 & 95\% & 3:32 \\ %medians of only finished: 3:22
-	E2-OLD & 16/19 & 84\% & 5:00 \\ %medians of only finished: 3:13
-	E3-NEW & 13/20 & 65\% & 20:56 \\ %medians of only finished: 12:38
-	E3-OLD & 10/20 & 50\% & 40:08 \\ %medians of only finished: 18:16 
+	E1-NEW & 19/19 & 100\% & 0:20 \\
+	E1-OLD & 19/19 & 100\% & 1:01 \\
+	E2-NEW & 18/18 & 100\% & 3:22 \\
+	E2-OLD & 16/19 & 84\% & 5:00 \\
+	E3-NEW & 13/20 & 65\% & 20:56 \\
+	E3-OLD & 10/20 & 50\% & 40:08 \\
 	\end{tabular}
 \caption{
 A summary of participants' success in circumventing censorship
@@ -682,7 +682,7 @@ failed to connect successfully were assigned the maximum time of 40:08.
 \end{table}
 
 \subsubsection{Rate of Success} 
-50 of 58 (86\%) participants with the new interface successfully connected to Tor, while 45 of 58 (78\%) participants with the old interface did. 
+49 of 57 (86\%) participants with the new interface successfully connected to Tor, while 45 of 58 (78\%) participants with the old interface did. 
 Due to the limited number of participants, this difference is not large enough to rule out the possibility of random chance being the cause for the difference. This suggests that users no less likely to succeed with the new interface. 
 % impact of version on success: not significant (Mann--Whitney $W = 5.5$, $p = 0.8248$)
 %impact of env on success: not significant (Kruskal--Wallis $\chi^2 = 4.7059$, $\mbox{df} = 2$, $p = 0.09509$)
@@ -717,7 +717,7 @@ Due to the limited number of participants, this difference is not large enough t
 %
 %That participant was using the new interface and was told that the bridge configuration was the source of the error. The participant heeded the interface's advice to reconfigure the bridge options. But since most participants did not see any error messages, any effects they may have had on success rates are not reflected in our results. The addition of a summary screen did cause behavioral changes (13\% of participants saw their current settings, then went back and adjusted them), but this behavioral change did not have a statistically significant impact on success rates. 
 
-We added preemptive advice to the bridge configuration screen to first try an obfs3 bridge and then a meek bridge, but we suspect that most participants did not benefit from this advice since participants did not think to adjust their bridge settings upon failure. Of the 76 participants that failed to connect on the first attempt, 15 of 36 participants with the new interface and 13 of 38 participants with the old interface went back to the bridge screen and chose another hard-coded bridge. 10 of 15 in the new interface chose a meek bridge as their next bridge whereas 5 of 13 in the old interface chose meek as their next bridge, but we cannot claim that this is a direct result of our advice.
+We added preemptive advice to the bridge configuration screen to first try an obfs3 bridge and then a meek bridge, but we suspect that most participants did not benefit from this advice since participants did not think to adjust their bridge settings upon failure. Of the 76 participants that failed to connect on the first attempt, 14 of 35 participants with the new interface and 13 of 38 participants with the old interface went back to the bridge screen and chose another hard-coded bridge. 10 of 15 in the new interface chose a meek bridge as their next bridge whereas 5 of 13 in the old interface chose meek as their next bridge, but we cannot claim that this is a direct result of our advice.
 
 Table~\ref{tab:attempts-bridge-proxy} shows the configuration settings of the first successful connection in each environment and interface combination.We only consider the first successful connection since many of our curious participants tried many different settings to investigate if they will work, even after they had completed the task. Recall E1 does not require users to configure a bridge, E2 requires users to configure any bridge, and E3 requires users to configure a meek or custom bridge. Note that only four of the hard-coded bridges were used to connect successfully for the first attempt were the recommended bridge and the required bridges to succeed in E3.
 
@@ -736,7 +736,7 @@ meek-amazon, no proxy &  &  &  &  & 7 & 4 \\
 meek-google, no proxy &  &  &  &  & 5 & 4 \\
 meek-azure, no proxy &  &  &  &  & 1 & 1 \\
 no bridge, 3rd-party proxy &  &  &  &  &  & 1 \\
-DNF (did not finish) &  &  & 1 & 3 & 7 & 10 \\
+DNF (did not finish) &  &  &  & 3 & 7 & 10 \\
 \end{tabular}
 \caption{
 Bridge--proxy combinations that led to the first successful bootstrap
@@ -789,7 +789,7 @@ In our experiment, participants had 40 minutes to circumvent censorship. Fig.~\r
 	\noalign{\hrule}
 	E1-NEW & 100\% & 100\% & 100\% & 100\% \\
 	E1-OLD & 58\% & 100\% & 100\% & 100\% \\
-	E2-NEW & 11\% & 79\% & 89\% & 95\% \\
+	E2-NEW & 11\% & 83\% & 94\% & 100\% \\
 	E2-OLD & 16\% & 68\% & 79\% & 84\% \\
 	E3-NEW & 0\% & 25\% & 45\% & 65\% \\
 	E3-OLD & 0\% & 20\% & 25\% & 50\% \\
@@ -814,7 +814,7 @@ We summarize each participant's actions throughout the experiment in Fig.~\ref{f
 % This is a manually edited version of the automatically generated
 % all-participant-edges graphic. It is edited to have better scale labels for
 % the treatments.
-\includegraphics{all-participant-edges-scales}
+\includegraphics{all-participant-edges}
 \caption{
 Summary of participants' actions throughout the entire experiment.
 Different colors indicate which screen was shown at each moment.
@@ -838,7 +838,7 @@ The overall time was largely dominated by the time spent waiting to connect to T
 	All & 7\% & 5\% & 4\% & 58\% \\
 	E1-NEW & 28\% & 0\% & 0\% & 60\% \\
 	E1-OLD & 30\% & 0\% & 0\% & 29\% \\
-	E2-NEW & 5\% & 5\% & 5\% & 76\% \\
+	E2-NEW & 6\% & 5\% & 6\% & 78\% \\
 	E2-OLD & 7\% & 18\% & 8\% & 45\% \\
 	E3-NEW & 3\% & 3\% & 5\% & 73\% \\
 	E3-OLD & 2\% & 12\% & 6\% & 64\% \\
@@ -891,17 +891,17 @@ We performed a one-tailed Mann--Whitney test to compare the amount of active con
 \subsection{Discussion} 
 We talk about the failure cases and behavioral trends observed in our quantitative user study and recommend some changes to the Tor configuration interface based on those observations. 
 
-\subsubsection{Failures} 
-Failure is common. 20\% (21 of 116) of participants were not able to successfully connect to Tor. 64\% (74 of 116) of first attempts to connect failed and 79\% (376 of 462) of total attempts to connect failed. Reasons for failure were determined by a combination of log processing (i.e. configuration settings on attempts) and video observation (i.e. observing what they searched for online). \\ 
+\subsubsection{Failures}
+Failure is common. 17\% (20 of 115) of participants were not able to successfully connect to Tor. 63\% (73 of 115) of first attempts to connect failed and {\color {red} 79\% (376 of 462)} of total attempts to connect failed. Reasons for failure were determined by a combination of log processing (i.e. configuration settings on attempts) and video observation (i.e. observing what they searched for online). \\ 
 
 \begin{description}
-\item {\bfseries Only connected directly (7/21).} P57, P74, P76, P90, P93, P108, P112 tried a direct connection. When that failed, they tried the same option, over and over, no matter how many times they failed. It was common to restart the interface, check Internet settings, and wait between subsequent attempts.
+\item {\bfseries Only connected directly (6/20).} P73, P75, P89, P92, P107, P111 tried a direct connection. When that failed, they tried the same option, over and over, no matter how many times they failed. It was common to restart the interface, check Internet settings, and wait between subsequent attempts.
 
-\item {\bfseries Only tried recommendations (6/21).} P91, P92, P95, P110, P113, P116, who were in E3, did not know what to do next after a direct connection and a default obfs3 bridge connection. They often tried those configurations again or gave up. 
+\item {\bfseries Only tried recommendations (6/20).} P90, P91, P94, P109, P112, P115, who were in E3, did not know what to do next after a direct connection and a default obfs3 bridge connection. They often tried those configurations again or gave up. 
 
-\item {\bfseries Thought that they needed a proxy (5/21).} P75, P94, P107, P109, P115 assumed that they needed a proxy. They spent their time trying to configure a proxy, usually without trying other bridges. 
+\item {\bfseries Thought that they needed a proxy (5/20).} P74, P93, P106, P108, P114 assumed that they needed a proxy. They spent their time trying to configure a proxy, usually without trying other bridges. 
 
-\item {\bfseries Used the bridges auto-responder incorrectly (2/21).} P96, P111, who were in E3, emailed the bridges auto-responder to get custom bridges. However, they formatted the message incorrectly and thus failed to get a response (Appendix~\ref{failed-participants}).
+\item {\bfseries Used the bridges auto-responder incorrectly (2/20).} P95, P110, who were in E3, emailed the bridges auto-responder to get custom bridges. However, they formatted the message incorrectly and thus failed to get a response (Appendix~\ref{failed-participants}).
 \end{description}
 
 We discarded data on participants who chose to download their own version of Tor Browser online. 5 participants downloaded their own version without trying the provided one on their desktop, while others did so after feeling frustrated with the provided version. Appendix~\ref{tor-downloads} gives the unfortunate details of where Tor was downloaded when torproject.org was blocked.
@@ -912,7 +912,7 @@ We noticed several behavioral patterns in our participants. These may or may not
 
 \begin{description}
 %connect vs configure
-\item {\bfseries Users try the easy path first.} Users try the easy option of connecting directly to the Tor network first. This leaks to network eavesdroppers leaking that they are connecting to Tor.  81\% (94 of 116) of first attempts were to connect directly, 86\% (50 of 116) from the new interface and 76\% (44 of 116) from the old interface.
+\item {\bfseries Users try the easy path first.} Users try the easy option of connecting directly to the Tor network first. This leaks to network eavesdroppers leaking that they are connecting to Tor.  81\% (93 of 115) of first attempts were to connect directly, 53\% (49 of 115) from the new interface and 47\% (44 of 115) from the old interface.
 
 % impacts of making the proxy page ``automated'' 
 \item {\bfseries Users wasted time configuring proxies.} This confusion prevented users from configuring their bridges correctly. Participants with the new interface (which explicitly states that they did not need a proxy) spent about the same time configuring proxies as bridges, whereas users with the old interface spent about twice as much time configuring proxies than bridges. We do not understand why users with the new interface spent time configuring proxies after explicitly being told that they do not need one.
@@ -934,7 +934,7 @@ From watching the screen capture videos, we see that some participants dutifully
 Based on our observations of general behavioral trends and common failure cases, we make the following recommendations to increase success rate and decrease overall time spent in the interface: \\
 
 \begin{description}
-\item {\bfseries Automate configuration after failure.} After one unsuccessful attempt, a user has already leaked to network eavesdroppers leaking that they are connecting to Tor. Automating the configuration process thereafter will have no increase in risk. This will specifically help users that will never try to configure their connection (the most common failure case) to succeed and drastically reduce the time spent for the 64\% of participants who failed their first attempt. Users in more comprehensive censorship environments are more likely to benefit from this, as 5\% of participants in the mild censorship environment, 84\% participants in intermediate censorship environment, and 100\% of participants in the heavy censorship environment failed the first time.
+\item {\bfseries Automate configuration after failure.} After one unsuccessful attempt, a user has already leaked to network eavesdroppers leaking that they are connecting to Tor. Automating the configuration process thereafter will have no increase in risk. This will specifically help users that will never try to configure their connection (the most common failure case) to succeed and drastically reduce the time spent for the {\color {red} 64\%} of participants who failed their first attempt. Users in more comprehensive censorship environments are more likely to benefit from this, as 5\% of participants in the mild censorship environment, {\color {red} 84\%} participants in intermediate censorship environment, and 100\% of participants in the heavy censorship environment failed the first time.
 \item{\bfseries Hide infrequently used options.} Telling users they did not need a proxy was not enough to deter users from configuring a proxy. Only a small fraction of the Internet population requires a proxy to connect to the Internet. Hiding the proxy screen by default and only showing it after it has been detected as necessary might improve the user experience focusing user effort on configuring bridges.
 \item {\bfseries Be explicit about recommendations.} Many do not know what to do after the recommended bridge failed. The interface should mark which bridges have been tired before and recommend the user to try another bridge. (i.e. After a user tried an obfs3 bridge, the interface updates its recommendation to a meek bridge and mark the obfs3 bridge with an ``X''.)
 \item{\bfseries Set a timeout on the progress bar.} Informing users that they have failed earlier will decrease the overall time to success, create an opportunity to give suggestions, and reduce user frustration. 
@@ -1120,13 +1120,13 @@ Active configuration time was measured as the time the participants spent in the
 
 \begin{figure}[h]
 \includegraphics[width=0.5\textwidth]{../experiment/processing/failed-participants/20160325-140813-bridgeresponder-redacted.png}
-\caption{The message that P96 attempted to send to the bridge auto-responder. The message was sent to the wrong address: bridges@bridges.torproject.org instead of bridges@torproject.org.}
+\caption{The message that P95 attempted to send to the bridge auto-responder. The message was sent to the wrong address: bridges@bridges.torproject.org instead of bridges@torproject.org.}
 \label{autoresponder1}
 \end{figure} 
 
 \begin{figure}[h]
 \includegraphics[width=0.5\textwidth]{../experiment/processing/failed-participants/20160328-133857-bridgeresponder-redacted.png}
-\caption{The message that P111 accidentally sent to the helpdesk rather than the bridge auto-responder. The participant should have used the address bridges@torproject.org, not help@rt.torproject.org. Since the helpdesk address is not an auto-responder, there was no reply.}
+\caption{The message that P110 accidentally sent to the helpdesk rather than the bridge auto-responder. The participant should have used the address bridges@torproject.org, not help@rt.torproject.org. Since the helpdesk address is not an auto-responder, there was no reply.}
 \label{autoresponder2}
 \end{figure} 
 
@@ -1135,8 +1135,8 @@ Active configuration time was measured as the time the participants spent in the
 
 Participants that downloaded Tor Browser (5/124): 
 \begin{itemize}
-\item P57 (Fig.~\ref{techspot})
-\item P91 (Fig.~\ref{softsonic})
+\item P90 (Fig.~\ref{softsonic})
+\item P116 (Fig.~\ref{techspot})
 \item P117, data not used (Fig.~\ref{mirror})
 \item P118, data not used (Fig.~\ref{downloadio})
 \item P119, data not used (Fig.~\ref{driverupdate})
@@ -1174,7 +1174,7 @@ participant dutifully does before running the Tor Browser executable.}
 
 \begin{figure}[h]
 \includegraphics[width=0.5\textwidth]{../experiment/processing/bad-participants/20160323-133257-techspot.png}
-\caption{P57 downloaded Tor Browser from TechSpot, clicking on the download link from 
+\caption{P116 downloaded Tor Browser from TechSpot, clicking on the download link from 
 TechSpot (the white ``Direct Download'' button). X10-20160323-132505 in Fig.~\ref{downloadio} clicked the blue ``Download Now'' button and downloaded from a different source.}
 \label{techspot}
 \end{figure}

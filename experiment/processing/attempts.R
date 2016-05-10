@@ -35,19 +35,6 @@ first_attempts_E2_OLD <-  first_attempts[first_attempts[,"env"]=="E2" & first_at
 first_attempts_E3_NEW <-  first_attempts[first_attempts[,"env"]=="E3" & first_attempts[,"version"]=="NEW",]
 first_attempts_E3_OLD <-  first_attempts[first_attempts[,"env"]=="E3" & first_attempts[,"version"]=="OLD",]
 
-#? 
-sum(first_attempts$bridge_radio_state == "none")#/nrow(first_attempts)*100
-sum(first_attempts_new$bridge_radio_state == "none")#/nrow(first_attempts_new)*100
-sum(first_attempts_old$bridge_radio_state == "none")#/nrow(first_attempts_old)*100
-
-# How many FIRST attempts were failures.
-sum(first_attempts$attempt_successful == "FALSE")/nrow(first_attempts)*100
-sum(first_attempts_new$attempt_successful == "FALSE")/nrow(first_attempts_new)*100
-sum(first_attempts_old$attempt_successful == "FALSE")/nrow(first_attempts_old)*100
-sum(first_attempts_e1$attempt_successful == "FALSE")/nrow(first_attempts_e1)*100
-sum(first_attempts_e2$attempt_successful == "FALSE")/nrow(first_attempts_e2)*100
-sum(first_attempts_e3$attempt_successful == "FALSE")/nrow(first_attempts_e3)*100
-
 successful.attempts <- attempts[attempts$attempt_successful, ]
 successful.attempts$label <- sprintf("%s, %s",
 	# bridge label

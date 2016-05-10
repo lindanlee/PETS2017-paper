@@ -83,7 +83,6 @@ summary_edges <- edges[edges[,"dst"]== "summary",]
 # 2
 total_time_per_user <- aggregate(edges$duration ~ edges$userid, edges, sum)
 active_time_per_user <- aggregate(active_edges$duration ~ active_edges$userid, active_edges, sum)
-active_time_per_user[percent_time] <- 
 not_running_time_per_user <- aggregate(not_running_edges$duration ~ not_running_edges$userid, not_running_edges, sum)
 starting_time_per_user <- aggregate(starting_edges$duration ~ starting_edges$userid, starting_edges, sum)
 progress_time_per_user <- aggregate(progress_edges$duration ~ progress_edges$userid, progress_edges, sum)
