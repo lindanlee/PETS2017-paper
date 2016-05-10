@@ -454,9 +454,9 @@ Participants had an average of 45 minutes to complete their worksheet.
 After participants completed the browsing tasks or ran out of time,
 we interviewed them about their experience and
 took notes of the questions and answers.
-We asked three standard questions asking about their general experience, 
-interface features they found confusing, and feedback for improvements. We followed up
-with specific questions prompted from watching their screen. 
+We asked questions asking about their general experience, 
+interface features they found confusing, and feedback for improvements (Appendix~\ref{interview-questions}). 
+We followed up with specific questions prompted from watching their screen. 
 This was to verify any hypotheses we had (e.g. ``they did not know what an ISP was'').
 We paid each participant~\$30 for their time. 
 
@@ -681,10 +681,7 @@ failed to connect successfully were assigned the maximum time of 40:08.
 \end{table}
 
 \subsubsection{Rate of Success} 
-49 of 56 (88\%) participants with the new interface successfully connected to Tor, while 45 of 58 (78\%) participants with the old interface did. 
-Due to the limited number of participants, this difference is not large enough to rule out the possibility of random chance being the cause for the difference. This suggests that users no less likely to succeed with the new interface. 
-% impact of version on success: not significant (Mann--Whitney $W = 5.5$, $p = 0.8248$)
-%impact of env on success: not significant (Kruskal--Wallis $\chi^2 = 4.7059$, $\mbox{df} = 2$, $p = 0.09509$)
+49 of 56 (88\%) participants with the new interface successfully connected to Tor, while 45 of 58 (78\%) participants with the old interface did. Due to the limited number of participants, this difference is not large enough to rule out the possibility of random chance being the cause for the difference. Appendix~\ref{stat-tests} details the methodology for the statistical tests used in this paper. 
 
 %\begin{figure}[t]
 %\centering
@@ -722,7 +719,7 @@ Table~\ref{tab:attempts-bridge-proxy} shows the configuration settings of the fi
 
 Our participants did not optionally configure a bridge in E1 or configure a non-recommended bridge in E2. This suggests that users will not configure optional components or deviate from the recommended settings unless necessary. If the intent of the recommendation is to get as many users as possible to use the recommended bridge, this is a positive result. If the intent of the recommendation is to give pointers when users are stuck but allow the users to make their own bridge choices to diversify active transports, this is a negative result. 
 
-Only two participants chose to configure a custom bridge. Both of these participants sent an incorrectly formatted request to the automatic bridge responder, which did not reply with custom bridges as a result. Appendix~\ref{failed-participants} shows the malformed requests. These two participants failed to connect to the Tor network. 
+Only two participants chose to configure a custom bridge. Both of these participants sent an incorrectly formatted request to the automatic bridge responder, which did not reply with custom bridges as a result. Appendix~\ref{custom} shows the malformed requests. These two participants failed to connect to the Tor network. 
 
 \begin{table}
 \centering
@@ -876,7 +873,7 @@ Failure is common. 17\% (19 of 114) of participants were not able to successfull
 
 \item {\bfseries Thought that they needed a proxy (5/19).} P74, P92, P105, P107, P113 assumed that they needed a proxy. They spent their time trying to configure a proxy, usually without trying other bridges. 
 
-\item {\bfseries Used the bridges auto-responder incorrectly (2/19).} P94, P109, who were in E3, emailed the bridges auto-responder to get custom bridges. However, they formatted the message incorrectly and thus failed to get a response (Appendix~\ref{failed-participants}).
+\item {\bfseries Used the bridges auto-responder incorrectly (2/19).} P94, P109, who were in E3, emailed the bridges auto-responder to get custom bridges. However, they formatted the message incorrectly and thus failed to get a response (Appendix~\ref{custom}).
 \end{description}
 
 We discarded data on participants who chose to download their own version of Tor Browser online. 5 participants downloaded their own version without trying the provided one on their desktop, while others did so after feeling frustrated with the provided version. Appendix~\ref{tor-downloads} gives the unfortunate details of where Tor was downloaded when torproject.org was blocked.
@@ -979,11 +976,6 @@ I want to especially thank Rowilma del Castillo of Xlab for supporting the exper
 \bibliography{pets2017-paper}
 
 \appendix
-\section{Participant Worksheet Text} 
-\label{participant-worksheet}
-Imagine you live in an oppressive country that censors part of the Internet. We have simulated this in the laboratory by blocking certain websites and services. The purpose of this experiment is to evaluate the use of Tor browser, which is a browser that can circumvent censorship and let you visit blocked websites. For instance, www.torproject.org is blocked. Check this by going to the site on a standard browser, like Firefox, Chrome, or Internet Explorer. It will fail to load, when you can visit other sites.
-
-To complete this worksheet, you will need to set up Tor browser (on your desktop) correctly and use it to get to blocked site. If you can visit wikipedia, then you know that you have successfully circumvented censorship.
 
 \section{Qualitative User Study Recruitment Posting} 
 \label{qualitative-recruitment}
@@ -1018,7 +1010,14 @@ To circumvent censorship successfully, you will need to set up Tor browser corre
 
 Before you start, do you have any questions about what you are asked to do? 
 
+\section{Participant Worksheet Text} 
+\label{participant-worksheet}
+Imagine you live in an oppressive country that censors part of the Internet. We have simulated this in the laboratory by blocking certain websites and services. The purpose of this experiment is to evaluate the use of Tor browser, which is a browser that can circumvent censorship and let you visit blocked websites. For instance, www.torproject.org is blocked. Check this by going to the site on a standard browser, like Firefox, Chrome, or Internet Explorer. It will fail to load, when you can visit other sites.
+
+To complete this worksheet, you will need to set up Tor browser (on your desktop) correctly and use it to get to blocked site. If you can visit wikipedia, then you know that you have successfully circumvented censorship.
+
 \section{Post-Experiment Standard Interview Questions}
+\label{interview-questions}
 We asked our participants these questions after they were given time to configure Tor Browser. \\
 
 \begin{enumerate}
@@ -1075,6 +1074,7 @@ This survey is part of a research project being conducted by the University of C
 Thank you for participating in our experiment. You are now done! Please sit at your desk for the remainder of the experiment. Our researchers will formally announce the end of the experiment. 
 
 \section{Statistical Tests} 
+\label{stat-tests}
 From our measurements, we observe that participants with the new interface 
 have a higher rate of success, succeed in less time, and configure their interface in less time. 
 We do not find that the increased rate of success with the new interface or the decreased time to success with the new interface significant. That is, random chance can account for the difference. 
@@ -1091,7 +1091,7 @@ Time to success was measured as the time from the participants started the Tor l
 Active configuration time was measured as the time the participants spent in the Tor launcher interface, except for the time spent the progress screen. For our participants who did not succeed to connect to Tor, subtracted the time spent on the progress screen from the maximum experiment time of 40 minutes. This measurement was also 1) non-normal and heavily right tailed and 2) impacted by right-censored measurement of time to success. Because of the right-tailed nature of the data, we used a one-tailed Mann--Whitney test. We do find the difference of active configuration times between participants with the new interface and participants with the old interface to be significant ($Z = -3.28$, $p = 0.000516$, $r = 0.307$).
 
 \section{Custom Bridge Attempts} 
-\label{failed-participants}
+\label{custom}
 
 \begin{figure}[h]
 \includegraphics[width=0.5\textwidth]{../experiment/processing/failed-participants/20160325-140813-bridgeresponder-redacted.png}
