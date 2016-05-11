@@ -7,6 +7,11 @@ all: $(GRAPHS) $(TABLES)
 $(GRAPHS): graphs.R common.R *.csv
 	Rscript "$<"
 
+participant-summary.tex time_to_success_ecdf.tex: info.R common.R *.csv
+	Rscript "$<"
+attempts-bridge-proxy.tex: attempts.R common.R *.csv
+	Rscript "$<"
+
 edges.csv: all_edges logs/*.log
 	"./$<" logs/*.log > "$@"
 
