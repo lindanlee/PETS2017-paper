@@ -324,15 +324,17 @@ tt <- with(clamp_time_to_success(participants, maxtime), merge(merge(
 names(tt) <- c("env", "version", "n", "n_success", "median_time_to_success")
 
 cat("\n")
-cat("\\begin{tabular}{l r r r r}\n")
-cat("& \\multicolumn{2}{c}{success rate} & \\multicolumn{1}{c}{median time} \\\\\n")
-cat("& \\multicolumn{2}{c}{after 40 minutes} & \\multicolumn{1}{c}{to success} \\\\\n")
+cat("\\begin{tabular}{l r r r r r}\n")
+cat("& \\multicolumn{2}{r}{success rate} & \\multicolumn{1}{r}{median time} & \\multicolumn{1}{r}{median} \\\\\n")
+cat("& \\multicolumn{2}{r}{after 40 minutes} & \\multicolumn{1}{r}{to success} & \\multicolumn{1}{r}{active time} \\\\\n")
 cat("\\noalign{\\hrule}\n")
 for (i in 1:nrow(tt)) {
-	cat(sprintf("%s-%s & %d/%d & %.f\\%% & %s \\\\\n",
-		tt$env[[i]], tt$version[[i]],
+	env <- tt$env[[i]]
+	version <- tt$version[[i]]
+	cat(sprintf("%s-%s & %d/%d & %.f\\%% & %s & %s \\\\\n", env, version,
 		tt$n_success[[i]], tt$n[[i]], 100 * tt$n_success[[i]] / tt$n[[i]],
-		format_minutes_colons(tt$median_time_to_success[[i]])))
+		format_minutes_colons(tt$median_time_to_success[[i]]),
+		format_minutes_colons(median(screen_time_per_user[screen_time_per_user$env==env & screen_time_per_user$version==version, ]$`active_edges$duration`))))
 }
 cat("\\end{tabular}\n")
 
