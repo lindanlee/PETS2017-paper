@@ -12,7 +12,7 @@ participant-summary.tex time_to_success_ecdf.tex all-participant-times.tex media
 attempts-bridge-proxy.tex: attempts.R common.R *.csv
 	Rscript "$<"
 
-edges.csv: all_edges logs/*.log
+edges.csv: edges logs/*.log
 	"./$<" logs/*.log > "$@"
 
 attempts.csv: attempts edges.csv
