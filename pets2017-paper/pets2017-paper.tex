@@ -26,30 +26,47 @@
 }
   
 \begin{document}
- 
-  \author*[1]{Linda Lee}
+   \author*[1]{Author 1}
 
-  \author[2]{David Fifield}
+  \author[2]{Author 2}
 
-  \author[3]{Nathan Malkin}
+  \author[3]{Author 3}
 
-  \author[4]{Ganesh Iyer}
+  \author[4]{Author 4}
 
-  \author[5]{Serge Egelman}
+  \author[5]{Author 5}
   
-  \author[6]{David Wagner}
+  \author[6]{Author 6}
 
-  \affil[1]{University of California Berkeley, E-mail: \mbox{lnl@cs.berkeley.edu}}
-
-  \affil[2]{University of California Berkeley, E-mail: \mbox{fifield@cs.berkeley.edu}}
-
-  \affil[3]{University of California Berkeley, E-mail: \mbox{nmalkin@cs.berkeley.edu}}
-
-  \affil[4]{University of California Berkeley, E-mail: \mbox{ganesh.v@berkeley.edu}}
-  
-  \affil[5]{University of California Berkeley and International Computer Science Institute, E-mail: \mbox{egelman@cs.berkeley.edu}}
-   
-  \affil[6]{University of California Berkeley, E-mail: \mbox{daw@cs.berkeley.edu}}
+  \affil[1]{Affiliation of Author 1, E-mail: \mbox{author1@affiliation.edu}}
+  \affil[2]{Affiliation of Author 2, E-mail: \mbox{author2@affiliation.edu}}
+  \affil[3]{Affiliation of Author 3, E-mail: \mbox{author3@affiliation.edu}}
+  \affil[4]{Affiliation of Author 4, E-mail: \mbox{author4@affiliation.edu}}
+  \affil[5]{Affiliation of Author 5, E-mail: \mbox{author5@affiliation.edu}}
+  \affil[6]{Affiliation of Author 6, E-mail: \mbox{author6@affiliation.edu}}
+%  \author*[1]{Linda Lee}
+%
+%  \author[2]{David Fifield}
+%
+%  \author[3]{Nathan Malkin}
+%
+%  \author[4]{Ganesh Iyer}
+%
+%  \author[5]{Serge Egelman}
+%  
+%  \author[6]{David Wagner}
+%
+%  \affil[1]{University of California Berkeley, E-mail: \mbox{lnl@cs.berkeley.edu}}
+%
+%  \affil[2]{University of California Berkeley, E-mail: \mbox{fifield@cs.berkeley.edu}}
+%
+%  \affil[3]{University of California Berkeley, E-mail: \mbox{nmalkin@cs.berkeley.edu}}
+%
+%  \affil[4]{University of California Berkeley, E-mail: \mbox{ganesh.v@berkeley.edu}}
+%  
+%  \affil[5]{University of California Berkeley and International Computer Science Institute, E-mail: \mbox{egelman@cs.berkeley.edu}}
+%   
+%  \affil[6]{University of California Berkeley, E-mail: \mbox{daw@cs.berkeley.edu}}
 
   \title{\huge Tor's Usability for Censorship Circumvention}
   %Internet Freedom Made Easy: On Improving Tor’s Usability for Censorship Circumvention
@@ -74,7 +91,7 @@ in the time spent configuring a connections. We
 conclude with recommendations for changes to the current interface as well as 
 alternative approaches to bootstrapping a connection to Tor.}
 \end{abstract}
-  \keywords{User Studies, Tor, Security, Censorship, Anonymity}
+  \keywords{Usable Security, User Studies, Tor, Security, Censorship, Anonymity}
 %  \classification[PACS]{}
  % \communicated{...}
  % \dedication{...}
@@ -605,10 +622,12 @@ We split participants by simulated censorship environments,
 and between old and new interfaces.
 
 \subsection{Setup}
-We ran our experiment at Xlab~\cite{xlab}, the Experimental Social Science Laboratory at the University of 
-California, Berkeley. Xlab has 36 Windows~7 laptops, separated by cubicle walls. 
+We ran our experiment at <redacted> 
+%Xlab~\cite{xlab}, the Experimental Social Science Laboratory at the University of California, Berkeley. 
+<redacted> %Xlab 
+has 36 Windows~7 laptops, separated by cubicle walls. 
 Though Tor Browser runs on other operating systems,
-testing was only done on Windows, as a byproduct of using Xlab. 
+testing was only done on Windows, as a byproduct of using <redacted>. %Xlab. 
 
 We augmented the interfaces with instrumentation 
 to log every meaningful interaction
@@ -622,19 +641,24 @@ web searching and inspection of system networking settings.
 \subsection{Recruitment}
 We recruited 124 participants, about 20 for each
 condition. We recruited half of our users from Craigslist, and half of our participants from 
-the Xlab participant pool. Although Xlab participants are not limited to UC Berkeley students and staff,
+the <redacted> %Xlab 
+participant pool. Although <redacted> %Xlab 
+participants are not limited to <redacted> %UC Berkeley 
+students and staff,
 a majority of the participants are from campus. For this reason, we chose to recruit 
 half of our participants from Craigslist to ensure a diverse set of participants. 
 The recruitment text vaguely suggests testing a piece of software, and does not require
 that users provide information in advance (Appendix~\ref{quantitative-recruitment}). 
-Out of our 124 participants, 59 were recruited from the Xlab pool and the other 65 were
+Out of our 124 participants, 59 were recruited from the <redacted> %Xlab 
+pool and the other 65 were
 recruited from Craigslist. Ages ranged from 18 to~68 years
 ($\mu = 28.9$, $\sigma = 12$). 56.8\% were male and 
 84.8\% of our participants had at least a college education.
 
 \subsection{Procedure}
 The one-hour, multi-participant procedure began when all participants sat at their
-respective computers in Xlab. Each computer was equipped with an instrumented old or new version
+respective computers in <redacted>. %Xlab. 
+Each computer was equipped with an instrumented old or new version
 of Tor Browser, Chrome, Firefox, Internet Explorer,  Chrome, and VLC (for screen recording).
 Each computer was assigned one of the six conditions in the beginning of the study. Participants
 were assigned to a simulated censorship environment combination at random. 
@@ -879,7 +903,8 @@ Based on our observations of general behavioral trends and common failure cases,
 Although we cannot isolate their effects on users, we also recommend notifying a users with the configured settings before connecting and having a progress bar that illustrates when network component have successfully been configured or failed.
 
 \section{Limitations} 
-The configuration interface uses the native operating system's elements and their respective styling, so an interface looks slightly different across different operating systems. We only tested interface on Windows machines, which were the machines available at Xlab. Participants who are not accustomed to using Windows machines may have been slower to complete the given task, but this affected all conditions equally. 
+The configuration interface uses the native operating system's elements and their respective styling, so an interface looks slightly different across different operating systems. We only tested interface on Windows machines, which were the machines available at <redacted>. %Xlab. 
+Participants who are not accustomed to Windows machines may have been slower to complete the given task, but this affected all conditions equally. 
 
 We refreshed a list of Tor relay IP addresses and added them
 to a firewall blacklist before each session.
@@ -927,13 +952,13 @@ Interacting with a censorship circumvention tool users can be a complex balance 
 When designing censorship circumvention tools, we caution against requiring first-time users to make decisions on software-specific notions (e.g. pluggable transports for Tor), answering questions that assume technical knowledge, or manually configuring components. We encourage the use of simulated censorship environments as a tool for user testing censorship circumvention software. Not only do simulated environments avoid rerouting traffic through a censoring country's networks, their reproducibility and stability are ideal for experiments. 
 
 
-\section {Resources} 
-For additional details, such as the censorship simulation code, interview transcriptions, and logs of participant interactions, we refer you to the project repository: \\
-
-\noindent \url{https://github.com/lindanlee/circumvention-ux-tor}
-
-\section {Acknowledgments}
-I want to especially thank Rowilma del Castillo of Xlab for supporting the experiment, assisting with testing, and being flexible with non-Xlab recruiting. I have received much valuable feedback from Nima Fatemi, Isabela Bagueros, Georg Koppen, and the Tor UX team. 
+%\section {Resources} 
+%For additional details, such as the censorship simulation code, interview transcriptions, and logs of participant interactions, we refer you to the project repository: \\
+%
+%\noindent \url{https://github.com/lindanlee/circumvention-ux-tor}
+%
+%\section {Acknowledgments}
+%I want to especially thank Rowilma del Castillo of Xlab for supporting the experiment, assisting with testing, and being flexible with non-Xlab recruiting. I have received much valuable feedback from Nima Fatemi, Isabela Bagueros, Georg Koppen, and the Tor UX team. 
 
 \bibliographystyle{abbrv}
 \bibliography{pets2017-paper}
@@ -942,16 +967,19 @@ I want to especially thank Rowilma del Castillo of Xlab for supporting the exper
 
 \section{Qualitative User Study Recruitment Posting} 
 \label{qualitative-recruitment}
-We are recruiting participants for an in-person research study at the University of California, Berkeley. You will need to come in to our lab and perform tasks on a computer for an hour or less. You will be compensated \$30 for participating. 
+We are recruiting participants for an in-person research study at <redacted>. %the University of California, Berkeley. 
+You will need to come in to our lab and perform tasks on a computer for an hour or less. You will be compensated \$30 for participating. 
 No special knowledge and no technical experience is required. If you are interested, fill out the survey at \textit{<survey link>}. 
 
 \section{Qualitative User Study Prescreening Survey} 
 \label{qualitative-prescreening}
-We are recruiting participants for an in-person research study at the University of California, Berkeley. You will need to come in to our lab and perform tasks on a computer for an hour or less. You will be compensated \$30 for participating. No special knowledge and no technical experience is required.\\
+We are recruiting participants for an in-person research study at the <redacted>. %University of California, Berkeley. 
+You will need to come in to our lab and perform tasks on a computer for an hour or less. You will be compensated \$30 for participating. No special knowledge and no technical experience is required.\\
 
 \begin{enumerate}
 \item{Please select when you are available. We will assign you an hour experiment time slot during one of those times.}
-\item{I am able to provide my own transportation to the University of California, Berkeley campus.}
+\item{I am able to provide my own transportation to the <redacted> %University of California, Berkeley 
+campus.}
 \item{Thank you for your interest! Please provide an email address where we can contact you to share more logistical details.}
 \item{we are looking for a very small number of participants, so unfortunately, we may not be able to accommodate everyone who applies. Would you like us to let you know about future opportunities?}
 \item{What is your gender?}
@@ -997,17 +1025,21 @@ In addition to these questions, we asked our participants about specific questio
 
 \section{Quantitative User Recruitment Posting}
 \label{quantitative-recruitment}
-We are recruiting up to 40 participants for a user study at UC Berkeley. The experiment will involve basic Internet browsing tasks. You are not eligible if you have participated in our previous sessions.\\
+We are recruiting up to 40 participants for a user study at <redacted>. %UC Berkeley. 
+The experiment will involve basic Internet browsing tasks. You are not eligible if you have participated in our previous sessions.\\
 
 \indent Payment: \$30 Amazon gift card\\
 \indent Duration: 1 hour \\
-\indent Where: Xlab at Hearst Memorial Gymnasium\\
+\indent Where: <redacted> \\ %Xlab at Hearst Memorial Gymnasium\\
 
 \textit{<list of sessions>}\\
 
 To be eligible, you must be an adult (18 or older). This is to comply with university policies on research. 
 
-If you are interested: 1. Email lnl@berkeley.edu with the sessions you are able to attend. We will confirm your participation and assign you a session. 2. Come to Xlab at the appointed time for the experiment.
+If you are interested: 1. Email <redacted> %lnl@berkeley.edu 
+with the sessions you are able to attend. We will confirm your participation and assign you a session. 
+2. Come to <redacted> %Xlab 
+at the appointed time for the experiment.
 
 \section{Quantitative User Study Introduction Script} 
 \label{quantitative-script} 
@@ -1024,7 +1056,11 @@ Before you start, do you have any questions about what you are asked to do?
 \label{quantitative-exit-survey}
 We'd like to know more about you.  All of your answers will be stored separately from any identifying information in order to protect your confidentiality.
 
-This survey is part of a research project being conducted by the University of California, Berkeley. If you have any questions about your rights or treatment as a research participant in this study, please contact the University of California at Berkeley's Committee for Protection of Human Subjects at 510-642-7461, or email subjects@berkeley.edu. If you agree to participate, please click Next below.\\
+This survey is part of a research project being conducted by the <redacted>. %University of California, Berkeley. 
+If you have any questions about your rights or treatment as a research participant in this study, please contact the <redacted>'s %University of California at Berkeley's 
+Committee for Protection of Human Subjects at 510-642-7461, or email 
+<redacted>. %subjects@berkeley.edu. 
+If you agree to participate, please click Next below.\\
 
 \begin{enumerate}
 \item{What is your participant ID? (This can be found on the sticker on the left hand corner of the desk you are currently sitting at.)}
@@ -1054,6 +1090,7 @@ Time to success was measured as the time from the participants started the Tor l
 Active configuration time was measured as the time the participants spent in the Tor launcher interface, except for the time spent the progress screen. For our participants who did not succeed to connect to Tor, subtracted the time spent on the progress screen from the maximum experiment time of 40 minutes. This measurement was also 1) non-normal and heavily right tailed and 2) impacted by right-censored measurement of time to success. Because of the right-tailed nature of the data, we used a one-tailed Mann--Whitney test. We find the difference of active configuration times between participants with the new interface and participants with the old interface to be significant ($Z = -3.28$, $p = 0.000516$, $r = 0.307$).
 
 \section{Custom Bridge Attempts} 
+We provide screenshots of the messages sent to the bridges autoresponder. 
 \label{custom}
 
 \begin{figure}[h]
@@ -1068,29 +1105,22 @@ Active configuration time was measured as the time the participants spent in the
 \label{autoresponder2}
 \end{figure} 
 
-\section{All Participant Times}
-\label{all-participant-times}
-Table~\ref{table:all-participant-times} shows where each participant spent their time in the interface. These are the raw numbers used to compute values such as the median time spend on each screen.   Participants are grouped by condition. Within each condition, participants are ordered in the order of time to success. For example, observe that P1 and P2 were in the E1-NEW condition and that P1 finished faster than P2.  
-
-\begin{table*}
-\input{all-participant-times.tex}
-\caption{
-Times spent on each screen, per participant.
-}
-\label{table:all-participant-times}
-\end{table*}
+%\section{All Participant Times}
+%\label{all-participant-times}
+%Table~\ref{table:all-participant-times} shows where each participant spent their time in the interface. These are the raw numbers used to compute values such as the median time spend on each screen.   Participants are grouped by condition. Within each condition, participants are ordered in the order of time to success. For example, observe that P1 and P2 were in the E1-NEW condition and that P1 finished faster than P2.  
+%
+%\begin{table*}
+%\input{all-participant-times.tex}
+%\caption{
+%Times spent on each screen, per participant.
+%}
+%\label{table:all-participant-times}
+%\end{table*}
 
 \section{Tor Downloads}
 \label{tor-downloads}
 
-Participants that downloaded Tor Browser (5/124): 
-\begin{itemize}
-\item P115 (Fig.~\ref{softsonic})
-\item P116 (Fig.~\ref{techspot})
-\item P117, data not used (Fig.~\ref{mirror})
-\item P118, data not used (Fig.~\ref{downloadio})
-\item P119, data not used (Fig.~\ref{driverupdate})
-\end{itemize} 
+5 Participants downloaded Tor Browser:  P115 (Fig.~\ref{softsonic}), P116 (Fig.~\ref{techspot}), P117, data not used (Fig.~\ref{mirror}), P118, data not used (Fig.~\ref{downloadio}), and P119, data not used (Fig.~\ref{driverupdate}).
 
 %Sources of downloads: 
 %\begin{itemize}
