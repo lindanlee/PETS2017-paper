@@ -59,7 +59,7 @@ canonicalize_screens <- function(version, x) {
 		"proxyYES"="proxyYES",
 		"summary"="summary",
 		"progress"=c("progress_bar", "inlineprogress"),
-		"error"="errorPanel"
+		"error"=c("errorPanel", "error_dialog")
 	)
 	droplevels(y)
 }
