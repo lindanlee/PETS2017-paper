@@ -1299,10 +1299,10 @@ X08,20160325-141856,1,22,276.9,proxyYES,proxyYES,click,proxyAddr,
 X08,20160325-141856,1,23,296.5,proxyYES,proxyYES,change,proxyAddr,128.32.339.21
 X08,20160325-141856,1,24,299.8,proxyYES,proxyYES,click,proxyYES,
 X08,20160325-141856,1,25,300.8,proxyYES,proxyYES,wizardfinish,TorNetworkSettings,
-X08,20160325-141856,1,26,303.1,proxyYES,proxyYES,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X08,20160325-141856,1,26,303.1,proxyYES,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 Unacceptable option value: HTTPSProxy failed to parse or resolve. Please fix."
-X08,20160325-141856,1,27,305.3,proxyYES,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X08,20160325-141856,1,27,305.3,error_dialog,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 Unacceptable option value: HTTPSProxy failed to parse or resolve. Please fix."
 X08,20160325-141856,1,28,307.0,proxyYES,proxy,wizardback,TorNetworkSettings,
@@ -1342,10 +1342,10 @@ X08,20160325-175134,1,10,14.7,progress_bar,progress_bar,progresschanged,progress
 X08,20160325-175134,1,11,16.8,progress_bar,progress_bar,click,TorProgress,
 X08,20160325-175134,1,12,16.8,progress_bar,first,dialogcancel,TorProgress,
 X08,20160325-175134,1,13,16.8,first,first,command,TorProgress,
-X08,20160325-175134,1,14,16.8,first,first,alert_show,tor_bootstrap_failed,"Tor failed to establish a Tor network connection.
+X08,20160325-175134,1,14,16.8,first,error_dialog,alert_show,error_dialog,"Tor failed to establish a Tor network connection.
 
 Loading network status failed (no route to host - 86.59.21.38:443)."
-X08,20160325-175134,1,15,17.9,first,first,alert_exit,tor_bootstrap_failed,"Tor failed to establish a Tor network connection.
+X08,20160325-175134,1,15,17.9,error_dialog,first,alert_exit,tor_bootstrap_failed,"Tor failed to establish a Tor network connection.
 
 Loading network status failed (no route to host - 86.59.21.38:443)."
 X08,20160325-175134,1,16,20.3,first,first,click,configure_button,
@@ -1528,10 +1528,10 @@ X14,20160328-132941,1,10,15.1,progress_bar,progress_bar,progresschanged,progress
 X14,20160328-132941,1,11,120.5,progress_bar,progress_bar,click,TorProgress,
 X14,20160328-132941,1,12,120.5,progress_bar,first,dialogcancel,TorProgress,
 X14,20160328-132941,1,13,120.5,first,first,command,TorProgress,
-X14,20160328-132941,1,14,120.5,first,first,alert_show,tor_bootstrap_failed,"Tor failed to establish a Tor network connection.
+X14,20160328-132941,1,14,120.5,first,error_dialog,alert_show,error_dialog,"Tor failed to establish a Tor network connection.
 
 Loading network status failed (no route to host - 199.254.238.52:443)."
-X14,20160328-132941,1,15,122.3,first,first,alert_exit,tor_bootstrap_failed,"Tor failed to establish a Tor network connection.
+X14,20160328-132941,1,15,122.3,error_dialog,first,alert_exit,tor_bootstrap_failed,"Tor failed to establish a Tor network connection.
 
 Loading network status failed (no route to host - 199.254.238.52:443)."
 X14,20160328-132941,1,16,123.6,first,first,wizardcancel,TorNetworkSettings,
@@ -2684,10 +2684,10 @@ X09,20160328-160000,4,90,353.3,proxy,proxy,click,proxyAddr,
 X09,20160328-160000,4,91,353.4,proxy,proxy,click,proxyAddr,
 X09,20160328-160000,4,92,354.2,proxy,proxy,select,proxyPort,
 X09,20160328-160000,4,93,354.3,proxy,proxy,click,proxyPort,
-X09,20160328-160000,4,94,355.7,proxy,proxy,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X09,20160328-160000,4,94,355.7,proxy,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
-X09,20160328-160000,4,95,356.6,proxy,proxy,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X09,20160328-160000,4,95,356.6,error_dialog,proxy,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
 X09,20160328-160000,4,96,357.1,proxy,proxy,click,proxyRadioWith,
@@ -3226,10 +3226,10 @@ X21,20160328-155918,2,58,127.7,bridges,summary,wizardnext,TorNetworkSettings,
 X21,20160328-155918,2,59,129.4,summary,bridges,wizardback,TorNetworkSettings,
 X21,20160328-155918,2,60,129.4,bridges,proxy,wizardback,TorNetworkSettings,
 X21,20160328-155918,2,61,129.4,proxy,first,wizardback,TorNetworkSettings,
-X21,20160328-155918,2,62,129.5,first,first,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X21,20160328-155918,2,62,129.5,first,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 Unacceptable option value: Socks5Proxy failed to parse or resolve. Please fix."
-X21,20160328-155918,2,63,132.1,first,first,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X21,20160328-155918,2,63,132.1,error_dialog,first,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 Unacceptable option value: Socks5Proxy failed to parse or resolve. Please fix."
 X21,20160328-155918,2,64,135.1,first,first,click,configure_button,
@@ -3718,10 +3718,10 @@ X04,20160328-131820,1,70,809.2,proxyYES,proxyYES,select,proxyType,SOCKS4
 X04,20160328-131820,1,71,815.6,proxyYES,proxyYES,select,proxyAddr,
 X04,20160328-131820,1,72,815.7,proxyYES,proxyYES,click,proxyAddr,
 X04,20160328-131820,1,73,827.5,proxyYES,proxyYES,click,proxyType,SOCKS4
-X04,20160328-131820,1,74,832.9,proxyYES,proxyYES,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X04,20160328-131820,1,74,832.9,proxyYES,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
-X04,20160328-131820,1,75,838.3,proxyYES,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X04,20160328-131820,1,75,838.3,error_dialog,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
 X04,20160328-131820,1,76,856.7,proxyYES,proxyYES,extra2,proxyYES,
@@ -3730,10 +3730,10 @@ X04,20160328-131820,1,78,866.1,proxyYES,proxyYES,click,proxyType,SOCKS4
 X04,20160328-131820,1,79,866.7,proxyYES,proxyYES,select,proxyType,SOCKS5
 X04,20160328-131820,1,80,868.1,proxyYES,proxyYES,click,proxyType,SOCKS5
 X04,20160328-131820,1,81,868.7,proxyYES,proxyYES,select,proxyType,HTTP
-X04,20160328-131820,1,82,870.3,proxyYES,proxyYES,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X04,20160328-131820,1,82,870.3,proxyYES,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
-X04,20160328-131820,1,83,872.2,proxyYES,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X04,20160328-131820,1,83,872.2,error_dialog,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
 X04,20160328-131820,1,84,873.4,proxyYES,proxyYES,click,proxyType,HTTP
@@ -3788,36 +3788,36 @@ X04,20160328-131820,1,132,1365.4,proxyYES,proxyYES,select,proxyPort,
 X04,20160328-131820,1,133,1365.5,proxyYES,proxyYES,click,proxyPort,
 X04,20160328-131820,1,134,1378.6,proxyYES,proxyYES,change,proxyPort,127.0.0.1
 X04,20160328-131820,1,135,1378.7,proxyYES,proxyYES,wizardfinish,TorNetworkSettings,
-X04,20160328-131820,1,136,1378.8,proxyYES,proxyYES,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X04,20160328-131820,1,136,1378.8,proxyYES,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 Unacceptable option value: Socks4Proxy failed to parse or resolve. Please fix."
-X04,20160328-131820,1,137,1382.8,proxyYES,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X04,20160328-131820,1,137,1382.8,error_dialog,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 Unacceptable option value: Socks4Proxy failed to parse or resolve. Please fix."
 X04,20160328-131820,1,138,1385.3,proxyYES,proxyYES,click,proxyType,SOCKS4
 X04,20160328-131820,1,139,1386.3,proxyYES,proxyYES,select,proxyType,HTTP
 X04,20160328-131820,1,140,1387.7,proxyYES,proxyYES,wizardfinish,TorNetworkSettings,
-X04,20160328-131820,1,141,1387.7,proxyYES,proxyYES,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X04,20160328-131820,1,141,1387.7,proxyYES,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 Unacceptable option value: HTTPSProxy failed to parse or resolve. Please fix."
-X04,20160328-131820,1,142,1389.2,proxyYES,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X04,20160328-131820,1,142,1389.2,error_dialog,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 Unacceptable option value: HTTPSProxy failed to parse or resolve. Please fix."
 X04,20160328-131820,1,143,1389.7,proxyYES,proxyYES,click,proxyType,HTTP
 X04,20160328-131820,1,144,1390.7,proxyYES,proxyYES,select,proxyType,SOCKS5
 X04,20160328-131820,1,145,1391.4,proxyYES,proxyYES,wizardfinish,TorNetworkSettings,
-X04,20160328-131820,1,146,1391.5,proxyYES,proxyYES,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X04,20160328-131820,1,146,1391.5,proxyYES,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 Unacceptable option value: Socks5Proxy failed to parse or resolve. Please fix."
-X04,20160328-131820,1,147,1392.2,proxyYES,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X04,20160328-131820,1,147,1392.2,error_dialog,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 Unacceptable option value: Socks5Proxy failed to parse or resolve. Please fix."
 X04,20160328-131820,1,148,1392.8,proxyYES,proxyYES,click,proxyType,SOCKS5
 X04,20160328-131820,1,149,1393.4,proxyYES,proxyYES,select,proxyType,
-X04,20160328-131820,1,150,1394.4,proxyYES,proxyYES,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X04,20160328-131820,1,150,1394.4,proxyYES,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 You must select the proxy type."
-X04,20160328-131820,1,151,1395.8,proxyYES,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X04,20160328-131820,1,151,1395.8,error_dialog,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 You must select the proxy type."
 X04,20160328-131820,1,152,1397.3,proxyYES,proxy,wizardback,TorNetworkSettings,
@@ -4120,10 +4120,10 @@ X10,20160328-132828,5,87,1821.3,proxyYES,proxyYES,select,proxyAddr,
 X10,20160328-132828,5,88,1821.4,proxyYES,proxyYES,click,proxyAddr,
 X10,20160328-132828,5,89,1825.5,proxyYES,proxyYES,click,proxyType,SOCKS4
 X10,20160328-132828,5,90,1827.3,proxyYES,proxyYES,select,proxyType,
-X10,20160328-132828,5,91,1829.6,proxyYES,proxyYES,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X10,20160328-132828,5,91,1829.6,proxyYES,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 You must select the proxy type."
-X10,20160328-132828,5,92,1831.0,proxyYES,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X10,20160328-132828,5,92,1831.0,error_dialog,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 You must select the proxy type."
 X10,20160328-132828,5,93,1831.7,proxyYES,proxyYES,click,proxyType,
@@ -4410,10 +4410,10 @@ X16,20160328-133044,2,38,148.1,bridgeSettings,proxy,wizardnext,TorNetworkSetting
 X16,20160328-133044,2,39,150.3,proxy,proxy,click,proxyRadioYes,
 X16,20160328-133044,2,40,150.3,proxy,proxy,command,proxyRadioYes,
 X16,20160328-133044,2,41,152.7,proxy,proxyYES,wizardnext,TorNetworkSettings,
-X16,20160328-133044,2,42,154.6,proxyYES,proxyYES,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X16,20160328-133044,2,42,154.6,proxyYES,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
-X16,20160328-133044,2,43,158.7,proxyYES,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X16,20160328-133044,2,43,158.7,error_dialog,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
 X16,20160328-133044,2,44,160.0,proxyYES,proxyYES,wizardcancel,TorNetworkSettings,
@@ -4711,10 +4711,10 @@ X28,20160328-155947,1,22,178.0,proxy,proxy,command,proxyRadioYes,
 X28,20160328-155947,1,23,179.1,proxy,proxyYES,wizardnext,TorNetworkSettings,
 X28,20160328-155947,1,24,181.3,proxyYES,proxyYES,click,proxyType,
 X28,20160328-155947,1,25,183.3,proxyYES,proxyYES,select,proxyType,HTTP
-X28,20160328-155947,1,26,186.2,proxyYES,proxyYES,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X28,20160328-155947,1,26,186.2,proxyYES,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
-X28,20160328-155947,1,27,187.6,proxyYES,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X28,20160328-155947,1,27,187.6,error_dialog,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
 X28,20160328-155947,1,28,202.8,proxyYES,proxyYES,click,,
@@ -5476,26 +5476,26 @@ X05,20160331-174656,3,40,241.0,proxy,proxy,click,proxyType,
 X05,20160331-174656,3,41,250.9,proxy,proxy,select,proxyType,SOCKS4
 X05,20160331-174656,3,42,252.3,proxy,proxy,select,proxyAddr,
 X05,20160331-174656,3,43,252.4,proxy,proxy,click,proxyAddr,
-X05,20160331-174656,3,44,254.0,proxy,proxy,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X05,20160331-174656,3,44,254.0,proxy,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
-X05,20160331-174656,3,45,256.2,proxy,proxy,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X05,20160331-174656,3,45,256.2,error_dialog,proxy,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
 X05,20160331-174656,3,46,257.0,proxy,proxy,click,proxyType,SOCKS4
 X05,20160331-174656,3,47,257.9,proxy,proxy,select,proxyType,SOCKS5
-X05,20160331-174656,3,48,259.0,proxy,proxy,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X05,20160331-174656,3,48,259.0,proxy,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
-X05,20160331-174656,3,49,260.0,proxy,proxy,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X05,20160331-174656,3,49,260.0,error_dialog,proxy,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
 X05,20160331-174656,3,50,260.7,proxy,proxy,click,proxyType,SOCKS5
 X05,20160331-174656,3,51,262.0,proxy,proxy,select,proxyType,HTTP
-X05,20160331-174656,3,52,263.8,proxy,proxy,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X05,20160331-174656,3,52,263.8,proxy,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
-X05,20160331-174656,3,53,265.0,proxy,proxy,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X05,20160331-174656,3,53,265.0,error_dialog,proxy,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
 X05,20160331-174656,3,54,265.7,proxy,proxy,click,proxyType,HTTP
@@ -5982,10 +5982,10 @@ X11,20160331-174655,3,50,631.5,proxy,proxy,click,,
 X11,20160331-174655,3,51,632.1,proxy,proxy,click,,
 X11,20160331-174655,3,52,632.7,proxy,proxy,click,proxyType,SOCKS5
 X11,20160331-174655,3,53,633.7,proxy,proxy,select,proxyType,HTTP
-X11,20160331-174655,3,54,635.8,proxy,proxy,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X11,20160331-174655,3,54,635.8,proxy,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
-X11,20160331-174655,3,55,637.3,proxy,proxy,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X11,20160331-174655,3,55,637.3,error_dialog,proxy,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
 X11,20160331-174655,3,56,638.6,proxy,proxy,select,proxyAddr,
@@ -6026,10 +6026,10 @@ X11,20160331-174655,5,90,856.1,proxy,proxy,click,proxyRadioWith,
 X11,20160331-174655,5,91,856.1,proxy,proxy,command,proxyRadioWith,
 X11,20160331-174655,5,92,857.6,proxy,proxy,click,proxyType,
 X11,20160331-174655,5,93,858.6,proxy,proxy,select,proxyType,SOCKS4
-X11,20160331-174655,5,94,860.7,proxy,proxy,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X11,20160331-174655,5,94,860.7,proxy,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
-X11,20160331-174655,5,95,863.1,proxy,proxy,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X11,20160331-174655,5,95,863.1,error_dialog,proxy,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
 X11,20160331-174655,5,96,864.8,proxy,proxy,select,proxyAddr,
@@ -6276,10 +6276,10 @@ X17,20160328-133311,4,68,597.0,bridges,summary,wizardnext,TorNetworkSettings,
 X17,20160328-133311,4,69,602.6,summary,bridges,wizardback,TorNetworkSettings,
 X17,20160328-133311,4,70,602.6,bridges,proxy,wizardback,TorNetworkSettings,
 X17,20160328-133311,4,71,602.6,proxy,first,wizardback,TorNetworkSettings,
-X17,20160328-133311,4,72,602.6,first,first,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X17,20160328-133311,4,72,602.6,first,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 Unacceptable option value: HTTPSProxy failed to parse or resolve. Please fix."
-X17,20160328-133311,4,73,606.0,first,first,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X17,20160328-133311,4,73,606.0,error_dialog,first,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 Unacceptable option value: HTTPSProxy failed to parse or resolve. Please fix."
 X17,20160328-133311,4,74,607.1,first,first,click,configure_button,
@@ -6490,10 +6490,10 @@ X17,20160328-160037,7,133,592.4,proxy,proxy,click,proxyType,
 X17,20160328-160037,7,134,594.1,proxy,proxy,select,proxyType,SOCKS5
 X17,20160328-160037,7,135,594.9,proxy,proxy,select,proxyAddr,
 X17,20160328-160037,7,136,595.1,proxy,proxy,click,proxyAddr,
-X17,20160328-160037,7,137,597.0,proxy,proxy,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X17,20160328-160037,7,137,597.0,proxy,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
-X17,20160328-160037,7,138,599.2,proxy,proxy,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X17,20160328-160037,7,138,599.2,error_dialog,proxy,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
 X17,20160328-160037,7,139,600.9,proxy,proxy,select,proxyAddr,
@@ -6922,10 +6922,10 @@ X18,20160330-170145,1,27,624.3,bridgeSettings,bridgeSettings,click,defaultBridge
 X18,20160330-170145,1,28,630.2,bridgeSettings,bridgeSettings,select,defaultBridgeType,obfs4
 X18,20160330-170145,1,29,643.7,bridgeSettings,proxy,wizardnext,TorNetworkSettings,
 X18,20160330-170145,1,30,645.4,proxy,proxyYES,wizardnext,TorNetworkSettings,
-X18,20160330-170145,1,31,653.2,proxyYES,proxyYES,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X18,20160330-170145,1,31,653.2,proxyYES,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
-X18,20160330-170145,1,32,659.7,proxyYES,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X18,20160330-170145,1,32,659.7,error_dialog,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
 X18,20160330-170145,1,33,665.5,proxyYES,proxyYES,click,proxyType,SOCKS4
@@ -6975,10 +6975,10 @@ X18,20160330-170145,4,76,1433.2,first,first,click,configure_button,
 X18,20160330-170145,4,77,1433.2,first,proxy,wizardnext,TorNetworkSettings,
 X18,20160330-170145,4,78,1439.6,proxy,proxy,click,proxyRadioWith,
 X18,20160330-170145,4,79,1439.6,proxy,proxy,command,proxyRadioWith,
-X18,20160330-170145,4,80,1447.0,proxy,proxy,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X18,20160330-170145,4,80,1447.0,proxy,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 You must select the proxy type."
-X18,20160330-170145,4,81,1449.8,proxy,proxy,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X18,20160330-170145,4,81,1449.8,error_dialog,proxy,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 You must select the proxy type."
 X18,20160330-170145,4,82,1451.4,proxy,proxy,click,proxyType,
@@ -7064,10 +7064,10 @@ X18,20160330-170145,4,95,1505.7,bridges,summary,wizardnext,TorNetworkSettings,
 X18,20160330-170145,4,96,1514.8,summary,bridges,wizardback,TorNetworkSettings,
 X18,20160330-170145,4,97,1514.8,bridges,proxy,wizardback,TorNetworkSettings,
 X18,20160330-170145,4,98,1514.8,proxy,first,wizardback,TorNetworkSettings,
-X18,20160330-170145,4,99,1514.8,first,first,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X18,20160330-170145,4,99,1514.8,first,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 Unacceptable option value: Bridge line did not parse. See logs for details."
-X18,20160330-170145,4,100,1536.1,first,first,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X18,20160330-170145,4,100,1536.1,error_dialog,first,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 Unacceptable option value: Bridge line did not parse. See logs for details."
 X18,20160330-170145,4,101,1541.3,first,first,click,configure_button,
@@ -7097,10 +7097,10 @@ X18,20160330-170145,6,124,1816.7,proxy,proxy,command,proxyRadioWith,
 X18,20160330-170145,6,125,1819.0,proxy,proxy,select,proxyAddr,
 X18,20160330-170145,6,126,1819.1,proxy,proxy,click,proxyAddr,
 X18,20160330-170145,6,127,1823.2,proxy,proxy,change,proxyAddr,"INST f7a2a98d15f05e35 2016-03-23T21:12:08.500Z {""type"":""start""} INST f7a2a98d15f05e35 2016-03-23T21:12:09.500Z {""type"":""select"",""target_tagname"":""menulist"",""target_id"":""proxyType"",""value"":""""} INST f7a2a98d15f05e35 2016-03-23T21:12:09.500Z {""type"":""wizardnext"",""target_tagname"":""wizard"",""target_id"":""TorNetworkSettings""} INST f7a2a98d15f05e35 2016-03-23T21:12:09.500Z {""type"":""pageshow"",""target_tagname"":""wizardpage"",""target_id"":""first""} INST f7a2a98d15f05e35 2016-03-23T21:12:09.500Z {""type"":""load"",""target_id"":""configuration""} INST f7a2a98d15f05e35 2016-03-23T21:12:09.500Z {""type"":""select"",""target_tagname"":""menulist"",""target_id"":""defaultBridgeType"",""value"":""obfs3""} INST f7a2a98d15f05e35 2016-03-23T21:12:27.900Z {""type"":""click"",""target_tagname"":""button"",""target_id"":""connect_button"",""detail"":1} INST f7a2a98d15f05e35 2016-03-23T21:12:27.900Z {""type"":""pagehide"",""target_tagname"":""wizardpage"",""target_id"":""first""} INST f7a2a98d15f05e35 2016-03-23T21:12:27.900Z {""type"":""pageadvanced"",""target_tagname"":""wizardpage"",""target_id"":""first""} INST f7a2a98d15f05e35 2016-03-23T21:12:27.900Z {""type"":""wizardnext"",""target_tagname"":""wizard"",""target_id"":""TorNetworkSettings""} INST f7a2a98d15f05e35 2016-03-23T21:12:27.900Z {""type"":""pageshow"",""target_tagname"":""wizardpage"",""target_id"":""inlineprogress""} INST f7a2a98d15f05e35 2016-03-23T21:12:27.900Z {""type"":""command"",""target_tagname"":""button"",""target_id"":""connect_button""} INST f7a2a98d15f05e35 2016-03-23T21:12:28.100Z {""type"":""progresschanged"",""target_tagname"":""progressmeter"",""target_id"":""progressMeter"",""value"":5} INST f7a2a98d15f05e35 2016-03-23T21:12:28.100Z {""type"":""good"",""target_tagname"":""image"",""target_id"":""progressbar"",""configurationSettings"":""nobridge-noproxy"",""number"":1} INST f7a2a98d15f05e35 2016-03-23T21:12:28.100Z {""type"":""progresschanged"",""target_tagname"":""progressmeter"",""target_id"":""progressMeter"",""value"":10} INST f7a2a98d15f05e35 2016-03-23T21:12:28.100Z {""type"":""good"",""target_tagname"":""image"",""target_id"":""progressbar"",""configurationSettings"":""nobridge-noproxy"",""number"":1} INST f7a2a98d15f05e35 2016-03-23T21:12:28.200Z {""type"":""progresschanged"",""target_tagname"":""progressmeter"",""target_id"":""progressMeter"",""value"":15} INST f7a2a98d15f05e35 2016-03-23T21:12:28.200Z {""type"":""good"",""target_tagname"":""image"",""target_id"":""progressbar"",""configurationSettings"":""nobridge-noproxy"",""number"":1} INST f7a2a98d15f05e35 2016-03-23T21:12:28.300Z {""type"":""progresschanged"",""target_tagname"":""progressmeter"",""target_id"":""progressMeter"",""value"":20} INST f7a2a98d15f05e35 2016-03-23T21:12:28.300Z {""type"":""good"",""target_tagname"":""image"",""target_id"":""progressbar"",""configurationSettings"":""nobridge-noproxy"",""number"":1} INST f7a2a98d15f05e35 2016-03-23T21:12:28.400Z {""type"":""progresschanged"",""target_tagname"":""progressmeter"",""target_id"":""progressMeter"",""value"":25} INST f7a2a98d15f05e35 2016-03-23T21:12:28.400Z {""type"":""good"",""target_tagname"":""image"",""target_id"":""progressbar"",""configurationSettings"":""nobridge-noproxy"",""number"":2} INST f7a2a98d15f05e35 2016-03-23T21:12:32.400Z {""type"":""progresschanged"",""target_tagname"":""progressmeter"",""target_id"":""progressMeter"",""value"":40} INST f7a2a98d15f05e35 2016-03-23T21:12:32.400Z {""type"":""good"",""target_tagname"":""image"",""target_id"":""progressbar"",""configurationSettings"":""nobridge-noproxy"",""number"":2} INST f7a2a98d15f05e35 2016-03-23T21:12:32.700Z {""type"":""progresschanged"",""target_tagname"":""progressmeter"",""target_id"":""progressMeter"",""value"":45} INST f7a2a98d15f05e35 2016-03-23T21:12:32.700Z {""type"":""good"",""target_tagname"":""image"",""target_id"":""progressbar"",""configurationSettings"":""nobridge-noproxy"",""number"":2} INST f7a2a98d15f05e35 2016-03-23T21:12:33.700Z {""type"":""progresschanged"",""target_tagname"":""progressmeter"",""target_id"":""progressMeter"",""value"":50} INST f7a2a98d15f05e35 2016-03-23T21:12:33.700Z {""type"":""good"",""target_tagname"":""image"",""target_id"":""progressbar"",""configurationSettings"":""nobridge-noproxy"",""number"":2} INST f7a2a98d15f05e35 2016-03-23T21:12:35.900Z {""type"":""progresschanged"",""target_tagname"":""progressmeter"",""target_id"":""progressMeter"",""value"":51} INST f7a2a98d15f05e35 2016-03-23T21:12:35.900Z {""type"":""good"",""target_tagname"":""image"",""target_id"":""progressbar"",""configurationSettings"":""nobridge-noproxy"",""number"":2} INST f7a2a98d15f05e35 2016-03-23T21:12:36.100Z {""type"":""progresschanged"",""target_tagname"":""progressmeter"",""target_id"":""progressMeter"",""value"":52} INST f7a2a98d15f05e35 2016-03-23T21:12:36.100Z {""type"":""good"",""target_tagname"":""image"",""target_id"":""progressbar"",""configurationSettings"":""nobridge-noproxy"",""number"":2} INST f7a2a98d15f05e35 2016-03-23T21:12:36.400Z {""type"":""progresschanged"",""target_tagname"":""progressmeter"",""target_id"":""progressMeter"",""value"":54} INST f7a2a98d15f05e35 2016-03-23T21:12:36.400Z {""type"":""good"",""target_tagname"":""image"",""target_id"":""progressbar"",""configurationSettings"":""nobridge-noproxy"",""number"":2} INST f7a2a98d15f05e35 2016-03-23T21:12:36.800Z {""type"":""progresschanged"",""target_tagname"":""progressmeter"",""target_id"":""progressMeter"",""value"":56} INST f7a2a98d15f05e35 2016-03-23T21:12:36.800Z {""type"":""good"",""target_tagname"":""image"",""target_id"":""progressbar"",""configurationSettings"":""nobridge-noproxy"",""number"":2} INST f7a2a98d15f05e35 2016-03-23T21:12:38.800Z {""type"":""progresschanged"",""target_tagname"":""progressmeter"",""target_id"":""progressMeter"",""value"":59} INST f7a2a98d15f05e35 2016-03-23T21:12:38.800Z {""type"":""good"",""target_tagname"":""image"",""target_id"":""progressbar"",""configurationSettings"":""nobridge-noproxy"",""number"":2} INST f7a2a98d15f05e35 2016-03-23T21:12:39.200Z {""type"":""progresschanged"",""target_tagname"":""progressmeter"",""target_id"":""progressMeter"",""value"":63} INST f7a2a98d15f05e35 2016-03-23T21:12:39.200Z {""type"":""good"",""target_tagname"":""image"",""target_id"":""progressbar"",""configurationSettings"":""nobridge-noproxy"",""number"":2} INST f7a2a98d15f05e35 2016-03-23T21:12:39.200Z {""type"":""progresschanged"",""target_tagname"":""progressmeter"",""target_id"":""progressMeter"",""value"":69} INST f7a2a98d15f05e35 2016-03-23T21:12:39.200Z {""type"":""good"",""target_tagname"":""image"",""target_id"":""progressbar"",""configurationSettings"":""nobridge-noproxy"",""number"":2} INST f7a2a98d15f05e35 2016-03-23T21:13:06.900Z {""type"":""progresschanged"",""target_tagname"":""progressmeter"",""target_id"":""progressMeter"",""value"":69} INST f7a2a98d15f05e35 2016-03-23T21:13:06.900Z {""type"":""good"",""target_tagname"":""image"",""target_id"":""progressbar"",""configurationSettings"":""nobridge-noproxy"",""number"":2} INST f7a2a98d15f05e35 2016-03-23T21:13:13.200Z {""type"":""progresschanged"",""target_tagname"":""progressmeter"",""target_id"":""progressMeter"",""value"":74} INST f7a2a98d15f05e35 2016-03-23T21:13:13.200Z {""type"":""good"",""target_tagname"":""image"",""target_id"":""progressbar"",""configurationSettings"":""nobridge-noproxy"",""number"":2} INST f7a2a98d15f05e35 2016-03-23T21:13:14.200Z {""type"":""progresschanged"",""target_tagname"":""progressmeter"",""target_id"":""progressMeter"",""value"":80} INST f7a2a98d15f05e35 2016-03-23T21:13:14.200Z {""type"":""good"",""target_tagname"":""image"",""target_id"":""progressbar"",""configurationSettings"":""nobridge-noproxy"",""number"":2} INST f7a2a98d15f05e35 2016-03-23T21:13:14.200Z {""type"":""progresschanged"",""target_tagname"":""progressmeter"",""target_id"":""progressMeter"",""value"":90} INST f7a2a98d15f05e35 2016-03-23T21:13:14.200Z {""type"":""good"",""target_tagname"":""image"",""target_id"":""progressbar"",""configurationSettings"":""nobridge-noproxy"",""number"":2} INST f7a2a98d15f05e35 2016-03-23T21:13:15.000Z {""type"":""progresschanged"",""target_tagname"":""progressmeter"",""target_id"":""progressMeter"",""value"":100} INST f7a2a98d15f05e35 2016-03-23T21:13:15.000Z {""type"":""good"",""target_tagname"":""image"",""target_id"":""progressbar"",""configurationSettings"":""nobridge-noproxy"",""number"":3} INST f7a2a98d15f05e35 2016-03-23T21:13:15.300Z {""type"":""unload"",""target_id"":""configuration""} INST ae5210ab461a9c39 2016-03-23T21:32:49.300Z {""type"":""start""} INST ae5210ab461a9c39 2016-03-23T21:32:50.300Z {""type"":""select"",""target_tagname"":""menulist"",""target_id"":""proxyType"",""value"":""""} INST ae5210ab461a9c39 2016-03-23T21:32:50.300Z {""type"":""wizardnext"",""target_tagname"":""wizard"",""target_id"":""TorNetworkSettings""} INST ae5210ab461a9c39 2016-03-23T21:32:50.300Z {""type"":""pageshow"",""target_tagname"":""wizardpage"",""target_id"":""first""} INST ae5210ab461a9c39 2016-03-23T21:32:50.300Z {""type"":""load"",""target_id"":""configuration""} INST ae5210ab461a9c39 2016-03-23T21:32:50.300Z {""type"":""select"",""target_tagname"":""menulist"",""target_id"":""defaultBridgeType"",""value"":""obfs3""} INST ae5210ab461a9c39 2016-03-23T21:32:50.400Z {""type"":""progresschanged"",""target_tagname"":""progressmeter"",""target_id"":""progressMeter"",""value"":85} INST ae5210ab461a9c39 2016-03-23T21:32:50.400Z {""type"":""good"",""target_tagname"":""image"",""target_id"":""progressbar"",""configurationSettings"":""nobridge-noproxy"",""number"":2} INST ae5210ab461a9c39 2016-03-23T21:32:50.800Z {""type"":""progresschanged"",""target_tagname"":""progressmeter"",""target_id"":""progressMeter"",""value"":90} INST ae5210ab461a9c39 2016-03-23T21:32:50.800Z {""type"":""good"",""target_tagname"":""image"",""target_id"":""progressbar"",""configurationSettings"":""nobridge-noproxy"",""number"":2} INST ae5210ab461a9c39 2016-03-23T21:32:51.700Z {""type"":""progresschanged"",""target_tagname"":""progressmeter"",""target_id"":""progressMeter"",""value"":100} INST ae5210ab461a9c39 2016-03-23T21:32:51.700Z {""type"":""good"",""target_tagname"":""image"",""target_id"":""progressbar"",""configurationSettings"":""nobridge-noproxy"",""number"":3} INST ae5210ab461a9c39 2016-03-23T21:32:52.000Z {""type"":""unload"",""target_id"":""configuration""}"
-X18,20160330-170145,6,128,1823.4,proxy,proxy,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X18,20160330-170145,6,128,1823.4,proxy,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 You must select the proxy type."
-X18,20160330-170145,6,129,1827.0,proxy,proxy,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X18,20160330-170145,6,129,1827.0,error_dialog,proxy,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 You must select the proxy type."
 X18,20160330-170145,6,130,1828.2,proxy,proxy,click,proxyType,
@@ -7182,10 +7182,10 @@ X18,20160330-170145,6,139,1848.9,bridges,summary,wizardnext,TorNetworkSettings,
 X18,20160330-170145,6,140,1850.8,summary,bridges,wizardback,TorNetworkSettings,
 X18,20160330-170145,6,141,1850.8,bridges,proxy,wizardback,TorNetworkSettings,
 X18,20160330-170145,6,142,1850.8,proxy,first,wizardback,TorNetworkSettings,
-X18,20160330-170145,6,143,1850.8,first,first,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X18,20160330-170145,6,143,1850.8,first,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 Unacceptable option value: Bridge line did not parse. See logs for details."
-X18,20160330-170145,6,144,1855.2,first,first,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X18,20160330-170145,6,144,1855.2,error_dialog,first,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 Unacceptable option value: Bridge line did not parse. See logs for details."
 X18,20160330-170145,6,145,1974.3,first,first,click,connect_button,
@@ -7293,10 +7293,10 @@ X18,20160330-170145,7,180,2087.7,bridges,summary,wizardnext,TorNetworkSettings,
 X18,20160330-170145,7,181,2090.0,summary,bridges,wizardback,TorNetworkSettings,
 X18,20160330-170145,7,182,2090.0,bridges,proxy,wizardback,TorNetworkSettings,
 X18,20160330-170145,7,183,2090.0,proxy,first,wizardback,TorNetworkSettings,
-X18,20160330-170145,7,184,2090.0,first,first,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X18,20160330-170145,7,184,2090.0,first,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 Unacceptable option value: Bridge line did not parse. See logs for details."
-X18,20160330-170145,7,185,2103.9,first,first,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X18,20160330-170145,7,185,2103.9,error_dialog,first,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 Unacceptable option value: Bridge line did not parse. See logs for details."
 X18,20160330-170145,7,186,2111.0,first,first,click,configure_button,
@@ -7664,10 +7664,10 @@ X23,20160328-155924,6,151,1582.3,bridges,summary,wizardnext,TorNetworkSettings,
 X23,20160328-155924,6,152,1585.0,summary,bridges,wizardback,TorNetworkSettings,
 X23,20160328-155924,6,153,1585.0,bridges,proxy,wizardback,TorNetworkSettings,
 X23,20160328-155924,6,154,1585.0,proxy,first,wizardback,TorNetworkSettings,
-X23,20160328-155924,6,155,1585.0,first,first,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X23,20160328-155924,6,155,1585.0,first,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 Unacceptable option value: Bridge line did not parse. See logs for details."
-X23,20160328-155924,6,156,1588.4,first,first,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X23,20160328-155924,6,156,1588.4,error_dialog,first,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 Unacceptable option value: Bridge line did not parse. See logs for details."
 X23,20160328-155924,6,157,1589.4,first,first,click,configure_button,
@@ -8581,10 +8581,10 @@ X06,20160324-155002,2,41,490.6,proxy,proxy,command,proxyRadioYes,
 X06,20160324-155002,2,42,497.8,proxy,proxyYES,wizardnext,TorNetworkSettings,
 X06,20160324-155002,2,43,500.1,proxyYES,proxyYES,click,proxyType,
 X06,20160324-155002,2,44,501.9,proxyYES,proxyYES,select,proxyType,SOCKS4
-X06,20160324-155002,2,45,503.5,proxyYES,proxyYES,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X06,20160324-155002,2,45,503.5,proxyYES,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
-X06,20160324-155002,2,46,506.4,proxyYES,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X06,20160324-155002,2,46,506.4,error_dialog,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
 X06,20160324-155002,2,47,507.2,proxyYES,proxyYES,click,proxyType,SOCKS4
@@ -8622,18 +8622,18 @@ X06,20160324-155002,3,78,986.3,proxy,proxy,command,proxyRadioYes,
 X06,20160324-155002,3,79,987.3,proxy,proxyYES,wizardnext,TorNetworkSettings,
 X06,20160324-155002,3,80,989.1,proxyYES,proxyYES,click,proxyType,
 X06,20160324-155002,3,81,991.5,proxyYES,proxyYES,select,proxyType,HTTP
-X06,20160324-155002,3,82,992.3,proxyYES,proxyYES,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X06,20160324-155002,3,82,992.3,proxyYES,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
-X06,20160324-155002,3,83,995.1,proxyYES,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X06,20160324-155002,3,83,995.1,error_dialog,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
 X06,20160324-155002,3,84,998.0,proxyYES,proxyYES,click,proxyType,HTTP
 X06,20160324-155002,3,85,999.1,proxyYES,proxyYES,select,proxyType,SOCKS5
-X06,20160324-155002,3,86,1000.0,proxyYES,proxyYES,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X06,20160324-155002,3,86,1000.0,proxyYES,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
-X06,20160324-155002,3,87,1002.0,proxyYES,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X06,20160324-155002,3,87,1002.0,error_dialog,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
 X06,20160324-155002,3,88,1006.5,proxyYES,proxyYES,wizardcancel,TorNetworkSettings,
@@ -8658,10 +8658,10 @@ X06,20160324-155002,4,106,1255.7,proxy,progress_bar,wizardfinish,TorNetworkSetti
 X06,20160324-155002,4,107,1414.0,progress_bar,progress_bar,click,TorProgress,
 X06,20160324-155002,4,108,1414.0,progress_bar,proxy,dialogcancel,TorProgress,
 X06,20160324-155002,4,109,1414.0,proxy,proxy,command,TorProgress,
-X06,20160324-155002,4,110,1414.0,proxy,proxy,alert_show,tor_bootstrap_failed,"Tor failed to establish a Tor network connection.
+X06,20160324-155002,4,110,1414.0,proxy,error_dialog,alert_show,error_dialog,"Tor failed to establish a Tor network connection.
 
 Establishing an encrypted directory connection failed (done - 0.0.1.0:1)."
-X06,20160324-155002,4,111,1418.9,proxy,proxy,alert_exit,tor_bootstrap_failed,"Tor failed to establish a Tor network connection.
+X06,20160324-155002,4,111,1418.9,error_dialog,proxy,alert_exit,tor_bootstrap_failed,"Tor failed to establish a Tor network connection.
 
 Establishing an encrypted directory connection failed (done - 0.0.1.0:1)."
 X06,20160324-155002,4,112,1422.1,proxy,progress_bar,wizardfinish,TorNetworkSettings,
@@ -8678,10 +8678,10 @@ X06,20160324-155002,4,122,1431.3,bridgeSettings,bridgeSettings,click,defaultBrid
 X06,20160324-155002,4,123,1432.8,bridgeSettings,bridgeSettings,select,defaultBridgeType,meek-amazon
 X06,20160324-155002,4,124,1433.8,bridgeSettings,proxy,wizardnext,TorNetworkSettings,
 X06,20160324-155002,4,125,1434.6,proxy,proxyYES,wizardnext,TorNetworkSettings,
-X06,20160324-155002,4,126,1435.1,proxyYES,proxyYES,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X06,20160324-155002,4,126,1435.1,proxyYES,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
-X06,20160324-155002,4,127,1436.0,proxyYES,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X06,20160324-155002,4,127,1436.0,error_dialog,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
 X06,20160324-155002,4,128,1436.7,proxyYES,proxy,wizardback,TorNetworkSettings,
@@ -8722,10 +8722,10 @@ X06,20160325-175101,1,12,37.8,proxy,proxy,command,proxyRadioYes,
 X06,20160325-175101,1,13,40.1,proxy,proxyYES,wizardnext,TorNetworkSettings,
 X06,20160325-175101,1,14,43.3,proxyYES,proxyYES,click,proxyType,
 X06,20160325-175101,1,15,45.9,proxyYES,proxyYES,select,proxyType,SOCKS4
-X06,20160325-175101,1,16,48.9,proxyYES,proxyYES,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X06,20160325-175101,1,16,48.9,proxyYES,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
-X06,20160325-175101,1,17,55.8,proxyYES,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X06,20160325-175101,1,17,55.8,error_dialog,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
 X06,20160325-175101,1,18,58.6,proxyYES,proxy,wizardback,TorNetworkSettings,
@@ -8907,20 +8907,20 @@ X06,20160325-175101,4,193,1808.1,proxyYES,proxyYES,change,proxyAddr,128.32.229.1
 X06,20160325-175101,4,194,1808.1,proxyYES,proxyYES,select,proxyPort,
 X06,20160325-175101,4,195,1808.3,proxyYES,proxyYES,click,proxyPort,
 X06,20160325-175101,4,196,1812.2,proxyYES,proxyYES,change,proxyPort,57445
-X06,20160325-175101,4,197,1812.3,proxyYES,proxyYES,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X06,20160325-175101,4,197,1812.3,proxyYES,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 You must select the proxy type."
-X06,20160325-175101,4,198,1814.3,proxyYES,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X06,20160325-175101,4,198,1814.3,error_dialog,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 You must select the proxy type."
 X06,20160325-175101,4,199,1815.1,proxyYES,proxyYES,click,proxyType,
 X06,20160325-175101,4,200,1816.0,proxyYES,proxyYES,select,proxyType,SOCKS4
 X06,20160325-175101,4,201,1816.8,proxyYES,progress_bar,wizardfinish,TorNetworkSettings,
 X06,20160325-175101,4,202,1818.7,progress_bar,progress_bar,progresschanged,progressMeter,10
-X06,20160325-175101,4,203,1818.7,progress_bar,progress_bar,alert_show,tor_bootstrap_failed,"Tor failed to establish a Tor network connection.
+X06,20160325-175101,4,203,1818.7,progress_bar,error_dialog,alert_show,error_dialog,"Tor failed to establish a Tor network connection.
 
 Establishing an encrypted directory connection failed (missing pluggable transport - 0.0.1.0:1)."
-X06,20160325-175101,4,204,1825.2,progress_bar,progress_bar,alert_exit,tor_bootstrap_failed,"Tor failed to establish a Tor network connection.
+X06,20160325-175101,4,204,1825.2,error_dialog,progress_bar,alert_exit,tor_bootstrap_failed,"Tor failed to establish a Tor network connection.
 
 Establishing an encrypted directory connection failed (missing pluggable transport - 0.0.1.0:1)."
 X06,20160325-175101,4,205,1826.5,progress_bar,proxy,wizardback,TorNetworkSettings,
@@ -9099,10 +9099,10 @@ X06,20160328-155931,1,12,34.2,proxy,proxy,command,proxyRadioYes,
 X06,20160328-155931,1,13,39.5,proxy,proxyYES,wizardnext,TorNetworkSettings,
 X06,20160328-155931,1,14,41.5,proxyYES,proxyYES,click,proxyType,
 X06,20160328-155931,1,15,44.0,proxyYES,proxyYES,select,proxyType,HTTP
-X06,20160328-155931,1,16,50.3,proxyYES,proxyYES,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X06,20160328-155931,1,16,50.3,proxyYES,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
-X06,20160328-155931,1,17,52.7,proxyYES,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X06,20160328-155931,1,17,52.7,error_dialog,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
 X06,20160328-155931,1,18,54.2,proxyYES,proxy,wizardback,TorNetworkSettings,
@@ -9341,10 +9341,10 @@ X06,20160330-181926,2,143,972.0,proxyYES,proxyYES,select,proxyPort,
 X06,20160330-181926,2,144,972.2,proxyYES,proxyYES,click,proxyPort,
 X06,20160330-181926,2,145,973.1,proxyYES,proxyYES,click,proxyType,
 X06,20160330-181926,2,146,973.8,proxyYES,proxyYES,select,proxyType,SOCKS4
-X06,20160330-181926,2,147,974.7,proxyYES,proxyYES,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X06,20160330-181926,2,147,974.7,proxyYES,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
-X06,20160330-181926,2,148,979.4,proxyYES,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X06,20160330-181926,2,148,979.4,error_dialog,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
 X06,20160330-181926,2,149,1369.7,proxyYES,proxy,wizardback,TorNetworkSettings,
@@ -9555,20 +9555,20 @@ X06,20160331-174650,1,142,1461.7,progress_bar,progress_bar,click,progressPleaseW
 X06,20160331-174650,1,143,1506.6,progress_bar,progress_bar,click,TorProgress,
 X06,20160331-174650,1,144,1506.6,progress_bar,proxy,dialogcancel,TorProgress,
 X06,20160331-174650,1,145,1506.6,proxy,proxy,command,TorProgress,
-X06,20160331-174650,1,146,1506.7,proxy,proxy,alert_show,tor_bootstrap_failed,"Tor failed to establish a Tor network connection.
+X06,20160331-174650,1,146,1506.7,proxy,error_dialog,alert_show,error_dialog,"Tor failed to establish a Tor network connection.
 
 Establishing an encrypted directory connection failed (done - 0.0.1.0:1)."
-X06,20160331-174650,1,147,1508.0,proxy,proxy,alert_exit,tor_bootstrap_failed,"Tor failed to establish a Tor network connection.
+X06,20160331-174650,1,147,1508.0,error_dialog,proxy,alert_exit,tor_bootstrap_failed,"Tor failed to establish a Tor network connection.
 
 Establishing an encrypted directory connection failed (done - 0.0.1.0:1)."
 X06,20160331-174650,1,148,1508.9,proxy,progress_bar,wizardfinish,TorNetworkSettings,
 X06,20160331-174650,1,149,1631.9,progress_bar,progress_bar,click,TorProgress,
 X06,20160331-174650,1,150,1631.9,progress_bar,proxy,dialogcancel,TorProgress,
 X06,20160331-174650,1,151,1631.9,proxy,proxy,command,TorProgress,
-X06,20160331-174650,1,152,1632.0,proxy,proxy,alert_show,tor_bootstrap_failed,"Tor failed to establish a Tor network connection.
+X06,20160331-174650,1,152,1632.0,proxy,error_dialog,alert_show,error_dialog,"Tor failed to establish a Tor network connection.
 
 Establishing an encrypted directory connection failed (done - 0.0.1.0:1)."
-X06,20160331-174650,1,153,1635.7,proxy,proxy,alert_exit,tor_bootstrap_failed,"Tor failed to establish a Tor network connection.
+X06,20160331-174650,1,153,1635.7,error_dialog,proxy,alert_exit,tor_bootstrap_failed,"Tor failed to establish a Tor network connection.
 
 Establishing an encrypted directory connection failed (done - 0.0.1.0:1)."
 X06,20160331-174650,1,154,1636.7,proxy,proxy,wizardcancel,TorNetworkSettings,
@@ -9585,10 +9585,10 @@ X06,20160331-174650,2,164,1656.5,proxy,progress_bar,wizardfinish,TorNetworkSetti
 X06,20160331-174650,2,165,1657.9,progress_bar,progress_bar,progresschanged,progressMeter,5
 X06,20160331-174650,2,166,1657.9,progress_bar,progress_bar,progresschanged,progressMeter,10
 X06,20160331-174650,2,167,1957.9,progress_bar,progress_bar,progresschanged,progressMeter,10
-X06,20160331-174650,2,168,1957.9,progress_bar,progress_bar,alert_show,tor_bootstrap_failed,"Tor failed to establish a Tor network connection.
+X06,20160331-174650,2,168,1957.9,progress_bar,error_dialog,alert_show,error_dialog,"Tor failed to establish a Tor network connection.
 
 Establishing an encrypted directory connection failed (done - 0.0.1.0:1)."
-X06,20160331-174650,2,169,1962.9,progress_bar,progress_bar,alert_exit,tor_bootstrap_failed,"Tor failed to establish a Tor network connection.
+X06,20160331-174650,2,169,1962.9,error_dialog,progress_bar,alert_exit,tor_bootstrap_failed,"Tor failed to establish a Tor network connection.
 
 Establishing an encrypted directory connection failed (done - 0.0.1.0:1)."
 X06,20160331-174650,2,170,1964.3,progress_bar,bridgeSettings,wizardback,TorNetworkSettings,
@@ -9655,10 +9655,10 @@ X12,20160323-132600,3,46,340.1,proxy,proxy,command,proxyRadioYes,
 X12,20160323-132600,3,47,341.1,proxy,proxyYES,wizardnext,TorNetworkSettings,
 X12,20160323-132600,3,48,343.0,proxyYES,proxyYES,click,proxyType,
 X12,20160323-132600,3,49,344.9,proxyYES,proxyYES,select,proxyType,HTTP
-X12,20160323-132600,3,50,346.4,proxyYES,proxyYES,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X12,20160323-132600,3,50,346.4,proxyYES,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
-X12,20160323-132600,3,51,347.5,proxyYES,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X12,20160323-132600,3,51,347.5,error_dialog,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
 X12,20160323-132600,3,52,351.1,proxyYES,proxy,wizardback,TorNetworkSettings,
@@ -9738,10 +9738,10 @@ X12,20160325-140813,2,49,1473.7,proxyYES,proxyYES,click,proxyType,
 X12,20160325-140813,2,50,1480.6,proxyYES,proxyYES,select,proxyAddr,
 X12,20160325-140813,2,51,1480.6,proxyYES,proxyYES,click,proxyAddr,
 X12,20160325-140813,2,52,1484.7,proxyYES,proxyYES,change,proxyAddr,"localhost, 127.0.0.1"
-X12,20160325-140813,2,53,1484.8,proxyYES,proxyYES,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X12,20160325-140813,2,53,1484.8,proxyYES,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 You must select the proxy type."
-X12,20160325-140813,2,54,1488.5,proxyYES,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X12,20160325-140813,2,54,1488.5,error_dialog,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 You must select the proxy type."
 X12,20160325-140813,2,55,1510.7,proxyYES,proxyYES,click,proxyType,
@@ -9749,10 +9749,10 @@ X12,20160325-140813,2,56,1511.6,proxyYES,proxyYES,select,proxyType,HTTP
 X12,20160325-140813,2,57,1513.0,proxyYES,proxyYES,wizardfinish,TorNetworkSettings,
 X12,20160325-140813,2,58,1513.0,proxyYES,proxy,wizardback,TorNetworkSettings,
 X12,20160325-140813,2,59,1513.0,proxy,bridgeSettings,wizardback,TorNetworkSettings,
-X12,20160325-140813,2,60,1513.0,bridgeSettings,bridgeSettings,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X12,20160325-140813,2,60,1513.0,bridgeSettings,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 Unacceptable option value: Bridge line did not parse. See logs for details."
-X12,20160325-140813,2,61,1519.8,bridgeSettings,bridgeSettings,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X12,20160325-140813,2,61,1519.8,error_dialog,bridgeSettings,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 Unacceptable option value: Bridge line did not parse. See logs for details."
 X12,20160325-140813,2,62,1527.3,bridgeSettings,bridgeSettings,click,bridgeRadioDefault,
@@ -9804,10 +9804,10 @@ X12,20160328-132605,3,40,256.9,proxy,proxy,click,proxyRadioGroup,
 X12,20160328-132605,3,41,257.4,proxy,proxy,click,proxyRadioYes,
 X12,20160328-132605,3,42,257.4,proxy,proxy,command,proxyRadioYes,
 X12,20160328-132605,3,43,258.9,proxy,proxyYES,wizardnext,TorNetworkSettings,
-X12,20160328-132605,3,44,260.1,proxyYES,proxyYES,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X12,20160328-132605,3,44,260.1,proxyYES,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
-X12,20160328-132605,3,45,261.2,proxyYES,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X12,20160328-132605,3,45,261.2,error_dialog,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
 X12,20160328-132605,3,46,262.3,proxyYES,proxyYES,click,proxyType,
@@ -9932,10 +9932,10 @@ X12,20160328-160010,4,86,955.0,proxyYES,proxyYES,click,proxyAddr,
 X12,20160328-160010,4,87,978.1,proxyYES,proxyYES,click,proxyAddr,
 X12,20160328-160010,4,88,984.8,proxyYES,proxyYES,change,proxyAddr,localhost
 X12,20160328-160010,4,89,1010.4,proxyYES,proxyYES,wizardfinish,TorNetworkSettings,
-X12,20160328-160010,4,90,1010.5,proxyYES,proxyYES,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X12,20160328-160010,4,90,1010.5,proxyYES,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 Unacceptable option value: Socks5Proxy failed to parse or resolve. Please fix."
-X12,20160328-160010,4,91,1014.2,proxyYES,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X12,20160328-160010,4,91,1014.2,error_dialog,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 Unacceptable option value: Socks5Proxy failed to parse or resolve. Please fix."
 X12,20160328-160010,4,92,1016.1,proxyYES,proxy,wizardback,TorNetworkSettings,
@@ -10221,10 +10221,10 @@ X12,20160330-161525,2,115,697.1,proxy,progress_bar,wizardfinish,TorNetworkSettin
 X12,20160330-161525,2,116,718.2,progress_bar,progress_bar,click,TorProgress,
 X12,20160330-161525,2,117,718.2,progress_bar,proxy,dialogcancel,TorProgress,
 X12,20160330-161525,2,118,718.2,proxy,proxy,command,TorProgress,
-X12,20160330-161525,2,119,718.2,proxy,proxy,alert_show,tor_bootstrap_failed,"Tor failed to establish a Tor network connection.
+X12,20160330-161525,2,119,718.2,proxy,error_dialog,alert_show,error_dialog,"Tor failed to establish a Tor network connection.
 
 Establishing an encrypted directory connection failed (done - 0.0.1.0:1)."
-X12,20160330-161525,2,120,719.4,proxy,proxy,alert_exit,tor_bootstrap_failed,"Tor failed to establish a Tor network connection.
+X12,20160330-161525,2,120,719.4,error_dialog,proxy,alert_exit,tor_bootstrap_failed,"Tor failed to establish a Tor network connection.
 
 Establishing an encrypted directory connection failed (done - 0.0.1.0:1)."
 X12,20160330-161525,2,121,720.7,proxy,bridgeSettings,wizardback,TorNetworkSettings,
@@ -10369,10 +10369,10 @@ X12,20160331-153055,1,27,380.0,proxy,proxy,command,TorProgress,
 X12,20160331-153055,1,28,381.2,proxy,proxy,click,proxyRadioYes,
 X12,20160331-153055,1,29,381.2,proxy,proxy,command,proxyRadioYes,
 X12,20160331-153055,1,30,382.4,proxy,proxyYES,wizardnext,TorNetworkSettings,
-X12,20160331-153055,1,31,383.8,proxyYES,proxyYES,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X12,20160331-153055,1,31,383.8,proxyYES,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
-X12,20160331-153055,1,32,385.5,proxyYES,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X12,20160331-153055,1,32,385.5,error_dialog,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
 X12,20160331-153055,1,33,387.2,proxyYES,proxy,wizardback,TorNetworkSettings,
@@ -10402,10 +10402,10 @@ X12,20160331-153055,2,56,750.7,progress_bar,proxy,dialogcancel,TorProgress,
 X12,20160331-153055,2,57,752.3,proxy,proxy,click,proxyRadioYes,
 X12,20160331-153055,2,58,752.3,proxy,proxy,command,proxyRadioYes,
 X12,20160331-153055,2,59,753.6,proxy,proxyYES,wizardnext,TorNetworkSettings,
-X12,20160331-153055,2,60,755.3,proxyYES,proxyYES,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X12,20160331-153055,2,60,755.3,proxyYES,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
-X12,20160331-153055,2,61,756.5,proxyYES,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X12,20160331-153055,2,61,756.5,error_dialog,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
 X12,20160331-153055,2,62,757.2,proxyYES,proxy,wizardback,TorNetworkSettings,
@@ -10471,10 +10471,10 @@ X18,20160323-133013,1,41,355.0,proxy,proxy,command,proxyRadioYes,
 X18,20160323-133013,1,42,356.0,proxy,proxyYES,wizardnext,TorNetworkSettings,
 X18,20160323-133013,1,43,357.4,proxyYES,proxyYES,click,proxyType,
 X18,20160323-133013,1,44,358.5,proxyYES,proxyYES,select,proxyType,SOCKS5
-X18,20160323-133013,1,45,359.6,proxyYES,proxyYES,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X18,20160323-133013,1,45,359.6,proxyYES,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
-X18,20160323-133013,1,46,364.1,proxyYES,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X18,20160323-133013,1,46,364.1,error_dialog,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
 X18,20160323-133013,1,47,397.5,proxyYES,proxyYES,select,proxyAddr,
@@ -10542,10 +10542,10 @@ X18,20160323-133013,2,108,853.8,progress_bar,progress_bar,click,progressDesc,
 X18,20160323-133013,2,109,869.3,progress_bar,progress_bar,click,TorProgress,
 X18,20160323-133013,2,110,869.3,progress_bar,proxy,dialogcancel,TorProgress,
 X18,20160323-133013,2,111,869.3,proxy,proxy,command,TorProgress,
-X18,20160323-133013,2,112,869.3,proxy,proxy,alert_show,tor_bootstrap_failed,"Tor failed to establish a Tor network connection.
+X18,20160323-133013,2,112,869.3,proxy,error_dialog,alert_show,error_dialog,"Tor failed to establish a Tor network connection.
 
 Establishing an encrypted directory connection failed (done - 0.0.1.0:1)."
-X18,20160323-133013,2,113,930.4,proxy,proxy,alert_exit,tor_bootstrap_failed,"Tor failed to establish a Tor network connection.
+X18,20160323-133013,2,113,930.4,error_dialog,proxy,alert_exit,tor_bootstrap_failed,"Tor failed to establish a Tor network connection.
 
 Establishing an encrypted directory connection failed (done - 0.0.1.0:1)."
 X18,20160323-133013,2,114,934.6,proxy,bridgeSettings,wizardback,TorNetworkSettings,
@@ -10711,17 +10711,17 @@ X18,20160328-133350,1,56,498.4,proxy,progress_bar,wizardfinish,TorNetworkSetting
 X18,20160328-133350,1,57,508.0,progress_bar,progress_bar,click,TorProgress,
 X18,20160328-133350,1,58,508.0,progress_bar,proxy,dialogcancel,TorProgress,
 X18,20160328-133350,1,59,508.0,proxy,proxy,command,TorProgress,
-X18,20160328-133350,1,60,508.0,proxy,proxy,alert_show,tor_bootstrap_failed,"Tor failed to establish a Tor network connection.
+X18,20160328-133350,1,60,508.0,proxy,error_dialog,alert_show,error_dialog,"Tor failed to establish a Tor network connection.
 
 Establishing an encrypted directory connection failed (done - 0.0.1.0:1)."
-X18,20160328-133350,1,61,508.3,proxy,proxy,click,proxy,
-X18,20160328-133350,1,62,509.2,proxy,bridgeSettings,wizardback,TorNetworkSettings,
-X18,20160328-133350,1,63,510.3,bridgeSettings,bridgeSettings,alert_exit,tor_bootstrap_failed,"Tor failed to establish a Tor network connection.
+X18,20160328-133350,1,61,508.3,error_dialog,error_dialog,click,proxy,
+X18,20160328-133350,1,62,509.2,error_dialog,bridgeSettings,wizardback,TorNetworkSettings,
+X18,20160328-133350,1,63,510.3,bridgeSettings,proxy,alert_exit,tor_bootstrap_failed,"Tor failed to establish a Tor network connection.
 
 Establishing an encrypted directory connection failed (done - 0.0.1.0:1)."
-X18,20160328-133350,1,64,511.0,bridgeSettings,bridgeSettings,click,defaultBridgeType,flashproxy
-X18,20160328-133350,1,65,511.7,bridgeSettings,bridgeSettings,select,defaultBridgeType,fte
-X18,20160328-133350,1,66,512.8,bridgeSettings,proxy,wizardnext,TorNetworkSettings,
+X18,20160328-133350,1,64,511.0,proxy,proxy,click,defaultBridgeType,flashproxy
+X18,20160328-133350,1,65,511.7,proxy,proxy,select,defaultBridgeType,fte
+X18,20160328-133350,1,66,512.8,proxy,proxy,wizardnext,TorNetworkSettings,
 X18,20160328-133350,1,67,516.6,proxy,progress_bar,wizardfinish,TorNetworkSettings,
 X18,20160328-133350,1,68,559.2,progress_bar,not_running,quit,,
 X18,20160328-133350,2,69,559.2,not_running,starting,start,starting,
@@ -10785,10 +10785,10 @@ X18,20160328-133350,2,126,1238.4,proxy,proxyYES,wizardnext,TorNetworkSettings,
 X18,20160328-133350,2,127,1239.6,proxyYES,proxyYES,click,proxyType,
 X18,20160328-133350,2,128,1252.3,proxyYES,proxyYES,click,proxyType,
 X18,20160328-133350,2,129,1252.9,proxyYES,proxyYES,select,proxyType,SOCKS4
-X18,20160328-133350,2,130,1254.9,proxyYES,proxyYES,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X18,20160328-133350,2,130,1254.9,proxyYES,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
-X18,20160328-133350,2,131,1257.5,proxyYES,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X18,20160328-133350,2,131,1257.5,error_dialog,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
 X18,20160328-133350,2,132,1258.7,proxyYES,proxyYES,click,proxyYES,
@@ -10887,10 +10887,10 @@ X18,20160328-160040,1,53,1259.8,proxy,progress_bar,wizardfinish,TorNetworkSettin
 X18,20160328-160040,1,54,1290.6,progress_bar,progress_bar,click,TorProgress,
 X18,20160328-160040,1,55,1290.6,progress_bar,proxy,dialogcancel,TorProgress,
 X18,20160328-160040,1,56,1290.6,proxy,proxy,command,TorProgress,
-X18,20160328-160040,1,57,1290.6,proxy,proxy,alert_show,tor_bootstrap_failed,"Tor failed to establish a Tor network connection.
+X18,20160328-160040,1,57,1290.6,proxy,error_dialog,alert_show,error_dialog,"Tor failed to establish a Tor network connection.
 
 Establishing an encrypted directory connection failed (done - 0.0.1.0:1)."
-X18,20160328-160040,1,58,1295.2,proxy,proxy,alert_exit,tor_bootstrap_failed,"Tor failed to establish a Tor network connection.
+X18,20160328-160040,1,58,1295.2,error_dialog,proxy,alert_exit,tor_bootstrap_failed,"Tor failed to establish a Tor network connection.
 
 Establishing an encrypted directory connection failed (done - 0.0.1.0:1)."
 X18,20160328-160040,1,59,1296.0,proxy,bridgeSettings,wizardback,TorNetworkSettings,
@@ -11049,10 +11049,10 @@ X24,20160328-133857,3,114,1535.4,proxy,progress_bar,wizardfinish,TorNetworkSetti
 X24,20160328-133857,3,115,1545.3,progress_bar,progress_bar,click,TorProgress,
 X24,20160328-133857,3,116,1545.3,progress_bar,proxy,dialogcancel,TorProgress,
 X24,20160328-133857,3,117,1545.3,proxy,proxy,command,TorProgress,
-X24,20160328-133857,3,118,1545.3,proxy,proxy,alert_show,tor_bootstrap_failed,"Tor failed to establish a Tor network connection.
+X24,20160328-133857,3,118,1545.3,proxy,error_dialog,alert_show,error_dialog,"Tor failed to establish a Tor network connection.
 
 Establishing an encrypted directory connection failed (done - 0.0.1.0:1)."
-X24,20160328-133857,3,119,1547.0,proxy,proxy,alert_exit,tor_bootstrap_failed,"Tor failed to establish a Tor network connection.
+X24,20160328-133857,3,119,1547.0,error_dialog,proxy,alert_exit,tor_bootstrap_failed,"Tor failed to establish a Tor network connection.
 
 Establishing an encrypted directory connection failed (done - 0.0.1.0:1)."
 X24,20160328-133857,3,120,1548.0,proxy,bridgeSettings,wizardback,TorNetworkSettings,
@@ -11145,10 +11145,10 @@ X24,20160328-155926,1,56,1159.2,proxyYES,proxyYES,select,proxyPort,
 X24,20160328-155926,1,57,1159.3,proxyYES,proxyYES,click,proxyPort,
 X24,20160328-155926,1,58,1162.6,proxyYES,proxyYES,change,proxyPort,0
 X24,20160328-155926,1,59,1162.7,proxyYES,proxyYES,wizardfinish,TorNetworkSettings,
-X24,20160328-155926,1,60,1162.7,proxyYES,proxyYES,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X24,20160328-155926,1,60,1162.7,proxyYES,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 Unacceptable option value: Socks5Proxy failed to parse or resolve. Please fix."
-X24,20160328-155926,1,61,1170.0,proxyYES,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X24,20160328-155926,1,61,1170.0,error_dialog,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 Unacceptable option value: Socks5Proxy failed to parse or resolve. Please fix."
 X24,20160328-155926,1,62,1237.5,proxyYES,proxyYES,select,proxyAddr,
@@ -11156,28 +11156,28 @@ X24,20160328-155926,1,63,1237.7,proxyYES,proxyYES,select,proxyAddr,
 X24,20160328-155926,1,64,1237.7,proxyYES,proxyYES,click,proxyAddr,
 X24,20160328-155926,1,65,1243.8,proxyYES,proxyYES,change,proxyAddr,127.0.0.1
 X24,20160328-155926,1,66,1243.8,proxyYES,proxyYES,wizardfinish,TorNetworkSettings,
-X24,20160328-155926,1,67,1243.9,proxyYES,proxyYES,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X24,20160328-155926,1,67,1243.9,proxyYES,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 Unacceptable option value: Socks5Proxy failed to parse or resolve. Please fix."
-X24,20160328-155926,1,68,1246.8,proxyYES,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X24,20160328-155926,1,68,1246.8,error_dialog,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 Unacceptable option value: Socks5Proxy failed to parse or resolve. Please fix."
 X24,20160328-155926,1,69,1249.2,proxyYES,proxyYES,click,proxyType,SOCKS5
 X24,20160328-155926,1,70,1251.6,proxyYES,proxyYES,select,proxyType,HTTP
 X24,20160328-155926,1,71,1252.5,proxyYES,proxyYES,wizardfinish,TorNetworkSettings,
-X24,20160328-155926,1,72,1252.5,proxyYES,proxyYES,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X24,20160328-155926,1,72,1252.5,proxyYES,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 Unacceptable option value: HTTPSProxy failed to parse or resolve. Please fix."
-X24,20160328-155926,1,73,1254.3,proxyYES,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X24,20160328-155926,1,73,1254.3,error_dialog,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 Unacceptable option value: HTTPSProxy failed to parse or resolve. Please fix."
 X24,20160328-155926,1,74,1255.2,proxyYES,proxyYES,click,proxyType,HTTP
 X24,20160328-155926,1,75,1255.9,proxyYES,proxyYES,select,proxyType,SOCKS4
 X24,20160328-155926,1,76,1258.0,proxyYES,proxyYES,wizardfinish,TorNetworkSettings,
-X24,20160328-155926,1,77,1258.0,proxyYES,proxyYES,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X24,20160328-155926,1,77,1258.0,proxyYES,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 Unacceptable option value: Socks4Proxy failed to parse or resolve. Please fix."
-X24,20160328-155926,1,78,1258.9,proxyYES,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X24,20160328-155926,1,78,1258.9,error_dialog,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 Unacceptable option value: Socks4Proxy failed to parse or resolve. Please fix."
 X24,20160328-155926,1,79,1259.8,proxyYES,proxyYES,wizardcancel,TorNetworkSettings,
@@ -11233,10 +11233,10 @@ X24,20160328-155926,2,128,1594.3,proxyYES,proxyYES,select,proxyPort,
 X24,20160328-155926,2,129,1594.4,proxyYES,proxyYES,click,proxyPort,
 X24,20160328-155926,2,130,1598.6,proxyYES,proxyYES,change,proxyPort,X24
 X24,20160328-155926,2,131,1598.7,proxyYES,proxyYES,wizardfinish,TorNetworkSettings,
-X24,20160328-155926,2,132,1598.7,proxyYES,proxyYES,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X24,20160328-155926,2,132,1598.7,proxyYES,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 Unacceptable option value: Socks4Proxy failed to parse or resolve. Please fix."
-X24,20160328-155926,2,133,1602.2,proxyYES,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X24,20160328-155926,2,133,1602.2,error_dialog,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 Unacceptable option value: Socks4Proxy failed to parse or resolve. Please fix."
 X24,20160328-155926,2,134,1602.9,proxyYES,proxyYES,select,proxyPort,
@@ -11365,10 +11365,10 @@ X30,20160328-134412,1,68,844.6,proxyYES,proxyYES,click,proxyYES,
 X30,20160328-134412,1,69,845.0,proxyYES,proxyYES,click,proxyYES,
 X30,20160328-134412,1,70,845.6,proxyYES,proxyYES,select,proxyAddr,
 X30,20160328-134412,1,71,845.7,proxyYES,proxyYES,click,proxyAddr,
-X30,20160328-134412,1,72,846.9,proxyYES,proxyYES,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X30,20160328-134412,1,72,846.9,proxyYES,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
-X30,20160328-134412,1,73,853.5,proxyYES,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X30,20160328-134412,1,73,853.5,error_dialog,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 You must specify both an IP address or hostname and a port number to configure Tor to use a proxy to access the Internet."
 X30,20160328-134412,1,74,854.1,proxyYES,proxyYES,click,proxyYES,
@@ -11471,19 +11471,19 @@ X30,20160328-134412,2,170,1963.1,proxyYES,proxyYES,select,proxyPort,
 X30,20160328-134412,2,171,1963.2,proxyYES,proxyYES,click,proxyPort,
 X30,20160328-134412,2,172,1965.7,proxyYES,proxyYES,change,proxyPort,0
 X30,20160328-134412,2,173,1965.8,proxyYES,proxyYES,wizardfinish,TorNetworkSettings,
-X30,20160328-134412,2,174,1965.8,proxyYES,proxyYES,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X30,20160328-134412,2,174,1965.8,proxyYES,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 Unacceptable option value: Socks5Proxy failed to parse or resolve. Please fix."
-X30,20160328-134412,2,175,1969.8,proxyYES,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X30,20160328-134412,2,175,1969.8,error_dialog,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 Unacceptable option value: Socks5Proxy failed to parse or resolve. Please fix."
 X30,20160328-134412,2,176,1970.3,proxyYES,proxyYES,click,proxyType,SOCKS5
 X30,20160328-134412,2,177,1971.0,proxyYES,proxyYES,select,proxyType,HTTP
 X30,20160328-134412,2,178,1971.9,proxyYES,proxyYES,wizardfinish,TorNetworkSettings,
-X30,20160328-134412,2,179,1971.9,proxyYES,proxyYES,alert_show,failed_to_save_settings,"Unable to save Tor settings.
+X30,20160328-134412,2,179,1971.9,proxyYES,error_dialog,alert_show,error_dialog,"Unable to save Tor settings.
 
 Unacceptable option value: HTTPSProxy failed to parse or resolve. Please fix."
-X30,20160328-134412,2,180,1978.5,proxyYES,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
+X30,20160328-134412,2,180,1978.5,error_dialog,proxyYES,alert_exit,failed_to_save_settings,"Unable to save Tor settings.
 
 Unacceptable option value: HTTPSProxy failed to parse or resolve. Please fix."
 X30,20160328-134412,2,181,1979.3,proxyYES,proxyYES,click,,
