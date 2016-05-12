@@ -382,4 +382,30 @@ for (e in names(ecdfs)) {
 cat("\\end{tabular}\n")
 sink()
 
+for (column in list(c("E1-NEW", "E1-OLD", "E2-NEW"), c("E2-OLD", "E3-NEW", "E3-OLD"))) {
+	cat("\\adjustbox{valign=t}{\n")
+	cat("\\begin{tabular}{r @{~} r r@{~}r r@{~}r r@{~}r r@{~}r}\n")
+	cat("& & \\multicolumn{2}{r}{First} & \\multicolumn{2}{r}{Proxy} & \\multicolumn{2}{r}{Bridge} & \\multicolumn{2}{r}{Progress} \\\\\n")
+	for (block in column) {
+		parts <- unlist(strsplit(block, "-"))
+		env <- parts[[1]]
+		version <- parts[[2]]
+		env.version <- screen_time_per_user[screen_time_per_user$env==env & screen_time_per_user$version==version, ]
+		cat("\\noalign{\\hrule}\n")
+		cat(sprintf("\\multirow{%d}{*}{\\rotatebox{90}{%s-%s}}\n", nrow(env.version), env, version))
+		for (userid in env.version$userid) {
+			cat(sprintf("& P%d", userid))
+			user <- screen_time_per_user[screen_time_per_user$userid==userid, ]
+			for (edges in c("first_edges$duration", "proxy_edges$duration", "bridge_edges$duration", "progress_edges$duration")) {
+				cat(sprintf(" & %s & %.f\\%%",
+					format_minutes_colons(user[[edges]]),
+					100 * user[[edges]]/user[["edges$duration"]]))
+			}
+			cat(" \\\\\n")
+		}
+	}
+	cat("\\end{tabular}\n")
+	cat("}\n")
+}
+
 cat("\n\n\n\n\n\n")
