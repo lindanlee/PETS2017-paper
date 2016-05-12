@@ -1,5 +1,5 @@
 FIGS = *.png time_to_success_clamped.pdf time_to_success_active_clamped.pdf all-participant-edges-scales.pdf
-TABLES = participant-summary.tex attempts-bridge-proxy.tex time_to_success_ecdf.tex all-participant-times.tex
+TABLES = participant-summary.tex attempts-bridge-proxy.tex time_to_success_ecdf.tex all-participant-times.tex median_time.tex
 
 pets2017-paper.pdf: pets2017-paper.tex pets2017-paper.bib $(FIGS) $(TABLES)
 
