@@ -41,6 +41,8 @@ def get_id(event):
         return "starting"
     elif event["type"] in ("mouseover", "mouseout"):
         return event["value"]
+    elif event["type"] in ("alert_show", "alert_hide"):
+        return "error_dialog"
     else:
         return event["target_id"]
 
@@ -108,10 +110,17 @@ def parse_inst_log(f):
             state[0] = get_id(r.event)
             # Change previous edge to point to this new state.
             edges[-1] = edges[-1]._replace(dst=state[0])
-        elif r.event["type"] == "dialogcancel" and r.event["target_id"] == "TorProgress":
-            e = Edge(r.exec_id, r.date, state[0], state[1], r.event["type"], get_id(r.event), r.event.get("value", ""))
+        elif r.event["type"] == "alert_show":
+            # Make sure this is an error dialog we know about.
+            assert r.event["target_id"] in ("failed_to_save_settings", "tor_bootstrap_failed"), r.event["target_id"]
+            e = Edge(r.exec_id, r.date, state[0], get_id(r.event), r.event["type"], get_id(r.event), r.event.get("value", ""))
             edges.append(e)
-            # Pop off the progress bar state.
+            # Push the error dialog on the state stack.
+            state.insert(0, get_id(r.event))
+        elif (r.event["type"] == "dialogcancel" and r.event["target_id"] == "TorProgress") or r.event["type"] == "alert_exit":
+            e = Edge(r.exec_id, r.date, state[0], state[1], r.event["type"], r.event["target_id"], r.event.get("value", ""))
+            edges.append(e)
+            # Pop off the progress bar or error dialog state.
             state.pop(0)
         else:
             e = Edge(r.exec_id, r.date, state[0], state[0], r.event["type"], get_id(r.event), r.event.get("value", ""))
