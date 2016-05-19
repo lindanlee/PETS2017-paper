@@ -126,5 +126,6 @@ common_theme <- function(p) {
 	p <- p + theme(text=element_text(size=8))
 	p <- p + theme(plot.margin=margin(0,0,0,0,"mm"))
 	p <- p + theme(axis.ticks=element_blank(), axis.ticks.length=unit(0,"lines"))
+	p <- p + theme(strip.background=element_rect(fill="gray90", color=NA))
 	p
 }
