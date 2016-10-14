@@ -258,12 +258,6 @@ cat("*********************\n")
     # compares >2 groups of independent measures. 
     # measures must be continuous (success rates, time to success)
 
-# Logistic regression: 
-    # is a classifier (can predict success/fail based on ver, env, pool)
-
-# Linear regression: 
-    # is a model (can predict time to success based on ver, env, pool)
-
 # x is success rate
 success_rates = with(participants, aggregate(success, list(env=env, version=version), pct))
 
@@ -284,6 +278,13 @@ cat("impact of version on active time \n")
 #one-tailed mann-whitney U for right-tailed data, with DNFs = 40:08-time on progress screen.
 wilcox_test(screen_time_per_user$`active_edges$duration` ~ version, data=screen_time_per_user, paired=FALSE, alternative="less")
 
+#one-tailed mann-whiteny U per environment. 
+aaa <- screen_time_per_user[screen_time_per_user[,"env"]== "E1",]
+
+wilcox_test(screen_time_per_user[screen_time_per_user[,"env"]== "E1",]$`active_edges$duration` ~ version, data=screen_time_per_user[screen_time_per_user[,"env"]== "E1",], paired=FALSE, alternative="less")
+wilcox_test(screen_time_per_user[screen_time_per_user[,"env"]== "E2",]$`active_edges$duration` ~ version, data=screen_time_per_user[screen_time_per_user[,"env"]== "E2",], paired=FALSE, alternative="less")
+wilcox_test(screen_time_per_user[screen_time_per_user[,"env"]== "E3",]$`active_edges$duration` ~ version, data=screen_time_per_user[screen_time_per_user[,"env"]== "E3",], paired=FALSE, alternative="less")
+
 cat("\n\n\n\n")
 cat("impact of environment on success rates\n")
 kruskal.test(x ~ env, data=success_rates)
@@ -294,22 +295,6 @@ kruskal.test(time_to_success ~ env, data=clamp_time_to_success(participants, max
 cat("impact of environment on active time \n")
 kruskal.test(screen_time_per_user$`active_edges$duration` ~ env, data=screen_time_per_user)
 
-
-cat("\n\n\n\n")
-cat("logistic regression predicting success by ver, env, pool \n")
-#just env, version, pool, and success columns
-participants_glm_subset <- subset(clamp_time_to_success(participants, maxtime),select=c(5,6,9,10))
-model <- glm(success ~.,family=binomial(link='logit'),data=participants_glm_subset)
-summary(model)
-#cat("\n\n\n")
-#anova(model)
-
-cat("\n\n\n\n")
-cat("linear regression predicting time to success by ver, env, pool \n")
-#just env, version, pool, and time_to_success columns
-participants_lm_subset <- subset(clamp_time_to_success(participants, maxtime),select=c(5,6,9,11))
-model <- lm(time_to_success ~.,data=participants_lm_subset)
-summary(model)
 
 cat("\n\n\n\n\n\n")
 cat("***************\n")
