@@ -118,8 +118,8 @@ bridges, pluggable transports, and proxies to make a connection to Tor (we refer
 We start by introducing terms (section~\ref{sec:background}) and, 
 describing the experimental setup (section~\ref{sec:environments}). 
 Then we report of user observations and interviews (section~\ref{sec:qualitative}),
-evaluate the current interface (section~\ref{sec:eval}), 
 list design principles and interface changes (section~\ref{redesign}),
+state evaluation criteria for gauging the succcessfulness of an interface (section~\ref{sec:eval}), 
 measure the impact of changes in the quantitative experiment in section~\ref{sec:quantitative}, 
 testing measured the impact of the design changes (Section~\ref{sec:quantitative}, and
 discuss user behaviors (section~\ref{sec:discussion}).
@@ -128,7 +128,7 @@ related work (section~\ref{sec:related}),
 future work (section~\ref{sec:future}), and
 a conclusion (section~\ref{sec:conclusion}). 
 
-We contribute:
+This paper contributes:
 \smallskip
 \begin{itemize}
 \item an evaluation of the current configuration interface
@@ -139,27 +139,6 @@ We contribute:
 \item alternative bootstrapping approaches
 \end{itemize}
 We hope that our work helps users circumvent censorship and connect to Tor. 
-
-
-\section{Related Work}
-\label{sec:related} 
-There have been three published user studies on Tor. Clark et~al.~\cite{clark2007usability} examined various deployment
-options for Tor Browser, such as Vidalia, Privoxy, Torbutton, and FoxyProxy, and found that none had satisfactory from a usability. Fabian et~al.~\cite{fabian2010privately} show that Tor's added
-latency~\cite{dingledine2009performance} causes users
-to be frustrated, cancel requests, and prevents user adoption. 
-Norcie et~al.~\cite{norcie2012eliminating} found found that 
-64\% of users are unable to continue with installation or browsing at least once due to difficulties.
-
-We do not know of any published usability evaluations of
-Tor Browser since the release of the 3.5 series in 2013, which introduced radical UI changes~\cite{torbrowser-35}.
-The most recent effort is an unpublished pilot study by Lee and Fifield~\cite{uxsprint} 
-that tested the downloading, installation, and browsing tasks in Tor Browser.  This study uncovered a number of issues~\cite{uxsprint2015-tickets},
-some of which influenced changes in Tor Browser version~4.5 and later.
-
-Previous user studies have considered the whole browsing experience,
-without focusing on specific features in isolation.
-Our study focuses on 
-the browser's configuration interface, which guides users through setting up components required to circumvent censorship. 
 
 \section{Background}
 \label{sec:background}
@@ -291,27 +270,6 @@ configure a custom bridge to connect to Tor.
 %Tor's anonymizing functionality also circumvents censorship. Using Tor for censorship circumvention became sufficiently common that many countries attempt to block Tor for this reason~\cite{winter2012great}. Today, Tor explicitly provides support for censorship circumvention through a network of unlisted relays as entry points into the Tor network, various methods of obfuscation to make connections to the Tor network less obvious, and advanced techniques to resist blocking.
  
 %This is the first user study that investigates the usability of Tor as a censorship circumvention tool. Our experiments are both a case study observing users circumvent censorship and a step toward helping current Tor users by making censorship circumvention easier. All Tor users benefit from improving the configuration interface, and thereby increasing the adoption of Tor as a censorship circumvention tool. Users who successfully use Tor to circumvent censorship are provided with extra security features that other censorship circumvention tools do not provide, while users who use Tor as an anonymity system benefit from an increased number of overall users on the Tor network~\cite{dingledine2006anonymity}.
-
-
-\section{Evaluation Criteria}
-\label{sec:eval}
-Our user studies evaluated two versions of the Tor Launcher interface.
-The first, which we have labeled OLD in our figures and tables,
-is the current version being distributed with Tor Browser.
-The second, NEW, is the prototype that we designed
-in order to provide better usability. Below are the empirical and 
-heuristic evaluation criteria we use to assess the interfaces. 
-
-Our empirical evaluation criteria for the Tor Browser configuration
-interface are based on common metrics that measure ease of use: \\
-
-\begin{enumerate}
-    \item {\bfseries Success rate:} what percentage of users can successfully connect to Tor in a given condition. This measures how many users are able to configure their connections with the interface. 
-    \item {\bfseries  Time to completion:} how long it takes between program startup and a successful Tor bootstrap, which includes time spent searching online for help and waiting for the connection to bootstrap. This measures how much time is required for a user to connect to the Tor network. 
-    \item {\bfseries Active configuration time:} how much time a user spends actively configuring network components to connect to Tor, which only includes time spent interacting with the interface, excluding the time waiting for the connection to bootstrap. This measures how much of the time spent connecting to the Tor network was spent configuring versus waiting. 
-\end{enumerate}
-
-An ideal interface maximizes the amount of people that successfully connect to the Tor network, while minimizing the time it takes to connect to the Tor network. A trade-off may be required between the total amount of time it takes to connect to Tor and the amount of time users interact with the interface. For instance, a  process with a balanced amount of user input may be faster than a naive but completely automated process.
 
 \section{Experimental Setup}
 \label{sec:environments}
@@ -604,6 +562,26 @@ Our users had little technical background. We made the following changes to make
 \end{enumerate}
 
 These changes result in a redesigned interface which we refer to as NEW. Note that the new interface preserves all the functionality of the old interface and still allows users to have control over their own network traffic. 
+
+\section{Evaluation Criteria}
+\label{sec:eval}
+Our user studies evaluated two versions of the Tor Launcher interface.
+The first, which we have labeled OLD in our figures and tables,
+is the current version being distributed with Tor Browser.
+The second, NEW, is the prototype that we designed
+in order to provide better usability. Below are the empirical and 
+heuristic evaluation criteria we use to assess the interfaces. 
+
+Our empirical evaluation criteria for the Tor Browser configuration
+interface are based on common metrics that measure ease of use: \\
+
+\begin{enumerate}
+    \item {\bfseries Success rate:} what percentage of users can successfully connect to Tor in a given condition. This measures how many users are able to configure their connections with the interface. 
+    \item {\bfseries  Time to completion:} how long it takes between program startup and a successful Tor bootstrap, which includes time spent searching online for help and waiting for the connection to bootstrap. This measures how much time is required for a user to connect to the Tor network. 
+    \item {\bfseries Active configuration time:} how much time a user spends actively configuring network components to connect to Tor, which only includes time spent interacting with the interface, excluding the time waiting for the connection to bootstrap. This measures how much of the time spent connecting to the Tor network was spent configuring versus waiting. 
+\end{enumerate}
+
+An ideal interface maximizes the amount of people that successfully connect to the Tor network, while minimizing the time it takes to connect to the Tor network. A trade-off may be required between the total amount of time it takes to connect to Tor and the amount of time users interact with the interface. For instance, a  process with a balanced amount of user input may be faster than a naive but completely automated process.
 
 \section{Quantitative Analyses of the Interfaces (Study 2)}
 \label{sec:quantitative}
@@ -924,6 +902,26 @@ We fixed this problem in our quantitative user study by blocking the directory a
 Our study was conducted in a laboratory setting, which can cause our participants to be under or over-motivated. Our participants had a monetary incentive to connect to Tor, whereas a real user in a censored environment would want to reach a particular website. 
 
 We chose to focus on more common cases, and did not simulate environments that requires users to configure a custom bridge or proxy. Although users in the wild can download interfaces that are not in their native language, we do not know how often this happens. We tested the English version of the Tor interface on English speaking participants. 
+
+\section{Related Work}
+\label{sec:related} 
+There have been three published user studies on Tor. Clark et~al.~\cite{clark2007usability} examined various deployment
+options for Tor Browser, such as Vidalia, Privoxy, Torbutton, and FoxyProxy, and found that none had satisfactory from a usability. Fabian et~al.~\cite{fabian2010privately} show that Tor's added
+latency~\cite{dingledine2009performance} causes users
+to be frustrated, cancel requests, and prevents user adoption. 
+Norcie et~al.~\cite{norcie2012eliminating} found found that 
+64\% of users are unable to continue with installation or browsing at least once due to difficulties.
+
+We do not know of any published usability evaluations of
+Tor Browser since the release of the 3.5 series in 2013, which introduced radical UI changes~\cite{torbrowser-35}.
+The most recent effort is an unpublished pilot study by Lee and Fifield~\cite{uxsprint} 
+that tested the downloading, installation, and browsing tasks in Tor Browser.  This study uncovered a number of issues~\cite{uxsprint2015-tickets},
+some of which influenced changes in Tor Browser version~4.5 and later.
+
+Previous user studies have considered the whole browsing experience,
+without focusing on specific features in isolation.
+Our study focuses on 
+the browser's configuration interface, which guides users through setting up components required to circumvent censorship. 
 
 \section{Future Work} 
 %In principle, the process of configuring a proxy and bridge can be automated, but
