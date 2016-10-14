@@ -78,7 +78,7 @@
 
   \begin{abstract}
 {
-We evaluate, design, and test the Tor configuration interface by
+We evaluate, design, and test the Tor Launcher interface by
 placing users in simulated censorship environments, instructing them to use Tor
 to circumvent censorship, and measuring their interface interactions.
 A 16-participant qualitative study examines user assumptions and common mistakes.
@@ -107,32 +107,42 @@ to the current interface as well as alternative solutions.}
 
 \section{Introduction}
 
+Tor~\cite{dingledine2004tor} is an anonymity network that routes Internet traffic through a series of relays 
+that make it difficult to observe the source and destination. 
+Tor Browser~\cite{torbrowser}, a modified Firefox browser with a built-in Tor client, 
+is the recommended way to use Tor. Tor Launcher is a Tor Browser component that
+starts, stops, and otherwise controls the underlying Tor processes.
+Tor Launcher's graphical user interface asks the user to configure
+bridges, pluggable transports, and proxies to make a connection to Tor (we refer to as the ``configuration interface'' throughout this paper). This is the object of our study. 
 
-Tor is an anonymity network that routes traffic through a series of relays
-that make it difficult to observe the source and destination~\cite{dingledine2004tor}. Tor's anonymizing functionality also circumvents censorship. Using Tor for censorship circumvention became sufficiently common that many countries attempt to block Tor for this reason~\cite{winter2012great}. Today, Tor explicitly provides support for censorship circumvention through a network of unlisted relays as entry points into the Tor network, various methods of obfuscation to make connections to the Tor network less obvious, and advanced techniques to resist blocking.
- 
-This is the first user study that investigates the usability of Tor as a censorship circumvention tool. Our experiments are both a case study observing users circumvent censorship and a step toward helping current Tor users by making censorship circumvention easier. All Tor users benefit from improving the configuration interface, and thereby increasing the adoption of Tor as a censorship circumvention tool. Users who successfully use Tor to circumvent censorship are provided with extra security features that other censorship circumvention tools do not provide, while users who use Tor as an anonymity system benefit from an increased number of overall users on the Tor network~\cite{dingledine2006anonymity}.
+We start by introducing terms (section~\ref{sec:background}) and, 
+describing the experimental setup (section~\ref{sec:environments}). 
+Then we report of user observations and interviews (section~\ref{sec:qualitative}),
+evaluate the current interface (section~\ref{sec:eval}), 
+list design principles and interface changes (section~\ref{redesign}),
+measure the impact of changes in the quantitative experiment in section~\ref{sec:quantitative}, 
+testing measured the impact of the design changes (Section~\ref{sec:quantitative}, and
+discuss user behaviors (section~\ref{sec:discussion}).
+We end with limitations (section~\ref{sec:limitations}), 
+related work (section~\ref{sec:related}), 
+future work (section~\ref{sec:future}), and
+a conclusion (section~\ref{sec:conclusion}). 
 
-We evaluate, redesign, and test Tor's configuration interface by
-measuring participants' interactions with the interface in various censorship environments.
-The first user study is a small-scale, qualitative experiment that collected 
-behavioral patterns and failure cases with the interface through user observations
-and interviews (Section~\ref{sec:qualitative}). This feedback was used to make changes to the interface (Section~\ref{redesign}). The second user study is a large-scale, quantitative experiment
-that collected data on user interactions with the interface to quantify the impact of the design changes (Section~\ref{sec:quantitative}).
-
-In this paper, we contribute the following:
+We contribute:
 \smallskip
 \begin{itemize}
-\item 6 common challenges encountered during the configuration process and their underlying causes
-\item 10 changes to the configuration interface which we hope alleviates the common challenges
-\item 114 logs of real world user attempts to connect to Tor in three different censorship environments
-\item 4 reasons why users failed to connect to Tor
-\item 5 recommendations of configuration interface changes to help more users connect and save time
-\item 5 alternative  approaches to bootstrapping a connection that leverage varying degrees of automation
+\item an evaluation of the current configuration interface
+\item a redesigned configuration interface
+\item logs of 114 users' connection attempts
+\item failure modes seen during connection attempts
+\item recommended interface changes
+\item alternative bootstrapping approaches
 \end{itemize}
 We hope that our work helps users circumvent censorship and connect to Tor. 
 
-\section{Related Work} 
+
+\section{Related Work}
+\label{sec:related} 
 There have been three published user studies on Tor. Clark et~al.~\cite{clark2007usability} examined various deployment
 options for Tor Browser, such as Vidalia, Privoxy, Torbutton, and FoxyProxy, and found that none had satisfactory from a usability. Fabian et~al.~\cite{fabian2010privately} show that Tor's added
 latency~\cite{dingledine2009performance} causes users
@@ -152,26 +162,8 @@ Our study focuses on
 the browser's configuration interface, which guides users through setting up components required to circumvent censorship. 
 
 \section{Background}
+\label{sec:background}
 This section provides the necessary background the configuration interface relates to Tor, the network components that are involved in censorship circumvention, and the configuration settings are required to bypass levels of Tor-adverse censorship environments. 
-
-\subsection{Tor, Tor Browser, and Tor Launcher}
-The recommended way to use Tor is through Tor Browser~\cite{torbrowser},
-a modified Firefox browser that includes a built-in Tor client.
-Tor Browser has a component called Tor Launcher that
-starts, stops, and otherwise controls the underlying Tor processes.
-Tor Launcher's graphical user interface gives access to 
-sophisticated circumvention mechanisms, giving the user
-the option to configure a proxy and bridge before connecting to Tor
-for the first time. This is the object of our study. 
-
-In principle, the process of configuring a proxy and bridge can be automated, but
-the interface eschews automatic configuration through network probing
-in favor of guided manual configuration to give users agency in configuring their connection. 
-Automatic configuration through network probing may put some users in certain regimes at risk. 
-A knowledgeable user can minimize their network trace and hide that they are connecting to Tor.
-However, this requires that the user grapple with technical concepts such as 
-bridges, pluggable transports, and proxies. Some of these concepts are specific to 
-Tor and not general concepts.
 
 \subsection{Bridges, Pluggable Transports, and Proxies} 
 Internet censors seek to block network resources through 
@@ -270,7 +262,7 @@ proxy information and correctly input this information.
 %as a SOCKS or HTTP proxy. An important distinction is that the local proxy lies within the 
 %censor's control.
 
-\subsection{Circumventing Censorship with Tor}
+\subsection{Connecting to Tor}
 There are many valid configuration settings to connect to the Tor network.
 For instance, a user who does not need a bridge or proxy 
 can connect to Tor with a bridge and proxy, provided that they have been configured correctly. 
@@ -295,9 +287,14 @@ blocked Tor relays and hard-coded bridges are required to configure a meek bridg
 routes traffic through content delivery networks and therefore resists blocking through collateral damage) or 
 configure a custom bridge to connect to Tor.
 
+\subsection{Potential for good} 
+%Tor's anonymizing functionality also circumvents censorship. Using Tor for censorship circumvention became sufficiently common that many countries attempt to block Tor for this reason~\cite{winter2012great}. Today, Tor explicitly provides support for censorship circumvention through a network of unlisted relays as entry points into the Tor network, various methods of obfuscation to make connections to the Tor network less obvious, and advanced techniques to resist blocking.
+ 
+%This is the first user study that investigates the usability of Tor as a censorship circumvention tool. Our experiments are both a case study observing users circumvent censorship and a step toward helping current Tor users by making censorship circumvention easier. All Tor users benefit from improving the configuration interface, and thereby increasing the adoption of Tor as a censorship circumvention tool. Users who successfully use Tor to circumvent censorship are provided with extra security features that other censorship circumvention tools do not provide, while users who use Tor as an anonymity system benefit from an increased number of overall users on the Tor network~\cite{dingledine2006anonymity}.
 
-\section{Evaluation Criteria and Goals}
-\label{sec:goals}
+
+\section{Evaluation Criteria}
+\label{sec:eval}
 Our user studies evaluated two versions of the Tor Launcher interface.
 The first, which we have labeled OLD in our figures and tables,
 is the current version being distributed with Tor Browser.
@@ -929,6 +926,15 @@ Our study was conducted in a laboratory setting, which can cause our participant
 We chose to focus on more common cases, and did not simulate environments that requires users to configure a custom bridge or proxy. Although users in the wild can download interfaces that are not in their native language, we do not know how often this happens. We tested the English version of the Tor interface on English speaking participants. 
 
 \section{Future Work} 
+%In principle, the process of configuring a proxy and bridge can be automated, but
+%the interface eschews automatic configuration through network probing
+%in favor of guided manual configuration to give users agency in configuring their connection. 
+%Automatic configuration through network probing may put some users in certain regimes at risk. 
+%A knowledgeable user can minimize their network trace and hide that they are connecting to Tor.
+%However, this requires that the user grapple with technical concepts such as 
+%bridges, pluggable transports, and proxies. Some of these concepts are specific to 
+%Tor and not general concepts.
+
 Our goal was to deploy impactful, tested changes the Tor configuration interface. In fact, Tor version~4.5 incorporated textual and navigational changes based on our redesigned interface. Throughout our experiments, we collaborated with Tor developers and focused on discovering changes that could be deployed right away. For this reason, we assumed that the configuration process will remain a manual process that requires user inputs, as it is currently deployed. However, we list some alternative approaches that seem worth exploring. \\
 
 \begin{description}
