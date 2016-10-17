@@ -140,20 +140,50 @@ limitations of out experiment (section~\ref{sec:limitations}),
 a look at our work in the context of existing work (section~\ref{sec:related}), and
 a brief conclusion (section~\ref{sec:conclusion}).
 
-%%%%%% LINDA'S PASS UP TO HERE %%%%%%%%%
-
 \section{Background}
 \label{sec:background}
 This section talks about network components involved in connecting to Tor, network conditions that require these network components, and examples of what users must currently do to connect to Tor. 
 
-\subsection{Bridges, Pluggable Transports, and Proxies} 
-Internet censors seek to block network resources through 
-a variety of means, such as falsifying DNS responses, blocking IP addresses, 
-filtering keywords, and detecting protocols by deep packet inspection.
-Censors can block the Tor network by blocking the list of Tor relays, which 
-are public. Blocking Tor becomes challenging when
-the Tor network is augmented with \emph{bridges} and \emph{pluggable transports}.
-Fig.~\ref{fig:topology} illustrates the interacting components.
+%%%%%% LINDA'S PASS UP TO HERE %%%%%%%%%
+
+\subsection{Relays, Bridges, Pluggable Transports, and Proxies} 
+
+Tor relays are routers in the Tor Network that receive and pass along Tor traffic. 
+There are three types of Tor relays: guard relays that serve as an entry node, middle relays that forward traffic from an entry node to an exit node, and exit relays which directs traffic to the destination. 
+Censors can block access to the Tor network by blocking these relays, which are publicly listed. 
+
+Bridges are unlisted Tor relays that can serve as the entry node to the Tor network.
+Bridges can be simple, unlisted relays. 
+But most bridges run a pluggable tranport (referred to as ``transport'' for shorthand), protocols that obfuscates Tor's network protocol. 
+Most transports obfuscate traffic to defeat on-the-wire identification, relying on the secrecy of their static IP addresses for their effectiveness.
+These include ``fte'' and ``fte-ipv6''~\cite{fte},
+which disguise the Tor protocol as another protocol (such as HTTP), and
+``obfs3''~\cite{obfs3}, ``obfs4''~\cite{obfs4}, and ``scramblesuit''~\cite{scramblesuit},
+which encrypt or alter the Tor protocol to appear as random noise.
+Some transports route traffic through other services to obfuscate the traffic, avoiding the need for a secret IP address. 
+``flashproxy''~\cite{flashproxy} connects through third parties' web browsers,
+and the ``meek''~\cite{fifield2015blocking} options route traffic
+through content delivery networks.
+Bridges and transports make it possible to connect to the Tor network even if a censor has blocked all publicly listed relays and are blocking any packets that look like the Tor network protocols. Fig.~\ref{fig:bridge-options} paraphrases the bridge and pluggable transport options at the time of the study.
+
+\begin{figure}
+  \centering
+    \includegraphics[width=0.5\textwidth]{bridge-options.png}
+\caption{
+Bridge options in Tor Browser~5.0.3's Tor Launcher interface.
+Pre-configured bridges can be selected by ``Transport type,'' which refer to various
+censorship circumvention technologies (``pluggable transports'').
+%Under ``Enter custom bridges,'' there is a space to paste in
+%a bridge line, obtained out of band.
+%The ``Help'' button displays instructions on obtaining
+%bridge lines. 
+}
+\label{fig:bridge-options}
+\end{figure}
+
+In addition to Tor-specific components, a local proxy may be necessary to connect 
+outside the local network in managed environments, such as corporate or university networks.
+(Technically, Tor relays, bridges, and local proxies all allow indirect network connections to other network services and can be considered a proxy.) In this paper, ``proxy'' refers to a local, ordinary unobfuscated proxy such as a SOCKS or HTTP proxy. Fig.~\ref{fig:topology} illustrates the interacting components.
 
 \begin{figure}
 \centering
@@ -161,69 +191,14 @@ Fig.~\ref{fig:topology} illustrates the interacting components.
 \caption{
 The chain of components involved in connecting to a website over Tor.
 Most users do not need a proxy;
-similarly only those users who face a censor need a bridge.
+only users who face a censor need a bridge.
 In the diagram, ``Tor'' represents all three anonymizing hops through the Tor network.
 We have shown the bridge as a separate component
 because of the special role it plays.
-When a bridge is used, it takes the place of the first Tor hop.
+When a bridge is used, it becomes the first Tor relay.
 }
 \label{fig:topology}
 \end{figure}
-
-Bridges are unlisted Tor relays that make it possible for a user to connect
-to the Tor network even if a censor blocks all publicly listed Tor relays.
-Pluggable transports are special protocols that run on bridges and obfuscate
-Tor's network protocol to make it difficult to detect. 
-Configuring a bridge requires providing one or more
-``bridge lines,'' a specification of a bridge that
-includes its IP address, transport type, and other metadata.
-For ease of use, the interface has hard-coded options for 
-the user to choose a group of bridges that use a particular
-pluggable transport. For example, choosing  the hard-coded obfs3 option
-configures a handful of bridges that use obfs3 pluggable transport.
-Some censors block the IP addresses of the hard-coded bridges by looking
-at the source code for those addresses (except flashproxy and meek).
-If the built-in bridges do not work, a user can obtain bridge lines
-through out-of-band channels, for instance by email~\cite{bridgedb}.
-Fig.~\ref{fig:bridge-options} paraphrases the bridge configuration
-options at the time of the study and lists the available pluggable transports.
-%Some transports connect directly to a static IP address,
-%obfuscating traffic to defeat on-the-wire identification;
-%they rely on the secrecy of their IP addresses for their effectiveness.
-%These include ``fte'' and ``fte-ipv6''~\cite{fte},
-%which make Tor look like another protocol such as HTTP; and
-%``obfs3''~\cite{obfs3}, ``obfs4''~\cite{obfs4}, and ``scramblesuit''~\cite{scramblesuit},
-%which encrypt Tor to look like random noise.
-%Other transports work differently and do not depend on connecting to a static IP address:
-%``flashproxy''~\cite{flashproxy} connects through third parties' web browsers,
-%and the three ``meek''~\cite{fifield2015blocking} options route traffic
-%through content delivery networks.
-
-\begin{figure}
-  \centering
-    \includegraphics[width=0.5\textwidth]{bridge-options.png}
-\caption{
-Bridge selection options in Tor Launcher for Tor Browser~5.0.3.
-Users are not familiar with the options under ``Transport type,'' which are various
-built-in circumvention technologies (``pluggable transports'').
-Under ``Enter custom bridges,'' there is a space to paste in
-a bridge line, obtained out of band.
-The ``Help'' button displays instructions on obtaining
-bridge lines. 
-}
-\label{fig:bridge-options}
-\end{figure}
-
-In addition to Tor-specific components, a proxy may be necessary to connect 
-outside the local network in certain managed environments, such as corporate or university networks.
-Configuring a proxy requires providing the proxy protocol, IP address, port, and additional optional
-fields. There is no assistance or automation with this process. The user must locate the 
-proxy information and correctly input this information. 
-  
-%Technically the Tor client, pluggable transport bridge, and proxy are all
-%proxies. In this paper, ``proxy'' refers to a local, ordinary unobfuscated proxy such
-%as a SOCKS or HTTP proxy. An important distinction is that the local proxy lies within the 
-%censor's control.
 
 \subsection{Light, Heavy, and Corporate Censorship}
 
@@ -252,6 +227,21 @@ hard-coded bridge or custom bridge to connect to Tor. Users in a censorship envi
 blocked Tor relays and hard-coded bridges are required to configure a meek bridge (which 
 routes traffic through content delivery networks and therefore resists blocking through collateral damage) or 
 configure a custom bridge to connect to Tor.
+
+%Configuring a bridge requires providing one or more
+%``bridge lines,'' a specification of a bridge that
+%includes its IP address, transport type, and other metadata.
+%For ease of use, the interface has hard-coded options for 
+%the user to choose a group of bridges that use a particular
+%pluggable transport. For example, choosing  the hard-coded obfs3 option
+%configures a handful of bridges that use obfs3 pluggable transport.
+%Some censors block the IP addresses of the hard-coded bridges by looking
+%at the source code for those addresses (except flashproxy and meek).
+%If the built-in bridges do not work, a user can obtain bridge lines
+%through out-of-band channels, for instance by email~\cite{bridgedb}.
+
+%Configuring a proxy requires providing the proxy protocol, IP address, port, and additional optional fields. There is no assistance or automation with this process. The user must locate the  proxy information and correctly input this information. 
+
 
 \section{Scope}
 \label{sec:scope}
