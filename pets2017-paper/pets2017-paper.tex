@@ -140,6 +140,8 @@ This paper contributes:
 \end{itemize}
 We hope that our work helps users circumvent censorship and connect to Tor. 
 
+%%%%%% LINDA'S PASS UP TO HERE %%%%%%%%%
+
 \section{Background}
 \label{sec:background}
 This section provides the necessary background the configuration interface relates to Tor, the network components that are involved in censorship circumvention, and the configuration settings are required to bypass levels of Tor-adverse censorship environments. 
@@ -200,24 +202,6 @@ options at the time of the study and lists the available pluggable transports.
 \begin{figure}
   \centering
     \includegraphics[width=0.5\textwidth]{bridge-options.png}
-%\small
-%\begin{itemize}
-%\renewcommand{\labelitemi}{$\circ$}
-%\item Connect with provided bridges\\
-%Transport type:
-%\begin{itemize}
-%\item flashproxy
-%\item fte
-%\item fte-ipv6
-%\item meek-amazon
-%\item meek-azure
-%\item meek-google
-%\item obfs3 (recommended)
-%\item obfs4
-%\item scramblesuit
-%\end{itemize}
-%\item Enter custom bridges\qquad\fbox{Help}\\
-%\end{itemize}
 \caption{
 Bridge selection options in Tor Launcher for Tor Browser~5.0.3.
 Users are not familiar with the options under ``Transport type,'' which are various
@@ -266,13 +250,15 @@ blocked Tor relays and hard-coded bridges are required to configure a meek bridg
 routes traffic through content delivery networks and therefore resists blocking through collateral damage) or 
 configure a custom bridge to connect to Tor.
 
-\subsection{Potential for good} 
+\subsection{Motivation} 
 %Tor's anonymizing functionality also circumvents censorship. Using Tor for censorship circumvention became sufficiently common that many countries attempt to block Tor for this reason~\cite{winter2012great}. Today, Tor explicitly provides support for censorship circumvention through a network of unlisted relays as entry points into the Tor network, various methods of obfuscation to make connections to the Tor network less obvious, and advanced techniques to resist blocking.
  
 %This is the first user study that investigates the usability of Tor as a censorship circumvention tool. Our experiments are both a case study observing users circumvent censorship and a step toward helping current Tor users by making censorship circumvention easier. All Tor users benefit from improving the configuration interface, and thereby increasing the adoption of Tor as a censorship circumvention tool. Users who successfully use Tor to circumvent censorship are provided with extra security features that other censorship circumvention tools do not provide, while users who use Tor as an anonymity system benefit from an increased number of overall users on the Tor network~\cite{dingledine2006anonymity}.
 
-\section{Experimental Setup}
-\label{sec:environments}
+\section{Scope}
+\label{sec:scope}
+%insert explanation into why we did what we did here. 
+
 For our experiments, we use instrumented versions of Tor Browser~5.0.3, 
 the most recent stable release at the time~\cite{torbrowser-503}.
 Though there were new releases during the experiments,
@@ -923,7 +909,27 @@ without focusing on specific features in isolation.
 Our study focuses on 
 the browser's configuration interface, which guides users through setting up components required to circumvent censorship. 
 
-\section{Future Work} 
+\section{Conclusion} 
+We conducted a series of experiments to improve the Tor Browser 5.0.3 configuration interface, focusing on users who use Tor to circumvent censorship. Since connecting to the Tor network unsuccessfully indicates to network eavesdroppers that users are connecting to Tor, the configuration process is manual to allow users to have control over the network activity. Through interviews and lab studies, we find that users have difficulty configuring network components to circumvent censorship, because they do not know how censorship or Tor works. We detail the common challenges, our changes to the configuration interface address those challenges, and the recommendations we have for Tor in this paper. 
+
+%general advice to other censorship circumvention and call for more research 
+Interacting with a censorship circumvention tool users can be a complex balance of leveraging user input for local information while accounting for user trust of the software and minimizing potential risks.
+When designing censorship circumvention tools, we caution against requiring first-time users to make decisions on software-specific notions (e.g. pluggable transports for Tor), answering questions that assume technical knowledge, or manually configuring components. We encourage the use of simulated censorship environments as a tool for user testing censorship circumvention software. Not only do simulated environments avoid rerouting traffic through a censoring country's networks, their reproducibility and stability are ideal for experiments. 
+
+
+%\section {Resources} 
+%For additional details, such as the censorship simulation code, interview transcriptions, and logs of participant interactions, we refer you to the project repository: \\
+%
+%\noindent \url{https://github.com/lindanlee/circumvention-ux-tor}
+%
+%\section {Acknowledgments}
+% Rowilma del Castillo of Xlab supported out experiment by assisting with testing, offering recruitment services, and allowing experiments after-hours. Nima Fatemi, Isabela Bagueros, Georg Koppen, and the Tor UX team have provided me with valuable feedback along the way. 
+
+\bibliographystyle{abbrv}
+\bibliography{pets2017-paper}
+
+\appendix
+\section{Alternative Approaches} 
 %In principle, the process of configuring a proxy and bridge can be automated, but
 %the interface eschews automatic configuration through network probing
 %in favor of guided manual configuration to give users agency in configuring their connection. 
@@ -944,27 +950,6 @@ Our goal was to deploy impactful, tested changes the Tor configuration interface
 \end{description}
 
 We believe that automation, asking about risk, and identifying struggling users could enable significant improvements to the configuration process. 
-
-\section{Conclusion} 
-We conducted a series of experiments to improve the Tor Browser 5.0.3 configuration interface, focusing on users who use Tor to circumvent censorship. Since connecting to the Tor network unsuccessfully indicates to network eavesdroppers that users are connecting to Tor, the configuration process is manual to allow users to have control over the network activity. Through interviews and lab studies, we find that users have difficulty configuring network components to circumvent censorship, because they do not know how censorship or Tor works. We detail the common challenges, our changes to the configuration interface address those challenges, and the recommendations we have for Tor in this paper. 
-
-%general advice to other censorship circumvention and call for more research 
-Interacting with a censorship circumvention tool users can be a complex balance of leveraging user input for local information while accounting for user trust of the software and minimizing potential risks.
-When designing censorship circumvention tools, we caution against requiring first-time users to make decisions on software-specific notions (e.g. pluggable transports for Tor), answering questions that assume technical knowledge, or manually configuring components. We encourage the use of simulated censorship environments as a tool for user testing censorship circumvention software. Not only do simulated environments avoid rerouting traffic through a censoring country's networks, their reproducibility and stability are ideal for experiments. 
-
-
-%\section {Resources} 
-%For additional details, such as the censorship simulation code, interview transcriptions, and logs of participant interactions, we refer you to the project repository: \\
-%
-%\noindent \url{https://github.com/lindanlee/circumvention-ux-tor}
-%
-%\section {Acknowledgments}
-%I want to especially thank Rowilma del Castillo of Xlab for supporting the experiment, assisting with testing, and being flexible with non-Xlab recruiting. I have received much valuable feedback from Nima Fatemi, Isabela Bagueros, Georg Koppen, and the Tor UX team. 
-
-\bibliographystyle{abbrv}
-\bibliography{pets2017-paper}
-
-\appendix
 
 \section{Qualitative User Study Recruitment Posting} 
 \label{qualitative-recruitment}
