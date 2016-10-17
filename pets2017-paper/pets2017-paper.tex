@@ -180,8 +180,7 @@ censorship circumvention technologies (``pluggable transports'').
 \end{figure}
 
 In addition to Tor-specific components, a local proxy is required to connect 
-in certain managed networks.
-(Technically, Tor relays, bridges, and local proxies all allow indirect network connections to other network services and can be considered a proxy.) In this paper, ``proxy'' refers to a local, ordinary unobfuscated proxy such as a SOCKS or HTTP proxy. Fig.~\ref{fig:topology} illustrates the interacting components.
+in certain managed networks. In this paper, ``proxy'' refers to a local, ordinary unobfuscated proxy such as a SOCKS or HTTP proxy. (Technically, Tor relays, bridges, and local proxies all allow indirect network connections to other network services and can be considered a proxy.) Fig.~\ref{fig:topology} illustrates the interacting components.
 
 \begin{figure}
 \centering
@@ -199,9 +198,9 @@ When a bridge is used, it becomes the first Tor relay.
 \end{figure}
 
 \subsection{State and Corporate Censorship}
-State level censors can vary in their thoroughness in censorship, resulting in a variety of ever-changing network conditions. Some DNS-poison websites they want to block, while others that employ more sophisticated techniques, such as deep packet inspection and protocol detection. In countries that censor services but do not block censorship circumvention tools, any connection to Tor will byass the censorship. In other countries, sophisticated state-level censorship require bridges that run specific tranports that route traffic through other, non-Tor services first. For example, only meek-amazon and meek-azure transports work to bypass China's GFW. 
+State level censors can vary in their thoroughness in censorship, resulting in a variety of ever-changing network conditions. Some block websites with a combination of IP blacklisting and DNS-poisoning while others that employ more sophisticated techniques such as deep packet inspection and protocol detection. In countries that censor services but do not block censorship circumvention tools, any connection to Tor will byass the censorship. In other countries, sophisticated state-level censorship require bridges that run specific tranports that route traffic through other, non-Tor services first. For example, only meek-amazon and meek-azure transports work to bypass China's GFW. 
 
-Some companies and educational institutions have a firewall, which can be bypassed by a proxy (with or without Tor). The users behind a corporate firewall represent a very small fraction of censored users. 
+Some companies and educational institutions have a firewall, which can be bypassed with a proxy (with or without a connection to Tor). 
 
 \subsection{Connecting to Tor} 
  
@@ -227,7 +226,7 @@ through out-of-band channels, for instance by email~\cite{bridgedb}.
 Configuring a proxy requires providing the proxy protocol, IP address, port, and additional optional fields. The user must locate and input this information. 
 
 There are many valid configuration settings to connect to the Tor network.
-For instance, a user who needs a bridge but not need a proxy can connect to Tor with a bridge and proxy, provided that both were configured correctly. The set of valid configuration settings vary on the censorship environment. 
+For instance, a user who needs a bridge but not need a proxy can connect to Tor with a bridge and proxy, provided that both were configured correctly. The set of valid configuration settings vary on the specific network environment. 
 
 %%%%%% LINDA'S PASS UP TO HERE %%%%%%%%%
 
