@@ -228,11 +228,24 @@ Configuring a proxy requires providing the proxy protocol, IP address, port, and
 There are many valid configuration settings to connect to the Tor network.
 For instance, a user who needs a bridge but not need a proxy can connect to Tor with a bridge and proxy, provided that both were configured correctly. The set of valid configuration settings vary on the specific network environment. 
 
-%%%%%% LINDA'S PASS UP TO HERE %%%%%%%%%
+\section{Experimental Setup}
+We simulated three environments (which we refer to as E1, E2, and E3), 
+which are in the order of increasing severity in censorship. We chose to 
+simulate environments for the stability, reproducibility, and simplicity of the 
+experiment, as real censored networks are voilatile, subject to change, and complex. 
 
-\section{Scope}
-\label{sec:scope}
-%insert explanation into why we did what we did here. 
+The simulated environments are not intended to imitate any particular country's censorship environment. However, they were designed so that they would require similar configurations
+to make a connection to Tor. For instance, E3 does not block the same websites, public Tor relays, or Tor protocols that China would, but similarly requires a bridge that runs a specific type of transport to connect to Tor. We believe this to be sufficient for the purpose of testing the configuration interface, since these environments require the user to take the interface paths we want to test. Table~\ref{tab:environments} summarizes our
+environments and what network components are required to make a 
+connection to Tor. 
+
+We used features of the Windows operating system 
+to block websites and Tor relays. 
+We added entries to the hosts file to
+mapping domain names to the address 127.0.0.1, which simulated
+website by using Tor. We blocked torproject.org and its respective subdomains to discourage downloading Tor Browser, as we had installed an instrumented version on the test computers (E1, E2, E3).  We blocked wikipedia.org, cnn.com, and their respective subdomains to create an artificial task to visit a 
+``censored'' website as motivation to connect to Tor during the experiment (E1, E2, E3). 
+We specified Windows Firewall rules to block IP address of public Tor relays (E2, E3) and default bridges (E3).
 
 For our experiments, we use instrumented versions of Tor Browser~5.0.3, 
 the most recent stable release at the time~\cite{torbrowser-503}.
@@ -240,54 +253,7 @@ Though there were new releases during the experiments,
 we used the same version across all participants to not introduce
 confounding factors.
 
-Because proxies are not Tor-specific concept and affects a small fraction of the Internet population, we study connections to Tor that require a bridge but not a proxy. We focus our attention on the parts of the configuration interface that set up bridges and simulate environments that do not need a proxy. However, connections to Tor are still considered valid in the experiment. 
-
-For both user studies, we simulated three censorship environments,
-which we refer to as E1, E2, and E3, which are in  the order of increasing severity.
-We designed the environments to be representative
-of what, in our estimation, are important real-world
-cases of censorship. They are not intended to imitate
-any particular country's censorship environment.\\
-
-\begin{description}
-\item [E1: Mild censorship.]
-The E1 environment only blocks some websites,
-as if by DNS poisoning.
-We blocked subdomains of torproject.org
-and wikipedia.org.
-(The participants' main goal in the experiment was to read a page on en.wikipedia.org.)
-To succeed in this environment,
-participants only had to click ``Connect'' on the first screen;
-additional configuration was optional.
-
-\item [E2: Intermediate censorship.]
-The E2 environment blocks websites as in E1 and
-additionally blocks IP addresses of public Tor relays
-and directory authorities, simulating a censor who knows
-about circumvention and tries to stop it.
-In this environment, simply clicking ``Connect'' does not work;
-participants had to select a built-in bridge
-(any type other than ``flashproxy'' would work).
-A custom bridge would work but was not necessary.
-
-\item [E3: Comprehensive censorship.]
-The E3 environment blocks websites and Tor relays like E1 and E2
-and additionally blocks built-in default bridge IP addresses in the Tor Browser source code.
-To succeed in this environment, participants had to select
-one of the ``meek'' built-in bridges (no other type of hard-coded bridges would work)
-or acquire their own custom bridge and enter it manually.
-\end{description}
-
-\smallskip
-
-Table~\ref{tab:environments} summarizes our simulated censorship
-environments. We used features of the Windows operating system 
-to implement the above blocking behaviors.
-To simulate website blocking, we added entries to the hosts file,
-mapping domain names to the address 127.0.0.1.
-We used Windows Firewall rules for IP address blocking.
-
-\begin{table}
+\begin{table}[t]
 \centering
 \begin{tabular}{r c c c}
 & E1 & E2 & E3 \\
@@ -307,6 +273,8 @@ similarly E3's is a superset of E2's.
 }
 \label{tab:environments}
 \end{table}
+
+%%%%%% LINDA'S PASS UP TO HERE %%%%%%%%%
 
 \section{Qualitative Analysis of the Existing Interface (Study 1)}
 \label{sec:qualitative}
