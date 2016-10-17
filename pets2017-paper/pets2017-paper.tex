@@ -115,7 +115,7 @@ bridges, pluggable transports, and proxies to make a connection to Tor (we refer
 
 We hope that our work helps users more easily connect to Tor. The direct and obvious benefit of our work is that is that it may help users who would have previously been unable to configure Tor Browser to use it or that it may save time for users who would have been able to configure a valid connection to the Tor. Improving the user experience through user testing has the potential to be beneficial for both the software company (less help desk tickets) and the end users (less frustration). 
 
-However, we believe that our work uniquely necesssary and beneficial to Tor Browser. Although originally designed for Internet anonymity, using Tor Browser to circumvent censorship has now become sufficiently common that many countries now attempt to block Tor relays for this reason~\cite{winter2012great}. Our experiment to design an easier bootstrapping process will especially benefit citizens who face Internet censorship. If successful, an increase in overall users means more than user growth, but an increased anonymity set~\cite{dingledine2006anonymity}. \\
+However, we believe that our work uniquely necesssary and beneficial to Tor Browser. Although originally designed for Internet anonymity, using Tor Browser to circumvent censorship has now become sufficiently common that many countries now attempt to block Tor relays for this reason~\cite{winter2012great}. Our contributions toward an easier bootstrapping process will especially benefit citizens who face Internet censorship. If there is an increase in overall users as a result, they add a security bonus by increasing the anonymity set~\cite{dingledine2006anonymity}. \\
 
 
 \noindent This paper contributes:
@@ -144,27 +144,25 @@ a brief conclusion (section~\ref{sec:conclusion}).
 \label{sec:background}
 This section talks about network components involved in connecting to Tor, network conditions that require these network components, and examples of what users must currently do to connect to Tor. 
 
-%%%%%% LINDA'S PASS UP TO HERE %%%%%%%%%
-
 \subsection{Relays, Bridges, Pluggable Transports, and Proxies} 
 
 Tor relays are routers in the Tor Network that receive and pass along Tor traffic. 
 There are three types of Tor relays: guard relays that serve as an entry node, middle relays that forward traffic from an entry node to an exit node, and exit relays which directs traffic to the destination. 
 Censors can block access to the Tor network by blocking these relays, which are publicly listed. 
 
-Bridges are unlisted Tor relays that can serve as the entry node to the Tor network.
+Bridges are unlisted Tor relays that can serve as an alternative entry node.
 Bridges can be simple, unlisted relays. 
-But most bridges run a pluggable tranport (referred to as ``transport'' for shorthand), protocols that obfuscates Tor's network protocol. 
-Most transports obfuscate traffic to defeat on-the-wire identification, relying on the secrecy of their static IP addresses for their effectiveness.
+But most bridges run a pluggable tranport (referred to as ``transport'' for shorthand) that obfuscates the traffic. 
+Most transports disguise traffic to defeat on-the-wire identification, relying on the secrecy of their static IP addresses for their effectiveness.
 These include ``fte'' and ``fte-ipv6''~\cite{fte},
 which disguise the Tor protocol as another protocol (such as HTTP), and
 ``obfs3''~\cite{obfs3}, ``obfs4''~\cite{obfs4}, and ``scramblesuit''~\cite{scramblesuit},
 which encrypt or alter the Tor protocol to appear as random noise.
-Some transports route traffic through other services to obfuscate the traffic, avoiding the need for a secret IP address. 
+Some transports route traffic through other services, avoiding the need for a secret IP address. 
 ``flashproxy''~\cite{flashproxy} connects through third parties' web browsers,
 and the ``meek''~\cite{fifield2015blocking} options route traffic
 through content delivery networks.
-Bridges and transports make it possible to connect to the Tor network even if a censor has blocked all publicly listed relays and are blocking any packets that look like the Tor network protocols. Fig.~\ref{fig:bridge-options} paraphrases the bridge and pluggable transport options at the time of the study.
+Bridges and transports allow a connection to the Tor network when all publicly listed relays and any Tor-looking packets are blocked. Fig.~\ref{fig:bridge-options} shows the bridge and transport options at the time of the study.
 
 \begin{figure}
   \centering
@@ -181,8 +179,8 @@ censorship circumvention technologies (``pluggable transports'').
 \label{fig:bridge-options}
 \end{figure}
 
-In addition to Tor-specific components, a local proxy may be necessary to connect 
-outside the local network in managed environments, such as corporate or university networks.
+In addition to Tor-specific components, a local proxy is required to connect 
+in certain managed networks.
 (Technically, Tor relays, bridges, and local proxies all allow indirect network connections to other network services and can be considered a proxy.) In this paper, ``proxy'' refers to a local, ordinary unobfuscated proxy such as a SOCKS or HTTP proxy. Fig.~\ref{fig:topology} illustrates the interacting components.
 
 \begin{figure}
@@ -200,48 +198,38 @@ When a bridge is used, it becomes the first Tor relay.
 \label{fig:topology}
 \end{figure}
 
-\subsection{Light, Heavy, and Corporate Censorship}
+\subsection{State and Corporate Censorship}
+State level censors can vary in their thoroughness in censorship, resulting in a variety of ever-changing network conditions. Some DNS-poison websites they want to block, while others that employ more sophisticated techniques, such as deep packet inspection and protocol detection. In countries that censor services but do not block censorship circumvention tools, any connection to Tor will byass the censorship. In other countries, sophisticated state-level censorship require bridges that run specific tranports that route traffic through other, non-Tor services first. For example, only meek-amazon and meek-azure transports work to bypass China's GFW. 
 
-\subsection{Connections to Tor} 
+Some companies and educational institutions have a firewall, which can be bypassed by a proxy (with or without Tor). The users behind a corporate firewall represent a very small fraction of censored users. 
+
+\subsection{Connecting to Tor} 
+ 
+%\begin{itemize}
+%	\item{Whether their Internet connection is censored} 
+%	\item{Whether the Tor network is censored by their ISP}
+%	\item{Which hard-coded bridges work in their country} 
+%	\item{If no hard-coded bridges work, how to get a custom bridge and connect to it} 
+%	\item{Whether a proxy is required to access the Internet}
+%	\item{If a proxy is required, and if so, the proxy settings}
+%\end{itemize}
+
+Configuring a bridge requires providing one or more
+``bridge lines,'' a specifically formatted bridge specification that
+includes its IP address, transport type, and other metadata.
+The interface has hard-coded options (see Figure~\ref{fig:bridge-options}) 
+that select a group of bridges that use a particular transport.
+For instance, choosing the hard-coded obfs3 option
+configures a handful of bridges that use obfs3 transport.
+If the built-in bridges do not work, a user can obtain bridge lines
+through out-of-band channels, for instance by email~\cite{bridgedb}.
+
+Configuring a proxy requires providing the proxy protocol, IP address, port, and additional optional fields. The user must locate and input this information. 
 
 There are many valid configuration settings to connect to the Tor network.
-For instance, a user who does not need a bridge or proxy 
-can connect to Tor with a bridge and proxy, provided that they have been configured correctly. 
-The minimum amount of configuration required, therefore, the set of valid configuration settings,
-vary depending on the censorship environment. In the worst case, users must know or find out:\\
+For instance, a user who needs a bridge but not need a proxy can connect to Tor with a bridge and proxy, provided that both were configured correctly. The set of valid configuration settings vary on the censorship environment. 
 
-\begin{itemize}
-	\item{Whether their Internet connection is censored} 
-	\item{Whether the Tor network is censored by their ISP}
-	\item{Which hard-coded bridges work in their country} 
-	\item{If no hard-coded bridges work, how to get custom bridge information and connect to it} 
-	\item{Whether a proxy is required to access the Internet}
-	\item{If a proxy is required, and if so, the proxy settings}
-\end{itemize}
-
-Uncensored users and users in censorship environments that do not explicitly 
-block Tor do not require a bridge or a proxy and can bypass these steps in the configuration process.
-Users in censorship environments that explicitly block Tor but have not blocked the 
-hard-coded bridges in the Tor Launcher source code are required to use a 
-hard-coded bridge or custom bridge to connect to Tor. Users in a censorship environment that has explicitly 
-blocked Tor relays and hard-coded bridges are required to configure a meek bridge (which 
-routes traffic through content delivery networks and therefore resists blocking through collateral damage) or 
-configure a custom bridge to connect to Tor.
-
-%Configuring a bridge requires providing one or more
-%``bridge lines,'' a specification of a bridge that
-%includes its IP address, transport type, and other metadata.
-%For ease of use, the interface has hard-coded options for 
-%the user to choose a group of bridges that use a particular
-%pluggable transport. For example, choosing  the hard-coded obfs3 option
-%configures a handful of bridges that use obfs3 pluggable transport.
-%Some censors block the IP addresses of the hard-coded bridges by looking
-%at the source code for those addresses (except flashproxy and meek).
-%If the built-in bridges do not work, a user can obtain bridge lines
-%through out-of-band channels, for instance by email~\cite{bridgedb}.
-
-%Configuring a proxy requires providing the proxy protocol, IP address, port, and additional optional fields. There is no assistance or automation with this process. The user must locate the  proxy information and correctly input this information. 
-
+%%%%%% LINDA'S PASS UP TO HERE %%%%%%%%%
 
 \section{Scope}
 \label{sec:scope}
@@ -253,6 +241,8 @@ Though there were new releases during the experiments,
 we used the same version across all participants to not introduce
 confounding factors.
 
+Because proxies are not Tor-specific concept and affects a small fraction of the Internet population, we study connections to Tor that require a bridge but not a proxy. We focus our attention on the parts of the configuration interface that set up bridges and simulate environments that do not need a proxy. However, connections to Tor are still considered valid in the experiment. 
+
 For both user studies, we simulated three censorship environments,
 which we refer to as E1, E2, and E3, which are in  the order of increasing severity.
 We designed the environments to be representative
@@ -262,7 +252,6 @@ any particular country's censorship environment.\\
 
 \begin{description}
 \item [E1: Mild censorship.]
-(Representative of countries such as France and Australia.)
 The E1 environment only blocks some websites,
 as if by DNS poisoning.
 We blocked subdomains of torproject.org
@@ -273,7 +262,6 @@ participants only had to click ``Connect'' on the first screen;
 additional configuration was optional.
 
 \item [E2: Intermediate censorship.]
-(Representative of countries such as Tunisia.)
 The E2 environment blocks websites as in E1 and
 additionally blocks IP addresses of public Tor relays
 and directory authorities, simulating a censor who knows
@@ -284,7 +272,6 @@ participants had to select a built-in bridge
 A custom bridge would work but was not necessary.
 
 \item [E3: Comprehensive censorship.]
-(Representative of countries such as China and Syria.)
 The E3 environment blocks websites and Tor relays like E1 and E2
 and additionally blocks built-in default bridge IP addresses in the Tor Browser source code.
 To succeed in this environment, participants had to select
@@ -313,8 +300,8 @@ default bridges blocked & & & X \\
 \caption{
 Summary of our simulated censorship environments.
 E1 only requires participants to click ``Connect'';
-E2 requires selection of a built-in bridge;
-and E3 requires selection of a specific type of built-in bridge,
+E2 requires a built-in bridge;
+and E3 requires a specific type of built-in bridge
 or manual configuration of a custom bridge.
 E2's blocking is a superset of E1's;
 similarly E3's is a superset of E2's.
