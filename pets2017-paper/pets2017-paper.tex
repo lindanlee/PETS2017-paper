@@ -144,7 +144,7 @@ a brief conclusion (section~\ref{sec:conclusion}).
 
 \section{Background}
 \label{sec:background}
-This section provides the necessary background the configuration interface relates to Tor, the network components that are involved in censorship circumvention, and the configuration settings are required to bypass levels of Tor-adverse censorship environments. 
+This section talks about network components involved in connecting to Tor, network conditions that require these network components, and examples of what users must currently do to connect to Tor. 
 
 \subsection{Bridges, Pluggable Transports, and Proxies} 
 Internet censors seek to block network resources through 
@@ -225,7 +225,10 @@ proxy information and correctly input this information.
 %as a SOCKS or HTTP proxy. An important distinction is that the local proxy lies within the 
 %censor's control.
 
-\subsection{Connecting to Tor}
+\subsection{Light, Heavy, and Corporate Censorship}
+
+\subsection{Connections to Tor} 
+
 There are many valid configuration settings to connect to the Tor network.
 For instance, a user who does not need a bridge or proxy 
 can connect to Tor with a bridge and proxy, provided that they have been configured correctly. 
@@ -249,11 +252,6 @@ hard-coded bridge or custom bridge to connect to Tor. Users in a censorship envi
 blocked Tor relays and hard-coded bridges are required to configure a meek bridge (which 
 routes traffic through content delivery networks and therefore resists blocking through collateral damage) or 
 configure a custom bridge to connect to Tor.
-
-\subsection{Motivation} 
-%Tor's anonymizing functionality also circumvents censorship. Using Tor for censorship circumvention became sufficiently common that many countries attempt to block Tor for this reason~\cite{winter2012great}. Today, Tor explicitly provides support for censorship circumvention through a network of unlisted relays as entry points into the Tor network, various methods of obfuscation to make connections to the Tor network less obvious, and advanced techniques to resist blocking.
- 
-%This is the first user study that investigates the usability of Tor as a censorship circumvention tool. Our experiments are both a case study observing users circumvent censorship and a step toward helping current Tor users by making censorship circumvention easier. All Tor users benefit from improving the configuration interface, and thereby increasing the adoption of Tor as a censorship circumvention tool. Users who successfully use Tor to circumvent censorship are provided with extra security features that other censorship circumvention tools do not provide, while users who use Tor as an anonymity system benefit from an increased number of overall users on the Tor network~\cite{dingledine2006anonymity}.
 
 \section{Scope}
 \label{sec:scope}
