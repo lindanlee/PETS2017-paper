@@ -107,26 +107,18 @@ to the current interface as well as alternative solutions.}
 
 Tor~\cite{dingledine2004tor} is an anonymity network that routes Internet traffic through a series of relays 
 that make it difficult to observe the source and destination. 
-Tor Browser~\cite{torbrowser}, a modified Firefox browser with a built-in Tor client, 
+Tor Browser~\cite{torbrowser} is a modified Firefox browser with a built-in Tor client that
 is the recommended way to use Tor. Tor Launcher is a Tor Browser component that
 starts, stops, and otherwise controls the underlying Tor processes.
 Tor Launcher's graphical user interface asks the user to configure
-bridges, pluggable transports, and proxies to make a connection to Tor (we refer to as the ``configuration interface'' throughout this paper). This is the object of our study. 
+bridges, pluggable transports, and proxies to make a connection to Tor (we refer to this graphical user interface as the ``configuration interface'' throughout this paper). This is the object of our study. 
 
-We start by introducing terms (section~\ref{sec:background}) and, 
-describing the experimental setup (section~\ref{sec:environments}). 
-Then we report of user observations and interviews (section~\ref{sec:qualitative}),
-list design principles and interface changes (section~\ref{redesign}),
-state evaluation criteria for gauging the succcessfulness of an interface (section~\ref{sec:eval}), 
-measure the impact of changes in the quantitative experiment in section~\ref{sec:quantitative}, 
-testing measured the impact of the design changes (Section~\ref{sec:quantitative}, and
-discuss user behaviors (section~\ref{sec:discussion}).
-We end with limitations (section~\ref{sec:limitations}), 
-related work (section~\ref{sec:related}), 
-future work (section~\ref{sec:future}), and
-a conclusion (section~\ref{sec:conclusion}). 
+We hope that our work helps users more easily connect to Tor. The direct and obvious benefit of our work is that is that it may help users who would have previously been unable to configure Tor Browser to use it or that it may save time for users who would have been able to configure a valid connection to the Tor. Improving the user experience through user testing has the potential to be beneficial for both the software company (less help desk tickets) and the end users (less frustration). 
 
-This paper contributes:
+However, we believe that our work uniquely necesssary and beneficial to Tor Browser. Although originally designed for Internet anonymity, using Tor Browser to circumvent censorship has now become sufficiently common that many countries now attempt to block Tor relays for this reason~\cite{winter2012great}. Our experiment to design an easier bootstrapping process will especially benefit citizens who face Internet censorship. If successful, an increase in overall users means more than user growth, but an increased anonymity set~\cite{dingledine2006anonymity}. \\
+
+
+\noindent This paper contributes:
 \smallskip
 \begin{itemize}
 \item an evaluation of the current configuration interface
@@ -136,7 +128,17 @@ This paper contributes:
 \item recommended interface changes
 \item alternative bootstrapping approaches
 \end{itemize}
-We hope that our work helps users circumvent censorship and connect to Tor. 
+
+We start by introducing relevant concepts (section~\ref{sec:background}) and
+defining the scope of our experiment (section~\ref{sec:scope}). 
+Then, we report user observations and interviews (section~\ref{sec:qualitative}),
+list design principles and interface changes (section~\ref{redesign}),
+state evaluation criteria for testing the interface (section~\ref{sec:eval}), 
+and measure the impact of our design changes (Section~\ref{sec:quantitative}).
+We end with a discussion on what we learned (section~\ref{sec:discussion}),
+limitations of out experiment (section~\ref{sec:limitations}), 
+a look at our work in the context of existing work (section~\ref{sec:related}), and
+a brief conclusion (section~\ref{sec:conclusion}).
 
 %%%%%% LINDA'S PASS UP TO HERE %%%%%%%%%
 
@@ -803,7 +805,8 @@ Perhaps a more meaningful measurement is the amount of time participants activel
 We performed a one-tailed Mann--Whitney test to compare the amount of active configuration time between participants who used the new interface and the participants who used the old interface. Our changes to the interface reduced the time participants spent configuring the interface (Mann--Whitney $Z = -3.28$, $p = 0.000516$, $r = 0.307$).  Table~\ref{table:participant-summary} shows the median active times and Figure~\ref{fig:time_to_success_active_clamped} shows their distribution.
 
 
-\subsection{Discussion} 
+\section{Discussion} 
+\label{sec:discussion}
 We talk about the failure cases and behavioral trends observed in our quantitative user study and recommend some changes to the Tor configuration interface based on those observations. 
 
 \subsubsection{Failures}
@@ -858,7 +861,8 @@ Based on our observations of general behavioral trends and common failure cases,
 
 Although we cannot isolate their effects on users, we also recommend notifying a users with the configured settings before connecting and having a progress bar that illustrates when network component have successfully been configured or failed.
 
-\section{Limitations} 
+\section{Limitations}
+\label{sec:limitations}
 The configuration interface uses the native operating system's elements and their respective styling, so an interface looks slightly different across different operating systems. We only tested interface on Windows machines, which were the machines available at <redacted>. %Xlab. 
 Participants who are not accustomed to Windows machines may have been slower to complete the given task, but this affected all conditions equally. 
 
@@ -908,6 +912,7 @@ Our study focuses on
 the browser's configuration interface, which guides users through setting up components required to circumvent censorship. 
 
 \section{Conclusion} 
+\label{sec:conclusion}
 We conducted a series of experiments to improve the Tor Browser 5.0.3 configuration interface, focusing on users who use Tor to circumvent censorship. Since connecting to the Tor network unsuccessfully indicates to network eavesdroppers that users are connecting to Tor, the configuration process is manual to allow users to have control over the network activity. Through interviews and lab studies, we find that users have difficulty configuring network components to circumvent censorship, because they do not know how censorship or Tor works. We detail the common challenges, our changes to the configuration interface address those challenges, and the recommendations we have for Tor in this paper. 
 
 %general advice to other censorship circumvention and call for more research 
