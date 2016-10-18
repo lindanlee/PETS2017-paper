@@ -228,7 +228,10 @@ Configuring a proxy requires providing the proxy protocol, IP address, port, and
 There are many valid configuration settings to connect to the Tor network.
 For instance, a user who needs a bridge but not need a proxy can connect to Tor with a bridge and proxy, provided that both were configured correctly. The set of valid configuration settings vary on the specific network environment. 
 
-%%%%%% LINDA'S PASS UP TO HERE %%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%		LINDA'S PASS UP TO HERE 		       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Usability Inspection}
 {\color {red}
 We used a combination of usability inspection methods~\cite{nielsen1994usability}
@@ -288,11 +291,10 @@ similarly E3's is a superset of E2's.
 \label{tab:environments}
 \end{table}
 
-%%%%%% LINDA'S PASS UP TO HERE %%%%%%%%%
 
-\section{Qualitative Analysis of the Existing Interface (Study 1)}
+\section{Qualitative User Testing}
+{\color {red}
 \label{sec:qualitative}
-
 We ran a qualitative, exploratory user study to gain an 
 understanding of how users interact with the configuration interface and
 what common problems may be. We did this by observing participants using 
@@ -431,95 +433,80 @@ The challenges users faced in the qualitative experiment and the respective unde
 
 \section{Design Principles and Changes}
 \label{redesign} 
-{\color {red}
-We make ten changes to the Tor launcher configuration interface to help users connect to Tor. Since users did not know how to connect to Tor, we added advice where our users have previously struggled. Specifically, the following three changes were made to give users more information in during configuration: \\
 
- \begin{figure*}[t]
-	\centering
-		\includegraphics[width=.8\textwidth]{bridge-screens.pdf} 
-		\caption{In the OLD interface, users are asked, ``Does your Internet Service Provide (ISP) block or 
-		otherwise censor connections to the Tor Network?'' (B1). A ``Yes'' determines that a bridge should 
-		be configured and directs to the bridge configuration screen (B2). 
-		The NEW interface gives users advice on configuring bridges
-		while giving the option of not configuring a bridge, on one screen (B).} 
-\end{figure*} 
+{\color {blue}
+Introduction to security design principles. 
 
-\begin{figure*}[t]
-	\centering
-		\includegraphics[width=.8\textwidth]{proxy-screens.pdf} 
-		\caption{In the OLD interface, users are asked, ``Does this computer need a local proxy to connect
-		to the Internet?'' (P1). A ``Yes'' determines that a proxy should be configured and directs to the 
-		proxy configuration screen (P2). The NEW interface checks the local machine's proxy settings,
-		and informs the user whether a proxy is required, and if so, what those settings are (P).}
-\end{figure*}
-
-\begin{figure*}[t]
-\centering
-\includegraphics[width=.85\textwidth]{old-and-new-flows.png}
-\caption{
-Comparison of user flow in the OLD and NEW interfaces.
-We collapsed the two bridge screens into one 
-and also collapsed the two proxy screens into one.
-We swapped the order of the bridge and proxy configuration
-so it matches the order of network components (compare with Fig.~\ref{fig:topology}).
-We added a summary screen as a last step before initiating a connection.\\
-\textbf{F}: first screen;
-\textbf{B/B1/B2}: bridge screens;
-\textbf{P/P1/P2}: proxy screens;
-\textbf{S}: summary screen;
-\textbf{Pr}: progress bar.
-}
-\label{fig:flow}
-\end{figure*} 
-
+Security design principles: 
 \begin{enumerate}
-\item Added instructions on what to try next on errors. When an error occurs, text advice on what to try next is shown to the user to help them recover from the error. The advice may be to try the connection again, to choose a different bridge, or to try a connection without a proxy. 
-\item Added guidance on choosing between connect and configure. Before, the interface only informed users that the connect option worked some of the time, but did not specify why that was so. We labeled the configure option as a manual option  specifically for users in heavily censored environments.
-\item Added explicit advice on choosing bridge transports. Users did not know which bridges to choose if they were in E3, which requires users to choose a meek or custom bridge. We added text that advises users to try a meek bridge if obfs3 does not work.
+\item no user-dependent inputs 
+\item no network-dependent inputs
+\item minimal information leaks
 \end{enumerate} 
 
-Users found the feedback to be more confusing than helpful, since error messages were technical and progress bar was misleading. We make the following changes to make feedback insightful and reflective of system state:\\ 
+%In principle, the process of configuring a proxy and bridge can be automated, but
+%the interface eschews automatic configuration through network probing
+%in favor of guided manual configuration to give users agency in configuring their connection. 
+%Automatic configuration through network probing may put some users in certain regimes at risk. 
+%A knowledgeable user can minimize their network trace and hide that they are connecting to Tor.
+Justify why we kept the similar interface. Refer to appendix for alternative approaches. 
+
+Introduction to usability design principles. 
+
+Usability design principles: 
 \begin{enumerate}
-\setcounter{enumi}{3}
-\item Progress bar feedback is accurate.  We fixed the bug that caused the progress bar to not update on subsequent attempts. What users now see on the progress bar reflects the reality of the progress. 
-\item Made the interface text less technical. We made the text more task-centric by focusing on instructing users through the configuration process. Since users generally did not understand the technical concepts sufficiently to influence their decisions, we think giving direct guidance is a better option. 
-\item Added system status visibility. Before beginning any connection attempt, a summary screen displays the current bridge and proxy settings. The same information is shown on the progress screen while the connection is in progress. We switched the continuous progress bar to a discrete checkpoint-based progress indicator that shows the network components involved in connecting to the Tor network.
-\end{enumerate}
+\item minimal user work
+\item full user control  
+\item targeted user feedback
+\item build a mental model
+\end{enumerate} 
 
-Our users had little technical background. We made the following changes to make the interface more compatible for the average user: \\
+Introduction to design changes.  \\
 
-\begin{enumerate}
-\setcounter{enumi}{6}
-\item Eliminated technical questions.  We removed the gating questions that determined whether a bridge and proxy should be configured, which were highly technical and challenging for users to answer. This are two fewer screens in the revised interface. 
-\item Added auto-detection of proxies. In principle, the interface can guess whether a proxy is needed by scanning the operating system configuration. This purely local detection does not carry any risks nor reveal to network eavesdroppers that the user is using Tor. (We simulated the auto-detection by hard-coding the fact that a proxy was not required.)
-\item Switched ordering to configure proxies first. To build users' mental models, network components are now configured in a topologically sequential order, resembling Fig.~\ref{fig:topology} and the new progress screen. Previously, proxies were put after bridge configuration because only a small fraction of users require proxies. With auto-detection, configuring a proxy before a bridge burdens users less than before.
-\end{enumerate}
+\noindent Changes made for minimal user work: 
+\begin{itemize}
+\item eliminated technical questions. Less questions to answer, less screens. 
+\item auto-detection for proxies. A local scan of the operating system configuration does reveal information to network eavesdroppers and can detect if a proxy is used (if configured in other browsers). (We simulated the auto-detection by hard-coding the fact that a proxy was not required.)
+\end{itemize} 
 
-These changes result in a redesigned interface which we refer to as NEW. Note that the new interface preserves all the functionality of the old interface and still allows users to have control over their own network traffic. 
-%for color red
+Changes made for full user control: 
+\begin{itemize}
+\item added intructions on what to try next on errors. The advice may be to try the connection again, to choose a different bridge, or to try a connection without a proxy. 
+\item added advice for choosing connect versus configure. Before, the interface only informed users that the connect option worked some of the time, but did not specify why. We labeled the configure option as a manual option  specifically for users in heavily censored environments.
+\item gave advice on choosing transports. We tell users to try a meek bridge if obfs3 does not work.
+\end{itemize}
+
+Changes made for feedback: 
+\begin{itemize}
+\item progress bar feedback fixed and network-accurate. We fixed the bug that caused the progress bar to not update on subsequent attempts. We switched the continuous progress bar to a discrete checkpoint-based progress indicator that shows the network components involved in connecting to the Tor network. 
+\item minimized interface text. Whenever we could, we tried to shave text and keep it simple. 
+\end{itemize}
+
+Changes made to build a mental model:
+\begin{itemize}
+\item added system status visibility. We added a summary screen displays the current bridge and proxy settings
+\item switched proxy and bridge configuration order. Network components are now configured in a topologically sequential order, resembling Fig.~\ref{fig:topology}.
+\end{itemize}
+
+Refer to figure with all deployed interface window (in previous section), refer to figure with all new interface windows (in caption, refer to appendix with advice text given on errors). Intorduce new/old labels. 
 }
 
 \section{Evaluation Method and Criteria}
 \label{sec:eval}
-{\color {red} 
-Our user studies evaluated two versions of the Tor Launcher interface.
-The first, which we have labeled OLD in our figures and tables,
-is the current version being distributed with Tor Browser.
-The second, NEW, is the prototype that we designed
-in order to provide better usability. Below are the empirical and 
-heuristic evaluation criteria we use to assess the interfaces. 
 
-Our empirical evaluation criteria for the Tor Browser configuration
-interface are based on common metrics that measure ease of use: \\
+{\color {blue}
+Justification of quantitative analysis over qualitative. 
 
-\begin{enumerate}
-    \item {\bfseries Success rate:} what percentage of users can successfully connect to Tor in a given condition. This measures how many users are able to configure their connections with the interface. 
-    \item {\bfseries  Time to completion:} how long it takes between program startup and a successful Tor bootstrap, which includes time spent searching online for help and waiting for the connection to bootstrap. This measures how much time is required for a user to connect to the Tor network. 
-    \item {\bfseries Active configuration time:} how much time a user spends actively configuring network components to connect to Tor, which only includes time spent interacting with the interface, excluding the time waiting for the connection to bootstrap. This measures how much of the time spent connecting to the Tor network was spent configuring versus waiting. 
-\end{enumerate}
+Below are the empirical and criteria we use to assess the interfaces:  
+\begin{itemize}
+\item {\bfseries Success rate:} what percentage of users can successfully connect to Tor in a given condition. This measures how many users are able to configure their connections with the interface. 
+\item {\bfseries  Time to completion:} how long it takes between program startup and a successful Tor bootstrap, which includes time spent searching online for help and waiting for the connection to bootstrap. This measures how much time is required for a user to connect to the Tor network. 
+\item {\bfseries Active configuration time:} how much time a user spends actively configuring network components to connect to Tor, which only includes time spent interacting with the interface, excluding the time waiting for the connection to bootstrap. This measures how much of the time spent connecting to the Tor network was spent configuring versus waiting. 
+\end{itemize}
 
-An ideal interface maximizes the amount of people that successfully connect to the Tor network, while minimizing the time it takes to connect to the Tor network. A trade-off may be required between the total amount of time it takes to connect to Tor and the amount of time users interact with the interface. For instance, a  process with a balanced amount of user input may be faster than a naive but completely automated process.
-%for color red
+Explain reason for choosing success and time, citing sources. Explain that we made up active configuration time to measure time to completion more accurately since bootstrapping takes so long. 
+
+Measure of success is x\% succeeding and taking no longer than average of y minutes. 
 }
 
 \section{Quantitative User Testing}
@@ -597,6 +584,32 @@ participants were officially informed that their time was up, and were given the
 \subsection{Results} 
 The possible interface version and environment combinations resulted in 6 experimental conditions. We recruited 124 participants to aim for about 20 participants per condition. We filtered participants who downloaded their own version of Tor Browser or did not sign the consent form, resulting in 114 participants. Table~\ref{table:participant-summary} summarizes the rate of success, time to success, and active time for our participants' by condition. 
 
+%We refreshed a list of Tor relay IP addresses and added them
+%to a firewall blacklist before each session.
+%In the first study, we neglected to block the IP addresses
+%of the Tor directory authorities, which are the first hosts
+%a client contacts when initiating a non-bridge connection.
+%New relays also appeared in the network on an hourly basis,
+%which enabled a small number of participants to succeed with
+%a direct connection when that configuration should have failed.
+%We believe this is acceptable because 
+%the qualitative user study was not used to quantify failures or successes, 
+%but to explore possible problems.
+%We fixed this problem in our quantitative user study by blocking the directory authorities.
+
+%We blocked en.wikipedia.org, the target of the experiment,
+%as well as other language-specific subdomains such as
+%de.wikipedia.org and fr.wikipedia.org.
+%We neglected, however, to block the Simple English Wikipedia
+%at simple.wikipedia.org, which one participant found,
+%thinking they had completed the task.
+%% E2-OLD-X04-20160330-181928
+
+%We discarded data on participants who chose to download their own version of Tor Browser online. 5 participants downloaded their own version without trying the provided one on their desktop, while others did so after feeling frustrated with the provided version. 
+
+%Many waited for minutes at the progress screen, but never saw an error message. Error messages are intended to appear after a timeout. There were warnings, but those warnings went largely unnoticed by our participants. Across both versions of the interface, only one participant ever saw an error message. We tried to make error messages more instructive and understandable, since participants in our experiment did not encounter error messages, we cannot evaluate them. 
+
+
 \begin{table}
 \centering
 \input{participant-summary.tex}
@@ -668,6 +681,26 @@ as the proxy setting.
 }
 \label{tab:attempts-bridge-proxy}
 \end{table}
+
+% Is this the right place for this? 
+% GENERAL STUFF; SHORTEN THIS A LOT
+{\color {red} 
+Additional stuff we found out through a combination of log processing (i.e. configuration settings on attempts) and video observation (i.e. watching what they searched for online).
+
+How people succeeded. Straightforward. 
+
+How people failed-- 17\% (19 of 114) of participants were not able to successfully connect to Tor. 63\% (72 of 114) of first attempts to connect failed and (363 of 458) of total attempts to connect failed. \\ 
+
+\begin{description}
+\item {\bfseries Some people won't try other options (6/19).} P73, P75, P89, P91, P106, P110 tried a direct connection. When that failed, they tried the same option, over and over, no matter how many times they failed. It was common to restart the interface, check Internet settings, and wait between subsequent attempts.
+
+\item {\bfseries Recommendations work, but one and done (5/19).} P90, P93, P108, P111, P114, who were in E3, did not know what to do next after a direct connection and a default obfs3 bridge connection. They often tried those configurations again or gave up. 
+
+\item {\bfseries People don't know what their problem is (5/19).} P74, P92, P105, P107, P113 assumed that they needed a proxy. They spent their time trying to configure a proxy, usually without trying other bridges. 
+
+\item {\bfseries Bridges auto-responder is hard to use (2/19).} P94, P109, who were in E3, emailed the bridges auto-responder to get custom bridges. However, they formatted the message incorrectly and thus failed to get a response (Appendix~\ref{custom}).
+\end{description}
+} 
 
 \subsubsection{Time to Success} 
 Time to success is defined as the time until the first successful connection to Tor. Non-finishing participants are assigned the maximum experiment time of 40:08.  Our changes to the interface had a significant impact in reducing the time participants took to successfully connect to Tor (Mann--Whitney $Z = -1.84$, $p = 0.0328$, $r= 0.172$; see Appendix~\ref{stat-tests}). The simulated censorship environment also had an impact; the more difficult the censorship environment, the longer participants took to configure their connection (Kruskal--Wallis $\chi^2 = 80.5$, $\mbox{df} = 2$, $p < 10^{-15}$). 
@@ -761,102 +794,41 @@ We performed a one-tailed Mann--Whitney test to compare the amount of active con
 %for color red
 }
 
-\section{Discussion} 
-\label{sec:discussion}
-
-{\color {red} 
-We talk about the failure cases and behavioral trends observed in our quantitative user study and recommend some changes to the Tor configuration interface based on those observations. 
-
-\subsubsection{Failures}
-Failure is common. 17\% (19 of 114) of participants were not able to successfully connect to Tor. 63\% (72 of 114) of first attempts to connect failed and (363 of 458) of total attempts to connect failed. Reasons for failure were determined by a combination of log processing (i.e. configuration settings on attempts) and video observation (i.e. observing what they searched for online). \\ 
-
-\begin{description}
-\item {\bfseries Only connected directly (6/19).} P73, P75, P89, P91, P106, P110 tried a direct connection. When that failed, they tried the same option, over and over, no matter how many times they failed. It was common to restart the interface, check Internet settings, and wait between subsequent attempts.
-
-\item {\bfseries Only tried recommendations (5/19).} P90, P93, P108, P111, P114, who were in E3, did not know what to do next after a direct connection and a default obfs3 bridge connection. They often tried those configurations again or gave up. 
-
-\item {\bfseries Thought that they needed a proxy (5/19).} P74, P92, P105, P107, P113 assumed that they needed a proxy. They spent their time trying to configure a proxy, usually without trying other bridges. 
-
-\item {\bfseries Used the bridges auto-responder incorrectly (2/19).} P94, P109, who were in E3, emailed the bridges auto-responder to get custom bridges. However, they formatted the message incorrectly and thus failed to get a response (Appendix~\ref{custom}).
-\end{description}
-
-We discarded data on participants who chose to download their own version of Tor Browser online. 5 participants downloaded their own version without trying the provided one on their desktop, while others did so after feeling frustrated with the provided version. Appendix~\ref{tor-downloads} gives the unfortunate details of where Tor was downloaded when torproject.org was blocked.
-
-
-\subsubsection{Observations}
-We noticed several behavioral patterns in our participants. These may or may not apply to the Tor user base.\\
-
-\begin{description}
-%connect vs configure
-\item {\bfseries Users try the easy path first.} Users generally try connecting directly to the Tor network first. 81\% (92 of 114) of first attempts were to connect directly, with 52\% (48 of 92) direct first attempts from the new interface and 47\% (44 of 93) direct first attempts from the old interface. This leaks to network eavesdroppers that they are connecting to Tor.
-
-% impacts of making the proxy page ``automated'' 
-\item {\bfseries Users wasted time configuring proxies.} This confusion prevented users from configuring their bridges correctly. Participants with the new interface (which explicitly states that they did not need a proxy) spent about the same time configuring proxies as bridges, whereas users with the old interface spent about twice as much time configuring proxies than bridges. We do not understand why users with the new interface spent time configuring proxies after explicitly being told that they do not need one.
-
-% impacts of giving people advice on which transport to choose.
-\item {\bfseries The interface has a large influence on the bridges chosen.}
-Participants in E3 were required to choose a particular subset of hard-coded bridges, none of which was the default bridge. After the default bridge, the most chosen bridge was the one listed first in the drop-down menu. Many bridges listed at the end of the drop-down menu were not chosen. We tried to help users by providing instructions on which bridges to choose if the default fails, but it is unclear if this advice helped. 66\% (10 of 15) participants with the new interface and 38\% (5 of 13) participants with the old interface chose meek as their second bridge.
-
-%error messages
-\item {\bfseries People saw (almost) no error messages.} Many waited for minutes at the progress screen, but never saw an error message. Error messages are intended to appear after a timeout. There were warnings, but those warnings went largely unnoticed by our participants. Across both versions of the interface, only one participant ever saw an error message. We tried to make error messages more instructive and understandable, since participants in our experiment did not encounter error messages, we cannot evaluate them. 
-
-% progress bar
-\item {\bfseries People waited a long, long time at the progress bar.}
-From watching the screen capture videos, we see that some participants dutifully followed the directions to wait, while others are who are uncertain wait without taking additional actions.
-\end{description}
-
-%for color red
-} 
-
-\subsubsection{Recommendations}
+\section{Recommendations}
 \label{recommendations}
-{\color {red} 
-Based on our observations of general behavioral trends and common failure cases, we make the following recommendations to increase success rate and decrease overall time spent in the interface: \\
+{\color {blue}
+If you adopt our redesigned interface, there will be better results. 
+
+We can't say how much each change helped, since we did not test them independently. Some changes could have even have a negative or no-effect that is masked by other changes that had positive impact. To know this, we would have had to do some AB testing. some possible things to fix: 
 
 \begin{description}
-\item {\bfseries Automate configuration after failure.} After one unsuccessful attempt, a user has already leaked to network eavesdroppers leaking that they are connecting to Tor. Automating the configuration process thereafter will have no increase in risk. This will specifically help users that will never try to configure their connection (the most common failure case) to succeed and drastically reduce the time spent for the 63\% of participants who failed their first attempt. Users in more comprehensive censorship environments are more likely to benefit from this, as 5\% of participants in the mild censorship environment, 84\% participants in intermediate censorship environment, and 100\% of participants in the heavy censorship environment failed the first time.
-\item{\bfseries Hide infrequently used options.} Telling users they did not need a proxy was not enough to deter users from configuring a proxy. Only a small fraction of the Internet population requires a proxy to connect to the Internet. Hiding the proxy screen by default and only showing it after it has been detected as necessary might improve the user experience focusing user effort on configuring bridges.
-\item {\bfseries Be explicit about recommendations.} Many do not know what to do after the recommended bridge failed. The interface should mark which bridges have been tired before and recommend the user to try another bridge. (i.e. After a user tried an obfs3 bridge, the interface updates its recommendation to a meek bridge and mark the obfs3 bridge with an ``X''.)
-\item{\bfseries Set a timeout on the progress bar.} Informing users that they have failed earlier will decrease the overall time to success, create an opportunity to give suggestions, and reduce user frustration. 
-\item{\bfseries Have a user-tolerant bridge auto-responder.} The bridge auto-responder responds to user requests for custom bridges. Users can make this request by emailing bridges@torproject.org with a non-empty title and ``get bridges'' in the body. Both of our users who tried to get custom bridges this way failed to format their request correctly. Having the auto-responder respond with bridges as a default or recovering from common errors (such as typing ``get bridges'' in the subject line) may help users succeed. 
-\end{description} 
+\item {\bfseries Getting people to click configure if they need it.}  81\% (92 of 114) of first attempts were to connect directly, with 52\% (48 of 92) direct first attempts from the new interface and 47\% (44 of 93) direct first attempts from the old interface.  %giving specific countries
+\item {\bfseries Stop users from configuring proxies.} Everyone did this. Participants with the new interface (which explicitly states that they did not need a proxy) spent less configuring proxies comparatively, but we do not understand why users with the new interface spent time configuring proxies after explicitly being told that they do not need one. %redirect to bridge or proxy page depending on error 
+\item {\bfseries Help people choose second bridges.}
+Participants in E3 were required to choose a particular subset of hard-coded bridges, none of which was the default bridge. After the default bridge, the most chosen bridge was the one listed first in the drop-down menu. Many bridges listed at the end of the drop-down menu were not chosen. We tried to help users by providing instructions on which bridges to choose if the default fails, but it is unclear if this advice helped. 66\% (10 of 15) participants with the new interface and 38\% (5 of 13) participants with the old interface chose meek as their second bridge. %automate after first failure 
+\item {\bfseries fix the progress bar and add error messages.} 
+We can't say anything about our error messages, because they never happened. Our progress bar didn't help, either, since it causes to people to wait almost indefinitely anyway. 
+\item {\bfseries add system visibility.} 
+\end{description}
 
-Although we cannot isolate their effects on users, we also recommend notifying a users with the configured settings before connecting and having a progress bar that illustrates when network component have successfully been configured or failed.
-%for color red
+You don't have to really listen to these specific things though,but definitely take out user design principles to heart. 
+
+Reconsider some of the securty considerations and consider an alternative approach! Not saying that if we can't do it, no one can, but we know it's hard. As of now, people are still failing, so we need to do better. 
 }
 
 \section{Limitations}
 \label{sec:limitations}
-{\color {red} 
+{\color {blue}
+It's not exact censorship, so we cannot make any claims about how difficult it would be for a user to connect to Tor in a certain country or much our improvements will help those people.  
+
+Our study was conducted in a laboratory setting. We believe that our participants were suffiencitnly motivated to complete the task due to the Hawthorne effect (they knew that they were being watched) and the monetary reward. We don't know if this is more or less motivated than people in censorships. We don't have information about when users would give up. 
+
 The configuration interface uses the native operating system's elements and their respective styling, so an interface looks slightly different across different operating systems. We only tested interface on Windows machines, which were the machines available at <redacted>. %Xlab. 
 Participants who are not accustomed to Windows machines may have been slower to complete the given task, but this affected all conditions equally. 
 
-We refreshed a list of Tor relay IP addresses and added them
-to a firewall blacklist before each session.
-In the first study, we neglected to block the IP addresses
-of the Tor directory authorities, which are the first hosts
-a client contacts when initiating a non-bridge connection.
-New relays also appeared in the network on an hourly basis,
-which enabled a small number of participants to succeed with
-a direct connection when that configuration should have failed.
-We believe this is acceptable because 
-the qualitative user study was not used to quantify failures or successes, 
-but to explore possible problems.
-We fixed this problem in our quantitative user study by blocking the directory authorities.
+We chose to focus on more common cases, and did not simulate environments that requires users to configure a custom bridge or proxy. But if it's this hard to connec without using the more advanced configuration methods, then out point about needing an alternative method still stands. 
 
-%We blocked en.wikipedia.org, the target of the experiment,
-%as well as other language-specific subdomains such as
-%de.wikipedia.org and fr.wikipedia.org.
-%We neglected, however, to block the Simple English Wikipedia
-%at simple.wikipedia.org, which one participant found,
-%thinking they had completed the task.
-%% E2-OLD-X04-20160330-181928
-
-Our study was conducted in a laboratory setting, which can cause our participants to be under or over-motivated. Our participants had a monetary incentive to connect to Tor, whereas a real user in a censored environment would want to reach a particular website. 
-
-We chose to focus on more common cases, and did not simulate environments that requires users to configure a custom bridge or proxy. Although users in the wild can download interfaces that are not in their native language, we do not know how often this happens. We tested the English version of the Tor interface on English speaking participants. 
-
-%for color red
+We did not study international users. English on english users. Again, english is the best language though, so if it's this hard for native english speakers in the best tranlated language, it will be harder for others. 
 }
 
 \section{Related Work}
@@ -886,14 +858,11 @@ the browser's configuration interface, which guides users through setting up com
 \section{Conclusion} 
 \label{sec:conclusion}
 
-{\color {red} 
-We conducted a series of experiments to improve the Tor Browser 5.0.3 configuration interface, focusing on users who use Tor to circumvent censorship. Since connecting to the Tor network unsuccessfully indicates to network eavesdroppers that users are connecting to Tor, the configuration process is manual to allow users to have control over the network activity. Through interviews and lab studies, we find that users have difficulty configuring network components to circumvent censorship, because they do not know how censorship or Tor works. We detail the common challenges, our changes to the configuration interface address those challenges, and the recommendations we have for Tor in this paper. 
+{\color {blue}
+We conducted a series of experiments to improve the Tor Browser 5.0.3 configuration interface. A couple sentences to summarize the whole thing. Echo roadmap in intro, but make it summary-like. 
 
-%general advice to other censorship circumvention and call for more research 
-Interacting with a censorship circumvention tool users can be a complex balance of leveraging user input for local information while accounting for user trust of the software and minimizing potential risks.
-When designing censorship circumvention tools, we caution against requiring first-time users to make decisions on software-specific notions (e.g. pluggable transports for Tor), answering questions that assume technical knowledge, or manually configuring components. We encourage the use of simulated censorship environments as a tool for user testing censorship circumvention software. Not only do simulated environments avoid rerouting traffic through a censoring country's networks, their reproducibility and stability are ideal for experiments. 
-
-%for color red
+%proof that user testing is important and general advice to for more research on Tor
+Tor doesn't collect any information or perform AB testing, so this type of user research is especially important. to set it up, get users, computers, consent, and instrumented versions of the software. Research can be exploratory (ask users what they want), observational (look at what they do), or testing a hypothesis (verify changes). We encourage the use of simulated censorship environments as a tool for user testing censorship circumvention software. Not only do simulated environments avoid rerouting traffic through a censoring country's networks, their reproducibility and stability are ideal for experiments. 
 }
 
 %\section {Resources} 
@@ -909,20 +878,15 @@ When designing censorship circumvention tools, we caution against requiring firs
 
 \appendix
 \section{Alternative Approaches} 
-{\color {red} 
-%In principle, the process of configuring a proxy and bridge can be automated, but
-%the interface eschews automatic configuration through network probing
-%in favor of guided manual configuration to give users agency in configuring their connection. 
-%Automatic configuration through network probing may put some users in certain regimes at risk. 
-%A knowledgeable user can minimize their network trace and hide that they are connecting to Tor.
-%However, this requires that the user grapple with technical concepts such as 
-%bridges, pluggable transports, and proxies. Some of these concepts are specific to 
-%Tor and not general concepts.
-
+{\color {blue}
 Our goal was to deploy impactful, tested changes the Tor configuration interface. In fact, Tor version~4.5 incorporated textual and navigational changes based on our redesigned interface. Throughout our experiments, we collaborated with Tor developers and focused on discovering changes that could be deployed right away. For this reason, we assumed that the configuration process will remain a manual process that requires user inputs, as it is currently deployed. However, we list some alternative approaches that seem worth exploring. \\
+
+%remember: 	no user inputs, no network inputs, minimize info leaks
+%and:		minimal user work, full user control 
 
 \begin{description}
 \item{\bfseries Automate the configuration.} The most efficient way to connect as many users to the Tor network is to automatically configure their connection on start. A naive automation is to try configurations that would most likely work, in order (i.e. a direct connection, then an obfs3 connection without a proxy, then an meek bridge connection with out a proxy). This leaks to network eavesdroppers that the user is connecting to the Tor network. We do not know how much risk is associated with this approach. 
+\item {\bfseries automate after the first failure.} The network leak happened. But then this automation would be pretty fingerprintable behavior. 
 \item{\bfseries Ask about the risk.} An alternative to naive automation is to offer manual configuration to those that want to be more cautious and automatically configuring a connection for who are not at risk. The complication with this approach is that users may not be qualified to answer if they are at risk or may not trust Tor with this information. 
 \item{\bfseries Ask if users know what to do.} Another alternative to naive automation is to offer manual configuration to those that know how to configure their connection and to automate the process for users who do not know how to configure their connection. This may prevent the most mistakes, but does not account for the users' risk associated with using Tor. 
 \item{\bfseries Suggest configurations.} A way to help users without any automation or questions is to give users information about what would work in their country. The first page of the configuration interface can show a list of countries with a corresponding recommended configuration. This approach does not require users to answer about their risk, technical ability, or location. However, it does require that the user trust the given advice and to correctly configure their settings based on this advice. 
