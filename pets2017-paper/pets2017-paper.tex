@@ -228,6 +228,20 @@ Configuring a proxy requires providing the proxy protocol, IP address, port, and
 There are many valid configuration settings to connect to the Tor network.
 For instance, a user who needs a bridge but not need a proxy can connect to Tor with a bridge and proxy, provided that both were configured correctly. The set of valid configuration settings vary on the specific network environment. 
 
+%%%%%% LINDA'S PASS UP TO HERE %%%%%%%%%
+\section{Usability Inspection}
+{\color {red}
+We used a combination of usability inspection methods~\cite{nielsen1994usability}
+to prepare for the user study. Two researchers conducted a pluralistic 
+walkthrough and stepped through various censorship
+scenarios, discussing which elements would be involved for that use case, and walking 
+through the configuration process. After compiling all the possible paths through the 
+interface, researchers performed feature inspection, listing sequences of features used 
+to accomplish typical tasks and taking note of long sequences or cumbersome
+steps. In addition, we performed a heuristic evaluation to mark
+likely causes of confusion for users during our study.
+}
+
 \section{Experimental Setup}
 We simulated three environments (which we refer to as E1, E2, and E3), 
 which are in the order of increasing severity in censorship. We chose to 
@@ -285,17 +299,6 @@ what common problems may be. We did this by observing participants using
 the interface to circumvent censorship and interviewing them about
 their experience.  Our observations during this study guided us in
 redesigning the interface and provided hypotheses to test in our quantitative study.
-
-\subsection{Inspection}
-We used a combination of usability inspection methods~\cite{nielsen1994usability}
-to prepare for the user study. Two researchers conducted a pluralistic 
-walkthrough and stepped through various censorship
-scenarios, discussing which elements would be involved for that use case, and walking 
-through the configuration process. After compiling all the possible paths through the 
-interface, researchers performed feature inspection, listing sequences of features used 
-to accomplish typical tasks and taking note of long sequences or cumbersome
-steps. In addition, we performed a heuristic evaluation to mark
-likely causes of confusion for users during our study. 
 
 \subsection{Recruitment}
 Using established practices from the field of user experience research~\cite{howmanyusers},
@@ -423,10 +426,13 @@ The challenges users faced in the qualitative experiment and the respective unde
 \label{fig:error}
 \end{figure}
 
-\section{Redesigning the Configuration Interface}
-We make ten changes to the Tor launcher configuration interface to help users connect to Tor. Since users did not know how to connect to Tor, we added advice where our users have previously struggled. Specifically, the following three changes were made to give users more information in during configuration: \\
+%for color red
+}
 
+\section{Design Principles and Changes}
 \label{redesign} 
+{\color {red}
+We make ten changes to the Tor launcher configuration interface to help users connect to Tor. Since users did not know how to connect to Tor, we added advice where our users have previously struggled. Specifically, the following three changes were made to give users more information in during configuration: \\
 
  \begin{figure*}[t]
 	\centering
@@ -490,9 +496,12 @@ Our users had little technical background. We made the following changes to make
 \end{enumerate}
 
 These changes result in a redesigned interface which we refer to as NEW. Note that the new interface preserves all the functionality of the old interface and still allows users to have control over their own network traffic. 
+%for color red
+}
 
-\section{Evaluation Criteria}
+\section{Evaluation Method and Criteria}
 \label{sec:eval}
+{\color {red} 
 Our user studies evaluated two versions of the Tor Launcher interface.
 The first, which we have labeled OLD in our figures and tables,
 is the current version being distributed with Tor Browser.
@@ -510,9 +519,13 @@ interface are based on common metrics that measure ease of use: \\
 \end{enumerate}
 
 An ideal interface maximizes the amount of people that successfully connect to the Tor network, while minimizing the time it takes to connect to the Tor network. A trade-off may be required between the total amount of time it takes to connect to Tor and the amount of time users interact with the interface. For instance, a  process with a balanced amount of user input may be faster than a naive but completely automated process.
+%for color red
+}
 
-\section{Quantitative Analyses of the Interfaces (Study 2)}
+\section{Quantitative User Testing}
 \label{sec:quantitative}
+
+{\color {red} 
 Having identified problems with the existing interface
 and made changes to ameliorate them,
 we quantify the existing problems
@@ -745,10 +758,13 @@ the maximum time of 40:08.
 Perhaps a more meaningful measurement is the amount of time participants actively configured their connection (Figure~\ref{fig:time_to_success_active_clamped}). We define active time as the time that participants spent interacting with the interface, excluding the time waiting for the connection to bootstrap. Active time for unsuccessful participants were calculated by subtracting the amount of time spent on the progress screen from the maximum experiment time, 40 minutes. This is an approximation, since some participants searched for help on the web after exiting the interface or on the progress screen. 
 
 We performed a one-tailed Mann--Whitney test to compare the amount of active configuration time between participants who used the new interface and the participants who used the old interface. Our changes to the interface reduced the time participants spent configuring the interface (Mann--Whitney $Z = -3.28$, $p = 0.000516$, $r = 0.307$).  Table~\ref{table:participant-summary} shows the median active times and Figure~\ref{fig:time_to_success_active_clamped} shows their distribution.
-
+%for color red
+}
 
 \section{Discussion} 
 \label{sec:discussion}
+
+{\color {red} 
 We talk about the failure cases and behavioral trends observed in our quantitative user study and recommend some changes to the Tor configuration interface based on those observations. 
 
 \subsubsection{Failures}
@@ -789,8 +805,12 @@ Participants in E3 were required to choose a particular subset of hard-coded bri
 From watching the screen capture videos, we see that some participants dutifully followed the directions to wait, while others are who are uncertain wait without taking additional actions.
 \end{description}
 
+%for color red
+} 
+
 \subsubsection{Recommendations}
 \label{recommendations}
+{\color {red} 
 Based on our observations of general behavioral trends and common failure cases, we make the following recommendations to increase success rate and decrease overall time spent in the interface: \\
 
 \begin{description}
@@ -802,9 +822,12 @@ Based on our observations of general behavioral trends and common failure cases,
 \end{description} 
 
 Although we cannot isolate their effects on users, we also recommend notifying a users with the configured settings before connecting and having a progress bar that illustrates when network component have successfully been configured or failed.
+%for color red
+}
 
 \section{Limitations}
 \label{sec:limitations}
+{\color {red} 
 The configuration interface uses the native operating system's elements and their respective styling, so an interface looks slightly different across different operating systems. We only tested interface on Windows machines, which were the machines available at <redacted>. %Xlab. 
 Participants who are not accustomed to Windows machines may have been slower to complete the given task, but this affected all conditions equally. 
 
@@ -833,8 +856,13 @@ Our study was conducted in a laboratory setting, which can cause our participant
 
 We chose to focus on more common cases, and did not simulate environments that requires users to configure a custom bridge or proxy. Although users in the wild can download interfaces that are not in their native language, we do not know how often this happens. We tested the English version of the Tor interface on English speaking participants. 
 
+%for color red
+}
+
 \section{Related Work}
 \label{sec:related} 
+
+{\color {red} 
 There have been three published user studies on Tor. Clark et~al.~\cite{clark2007usability} examined various deployment
 options for Tor Browser, such as Vidalia, Privoxy, Torbutton, and FoxyProxy, and found that none had satisfactory from a usability. Fabian et~al.~\cite{fabian2010privately} show that Tor's added
 latency~\cite{dingledine2009performance} causes users
@@ -852,15 +880,21 @@ Previous user studies have considered the whole browsing experience,
 without focusing on specific features in isolation.
 Our study focuses on 
 the browser's configuration interface, which guides users through setting up components required to circumvent censorship. 
+%for color red
+}
 
 \section{Conclusion} 
 \label{sec:conclusion}
+
+{\color {red} 
 We conducted a series of experiments to improve the Tor Browser 5.0.3 configuration interface, focusing on users who use Tor to circumvent censorship. Since connecting to the Tor network unsuccessfully indicates to network eavesdroppers that users are connecting to Tor, the configuration process is manual to allow users to have control over the network activity. Through interviews and lab studies, we find that users have difficulty configuring network components to circumvent censorship, because they do not know how censorship or Tor works. We detail the common challenges, our changes to the configuration interface address those challenges, and the recommendations we have for Tor in this paper. 
 
 %general advice to other censorship circumvention and call for more research 
 Interacting with a censorship circumvention tool users can be a complex balance of leveraging user input for local information while accounting for user trust of the software and minimizing potential risks.
 When designing censorship circumvention tools, we caution against requiring first-time users to make decisions on software-specific notions (e.g. pluggable transports for Tor), answering questions that assume technical knowledge, or manually configuring components. We encourage the use of simulated censorship environments as a tool for user testing censorship circumvention software. Not only do simulated environments avoid rerouting traffic through a censoring country's networks, their reproducibility and stability are ideal for experiments. 
 
+%for color red
+}
 
 %\section {Resources} 
 %For additional details, such as the censorship simulation code, interview transcriptions, and logs of participant interactions, we refer you to the project repository: \\
@@ -875,6 +909,7 @@ When designing censorship circumvention tools, we caution against requiring firs
 
 \appendix
 \section{Alternative Approaches} 
+{\color {red} 
 %In principle, the process of configuring a proxy and bridge can be automated, but
 %the interface eschews automatic configuration through network probing
 %in favor of guided manual configuration to give users agency in configuring their connection. 
@@ -895,6 +930,8 @@ Our goal was to deploy impactful, tested changes the Tor configuration interface
 \end{description}
 
 We believe that automation, asking about risk, and identifying struggling users could enable significant improvements to the configuration process. 
+%for color red
+}
 
 \section{Qualitative User Study Recruitment Posting} 
 \label{qualitative-recruitment}
@@ -1005,6 +1042,7 @@ Thank you for participating in our experiment. You are now done! Please sit at y
 
 \section{Statistical Tests} 
 \label{stat-tests}
+{\color {red} 
 From our measurements, we observe that participants with the new interface 
 have a higher rate of success, succeed in less time, and configure their interface in less time. 
 We do not find that the increased rate of success with the new interface or the decreased time to success with the new interface significant. That is, random chance can account for the difference. 
@@ -1019,6 +1057,7 @@ Time to success was measured as the time from the participants started the Tor l
 
 %active time and version
 Active configuration time was measured as the time the participants spent in the Tor launcher interface, except for the time spent the progress screen. For our participants who did not succeed to connect to Tor, subtracted the time spent on the progress screen from the maximum experiment time of 40 minutes. This measurement was also 1) non-normal and heavily right tailed and 2) impacted by right-censored measurement of time to success. Because of the right-tailed nature of the data, we used a one-tailed Mann--Whitney test. We find the difference of active configuration times between participants with the new interface and participants with the old interface to be significant ($Z = -3.28$, $p = 0.000516$, $r = 0.307$).
-
+%for color red
+}
 
 \end{document}
