@@ -818,18 +818,16 @@ Reconsider some of the securty considerations and consider an alternative approa
 
 \section{Limitations}
 \label{sec:limitations}
-{\color {blue}
-It's not exact censorship, so we cannot make any claims about how difficult it would be for a user to connect to Tor in a certain country or much our improvements will help those people.  
+We did not study international users, or the configuration interface in languages other than English. All of our participants were from the United States and instructed to interact with the English version of Tor Browser.
 
-Our study was conducted in a laboratory setting. We believe that our participants were suffiencitnly motivated to complete the task due to the Hawthorne effect (they knew that they were being watched) and the monetary reward. We don't know if this is more or less motivated than people in censorships. We don't have information about when users would give up. 
+Participants in a laboratory setting may alter their due to their awareness of being observed~\cite{mccarney2007hawthorne}. We are aware that our participants were likely motivated differently compared to real users. We believe that participants were likely overmotivated to connect to Tor because they were being observed and recieving a monetary reward. If true, this makes our results are a conservative estimate of the current problems. 
 
-The configuration interface uses the native operating system's elements and their respective styling, so an interface looks slightly different across different operating systems. We only tested interface on Windows machines, which were the machines available at <redacted>. %Xlab. 
-Participants who are not accustomed to Windows machines may have been slower to complete the given task, but this affected all conditions equally. 
+Since the configuration interfaces in simulated environments, we cannot claim how difficult it would be for a user to connect to Tor in a certain country or how much our redesigned interface would help those users.  
 
-We chose to focus on more common cases, and did not simulate environments that requires users to configure a custom bridge or proxy. But if it's this hard to connec without using the more advanced configuration methods, then out point about needing an alternative method still stands. 
+Our experiment did not directly test more advanced tasks. Our simulated environments did not require users to configuring a proxy or to get a custom bridge. From observing of user attempts to configure proxies and get custom bridges, we suspect users generally struggle with these tasks but cannot quantify how or why they do. 
 
-We did not study international users. English on english users. Again, english is the best language though, so if it's this hard for native english speakers in the best tranlated language, it will be harder for others. 
-}
+We only tested interface on Windows machines, which were the machines available at <redacted>. %Xlab.
+The configuration interface leverages the native operating system's styling and elements, making the configuration interface on Windows look slightly different from the OSx or Linux equivalent. Additionally, we acknowledge that participants' unfamilarity with Windows may have affected our experiment, but we believe that this affected all testing conditions equally.  
 
 \section{Related Work}
 \label{sec:related} 
