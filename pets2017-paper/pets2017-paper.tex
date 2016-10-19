@@ -432,7 +432,7 @@ The challenges users faced in the qualitative experiment and the respective unde
 }
 
 \section{Design Principles and Changes}
-\label{redesign} 
+\label{sec:design} 
 
 {\color {blue}
 Introduction to security design principles. 
@@ -796,25 +796,19 @@ We performed a one-tailed Mann--Whitney test to compare the amount of active con
 
 \section{Recommendations}
 \label{recommendations}
-{\color {blue}
-If you adopt our redesigned interface, there will be better results. 
+We believe that adopting our design will help save users time when connecting to Tor. But we do not claim how much and in what way each change impacted our participants, since we did not test them independently. Some of our changes may have little or negative effects, but may be masked by other changes with positive effects. We also recognize that there may be equivalent or more impactful changes that may be made in place of ours. 
 
-We can't say how much each change helped, since we did not test them independently. Some changes could have even have a negative or no-effect that is masked by other changes that had positive impact. To know this, we would have had to do some AB testing. some possible things to fix: 
+We hope that our inspection, design, and evaluation evaluation process provided valuable insight for potential changes. We do not recommend our specific design changes, but offer some advice and accompanying suggestions: \\
 
-\begin{description}
-\item {\bfseries Getting people to click configure if they need it.}  81\% (92 of 114) of first attempts were to connect directly, with 52\% (48 of 92) direct first attempts from the new interface and 47\% (44 of 93) direct first attempts from the old interface.  %giving specific countries
-\item {\bfseries Stop users from configuring proxies.} Everyone did this. Participants with the new interface (which explicitly states that they did not need a proxy) spent less configuring proxies comparatively, but we do not understand why users with the new interface spent time configuring proxies after explicitly being told that they do not need one. %redirect to bridge or proxy page depending on error 
-\item {\bfseries Help people choose second bridges.}
-Participants in E3 were required to choose a particular subset of hard-coded bridges, none of which was the default bridge. After the default bridge, the most chosen bridge was the one listed first in the drop-down menu. Many bridges listed at the end of the drop-down menu were not chosen. We tried to help users by providing instructions on which bridges to choose if the default fails, but it is unclear if this advice helped. 66\% (10 of 15) participants with the new interface and 38\% (5 of 13) participants with the old interface chose meek as their second bridge. %automate after first failure 
-\item {\bfseries fix the progress bar and add error messages.} 
-We can't say anything about our error messages, because they never happened. Our progress bar didn't help, either, since it causes to people to wait almost indefinitely anyway. 
-\item {\bfseries add system visibility.} 
-\end{description}
+\begin{itemize}
+\item {\bfseries Use less words.} While a thorough explanation isn't always possible with brevity, users are more likely to read the text if it is short.
+\item {\bfseries Minimize work.} Ask users to perform tasks only when necessary. Hide less frequently used options or components. Redirect users to the relevant pages (i.e. redirect to the bridge screen the bridge fails).  
+\item {\bfseries Give advice.} Guide users toward connecting directly unless they need a bridge or proxy, help them decide between transports, and discourage them from configuring optional components. 
+\item {\bfseries Add system visibility.} Rather than requiring users to remember their bridge and proxy configuraitons, summarize their choices. The progress bar should reflect the current state of the connection.
+\item {\bfseries Provide feedback.} In addition to displaying the error message, tell users what to try next when they encounter that error. 
+\end{itemize}
 
-You don't have to really listen to these specific things though,but definitely take out user design principles to heart. 
-
-Reconsider some of the securty considerations and consider an alternative approach! Not saying that if we can't do it, no one can, but we know it's hard. As of now, people are still failing, so we need to do better. 
-}
+We should consider alternative approaches of bootstrapping a connection to Tor. We recommend leveraging automation, user-dependent inputs, or network-dependent inputs for a solution that will help more users succed in a shorter amount of time. We start this discussion by sharing some of our own ideas in appendix~\ref{alternatives}. 
 
 \section{Limitations}
 \label{sec:limitations}
@@ -876,6 +870,7 @@ Tor doesn't collect any information or perform AB testing, so this type of user 
 
 \appendix
 \section{Alternative Approaches} 
+\label{alternatives}
 {\color {blue}
 Our goal was to deploy impactful, tested changes the Tor configuration interface. In fact, Tor version~4.5 incorporated textual and navigational changes based on our redesigned interface. Throughout our experiments, we collaborated with Tor developers and focused on discovering changes that could be deployed right away. For this reason, we assumed that the configuration process will remain a manual process that requires user inputs, as it is currently deployed. However, we list some alternative approaches that seem worth exploring. \\
 
