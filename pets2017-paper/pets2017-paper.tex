@@ -505,8 +505,6 @@ Below are the empirical and criteria we use to assess the interfaces:
 \end{itemize}
 
 Explain reason for choosing success and time, citing sources. Explain that we made up active configuration time to measure time to completion more accurately since bootstrapping takes so long. 
-
-Measure of success is x\% succeeding and taking no longer than average of y minutes. 
 }
 
 \section{Quantitative User Testing}
@@ -609,6 +607,27 @@ The possible interface version and environment combinations resulted in 6 experi
 
 %Many waited for minutes at the progress screen, but never saw an error message. Error messages are intended to appear after a timeout. There were warnings, but those warnings went largely unnoticed by our participants. Across both versions of the interface, only one participant ever saw an error message. We tried to make error messages more instructive and understandable, since participants in our experiment did not encounter error messages, we cannot evaluate them. 
 
+We summarize each participant's actions throughout the experiment in Fig.~\ref{fig:all-participant-edges}.
+%and summarize where they spent their time in Appendix~\ref{all-participant-times}. 
+Each row in Fig.~\ref{fig:all-participant-edges} corresponds to a participant. The bar represents a path through the interface, illustrating time spent on each screen, transitions between screens, how many attempts were made, and if they were eventually successful. 
+
+\begin{figure*}
+\centering
+% This is a manually edited version of the automatically generated
+% all-participant-edges graphic. It is edited to have better scale labels for
+% the treatments.
+\includegraphics{all-participant-edges}
+\caption{
+Summary of participants' actions throughout the entire experiment.
+Different colors indicate which screen was shown at each moment.
+The ``not running'' times are those when Tor Launcher was closed;
+i.e., a participant was doing something else
+such as searching the web in another browser.
+The overall length of the lines show the total time to completion,
+except for those we cut off after approximately 40 minutes.
+}
+\label{fig:all-participant-edges}
+\end{figure*}
 
 \begin{table}
 \centering
@@ -649,10 +668,10 @@ failed to connect successfully were assigned the maximum time of 40:08.
 %}
 %\label{fig:warning_log}
 %\end{figure}
-%
+
 %We believe that the added advice on what to try next on error messages would have improved the rate of success. However, only 1 of 116 participants saw an error during the experiment. The old interface warned users on some mistakes (i.e. entering in a syntactically correct but invalid proxy settings) rather than displaying an error message. When a user receives a warning, a button that says ``Copy Tor Log to Clipboard'' silently appears at the bottom of the interface (Figure~\ref{fig:warning}). To see the log messages, users must click on the button, open up a text editor, and paste the log messages. The log messages require the user to understand the log, diagnose the problem, and formulate next steps (Figure~\ref{fig:warning_log}).
-%
-%That participant was using the new interface and was told that the bridge configuration was the source of the error. The participant heeded the interface's advice to reconfigure the bridge options. But since most participants did not see any error messages, any effects they may have had on success rates are not reflected in our results. The addition of a summary screen did cause behavioral changes (13\% of participants saw their current settings, then went back and adjusted them), but this behavioral change did not have a statistically significant impact on success rates. 
+
+%The addition of a summary screen did cause behavioral changes (13\% of participants saw their current settings, then went back and adjusted them), but this behavioral change did not have a statistically significant impact on success rates. 
 
 We added preemptive advice to the bridge configuration screen to first try an obfs3 bridge and then a meek bridge, but we suspect that most participants did not benefit from this advice since participants did not think to adjust their bridge settings upon failure. Of the 75 participants that failed to connect on the first attempt, 15 participants with the new interface and 13 participants with the old interface went back to the bridge screen and chose another hard-coded bridge. 10 of 15 in the new interface chose a meek bridge as their next bridge whereas 5 of 13 in the old interface chose meek as their next bridge, but we cannot claim choosing meek bridges is a direct result of our advice.
 
@@ -660,7 +679,7 @@ Table~\ref{tab:attempts-bridge-proxy} shows the configuration settings of the fi
 
 Our participants did not optionally configure a bridge in E1 or configure a non-recommended bridge in E2. This suggests that users will not configure optional components or deviate from the recommended settings unless necessary. If the intent of the recommendation is to get as many users as possible to use the recommended bridge, this is a positive result. If the intent of the recommendation is to give pointers when users are stuck but allow the users to make their own bridge choices to diversify active transports, this is a negative result. 
 
-Only two participants chose to configure a custom bridge. Both of these participants sent an incorrectly formatted request to the automatic bridge responder, which did not reply with custom bridges as a result. Appendix~\ref{custom} shows the malformed requests. These two participants failed to connect to the Tor network. 
+Only two participants chose to configure a custom bridge. Both of these participants sent an incorrectly formatted request to the automatic bridge responder, which did not reply with custom bridges as a result. These two participants failed to connect to the Tor network. 
 
 \begin{table}
 \centering
@@ -737,29 +756,7 @@ participants in E2 had finished, along with a minority of E3 participants.
 \label{fig:time_to_success_ecdf}
 \end{figure}
 
-\subsubsection{Active Time} 
-We summarize each participant's actions throughout the experiment in Fig.~\ref{fig:all-participant-edges}.
-%and summarize where they spent their time in Appendix~\ref{all-participant-times}. 
-Each row in Fig.~\ref{fig:all-participant-edges} corresponds to a participant. The bar represents a path through the interface, illustrating time spent on each screen, transitions between screens, how many attempts were made, and if they were eventually successful. 
-
-\begin{figure*}
-\centering
-% This is a manually edited version of the automatically generated
-% all-participant-edges graphic. It is edited to have better scale labels for
-% the treatments.
-\includegraphics{all-participant-edges}
-\caption{
-Summary of participants' actions throughout the entire experiment.
-Different colors indicate which screen was shown at each moment.
-The ``not running'' times are those when Tor Launcher was closed;
-i.e., a participant was doing something else
-such as searching the web in another browser.
-The overall length of the lines show the total time to completion,
-except for those we cut off after approximately 40 minutes.
-}
-\label{fig:all-participant-edges}
-\end{figure*}
-
+\subsubsection{Active Time to Success} 
 The overall time was largely dominated by the time spent waiting to connect to Tor, rather than actively configuring the interface. With correct configurations, the bootstrap process can take up to two minutes.  With incorrect configurations, a lack of error messages on the progress screen caused some users to wait indefinitely.  Logs show that participants spent 58\% of their overall time at the progress screen. Table ~\ref{table:median_time} shows the median percentage of time spent on each screen. 
 
 \begin{table}[t]
