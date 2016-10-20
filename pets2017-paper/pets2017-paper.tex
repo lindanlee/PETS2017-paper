@@ -288,7 +288,7 @@ We used features of the Windows operating system
 to block websites and Tor relays. 
 We added entries to the hosts file to
 mapping domain names to the address 127.0.0.1, which simulated
-website by using Tor. We blocked torproject.org and its respective subdomains to discourage downloading Tor Browser, as we had installed an instrumented version on the test computers (E1, E2, E3).  We blocked wikipedia.org, cnn.com, and their respective subdomains to create an artificial task to visit a 
+website by using Tor. We blocked torproject.org and its respective subdomains to discourage downloading Tor Browser, as we had installed a specific version on the test computers (E1, E2, E3).  We blocked wikipedia.org, cnn.com, and their respective subdomains to create an artificial task to visit a 
 ``censored'' website as motivation to connect to Tor during the experiment (E1, E2, E3). 
 We specified Windows Firewall rules to block IP address of public Tor relays (E2, E3) and default bridges (E3).
 
@@ -339,20 +339,16 @@ likely causes of confusion for users during our study.
 short intro sentence
 }
 \subsection{Recruitment}
-We recruited people from Craigslist using the recruitment text in Appendix~\ref{qualitative-recruitment}, which linked an presecreening survey that collected demographics (Appendix~\ref{qualitative-prescreening}). We pre-screened~\cite{screening} to ensure diversity of gender, age, technical expertise, use of security tools, and familiarity with Tor in a small participant pool. 
+We recruited people from Craigslist using the recruitment text in Appendix~\ref{qualitative-recruitment}, which linked an presecreening survey that collected demographics (Appendix~\ref{qualitative-prescreening}). We pre-screened~\cite{screening} for diversity in gender, age, technical expertise, use of security tools, and familiarity with Tor in a small participant pool. Of our 16 recruited participants, 53.3\% were male. Ages ranged from 20 to~62 years ($\mu = 24.5$, $\sigma = 12.6$). 93.3\% of our participants had college education. We took participants' self-reported familiarity with technical terms use of security tools with skepticism (Appendix~\ref{prescreening-responses}). We verified their self-reported familiarity with Tor Browser in-person, and found that 4 used it, 5 heard of it but not used it, and the remaining 8 never heard of or used it.  
 
-Of our 16 recruited participants, 53.3\% were male. Ages ranged from 20 to~62 years ($\mu = 24.5$, $\sigma = 12.6$). 93.3\% of our participants had college education. We took participants' self-reported familiarity with technical terms use of security tools with skepticism (Appendix~\ref{prescreening-responses}). We verified their self-reported familiarity with Tor in-person, and found that 4 had used Tor before, 5 had heard of Tor but not used it, and the remaining 8 had never heard nor used it.  We distributed participants evenly across experimental conditions:  5~in E1, 5~in E2, and 6~in E3. Although there is variation in gender, age, ``technical expertise,'' and ``use of security tools'' in each experimental condition, we ensured each condition had a participant who has used tor, a participant who has heard of Tor, and multiple participants who had never heard nor used it. 
+We distributed participants evenly across experimental conditions:  5~in E1, 5~in E2, and 6~in E3. Although there is variation in gender, age, ``technical expertise,'' and ``use of security tools'' in each experimental condition, we ensured each condition had a participant who used Tor Browser, a participant who heard of it, and multiple participants who never heard of or used it. 
 
 \subsection{Setup} 
-{\color {blue}
-Setup details here.
-} 
+We ran the experiment in a meeting room in <redacted building> at <redacted university>. The room had a desk and chair, where a monitor, keyboard, and a Windows 8 computer were set up. On a clean computer, we manually downloaded and installed the necessary software for the experiment: Tor Browser 5.0.3 for testing, Chrome, Firefox, and Internet Explorer to allow users to browse the Internet on a another browser of their choice, and VLC to record the screen during the experiment. Before each participant entered the room, we ran a script on the computer that simulated E1, E2, or E3 and started the video recording.  
 
 \subsection{Procedure}
-{\color {red}
-The one-hour, single-participant procedure begun when a participant entered a small 
-room with a single computer, which is equipped with Tor, Chrome, Firefox, Internet Explorer, and VLC.
-Each participant is informed of the risks and purpose of the study.
+{\color {blue}
+When a participant entered the room, researchers informed them of purpose of the study, data collected, and associated risks. 
 A researcher informed the participant of the simulated censorship environment and
 instruct them to visit sample blocked and unblocked websites
 in a standard browser (Appendix~\ref{qualitative-script}). 
@@ -372,10 +368,9 @@ our goal was to evaluate the user interface, not to test users with a browsing t
 After instructions, the researchers stepped out of the room.There was no interaction
 between the participant and researcher for the rest of the session.
 Researchers watched a live video of each participant's screen from another room
-and saved the videos for review; the resulting videos and summaries
-are available from our project page.
-Participants had an average of 45 minutes to complete their worksheet. 
+and saved the videos for review.
 
+Participants had an average of 45 minutes to complete their worksheet. 
 After participants completed the browsing tasks or ran out of time,
 we interviewed them about their experience and
 took notes of the questions and answers.
@@ -525,50 +520,19 @@ We recruited  people using the recruitment text in Appendix~\ref{quantitative-re
 Of our recruited 124 participants, 56.8\% were male. Ages ranged from 18 to~68 years ($\mu = 28.9$, $\sigma = 12$). 56.8\% were male. 84.8\% of our participants had a college education. We distributed participants evenly across experimental condition, about 20 in each interface and environment combination. Although there is variation in gender and age in each experimental condition, we ensured each condition had about half Craiglist recruited participants and half <redacted lab>  pool participants. 
 
 \subsection{Setup}
-{\color {red} 
-We ran our experiment at <redacted>.
+We ran our experiment at <Redacted lab>, an experimental social science laboratory for behavioral experiments. The testing room had 36 workstations with identical Windows~7 laptops. Side panels at each workstation to discouraged participants from looking at other participants' screens. 
 %Xlab~\cite{xlab}, the Experimental Social Science Laboratory at the University of California, Berkeley. 
-<redacted> %Xlab 
-has 36 Windows~7 laptops, separated by cubicle walls. 
-Though Tor Browser runs on other operating systems,
-testing was only done on Windows, as a byproduct of using <redacted>. %Xlab. 
+The computers at <Redacted lab> use a system restore software to revert computers to a clean version at the beginning of each session. 
 
-We augmented the interfaces with instrumentation 
-to log every meaningful interaction
-(button presses, menu selections, screen changes).
-We wrote scripts to automatically set up the simulated censorship environment, install necessary software, 
-start the video recording, and save the logs and videos.
-We recorded the participants' computer screens
-throughout the experiment to capture non-interface activity such as 
-web searching and inspection of system networking settings.
-}
+Before each session, we ran a script that downloaded the necessary software, set up one of the six experimental conditions, and start the video recording. Each computer was manually assigned an interface-environment combination in a way that evenly distributed experimental conditions throughout the room and assigned an equal number of participants to each experimental condition. In contrast to the previous usability test, we installed an instrumented version of Tor Browser 5.0.3 or an instrumented version of Tor Browser 5.0.3. with a redesigned configuration interface. The instrumentation in the interface logged user interactions such as window transitions, mouse clicks, and menu selections. Similarly to the previous usability test, we installed Chrome, Firefox, and Internet Explorer to allow users to browser the Internet on a browser of their choice and VLC to record the screen during the experiment.
+
 \subsection{Procedure}
-{\color {red} 
-The one-hour, multi-participant procedure began when all participants sat at their
-respective computers in <redacted>. %Xlab. 
-Each computer was equipped with an instrumented old or new version
-of Tor Browser, Chrome, Firefox, Internet Explorer,  Chrome, and VLC (for screen recording).
-Each computer was assigned one of the six conditions in the beginning of the study. Participants
-were assigned to a simulated censorship environment combination at random. 
+{\color {blue} 
+Participants were assigned to a computer at random, which effectively assigned them to a simulated censorship environment combination at random. When all participants sat at their respective computers, 
 
-A researcher informed the participants that they are in a
-simulated censorship environment, instructed them to visit a sample blocked website on a 
-non-Tor browser of their choice to illustrate the situation, and asked them to 
-complete a worksheet that asks to visit one blocked website (Appendix~\ref{quantitative-script}). 
-To mirror the qualitative study, we chose Wikipedia's featured article of the day 
-as the blocked website to visit on their worksheet. 
+With only the consenting participants remaining, one of the researchers then read from a script that details the experiment, task, and data collected (Appendix~\ref{quantitative-script}). We told users of the simulated censorship environment, that Tor Browser can be used to circumvent censorship, and that we ask them to use Tor Browser to circumvent our simulated censorship. We ask users to complete a worksheet, which asks questions that can only be answered by going to the censored websites. To mirror the qualitative study, we chose Wikipedia's featured article of the day as the blocked website to visit on their worksheet. All users were instructed to sit until the end of the experiment, regardless of when they had completed their task. We remind them again that their screens are being recorded and to not show any personal information, such checking email. We give users a chance to ask any questions about the experiment or task. 
 
-After instructions, researchers maintained minimal interactions with the participants, 
-only answering logistical questions.
-The participants did not know the details of their censorship environment,
-only that they are being censored. Participants had 40 minutes to configure Tor Browser to 
-circumvent the simulated censorship and visit the blocked website. 
-
-After users completed the browsing tasks, they took a short exit survey (Appendix~\ref{quantitative-exit-survey})
-that collected their demographics. All users were instructed to sit until the end of the experiment,
-regardless of when they had completed their task. After the 40 minutes, 
-participants were officially informed that their time was up, and were given their payment of 
-\$30 for their time. 
+After instructions, researchers maintained minimal interactions with the participants, only answering logistical questions. Participants had 40 minutes to complete the task. After the 40 minutes, we administered an exit survey to collect demographics (Appendix~\ref{quantitative-exit-survey}) and were paid \$30 for their time. 
 }
 
 \subsection{Results} 
@@ -847,13 +811,15 @@ We conducted a series of experiments to improve the Tor Browser 5.0.3 configurat
 Tor doesn't collect any information or perform AB testing, so this type of user research is especially important. to set it up, get users, computers, consent, and instrumented versions of the software. Research can be exploratory (ask users what they want), observational (look at what they do), or testing a hypothesis (verify changes). We encourage the use of simulated censorship environments as a tool for user testing censorship circumvention software. Not only do simulated environments avoid rerouting traffic through a censoring country's networks, their reproducibility and stability are ideal for experiments. 
 }
 
-%\section {Resources} 
-%For additional details, such as the censorship simulation code, interview transcriptions, and logs of participant interactions, we refer you to the project repository: \\
-%
+\section {Experiment Artifacts} 
+Due to space constraints, we could not include many of our experiment artifacts. This includes the experiment setup and teardown code, firewall rules that simulated censorship environments, interview transcriptions from the formative user study, logs from our instrumented configuration interfaces, and videos of users attempting to connect to Tor through the configuration interface. We urge you to check out the project repository: \\
+
+\noindent <redacted url>
 %\noindent \url{https://github.com/lindanlee/circumvention-ux-tor}
-%
-%\section {Acknowledgments}
-% Rowilma del Castillo of Xlab supported out experiment by assisting with testing, offering recruitment services, and allowing experiments after-hours. Nima Fatemi, Isabela Bagueros, Georg Koppen, and the Tor UX team have provided me with valuable feedback along the way. 
+
+\section {Acknowledgments}
+Many generous people helped us along the way. <Redacted> assisted with testing our setup and teardown scripts, offered recruitment services, and allowed us to run experiments after <redacted lab>'s hours. <Redacted> and <redacted> were instrumental during the design process, as they helped me interate through many not-so-great ideas.  <Redacted>,and <redacted> provided me with insider insight into the design decisions made at Tor.
+% Rowilma del Castillo. Nima Fatemi and Isabela Bagueros.  Georg Koppen and the Tor UX team.
 
 \bibliographystyle{abbrv}
 \bibliography{pets2017-paper}
