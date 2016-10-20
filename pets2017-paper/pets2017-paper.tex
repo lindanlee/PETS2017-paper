@@ -338,12 +338,10 @@ likely causes of confusion for users during our study.
 {\color {blue}
 short intro sentence
 }
-
 \subsection{Recruitment}
-We recruited people from Craigslist using the recruitment text in Appendix~\ref{qualitative-recruitment}, which linked an online survey that collected demographics. We pre-screened~\cite{screening} to ensure diversity of gender, age, technical expertise, and (self-reported) familiarity with Tor in a small participant pool. The pre-screening survey is in Appendix~\ref{qualitative-prescreening}.
+We recruited people from Craigslist using the recruitment text in Appendix~\ref{qualitative-recruitment}, which linked an presecreening survey that collected demographics (Appendix~\ref{qualitative-prescreening}). We pre-screened~\cite{screening} to ensure diversity of gender, age, technical expertise, use of security tools, and familiarity with Tor in a small participant pool. 
 
-We recruited 16 participants for the test and distributed them evenly across environments:  5~in E1, 5~in E2, and 6~in E3. Of our 16 participants, 53.3\% were male. Ages ranged from 20 to~62 years ($\mu = 24.5$, $\sigma = 12.6$). 93.3\% of our participants had at least a college education. 4 had used Tor before; 5 had heard of Tor but not used it;
-and the remaining 8 had never heard nor used it. Although there is variation in gender, age, technical expertise in each experimental condition, we ensured each condition had a participant who has not heard of Tor, a participant who has heard of Tor, and a participant who has previously used Tor. 
+Of our 16 recruited participants, 53.3\% were male. Ages ranged from 20 to~62 years ($\mu = 24.5$, $\sigma = 12.6$). 93.3\% of our participants had college education. We took participants' self-reported familiarity with technical terms use of security tools with skepticism (Appendix~\ref{prescreening-responses}). We verified their self-reported familiarity with Tor in-person, and found that 4 had used Tor before, 5 had heard of Tor but not used it, and the remaining 8 had never heard nor used it.  We distributed participants evenly across experimental conditions:  5~in E1, 5~in E2, and 6~in E3. Although there is variation in gender, age, ``technical expertise,'' and ``use of security tools'' in each experimental condition, we ensured each condition had a participant who has used tor, a participant who has heard of Tor, and multiple participants who had never heard nor used it. 
 
 \subsection{Setup} 
 {\color {blue}
@@ -522,23 +520,9 @@ short intro sentence.
 }
 
 \subsection{Recruitment}
-{\color {red} 
-We recruited 124 participants, about 20 for each
-condition. We recruited half of our users from Craigslist, and half of our participants from 
-the <redacted> %Xlab 
-participant pool. Although <redacted> %Xlab 
-participants are not limited to <redacted> %UC Berkeley 
-students and staff,
-a majority of the participants are from campus. For this reason, we chose to recruit 
-half of our participants from Craigslist to ensure a diverse set of participants. 
-The recruitment text vaguely suggests testing a piece of software, and does not require
-that users provide information in advance (Appendix~\ref{quantitative-recruitment}). 
-Out of our 124 participants, 59 were recruited from the <redacted> %Xlab 
-pool and the other 65 were
-recruited from Craigslist. Ages ranged from 18 to~68 years
-($\mu = 28.9$, $\sigma = 12$). 56.8\% were male and 
-84.8\% of our participants had at least a college education.
-}
+We recruited  people using the recruitment text in Appendix~\ref{quantitative-recruitment}. We recruited 65 participants from Craiglist and 59 participants from the <redacted lab> participant pool. <Redacted lab> encouraged the use of their participant pool, but we bargained to recruit participants from Craigslist to ensure a diverse set of participants. Although the <redacted lab>'s participant pool is not limited to students and staff from <redacted institution>, it was estimated that a large majority were. 
+
+Of our recruited 124 participants, 56.8\% were male. Ages ranged from 18 to~68 years ($\mu = 28.9$, $\sigma = 12$). 56.8\% were male. 84.8\% of our participants had a college education. We distributed participants evenly across experimental condition, about 20 in each interface and environment combination. Although there is variation in gender and age in each experimental condition, we ensured each condition had about half Craiglist recruited participants and half <redacted lab>  pool participants. 
 
 \subsection{Setup}
 {\color {red} 
@@ -923,6 +907,24 @@ campus.}
 \item{How often do you use the following software or features? \textit{<answer choices: a grid of radio buttons. Software/features (rows): HTTPS on web pages, proxies or other censorship circumvention tools, virtual private networks (VPN), file or whole-disk encryption, anonymity systems (e.g., Tor), email encryption (e.g., PGP), chat or instant messaging encryption, voice communication encryption. Frequency (columns): never, less than once a month, a few times a month, several times a week, daily.>}}
 \end{enumerate}
 Thank you for filling out this form. You are now done!
+
+\section{Prescreening Survey Responses}
+\label{prescreening-responses}
+{\color{blue} 
+short intro and conclusion. Take self-reported with a grain of salt, but here they are anyways. 
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=.5\textwidth]{self-reported-tech-familiarity.png}
+\caption{most participants reported familiarity with terms, even made up ones.}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=.5\textwidth]{self-reported-security-use.png}
+\caption{most people didn't use many security tools.}
+\end{figure}
+}
 
 \section{Qualitative User Study Introduction Script} 
 \label{qualitative-script} 
