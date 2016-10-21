@@ -398,60 +398,26 @@ We paid each participant~\$30 for their time.
 }
 
 \subsection{Results} 
-{\color {red}
-We discuss six common challenges our participants encountered during the configuration process.
-Participant quotations come from live transcription during the post-experiment interview
-and are not necessarily verbatim.\\
+{\color {blue}
+We give a summary of all participants here!  Quotations come from live transcription and are not necessarily verbatim.
 
-\begin{description}
-\item {\bfseries Users did not understand what proxies, bridges, and pluggable transports were.}
-Most participants, including those pre-screened for high technical ability and previous experience with Tor, were not familiar with the vocabulary.
+Observations in E1: 
 
-\smallskip
+Observations in E2:
+ 
+Observations in E3: 
+
 \pquote{P2}{I don't know what any of those [list of bridges] means, or what that [proxy] means at all.}
-\smallskip
 \pquote{P3}{The vocabulary is really challenging, for someone not doing IT work.}
-\smallskip
-
-\item {\bfseries Users did not know if they should connect directly or configure a connection.}
-Participants incorrectly determined that a blocked torproject.org website meant that Tor relays were censored, configuring bridges and proxies when they did not need to. Other participants tried a direct connection because they did not know what to do, but configuring their connection seemed hard. 
-
-\item {\bfseries Users did not know how to choose which bridge and pluggable transport to use.}
-On the bridge configuration screen, participants were confused by the names of the bridge transports. The most common behavior was to configure with the recommended bridge option (obfs3). If the recommended one did not work, participants did not know how to choose another. 
-
-\smallskip
+\pquote{P\#}{find when Michael said he didn't know if he was E2 or E3!} 
 \pquote{P8}{I have no clue what's the difference between flashproxy, fte, etc. I need to know why the built-in ones aren't working. And why do I need a custom bridge if there are options built in?}
-\smallskip
-%\pquote{P7}{Since it (obfs3) said recommended, it helped actually, and I selected it because it was chosen. I saw the custom bridges option, but I didn't know what to enter there so I went with this (obfs3).}
-
-\item {\bfseries Users did not know when they are wrong.}
-Unfortunately, many mistakes did not result in error messages, but warnings that went unnoticed.
+\pquote{P7}{Since it (obfs3) said recommended, it helped actually, and I selected it because it was chosen. I saw the custom bridges option, but I didn't know what to enter there so I went with this (obfs3).}
 When participants did encounter an error message, they did not understand what errors meant (Fig.~\ref{fig:error}).
-
-\item {\bfseries Users assumed they are wrong when they are right.}
-The progress bar has a bug that causes it to update only when the level of progress increases.
-If progress bar reaches a 90\% and fails, the next attempt have regressed to 0\% and remain there until the progress surpasses 90\%. Due to this, participants assumed that their subsequent attempts were wrong, even if they were right.
-
-\smallskip
+%The progress bar has a bug that causes it to update only when the level of progress increases.
+%If progress bar reaches a 90\% and fails, the next attempt have regressed to 0\% and remain there until the progress surpasses 90\%. Due to this, participants assumed that their subsequent attempts were wrong, even if they were right.
 \pquote{P1}{It was hard to figure out if the progress bar wasn't moving because the connection was censored, or if it was just slow.}
-\smallskip
 \pquote{P16}{There doesn't seem to be a timeout on any of this stuff. Am I waiting long enough? It should work immediately.}
-\smallskip
-
-\item {\bfseries Users assume that proxy is required after a failed connection.}
-All of our participants who failed to connect (5 of 16) failed for this reason. Many mistakenly assumed that they needed a proxy upon failure, because the interface redirects to the proxy screen (the last screen) after failure. 
-
-\smallskip
 \pquote{P15}{I didn't know if this computer had any proxy information. I wasn't able to find it if it did.}
-\end{description}
-
-From interviewing our participants, we found that these challenges are the result of these underlying causes: \\
-
-\begin{description}
-\item {\bfseries Users do not know how to connect to Tor.} Participants did not know the difference between a direct connection and an indirect connection to the Tor network or the difference among bridges, pluggable transports, and proxies. Participants did not know how to configure these network components without explicit additional instructions. 
-\item {\bfseries Feedback is too technical, missing, or misleading.} Participants did not know when they failed, since certain mistakes do not trigger error warnings or timeouts (i.e. a syntactically correct but invalid proxy). If participants did see an error message, they did not understand it. The progress bar bug also caused users to wrongly assume they were not making progress since it did not give feedback on subsequent attempts. 
-\item {\bfseries Users do not understand censorship circumvention cues.} With enough technical background, there are  signals to what components are necessary and unnecessary. A connection to the Internet indicates that no proxy is required. A failed direct connection indicates a blocked Tor relay. A failed hard-coded bridge connection indicates a blocked bridge relay. However, the average user does not understand these signals.
-\end{description} 
 
 The challenges users faced in the qualitative experiment and the respective underlying causes are used as feedback for redesigning the configuration interface. 
 
