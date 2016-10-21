@@ -239,51 +239,38 @@ For instance, a user who needs a bridge but not need a proxy can connect to Tor 
 Procedure: inspection, formative, design, summative. 
 
 We wanted to inspect the thing ourselves before doing formative testing so we know what to look for. 
-http://www.usabilitybok.org/heuristic-walkthrough, not a pluralistic walkthrough (http://www.usabilitybok.org/pluralistic-walkthrough) or cognitive walkthrough (http://www.usabilitybok.org/cognitive-walkthrough). 
+We did a heuristic walkthrough, not a pluralistic walkthrough or cognitive walkthrough. 
+%~\cite{nielsen1994usability} %inspection methods book
+%http://www.usabilitybok.org/heuristic-walkthrough
+%http://www.usabilitybok.org/pluralistic-walkthrough
+%http://www.usabilitybok.org/cognitive-walkthrough
 
-%We used a combination of usability inspection methods~\cite{nielsen1994usability}
-%to prepare for the user study. Two researchers conducted a pluralistic 
-%walkthrough and stepped through various censorship
-%scenarios, discussing which elements would be involved for that use case, and walking 
-%through the configuration process. After compiling all the possible paths through the 
-%interface, researchers performed feature inspection, listing sequences of features used 
-%to accomplish typical tasks and taking note of long sequences or cumbersome
-%steps. In addition, we performed a heuristic evaluation to mark
-%likely causes of confusion for users during our study.
+Formative usability testing is a support tool used during the beginning stages of the design process to provide insights of where users have difficulty. With formative user testing, it is enough to test 3–5 users. After the fifth user, you have all the insight you are likely to get and your best bet is to go back to the drawing board and improve the design so that you can test it again. Testing more than five users wastes resources, reducing the number of design iterations and compromising the final design quality.
 
-Most usability testing involves finding and fixing problems as part of an iterative design process to make an interface more usable. It is typically called a Formative Usability Evaluation. In contrast, a Summative Usability Evaluation describes the current usability of an interface—as measured by things like task times, completion rates and satisfaction scores. Summative tells you how usable an interface is and formative tells you what isn't usable.
-
-Formative usability testing takes the role of a support tool for decision making during the beginning stages of the design process and - if applied early in the development process - provides valuable insights of where users have difficulty reaching their user goals with the technology (website, desktop GUI design, hardware product) or service.
 %http://www.usabilitybok.org/Formative-evaluation
 %https://www.nngroup.com/articles/why-you-only-need-to-test-with-5-users/ ~\cite{howmanyusers}
 
-With formative user testing, it is enough to test 3–5 users. After the fifth user tests, you have all the insight you are likely to get and your best bet is to go back to the drawing board and improve the design so that you can test it again. Testing more than five users wastes resources, reducing the number of design iterations and compromising the final design quality.
-
 We wanted to try an anternative interface to see if we can make any improvements. We wanted to, since we had all this testing! But we can also test the original design in a formative and summative way. 
 
-Summative usability testing is a Quality Assurance (QA) type of test usually performed later in the development process. A similar usability test protocol is used as in formative usability testing but now this setup is used to do formal user acceptance testing before the product is released to the target audience. This works on the assumption that the design direction is the right one and that there is potential for a usable solution, and thus the summative usability testing determines whether the execution actually delivers on that promise.
+Summative usability testing is a quality assurance test usually performed later in the development process. While formative tells you what isn't usable, while summative tells you if it is usable. This works on the assumption that the design direction is the right one and that there is potential for a usable solution, and thus the summative usability testing determines whether the execution actually delivers on that promise.
 %http://www.usabilitybok.org/Summative-evaluation
 %https://www.nngroup.com/articles/quantitative-studies-how-many-users/
 %~\cite{summative}
 }
 
-\subsection{Evaluation Criteria}
+\subsection{Evaluation Metrics}
 \label{sec:eval}
+Usability measures users' abilities to complete tasks. We use the following industry-standard~\cite{albert2013measuring} metrics: \\
 
-{\color {blue}
-It is easy to specify usability metrics, but hard to collect them. Typically, usability is measured relative to users' performance on a given set of test tasks. The most basic measures are based on the definition of usability as a quality metric: success rate (whether users can perform the task at all), the time a task requires, the error rate, and users' subjective satisfaction.
-%https://www.nngroup.com/articles/usability-metrics/
-%http://www.measuringu.com/blog/essential-metrics.php
-
-We chose to evaluate the two interfaces by testing them on a large number of users, using the following criteria to measure usability: \\
 \begin{itemize}
-\item {\bfseries Success rate:} what percentage of users eventually connect to Tor in a given condition. 
+\item {\bfseries Completion rate:}  percentage of users that eventually connect to Tor in an experimental condition. 
 \item {\bfseries Connection time:} time from Tor Browser startup to the first successful Tor bootstrap. 
-\item {\bfseries Configuration time:} time from Tor Browser startup to progress screen, measures includes time spent interacting with the interface, excluding the time waiting for the connection to bootstrap.
+\item {\bfseries Configuration time:} time from Tor Browser startup to intializing a successful Tor bootstrap.
 \end{itemize}
 
-Explain reason for choosing success and time, citing sources. Explain that we made up active configuration time to measure time to completion more accurately since bootstrapping takes so long. 
-}
+Completion rate is the fundamental usability metric that measures if users can accomplish the task. We define success as a binary metric that is true if a user connects to Tor and false if a user does not. 
+
+Task time is a supplemental usability metric that measures user productivity during the task. We measure task time two different ways. Connection time captures the amount of time users take to use the configuration interface to connect to Tor. This includes time users spend waiting while a Tor Browser establishes a connection to Tor, which can take minutes and potentially dominate the measurement. Configuration time captures the amount of time users spend configuring network components necessary to connect to Tor. 
 
 \subsection{Experimental Setup}
 We simulated three environments (which we refer to as E1, E2, and E3), 
@@ -347,6 +334,7 @@ Quick refer to the digraph, and explain everything in the caption. Put end state
 
 A short paragraph with 1-3 observations--using a non-leading tone! 
 }
+
 
 \section{Formative Usability Testing}
 \label{sec:qualitative}
