@@ -550,7 +550,7 @@ After instructions, researchers maintained minimal interactions with the partici
 
 \subsection{Results} 
 {\color {red} 
-The possible interface version and environment combinations resulted in 6 experimental conditions. We recruited 124 participants to aim for about 20 participants per condition. We filtered participants who downloaded their own version of Tor Browser or did not sign the consent form, resulting in 114 participants. Table~\ref{table:participant-summary} summarizes the rate of success, time to success, and active time for our participants' by condition. 
+The possible interface version and environment combinations resulted in 6 experimental conditions. We recruited 124 participants to aim for about 20 participants per condition. We filtered participants who downloaded their own version of Tor Browser or did not sign the consent form, resulting in 114 participants. Table~\ref{table:participant-summary} summarizes the rate of success, time to success, and active time for our participants' by condition. Appendix~\ref{all-participant-edges}'s Fig.~\ref{fig:all-participant-edges} summarizes invididual participants' actions throughout the experiment.
 
 %We refreshed a list of Tor relay IP addresses and added them
 %to a firewall blacklist before each session.
@@ -576,28 +576,6 @@ The possible interface version and environment combinations resulted in 6 experi
 %We discarded data on participants who chose to download their own version of Tor Browser online. 5 participants downloaded their own version without trying the provided one on their desktop, while others did so after feeling frustrated with the provided version. 
 
 %Many waited for minutes at the progress screen, but never saw an error message. Error messages are intended to appear after a timeout. There were warnings, but those warnings went largely unnoticed by our participants. Across both versions of the interface, only one participant ever saw an error message. We tried to make error messages more instructive and understandable, since participants in our experiment did not encounter error messages, we cannot evaluate them. 
-
-We summarize each participant's actions throughout the experiment in Fig.~\ref{fig:all-participant-edges}.
-%and summarize where they spent their time in Appendix~\ref{all-participant-times}. 
-Each row in Fig.~\ref{fig:all-participant-edges} corresponds to a participant. The bar represents a path through the interface, illustrating time spent on each screen, transitions between screens, how many attempts were made, and if they were eventually successful. 
-
-\begin{figure*}
-\centering
-% This is a manually edited version of the automatically generated
-% all-participant-edges graphic. It is edited to have better scale labels for
-% the treatments.
-\includegraphics{all-participant-edges}
-\caption{
-Summary of participants' actions throughout the entire experiment.
-Different colors indicate which screen was shown at each moment.
-The ``not running'' times are those when Tor Launcher was closed;
-i.e., a participant was doing something else
-such as searching the web in another browser.
-The overall length of the lines show the total time to completion,
-except for those we cut off after approximately 40 minutes.
-}
-\label{fig:all-participant-edges}
-\end{figure*}
 
 \begin{table}
 \centering
@@ -983,6 +961,26 @@ If you agree to participate, please click Next below.\\
 \end{enumerate}
 
 Thank you for participating in our experiment. You are now done! Please sit at your desk for the remainder of the experiment. Our researchers will formally announce the end of the experiment. 
+
+\section{Quantitative Summary}
+\label{all-participant-edges} 
+\begin{figure*}
+\centering
+% This is a manually edited version of the automatically generated
+% all-participant-edges graphic. It is edited to have better scale labels for
+% the treatments.
+\includegraphics{all-participant-edges}
+\caption{
+Summary of participants' actions throughout the entire experiment.
+Different colors indicate which screen was shown at each moment.
+The ``not running'' times are those when Tor Launcher was closed;
+i.e., a participant was doing something else
+such as searching the web in another browser.
+The overall length of the lines show the total time to completion,
+except for those we cut off after approximately 40 minutes.
+}
+\label{fig:all-participant-edges}
+\end{figure*}
 
 \section{Statistical Tests} 
 \label{stat-tests}
