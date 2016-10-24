@@ -241,7 +241,7 @@ We then conducted a formative usability test~\cite{formative} that found where a
 
 Formative testing is usually used as feedback for design iterations. We opportunistically used our observations to make design changes to the configuration interface. We believed that the process of a identifying design principles, proposing design changes, and showing an alternative interface was insightful in itself---and had the potential to discover impactful changes.
 
-We concluded with a summative usability test~\cite{summative} that determined the usability of an interface. We test the current interface to evaluate it and test the redesigned interface to see if our design changes had impact. Summative usability testing is a qualtiy assurance tool designed to test features in a design. In short, formative usability tells you what isn't usable, while summative usability testing tells you if it is usable. 20 users is considered to be the minimum number to statistically significant measurments~\cite{howmanyusers}, so we recruited for 20 participants in each experimental condition.  
+We concluded with a summative usability test~\cite{summative} that determined the usability of an interface. We test the current interface to evaluate it. Opportunistically, we also test the redesigned interface as well. Summative usability testing is a quality assurance tool designed to test features in a design. In short, formative testing tells you {\it what} is or is not usable, while summative testing testing tells you {\it if} it is or is not usable. 20 users is considered to be the minimum number to statistically significant measurments~\cite{howmanyusers}, so we recruited for 20 participants in each experimental condition.  
 
 \subsection{Evaluation Metrics}
 \label{sec:eval}
@@ -253,9 +253,9 @@ Usability measures users' abilities to complete tasks. We use the following indu
 \item {\bfseries Configuration time:} time from Tor Browser startup to intializing a successful Tor bootstrap.
 \end{itemize}
 
-Completion rate is the fundamental usability metric that measures if users can accomplish the task. We define success as a binary metric that is true if a user connects to Tor and false if a user does not. 
+Completion rate is the fundamental usability metric that measures if users can accomplish the task. We defined success as a binary metric that is true if a user connected to Tor and false if a user did not. 
 
-Task time is a supplemental usability metric that measures user productivity during the task. We measure task time two different ways. Connection time captures the amount of time users take to use the configuration interface to connect to Tor. This includes time users spend waiting while a Tor Browser establishes a connection to Tor, which can take minutes and potentially dominate the measurement. Configuration time captures the amount of time users spend configuring network components necessary to connect to Tor. 
+Task time is a supplemental usability metric that measures user productivity during the task. We measured task time two different ways. Connection time captured the amount of time users take to use the configuration interface to connect to Tor. This included time users spent waiting while a Tor Browser establishes a connection to Tor, which can potentially dominate the measurement. Configuration time captured the amount of time users spent configuring network components necessary to connect to Tor. 
 
 \subsection{Experimental Setup}
 We simulated three environments (which we refer to as E1, E2, and E3), 
@@ -263,10 +263,8 @@ which are in the order of increasing severity in censorship. We chose to
 simulate environments for the stability, reproducibility, and simplicity of the 
 experiment, as real censored networks are voilatile, subject to change, and complex. 
 
-The simulated environments are not intended to imitate any particular country's censorship environment. However, they were designed so that they would require similar configurations
-to make a connection to Tor. For instance, E3 does not block the same websites, public Tor relays, or Tor protocols that China would, but similarly requires a bridge that runs a specific type of transport to connect to Tor. We believe this to be sufficient for the purpose of testing the configuration interface, since these environments require the user to take the interface paths we want to test. Table~\ref{tab:environments} summarizes our
-environments and what network components are required to make a 
-connection to Tor. 
+The simulated environments are not intended to imitate any particular country's censorship environment. Rather, they were designed to require particular network configurations
+to connect to Tor. We believe this to be sufficient for the purpose of testing the configuration interface, since these environments require the user to take the interface paths we wanted to test. Table~\ref{tab:environments} summarizes our environments and what network components are required to make a  connection to Tor. 
 
 We used features of the Windows operating system 
 to block websites and Tor relays. 
@@ -279,7 +277,7 @@ We specified Windows Firewall rules to block IP address of public Tor relays (E2
 For our experiments, we use versions of Tor Browser~5.0.3, 
 the most recent stable release at the time~\cite{torbrowser-503}.
 Though there were new releases during the experiments,
-we used the same version across all participants to not introduce
+we used the same version throughout to not introduce
 confounding factors.
 
 \begin{table}[t]
