@@ -23,7 +23,7 @@ digraph torconfig {
 	"local proxy (1)" -> "progress (1)" [label="CONNECT\nproxy=no"];
 	"progress (1)" -> "s1"; #bridge no proxy connection 
 	"progress (1)" -> "e0"; #unspecified bridges
-	"progress (1)" -> "e1"; #syntax error
+	"progress (1)" -> "e1"; #bridge syntax error
 	"progress (1)" -> "e2"; #custom bridge: good syntax, bad ip address
 	"progress (1)" -> "e4"; #bridge blocked in country
 	"local proxy (1)" -> "local proxy (2)" [label="NEXT\nproxy=yes"];	
@@ -46,7 +46,7 @@ digraph torconfig {
 	"local proxy (1)'" -> "progress (1)'" [label="CONNECT\nproxy=no"];
 	"progress (1)'" -> "s0'"; #no bridge no rpoxy connection 
 	"progress (1)'" -> "e0'"; #unspecified bridges
-	"progress (1)'" -> "e1'"; #syntax error
+	"progress (1)'" -> "e1'"; #bridge syntax error
 	"progress (1)'" -> "e2'"; #bad ip address
 	"progress (1)'" -> "e4'"; #bridge blocked in country
 	"local proxy (1)'" -> "local proxy (2)'" [label="NEXT\nproxy=yes"];	

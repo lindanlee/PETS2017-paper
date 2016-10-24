@@ -1,3 +1,0 @@
-digraph torconfig {
-	"start screen" -> success [label=LOL];
-}
