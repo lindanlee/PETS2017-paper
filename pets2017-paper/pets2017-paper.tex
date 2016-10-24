@@ -222,7 +222,7 @@ There are many valid configuration settings to connect to the Tor network.
 For instance, a user who needs a bridge but not need a proxy can connect to Tor with a bridge and proxy, provided that both were configured correctly. The set of valid configuration settings vary on the specific network environment. 
 
 \section{Methodology} 
-This section talks about our process, principles, and preparations for evaluating the configuration interface.
+This section discusses our process, principles, and preparations for evaluating the configuration interface.
 
 \subsection{Testing Pipeline} 
 Two researchers first performed a cognitive walkthough~\cite{cognitive-walkthrough} to prepare for user testing. A cognitive walkthough is evaluation method in which usability evaluators and product experts work through a series of tasks from the perspective of the user to understand a system's learnability for new or infrequent users.
@@ -248,27 +248,11 @@ Completion rate is the fundamental usability metric that measures if users can a
 Task time is a supplemental usability metric that measures user productivity during the task. We measured task time two different ways. Connection time captured the amount of time users take to use the configuration interface to connect to Tor. This included time users spent waiting while a Tor Browser establishes a connection to Tor, which can potentially dominate the measurement. Configuration time captured the amount of time users spent configuring network components necessary to connect to Tor. 
 
 \subsection{Experimental Setup}
+\label{sec:environments}
 We simulated three environments (which we refer to as E1, E2, and E3), 
-which are in the order of increasing severity in censorship. We chose to 
+which are in the order of increasing severity in censorship. Table~\ref{tab:environments} summarizes our environments and what network components are required to make a  connection to Tor. We chose to 
 simulate environments for the stability, reproducibility, and simplicity of the 
 experiment, as real censored networks are voilatile, subject to change, and complex. 
-
-The simulated environments are not intended to imitate any particular country's censorship environment. Rather, they were designed to require particular network configurations
-to connect to Tor. We believe this to be sufficient for the purpose of testing the configuration interface, since these environments require the user to take the interface paths we wanted to test. Table~\ref{tab:environments} summarizes our environments and what network components are required to make a  connection to Tor. 
-
-We used features of the Windows operating system 
-to block websites and Tor relays. 
-We added entries to the hosts file to
-mapping domain names to the address 127.0.0.1, which simulated
-website by using Tor. We blocked torproject.org and its respective subdomains to discourage downloading Tor Browser, as we had installed a specific version on the test computers (E1, E2, E3).  We blocked wikipedia.org, cnn.com, and their respective subdomains to create an artificial task to visit a 
-``censored'' website as motivation to connect to Tor during the experiment (E1, E2, E3). 
-We specified Windows Firewall rules to block IP address of public Tor relays (E2, E3) and default bridges (E3).
-
-For our experiments, we use versions of Tor Browser~5.0.3, 
-the most recent stable release at the time~\cite{torbrowser-503}.
-Though there were new releases during the experiments,
-we used the same version throughout to not introduce
-confounding factors.
 
 \begin{table}[t]
 \centering
@@ -291,36 +275,51 @@ similarly E3's is a superset of E2's.
 \label{tab:environments}
 \end{table}
 
+The simulated environments are not intended to imitate any particular country's censorship environment. Rather, they were designed to require particular network configurations
+to connect to Tor. We believe this to be sufficient for the purpose of testing the configuration interface, since these environments require the user to take the interface paths we wanted to test. 
+
+We used features of the Windows operating system 
+to block websites and Tor relays. 
+We added entries to the hosts file to
+mapping domain names to the address 127.0.0.1, which simulated
+website by using Tor. We blocked torproject.org and its respective subdomains to discourage downloading Tor Browser, as we had installed a specific version on the test computers (E1, E2, E3).  We blocked wikipedia.org, cnn.com, and their respective subdomains to create an artificial task to visit a 
+``censored'' website as motivation to connect to Tor during the experiment (E1, E2, E3). 
+We specified Windows Firewall rules to block IP address of public Tor relays (E2, E3) and default bridges (E3).
+
+For our experiments, we use versions of Tor Browser~5.0.3, 
+the most recent stable release at the time~\cite{torbrowser-503}.
+Though there were new releases during the experiments,
+we used the same version throughout to not introduce
+confounding factors.
+
 \section{Usability Inspection}
-{\color {blue}
-Short intro sentence. 
-}
+This section discusses our inspection of the configuration interface and the resulting observations.
 
 \subsection{Procedure} 
-{\color {blue}
-David and I (1 security/tor person and 1 usable security researcher) sat down in the same room, started from the first screen, and tried to toggle every single path in a systematic way, usually going with the default option first if any, then working from top to bottom. Along the way, we discussed when a certain option would need to be used, if the option seemed visible or helpful, and other things like that. 
-}
+Two researchers performed the cognitive walkthough on the Tor Browser 5.0.3 Tor Launcher GUI, the most recent version deployed at the time. We then systematically tried action sequences from the perspective of a typical user, which we defined as a first time or infrequent user with almost no previous knowledge about network components involved in connecting to Tor.
+
+We first examined tasks required, inputs taken, and consequences of possible actions on each screeen to map all potential paths through the interface (Figure~\ref{fig:digraph}). We then stepped through each user path, systematically toggling all actions and inputs. 
 
 \subsection{Observations}
-{\color {blue}
-Quick refer to the digraph, and explain everything in the caption. Put end states in the appendix (if it doesn't fit in the caption.  Appendix ~\ref{states}, Figure~\ref{fig:digraph}.
+Through this process, we observed that:  \\
+\begin{itemize} 
+\item The interface does not presuppose that a user has previous exposure to Tor. 
+\item The interface provides recommendations in text and populates options with recommended settings. 
+\item The user has the burden of determining if Tor relays are blocked or if a proxy is required. 
+\item A user can optionally configure a bridge and proxy even if they are not necessary to connect to Tor. 
+\item Free-form inputs lead to many potential error states. 
+\end{itemize} 
+
+We used the map of potential user paths (Figure~\ref{fig:digraph}) to design our simulated environments (section~\ref{sec:environments}).  We used our walkthrough observations as inspiration for drafting our post-experiment interview questions (Appendix~\ref{interview-questions}) for formative usability testing. 
 
 \begin{figure*}
 \centering
 \includegraphics[width=\textwidth]{tor-digraph.png}
 \caption{
-caption here. give example of e12,s2,e12',s2' refer to appendix for the list of all errors. 
-% e12; selected proxy type, good address syntax, good ip address, blank port (bridge) 
-% s2; selected proxy type, good address syntax, good ip address, blank port (bridge)
-% e12'; selected proxy type, good address syntax, good ip address, blank port (no bridge)
-% s2'; selected proxy type, good address syntax, good ip address, blank port (no bridge) 
+A digraph illustrating the potential user paths through the interface. Non-leaf nodes are screens in the user interface (start, bridge 1, bridge 2, proxy 1, proxy 2, and progress). Leaf nodes are various end states (quit, success, or error). Tansitions between these nodes denote user actions. For details of each end state, see Appendix ~\ref{states}. 
 }
 \label{fig:digraph}
-\end{figure*}
-
-A short paragraph with 1-3 observations--using a non-leading tone! 1) most of this is only for the censorship use case 2) this assumed a level of technical familiarity in the user 3) lots of places where users can mess up--just look at the number of end states. 
-}
-
+\end{figure*} 
 
 \section{Formative Usability Testing}
 \label{sec:qualitative}
@@ -789,6 +788,13 @@ Many generous people helped us along the way. <Redacted> assisted with testing o
 \section{Success and Error States in Tor Launcher 5.0.3} 
 \label{states} 
 {\color {blue} 
+A reminder of the digraph, and a reference (Figure~\ref{digraph}). Give an example of one input leading to many end states. 
+
+% e12; selected proxy type, good address syntax, good ip address, blank port (bridge) 
+% s2; selected proxy type, good address syntax, good ip address, blank port (bridge)
+% e12'; selected proxy type, good address syntax, good ip address, blank port (no bridge)
+% s2'; selected proxy type, good address syntax, good ip address, blank port (no bridge)
+
 success states: 
 \begin{itemize}
 \item s0: no bridge no proxy connection.
