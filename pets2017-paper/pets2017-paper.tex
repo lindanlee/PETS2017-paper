@@ -554,10 +554,10 @@ i.e. searching for help in another browser, restarting the application, etc.).
 
 \subsubsection{Completion Rate} 
 {\color {blue} 
-Completion rate was defined as the percentage of users that eventually connect to Tor in an experimental condition. Table~\ref{table:participant-summary} summarizes the completion rates and Table~\ref{tab:attempts-bridge-proxy} shows the configuration for users' first successful connection. We only conside the first successful configuration, as some curious participants investigated other solutions even after completing their task. 
+Completion rate was defined as the percentage of users that eventually connect to Tor in an experimental condition. Table~\ref{table:participant-summary} summarizes the completion rates and Table~\ref{tab:attempts-bridge-proxy} shows the configuration for users' first successful connection. We only considered the first successful configuration, as some curious participants investigated others after completing their task. 
 
 % failure observations
-63\% (72 of 114) of first attempts to connect failed and (363 of 458) of total attempts to connect failed. 17\% (19 of 114) of participants were not able to successfully connect to Tor.  Specifically, Five (P73, P75, P89, P91, P106, P110) tried a direct connection; when it failed, they assumed there was something wrong with their computer, network settings, or the Tor network. Five (P90, P93, P108, P111, P114) tried a direct connection, a default obfs3 bridge connection, then failed. Five (P74, P92, P105, P107, P113) assumed that they needed a proxy when they needed another bridge. Two (P94, P109) tried to get custom bridges but failed to format the message correctly to get a response.
+17\% (19 of 114) of participants were not able to successfully connect to Tor. Specifically, Five (P73, P75, P89, P91, P106, P110) tried a direct connection; when it failed, they assumed there was something wrong with their computer, network settings, or the Tor network. Five (P90, P93, P108, P111, P114) tried a direct connection, a default obfs3 bridge connection, then failed. Five (P74, P92, P105, P107, P113) assumed that they needed a proxy when they needed another bridge. Two (P94, P109) tried to get custom bridges but failed to format the message correctly to get a response.
 %We believe that the added advice on what to try next on error messages would have improved the rate of success. However, only 1 of 116 participants saw an error during the experiment. 
 
 %success rate and version
@@ -668,13 +668,10 @@ the maximum time of 40:08.
 \end{figure}
 
 \subsection{Usability of Tor Launcher} 
-{\color {blue}
-%success rate 
-Not enough people got through! There's a steep decline between downloads and users in real life too, if you look at Tor metrics. Something is definitely stopping people. We're not saying that this is the main reason, but it certainly isn't helping. 
+In total, 63\% (72 of 114) of first attempts to connect failed and 79\% (363 of 458) of total attempts to connect failed. 
+On average, users who required a bridge took over 3 minutes to connect to Tor, and users who required a meek or cutsom bridge took over 20 minutes.
 
-% connection and configuration time 
-Ideally, users should be able to connect to Tor within a few minutes, regardless of their censorship environment.  Users in the wild will likely not be motivated to spend 40 minutes trying to configure Tor, and likely give up before then. If users were only willing to put in a minute or so of their time, users in intermediate and heavily censored environments would be unable to connect. Even if users were willing to dedicate 10 minutes to configuring their connection, most users in heavily censored environments would be unable to connect. 
-}
+Ideally, almost all users should be able to configure the necessary or optional network components and connect to Tor within a few minutes. Neither the Tor Browser's 5.0.3. Tor Launcher GUI or our redesigned Tor Launcher GUI meets this goal.
 
 \section{Recommendations}
 \label{recommendations}
