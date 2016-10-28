@@ -585,27 +585,22 @@ Completion rate was defined as the percentage of users that eventually connected
 Our interface changes did {\it not} have a significant impact on completion rates (Pearson's Chi-squared; $X^2 = 0.0126$, $df = 2$, $p = 0.994$). That is, the slight differences in completion rates between E1-NEW vs E1-OLD, E2-NEW vs E2-OLD and E3-NEW vs E3-OLD are likely due to random chance.
 
 \subsubsection{Connection time} 
-{\color {blue} 
-Connection time is the time from Tor Browser starup to the first successful Tor bootstrap. Non-finishing participants are assigned the maximum experiment time of 40:08. Table~\ref{table:participant-summary} summarizes the median connection times while Figure~\ref{fig:time_to_success_clamped} shows their distribution. Figure ~\ref{fig:time_to_success_ecdf} shows the cumulative success rates over time. 
+Connection time is the time from Tor Browser starup to the first successful Tor bootstrap. Non-finishing participants are assigned the maximum experiment time of 40:08. Table~\ref{table:participant-summary} summarizes the median connection times while Figure~\ref{fig:time_to_success_clamped} shows their distribution. Figure~\ref{fig:time_to_success_ecdf} shows the cumulative success rates over time. 
 
 %time observations (how long people took)
-The simulated censorship environment also had an impact; the more difficult the censorship environment, the longer participants took to configure their connection (Kruskal--Wallis $\chi^2 = 80.5$, $\mbox{df} = 2$, $p < 10^{-15}$). 
-The longer the time went on, the less likely that the participants were going to figure it out. 
+The simulated censorship environment, and therefore, the difficulty of the configuration, was the most determining factor for connection time (Kruskal--Wallis $\chi^2 = 80.5$, $\mbox{df} = 2$, $p < 10^{-15}$). Participants in E2 took longer to connect than participants in E1, and participants in E3 took the longest to connect.
 
 %time to success and version
-Our interface changes had a significant impact in reducing connection time (one-tailed Mann--Whitney; $ Z = -1.84$, $p = 0.0328$, $r= 0.172$). That is, the differences in mean connection times in E1-NEW vs E1-OLD, E2-NEW vs E2-OLD and E3-NEW vs E3-OLD is likely not due to random chance. We used a one-tailed Mann--Whitney test because configuration time was 1) right-censored at 40 minutes (experiment duration) and 2) non-normal and heavily right tailed (failures were assigned the maximum time of 40 minutes). 
-}
+Our interface changes had a significant impact in reducing connection time (one-tailed Mann--Whitney; $ Z = -1.84$, $p = 0.0328$, $r= 0.172$). That is, the differences in mean connection times in E1-NEW vs E1-OLD and E2-NEW vs E2-OLD and E3-NEW vs E3-OLD is likely not due to random chance. We used a one-tailed Mann--Whitney test because configuration time was 1) right-censored at 40 minutes (experiment duration) and 2) non-normal and heavily right tailed (failures were assigned the maximum time of 40 minutes). 
 
 \begin{figure}[t]
 \centering
 \includegraphics{time_to_success_clamped}
 \caption{
-Time to first success, by censorship environment and interface.
-The dots show the raw completion times,
+The dots show the raw connection times,
 while the boxplots show the medians and interquartile ranges.
-The ``DNF'' figures at the right show the number of participants 
-who did not finish in the time allotted.
-Here, non-finishing participants are assigned the maximum time of 40:08.
+The ``DNF'' (did not finish) numbers at the right show how many of participants 
+did not finish, who were assigned the maximum time of 40:08.
 }
 \label{fig:time_to_success_clamped}
 \end{figure}
@@ -615,12 +610,13 @@ Here, non-finishing participants are assigned the maximum time of 40:08.
 \includegraphics{time_to_success_ecdf}
 \input{time_to_success_ecdf.tex}
 \caption{
-Cumulative success rates over time, by censorship environment and interface.
-We stopped participants after 40 minutes. Here, those who did not finish were assigned
-an arbitrarily high number greater than 40 minutes for the purposes of plotting. 
-For example, every E1-NEW participant finished within 90 seconds,
-but only 58\% of E1-OLD had finished by that time. Within 10 minutes, most
-participants in E2 had finished, along with a minority of E3 participants. 
+Cumulative success rates over time, shown continuously and at discrete times we found interesting.
+For the purposes of plotting the cumulative distribution, those who did not finish were assigned
+an arbitrarily high number greater than 40 minutes. 
+Notice that the longer the time went on, participants were less likely to succeed. 
+At 1.5 minutes, every E1-NEW participant finished,
+but only 58\% of E1-OLD had finished by that time.  
+At 10 minutes, most participants in E2 had finished. 
 }
 \label{fig:time_to_success_ecdf}
 \end{figure}
