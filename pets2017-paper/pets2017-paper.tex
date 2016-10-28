@@ -240,12 +240,12 @@ Usability measures users' abilities to complete tasks. We use the following indu
 \begin{itemize}
 \item {\bfseries Completion rate:}  percentage of users that eventually connect to Tor in an experimental condition. 
 \item {\bfseries Connection time:} time from Tor Browser startup to the first successful Tor bootstrap. 
-\item {\bfseries Configuration time:} time from Tor Browser startup to intializing a successful Tor bootstrap.
+\item {\bfseries Configuration time:} time spent in the Tor Launcher GUI configuring network components.
 \end{itemize}
 
 Completion rate is the fundamental usability metric that measures if users can accomplish the task. We defined success as a binary metric that is true if a user connected to Tor and false if a user did not. 
 
-Task time is a supplemental usability metric that measures user productivity during the task. We measured task time two different ways. Connection time captured the amount of time users take to use the configuration interface to connect to Tor. This included time users spent waiting while a Tor Browser establishes a connection to Tor, which can potentially dominate the measurement. Configuration time captured the amount of time users spent configuring network components necessary to connect to Tor. 
+Task time is a supplemental usability metric that measures user productivity during the task. We measured task time two different ways. Connection time captured the amount of time users take to use the configuration interface to connect to Tor. This included time users spent waiting while a Tor Browser establishes a connection to Tor, which can dominate the measurement. Configuration time captured the amount of time users spent configuring bridges and proxies. 
 
 \subsection{Experimental Setup}
 \label{sec:environments}
@@ -585,13 +585,13 @@ Completion rate was defined as the percentage of users that eventually connected
 Our interface changes did {\it not} have a significant impact on completion rates (Pearson's Chi-squared; $X^2 = 0.0126$, $df = 2$, $p = 0.994$). That is, the slight differences in completion rates between E1-NEW vs E1-OLD, E2-NEW vs E2-OLD and E3-NEW vs E3-OLD are likely due to random chance.
 
 \subsubsection{Connection time} 
-Connection time is the time from Tor Browser starup to the first successful Tor bootstrap. Non-finishing participants are assigned the maximum experiment time of 40:08. Table~\ref{table:participant-summary} summarizes the median connection times while Figure~\ref{fig:time_to_success_clamped} shows their distribution. Figure~\ref{fig:time_to_success_ecdf} shows the cumulative success rates over time. 
+Connection time is the time from Tor Browser starup to the first successful Tor bootstrap. Non-finishing participants are assigned the maximum experiment time of 40:08. Table~\ref{table:participant-summary} summarizes the median times while Figure~\ref{fig:time_to_success_clamped} shows their distribution. Figure~\ref{fig:time_to_success_ecdf} shows the cumulative success rates over time. 
 
 %time observations (how long people took)
 The simulated censorship environment, and therefore, the difficulty of the configuration, was the most determining factor for connection time (Kruskal--Wallis $\chi^2 = 80.5$, $\mbox{df} = 2$, $p < 10^{-15}$). Participants in E2 took longer to connect than participants in E1, and participants in E3 took the longest to connect.
 
 %time to success and version
-Our interface changes had a significant impact in reducing connection time (one-tailed Mann--Whitney; $ Z = -1.84$, $p = 0.0328$, $r= 0.172$). That is, the differences in mean connection times in E1-NEW vs E1-OLD and E2-NEW vs E2-OLD and E3-NEW vs E3-OLD is likely not due to random chance. We used a one-tailed Mann--Whitney test because configuration time was 1) right-censored at 40 minutes (experiment duration) and 2) non-normal and heavily right tailed (failures were assigned the maximum time of 40 minutes). 
+Our interface changes had a significant impact in reducing connection time (one-tailed Mann--Whitney; $ Z = -1.84$, $p = 0.0328$, $r= 0.172$). That is, the differences in mean connection times in E1-NEW vs E1-OLD and E2-NEW vs E2-OLD and E3-NEW vs E3-OLD is likely not due to random chance. We used a one-tailed Mann--Whitney test because the distribution of completion times were 1) right-censored at 40 minutes (experiment duration) and 2) non-normal and heavily right tailed (failures were assigned the maximum time of 40 minutes). 
 
 \begin{figure}[t]
 \centering
@@ -623,18 +623,13 @@ At 10 minutes, most participants in E2 had finished.
 
 
 \subsubsection{Configuration Time} 
-{\color {blue} 
-Configuration time is the time from Tor Browser startup to initializing a successful Tor bootstrap. This is the connection time minus the bootstrap time, which can take up to two minutes. Table~\ref{table:participant-summary} shows the median configuration times and Figure~\ref{fig:time_to_success_active_clamped} shows their distribution.
+Configuration time is the time spent configuring network components, which we define as the completion time minus any time spent on the progress screen. Table~\ref{table:participant-summary} shows the median times and Figure~\ref{fig:time_to_success_active_clamped} shows their distribution. Table~\ref{table:median_time} shows the percentage of time spent on each screen. Note that the time spent configuring bridges and proxies is {\it not} equivalent to the amount of time participants spent trying to connect, which would be the connection time minus the time spent on the progress screen for the last time (time Tor takes to bootstrap after a valild configuration). 
 
-%how its calcuated 
-We believe that a more meaningful measurement of task time is the time that participants spent interacting with the interface, excluding the time waiting for the connection to bootstrap. Failures were 40:08 - time on progress screen. With incorrect configurations, a lack of error messages on the progress screen caused some users to wait indefinitely.  Logs show that participants spent 58\% of their overall time at the progress screen. Table ~\ref{table:median_time} shows the median percentage of time spent on each screen.
-
-%things to keep in mind 
-This is just a helpful metric to supplement the connection time. Look at E1, for instance. People who failed, waited, tried, and succeeded lost the progress thing when they shouldn't have. BUT since our error thing broke, this might be a useful metric. Active time for unsuccessful participants were calculated by subtracting the amount of time spent on the progress screen from the maximum experiment time, 40 minutes. This is an approximation, since some participants searched for help on the web after exiting the interface or on the progress screen. 
+%things to keep in mind
+We believe that configuration time is a meaningful metric because 1) bootstrapping can take a couple minutes, which dominates measurements for users do not need much time to configure their connection, such as participants in E1. and 2) some mistakes, such as using a syntactically valid but unsuable proxy, generate non-interruping warnings and let the users wait indefinitely at until they manually cancel the connection to try again. But this is not the most accurate measurement of time spent configuring, since it does not reflect how some participants searched for help in another browser while waiting on the progress screen.
 
 %active time and version
-Our interface changes had a significant impact in reducing configuration time (one-tailed Mann--Whitney; $Z = -3.28$, $p = 0.000516$, $r = 0.307$). That is, the differences in mean configuration times in E1-NEW vs E1-OLD, E2-NEW vs E2-OLD and E3-NEW vs E3-OLD is likely not due to random chance. We used a one-tailed Mann--Whitney test because configuration time was 1) right-censored at 40 minutes (experiment duration) and 2) non-normal and heavily right tailed. 
-}
+Our interface changes had a significant impact in reducing configuration time (one-tailed Mann--Whitney; $Z = -3.28$, $p = 0.000516$, $r = 0.307$). That is, the differences in mean configuration times in E1-NEW vs E1-OLD and E2-NEW vs E2-OLD and E3-NEW vs E3-OLD is likely not due to random chance. We used a one-tailed Mann--Whitney test because the distribution of configuration times were also 1) right-censored and 2) non-normal and heavily right tailed, due to being an artifact of completion time. 
 
 \begin{table}[t]
 \centering
@@ -643,8 +638,7 @@ Our interface changes had a significant impact in reducing configuration time (o
 necessarily the median absolute time spent on that screen. 
 This percentage is computed independently for each screen; that is, a participant who spent the median percent 
 of time on one screen may not be the same participant who spent the median percent
-of time on other screens. Note that the time spent on the progress bar dominates the 
-time spent in the interface.} 
+of time on other screens.} 
 \label{table:median_time}
 \end{table}
 
@@ -652,12 +646,11 @@ time spent in the interface.}
 \centering
 \includegraphics{time_to_success_active_clamped}
 \caption{
-Active time, by censorship environment and interface.
 The dots show the raw active configuration times,
 while the boxplots show the medians and interquartile ranges.
 Here, non-finishing participants' active time was computed by
 subtracting the amount of time spent on the progress screen from the 
-the maximum time of 40:08.
+their assigned completion time of 40:08.
 }
 \label{fig:time_to_success_active_clamped}
 \end{figure}
