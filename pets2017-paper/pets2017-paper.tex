@@ -443,7 +443,7 @@ Security design principles:
 %in favor of guided manual configuration to give users agency in configuring their connection. 
 %Automatic configuration through network probing may put some users in certain regimes at risk. 
 %A knowledgeable user can minimize their network trace and hide that they are connecting to Tor.
-Justify why we kept the similar interface. Refer to appendix for alternative approaches. 
+Justify why we kept the similar interface.
 
 Introduction to usability design principles. 
 
@@ -794,27 +794,6 @@ error states:
 \item e11: selected proxy type, good address syntax, good ip address, bad port
 \item e12: selected proxy type, good address syntax, good ip address, blank port
 \end{itemize} 
-}
-
-\section{Alternative Approaches} 
-\label{alternatives}
-{\color {blue}
-Our goal was to deploy impactful, tested changes the Tor configuration interface. In fact, Tor version~4.5 incorporated textual and navigational changes based on our redesigned interface. Throughout our experiments, we collaborated with Tor developers and focused on discovering changes that could be deployed right away. For this reason, we assumed that the configuration process will remain a manual process that requires user inputs, as it is currently deployed. However, we list some alternative approaches that seem worth exploring. \\
-
-%remember: 	no user inputs, no network inputs, minimize info leaks
-%and:		minimal user work, full user control 
-
-\begin{description}
-\item{\bfseries Automate the configuration.} The most efficient way to connect as many users to the Tor network is to automatically configure their connection on start. A naive automation is to try configurations that would most likely work, in order (i.e. a direct connection, then an obfs3 connection without a proxy, then an meek bridge connection with out a proxy). This leaks to network eavesdroppers that the user is connecting to the Tor network. We do not know how much risk is associated with this approach. 
-\item {\bfseries automate after the first failure.} The network leak happened. But then this automation would be pretty fingerprintable behavior. 
-\item{\bfseries Ask about the risk.} An alternative to naive automation is to offer manual configuration to those that want to be more cautious and automatically configuring a connection for who are not at risk. The complication with this approach is that users may not be qualified to answer if they are at risk or may not trust Tor with this information. 
-\item{\bfseries Ask if users know what to do.} Another alternative to naive automation is to offer manual configuration to those that know how to configure their connection and to automate the process for users who do not know how to configure their connection. This may prevent the most mistakes, but does not account for the users' risk associated with using Tor. 
-\item{\bfseries Suggest configurations.} A way to help users without any automation or questions is to give users information about what would work in their country. The first page of the configuration interface can show a list of countries with a corresponding recommended configuration. This approach does not require users to answer about their risk, technical ability, or location. However, it does require that the user trust the given advice and to correctly configure their settings based on this advice. 
-\item{\bfseries Assign configurations.} This is a smart way to automate connections to the Tor network. Upon start, the interface detects proxy settings and uses them, if any. Then, all users connect to bridges that will always work (such as meek bridges), which assign them a guard relay based on their location, effectively assigning bridges for the user. 
-\end{description}
-
-We believe that automation, asking about risk, and identifying struggling users could enable significant improvements to the configuration process. 
-%for color red
 }
 
 \section{Qualitative User Study Recruitment Posting} 
