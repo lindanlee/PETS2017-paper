@@ -553,37 +553,36 @@ i.e. searching for help in another browser, restarting the application, etc.).
 \end{figure*}
 
 \subsubsection{Completion Rate} 
-{\color {blue} 
-Completion rate was defined as the percentage of users that eventually connect to Tor in an experimental condition. Table~\ref{table:participant-summary} summarizes the completion rates and Table~\ref{tab:attempts-bridge-proxy} shows the configuration for users' first successful connection. We only considered the first successful configuration, as some curious participants investigated others after completing their task. 
 
-% failure observations
-17\% (19 of 114) of participants were not able to successfully connect to Tor. Specifically, Five (P73, P75, P89, P91, P106, P110) tried a direct connection; when it failed, they assumed there was something wrong with their computer, network settings, or the Tor network. Five (P90, P93, P108, P111, P114) tried a direct connection, a default obfs3 bridge connection, then failed. Five (P74, P92, P105, P107, P113) assumed that they needed a proxy when they needed another bridge. Two (P94, P109) tried to get custom bridges but failed to format the message correctly to get a response.
-%We believe that the added advice on what to try next on error messages would have improved the rate of success. However, only 1 of 116 participants saw an error during the experiment. 
-
-%success rate and version
-Our interface changes did not have a significant impact on completion rates (Pearson's Chi-squared; $X^2 = 0.0126$, $df = 2$, $p = 0.994$). That is, the differences in completion rates of E1-NEW vs E1-OLD, E2-NEW vs E2-OLD and E3-NEW vs E3-OLD is likely not due to random chance.
-}
-
+%table
 \begin{table}[t]
 \centering
 \input{attempts-bridge-proxy.tex}
 \caption{
 Network components that led to the first successful bootstrap
 in each condition.
-Most E1 participants used a direct connection,
-but a few tried a built-in obfs3 bridge.
-All the E2 participants who succeeded,
-did so with obfs3 (the recommended bridge type)---none tried
-a different bridge before obfs3.
-% flashproxy, fte, fte-ipv6, obf4, and scramblesuit were not used! 
-All of the successful E3 participants but one
-used one of the meek bridges.
-The remaining E3 participant succeeded in an unexpected way:
-by searching the web for an open proxy and configuring it
-as the proxy setting.
+Most successful E1 participants used a direct connection,
+but a few optionally used an obfs3 bridge.
+All successful E2 participants used 
+an obfs3 bridge (the recommended option)---none used 
+flashproxy, fte, fte-ipv6, obf4, or scramblesuit bridges to connect. 
+Most successful E3 participants
+used a meek bridges, disfavoring meek-azure.
+One E3 participant succeeded in an unexpected way
+by using an open proxy and configuring it to bypass our 
+simulated environment.
 }
 \label{tab:attempts-bridge-proxy}
 \end{table}
+
+%overview
+Completion rate was defined as the percentage of users that eventually connected to Tor. Table~\ref{table:participant-summary} summarizes the completion rates and Table~\ref{tab:attempts-bridge-proxy} shows the configuration for users' first successful connection. We only considered the first successful configuration, as some curious participants tried others after completing their task. 
+
+% failure observations
+17\% (19 of 114) of participants were not able to successfully connect to Tor. Five (P73, P75, P89, P91, P106, P110) tried a direct connection. When that failed, they assumed there was something wrong with their computer, network settings, or the Tor network and never tried to configure bridges or proxies. Five (P74, P92, P105, P107, P113) users who need a bridge assumed that they needed a proxy to connect to Tor. We belive this may be due to the fact that the OLD interface defaults to showing users the proxy page (because it is the one before the progress screen) when a connection fails. Five (P90, P93, P108, P111, P114) users who needed a meek or custom bridge tried the suggested bridge (obfs3), but didn't know what to do when that failed. Two (P94, P109) users who needed a meek or custom bridge tried to get custom bridges but failed to format their email content correctly to get a response from the bridges autoresponder. We suspect that they would have succeeded if they had gotten a response. 
+
+%success rate and version
+Our interface changes did {\it not} have a significant impact on completion rates (Pearson's Chi-squared; $X^2 = 0.0126$, $df = 2$, $p = 0.994$). That is, the slight differences in completion rates between E1-NEW vs E1-OLD, E2-NEW vs E2-OLD and E3-NEW vs E3-OLD are likely due to random chance.
 
 \subsubsection{Connection time} 
 {\color {blue} 
