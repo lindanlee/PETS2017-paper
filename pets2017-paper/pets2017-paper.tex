@@ -512,11 +512,9 @@ The experiment formally began by informing participants of the simulated censors
 Participants were given 40 minutes to complete the task. After instructions, researchers maintained minimal interactions with the participants, only answering logistical questions. Afterward, we administered an exit survey to collect demographics (Appendix~\ref{quantitative-exit-survey}). We paid each participant \$30 for their time. 
 
 \subsection{Results} 
-{\color {blue} 
-124 people participated in our experiment , but use data from 114 of them. We filtered participants who made errors in completing the consent form, downloaded their own version of Tor Browser, or did not interact with the interface. Table~\ref{table:participant-summary} summarizes the rate of success, time to success, and active time for our participants' by condition. Appendix~\ref{all-participant-edges}'s Fig.~\ref{fig:all-participant-edges} summarizes invididual participants' actions throughout the experiment.
-}
+124 people participated in our experiment, but we used data from 114. We filtered participants who made errors in completing the consent form, did not understand the task, or did not interact with the instrumented interface. Table~\ref{table:participant-summary} gives an overview of the results, summarizing completion rate, connection time, and configuration time by condition. Figure~\ref{fig:all-participant-edges} summarizes all participants' paths during the experiment.
 
-\begin{table}
+\begin{table}[t]
 \centering
 \begin{tabular}{l r r r r r}
 & \multicolumn{2}{r}{completion rate} & \multicolumn{1}{r}{connection} & \multicolumn{1}{r}{configuration} \\
@@ -530,9 +528,8 @@ E3-NEW & 13/19 & 68\% & 20:25 & 1:56 \\
 E3-OLD & 10/20 & 50\% & 40:08 & 9:09 \\
 \end{tabular}
 \caption{
-A summary of participants' success in circumventing censorship
-given their simulated censorship environment and version of Tor. Those who
-failed to connect successfully were assigned the maximum time of 40:08.
+An overview of the results of the experiment. Those who
+failed to connect were assigned the maximum time of 40:08.
 }
 \label{table:participant-summary}
 \end{table}
@@ -545,13 +542,12 @@ failed to connect successfully were assigned the maximum time of 40:08.
 % the treatments.
 \includegraphics{all-participant-edges}
 \caption{
-Summary of participants' actions throughout the entire experiment.
-Different colors indicate which screen was shown at each moment.
-The ``not running'' times are those when Tor Launcher was closed;
-i.e., a participant was doing something else
-such as searching the web in another browser.
-The overall length of the lines show the total time to completion,
+A summary of our valid participants' paths through the interface.
+The length of the bars show the total time taken to complete the task,
 except for those we cut off after approximately 40 minutes.
+Different colors indicate which screen they were on during the experiment.
+The ``not running'' times are those when Tor Launcher was closed (
+i.e. searching for help in another browser, restarting the application, etc.).
 }
 \label{fig:all-participant-edges}
 \end{figure*}
@@ -572,21 +568,19 @@ Our interface changes did not have a significant impact on completion rates (Pea
 \centering
 \input{attempts-bridge-proxy.tex}
 \caption{
-Bridge--proxy combinations that led to the first successful bootstrap
-in each environment and interface.
+Network components that led to the first successful bootstrap
+in each condition.
 Most E1 participants used a direct connection,
 but a few tried a built-in obfs3 bridge.
 All the E2 participants who succeeded,
 did so with obfs3 (the recommended bridge type)---none tried
 a different bridge before obfs3.
+% flashproxy, fte, fte-ipv6, obf4, and scramblesuit were not used! 
 All of the successful E3 participants but one
 used one of the meek bridges.
 The remaining E3 participant succeeded in an unexpected way:
 by searching the web for an open proxy and configuring it
 as the proxy setting.
-%Our participants did not optionally configure a bridge in E1 or configure a non-recommended bridge in E2. 
-%we cannot claim choosing meek bridges is a direct result of our advice.
-%Recall E1 does not require users to configure a bridge, E2 requires users to configure any bridge, and E3 requires users to configure a meek or custom bridge. Note that only four of the hard-coded bridges were used to connect successfully for the first attempt were the recommended bridge and the required bridges to succeed in E3.
 }
 \label{tab:attempts-bridge-proxy}
 \end{table}
