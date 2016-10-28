@@ -678,19 +678,18 @@ Ideally, users should be able to connect to Tor within a few minutes, regardless
 
 \section{Recommendations}
 \label{recommendations}
-We believe that adopting our design will help save users time when connecting to Tor. But we do not claim how much and in what way each change impacted our participants, since we did not test them independently. Some of our changes may have little or negative effects, but may be masked by other changes with positive effects. We also recognize that there may be equivalent or more impactful changes that may be made in place of ours. 
-
-We hope that our inspection, design, and evaluation evaluation process provided valuable insight for potential changes. We do not recommend our specific design changes, but offer some advice and accompanying suggestions: \\
+We do believe that adopting our design will help save users time when connecting to Tor. But since we did not test our design changes independently, we cannot (and do not) claim the effects each change we made. Some of our changes may have little or negative effect. Additionally, we recognize equivalent (or more impactful!) changes could be made in place of ours. Therefore, we do not recommend specific changes, but offer some suggestions based on what we learned: \\
 
 \begin{itemize}
-\item {\bfseries Use less words.} While a thorough explanation isn't always possible with brevity, users are more likely to read the text if it is short.
-\item {\bfseries Minimize work.} Ask users to perform tasks only when necessary. Hide less frequently used options or components. Redirect users to the relevant pages (i.e. redirect to the bridge screen the bridge fails).  
-\item {\bfseries Give advice.} Guide users toward connecting directly unless they need a bridge or proxy, help them decide between transports, and discourage them from configuring optional components. 
-\item {\bfseries Add system visibility.} Rather than requiring users to remember their bridge and proxy configuraitons, summarize their choices. The progress bar should reflect the current state of the connection.
-\item {\bfseries Provide feedback.} In addition to displaying the error message, tell users what to try next when they encounter that error. 
+\item {\bfseries Use less words.} Shorten text so users read it.
+\item {\bfseries Give advice.} Discourage users from configuring optional components. Add a secondary recommendation (try meek if obfs3 doesn't work). 
+\item {\bfseries Hide infrequent options.} Hide the proxy configuration screen and less-used transports. 
+\item {\bfseries Minimize work.} Detect if users need a proxy or not. Redirect users to the relevant pages on error (i.e. redirect to the bridge screen the bridge fails).  
+\item {\bfseries Add system visibility.}  Show users their bridge and proxy settings before and during connection. Fix the progress bar updating weirdness.
+\item {\bfseries Provide feedback.} Tell users what to do when a specific error occurs (i.e. try agin, fix bridges, etc.). 
 \end{itemize}
 
-We should consider alternative approaches of bootstrapping a connection to Tor. We recommend leveraging automation, user-dependent inputs, or network-dependent inputs for a solution that will help more users succed in a shorter amount of time. We start this discussion by sharing some of our own ideas in appendix~\ref{alternatives}. 
+Although the abovementioned suggestions will improve the deployed interface, we recommend exploring solutions that leverage automation, user-dependent inputs, or network-dependent inputs. We start this discussion by sharing some of our own ideas in appendix~\ref{alternatives}. 
 
 \section{Limitations}
 \label{sec:limitations}
