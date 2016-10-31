@@ -426,67 +426,35 @@ A redesigned version of the Tor Browser 5.0.3. Tor Launcher GUI.
 \label{fig:new-interface}
 \end{figure*} 
 
-
 \subsection{Design Princples} 
-{\color {blue}
-Introduce design principles. 
+The interface currently favors a guided manual configuration over an automated configuration with network probing. Our redesign preserves this approach and has no user-dependent inputs, no network-dependent inputs, and minimal information leaks.
 
-Security design principles: 
-\begin{enumerate}
-\item no user-dependent inputs 
-\item no network-dependent inputs
-\item minimal information leaks
-\end{enumerate} 
+{\color {blue} WRITE ABOUT PAIN POINTS HERE} We aimed to minimize work, give targeted feedback, and to build a mental model.
 
-%In principle, the process of configuring a proxy and bridge can be automated, but
-%the interface eschews automatic configuration through network probing
-%in favor of guided manual configuration to give users agency in configuring their connection. 
-%Automatic configuration through network probing may put some users in certain regimes at risk. 
-%A knowledgeable user can minimize their network trace and hide that they are connecting to Tor.
-Justify why we kept the similar interface.
+\subsection{Changes Made} 
+We made these changes for a more usable interface. \\
 
-Introduction to usability design principles. 
-
-Usability design principles: 
-\begin{enumerate}
-\item minimal user work
-\item full user control  
-\item targeted user feedback
-\item build a mental model
-\end{enumerate} 
-}
-
-\subsection{Design Changes} 
-{\color {blue}
-Introduction to design changes.  \\
-
-\noindent Changes made for minimal user work: 
+\noindent To minimize work: 
 \begin{itemize}
-\item eliminated technical questions. Less questions to answer, less screens. 
-\item auto-detection for proxies. A local scan of the operating system configuration does reveal information to network eavesdroppers and can detect if a proxy is used (if configured in other browsers). (We simulated the auto-detection by hard-coding the fact that a proxy was not required.)
+\item We eliminated technical questions, resulting in less tasks and interface screens. 
+\item We simulated auto-detection for proxies, telling users that they did not need a proxy. This is feasible to do with a local scan (no information leaked). 
+\item We labeled the configure button as an option for users in heavily censored environments.
+\item We gave advice on choosing transports, telling users to try a meek bridge if obfs3 does not work.
 \end{itemize} 
 
-Changes made for full user control: 
+To give targeted feedback: 
 \begin{itemize}
-\item added intructions on what to try next on errors. The advice may be to try the connection again, to choose a different bridge, or to try a connection without a proxy. 
-\item added advice for choosing connect versus configure. Before, the interface only informed users that the connect option worked some of the time, but did not specify why. We labeled the configure option as a manual option  specifically for users in heavily censored environments.
-\item gave advice on choosing transports. We tell users to try a meek bridge if obfs3 does not work.
+\item We switched added indicators to the progress bar to show the progress of bridges and proxies. 
+\item We told users what to try next on errors (i.e. choose a different bridge, try a without a proxy). 
 \end{itemize}
 
-Changes made for feedback: 
+To build a mental model:
 \begin{itemize}
-\item progress bar feedback fixed and network-accurate. We fixed the bug that caused the progress bar to not update on subsequent attempts. We switched the continuous progress bar to a discrete checkpoint-based progress indicator that shows the network components involved in connecting to the Tor network. 
-\item minimized interface text. Whenever we could, we tried to shave text and keep it simple. 
+\item We added a summary screen displays the current bridge and proxy settings for system visibility. 
+\item We switched proxy and bridge screens to put them in a topologically sequential order (Figure~\ref{fig:topology}).
 \end{itemize}
 
-Changes made to build a mental model:
-\begin{itemize}
-\item added system status visibility. We added a summary screen displays the current bridge and proxy settings
-\item switched proxy and bridge configuration order. Network components are now configured in a topologically sequential order, resembling Fig.~\ref{fig:topology}.
-\end{itemize}
-
-Refer to figure with all deployed interface window (in previous section), refer to figure with all new interface windows (in caption, refer to appendix with advice text given on errors). Intorduce new/old labels. 
-}
+Figure~\ref{fig:new-interface} shows the resulting interface.  Figure~\ref{fig:old-interface} shows the unchanged version. 
 
 \section{Summative Usability Testing}
 \label{sec:quantitative}
