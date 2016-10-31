@@ -153,7 +153,7 @@ Tor relays are routers in the Tor Network that receive and pass along Tor traffi
 There are three types of Tor relays: guard relays that serve as an entry node, middle relays that forward traffic from an entry node to an exit node, and exit relays which directs traffic to the destination. 
 Censors can block access to the Tor network by blocking these relays, which are publicly listed. 
 
-Bridges are unlisted Tor relays that can serve as an alternative entry node.
+Bridges are unlisted Tor relays that serve as an alternative entry node.
 Bridges can be simple, unlisted relays. 
 But most bridges run a pluggable tranport (referred to as ``transport'' for shorthand) that obfuscates the traffic. 
 Most transports disguise traffic to defeat on-the-wire identification, relying on the secrecy of their static IP addresses for their effectiveness.
@@ -182,7 +182,7 @@ censorship circumvention technologies (``pluggable transports'').
 \label{fig:bridge-options}
 \end{figure}
 
-In addition to Tor-specific components, a local proxy is required to connect 
+A local proxy is required to connect 
 in certain managed networks. In this paper, ``proxy'' refers to a local, ordinary unobfuscated proxy such as a SOCKS or HTTP proxy. (Technically, Tor relays, bridges, and local proxies all allow indirect network connections to other network services and can be considered a proxy.) Fig.~\ref{fig:topology} illustrates the interacting components.
 
 \begin{figure}
@@ -201,7 +201,7 @@ When a bridge is used, it becomes the first Tor relay.
 \end{figure}
 
 \subsection{State and Corporate Censorship}
-State level censors can vary in their thoroughness in censorship, resulting in a variety of ever-changing network conditions. Some block websites with a combination of IP blacklisting and DNS-poisoning while others that employ more sophisticated techniques such as deep packet inspection and protocol detection. In countries that censor services but do not block censorship circumvention tools, any connection to Tor will byass the censorship. In other countries, sophisticated state-level censorship require bridges that run specific tranports that route traffic through other, non-Tor services first. For example, only meek-amazon and meek-azure transports work to bypass China's GFW. 
+State level censors can vary in their thoroughness in censorship. Some block websites with a combination of IP blacklisting and DNS-poisoning while others that employ more sophisticated techniques such as deep packet inspection and protocol detection. In countries that censor services but do not block censorship circumvention tools, any connection to Tor will byass the censorship. In other countries, sophisticated state-level censorship require custom bridges or bridges that run specific tranports that route traffic through non-Tor services first. 
 
 Some companies and educational institutions have a firewall, which can be bypassed with a proxy (with or without a connection to Tor). 
 
@@ -395,10 +395,6 @@ When participants did encounter an error message, they did not understand what e
 \pquote{P1}{It was hard to figure out if the progress bar wasn't moving because the connection was censored, or if it was just slow.}
 \pquote{P16}{There doesn't seem to be a timeout on any of this stuff. Am I waiting long enough? It should work immediately.}
 \pquote{P15}{I didn't know if this computer had any proxy information. I wasn't able to find it if it did.}
-
-\subsection{Where Users Struggled} 
-{\color {blue}
-LIST `EM! 
 }
 
 \begin{figure}[t]
@@ -407,9 +403,13 @@ LIST `EM!
     \caption{An example of a technical error message which our participants did not understand.}
 \label{fig:error}
 \end{figure}
+
+\subsection{Pain Points in Tor Launcher} 
+{\color {blue}
+LIST `EM! 
 }
 
-\section{Design Principles and Changes}
+\section{A Design Iteration}
 \label{sec:design} 
 This section discusses how we converted our formative usability testing observations into design changes. 
 
@@ -591,7 +591,7 @@ Connection time is the time from Tor Browser starup to the first successful Tor 
 The simulated censorship environment, and therefore, the difficulty of the configuration, was the most determining factor for connection time (Kruskal--Wallis $\chi^2 = 80.5$, $\mbox{df} = 2$, $p < 10^{-15}$). Participants in E2 took longer to connect than participants in E1, and participants in E3 took the longest to connect.
 
 %time to success and version
-Our interface changes had a significant impact in reducing connection time (one-tailed Mann--Whitney; $ Z = -1.84$, $p = 0.0328$, $r= 0.172$). That is, the differences in mean connection times in E1-NEW vs E1-OLD and E2-NEW vs E2-OLD and E3-NEW vs E3-OLD is likely not due to random chance. We used a one-tailed Mann--Whitney test because the distribution of completion times were 1) right-censored at 40 minutes (experiment duration) and 2) non-normal and heavily right tailed (failures were assigned the maximum time of 40 minutes). 
+Our interface changes had a significant impact in reducing connection time (one-tailed Mann--Whitney; $ Z = -1.84$, $p = 0.0328$, $r= 0.172$). That is, the differences in mean connection times in E1-NEW vs E1-OLD and E2-NEW vs E2-OLD and E3-NEW vs E3-OLD is likely not due to random chance. We used a one-tailed Mann--Whitney test because the distribution of completion times were 1) right-censored at 40 minutes (experiment duration) and 2) non-normal and heavily right tailed (failures were assigned a time of 40 minutes). 
 
 \begin{figure}[t]
 \centering
@@ -628,7 +628,7 @@ Configuration time is the time spent configuring network components, which we de
 %things to keep in mind
 We believe that configuration time is a meaningful metric because 1) bootstrapping can take a couple minutes, which dominates measurements for users do not need much time to configure their connection, such as participants in E1. and 2) some mistakes, such as using a syntactically valid but unsuable proxy, generate non-interruping warnings and let the users wait indefinitely at until they manually cancel the connection to try again. But this is not the most accurate measurement of time spent configuring, since it does not reflect how some participants searched for help in another browser while waiting on the progress screen.
 
-%active time and version
+%configuration time and version
 Our interface changes had a significant impact in reducing configuration time (one-tailed Mann--Whitney; $Z = -3.28$, $p = 0.000516$, $r = 0.307$). That is, the differences in mean configuration times in E1-NEW vs E1-OLD and E2-NEW vs E2-OLD and E3-NEW vs E3-OLD is likely not due to random chance. We used a one-tailed Mann--Whitney test because the distribution of configuration times were also 1) right-censored and 2) non-normal and heavily right tailed, due to being an artifact of completion time. 
 
 \begin{table}[t]
@@ -663,7 +663,7 @@ Ideally, almost all users should be able to configure the necessary or optional 
 
 \section{Recommendations}
 \label{recommendations}
-We do believe that adopting our design will help save users time when connecting to Tor. But since we did not test our design changes independently, we cannot (and do not) claim the effects each change we made. Some of our changes may have little or negative effect. Additionally, we recognize equivalent (or more impactful!) changes could be made in place of ours. Therefore, we do not recommend specific changes, but offer some suggestions for Tor Launcher's GUI based on what we learned: \\
+We do believe that adopting our design will help save users time when connecting to Tor. But since we did not test our design changes independently, we cannot (and do not) claim the effects each change we made. Therefore, we do not recommend specific changes, but offer some suggestions for Tor Launcher's GUI based on what we learned: \\
 
 \begin{itemize}
 \item {\bfseries Use less words.} Shorten text so users read it.
@@ -674,7 +674,7 @@ We do believe that adopting our design will help save users time when connecting
 \item {\bfseries Provide feedback.} Tell users what to do when a specific error occurs (i.e. try agin, fix bridges, etc.). 
 \end{itemize}
 
-Although the abovementioned suggestions will improve the deployed interface, we recommend exploring solutions that leverage automation, user-dependent inputs, or network-dependent inputs. We start this discussion by sharing some of our own ideas in appendix~\ref{alternatives}. 
+We also recommend exploring solutions that leverage automation, user-dependent inputs, or network-dependent inputs. We start this discussion by sharing some of our own ideas in appendix~\ref{alternatives}. 
 
 \section{Limitations}
 \label{sec:limitations}
