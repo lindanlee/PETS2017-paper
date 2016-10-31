@@ -21,7 +21,7 @@
 % Format a participant quotation.
 \newcommand{\pquote}[2]{
 \begin{quotation}
-\noindent #1:~\textit{``#2''}
+\noindent #1:~\textit{#2}
 \end{quotation}
 }
   
@@ -373,28 +373,82 @@ we asked them standard interview questions about their experience (Appendix~\ref
 {\color {blue}
 We give a summary of all participants here!  Quotations come from live transcription and are not necessarily verbatim.
 
-Observations in E1: 
-\pquote{P1, NF}{summary of what they did. ``and a quote too.''}
-\pquote{P2, NF}{summary of what they did. ``and a quote too.''}
-\pquote{P3, NF}{summary of what they did. ``and a quote too.''}
-\pquote{P4, HT}{summary of what they did. ``and a quote too.''}
-\pquote{P5, UT}{summary of what they did. ``and a quote too.''}
+%E1: P2, P3, P4, P9, P10
+%E2: P7, P8, P11, P12, P13
+%E3: P1, P5, P6, P14, P15, P16
 
-Observations in E2:
+%TODO: re-watch the videos and get the exact times. 
 
-Observations in E3: 
+A summary about what we have seen in E1. Just put the high level takeaways so 
+that people don't really need to read the summaries. Observations in E1: 
 
-\pquote{P2}{I don't know what any of those [list of bridges] means, or what that [proxy] means at all.}
-\pquote{P3}{The vocabulary is really challenging, for someone not doing IT work.}
-\pquote{P\#}{find when Michael said he didn't know if he was E2 or E3!} 
-\pquote{P8}{I have no clue what's the difference between flashproxy, fte, etc. I need to know why the built-in ones aren't working. And why do I need a custom bridge if there are options built in?}
-\pquote{P7}{Since it (obfs3) said recommended, it helped actually, and I selected it because it was chosen. I saw the custom bridges option, but I didn't know what to enter there so I went with this (obfs3).}
-When participants did encounter an error message, they did not understand what errors meant (Fig.~\ref{fig:error}).
-%The progress bar has a bug that causes it to update only when the level of progress increases.
-%If progress bar reaches a 90\% and fails, the next attempt have regressed to 0\% and remain there until the progress surpasses 90\%. Due to this, participants assumed that their subsequent attempts were wrong, even if they were right.
-\pquote{P1}{It was hard to figure out if the progress bar wasn't moving because the connection was censored, or if it was just slow.}
-\pquote{P16}{There doesn't seem to be a timeout on any of this stuff. Am I waiting long enough? It should work immediately.}
-\pquote{P15}{I didn't know if this computer had any proxy information. I wasn't able to find it if it did.}
+%P2(regular): E1 (~1:52) 
+\pquote{P1 (success, connection time, configuration time)}{summary of what they did here.}
+
+%P3(regular): E1 (N/A; lost chunk of video… but ~1 minute) 
+\pquote{P2 (success, connection time, configuration time)}{summary of what they did here.}
+
+%P4(regular): E1 (~4:30)
+\pquote{P3 (success, connection time, configuration time)}{summary of what they did here.}
+
+%P9 (regular): E1 (~0:45)
+\pquote{P4 (success, connection time, configuration time)}{summary of what they did here.}
+
+%P10 (has used Tor before): E1 (GET TIME)
+\pquote{P5 (success, connection time, configuration time)}{summary of what they did here.}
+
+A summary about what we have seen in E2. Just put the high level takeaways so 
+that people don't really need to read the summaries. Observations in E2: 
+
+%P7 (heard of Tor): E2 (~4:30) 
+\pquote{P6 (success, connection time, configuration time)}{summary of what they did here.}
+
+%P8 (used Tor): E2 (clock drift mission impossible, never succeeds) 
+\pquote{P7 (success, connection time, configuration time)}{summary of what they did here.}
+
+%P11 (used Tor before): E2 (~3:00)
+\pquote{P8 (success, connection time, configuration time)}{summary of what they did here.}
+
+%P12 (regular): E2 (GET TIME)
+\pquote{P9 (success, connection time, configuration time)}{summary of what they did here.}
+
+%P13 (regular): E2 (GET TIME) 
+\pquote{P10 (success, connection time, configuration time)}{summary of what they did here.}
+
+A summary about what we have seen in E3. Just put the high level takeaways so 
+that people don't really need to read the summaries. Observations in E3: 
+
+%P1 (heard of tor before): E3 (~8:30) 
+\pquote{P11 (success, connection time, configuration time)}{summary of what they did here.}
+
+%P5 (has used tor before): E3 (~22:30)
+\pquote{P12 (success, connection time, configuration time)}{summary of what they did here.}
+
+%P6 (heard of Tor): E3 (~26:50) 
+\pquote{P13 (success, connection time, configuration time)}{summary of what they did here.}
+
+%P14 (regular): E3 FAIL
+\pquote{P14 (success, connection time, configuration time)}{summary of what they did here.}
+
+%P15 (regular): E3 FAIL
+\pquote{P15 (success, connection time, configuration time)}{summary of what they did here.}
+
+%P16: E3 FAIL (why did obfs3 work the first time? It shouldn't have!) 
+\pquote{P16 (success, connection time, configuration time)}{summary of what they did here.}
+
+%\pquote{P2}{I don't know what any of those [list of bridges] means, or what that [proxy] means at all.}
+%\pquote{P3}{The vocabulary is really challenging, for someone not doing IT work.}
+%\pquote{P\#}{find when Michael said he didn't know if he was E2 or E3!} 
+%\pquote{P8}{I have no clue what's the difference between flashproxy, fte, etc. I need to know why the built-in ones aren't working. And why do I need a custom bridge if there are options built in?}
+%\pquote{P7}{Since it (obfs3) said recommended, it helped actually, and I selected it because it was chosen. I saw the custom bridges option, but I didn't know what to enter there so I went with this (obfs3).}
+%When participants did encounter an error message, they did not understand what errors meant (Fig.~\ref{fig:error}).
+%%The progress bar has a bug that causes it to update only when the level of progress increases.
+%%If progress bar reaches a 90\% and fails, the next attempt have regressed to 0\% and remain there until the progress surpasses 90\%. Due to this, participants assumed that their subsequent attempts were wrong, even if they were right.
+%\pquote{P1}{It was hard to figure out if the progress bar wasn't moving because the connection was censored, or if it was just slow.}
+%\pquote{P16}{There doesn't seem to be a timeout on any of this stuff. Am I waiting long enough? It should work immediately.}
+%\pquote{P15}{I didn't know if this computer had any proxy information. I wasn't able to find it if it did.}
+
+Some qualifiers about how these are supposed to be insights, but we don't know how representative these problems are. That's for the summative user testing! But these are definitely problems that exist. 
 }
 
 \begin{figure}[t]
