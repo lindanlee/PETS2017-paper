@@ -337,7 +337,7 @@ This section discusses our small-scale, qualitative usability experiment and res
 \subsection{Recruitment}
 We recruited people from Craigslist using the recruitment text in Appendix~\ref{qualitative-recruitment}, which linked an presecreening survey that collected demographics (Appendix~\ref{qualitative-prescreening}). We pre-screened~\cite{screening} for diversity in gender, age, technical expertise, use of security tools, and familiarity with Tor in a small participant pool. Of our 16 recruited participants, 53.3\% were male. Ages ranged from 20 to~62 years ($\mu = 24.5$, $\sigma = 12.6$). 93.3\% of our participants had college education. We took participants' self-reported familiarity with technical terms use of security tools with skepticism (Appendix~\ref{prescreening-responses}). We verified their self-reported familiarity with Tor Browser in-person, and found that 4 used it, 5 heard of it but not used it, and the remaining 8 never heard of or used it.  
 
-We distributed participants evenly across experimental conditions:  5~in E1, 5~in E2, and 6~in E3. Although there is variation in gender, age, ``technical expertise,'' and ``use of security tools'' in each experimental condition, we ensured each condition had a participant who used Tor Browser, a participant who heard of it, and multiple participants who never heard of or used it. 
+We distributed participants evenly across experimental conditions:  5~in E1, 5~in E2, and 6~in E3. Although there is variation in gender, age, ``technical expertise,'' and ``use of security tools'' in each experimental condition, we ensured each condition had a participant who used Tor Browser before. 
 
 \subsection{Setup} 
 We ran the experiment in a meeting room in <redacted building> at <redacted university>. The room had a desk and chair, where a monitor, keyboard, and a Windows 8 computer were set up. On a clean computer, we manually downloaded and installed the necessary software for the experiment: Tor Browser 5.0.3 for testing, Chrome, Firefox, and Internet Explorer to allow users to browse the Internet on a another browser of their choice, and VLC to record the screen during the experiment. Before each participant entered the room, we ran a script on the computer that
@@ -367,59 +367,63 @@ Participants were given 45 minutes to complete their worksheet.
 After instructions, the researchers left and watched a live feed of the participants' screen in another room to minimize interactions.
 
 After participants completed the browsing tasks (or ran out of time),
-we asked them standard interview questions about their experience (Appendix~\ref{interview-questions}) and took notes of their responses. We then followed up with participant-specific questions to verify any hypotheses we had from observation (e.g. ``the participant was selecting bridges at random''). We paid each participant~\$30 for their time. 
+we asked them standard interview questions about their experience (Appendix~\ref{interview-questions}) and took notes of their responses. We then followed up with participant-specific questions to verify any hypotgit heses we had from observation (e.g. ``the participant was selecting bridges at random''). We paid each participant~\$30 for their time. 
 
-\subsection{Observations and Interviews} 
-{\color {blue}
-We give a summary of all participants here!  Quotations come from live transcription and are not necessarily verbatim.
+\subsection{Results} 
+We give a summary of what our participants did below. We watched the screen recording to summerize their actions and referred to their interviews for insight into why they took specific actions. 
 
 %E1: P2, P3, P4, P9, P10
 %E2: P7, P8, P11, P12, P13
 %E3: P1, P5, P6, P14, P15, P16
 
 %TODO: re-watch the videos and get the exact times. 
+%https://github.com/lindanlee/PETS2017-paper/tree/master/sessions/pre/videos
 
-A summary about what we have seen in E1. Just put the high level takeaways so 
-that people don't really need to read the summaries. Observations in E1: 
+In E1, any connection to Tor will work. Bridges and proxies are optional.  
+Participants in E1 were able to connect to Tor, but most were unsure if their actions were correct. Three of the five participants configured bridges that they did not need. 
+Observations in E1: 
 
-%P2(regular): E1 (~1:52) 
-\pquote{P1 (success, connection time, configuration time)}{summary of what they did here.}
+%P9 (regular): E1 (0:39; 4:49 to 5:28)
+\pquote{P1 (new user, direct, 0:39)}{They clicked connect on the first screen almost immediately.}
 
-%P3(regular): E1 (N/A; lost chunk of video… but ~1 minute) 
-\pquote{P2 (success, connection time, configuration time)}{summary of what they did here.}
+%P2(regular): E1 (1:20, 0:22 to 1:42) 
+\pquote{P2 (new user, direct, 1:20)}{They spent time reading all the text on the start screen, and clicked connect. They chose to connect directly because they were intimidated by the other option.}
 
-%P4(regular): E1 (~4:30)
-\pquote{P3 (success, connection time, configuration time)}{summary of what they did here.}
+%P10 (has used Tor before): E1 (1:02; 0:13 to 1:15)
+\pquote{P3 (previous Tor user, obfs3, 1:02)}{They clicked configure and connected with the recommended bridge.}
 
-%P9 (regular): E1 (~0:45)
-\pquote{P4 (success, connection time, configuration time)}{summary of what they did here.}
+%P3(regular): E1 (N/A; 5:47 to 6:26) 
+\pquote{P4 (new user, obfs3, ~1:39)}{They clicked configure and connected with the recommended bridge. They were going to use a proxy, but decided not to when they saw the proxy input fields.}
 
-%P10 (has used Tor before): E1 (GET TIME)
-\pquote{P5 (success, connection time, configuration time)}{summary of what they did here.}
+%P4(regular): E1 (8:56, 7:22 to 16:18)
+\pquote{P5 (new user, obfs4, 8:56)}{They clicked configure, chose the recommended bridge, and then tried to configure a proxy. After not being able to fill out the proxy input fields, they go back to the bridge screen, select the obfs4 bridge, and make a connection without a proxy.}
 
-A summary about what we have seen in E2. Just put the high level takeaways so 
-that people don't really need to read the summaries. Observations in E2: 
+In E2, a bridge is required to connect, but any bridge will work. Proxies are optional. 
+Participants in E2 usually tried a direct connection before {\it eventually} trying the recommended bridge. Participants spent a fair bit of time trying to answer bridge and proxy questions and trying to configure proxies. 
+Observations in E2: 
 
-%P7 (heard of Tor): E2 (~4:30) 
-\pquote{P6 (success, connection time, configuration time)}{summary of what they did here.}
+%P7 (heard of Tor): E2 (4:04; 0:29 to 4:33) 
+\pquote{P6 (new user, obfs3, 4:04)}{They click connect and wait three minutes before giving up on the direct connection. They then clicked configure and connected with the recommended bridge, because it was the next easiest thing to do.}
 
-%P8 (used Tor): E2 (clock drift mission impossible, never succeeds) 
-\pquote{P7 (success, connection time, configuration time)}{summary of what they did here.}
+%P11 (used Tor before): E2 (~3:00; 1:05 to 5:13)
+\pquote{P7 (previous Tor user, obfs3, 4:08)}{They clicked connect and made a direct connection. Then, they clicked configure, answered no to both bridge and proxy questions, and effectively made another direct connection. After that, they go back to the bridge screen and finally connect with the recommended bridge.}
 
-%P11 (used Tor before): E2 (~3:00)
-\pquote{P8 (success, connection time, configuration time)}{summary of what they did here.}
+%P13 (regular): E2 (7:48; 0:34 to 9:22) 
+\pquote{P8 (new user, obfs3, 9:22)}{They clicked connect to make a direct connection. When that did not work, they restarted Tor Launcher and made another direct connection--and repeated this three times. On the fourth restart, they decided to configure a proxy, but gave up. On the fifth restart, they connect with the recommended bridge.}
 
-%P12 (regular): E2 (GET TIME)
-\pquote{P9 (success, connection time, configuration time)}{summary of what they did here.}
+%P12 (regular): E2 (10:40; 0:46 to 11:26)
+\pquote{P9 (new user, direct, 10:40)}{They clicked configure, but answer no to both bridge and proxy questions and made a direct connection, which fails. They then look at proxy settings, get intimidated, and try the direct connection again, which fails. They look for proxy settings and tried configuring a proxy for 4 minutes, but give up and try a diret connection again, which worked. This was not supposed to work, but new public relays came online after we ran our firewall rules and they connected using those relays.}
 
-%P13 (regular): E2 (GET TIME) 
-\pquote{P10 (success, connection time, configuration time)}{summary of what they did here.}
+%P8 (used Tor): E2 (clock drift mission impossible, 1:38 to 7:20) 
+\pquote{P10 (previous Tor user, failed to connect)}{They clicked connect to make a direct connection, then they made a connection with the recommended bridge (~5:42), which should have worked. However, our setup experienced a clock drift. Tor does not allow connections with bad clocks, so they could not connect to Tor unless they fixed the clock. The interface did not display an error for the clock drift, and they spent the rest of their time trying different bridges and proxies in vain.}
 
-A summary about what we have seen in E3. Just put the high level takeaways so 
-that people don't really need to read the summaries. Observations in E3: 
+{\color {blue}
+In E3, a bridge is required to connect, but only meek bridges work. Proxies are optional. 
+Summary of E3 connections. 
+Observations in E3: 
 
-%P1 (heard of tor before): E3 (~8:30) 
-\pquote{P11 (success, connection time, configuration time)}{summary of what they did here.}
+%P1 (heard of tor before): E3 (~7:31, 0:51 to 8:22) 
+\pquote{P11 (success, 7:31)}{The participant tries connecting directy to the Tor network and connecting to the Tor network with an obfs3 bridge, both of which do not connect to Tor E3. Eventually, the participant selects a bridge that will connect to Tor (meek-azure), but was convinced that it would not work because it was taking too slow. They go back to the first page and click connect, which uses the configured meek-azure bridge. The participant thought that they had connected to Tor directly, and did not realize that the connect button uses whatever settings are toggled in the interface.}
 
 %P5 (has used tor before): E3 (~22:30)
 \pquote{P12 (success, connection time, configuration time)}{summary of what they did here.}
@@ -436,6 +440,15 @@ that people don't really need to read the summaries. Observations in E3:
 %P16: E3 FAIL (why did obfs3 work the first time? It shouldn't have!) 
 \pquote{P16 (success, connection time, configuration time)}{summary of what they did here.}
 
+Some qualifiers about how these are supposed to be insights, but we don't know how representative these problems are. That's for the summative user testing! But these are definitely problems that exist. 
+}
+
+\subsection{Pain Points in Tor Launcher} 
+{\color {blue}
+A summary about what we have seen in E1, E2, E3. How to fix it. 
+Use some quotes here, and say insights from the interview. 
+Quotations come from live transcription and are not necessarily verbatim.
+
 %\pquote{P2}{I don't know what any of those [list of bridges] means, or what that [proxy] means at all.}
 %\pquote{P3}{The vocabulary is really challenging, for someone not doing IT work.}
 %\pquote{P\#}{find when Michael said he didn't know if he was E2 or E3!} 
@@ -447,20 +460,6 @@ that people don't really need to read the summaries. Observations in E3:
 %\pquote{P1}{It was hard to figure out if the progress bar wasn't moving because the connection was censored, or if it was just slow.}
 %\pquote{P16}{There doesn't seem to be a timeout on any of this stuff. Am I waiting long enough? It should work immediately.}
 %\pquote{P15}{I didn't know if this computer had any proxy information. I wasn't able to find it if it did.}
-
-Some qualifiers about how these are supposed to be insights, but we don't know how representative these problems are. That's for the summative user testing! But these are definitely problems that exist. 
-}
-
-\begin{figure}[t]
-  \centering
-    \includegraphics[width=0.5\textwidth]{error.png}
-    \caption{An example of a technical error message which our participants did not understand.}
-\label{fig:error}
-\end{figure}
-
-\subsection{Pain Points in Tor Launcher} 
-{\color {blue}
-LIST `EM! 
 }
 
 \section{A Design Iteration}
