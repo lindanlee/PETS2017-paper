@@ -384,68 +384,68 @@ Participants in E1 were able to connect to Tor, but most were unsure if their ac
 Observations in E1: 
 
 %P9 (regular): E1 (0:39; 4:49 to 5:28)
-\pquote{P1 (new user, direct, 0:39)}{They clicked connect on the first screen almost immediately.}
+\pquote{P1 (new user, direct, 0:39)}{They made a direct connection immediately.}
 
 %P2(regular): E1 (1:20, 0:22 to 1:42) 
-\pquote{P2 (new user, direct, 1:20)}{They spent time reading all the text on the start screen, and clicked connect. They chose to connect directly because they were intimidated by the other option.}
-
-%P10 (has used Tor before): E1 (1:02; 0:13 to 1:15)
-\pquote{P3 (previous Tor user, obfs3, 1:02)}{They clicked configure and connected with the recommended bridge.}
+\pquote{P2 (new user, direct, 1:20)}{They spent time reading the text on the start screen, and chose to connect directly because they were intimidated by the other option.}
 
 %P3(regular): E1 (N/A; 5:47 to 6:26) 
-\pquote{P4 (new user, obfs3, ~1:39)}{They clicked configure and connected with the recommended bridge. They were going to use a proxy, but decided not to when they saw the proxy input fields.}
+\pquote{P3 (new user, obfs3, ~1:39)}{They connected with the recommended bridge. They were also going to use a proxy, but decided not to when they saw the proxy input fields.}
 
 %P4(regular): E1 (8:56, 7:22 to 16:18)
-\pquote{P5 (new user, obfs4, 8:56)}{They clicked configure, chose the recommended bridge, and then tried to configure a proxy. After not being able to fill out the proxy input fields, they go back to the bridge screen, select the obfs4 bridge, and make a connection without a proxy.}
+\pquote{P4 (new user, obfs4, 8:56)}{They chose the recommended bridge and then tried to configure a proxy. After not being able to fill out the proxy input fields, make a connection with an obfs4 bridge and no proxy. Note that they didn't try connecting with the obfs3 bridge, which would have worked.}
+
+%P10 (has used Tor before): E1 (1:02; 0:13 to 1:15)
+\pquote{P5 (previous Tor user, obfs3, 1:02)}{They connected with the recommended bridge.}
 
 In E2, a bridge is required to connect, but any bridge will work. Proxies are optional. 
 Participants in E2 usually tried a direct connection before {\it eventually} trying the recommended bridge. Participants spent a fair bit of time trying to answer bridge and proxy questions and trying to configure proxies. 
 Observations in E2: 
 
 %P7 (heard of Tor): E2 (4:04; 0:29 to 4:33) 
-\pquote{P6 (new user, obfs3, 4:04)}{They click connect and wait three minutes before giving up on the direct connection. They then clicked configure and connected with the recommended bridge, because it was the next easiest thing to do.}
-
-%P11 (used Tor before): E2 (~3:00; 1:05 to 5:13)
-\pquote{P7 (previous Tor user, obfs3, 4:08)}{They clicked connect and made a direct connection. Then, they clicked configure, answered no to both bridge and proxy questions, and effectively made another direct connection. After that, they go back to the bridge screen and finally connect with the recommended bridge.}
+\pquote{P6 (new user, obfs3, 4:04)}{They made a direct connection and giving up after three minutes of waiting. Then, they connected with the recommended bridge.}
 
 %P13 (regular): E2 (7:48; 0:34 to 9:22) 
-\pquote{P8 (new user, obfs3, 9:22)}{They clicked connect to make a direct connection. When that did not work, they restarted Tor Launcher and made another direct connection--and repeated this three times. On the fourth restart, they decided to configure a proxy, but gave up. On the fifth restart, they connect with the recommended bridge.}
+\pquote{P7 (new user, obfs3, 9:22)}{They made a direct connection. When that did not work, they restarted Tor Launcher and made another direct connection--and repeated this two more times. On the fourth restart, they decided to not use a bridge but tried to configure a proxy, but gave up. On the fifth restart, they connect with the recommended bridge.}
 
 %P12 (regular): E2 (10:40; 0:46 to 11:26)
-\pquote{P9 (new user, direct, 10:40)}{They clicked configure, but answer no to both bridge and proxy questions and made a direct connection, which fails. They then look at proxy settings, get intimidated, and try the direct connection again, which fails. They look for proxy settings and tried configuring a proxy for 4 minutes, but give up and try a diret connection again, which worked. This was not supposed to work, but new public relays came online after we ran our firewall rules and they connected using those relays.}
+\pquote{P8 (new user, direct, 10:40)}{They made a direct connection, which fails. They then look at proxy settings, get intimidated, and tried the direct connection again, which fails. They tried configuring a proxy for 4 minutes, but gave up. They tried a direct connection again, which worked. E2 required a bridge to connect, but new public relays came online after we ran our firewall rules and they were able to connect using those relays.}
+
+%P11 (used Tor before): E2 (~3:00; 1:05 to 5:13)
+\pquote{P9 (previous Tor user, obfs3, 4:08)}{They made a direct connection. Then, they answered no to both bridge and proxy questions, and effectively made another direct connection. After that, they connect with the recommended bridge.}
 
 %P8 (used Tor): E2 (clock drift mission impossible, 1:38 to 7:20) 
-\pquote{P10 (previous Tor user, failed to connect)}{They clicked connect to make a direct connection, then they made a connection with the recommended bridge (~5:42), which should have worked. However, our setup experienced a clock drift. Tor does not allow connections with bad clocks, so they could not connect to Tor unless they fixed the clock. The interface did not display an error for the clock drift, and they spent the rest of their time trying different bridges and proxies in vain.}
+\pquote{P10 (previous Tor user, failed to connect)}{They made a direct connection. Then they made a connection with the recommended bridge (~5:42), which should have worked. However, our setup experienced a clock drift and Tor does not allow connections with bad clocks. The interface did not tell the user about the clock, and they spent the rest of their time trying different bridges and proxies in vain.}
 
 {\color {blue}
 In E3, a bridge is required to connect, but only meek bridges work. Proxies are optional. 
 Summary of E3 connections. 
 Observations in E3: 
 
-%P1 (heard of tor before): E3 (~7:31, 0:51 to 8:22) 
-\pquote{P11 (success, 7:31)}{The participant tries connecting directy to the Tor network and connecting to the Tor network with an obfs3 bridge, both of which do not connect to Tor E3. Eventually, the participant selects a bridge that will connect to Tor (meek-azure), but was convinced that it would not work because it was taking too slow. They go back to the first page and click connect, which uses the configured meek-azure bridge. The participant thought that they had connected to Tor directly, and did not realize that the connect button uses whatever settings are toggled in the interface.}
-
-%P5 (has used tor before): E3 (~22:30)
-\pquote{P12 (success, connection time, configuration time)}{summary of what they did here.}
-
 %P6 (heard of Tor): E3 (~26:50) 
-\pquote{P13 (success, connection time, configuration time)}{summary of what they did here.}
+\pquote{P13 (new user, failed to connect)}{summary of what they did here.}
 
 %P14 (regular): E3 FAIL
-\pquote{P14 (success, connection time, configuration time)}{summary of what they did here.}
+\pquote{P14 (new user, failed to connect)}{summary of what they did here.}
 
 %P15 (regular): E3 FAIL
-\pquote{P15 (success, connection time, configuration time)}{summary of what they did here.}
+\pquote{P15 (new user, failed to connect)}{summary of what they did here.}
 
-%P16: E3 FAIL (why did obfs3 work the first time? It shouldn't have!) 
-\pquote{P16 (success, connection time, configuration time)}{summary of what they did here.}
+%P16: E3 (regular) FAIL (why did obfs3 work the first time? It shouldn't have!) 
+\pquote{P16 (new user, failed to connect)}{summary of what they did here.}
+
+%P1 (heard of tor before): E3 (~7:31, 0:51 to 8:22) 
+\pquote{P11 (new user, meek-azure, 7:31)}{The participant tries connecting directy to the Tor network and connecting to the Tor network with an obfs3 bridge, both of which do not connect to Tor E3. Eventually, the participant selects a bridge that will connect to Tor (meek-azure), but was convinced that it would not work because it was taking too slow. They go back to the first page and click connect, which uses the configured meek-azure bridge. The participant thought that they had connected to Tor directly, and did not realize that the connect button uses whatever settings are toggled in the interface.}
+
+%P5 (has used tor before): E3 (~22:30)
+\pquote{P12 (previous Tor user, )}{summary of what they did here.}
 
 Some qualifiers about how these are supposed to be insights, but we don't know how representative these problems are. That's for the summative user testing! But these are definitely problems that exist. 
 }
 
 \subsection{Pain Points in Tor Launcher} 
 {\color {blue}
-A summary about what we have seen in E1, E2, E3. How to fix it. 
+not trying direct or trying direct, bad progress bar, trying to configure a proxy. How to fix it. 
 Use some quotes here, and say insights from the interview. 
 Quotations come from live transcription and are not necessarily verbatim.
 
