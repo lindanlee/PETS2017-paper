@@ -116,9 +116,9 @@ starts, stops, and otherwise controls the underlying Tor processes.
 Tor Launcher's graphical user interface asks the user to configure
 bridges, pluggable transports, and proxies to make a connection to Tor (we refer to this graphical user interface as the ``configuration interface'' throughout this paper). This is the object of our study. 
 
-We hope that our work helps users more easily connect to Tor. The direct and obvious benefit of our work is that is that it may help users who would have previously been unable to configure Tor Browser to use it or that it may save time for users who would have been able to configure a valid connection to the Tor. Improving the user experience through user testing has the potential to be beneficial for both the software company (less help desk tickets) and the end users (less frustration). 
+Although Tor Browser was originally designed for Internet anonymity, many now use Tor Browser to circumvent Internet censorship. In fact, many countries block Tor relays specifically to prevent their citizens from circumventing censorship~\cite{winter2012great}. The configuration interface mainly exists so that people who face Internet censorship can configure bridges, transports, and proxies to connect to Tor, but all Tor Browser users must interact with it regardless of why they use Tor Browser.
 
-However, we believe that our work uniquely necesssary and beneficial to Tor Browser. Although originally designed for Internet anonymity, using Tor Browser to circumvent censorship has now become sufficiently common that many countries now attempt to block Tor relays for this reason~\cite{winter2012great}. Our contributions toward an easier bootstrapping process will especially benefit citizens who face Internet censorship. If there is an increase in overall users as a result, the additional users increase the anonymity set and benefit all Tor users~\cite{dingledine2006anonymity}. 
+Tor minimizes collecting user data. Therefore, Tor does not have data on how users interact with the configuration interface. While we agree that this is respectful to the users, we also believe that this data will be helpful to improve the usability of the configuration interface. Improving the usability of the configuration interface has the obvious benefit of helping more users connect to Tor. But this is also benefits the Tor company (less help desk tickets) and other Tor users (an increase in overall users increases the anonymity set~\cite{dingledine2006anonymity}). 
 
 We started our usability evaluation by inspecting the interface (section~\ref{sec:inspection}) and
 running observing participants interact with it (section~\ref{sec:qualitative}). 
@@ -137,32 +137,31 @@ limitations of our evaluation (section~\ref{sec:limitations}), and framed our wo
 \item measurements of how many users could connect
 \item measurements of how long users took to connect
 \item patterns seen in the users that failed to connect
-\item some recommendations to improve the interface
+\item recommendations to improve the interface
+\item alternatives to burdening users with configuration 
 \end{itemize}
 
 \section{Background}
 \label{sec:background}
-This section discusses network components involved in connecting to Tor, network conditions that require specific network components, and how to configure the involved network components. 
+This section covers technical background necessary to understand the study. 
 
 \subsection{Relays, Bridges, Pluggable Transports, and Proxies} 
 
-Tor relays are routers in the Tor Network that receive and pass along Tor traffic. 
-There are three types of Tor relays: guard relays that serve as an entry node, middle relays that forward traffic from an entry node to an exit node, and exit relays which directs traffic to the destination. 
-Censors can block access to the Tor network by blocking these relays, which are publicly listed. 
+Tor relays are routers in the Tor Network that receive and route Tor traffic. 
+The three types of relays are: guard relays that serve as an entry node, middle relays that forward traffic from an entry relay to an exit relay, and exit relays which directs traffic to the destination. 
 
 Bridges are unlisted Tor relays that serve as an alternative entry node.
-Bridges can be simple, unlisted relays. 
-But most bridges run a pluggable tranport (referred to as ``transport'' for shorthand) that obfuscates the traffic. 
-Most transports disguise traffic to defeat on-the-wire identification, relying on the secrecy of their static IP addresses for their effectiveness.
+Bridges can be unlisted relays that behave similarly to a reular Tor relay,  
+but most run a pluggable tranport (referred to as ``transport'' for shorthand) that obfuscates traffic. 
+Most transports rely on the secrecy of their static IP addresses for their effectiveness.
 These include ``fte'' and ``fte-ipv6''~\cite{fte},
 which disguise the Tor protocol as another protocol (such as HTTP), and
 ``obfs3''~\cite{obfs3}, ``obfs4''~\cite{obfs4}, and ``scramblesuit''~\cite{scramblesuit},
 which encrypt or alter the Tor protocol to appear as random noise.
-Some transports route traffic through other services, avoiding the need for a secret IP address. 
-``flashproxy''~\cite{flashproxy} connects through third parties' web browsers,
+Other transports route traffic through other services and do not need secret IP address. 
+``flashproxy''~\cite{flashproxy} connects through third party web browsers,
 and the ``meek''~\cite{fifield2015blocking} options route traffic
-through content delivery networks.
-Bridges and transports allow a connection to the Tor network when all publicly listed relays and any Tor-looking packets are blocked. Fig.~\ref{fig:bridge-options} shows the bridge and transport options at the time of the study.
+through content delivery networks. Fig.~\ref{fig:bridge-options} shows the bridge and transport options at the time of the study.
 
 \begin{figure}
   \centering
@@ -179,8 +178,7 @@ censorship circumvention technologies (``pluggable transports'').
 \label{fig:bridge-options}
 \end{figure}
 
-A local proxy is required to connect 
-in certain managed networks. In this paper, ``proxy'' refers to a local, ordinary unobfuscated proxy such as a SOCKS or HTTP proxy. (Technically, Tor relays, bridges, and local proxies all allow indirect network connections to other network services and can be considered a proxy.) Fig.~\ref{fig:topology} illustrates the interacting components.
+In this paper, ``proxy'' refers to a local, ordinary unobfuscated proxy such as a SOCKS or HTTP proxy. (Technically, Tor relays, bridges, and local proxies all allow indirect network connections to other network services and can be considered a proxy.) Fig.~\ref{fig:topology} illustrates the interacting components.
 
 \begin{figure}
 \centering
@@ -198,9 +196,10 @@ When a bridge is used, it becomes the first Tor relay.
 \end{figure}
 
 \subsection{State and Corporate Censorship}
-State level censors can vary in their thoroughness in censorship. Some block websites with a combination of IP blacklisting and DNS-poisoning while others that employ more sophisticated techniques such as deep packet inspection and protocol detection. In countries that censor services but do not block censorship circumvention tools, any connection to Tor will byass the censorship. In other countries, sophisticated state-level censorship require custom bridges or bridges that run specific tranports that route traffic through non-Tor services first. 
+State level censors block access to the Tor network by blocking Tor relays, which are publicly listed. Some also employ more sophisticated techniques such as deep packet inspection and protocol detection. Any connection to Tor will allow access to censored websites and services. Bridges and transports allow a connection to the Tor network when public relays are blocked and Tor-looking packets are censored. 
 
-Some companies and educational institutions have a firewall, which can be bypassed with a proxy (with or without a connection to Tor). 
+A local proxy is required to connect 
+in certain managed networks (i.e. company and university firewalls).
 
 \subsection{Connecting to Tor} 
 Configuring a bridge requires providing one or more
@@ -216,7 +215,7 @@ through out-of-band channels, for instance by email~\cite{bridgedb}.
 Configuring a proxy requires providing the proxy protocol, IP address, port, and additional optional fields. The user must locate and input this information. 
 
 There are many valid configuration settings to connect to the Tor network.
-For instance, a user who needs a bridge but not need a proxy can connect to Tor with a bridge and proxy, provided that both were configured correctly. The set of valid configuration settings vary on the specific network environment. 
+A user who needs a bridge can connect to Tor with a bridge and proxy, provided that both were configured correctly.
 
 \section{Methodology} 
 This section discusses our process, principles, and preparations for evaluating the configuration interface.
