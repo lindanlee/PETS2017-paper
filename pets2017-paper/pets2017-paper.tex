@@ -379,88 +379,101 @@ We give a summary of what our participants did below. We watched the screen reco
 %TODO: re-watch the videos and get the exact times. 
 %https://github.com/lindanlee/PETS2017-paper/tree/master/sessions/pre/videos
 
-In E1, any connection to Tor will work. Bridges and proxies are optional.  
-Participants in E1 were able to connect to Tor, but most were unsure if their actions were correct. Three of the five participants configured bridges that they did not need. 
+In E1, any connection to Tor worked. Configuring bridges and proxies were optional.  
+Participants in E1 were able to connect to Tor, but most were unsure if their actions were correct. Three of the five participants unnecessarily used bridges. 
 Observations in E1: 
 
 %P9 (regular): E1 (0:39; 4:49 to 5:28)
-\pquote{P1 (new user, direct, 0:39)}{They made a direct connection immediately.}
+\pquote{P1 (new user, direct, 0:39)}{They connected directly.}
 
 %P2(regular): E1 (1:20, 0:22 to 1:42) 
-\pquote{P2 (new user, direct, 1:20)}{They spent time reading the text on the start screen, and chose to connect directly because they were intimidated by the other option.}
+\pquote{P2 (new user, direct, 1:20)}{They spent time reading the text on the start screen, and connected directly because they were intimidated by the other option.}
 
 %P3(regular): E1 (N/A; 5:47 to 6:26) 
 \pquote{P3 (new user, obfs3, ~1:39)}{They connected with the recommended bridge. They were also going to use a proxy, but decided not to when they saw the proxy input fields.}
 
 %P4(regular): E1 (8:56, 7:22 to 16:18)
-\pquote{P4 (new user, obfs4, 8:56)}{They chose the recommended bridge and then tried to configure a proxy. After not being able to fill out the proxy input fields, make a connection with an obfs4 bridge and no proxy. Note that they didn't try connecting with the obfs3 bridge, which would have worked.}
+\pquote{P4 (new user, obfs4, 8:56)}{They chose the recommended bridge and then tried to configure a proxy. After not being able to fill out the proxy input fields, they start over and connected using an obfs4 bridge. Note that they didn't try connecting with the obfs3 bridge, which would have worked.}
 
 %P10 (has used Tor before): E1 (1:02; 0:13 to 1:15)
-\pquote{P5 (previous Tor user, obfs3, 1:02)}{They connected with the recommended bridge.}
+\pquote{P5 (previous Tor user, obfs3, 1:02)}{They connected using the recommended bridge.}
 
-In E2, a bridge is required to connect, but any bridge will work. Proxies are optional. 
-Participants in E2 usually tried a direct connection before {\it eventually} trying the recommended bridge. Participants spent a fair bit of time trying to answer bridge and proxy questions and trying to configure proxies. 
+In E2, a bridge was required to connect, but any bridge worked. Configuring a proxy was optional.
+Participants in E2 {\it eventually} connected using the recommended bridge, but spent a fair bit of time waiting for direct connections to fail and unsucccessfully configuring proxies. 
 Observations in E2: 
 
 %P7 (heard of Tor): E2 (4:04; 0:29 to 4:33) 
-\pquote{P6 (new user, obfs3, 4:04)}{They made a direct connection and giving up after three minutes of waiting. Then, they connected with the recommended bridge.}
+\pquote{P6 (new user, obfs3, 4:04)}{They tried connecting directly and gave up after minutes of waiting. Then, they connected using the recommended bridge.}
 
 %P13 (regular): E2 (7:48; 0:34 to 9:22) 
-\pquote{P7 (new user, obfs3, 9:22)}{They made a direct connection. When that did not work, they restarted Tor Launcher and made another direct connection--and repeated this two more times. On the fourth restart, they decided to not use a bridge but tried to configure a proxy, but gave up. On the fifth restart, they connect with the recommended bridge.}
+\pquote{P7 (new user, obfs3, 9:22)}{They tried connecting directly. They restarted Tor Launcher and tried another direct connection--and repeated this two more times. On the fourth restart, they tried to configure a proxy, but gave up. On the fifth restart, they connected using the recommended bridge.}
 
 %P12 (regular): E2 (10:40; 0:46 to 11:26)
-\pquote{P8 (new user, direct, 10:40)}{They made a direct connection, which fails. They then look at proxy settings, get intimidated, and tried the direct connection again, which fails. They tried configuring a proxy for 4 minutes, but gave up. They tried a direct connection again, which worked. E2 required a bridge to connect, but new public relays came online after we ran our firewall rules and they were able to connect using those relays.}
+\pquote{P8 (new user, direct, 10:40)}{They tried connecting directly. They then looked at proxy settings, gave up, and tried connecting directly again. Then, they tried to configure a proxy, and gave up. They tried a direct connection again, which worked. E2 required a bridge to connect, but new public relays came online after we ran our firewall rules and they were able to connect using those new relays.}
 
 %P11 (used Tor before): E2 (~3:00; 1:05 to 5:13)
-\pquote{P9 (previous Tor user, obfs3, 4:08)}{They made a direct connection. Then, they answered no to both bridge and proxy questions, and effectively made another direct connection. After that, they connect with the recommended bridge.}
+\pquote{P9 (previous Tor user, obfs3, 4:08)}{They tried connecting directly. Then, they answered no to both bridge and proxy questions, and effectively tried another direct connection. After that, they connect using the recommended bridge.}
 
 %P8 (used Tor): E2 (clock drift mission impossible, 1:38 to 7:20) 
-\pquote{P10 (previous Tor user, failed to connect)}{They made a direct connection. Then they made a connection with the recommended bridge (~5:42), which should have worked. However, our setup experienced a clock drift and Tor does not allow connections with bad clocks. The interface did not tell the user about the clock, and they spent the rest of their time trying different bridges and proxies in vain.}
+\pquote{P10 (previous Tor user, failed to connect)}{They tried a direct connection. Then, they tried a connection with the recommended bridge, which should have worked. However, our setup experienced a clock drift. Tor does not allow connections with bad clocks. They spent the rest of their time trying different bridges and proxies in vain (Figure~\ref{fig:proxy-attempt}).}
 
-{\color {blue}
-In E3, a bridge is required to connect, but only meek bridges work. Proxies are optional. 
-Summary of E3 connections. 
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth]{P8-proxy-attempt.png}
+\caption{
+Proxies were not necessary to connect to Tor, but many spent time trying to configure one when they couldn't connect. None succeeded. Here, we show P10's unsuccessful attempt. 
+}
+\label{fig:proxy-attempt}
+\end{figure}
+
+In E3, a bridge was required to connect, but only meek and custom bridges worked. Configuring a proxy was optional.
+Participants in E3 struggled. Three failed to connect. Of the three that connected, one brute forced options until something worked (P14), another did not understand what they did (P15), and the third used a custom bridge after being convinced meek bridges were not working (P16).
 Observations in E3: 
 
-%P6 (heard of Tor): E3 (~26:50) 
-\pquote{P13 (new user, failed to connect)}{summary of what they did here.}
-
 %P14 (regular): E3 FAIL
-\pquote{P14 (new user, failed to connect)}{summary of what they did here.}
+\pquote{P11 (new user, failed to connect)}{They tried connecting directly, and then with the recommended bridge. Then, they retried connecting directly and retried connecting using the recommended bridge. After that, the participant spent the rest of their time trying to configure a proxy and retrying connections with the recommended bridge.}
 
 %P15 (regular): E3 FAIL
-\pquote{P15 (new user, failed to connect)}{summary of what they did here.}
+\pquote{P12 (new user, failed to connect)}{They tried connecting with the recommended bridge. They decided that they need a proxy along with the recommended bridge, and spent the rest of their time trying to configure a proxy.}
 
 %P16: E3 (regular) FAIL (why did obfs3 work the first time? It shouldn't have!) 
-\pquote{P16 (new user, failed to connect)}{summary of what they did here.}
+\pquote{P13 (new user, failed to connect)}{They tried connecting directly, and then with the recommended bridge. They retried connecting with the recommended bridge. When that didn't work, they tried to configure a proxy. Then, they gave up and tried using other browsers to complete the task.}
+
+%P6 (heard of Tor): E3 (26:48; 0:18 to 27:06) 
+\pquote{P14 (new user, meek-google, 26:48)}{They tried a direct connection by answering no to bridge and proxy questions. After waiting a while, they canceled the connection and tried connecting with the recommended bridge. They retried connecting with the recommended bridge two more times, then tried to connect with a flashproxy bridge, an obfs4 bridge, a scramblesuit bridge. After retrying the recommended bridge again, they made a connection using a meek-google bridge.}
 
 %P1 (heard of tor before): E3 (~7:31, 0:51 to 8:22) 
-\pquote{P11 (new user, meek-azure, 7:31)}{The participant tries connecting directy to the Tor network and connecting to the Tor network with an obfs3 bridge, both of which do not connect to Tor E3. Eventually, the participant selects a bridge that will connect to Tor (meek-azure), but was convinced that it would not work because it was taking too slow. They go back to the first page and click connect, which uses the configured meek-azure bridge. The participant thought that they had connected to Tor directly, and did not realize that the connect button uses whatever settings are toggled in the interface.}
+\pquote{P15 (new user, meek-azure, 7:31)}{They tried connecting directly, and then with the recommended bridge. After that, they tried a connection using a meek-azure bridge, but gave up after before it could connect. They went back to the start screen and clicked connect, which made a connection using meek-azure bridge. The participant thought they made a direct connection, but the connect button used settings toggled in the bridge and proxy screens in the interface.}
 
-%P5 (has used tor before): E3 (~22:30)
-\pquote{P12 (previous Tor user, )}{summary of what they did here.}
+%P5 (has used tor before): E3 (22:06; 0:00 to 22:06)
+\pquote{P16 (previous Tor user, custom bridge, 22:06)}{They tried and retried connecting directly, then they tried connecting with the recommended bridge. After briefly looking at error messages the system log, they retried connecting directly two more times. After looking up proxy settings, they tried connecting with a meek-google bridge, but gave up before it could connect. They made a connection with the custom bridge by following the instructions from the bridge help button (they created a throwaway email account, emailed the bridge responder with poor syntax and did not get a response, emailed the bridge responder again with correct syntax and got a response, and then typed in the bridge information into the custom bridge field).}
 
-Some qualifiers about how these are supposed to be insights, but we don't know how representative these problems are. That's for the summative user testing! But these are definitely problems that exist. 
-}
+We hope that these participant summaries give some insight into how users may currently struggle with the Tor Launcher interface. 
 
 \subsection{Pain Points in Tor Launcher} 
-{\color {blue}
-not trying direct or trying direct, bad progress bar, trying to configure a proxy. How to fix it. 
-Use some quotes here, and say insights from the interview. 
-Quotations come from live transcription and are not necessarily verbatim.
+\label{sec:pain-points}
+We talk about the main challenges our participants faced during the experiment. 
+Quotations were transcribed live during the follow-up interview.
 
-%\pquote{P2}{I don't know what any of those [list of bridges] means, or what that [proxy] means at all.}
-%\pquote{P3}{The vocabulary is really challenging, for someone not doing IT work.}
-%\pquote{P\#}{find when Michael said he didn't know if he was E2 or E3!} 
-%\pquote{P8}{I have no clue what's the difference between flashproxy, fte, etc. I need to know why the built-in ones aren't working. And why do I need a custom bridge if there are options built in?}
-%\pquote{P7}{Since it (obfs3) said recommended, it helped actually, and I selected it because it was chosen. I saw the custom bridges option, but I didn't know what to enter there so I went with this (obfs3).}
-%When participants did encounter an error message, they did not understand what errors meant (Fig.~\ref{fig:error}).
-%%The progress bar has a bug that causes it to update only when the level of progress increases.
-%%If progress bar reaches a 90\% and fails, the next attempt have regressed to 0\% and remain there until the progress surpasses 90\%. Due to this, participants assumed that their subsequent attempts were wrong, even if they were right.
-%\pquote{P1}{It was hard to figure out if the progress bar wasn't moving because the connection was censored, or if it was just slow.}
-%\pquote{P16}{There doesn't seem to be a timeout on any of this stuff. Am I waiting long enough? It should work immediately.}
-%\pquote{P15}{I didn't know if this computer had any proxy information. I wasn't able to find it if it did.}
-}
+Participants found the interface confusing, and were often intimidated by the tasks they were asked to do. 
+
+%P8 in the repo, P10 in the paper
+\pquote{P10}{``I have no clue what's the difference between flashproxy, fte, etc. And why do I need a custom bridge if there are options built in?''}
+
+%P3 in the repo, P3 in the paper
+\pquote{P3}{``The vocabulary is really challenging, for someone not doing IT work.''}
+
+Participants were unsure of what to do, and often configured bridges and proxies when they did not need to.  
+
+%P15 in the repo, but P12 in the paper
+\pquote{P15}{``I didn't know if this computer had any proxy information. I wasn't able to find it if it did.''}
+
+The progress bar had system dependencies that made it update oddly. If progress bar reached a 90\% and failed, the progress bar will remain at 0\% on the next attempt until the progress surpassed 90\%. Many assumed that their subsequent attempts were wrong because of this.
+
+%P1 in the repo, P15 in the paper
+\pquote{P15}{``It was hard to figure out if the progress bar wasn't moving because the connection was censored, or if it was just slow.''}
+
+We think users in the wild may also face these challenges, and that changes should be made to mitigate them. We show our attempt in the next section. 
 
 \section{A Design Iteration}
 \label{sec:design} 
@@ -482,7 +495,7 @@ A redesigned version of the Tor Browser 5.0.3. Tor Launcher GUI.
 \subsection{Design Princples} 
 The interface currently favors a guided manual configuration over an automated configuration with network probing. Our redesign preserves this approach and has no user-dependent inputs, no network-dependent inputs, and minimal information leaks.
 
-{\color {blue} WRITE ABOUT PAIN POINTS HERE} We aimed to minimize work, give targeted feedback, and to build a mental model.
+In addition to addressing the pain points we discovered through our formative usability testing (Section~\ref{sec:pain-points}), we aimed to follow usability best practices by minimizing work, giving targeted feedback, and helping users build an understanding of the system.
 
 \subsection{Changes Made} 
 We made these changes for a more usable interface. \\
@@ -497,11 +510,12 @@ We made these changes for a more usable interface. \\
 
 To give targeted feedback: 
 \begin{itemize}
+\item We fixed the progress bar so that it reflects the current progress on subsequent attempts. 
 \item We switched added indicators to the progress bar to show the progress of bridges and proxies. 
 \item We told users what to try next on errors (i.e. choose a different bridge, try a without a proxy). 
 \end{itemize}
 
-To build a mental model:
+To build an understanding of the system:
 \begin{itemize}
 \item We added a summary screen displays the current bridge and proxy settings for system visibility. 
 \item We switched proxy and bridge screens to put them in a topologically sequential order (Figure~\ref{fig:topology}).
