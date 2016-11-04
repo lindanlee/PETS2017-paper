@@ -118,30 +118,27 @@ bridges, pluggable transports, and proxies to make a connection to Tor (we refer
 
 We hope that our work helps users more easily connect to Tor. The direct and obvious benefit of our work is that is that it may help users who would have previously been unable to configure Tor Browser to use it or that it may save time for users who would have been able to configure a valid connection to the Tor. Improving the user experience through user testing has the potential to be beneficial for both the software company (less help desk tickets) and the end users (less frustration). 
 
-However, we believe that our work uniquely necesssary and beneficial to Tor Browser. Although originally designed for Internet anonymity, using Tor Browser to circumvent censorship has now become sufficiently common that many countries now attempt to block Tor relays for this reason~\cite{winter2012great}. Our contributions toward an easier bootstrapping process will especially benefit citizens who face Internet censorship. If there is an increase in overall users as a result, they add a security bonus by increasing the anonymity set~\cite{dingledine2006anonymity}. \\
+However, we believe that our work uniquely necesssary and beneficial to Tor Browser. Although originally designed for Internet anonymity, using Tor Browser to circumvent censorship has now become sufficiently common that many countries now attempt to block Tor relays for this reason~\cite{winter2012great}. Our contributions toward an easier bootstrapping process will especially benefit citizens who face Internet censorship. If there is an increase in overall users as a result, the additional users increase the anonymity set and benefit all Tor users~\cite{dingledine2006anonymity}. 
 
+We started our usability evaluation by inspecting the interface (section~\ref{sec:inspection}) and
+running observing participants interact with it (section~\ref{sec:qualitative}). 
+We opportunistically used the insights from our observations to make some changes (section~\ref{sec:design}).
+Then we quantified how usable the interface was, and 
+how much our changes helped save users time (section~\ref{sec:quantitative}).
+Afterward, we gave some recommendations (section~\ref{sec:recommendations}), addressed
+limitations of our evaluation (section~\ref{sec:limitations}), and framed our work in the context of existing work (section~\ref{sec:related}). \\
 
 \noindent This paper contributes:
 \smallskip
 \begin{itemize}
-\item an evaluation of the current configuration interface
-\item a redesigned configuration interface
-\item logs of 114 users' connection attempts
-\item failure modes seen during connection attempts
-\item recommended interface changes
-\item alternative bootstrapping approaches
+\item an inspection of the Tor Launcher 5.0.3. interface
+\item user connection attempts in various environments
+\item what users found challenging about the interface
+\item measurements of how many users could connect
+\item measurements of how long users took to connect
+\item patterns seen in the users that failed to connect
+\item some recommendations to improve the interface
 \end{itemize}
-
-We start by introducing relevant concepts (section~\ref{sec:background}) and
-defining the scope of our experiment (section~\ref{sec:scope}). 
-Then, we report user observations and interviews (section~\ref{sec:qualitative}),
-list design principles and interface changes (section~\ref{redesign}),
-state evaluation criteria for testing the interface (section~\ref{sec:eval}), 
-and measure the impact of our design changes (Section~\ref{sec:quantitative}).
-We end with a discussion on what we learned (section~\ref{sec:discussion}),
-limitations of out experiment (section~\ref{sec:limitations}), 
-a look at our work in the context of existing work (section~\ref{sec:related}), and
-a brief conclusion (section~\ref{sec:conclusion}).
 
 \section{Background}
 \label{sec:background}
@@ -293,6 +290,7 @@ we used the same version throughout to not introduce
 confounding factors.
 
 \section{Usability Inspection}
+\label{sec:inspection}
 This section discusses our inspection of the configuration interface and the resulting observations.
 
 \subsection{Procedure} 
@@ -697,7 +695,7 @@ On average, users who required a bridge took over 3 minutes to connect to Tor, a
 Ideally, almost all users should be able to configure the necessary or optional network components and connect to Tor within a few minutes. Neither the Tor Browser's 5.0.3. Tor Launcher GUI or our redesigned Tor Launcher GUI meets this goal.
 
 \section{Recommendations}
-\label{recommendations}
+\label{sec:recommendations}
 We do believe that adopting our design will help save users time when connecting to Tor. But since we did not test our design changes independently, we cannot (and do not) claim the effects each change we made. Therefore, we do not recommend specific changes, but offer some suggestions for Tor Launcher's GUI based on what we learned: \\
 
 \begin{itemize}
