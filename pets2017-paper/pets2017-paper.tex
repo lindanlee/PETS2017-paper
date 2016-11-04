@@ -754,6 +754,8 @@ We conducted a series of experiments to improve the Tor Browser 5.0.3 configurat
 
 %proof that user testing is important and general advice to for more research on Tor
 Tor doesn't collect any information or perform AB testing, so this type of user research is especially important. to set it up, get users, computers, consent, and instrumented versions of the software. Research can be exploratory (ask users what they want), observational (look at what they do), or testing a hypothesis (verify changes). We encourage the use of simulated censorship environments as a tool for user testing censorship circumvention software. Not only do simulated environments avoid rerouting traffic through a censoring country's networks, their reproducibility and stability are ideal for experiments. 
+
+%Tor version~4.5 incorporated textual and navigational changes based on our redesigned interface.
 }
 
 \section {Experiment Artifacts} 
@@ -773,39 +775,34 @@ Many generous people helped us along the way. <Redacted> assisted with testing o
 
 \section{Success and Error States in Tor Launcher 5.0.3} 
 \label{states} 
-{\color {blue} 
-A reminder of the digraph, and a reference (Figure~\ref{digraph}). Give an example of one input leading to many end states. 
+An exhaustive list of Tor Launcher 5.0.3's end states corresponding to Figure~\ref{fig:digraph}. End states such as e\# and e\#' are equivalent, but e\#' uses a bridge while e\# does not. This was generated during the inspection process.\\
 
-% e12; selected proxy type, good address syntax, good ip address, blank port (bridge) 
-% s2; selected proxy type, good address syntax, good ip address, blank port (bridge)
-% e12'; selected proxy type, good address syntax, good ip address, blank port (no bridge)
-% s2'; selected proxy type, good address syntax, good ip address, blank port (no bridge)
-
-success states: 
+\noindent success states: 
 \begin{itemize}
-\item s0: no bridge no proxy connection.
-\item s1: bridge, no proxy connection.
-\item s2: bridge and proxy connection (correct proxy syntax and with default port)
-\item s3: bridge and proxy connection (correct proxy syntax and with specified port)
+\item s0: no bridge no proxy
+\item s1: valid bridge, no proxy
+\item s2: valid bridge and valid proxy (blank port)
+\item s3: valid bridge and valid proxy (specified port)
 \end{itemize}
 
 error states:
 \begin{itemize} 
 \item e0: custom bridge: field left blank
 \item e1: custom bridge: syntax error
-\item e2: custom bridge: good syntax, bad ip address
-\item e3: hardcoded bridge: bridge blocked in country
-\item e4: bridge blocked in country
-\item e5: blank proxy input
-\item e6: no proxy type
-\item e7: selected proxy type, bad address syntax
-\item e8: selected proxy type, good address syntax, bad ip address, blank port
-\item e9: selected proxy type, good address syntax, bad ip address, good port
-\item e10: selected proxy type, good address syntax, bad ip address, bad port
-\item e11: selected proxy type, good address syntax, good ip address, bad port
-\item e12: selected proxy type, good address syntax, good ip address, blank port
+\item e2: custom bridge: invalid address
+\item e3: hardcoded bridge blocked
+\item e4: custom bridge blocked
+\item e5: proxy type is not selected
+\item e6: proxy: ip address left blank
+\item e7: proxy: syntax error
+\item e8: proxy: invalid ip address, blank port
+\item e9: proxy: invalid ip address, good port
+\item e10: proxy: invalid ip address, bad port
+\item e11: proxy: valid ip address, bad port
+\item e12: proxy: valid ip address, blank port
 \end{itemize} 
-}
+
+The same input can lead to different end states. Tor Launcher will connect to a proxy successfully with the port left blank if the proxy uses port 80 (s2) but will not if the proxy uses another port (e12). 
 
 \section{Qualitative User Study Recruitment Posting} 
 \label{qualitative-recruitment}
@@ -837,21 +834,15 @@ Thank you for filling out this form. You are now done!
 
 \section{Prescreening Survey Responses}
 \label{prescreening-responses}
-{\color{blue} 
-short intro and conclusion. Take self-reported with a grain of salt, but here they are anyways. 
+We asked people how familiar they were with some technical terms and security tools during our prescreening survey for formative usability testing. We did not use these self-reported answers to influence any process of our testing. We show the responses from the particpants that we chose. 
 
-\begin{figure}[t]
-\centering
-\includegraphics[width=.5\textwidth]{self-reported-tech-familiarity.png}
-\caption{most participants reported familiarity with terms, even made up ones.}
-\end{figure}
+We suspect that participants answered dishonestly in hopes of appearing more technically fluent. We know this because some reported that they were familiar a term that did not exist (x.511 certificates). We inserted this fictional term specifically to detect this. Here are our participants' self-reported familiarity with technical terms: \\
 
-\begin{figure}[t]
-\centering
-\includegraphics[width=.5\textwidth]{self-reported-security-use.png}
-\caption{most people didn't use many security tools.}
-\end{figure}
-}
+{\color {red} MAKE A TABLE HERE} \\
+
+Participants' self-reported use of security tools. We assume that self-reported use is the upper bound of how many participants have used these security tools. Here are our participants' self-reported use of security tools:\\
+
+{\color {red} MAKE A TABLE HERE} 
 
 \section{Qualitative User Study Introduction Script} 
 \label{qualitative-script} 
@@ -934,23 +925,17 @@ Thank you for participating in our experiment. You are now done! Please sit at y
 
 \section{Alternative Approaches} 
 \label{alternatives}
-{\color {blue}
-Our goal was to deploy impactful, tested changes the Tor configuration interface. In fact, Tor version~4.5 incorporated textual and navigational changes based on our redesigned interface. Throughout our experiments, we collaborated with Tor developers and focused on discovering changes that could be deployed right away. For this reason, we assumed that the configuration process will remain a manual process that requires user inputs, as it is currently deployed. However, we list some alternative approaches that seem worth exploring. \\
-
-%remember: 	no user inputs, no network inputs, minimize info leaks
-%and:		minimal user work, full user control 
-
+We list some of our ideas:\\
 \begin{description}
-\item{\bfseries Automate the configuration.} The most efficient way to connect as many users to the Tor network is to automatically configure their connection on start. A naive automation is to try configurations that would most likely work, in order (i.e. a direct connection, then an obfs3 connection without a proxy, then an meek bridge connection with out a proxy). This leaks to network eavesdroppers that the user is connecting to the Tor network. We do not know how much risk is associated with this approach. 
-\item {\bfseries automate after the first failure.} The network leak happened. But then this automation would be pretty fingerprintable behavior. 
-\item{\bfseries Ask about the risk.} An alternative to naive automation is to offer manual configuration to those that want to be more cautious and automatically configuring a connection for who are not at risk. The complication with this approach is that users may not be qualified to answer if they are at risk or may not trust Tor with this information. 
-\item{\bfseries Ask if users know what to do.} Another alternative to naive automation is to offer manual configuration to those that know how to configure their connection and to automate the process for users who do not know how to configure their connection. This may prevent the most mistakes, but does not account for the users' risk associated with using Tor. 
-\item{\bfseries Suggest configurations.} A way to help users without any automation or questions is to give users information about what would work in their country. The first page of the configuration interface can show a list of countries with a corresponding recommended configuration. This approach does not require users to answer about their risk, technical ability, or location. However, it does require that the user trust the given advice and to correctly configure their settings based on this advice. 
-\item{\bfseries Assign configurations.} This is a smart way to automate connections to the Tor network. Upon start, the interface detects proxy settings and uses them, if any. Then, all users connect to bridges that will always work (such as meek bridges), which assign them a guard relay based on their location, effectively assigning bridges for the user. 
+\item{\bfseries Suggest bridges based on country.} Give users information about which bridges would work in their country. one way to do this is to show a list of countries with a corresponding recommended configuration. This requires developers to maintain a list of suggestions and that the users trust the suggestions. 
+\item{\bfseries Ask users about their risk.} If they answer that they are sensitive about having a network adversary possibly know that they are using Tor, direct users to connect to a secret relay that is not publically associated with Tor, using transport that obfuscates their connection. If users are not sensitive, let them configure their own bridges and proxies. 
+\item{\bfseries Ask users if they know what to do.} If they know, offer the option to manually configure bridges and proxies. If they do not know, give suggestions on what to do next or automate the process for them somehow. This requires users to answer honestly to the question and to trust the suggestions given. 
+\item{\bfseries Automate naively.} Have the interface automatically try configurations that would most likely work, in order (i.e. a direct connection, then an obfs3 connection without a proxy, then an meek bridge connection with out a proxy). This is what most users would ideally do anyway. However, this method leaks to network eavesdroppers that the user is using Tor without the user's awareness. 
+\item {\bfseries Automate naively after users fail.} Let users try to configure bridges and proxies. If they fail, then a network adversary already knows that the user is trying to connect to Tor. At this point, we believe that it is low risk to naively automate configuring bridges and proxies. 
+\item{\bfseries Automate in a smart way.} The interface first detects proxy settings and uses them, if any. Then it automatically connects to some secret bridges that will always work, which assign the user an entry relay that works based on their location. This requires having an invincible set of high-bandwidth bridges that work for every single user around the world.  
 \end{description}
 
-We believe that automation, asking about risk, and identifying struggling users could enable significant improvements to the configuration process. 
-}
+We believe that these ideas can significantly help users connect to Tor. 
 
 
 \end{document}
