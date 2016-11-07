@@ -698,12 +698,10 @@ Ideally, almost all users should be able to configure the necessary or optional 
 We do believe that adopting our design will help save users time when connecting to Tor. But since we did not test our design changes independently, we cannot (and do not) claim the effects each change we made. Therefore, we do not recommend specific changes, but offer some suggestions for Tor Launcher's GUI based on what we learned: \\
 
 \begin{itemize}
-\item {\bfseries Use less words.} Shorten text so users read it.
-\item {\bfseries Give advice.} Discourage users from configuring optional components. Add a secondary recommendation (try meek if obfs3 doesn't work). 
-\item {\bfseries Hide infrequent options.} Hide the proxy configuration screen and less-used transports. 
+\item {\bfseries Hide infrequent options.} Hide the proxy configuration screen and less-used transports. None of our participants connected using flashproxy, fte, fte-ipv6, or scramblesuit transport bridges. 
+\item {\bfseries Give advice.} Discourage users from configuring optional components. Add a secondary recommendation for bridges (try meek if obfs3 doesn't work, use meek if you are in Syria) to help users in need. 
 \item {\bfseries Minimize work.} Detect if users need a proxy or not. Redirect users to the relevant pages on error (i.e. redirect to the bridge screen the bridge fails).  
-\item {\bfseries Add system visibility.}  Show users their bridge and proxy settings before and during connection. Fix the progress bar updating weirdness.
-\item {\bfseries Provide feedback.} Tell users what to do when a specific error occurs (i.e. try agin, fix bridges, etc.). 
+\item {\bfseries Provide feedback.} Tell users what to do when a specific error occurs (i.e. try the same connection again, pick another bridge, try without a proxy, etc.).  Show users their bridge and proxy settings before and during connection. Fix the progress bar so that it updates on subsequent connections.
 \end{itemize}
 
 We also recommend exploring solutions that leverage automation, user-dependent inputs, or network-dependent inputs. We start this discussion by sharing some of our own ideas in appendix~\ref{alternatives}. 
@@ -747,11 +745,10 @@ the browser's configuration interface, which guides users through setting up com
 
 \section{Conclusion} 
 \label{sec:conclusion}
+The Tor Launcher GUI allows most users to connect to the Tor network, provided that the user's connection does not require a proxy or a non-default bridge. User observation showed that participants were intimidated of the tasks, unsure of what to do, and likely to get stuck configuring proxies that they did not need. User testing showed that most people take more than 10 minutes to connect to Tor if they need to use bridges. 
 
 %proof that user testing is important and general advice to for more research on Tor
-Tor Browser version~4.5 incorporated textual and navigational changes to Tor Launcher based on our work <redacted Tor blog post here; it was authored by one of the authors of this paper>. The authors have discussed  alternative ways to bootstrap a connection to Tor without requiring users to configure network components with Tor developers, and they were open to considering some of our ideas for future improvements. 
-
-We encourage more researchers to perform this type of usability testing for other parts of Tor Browser and other Tor applications, especially because it provides user insight to company that does not collect user data. You can help by performing usability research that uncovers unknown problems, tests out new ideas, or verifies the impact of recently made changes. We encourage the use of simulated censorship environments as a tool for user testing censorship circumvention software. Not only do simulated environments avoid rerouting traffic through a censoring country's networks, their reproducibility and stability are ideal for experiments. 
+We encourage usability testing for Tor Browser and other Tor applications because it provides user insight tfor products without user interaction data. Tor Browser version~4.5 incorporated changes to Tor Launcher based on our work <redacted Tor blog post here; it was authored by one of the authors of this paper>. We also talked to Tor developers about ways to automate the bootstrapping process to Tor. 
 
 \section {Experiment Artifacts} 
 Due to space constraints, we could not include many of our experiment artifacts. This includes the experiment setup and teardown code, firewall rules that simulated censorship environments, interview transcriptions from the formative user study, logs from our instrumented configuration interfaces, and videos of users attempting to connect to Tor through the configuration interface. We urge you to check out the project repository: \\
