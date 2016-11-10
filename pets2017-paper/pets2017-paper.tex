@@ -6,6 +6,7 @@
 \usepackage{enumitem}
 \usepackage{pdfpages}
 \usepackage{adjustbox}
+\usepackage{subcaption}
 %\usepackage{hyperref}
 
 \usepackage[utf8]{inputenc}%(only for the pdftex engine)
@@ -294,9 +295,52 @@ We first examined each screen in the interface for tasks required, inputs taken,
 
 \begin{figure*}
 \centering
-\includegraphics[width=\textwidth]{placeholder-fullpage.pdf}
+\begin{subfigure}[b]{0.35\textwidth}
+	\includegraphics[width=\textwidth]{screenshots/OLD-first.png}
+	\caption{The first screen. The connect button does not connect directly, but uses settings configured in the interface (initialized to be direct).}
+	\label{fig:old-first}
+\end{subfigure}
+~~~~~~~~~~
+\begin{subfigure}[b]{0.35\textwidth}
+	\includegraphics[width=\textwidth]{screenshots/OLD-bridges.png}
+	\caption{Answering yes to this question leads to a screen to configure bridges. Answering no leads to the proxy question screen (Figure~\ref{fig:old-proxy}).}
+	\label{fig:old-bridge}
+\end{subfigure}
+\begin{subfigure}[b]{0.35\textwidth}
+	\includegraphics[width=\textwidth]{screenshots/OLD-bridgeSettings.png}
+	\caption{Where users choose a bridge. The recommended bridge is a hard-coded obfs3.}
+	\label{fig:old-bridge-settings}
+\end{subfigure}
+~~~~~~~~~~
+\begin{subfigure}[b]{0.35\textwidth}
+	\includegraphics[width=\textwidth]{screenshots/OLD-bridgeSettings-combobox.png}
+	\caption{The available transport selections, listed in alphabetical order. They all work differently.}
+	\label{fig:old-bridge-combobox}
+\end{subfigure}
+\begin{subfigure}[b]{0.35\textwidth}
+	\includegraphics[width=\textwidth]{screenshots/OLD-bridgeHelp.png}
+	\caption{Instructions on getting a custom bridge.Clicking the ``Help'' button in Figures~\ref{fig:old-bridge settings} and \ref {fig:old-bridge-combobox} leads to this page.}
+	\label{fig:old-bridge-help}
+\end{subfigure}
+~~~~~~~~~~
+\begin{subfigure}[b]{0.35\textwidth}
+	\includegraphics[width=\textwidth]{screenshots/OLD-proxy.png}
+	\caption{Answering yes to this question leads to a screen to configure proxies. Answering no initiates a connection to Tor.}
+	\label{fig:old-proxy}
+\end{subfigure}
+\begin{subfigure}[b]{0.35\textwidth}
+	\includegraphics[width=\textwidth]{screenshots/OLD-proxyYES.png}
+	\caption{Where users fill in proxy information.}
+	\label{fig:old-proxy-yes}
+\end{subfigure}
+~~~~~~~~~~
+\begin{subfigure}[b]{0.35\textwidth}
+	\includegraphics[width=\textwidth]{screenshots/OLD-progress.png}
+	\caption{The progress bar.}
+	\label{fig:old-progress}
+\end{subfigure}
 \caption{
-A redesigned version of the Tor Browser 5.0.3. Tor Launcher GUI. 
+The Tor Browser 5.0.3. Tor Launcher GUI. Screens are in the order that they appear. 
 }
 \label{fig:old-interface}
 \end{figure*} 
@@ -472,9 +516,52 @@ We then rewatched screen capture videos and read interview transcirptions to bra
 
 \begin{figure*}
 \centering
-\includegraphics[width=\textwidth]{placeholder-fullpage.pdf}
+\begin{subfigure}[b]{0.35\textwidth}
+	\includegraphics[width=\textwidth]{screenshots/NEW-first.png}
+	\caption{The first screen. We reduced the text on the screen and clarified that configuration is for heavily censored enviroinments.}
+	\label{fig:new-first}
+\end{subfigure}
+~~~~~~~~~~
+\begin{subfigure}[b]{0.35\textwidth}
+	\includegraphics[width=\textwidth]{screenshots/NEW-proxyYES.png}
+	\caption{The interface detects the need for a proxy. Proxy fields (same as ones in Figure \ref{fig:old-proxy-yes} are hidden until you click``configure.''}
+	\label{fig:new-proxy}
+\end{subfigure}
+\begin{subfigure}[b]{0.35\textwidth}
+	\includegraphics[width=\textwidth]{screenshots/NEW-bridgeSettings.png}
+	\caption{There is only one bridge screen now. The default is to connect without one.}
+	\label{fig:new-nobridge}
+\end{subfigure}
+~~~~~~~~~~
+\begin{subfigure}[b]{0.35\textwidth}
+	\includegraphics[width=\textwidth]{screenshots/NEW-bridgeSettings-default.png}
+	\caption{We give short instructions on when to use a bridge. Users can configure one here.}
+	\label{fig:new-bridge}
+\end{subfigure}
+\begin{subfigure}[b]{0.35\textwidth}
+	\includegraphics[width=\textwidth]{screenshots/NEW-bridgeSettings-combobox.png}
+	\caption{The transports selections are the same.}
+	\label{fig:new-bridge-combobox}
+\end{subfigure}
+~~~~~~~~~~
+\begin{subfigure}[b]{0.35\textwidth}
+	\includegraphics[width=\textwidth]{screenshots/NEW-bridgeHelp.png}
+	\caption{These instuctions are also the same.}
+	\label{fig:new-bridge-help}
+\end{subfigure}
+\begin{subfigure}[b]{0.35\textwidth}
+	\includegraphics[width=\textwidth]{screenshots/NEW-summary.png}
+	\caption{This screen summarized how they would connect to Tor. There is more information if bridges and proxies are configured.}
+	\label{fig:new-summary}
+\end{subfigure}
+~~~~~~~~~~
+\begin{subfigure}[b]{0.35\textwidth}
+	\includegraphics[width=\textwidth]{screenshots/NEW-progress.png}
+	\caption{A checkpoint progress bar with connection information. There are more checkpoints if bridges and proxies are configured.}
+	\label{fig:new-progress}
+\end{subfigure}
 \caption{
-A redesigned version of the Tor Browser 5.0.3. Tor Launcher GUI. 
+A redesigned version of the Tor Browser 5.0.3. Tor Launcher GUI. Screens are in the order that they appear. 
 }
 \label{fig:new-interface}
 \end{figure*} 
