@@ -366,7 +366,11 @@ A digraph illustrating the potential user paths through the interface. Non-leaf 
 This section discusses our small-scale, qualitative usability experiment and resulting user insights. 
 
 \subsection{Recruitment}
-We recruited people from Craigslist using the recruitment text in Appendix~\ref{qualitative-recruitment}, which linked an presecreening survey that collected demographics (Appendix~\ref{qualitative-prescreening}). We pre-screened~\cite{screening} for diversity in gender, age, technical expertise, use of security tools, and familiarity with Tor in a small participant pool. {\color {red} Of our 16 recruited participants, 53.3\% were male. Ages ranged from 20 to~62 years ($\mu = 24.5$, $\sigma = 12.6$). 93.3\% of our participants had college education.} We took participants' self-reported familiarity with technical terms use of security tools with skepticism (Appendix~\ref{prescreening-responses}). We verified their self-reported familiarity with Tor Browser in-person, and found that 4 used it, 5 heard of it but not used it, and the remaining 8 never heard of or used it. The main objective of this question was to identify new users versus infrequent users. We considered participants who had never heard of Tor or have only heard of Tor to be new users and those who have used Tor to be previous users. 
+We recruited people from Craigslist using the recruitment text in Appendix~\ref{qualitative-recruitment}, which linked an presecreening survey that collected demographics (Appendix~\ref{qualitative-prescreening}). We pre-screened~\cite{screening} for diversity in gender, age, technical expertise, use of security tools, and familiarity with Tor in a small participant pool. Of our 16 recruited participants, 50\% were male. Ages ranged from 20 to~62 years ($\mu = 30.5$, $\sigma = 13.5$). One participant declined to submit their age, so the previous calcuations were done without thier information. 100\% had at least some college education. We took participants' self-reported familiarity with technical terms use of security tools with skepticism (Appendix~\ref{prescreening-responses}). We verified their self-reported familiarity with Tor Browser in-person, and found that 4 used it, 5 heard of it but not used it, and the remaining 8 never heard of or used it. The main objective of this question was to identify new users versus infrequent users. We considered participants who had never heard of Tor or have only heard of Tor to be new users and those who have used Tor to be previous users. 
+
+% gender: Male: 8/Female: 8
+% education: At least some college 16
+% ages: 22, 23, 34, 52, 25, 22, 29, 21, 25, didn't answer, 20, 20, 26, 24, 62, 52
 
 We distributed participants evenly across experimental conditions:  5~in E1, 5~in E2, and 6~in E3. Although there is variation in gender, age, ``technical expertise,'' and ``use of security tools'' in each experimental condition, we ensured each condition had a participant who used Tor Browser before. 
 
@@ -911,12 +915,12 @@ We asked people how familiar they were with some technical terms and security to
 \begin{tabular}{l r r}
 & Familiarity\\
 \noalign{\hrule}
-Malware & 00/00\\
-Proxy services & 00/00\\
-Phishing & 00/00\\
-SSL & 00/00\\
-X.511 certificates & 00/00\\
-Tor & 00/00\\
+Malware & 81\% (13/16) \\ %13/16
+Proxy services & 69\% (11/16)\\ %11/16
+Phishing & 63\% (10/16)\\ %10/16
+SSL & 63\% (10/16)\\%10/16
+X.511 certificates & 25\% (4/16)\\ %4/16
+Tor & 50\% (8/16)\\ %8/16
 \end{tabular}
 \caption{
 An overview of the results of the experiment. Those who
@@ -929,18 +933,18 @@ We suspect that participants answered dishonestly in hopes of appearing more tec
 
 \begin{table*}[h]
 \centering
-\begin{tabular}{l r r r r r}
-& \multicolumn{1}{r}{} & \multicolumn{1}{r}{Less than once} & \multicolumn{1}{r}{A few times}& \multicolumn{1}{r}{Several times}& \multicolumn{1}{r}{}\\
-& \multicolumn{1}{r}{Never} & \multicolumn{1}{r}{a month} & \multicolumn{1}{r}{a month}& \multicolumn{1}{r}{a week}& \multicolumn{1}{r}{Daily}\\
+\begin{tabular}{l r r r r r r}
+& \multicolumn{1}{r}{} & \multicolumn{1}{r}{Less than once} & \multicolumn{1}{r}{A few times}& \multicolumn{1}{r}{Several times}& \multicolumn{1}{r}{} & \multicolumn{1}{r}{Missing}\\
+& \multicolumn{1}{r}{Never} & \multicolumn{1}{r}{a month} & \multicolumn{1}{r}{a month}& \multicolumn{1}{r}{a week}& \multicolumn{1}{r}{Daily} & \multicolumn{1}{r}{answer}\\
 \noalign{\hrule}
-HTTPS on web pages& 00/00 & 00/00 & 00/00 & 00/00 & 00/00 \\
-Proxies or censorship circumvention tools & 00/00 & 00/00 & 00/00 & 00/00 & 00/00 \\
-Virtual private networks (VPNs) & 00/00 & 00/00 & 00/00 & 00/00 & 00/00 \\
-File or disk encryption & 00/00 & 00/00 & 00/00 & 00/00 & 00/00 \\
-Anonymity systems (e.g. Tor) & 00/00 & 00/00 & 00/00 & 00/00 & 00/00 \\
-Email encryption (e.g. PGP) & 00/00 & 00/00 & 00/00 & 00/00 & 00/00 \\
-Instant messaging encryption & 00/00 & 00/00 & 00/00 & 00/00 & 00/00 \\
-Voice communication encryption & 00/00 & 00/00 & 00/00 & 00/00 & 00/00 \\
+HTTPS on web pages				& 13\% (2/16) & 0\% (0/16) & 1\% (1/16) & 25\% (4/16) & 56\% (9/16) & 0\% (0/16) \\
+Proxies or censorship circumvention tools & 50\% (8/16) & 13\% (2/16) & 13\% (2/16) & 1\% (1/16) & 1\% (1/16) & 13\% (2/16) \\
+Virtual private networks (VPNs) 		& 44\% (7/16) & 31\% (5/16) & 13\% (2/16) & 0\% (0/16) & 1\% (1/16) & 1\% (1/16) \\
+File or disk encryption 				& 50\% (8/16) & 1\% (1/16) & 13\% (2/16) & 0\% (0/16) & 25\% (4/16) & 1\% (1/16) \\
+Anonymity systems (e.g. Tor) 			& 63\% (10/16) & 13\% (2/16) & 1\% (1/16) & 13\% (2/16) & 0\% (0/16) & 1\% (1/16) \\
+Email encryption (e.g. PGP) 			& 50\% (8/16) & 19\% (3/16) & 19\% (3/16) & 0\% (0/16) & 1\% (1/16) & 1\% (1/16) \\
+Instant messaging encryption 			& 44\% (7/16) & 25\% (4/16) & 13\% (2/16) & 1\% (1/16) & 1\% (1/16) & 1\% (1/16) \\
+Voice communication encryption 		& 81\% (13/16) & 1\% (1/16) & 1\% (1/16) & 0\% (0/16) & 0\% (0/16) &1\% (1/16)\\
 \end{tabular}
 \caption{
 An overview of the results of the experiment. Those who
