@@ -204,6 +204,61 @@ Configuring a proxy requires providing the proxy protocol, IP address, port, and
 There are many valid configuration settings to connect to the Tor network.
 A user who needs a bridge can connect to Tor with a bridge and proxy, provided that both were configured correctly.
 
+\begin{figure*}
+\centering
+\begin{subfigure}[b]{0.30\textwidth}
+	\includegraphics[width=\textwidth]{screenshots/OLD-first.png}
+	\caption{The first screen. The connect button does not connect directly, but uses settings configured in the interface (initialized to be direct).}
+	\label{fig:old-first}
+\end{subfigure}
+~~~~~~~~~~
+\begin{subfigure}[b]{0.30\textwidth}
+	\includegraphics[width=\textwidth]{screenshots/OLD-bridges.png}
+	\caption{Answering yes to this question leads to a screen to configure bridges. Answering no leads to the proxy question screen (Figure~\ref{fig:old-proxy}).}
+	\label{fig:old-bridge}
+\end{subfigure}
+~~~~~~~~~~
+\begin{subfigure}[b]{0.30\textwidth}
+	\includegraphics[width=\textwidth]{screenshots/OLD-bridgeSettings.png}
+	\caption{Where users choose a bridge. The recommended bridge is a hard-coded obfs3.}
+	\label{fig:old-bridge-settings}
+\end{subfigure}
+~~~~~~~~~~
+\begin{subfigure}[b]{0.30\textwidth}
+	\includegraphics[width=\textwidth]{screenshots/OLD-bridgeSettings-combobox.png}
+	\caption{The available transport selections, listed in alphabetical order. They all work differently.}
+	\label{fig:old-bridge-combobox}
+\end{subfigure}
+~~~~~~~~~~
+\begin{subfigure}[b]{0.30\textwidth}
+	\includegraphics[width=\textwidth]{screenshots/OLD-bridgeHelp.png}
+	\caption{Instructions on getting a custom bridge. Clicking the ``Help'' button in Figures~\ref{fig:old-bridge-settings} and \ref {fig:old-bridge-combobox} leads to this page.}
+	\label{fig:old-bridge-help}
+\end{subfigure}
+~~~~~~~~~~
+\begin{subfigure}[b]{0.30\textwidth}
+	\includegraphics[width=\textwidth]{screenshots/OLD-proxy.png}
+	\caption{Answering yes to this question leads to a screen to configure proxies. Answering no initiates a connection to Tor.}
+	\label{fig:old-proxy}
+\end{subfigure}
+~~~~~~~~~~
+\begin{subfigure}[b]{0.30\textwidth}
+	\includegraphics[width=\textwidth]{screenshots/OLD-proxyYES.png}
+	\caption{Where users fill in proxy information.}
+	\label{fig:old-proxy-yes}
+\end{subfigure}
+~~~~~~~~~~
+\begin{subfigure}[b]{0.30\textwidth}
+	\includegraphics[width=\textwidth]{screenshots/OLD-progress.png}
+	\caption{The progress bar.}
+	\label{fig:old-progress}
+\end{subfigure}
+\caption{
+The Tor Browser 5.0.3 Tor Launcher GUI. Screens are in the order that they appear. 
+}
+\label{fig:old-interface}
+\end{figure*} 
+
 \section{Methodology} 
 This section discusses our process, principles, and preparations for evaluating the configuration interface.
 
@@ -279,61 +334,6 @@ This section discusses our inspection of the configuration interface and the res
 Two researchers performed the cognitive walkthrough on the Tor Browser 5.0.3 Tor Launcher GUI, the most recent version deployed at the time (Figure~\ref{fig:old-interface}). We systematically tried action sequences from the perspective of a typical user, which we defined as a first time or infrequent user with almost no previous knowledge about network components involved in connecting to Tor.
 
 We first examined each screen in the interface for tasks required, inputs taken, and consequences of possible actions. This was done to map all potential paths through the interface (Figure~\ref{fig:digraph}). We then stepped through each user path and recorded our observations. 
-
-\begin{figure*}
-\centering
-\begin{subfigure}[b]{0.30\textwidth}
-	\includegraphics[width=\textwidth]{screenshots/OLD-first.png}
-	\caption{The first screen. The connect button does not connect directly, but uses settings configured in the interface (initialized to be direct).}
-	\label{fig:old-first}
-\end{subfigure}
-~~~~~~~~~~
-\begin{subfigure}[b]{0.30\textwidth}
-	\includegraphics[width=\textwidth]{screenshots/OLD-bridges.png}
-	\caption{Answering yes to this question leads to a screen to configure bridges. Answering no leads to the proxy question screen (Figure~\ref{fig:old-proxy}).}
-	\label{fig:old-bridge}
-\end{subfigure}
-~~~~~~~~~~
-\begin{subfigure}[b]{0.30\textwidth}
-	\includegraphics[width=\textwidth]{screenshots/OLD-bridgeSettings.png}
-	\caption{Where users choose a bridge. The recommended bridge is a hard-coded obfs3.}
-	\label{fig:old-bridge-settings}
-\end{subfigure}
-~~~~~~~~~~
-\begin{subfigure}[b]{0.30\textwidth}
-	\includegraphics[width=\textwidth]{screenshots/OLD-bridgeSettings-combobox.png}
-	\caption{The available transport selections, listed in alphabetical order. They all work differently.}
-	\label{fig:old-bridge-combobox}
-\end{subfigure}
-~~~~~~~~~~
-\begin{subfigure}[b]{0.30\textwidth}
-	\includegraphics[width=\textwidth]{screenshots/OLD-bridgeHelp.png}
-	\caption{Instructions on getting a custom bridge. Clicking the ``Help'' button in Figures~\ref{fig:old-bridge-settings} and \ref {fig:old-bridge-combobox} leads to this page.}
-	\label{fig:old-bridge-help}
-\end{subfigure}
-~~~~~~~~~~
-\begin{subfigure}[b]{0.30\textwidth}
-	\includegraphics[width=\textwidth]{screenshots/OLD-proxy.png}
-	\caption{Answering yes to this question leads to a screen to configure proxies. Answering no initiates a connection to Tor.}
-	\label{fig:old-proxy}
-\end{subfigure}
-~~~~~~~~~~
-\begin{subfigure}[b]{0.30\textwidth}
-	\includegraphics[width=\textwidth]{screenshots/OLD-proxyYES.png}
-	\caption{Where users fill in proxy information.}
-	\label{fig:old-proxy-yes}
-\end{subfigure}
-~~~~~~~~~~
-\begin{subfigure}[b]{0.30\textwidth}
-	\includegraphics[width=\textwidth]{screenshots/OLD-progress.png}
-	\caption{The progress bar.}
-	\label{fig:old-progress}
-\end{subfigure}
-\caption{
-The Tor Browser 5.0.3 Tor Launcher GUI. Screens are in the order that they appear. 
-}
-\label{fig:old-interface}
-\end{figure*} 
 
 \subsection{Observations}
 The interface did not suppose that a user has previous exposure to Tor. To help new users, it provided recommendations in the text and populated some options (such as bridges) with recommended options. However, the interface did require the user to figure out if Tor relays are blocked or if a proxy is required. And the interface did not discourage users from configuring components that are not necessary to connect to Tor. The proxy configuration has the potential for a lot of error, as there are a many free-form input fields. 
@@ -689,7 +689,12 @@ Completion rate was defined as the percentage of users that eventually connected
 17\% (19 of 114) of participants were not able to successfully connect to Tor. Five (P73, P75, P89, P91, P106, P110) tried a direct connection. When that failed, they assumed there was something wrong with their computer, network settings, or the Tor network and never tried to configure bridges or proxies. Five (P74, P92, P105, P107, P113) users who need a bridge assumed that they needed a proxy to connect to Tor. We believe this may be due to the fact that the OLD interface defaults to showing users the proxy page (because it is the one before the progress screen) when a connection fails. Five (P90, P93, P108, P111, P114) users who needed a meek or custom bridge tried the suggested bridge (obfs3), but didn't know what to do when that failed. Two (P94, P109) users who needed a meek or custom bridge tried to get custom bridges but failed to format their email content correctly to get a response from the bridges autoresponder. We suspect that they would have succeeded if they had gotten a response. 
 
 %success rate and version
-{\color {red} Our interface changes did {\it not} have a significant impact on completion rates (Pearson's Chi-squared; $\chi^2 = 0.0126$, $df = 2$, $p = 0.994$).} That is, the slight differences in completion rates between E1-NEW vs E1-OLD, E2-NEW vs E2-OLD and E3-NEW vs E3-OLD are likely due to random chance.
+Our interface changes did {\it not} have a significant impact on completion rates (Pearson's Chi-squared; $\chi^2 = 2.808$, $df = 2$, $p = 0.094$). That is, the slight differences in completion rates between E1-NEW vs E1-OLD, E2-NEW vs E2-OLD and E3-NEW vs E3-OLD are likely due to random chance.
+
+% OLD VS NEW: The chi-square statistic is 2.8079. The p-value is .093802.
+% E1-old vs E1-new: no valid calculation  since it's the exact same ratio (19 succeeded, 0 failed) 
+% E2-old vs E2-new: The chi-square statistic is 3.0929. The p-value is .078636.
+% E3-old vs e3-new: The chi-square statistic is 1.3666. The p-value is .242403.
 
 \subsubsection{Connection time} 
 Connection time is the time from Tor Browser startup to the first successful Tor bootstrap. Non-finishing participants are assigned the maximum experiment time of 40:08. Table~\ref{table:participant-summary} summarizes the median times while Figure~\ref{fig:time_to_success_clamped} shows their distribution. Figure~\ref{fig:time_to_success_ecdf} shows the cumulative success rates over time. 
