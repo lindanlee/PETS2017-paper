@@ -114,7 +114,7 @@ that make it difficult to observe the source and destination.
 Tor Browser~\cite{torbrowser} is a modified Firefox browser with a built-in Tor client that
 is the recommended way to use Tor. Tor Launcher is a Tor Browser component that
 starts, stops, and otherwise controls the underlying Tor processes.
-Tor Launcher's graphical user interface asks the user to configure
+Tor Launcher's graphical user interface (Figure~\ref{fig:old-interface}) asks the user to configure
 bridges, pluggable transports, and proxies to make a connection to Tor (we refer to this graphical user interface as the ``configuration interface'' throughout this paper). This is the object of our study. 
 
 Although Tor Browser was originally designed for Internet anonymity, many now use Tor Browser to circumvent Internet censorship. In fact, many countries block Tor relays specifically to prevent their citizens from circumventing censorship~\cite{winter2012great}. The configuration interface mainly exists so that people who face Internet censorship can configure bridges, transports, and proxies to connect to Tor, but all Tor Browser users must interact with it regardless of why they use Tor Browser.
@@ -142,67 +142,7 @@ limitations of our evaluation (section~\ref{sec:limitations}), and framed our wo
 \item alternatives to burdening users with configuration 
 \end{itemize}
 
-\section{Background}
-\label{sec:background}
-This section covers technical background necessary to understand the study. 
-
-\subsection{Relays, Bridges, Pluggable Transports, and Proxies} 
-
-Tor relays are routers in the Tor Network that receive and route Tor traffic. 
-The three types of relays are: guard relays that serve as an entry node, middle relays that forward traffic from an entry relay to an exit relay, and exit relays that direct traffic to the destination. 
-
-Bridges are unlisted Tor relays that serve as an alternative entry node.
-Bridges can be unlisted relays that behave similarly to a regular Tor relay,  
-but most run a pluggable transport (referred to as ``transport'' for shorthand) that obfuscates traffic. 
-Pre-configured bridges can be selected by ``Transport type,'' which refer to various
-censorship circumvention technologies (``pluggable transports'').
-Most transports rely on the secrecy of their static IP addresses for their effectiveness.
-These include ``fte'' and ``fte-ipv6''~\cite{fte},
-which disguise the Tor protocol as another protocol (such as HTTP), and
-``obfs3''~\cite{obfs3}, ``obfs4''~\cite{obfs4}, and ``scramblesuit''~\cite{scramblesuit},
-which encrypt or alter the Tor protocol to appear as random noise.
-Other transports route traffic through other services and do not need secret IP address. 
-``flashproxy''~\cite{flashproxy} connects through third party web browsers,
-and the ``meek''~\cite{fifield2015blocking} options route traffic
-through content delivery networks. Fig.~\ref{fig:old-bridge-combobox} shows the bridge and transport options at the time of the study.
-
-In this paper, ``proxy'' refers to a local, ordinary unobfuscated proxy such as a SOCKS or HTTP proxy. (Technically, Tor relays, bridges, and local proxies all allow indirect network connections to other network services and can be considered a proxy.) Fig.~\ref{fig:topology} illustrates the interacting components.
-
-\subsection{State and Corporate Censorship}
-State level censors block access to the Tor network by blocking Tor relays, which are publicly listed. Some also employ more sophisticated techniques such as deep packet inspection and protocol detection. This means that users can connect directly to websites, but some may be blocked as is Tor. The thoroughness of censorship is what requires different bridges and transports. 
-
-A local proxy is required to connect in certain managed networks (i.e. company and university firewalls). This usually means that users cannot connect to the Internet at all without a proxy, including connecting to the Internet through Tor. The user must be able to connect to the Internet through their proxy before trying to connect to the Internet with Tor. 
-
-\begin{figure}
-\centering
-\includegraphics{topology.pdf}
-\caption{
-The chain of components involved in connecting to a website over Tor.
-Most users do not need a proxy;
-only users who face a censor need a bridge.
-In the diagram, ``Tor'' represents all three anonymizing hops through the Tor network.
-We have shown the bridge as a separate component
-because of the special role it plays.
-When a bridge is used, it becomes the first Tor relay.
-}
-\label{fig:topology}
-\end{figure}
-
-\subsection{Connecting to Tor} 
-Configuring a bridge requires providing a
-``bridge line,'' a specifically formatted bridge specification that
-includes its IP address, transport type, and other metadata.
-The interface has hard-coded options (see Figure~\ref{fig:bridge-options}) 
-that select a group of bridges that use a particular transport.
-For instance, choosing the hard-coded obfs3 option
-configures a handful of bridges that use the obfs3 transport.
-If the built-in bridges do not work, a user can obtain bridge lines
-through out-of-band channels, for instance by email~\cite{bridgedb}.
-
-Configuring a proxy requires providing the proxy protocol, IP address, port, and additional optional fields. The user must locate and input this information. If the computer is already configured to use a proxy, the information can be found in other browsers. The interface tells users to ``check Internet settings in another browser'' if they are unsure of the proxy information. 
-
-There are many valid configuration settings to connect to the Tor network.
-A user who needs a bridge can connect to Tor with a bridge and proxy, provided that both were configured correctly.
+We hope that our work contributes to Tor Browser and provides an interesting case study. We also encourage the use our evaluation pipeline and methods for evaluating other user-facing interfaces and features.  
 
 \begin{figure*}
 \centering
@@ -258,6 +198,68 @@ The Tor Browser 5.0.3 Tor Launcher GUI. Screens are in the order that they appea
 }
 \label{fig:old-interface}
 \end{figure*} 
+
+\section{Background}
+\label{sec:background}
+This section covers technical background necessary to understand the study. 
+
+\subsection{Relays, Bridges, Pluggable Transports, and Proxies} 
+
+ A user uses the Tor network to indirectly connect to websites using Tor Browser. The Tor network is a group of routers that peform onion routing, a technique for anonymous communication over a computer network.  Tor relays are the routers in the Tor Network. 
+Guard relays that serve as an entry node into the Tor network and receive packets from the user. Middle relays forward traffic from an entry relay to an exit relay, and provide an extra layer of encryption in the Tor network. Exit relays receive traffic from a middle relay, and direct the traffic to its intended destination. 
+
+Bridges are unlisted Tor relays that serve as an alternative entry node.
+Bridges can be unlisted relays that behave similarly to a regular Tor relay,  
+but most run a pluggable transport (referred to as ``transport'' for shorthand) that obfuscates traffic. 
+Pre-configured bridges can be selected by ``Transport type,'' which refer to various
+censorship circumvention technologies (``pluggable transports'').
+Most transports rely on the secrecy of their static IP addresses for their effectiveness.
+These include ``fte'' and ``fte-ipv6''~\cite{fte},
+which disguise the Tor protocol as another protocol (such as HTTP), and
+``obfs3''~\cite{obfs3}, ``obfs4''~\cite{obfs4}, and ``scramblesuit''~\cite{scramblesuit},
+which encrypt or alter the Tor protocol to appear as random noise.
+Other transports route traffic through other services and do not need secret IP address. 
+``flashproxy''~\cite{flashproxy} connects through third party web browsers,
+and the ``meek''~\cite{fifield2015blocking} options route traffic
+through content delivery networks. Fig.~\ref{fig:old-bridge-combobox} shows the bridge and transport options at the time of the study.
+
+In this paper, the word``proxy'' refers to a local, ordinary unobfuscated proxy such as a SOCKS or HTTP proxy. This is to maintain consistency with the wording in the configuration interface. Fig.~\ref{fig:topology} illustrates the interacting components. We recognize that, a proxy is technically anything that acts as an intermediary between clients and servers. By this definition, a single Tor relay, a bridge, the circuit of entry, middle, and guard relays, and local proxies can all can be considered a proxy. 
+
+\subsection{State and Corporate Censorship}
+State level censors block access to the Tor network by blocking Tor relays, which are publicly listed. Some also employ more sophisticated techniques such as deep packet inspection and protocol detection. This means that users can connect directly to websites, but some may be blocked as is Tor. The thoroughness of censorship is what requires different bridges and transports. 
+
+A local proxy is required to connect in certain managed networks (i.e. company and university firewalls). This usually means that users cannot connect to the Internet at all without a proxy, including connecting to the Internet through Tor. The user must be able to connect to the Internet through their proxy before trying to connect to the Internet with Tor. 
+
+\begin{figure}
+\centering
+\includegraphics{topology.pdf}
+\caption{
+The chain of components involved in connecting to a website over Tor.
+Most users do not need a proxy;
+only users who face a censor need a bridge.
+In the diagram, ``Tor'' represents all three anonymizing hops through the Tor network.
+We have shown the bridge as a separate component
+because of the special role it plays.
+When a bridge is used, it becomes the first Tor relay.
+}
+\label{fig:topology}
+\end{figure}
+
+\subsection{Connecting to Tor} 
+Configuring a bridge requires providing a
+``bridge line,'' a specifically formatted bridge specification that
+includes its IP address, transport type, and other metadata.
+The interface has hard-coded options (see Figure~\ref{fig:old-bridge-combobox}) 
+that select a group of bridges that use a particular transport.
+For instance, choosing the hard-coded obfs3 option
+configures a handful of bridges that use the obfs3 transport.
+If the built-in bridges do not work, a user can obtain bridge lines
+through out-of-band channels, for instance by email~\cite{bridgedb}.
+
+Configuring a proxy requires providing the proxy protocol, IP address, port, and additional optional fields. The user must locate and input this information. If the computer is already configured to use a proxy, the information can be found in other browsers. The interface tells users to ``check Internet settings in another browser'' if they are unsure of the proxy information. 
+
+There are many valid configuration settings to connect to the Tor network.
+A user who needs a bridge can connect to Tor with a bridge and proxy, provided that both were configured correctly.
 
 \section{Methodology} 
 This section discusses our process, principles, and preparations for evaluating the configuration interface.
@@ -356,7 +358,7 @@ A digraph illustrating the potential user paths through the interface. Non-leaf 
 This section discusses our small-scale, qualitative usability experiment and resulting user insights. 
 
 \subsection{Recruitment}
-We recruited people from Craigslist using the recruitment text in Appendix~\ref{qualitative-recruitment}, which linked an prescreening survey that collected demographics (Appendix~\ref{qualitative-prescreening}). We pre-screened~\cite{screening} for diversity in gender, age, technical expertise, use of security tools, and familiarity with Tor in a small participant pool. Of our 16 recruited participants, 50\% were male. Ages ranged from 20 to~62 years ($\mu = 30.5$, $\sigma = 13.5$). One participant declined to submit their age, so the previous calcuations were done without thier information. 100\% had at least some college education. We took participants' self-reported familiarity with technical terms use of security tools with skepticism (Appendix~\ref{prescreening-responses}). We verified their self-reported familiarity with Tor Browser in-person, and found that 4 used it, 5 heard of it but not used it, and the remaining 8 never heard of or used it. The main objective of this question was to identify new users versus infrequent users. We considered participants who had never heard of Tor or have only heard of Tor to be new users and those who have used Tor to be previous users. 
+We recruited people from Craigslist using the recruitment text in Appendix~\ref{qualitative-recruitment}, which linked an prescreening survey that collected demographics (Appendix~\ref{qualitative-prescreening}). We pre-screened~\cite{screening} for diversity in gender, age, technical expertise, use of security tools, and familiarity with Tor in a small participant pool. Of our 16 recruited participants, 50\% were male. Ages ranged from 20 to~62 years ($\mu = 30.5$, $\sigma = 13.5$). One participant declined to submit their age, so the previous calcuations were done without thier information. 100\% had at least some college education. We took participants' self-reported familiarity with technical terms use of security tools with skepticism (Appendix~\ref{prescreening-responses}). We verified their self-reported familiarity with Tor Browser in-person, and found that 4 used it, 3 heard of it but not used it, and the remaining 9 never heard of or used it. The main objective of this question was to identify new users versus infrequent users. We considered participants who had never heard of Tor or have only heard of Tor to be new users and those who have used Tor to be previous users. 
 
 % gender: Male: 8/Female: 8
 % education: At least some college 16
@@ -553,7 +555,7 @@ We then rewatched screen capture videos and read interview transcriptions to bra
 	\label{fig:new-summary}
 \end{subfigure}
 ~~~~~~~~~~
-\begin{subfigure}[b]{0.35\textwidth}
+\begin{subfigure}[b]{0.30\textwidth}
 	\includegraphics[width=\textwidth]{screenshots/NEW-progress.png}
 	\caption{A checkpoint progress bar with connection information. There are more checkpoints if bridges and proxies are configured.}
 	\label{fig:new-progress}
@@ -653,8 +655,10 @@ A summary of our valid participants' paths through the interface.
 The length of the bars show the total time taken to complete the task,
 except for those we cut off after approximately 40 minutes.
 Different colors indicate which screen they were on during the experiment.
-The ``not running'' times are those when Tor Launcher was closed (
-i.e. searching for help in another browser, restarting the application, etc.).
+If participants were doing other things (i.e. searching for help in another browser)
+while off-focus, this time still counts as spending time in that off-focus window. 
+``Not running'' are times when Tor Launcher was closed (
+i.e. restarting the application).
 }
 \label{fig:all-participant-edges}
 \end{figure*}
@@ -835,7 +839,7 @@ Due to space constraints, we could not include many of our experiment artifacts.
 %\noindent \url{https://github.com/lindanlee/circumvention-ux-tor}
 
 \section {Acknowledgments}
-Many generous people helped us along the way. <Redacted> assisted with testing our setup and teardown scripts, offered recruitment services, and allowed us to run experiments after <redacted lab>'s hours. <Redacted> and <redacted> were instrumental during the design process, as they helped me iterate through many not-so-great ideas.  <Redacted>, and <redacted> provided me with insider insight into the design decisions made at Tor.
+Many generous people helped us along the way. <Redacted> assisted with testing our setup and teardown scripts, offered recruitment services, and allowed us to run experiments after <redacted lab>'s hours. <Redacted> and <redacted> were instrumental during the design process, as they helped me iterate through many not-so-great ideas.  <Redacted> and <redacted> provided me with insider insight into the design decisions made at Tor.
 % Rowilma del Castillo. Nima Fatemi and Isabela Bagueros.  Georg Koppen and the Tor UX team.
 
 \bibliographystyle{abbrv}
