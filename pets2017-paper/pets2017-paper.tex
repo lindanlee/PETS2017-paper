@@ -818,6 +818,7 @@ The configuration interface leverages the native operating system's styling and 
 \label{sec:related} 
 
 {\color {red} 
+% Previous Tor studies 
 There have been three published user studies on Tor. Clark et~al.~\cite{clark2007usability} examined various deployment
 options for Tor Browser, such as Vidalia, Privoxy, Torbutton, and FoxyProxy, and found that none had satisfactory from a usability. Fabian et~al.~\cite{fabian2010privately} show that Tor's added
 latency~\cite{dingledine2009performance} causes users
@@ -835,7 +836,9 @@ Previous user studies have considered the whole browsing experience,
 without focusing on specific features in isolation.
 Our study focuses on 
 the browser's configuration interface, which guides users through setting up components required to circumvent censorship. 
-%for color red
+
+% Scoping our work wrt usable security, usability, and interaction design  
+Our work combines the three. We try to make it as usable as possible by following usability practices (reducing load, not having people remember, easy learning curve, etc.) But at the same time, we also tried to make some things hard and kept things hard (not automating things that would be dangerous) like confirm if you want to delete everything is a useful feature, and it's more usable security than usability. Our thing was more interaction design--we changed from letting the users guide to telling them, to making it as easy as possible to having a consistent model. We didn't really do any real design except to prove the concept (cite Adrienne's warning study with icons and colors), and while we tried to make it good, we didn't reaaaaallly thorougly test out the icons and wording and whatnot. 
 }
 
 \section{Conclusion} 
