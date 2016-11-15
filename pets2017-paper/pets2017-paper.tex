@@ -637,9 +637,11 @@ E3-NEW & 13/19 & 68\% & 20:25 & 1:56 \\
 E3-OLD & 10/20 & 50\% & 40:08 & 9:09 \\
 \end{tabular}
 \caption{
+{\color {red}
 An overview of the results of the experiment. Those who
 failed to connect were assigned the maximum time of 40:08, 
 the maximum time a participant took to finish the task.
+}
 }
 \label{table:participant-summary}
 \end{table}
@@ -652,6 +654,7 @@ the maximum time a participant took to finish the task.
 % the treatments.
 \includegraphics{all-participant-edges}
 \caption{
+{\color {red}
 A summary of our valid participants' paths through the interface.
 The length of the bars show the total time taken to complete the task,
 except for those we cut off after approximately 40 minutes.
@@ -659,7 +662,7 @@ Different colors indicate which screen they were on during the experiment.
 If participants were doing other things (i.e. searching for help in another browser)
 while off-focus, this time still counts as spending time in that off-focus window. 
 ``Not running'' are times when Tor Launcher was closed (
-i.e. restarting the application).
+i.e. restarting the application).}
 }
 \label{fig:all-participant-edges}
 \end{figure*}
@@ -671,6 +674,7 @@ i.e. restarting the application).
 \centering
 \input{attempts-bridge-proxy.tex}
 \caption{
+{\color {red}
 Network components that led to the first successful bootstrap
 in each condition.
 Most successful E1 participants used a direct connection,
@@ -684,6 +688,7 @@ One E3 participant succeeded in an unexpected way
 by using an open proxy and configuring it to bypass our 
 simulated environment.
 }
+}
 \label{tab:attempts-bridge-proxy}
 \end{table}
 
@@ -691,10 +696,10 @@ simulated environment.
 Completion rate was defined as the percentage of users that eventually connected to Tor. Table~\ref{table:participant-summary} summarizes the completion rates and Table~\ref{tab:attempts-bridge-proxy} shows the configuration for users' first successful connection. We only considered the first successful configuration, as some curious participants tried others after completing their task. 
 
 % failure observations
-17\% (19 of 114) of participants were not able to successfully connect to Tor. Five (P73, P75, P89, P91, P106, P110) tried a direct connection. When that failed, they assumed there was something wrong with their computer, network settings, or the Tor network and never tried to configure bridges or proxies. Five (P74, P92, P105, P107, P113) users who need a bridge assumed that they needed a proxy to connect to Tor. We believe this may be due to the fact that the OLD interface defaults to showing users the proxy page (because it is the one before the progress screen) when a connection fails. Five (P90, P93, P108, P111, P114) users who needed a meek or custom bridge tried the suggested bridge (obfs3), but didn't know what to do when that failed. Two (P94, P109) users who needed a meek or custom bridge tried to get custom bridges but failed to format their email content correctly to get a response from the bridges autoresponder. We suspect that they would have succeeded if they had gotten a response. 
+{\color {red} 17\% (19 of 114) of participants were not able to successfully connect to Tor. Five (P73, P75, P89, P91, P106, P110) tried a direct connection. When that failed, they assumed there was something wrong with their computer, network settings, or the Tor network and never tried to configure bridges or proxies. Five (P74, P92, P105, P107, P113) users who need a bridge assumed that they needed a proxy to connect to Tor. We believe this may be due to the fact that the OLD interface defaults to showing users the proxy page (because it is the one before the progress screen) when a connection fails. Five (P90, P93, P108, P111, P114) users who needed a meek or custom bridge tried the suggested bridge (obfs3), but didn't know what to do when that failed. Two (P94, P109) users who needed a meek or custom bridge tried to get custom bridges but failed to format their email content correctly to get a response from the bridges autoresponder. We suspect that they would have succeeded if they had gotten a response.}
 
 %success rate and version
-Our interface changes did {\it not} have a significant impact on completion rates (Pearson's Chi-squared; $\chi^2 = 2.808$, $df = 2$, $p = 0.094$). That is, the slight differences in completion rates between E1-NEW vs E1-OLD, E2-NEW vs E2-OLD and E3-NEW vs E3-OLD are likely due to random chance.
+{\color {red} Our interface changes did {\it not} have a significant impact on completion rates (Pearson's Chi-squared; $\chi^2 = 2.808$, $df = 2$, $p = 0.094$).} That is, the slight differences in completion rates between E1-NEW vs E1-OLD, E2-NEW vs E2-OLD and E3-NEW vs E3-OLD are likely due to random chance.
 
 %using http://www.socscistatistics.com/tests/chisquare/Default2.aspx
 % OLD VS NEW: The chi-square statistic is 2.8079. The p-value is .093802.
@@ -706,19 +711,20 @@ Our interface changes did {\it not} have a significant impact on completion rate
 Connection time is the time from Tor Browser startup to the first successful Tor bootstrap. Non-finishing participants are assigned the maximum experiment time of 40:08. Table~\ref{table:participant-summary} summarizes the median times while Figure~\ref{fig:time_to_success_clamped} shows their distribution. Figure~\ref{fig:time_to_success_ecdf} shows the cumulative success rates over time. 
 
 %time observations (how long people took)
-The simulated censorship environment, and therefore, the difficulty of the configuration, was the most determining factor for connection time (Kruskal--Wallis $\chi^2 = 80.5$, $\mbox{df} = 2$, $p < 10^{-15}$). Participants in E2 took longer to connect than participants in E1, and participants in E3 took the longest to connect.
+The simulated censorship environment, and therefore, the difficulty of the configuration, was the most determining factor for connection time {\color {red} (Kruskal--Wallis $\chi^2 = 80.5$, $\mbox{df} = 2$, $p < 10^{-15}$).} Participants in E2 took longer to connect than participants in E1, and participants in E3 took the longest to connect.
 
 %time to success and version
-Our interface changes had a significant impact in reducing connection time (one-tailed Mann--Whitney; $ Z = -1.84$, $p = 0.0328$, $r= 0.172$). That is, the differences in mean connection times in E1-NEW vs E1-OLD and E2-NEW vs E2-OLD and E3-NEW vs E3-OLD is likely not due to random chance. We used a one-tailed Mann--Whitney test because the distribution of completion times were 1) right-censored at 40 minutes (experiment duration) and 2) non-normal and heavily right tailed (failures were assigned a time of 40 minutes). 
+{\color {red} Our interface changes had a significant impact in reducing connection time (one-tailed Mann--Whitney; $ Z = -1.84$, $p = 0.0328$, $r= 0.172$).} That is, the differences in mean connection times in E1-NEW vs E1-OLD and E2-NEW vs E2-OLD and E3-NEW vs E3-OLD is likely not due to random chance. We used a one-tailed Mann--Whitney test because the distribution of completion times were 1) right-censored at 40 minutes (experiment duration) and 2) non-normal and heavily right tailed (failures were assigned a time of 40 minutes). 
 
 \begin{figure}[t]
 \centering
 \includegraphics{time_to_success_clamped}
 \caption{
+{\color {red}
 The dots show the raw connection times,
 while the boxplots show the medians and interquartile ranges.
 The ``DNF'' (did not finish) numbers at the right show how many of participants 
-did not finish, who were assigned the maximum time of 40:08.
+did not finish, who were assigned the maximum time of 40:08.}
 }
 \label{fig:time_to_success_clamped}
 \end{figure}
@@ -728,11 +734,12 @@ did not finish, who were assigned the maximum time of 40:08.
 \includegraphics{time_to_success_ecdf}
 \input{time_to_success_ecdf.tex}
 \caption{
+{\color {red}
 Cumulative success rates over time, shown continuously and at discrete times we found interesting.
 Notice that the longer the time went on, participants were less likely to succeed. 
 At 1.5 minutes, every E1-NEW participant had finished,
 but only 58\% of E1-OLD had finished by that time.  
-At 10 minutes, most participants in E2 had finished. 
+At 10 minutes, most participants in E2 had finished. }
 }
 \label{fig:time_to_success_ecdf}
 \end{figure}
@@ -745,15 +752,18 @@ Configuration time is the time spent configuring network components, which we de
 We believe that configuration time is a meaningful metric because 1) bootstrapping can take a couple minutes, which dominates measurements for users do not need much time to configure their connection, such as participants in E1, and 2) some mistakes, such as using a syntactically valid but unusable proxy, generate non-interrupting warnings and let the users wait indefinitely until they manually cancel the connection to try again. But this is not the most accurate measurement of time spent configuring, since it does not reflect how some participants searched for help in another browser while waiting on the progress screen.
 
 %configuration time and version
-Our interface changes had a significant impact in reducing configuration time (one-tailed Mann--Whitney; $Z = -3.28$, $p = 0.000516$, $r = 0.307$). That is, the differences in mean configuration times in E1-NEW vs E1-OLD and E2-NEW vs E2-OLD and E3-NEW vs E3-OLD is likely not due to random chance. We used a one-tailed Mann--Whitney test because the distribution of configuration times was also 1) right-censored and 2) non-normal and heavily right tailed, due to being an artifact of completion time. 
+{Our interface changes had a significant impact in reducing configuration time (one-tailed Mann--Whitney; $Z = -3.28$, $p = 0.000516$, $r = 0.307$).} That is, the differences in mean configuration times in E1-NEW vs E1-OLD and E2-NEW vs E2-OLD and E3-NEW vs E3-OLD is likely not due to random chance. We used a one-tailed Mann--Whitney test because the distribution of configuration times was also 1) right-censored and 2) non-normal and heavily right tailed, due to being an artifact of completion time. 
 
 \begin{table}[t]
 \centering
 \input{median_time.tex}
-\caption{The median percent of time spent on each screen. 
+\caption{
+{\color {red}
+The median percent of time spent on each screen. 
 This percentage is computed independently for each screen; that is, a participant who spent the median percent 
 of time on one screen may not be the same participant who spent the median percent
-of time on other screens.} 
+of time on other screens.}
+} 
 \label{table:median_time}
 \end{table}
 
@@ -761,17 +771,19 @@ of time on other screens.}
 \centering
 \includegraphics{time_to_success_active_clamped}
 \caption{
+{\color {red}
 The dots show the raw active configuration times,
 while the boxplots show the medians and interquartile ranges.
 Here, non-finishing participants' active time was computed by
 subtracting the amount of time spent on the progress screen from the 
 their assigned completion time of 40:08.
 }
+}
 \label{fig:time_to_success_active_clamped}
 \end{figure}
 
 \subsection{Usability of Tor Launcher} 
-In total, 63\% (72 of 114) of first attempts to connect failed and 79\% (363 of 458) of total attempts to connect failed. 
+{\color {red} In total, 63\% (72 of 114) of first attempts to connect failed and 79\% (363 of 458) of total attempts to connect failed.}
 On average, users who required a bridge took over 3 minutes to connect to Tor, and users who required a meek or custom bridge took over 20 minutes.
 
 Ideally, almost all users should be able to configure the necessary or optional network components and connect to Tor within a few minutes. Neither the Tor Browser's 5.0.3 Tor Launcher GUI or our redesigned Tor Launcher GUI meets this goal.
