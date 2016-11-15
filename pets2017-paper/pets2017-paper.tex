@@ -358,7 +358,7 @@ A digraph illustrating the potential user paths through the interface. Non-leaf 
 This section discusses our small-scale, qualitative usability experiment and resulting user insights. 
 
 \subsection{Recruitment}
-We recruited people from Craigslist using the recruitment text in Appendix~\ref{qualitative-recruitment}, which linked an prescreening survey that collected demographics (Appendix~\ref{qualitative-prescreening}). We pre-screened~\cite{screening} for diversity in gender, age, technical expertise, use of security tools, and familiarity with Tor in a small participant pool. Of our 16 recruited participants, 50\% were male. Ages ranged from 20 to~62 years ($\mu = 30.5$, $\sigma = 13.5$). One participant declined to submit their age, so the previous calcuations were done without thier information. 100\% had at least some college education. We took participants' self-reported familiarity with technical terms use of security tools with skepticism (Appendix~\ref{prescreening-responses}). We verified their self-reported familiarity with Tor Browser in-person, and found that 4 used it, 3 heard of it but not used it, and the remaining 9 never heard of or used it. The main objective of this question was to identify new users versus infrequent users. We considered participants who had never heard of Tor or have only heard of Tor to be new users and those who have used Tor to be previous users. 
+We recruited people from Craigslist using the recruitment text in Appendix~\ref{qualitative-recruitment}, which linked an prescreening survey that collected demographics (Appendix~\ref{qualitative-prescreening}). We pre-screened~\cite{screening} for diversity in gender, age, technical expertise, use of security tools, and familiarity with Tor in a small participant pool. Of our 16 recruited participants, 50\% identified as male and 50\% identified as female. Ages ranged from 20 to~62 years ($\mu = 30.5$, $\sigma = 13.5$). One participant declined to submit their age, so the previous calcuations were done without thier information. 100\% had at least some college education. We took participants' self-reported familiarity with technical terms use of security tools with skepticism (Appendix~\ref{prescreening-responses}). We verified their self-reported familiarity with Tor Browser in-person, and found that 4 used it, 3 heard of it but not used it, and the remaining 9 never heard of or used it. The main objective of this question was to identify new users versus infrequent users. We considered participants who had never heard of Tor or have only heard of Tor to be new users and those who have used Tor to be previous users. 
 
 % gender: Male: 8/Female: 8
 % education: At least some college 16
@@ -604,7 +604,7 @@ This section discusses our large-scale quantitative usability experiment and res
 \subsection{Recruitment}
 We recruited  people using the recruitment text in Appendix~\ref{quantitative-recruitment}. We recruited 65 participants from Craigslist and 59 participants from the <redacted lab> participant pool. <Redacted lab> encouraged the use of their participant pool, but we bargained to recruit participants from Craigslist to ensure a diverse set of participants. Although the <redacted lab>'s participant pool is not limited to students and staff from <redacted institution>, it was estimated that a large majority were. 
 
-{\color {red} Of our recruited 124 participants, 56.8\% were male. Ages ranged from 18 to~68 years ($\mu = 28.9$, $\sigma = 12$). 56.8\% were male. 84.8\% of our participants had a college education.} We distributed participants evenly across experimental condition, about 20 in each interface and environment combination. Although there is variation in gender and age in each experimental condition, we ensured each condition had about half Craigslist recruited participants and half <redacted lab>  pool participants. 
+Of our recruited 124 participants, 44.2\% identified as male, 54.0\% identified as female, and 1.8\% identified as neither. Ages ranged from 18 to~68 years ($\mu = 28.2$, $\sigma = 12.3$). 84.1\% of our participants had at least a college education. We distributed participants evenly across experimental condition, about 20 in each interface and environment combination. Although there is variation in gender and age in each experimental condition, we ensured each condition had about half Craigslist recruited participants and half <redacted lab>  pool participants. 
 
 \subsection{Setup}
 We ran our experiment at <redacted lab>, an experimental social science laboratory for behavioral experiments. The testing room had 36 workstations with identical Windows~7 laptops. Side panels at each workstation to discouraged participants from looking at other participants' screens. 
@@ -621,7 +621,7 @@ The experiment formally began by informing participants of the simulated censors
 Participants were given 40 minutes to complete the task. After instructions, researchers maintained minimal interactions with the participants, only answering logistical questions. Afterward, we administered an exit survey to collect demographics (Appendix~\ref{quantitative-exit-survey}). We paid each participant \$30 for their time. 
 
 \subsection{Results} 
-124 people participated in our experiment, but we used data from 114. We filtered participants who made errors in completing the consent form, did not understand the task, or did not interact with the instrumented interface. In this section, we use OLD to refer to the deployed Tor Browser 5.0.3 Tor Launcher GUI (Figure~\ref{fig:old-interface}) and NEW to refer to our redesigned version (Figure~\ref{fig:new-interface}). Table~\ref{table:participant-summary} gives an overview of the results and Figure~\ref{fig:all-participant-edges} summarizes all participants' paths during the experiment.
+124 people participated in our experiment, but we used data from 113. We filtered participants who made errors in completing the consent form, did not complete the exit survey, did not understand the task, or did not interact with the instrumented interface. In this section, we use OLD to refer to the deployed Tor Browser 5.0.3 Tor Launcher GUI (Figure~\ref{fig:old-interface}) and NEW to refer to our redesigned version (Figure~\ref{fig:new-interface}). Table~\ref{table:participant-summary} gives an overview of the results and Figure~\ref{fig:all-participant-edges} summarizes all participants' paths during the experiment.
 
 \begin{table}[t]
 \centering
@@ -638,7 +638,8 @@ E3-OLD & 10/20 & 50\% & 40:08 & 9:09 \\
 \end{tabular}
 \caption{
 An overview of the results of the experiment. Those who
-failed to connect were assigned the maximum time of 40:08.
+failed to connect were assigned the maximum time of 40:08, 
+the maximum time a participant took to finish the task.
 }
 \label{table:participant-summary}
 \end{table}
