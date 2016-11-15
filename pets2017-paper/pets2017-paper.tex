@@ -406,7 +406,7 @@ After participants completed the browsing tasks (or ran out of time),
 we asked them standard interview questions about their experience (Appendix~\ref{interview-questions}) and took notes of their responses. We then followed up with participant-specific questions to verify any hypotheses   we had from observation (e.g. ``the participant was selecting bridges at random''). We paid each participant~\$30 for their time. 
 
 \subsection{Results} 
-We give a summary of what our participants did below. We watched the screen recording to summarize their actions and referred to their interviews for insight into why they took specific actions. 
+We give a summary of what our participants did below. We watched the screen recording to summarize their actions and referred to their interviews for insight into why they took specific actions. We hope that these participant summaries give some insight into how users may currently struggle with the Tor Launcher interface.
 
 %E1: P2, P3, P4, P9, P10
 %E2: P7, P8, P11, P12, P13
@@ -415,8 +415,8 @@ We give a summary of what our participants did below. We watched the screen reco
 %TODO: re-watch the videos and get the exact times. 
 %https://github.com/lindanlee/PETS2017-paper/tree/master/sessions/pre/videos
 
+\subsubsection{E1} 
 In E1, any connection to Tor worked. Configuring bridges and proxies was optional.  
-Participants in E1 were able to connect to Tor, but most were unsure if their actions were correct. Three of the five participants unnecessarily used bridges. 
 Observations in E1: 
 
 %P9 (regular): E1 (0:39; 4:49 to 5:28)
@@ -434,8 +434,10 @@ Observations in E1:
 %P10 (has used Tor before): E1 (1:02; 0:13 to 1:15)
 \pquote{P5 (previous Tor user, obfs3, 1:02)}{They connected using the recommended bridge.}
 
+Participants in E1 were able to connect to Tor, but most were unsure if their actions were correct. Three of the five participants unnecessarily used bridges. 
+
+\subsubsection{E2} 
 In E2, a bridge was required to connect, but any bridge worked. Configuring a proxy was optional.
-Participants in E2 {\it eventually} connected using the recommended bridge, but spent a fair bit of time waiting for direct connections to fail and unsuccessfully configuring proxies. 
 Observations in E2: 
 
 %P7 (heard of Tor): E2 (4:04; 0:29 to 4:33) 
@@ -453,8 +455,10 @@ Observations in E2:
 %P8 (used Tor): E2 (clock drift mission impossible, 1:38 to 7:20) 
 \pquote{P10 (previous Tor user, failed to connect)}{They tried a direct connection. Then, they tried a connection with the recommended bridge, which should have worked. However, our setup experienced a clock drift. Tor does not allow connections with bad clocks. They spent the rest of their time trying different bridges and proxies in vain (Figure~\ref{fig:proxy-attempt}).}
 
+Participants in E2 {\it eventually} connected using the recommended bridge, but spent a fair bit of time waiting for direct connections to fail and unsuccessfully configuring proxies. 
+
+\subsubsection{E3}
 In E3, a bridge was required to connect, but only meek and custom bridges worked. Configuring a proxy was optional.
-Participants in E3 struggled. Three failed to connect. Of the three that connected, one brute forced options until something worked (P14), another did not understand what they did (P15), and the third used a custom bridge after being convinced meek bridges were not working (P16).
 Observations in E3: 
 
 \begin{figure}[t]
@@ -484,7 +488,7 @@ Proxies were not necessary to connect to Tor, but many spent time trying to conf
 %P5 (has used tor before): E3 (22:06; 0:00 to 22:06)
 \pquote{P16 (previous Tor user, custom bridge, 22:06)}{They tried and retried connecting directly, then they tried connecting with the recommended bridge. After briefly looking at error messages the system log, they retried connecting directly two more times. After looking up proxy settings, they tried connecting with a meek-google bridge, but gave up before it could connect. They made a connection with the custom bridge by following the instructions from the bridge help button (they created a throwaway email account, emailed the bridge responder with poor syntax and did not get a response, emailed the bridge responder again with correct syntax and got a response, and then typed in the bridge information into the custom bridge field).}
 
-We hope that these participant summaries give some insight into how users may currently struggle with the Tor Launcher interface. 
+Participants in E3 struggled. Three failed to connect. Of the three that connected, one brute forced options until something worked (P14), another did not understand what they did (P15), and the third used a custom bridge after being convinced meek bridges were not working (P16). 
 
 \subsection{Pain Points in Tor Launcher} 
 \label{sec:pain-points}
