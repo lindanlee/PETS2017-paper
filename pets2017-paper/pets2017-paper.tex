@@ -346,7 +346,7 @@ We used the map of potential user paths (Figure~\ref{fig:digraph}) to design our
 
 \begin{figure*}
 \centering
-\includegraphics[width=\textwidth]{tor-digraph.png}
+\includegraphics[width=\textwidth]{torconfig.pdf}
 \caption{
 A digraph illustrating the potential user paths through the interface. Non-leaf nodes are screens in the user interface (start, bridge 1, bridge 2, proxy 1, proxy 2, and progress). Leaf nodes are various end states (quit, success, or error). Transitions between these nodes denote user actions. For details of each end state, see Appendix~\ref{states}. 
 }
@@ -877,19 +877,20 @@ An exhaustive list of Tor Launcher 5.0.3's end states corresponding to Figure~\r
 
 error states:
 \begin{itemize} 
-\item e0: custom bridge: field left blank
-\item e1: custom bridge: syntax error
-\item e2: custom bridge: invalid address
-\item e3: hardcoded bridge blocked
-\item e4: custom bridge blocked
-\item e5: proxy type is not selected
-\item e6: proxy: ip address left blank
-\item e7: proxy: syntax error
-\item e8: proxy: invalid IP address, blank port
-\item e9: proxy: invalid IP address, good port
-\item e10: proxy: invalid IP address, bad port
-\item e11: proxy: valid IP address, bad port
-\item e12: proxy: valid IP address, blank port
+\item e0: need a bridge or proxy
+\item e1: hardcoded bridge blocked
+\item e2: custom bridge: field left blank
+\item e3: custom bridge: syntax error
+\item e4: custom bridge: invalid address
+\item e5: custom bridge blocked
+\item e6: proxy type is not selected
+\item e7: proxy: ip address left blank
+\item e8: proxy: syntax error
+\item e9: proxy: invalid IP address, blank port
+\item e10: proxy: invalid IP address, good port
+\item e11: proxy: invalid IP address, bad port
+\item e12: proxy: valid IP address, bad port
+\item e13: proxy: valid IP address, blank port
 \end{itemize} 
 
 The same input can lead to different end states. Tor Launcher will connect to a proxy successfully with the port left blank if the proxy uses port 80 (s2) but will not if the proxy uses another port (e12). 
