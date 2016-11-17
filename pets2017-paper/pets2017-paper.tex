@@ -149,56 +149,56 @@ We hope that our work contributes to Tor Browser and provides an interesting cas
 \begin{subfigure}[b]{0.30\textwidth}
 	\includegraphics[width=\textwidth]{screenshots/OLD-first.png}
 	\centering\captionsetup{width=1.5\linewidth}%
-	\caption{The first screen. The connect button does not connect directly, but uses settings configured in the interface (initialized to be direct).}
+	\caption{The first screen (F). ``Connect'' connects directly to a public Tor relay unless bridges or proxies are configured.``Configure'' leads to the first bridge screen (Figure~\ref{fig:old-bridge}). }
 	\label{fig:old-first}
 \end{subfigure}
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 \begin{subfigure}[b]{0.30\textwidth}
 	\includegraphics[width=\textwidth]{screenshots/OLD-bridges.png}
 	\centering\captionsetup{width=1.5\linewidth}%
-	\caption{Answering yes to this question leads to a screen to configure bridges. Answering no leads to the proxy question screen (Figure~\ref{fig:old-proxy}).}
+	\caption{The first bridge screen (B1). Answering yes directs users to a screen to configure bridges (Figure~\ref{fig:old-bridge-settings}). Answering no directs users to the proxy question screen (Figure~\ref{fig:old-proxy}).}
 	\label{fig:old-bridge}
 \end{subfigure}
 ~~~~~~~~~~
 \begin{subfigure}[b]{0.30\textwidth}
 	\includegraphics[width=\textwidth]{screenshots/OLD-bridgeSettings.png}
 	\centering\captionsetup{width=1.5\linewidth}%
-	\caption{Where users choose a bridge. The recommended bridge is a hard-coded obfs3.}
+	\caption{The second bridge screen (B2). Users select a provided bridge or a custom one (bridges not hard coded into the interface). ``Help'' directs to bridge help screen (Figure ~\ref{fig:old-bridge-help}). }
 	\label{fig:old-bridge-settings}
 \end{subfigure}
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 \begin{subfigure}[b]{0.30\textwidth}
 	\includegraphics[width=\textwidth]{screenshots/OLD-bridgeSettings-combobox.png}
 	\centering\captionsetup{width=1.5\linewidth}%
-	\caption{The available transport selections, listed in alphabetical order. They all work differently.}
+	\caption{The hardcoded bridges are listed alphabetically by the transport that they support. Each transport works differently, but their functions are not explained in the interface.}
 	\label{fig:old-bridge-combobox}
 \end{subfigure}
 ~~~~~~~~~~
 \begin{subfigure}[b]{0.30\textwidth}
 	\includegraphics[width=\textwidth]{screenshots/OLD-bridgeHelp.png}
 	\centering\captionsetup{width=1.5\linewidth}%
-	\caption{Instructions on getting a custom bridge. Clicking the ``Help'' button in Figures~\ref{fig:old-bridge-settings} and \ref {fig:old-bridge-combobox} leads to this page.}
+	\caption{The bridge help screen (BH) gives instructions for a custom bridge three different ways. ``Done'' redirects users back to the second bridge screen (Figure~\ref{fig:old-bridge-settings}).}
 	\label{fig:old-bridge-help}
 \end{subfigure}
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 \begin{subfigure}[b]{0.30\textwidth}
 	\includegraphics[width=\textwidth]{screenshots/OLD-proxy.png}
 	\centering\captionsetup{width=1.5\linewidth}%
-	\caption{Answering yes to this question leads to a screen to configure proxies. Answering no initiates a connection to Tor.}
+	\caption{The first proxy screen (P1). Answering yes to this question directs to the proxy settings screen (Figure ~\ref{fig:old-proxy-yes}). Answering no starts a connection to Tor.}
 	\label{fig:old-proxy}
 \end{subfigure}
 ~~~~~~~~~~
 \begin{subfigure}[b]{0.30\textwidth}
 	\includegraphics[width=\textwidth]{screenshots/OLD-proxyYES.png}
 	\centering\captionsetup{width=1.5\linewidth}%
-	\caption{Where users fill in proxy information.}
+	\caption{The proxy settings screen (P2). Users configure a proxy by filling in the proxy's protocol, ip address, and port. ``Connect'' starts a connection to Tor with the interface settings.}
 	\label{fig:old-proxy-yes}
 \end{subfigure}
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 \begin{subfigure}[b]{0.30\textwidth}
 	\includegraphics[width=\textwidth]{screenshots/OLD-progress.png}
 	\centering\captionsetup{width=1.5\linewidth}%
-	\caption{The progress bar.}
+	\caption{The progress bar (Pr). The bar fills up as log messages update the connection status. Warnings do not interruput this bar but an error replaces this window with an alert. }
 	\label{fig:old-progress}
 \end{subfigure}
 \caption{
@@ -528,56 +528,56 @@ We then rewatched screen capture videos and read interview transcriptions to bra
 \begin{subfigure}[b]{0.30\textwidth}
 	\includegraphics[width=\textwidth]{screenshots/NEW-first.png}
 	\centering\captionsetup{width=1.5\linewidth}%
-	\caption{The first screen. We reduced the text on the screen and clarified that configuration is for heavily censored environments.}
+	\caption{The first screen (F). We reduced the text on the screen and clarified that configuration is for heavily censored environments. ``Configure'' leads to the proxy screen  (Figure~\ref{fig:new-proxy}.)}
 	\label{fig:new-first}
 \end{subfigure}
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 \begin{subfigure}[b]{0.30\textwidth}
 	\includegraphics[width=\textwidth]{screenshots/NEW-proxyYES.png}
 	\centering\captionsetup{width=1.5\linewidth}%
-	\caption{The interface detects the need for a proxy. Proxy fields (same as ones in Figure \ref{fig:old-proxy-yes} are hidden until you click``configure.''}
+	\caption{The proxy screen (P). The interface locally detects if users need a proxy. If they need to configure one, proxy fields (same as Figure \ref{fig:old-proxy-yes}) are automatically populated.}
 	\label{fig:new-proxy}
 \end{subfigure}
 ~~~~~~~~~~
 \begin{subfigure}[b]{0.30\textwidth}
 	\includegraphics[width=\textwidth]{screenshots/NEW-bridgeSettings.png}
 	\centering\captionsetup{width=1.5\linewidth}%
-	\caption{There is only one bridge screen now. The default is to connect without one.}
+	\caption{The bridge screen (B). We give users the options to connect  without a bridge (the default choice) alongside the other options. We tell users to when to choose a bridge. }
 	\label{fig:new-nobridge}
 \end{subfigure}
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 \begin{subfigure}[b]{0.30\textwidth}
 	\includegraphics[width=\textwidth]{screenshots/NEW-bridgeSettings-default.png}
 	\centering\captionsetup{width=1.5\linewidth}%
-	\caption{We give short instructions on when to use a bridge. Users can configure one here.}
+	\caption{We give a second bridge recommedation for the provided bridges. We hide the text field to input custom bridge information until they click the radio button to configure one.}
 	\label{fig:new-bridge}
 \end{subfigure}
 ~~~~~~~~~~
 \begin{subfigure}[b]{0.30\textwidth}
 	\includegraphics[width=\textwidth]{screenshots/NEW-bridgeSettings-combobox.png}
 	\centering\captionsetup{width=1.5\linewidth}%
-	\caption{The transports selections are the same.}
+	\caption{The provided bridges and their supporting transports remains unchanged. This dropdown menu is the same as the bridge settings in the old interface (Figure~\ref{fig:old-bridge-combobox}).}
 	\label{fig:new-bridge-combobox}
 \end{subfigure}
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 \begin{subfigure}[b]{0.30\textwidth}
 	\includegraphics[width=\textwidth]{screenshots/NEW-bridgeHelp.png}
 	\centering\captionsetup{width=1.5\linewidth}%
-	\caption{These instructions are also the same.}
+	\caption{The bridge help screen (BH). We did not make any changes to this page. This screen is idential to that in the old interface (Figure~\ref{fig:old-bridge-help}).}
 	\label{fig:new-bridge-help}
 \end{subfigure}
 ~~~~~~~~~~
 \begin{subfigure}[b]{0.30\textwidth}
 	\includegraphics[width=\textwidth]{screenshots/NEW-summary.png}
 	\centering\captionsetup{width=1.5\linewidth}%
-	\caption{This screen summarized how they would connect to Tor. There is more information if bridges and proxies are configured.}
+	\caption{The summary screen (S). This screen shows users what they had configured in the interface. If they  configurued proxies or bridges, this summarizes their choices.}
 	\label{fig:new-summary}
 \end{subfigure}
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 \begin{subfigure}[b]{0.30\textwidth}
 	\includegraphics[width=\textwidth]{screenshots/NEW-progress.png}
 	\centering\captionsetup{width=1.5\linewidth}%
-	\caption{A checkpoint progress bar with connection information. There are more checkpoints if bridges and proxies are configured.}
+	\caption{The progress bar (Pr). A checkpoint progress bar shows the status of each component in the connection (there are more checkpoints if bridges and proxies are configured).}
 	\label{fig:new-progress}
 \end{subfigure}
 \caption{
