@@ -142,7 +142,71 @@ limitations of our evaluation (section~\ref{sec:limitations}), and framed our wo
 \item alternatives to burdening users with configuration 
 \end{itemize}
 
-We hope that our work contributes to Tor Browser and provides an interesting case study. We also encourage the use our evaluation pipeline and methods for evaluating other user-facing interfaces and features.  
+We hope that our work contributes to Tor Browser and is an informative case study of users interacting with anonymity and censorship circumvention tools. 
+
+\section{Background}
+\label{sec:background}
+This section discusses network components, when to configure them, and how they connect to Tor. 
+
+\subsection{Proxies, Relays, Bridges, and Pluggable Transports} 
+
+In this paper, the word``proxy'' refers to a local, ordinary unobfuscated proxy such as a SOCKS or HTTP proxy. This is to maintain consistency with the wording in the configuration interface. Fig.~\ref{fig:topology} illustrates the interacting components. A proxy is technically an intermediary between clients and servers, so a single Tor relay, a bridge, the circuit of entry, middle, and guard relays, and local proxies can all can be considered a proxy. A user uses a proxy to bypass local firewalls. 
+
+Tor relays are the routers in the Tor network. The Tor network is a group of routers that peform onion routing, a technique for anonymous communication over a computer network.  
+Guard relays that serve as an entry node into the Tor network and receive packets from the user. Middle relays forward traffic from an entry relay to an exit relay, and provide an extra layer of encryption in the Tor network. Exit relays receive traffic from a middle relay, and direct the traffic to its intended destination. 
+A user uses Tor Browser to connect to the Tor network, which indirectly connects to websites. 
+
+Bridges are unlisted Tor relays that serve as an alternative entry node.
+Bridges can be unlisted relays that behave similarly to a regular Tor relay,  
+but most run a pluggable transport (referred to as ``transport'' for shorthand) that obfuscates traffic. 
+Pre-configured bridges can be selected by ``Transport type,'' which refer to various
+censorship circumvention technologies (``pluggable transports'').
+Most transports rely on the secrecy of their static IP addresses for their effectiveness.
+These include ``fte'' and ``fte-ipv6''~\cite{fte},
+which disguise the Tor protocol as another protocol (such as HTTP), and
+``obfs3''~\cite{obfs3}, ``obfs4''~\cite{obfs4}, and ``scramblesuit''~\cite{scramblesuit},
+which encrypt or alter the Tor protocol to appear as random noise.
+Other transports route traffic through other services and do not need secret IP address. 
+``flashproxy''~\cite{flashproxy} connects through third party web browsers,
+and the ``meek''~\cite{fifield2015blocking} options route traffic
+through content delivery networks. Fig.~\ref{fig:old-bridge-combobox} shows the bridge and transport options at the time of the study. A user uses a bridge to connect to the Tor network while Tor relays or the Tor network protocol is is being censored. 
+
+\subsection{State and Corporate Censorship}
+A local proxy is required to connect in certain managed networks (i.e. universities and corporations). This usually means that users cannot connect to the Internet at all without a proxy, including connecting to the Internet through Tor. The user must first successfully connect to the Internet through their proxy before trying to connect to a Tor relay or bridge. 
+
+State level censors block access to the Tor network by blocking pubicly listed Tor relays. Some also employ more sophisticated techniques such as deep packet inspection and protocol detection. This means that users can connect directly to websites, but some may be blocked as is Tor. The thoroughness of censorship is what requires different bridges and transports. 
+
+\begin{figure}
+\centering
+\includegraphics{topology.pdf}
+\caption{
+The chain of components involved in connecting to a website over Tor.
+Most users do not need a proxy;
+only users who face a censor need a bridge.
+In the diagram, ``Tor'' represents all three anonymizing hops through the Tor network.
+We have shown the bridge as a separate component
+because of the special role it plays.
+When a bridge is used, it becomes the first Tor relay.
+}
+\label{fig:topology}
+\end{figure}
+
+\subsection{Connecting to Tor} 
+A ``bridge line,'' a specifically formatted bridge specification that
+includes its IP address, transport type, and other metadata 
+officially configures Tor Browser to use bridges.
+Users can do this more easily by choosing a 
+a hard-coded option in the interface (see Figure~\ref{fig:old-bridge-combobox}) 
+that select a group of bridges that use a particular transport.
+For instance, choosing the hard-coded obfs3 option
+configures a handful of bridges that use the obfs3 transport.
+If the built-in bridges do not work, users can obtain bridge lines
+through out-of-band channels~\cite{bridgedb}.
+
+Configuring a proxy requires providing the proxy protocol, IP address, port, and additional optional fields. The user must locate and input this information. If the computer is already configured to use a proxy, the information can be found in other browsers. The interface tells users to ``check Internet settings in another browser'' if they are unsure of the proxy information. 
+
+There are many valid configuration settings to connect to the Tor network.
+A user who does not need a bridge or proxy can connect with a bridge, proxy, or both, provided that they are configured correctly. 
 
 \begin{figure*}
 \centering
@@ -207,77 +271,15 @@ The Tor Browser 5.0.3 Tor Launcher GUI. Screens are in the order that they appea
 \label{fig:old-interface}
 \end{figure*} 
 
-\section{Background}
-\label{sec:background}
-This section covers technical background necessary to understand the study. 
-
-\subsection{Relays, Bridges, Pluggable Transports, and Proxies} 
-
- A user uses the Tor network to indirectly connect to websites using Tor Browser. The Tor network is a group of routers that peform onion routing, a technique for anonymous communication over a computer network.  Tor relays are the routers in the Tor Network. 
-Guard relays that serve as an entry node into the Tor network and receive packets from the user. Middle relays forward traffic from an entry relay to an exit relay, and provide an extra layer of encryption in the Tor network. Exit relays receive traffic from a middle relay, and direct the traffic to its intended destination. 
-
-Bridges are unlisted Tor relays that serve as an alternative entry node.
-Bridges can be unlisted relays that behave similarly to a regular Tor relay,  
-but most run a pluggable transport (referred to as ``transport'' for shorthand) that obfuscates traffic. 
-Pre-configured bridges can be selected by ``Transport type,'' which refer to various
-censorship circumvention technologies (``pluggable transports'').
-Most transports rely on the secrecy of their static IP addresses for their effectiveness.
-These include ``fte'' and ``fte-ipv6''~\cite{fte},
-which disguise the Tor protocol as another protocol (such as HTTP), and
-``obfs3''~\cite{obfs3}, ``obfs4''~\cite{obfs4}, and ``scramblesuit''~\cite{scramblesuit},
-which encrypt or alter the Tor protocol to appear as random noise.
-Other transports route traffic through other services and do not need secret IP address. 
-``flashproxy''~\cite{flashproxy} connects through third party web browsers,
-and the ``meek''~\cite{fifield2015blocking} options route traffic
-through content delivery networks. Fig.~\ref{fig:old-bridge-combobox} shows the bridge and transport options at the time of the study.
-
-In this paper, the word``proxy'' refers to a local, ordinary unobfuscated proxy such as a SOCKS or HTTP proxy. This is to maintain consistency with the wording in the configuration interface. Fig.~\ref{fig:topology} illustrates the interacting components. We recognize that, a proxy is technically anything that acts as an intermediary between clients and servers. By this definition, a single Tor relay, a bridge, the circuit of entry, middle, and guard relays, and local proxies can all can be considered a proxy. 
-
-\subsection{State and Corporate Censorship}
-State level censors block access to the Tor network by blocking Tor relays, which are publicly listed. Some also employ more sophisticated techniques such as deep packet inspection and protocol detection. This means that users can connect directly to websites, but some may be blocked as is Tor. The thoroughness of censorship is what requires different bridges and transports. 
-
-A local proxy is required to connect in certain managed networks (i.e. company and university firewalls). This usually means that users cannot connect to the Internet at all without a proxy, including connecting to the Internet through Tor. The user must be able to connect to the Internet through their proxy before trying to connect to the Internet with Tor. 
-
-\begin{figure}
-\centering
-\includegraphics{topology.pdf}
-\caption{
-The chain of components involved in connecting to a website over Tor.
-Most users do not need a proxy;
-only users who face a censor need a bridge.
-In the diagram, ``Tor'' represents all three anonymizing hops through the Tor network.
-We have shown the bridge as a separate component
-because of the special role it plays.
-When a bridge is used, it becomes the first Tor relay.
-}
-\label{fig:topology}
-\end{figure}
-
-\subsection{Connecting to Tor} 
-Configuring a bridge requires providing a
-``bridge line,'' a specifically formatted bridge specification that
-includes its IP address, transport type, and other metadata.
-The interface has hard-coded options (see Figure~\ref{fig:old-bridge-combobox}) 
-that select a group of bridges that use a particular transport.
-For instance, choosing the hard-coded obfs3 option
-configures a handful of bridges that use the obfs3 transport.
-If the built-in bridges do not work, a user can obtain bridge lines
-through out-of-band channels, for instance by email~\cite{bridgedb}.
-
-Configuring a proxy requires providing the proxy protocol, IP address, port, and additional optional fields. The user must locate and input this information. If the computer is already configured to use a proxy, the information can be found in other browsers. The interface tells users to ``check Internet settings in another browser'' if they are unsure of the proxy information. 
-
-There are many valid configuration settings to connect to the Tor network.
-A user who needs a bridge can connect to Tor with a bridge and proxy, provided that both were configured correctly.
-
 \section{Methodology} 
 This section discusses our process, principles, and preparations for evaluating the configuration interface.
 
 \subsection{Testing Pipeline} 
-Two researchers first performed a cognitive walkthrough~\cite{cognitive-walkthrough} to prepare for user testing. A cognitive walkthrough is evaluation method that requires usability evaluators to work through a series of tasks from the perspective of the user, usually to understand a system's learnability for new or infrequent users.
+We performed a cognitive walkthrough~\cite{cognitive-walkthrough} to prepare for user testing. This evaluation method involved usability evaluators to working through a series of tasks from the perspective of the user, trying to understand a system's learnability for new or infrequent users.
 
 We then conducted a formative usability test~\cite{formative} that found where and why users struggle. This testing is usually used as a support tool to find improvements. Five users is considered to be the maximum benefit-cost ratio for gaining insights~\cite{howmanyusers}, so we recruited five participants for each experimental condition. 
 
-We opportunistically used our observations to make changes to the interface. We believed that the process of identifying design principles, drafting design changes, and testing an alternative interface would be insightful and have the potential to discover impactful changes.
+We opportunistically used our observations to make changes to the interface. We believed that the process of identifying design principles, drafting design changes, and testing an alternative interface would be insightful.
 
 We concluded with a summative usability test~\cite{summative} that measured the usability of the current and redesigned interface. This testing is a usually used as quality assurance tool to test features. In short, formative testing tells you {\it what} is is not usable, while summative testing testing tells you {\it if} it is or is not usable. Twenty users is considered to be a minimum for statistically significant measurements~\cite{howmanyusers}, so we recruited twenty participants for each experimental condition.  
 
@@ -293,7 +295,7 @@ Usability measures users' abilities to complete tasks. We use the following indu
 
 Completion rate is the fundamental usability metric that measures if users can accomplish the task. We defined success as a binary metric that is true if a user connected to Tor and false if a user did not. 
 
-Task time is a supplemental usability metric that measures user productivity during the task. We measured task time two different ways. Connection time measures how long users use the configuration interface, which includes time  spent waiting while a Tor Browser establishes a connection to Tor, which can dominate the measurement. Configuration time measures the time users spent actively configuring bridges and proxies. 
+Task time is a supplemental usability metric that measures user productivity during the task. We measured this in two ways. Connection time measures how long users took to connect to Tor, which includes time spent waiting for Tor to configure relays for the user. This can take up to a couple minutes and dominate the measurement. Configuration time measures the time users spent configuring bridges and proxies. 
 
 \subsection{Experimental Setup}
 \label{sec:environments}
@@ -332,9 +334,10 @@ similarly E3's is a superset of E2's.
 The simulated environments are not intended to imitate any particular country's censorship environment. Rather, they were designed to require particular network configurations
 to connect to Tor. We believe this to be sufficient for the purpose of testing the configuration interface, since these environments require the user to take the interface paths we wanted to test. 
 
-We used Windows Firewall rules to block IP addresses of public Tor relays (E2, E3) and default bridges (E3). 
-We used the Windows operating system hosts file to to block websites by
-mapping domain names to localhost (127.0.0.1) (E1, E2, E3). We blocked torproject.org and its subdomains to discourage downloading Tor Browser, as we had installed a specific version on the test computers.  We blocked wikipedia.org, cnn.com, and their subdomains to create ``censored'' sites for the experiment. 
+We conducted our studies at <redacted>, which only had Windows machines. 
+So we used Windows Firewall rules to block IP addresses of public Tor relays (E2, E3) and default bridges (E3). 
+and the Windows operating system hosts file to to block websites by
+mapping domain names to localhost (127.0.0.1) (E1, E2, E3). For all experiments, we blocked torproject.org and its subdomains to discourage downloading Tor Browser (as we had installed a specific version on the test computers) and wikipedia.org, cnn.com, and their subdomains (these were our simulated ``censored'' websites). 
 
 \section{Usability Inspection}
 \label{sec:inspection}
@@ -366,47 +369,42 @@ A digraph illustrating the potential user paths through the interface. Non-leaf 
 This section discusses our small-scale, qualitative usability experiment and resulting user insights. 
 
 \subsection{Recruitment}
-We recruited people from Craigslist using the recruitment text in Appendix~\ref{qualitative-recruitment}, which linked an prescreening survey that collected demographics (Appendix~\ref{qualitative-prescreening}). We pre-screened~\cite{screening} for diversity in gender, age, technical expertise, use of security tools, and familiarity with Tor in a small participant pool. Of our 16 recruited participants, 50\% identified as male and 50\% identified as female. Ages ranged from 20 to~62 years ($\mu = 30.5$, $\sigma = 13.5$). One participant declined to report their age, so age calculations omit one participant's information. 100\% had at least some college education. We took participants' self-reported familiarity with technical terms use of security tools with skepticism (Appendix~\ref{prescreening-responses}). We verified their self-reported familiarity with Tor Browser in-person to identify new users, and found that 12 were new users and 4 had previously used Tor Browser in some capacity.  
+We recruited people from Craigslist using the recruitment text in Appendix~\ref{qualitative-recruitment}, which linked a prescreening survey that collected demographics (Appendix~\ref{qualitative-prescreening}). We pre-screened~\cite{screening} so that we could have a diversity of gender, age, technical expertise, use of security tools, and familiarity with Tor in a small participant pool. Of our 16 recruited participants, 50\% identified as male and 50\% identified as female. Ages ranged from 20 to~62 years ($\mu = 30.5$, $\sigma = 13.5$). One participant declined to report their age, so age calculations omit this participant's information. All of our users were highly educated, having at least some college education. We show their self-reported familiarity with technical terms use of security tools in  Appendix~\ref{prescreening-responses}. We verified their self-reported familiarity with Tor Browser in-person to identify new users, and found that 12 were new users and 4 had previously used Tor Browser in some capacity.  
 
 % gender: Male: 8/Female: 8
 % education: At least some college 16
 % ages: 22, 23, 34, 52, 25, 22, 29, 21, 25, didn't answer, 20, 20, 26, 24, 62, 52
 
 
-We distributed participants evenly across experimental conditions:  5~in E1, 5~in E2, and 6~in E3. Although there is variation in gender, age, ``technical expertise,'' and ``use of security tools'' in each experimental condition, we ensured each condition had a participant who used Tor Browser before. 
+We distributed participants evenly in number across experimental conditions:  5~in E1, 5~in E2, and 6~in E3. We ensured that each condition had a participant who had used Tor Browse before, and tried for some variation in gender, age, ``technical expertise,'' and ``use of security tools'' in each experimental condition as well. 
 
 \subsection{Setup} 
-We ran the experiment in a meeting room in <redacted building> at <redacted university>. The room had a desk and chair, where a monitor, keyboard, and a Windows 8 computer were set up. On a clean computer, we manually downloaded and installed the necessary software for the experiment: Tor Browser 5.0.3 for testing, Chrome, Firefox, and Internet Explorer to allow users to browse the Internet on a another browser of their choice, and VLC to record the screen during the experiment. Before each participant entered the room, we ran a script on the computer that
+We ran the experiment in a meeting room in <redacted building> at <redacted university>. The room had a desk and chair, where a monitor, keyboard, and a Windows computer were set up. On a clean computer, we manually downloaded and installed the necessary software for the experiment: Tor Browser 5.0.3 for testing, Chrome, Firefox, and Internet Explorer so that participants could browse the Internet in a another browser of their choice, and VLC to record the screen during the experiment. Before each participant entered the room, we ran a script on the computer that
 set up one of the three simulated environments (E1, E2, or E3) and started recording the computer screen.  
 
 \subsection{Procedure}
-Three researchers ran the formative usability testing, with each session having at least two researchers.  
-Before the experiment began, each participant was verbally informed of the purpose of the 
-study, what data was collected, and any associated risks. If they wished to participate,
-they were informed again in writing and consented by signing the document. To be thorough, 
-we clarified verbally that they could stop at any time during the experiment with no negative consequences. 
+Three researchers ran the formative usability tests, with each session having at least two researchers.  
+We told the participant the purpose of the 
+study, what data was collected, and any associated risks. 
+Then they signed a consent form with this information in writing. 
+Before the experiment, we clarified that they could stop at any time during the experiment with no negative consequences. 
 
-The experiment formally began by informing the participant of the simulated censorship environment (Appendix~\ref{qualitative-script}). This purpose of this introduction was to clarify that the main task
-was to connect to Tor, rather than figuring out if they needed to connect to Tor. 
-We instructed them to visit a blocked and unblocked website
-in a non-Tor browser to clarify that the Internet was functioning as expected. 
-We then told them to use Tor Browser to visit a censored site and pointed out 
-the respective shortcut on their desktop.
+We started by informing the participant of the simulated censorship environment (Appendix~\ref{qualitative-script}) and task. We explicitly stated that the they should use Tor to circumvent censorship. 
+We instructed them to visit sample censored and uncensored websites
+in a non-Tor browser to clarify that the Internet was functioning and
+pointed out the Tor Browser shortcut on their desktop.
 
-We then asked them to complete a worksheet (Appendix~\ref{participant-worksheet}) that 
-required answers from one blocked website (Wikipedia) and one non-blocked website (CNN).
-The worksheet did not specify which website was censored. 
-We chose these websites because they are popular websites and that their likely familiarity 
-would make the task seem less intimidating. 
+They were asked to complete a worksheet (Appendix~\ref{participant-worksheet}) that 
+required answers from Wikipedia (censored) and CNN (uncensored).
+We chose these websites because their likely familiarity~\ref{alexa}
+would make the task seem less intimidating. They were given 45 minutes to complete the task. 
+After instructions, researchers left to minimize interactions and watched a live feed of the participants' screen from another room.
 
-Participants were given 45 minutes to complete their worksheet. 
-After instructions, the researchers left and watched a live feed of the participants' screen in another room to minimize interactions.
-
-After participants completed the browsing tasks (or ran out of time),
-we asked them standard interview questions about their experience (Appendix~\ref{interview-questions}) and took notes of their responses. We then followed up with participant-specific questions to verify any hypotheses   we had from observation (e.g. ``the participant was selecting bridges at random''). We paid each participant~\$30 for their time. 
+After they completed the worksheet (or ran out of time),
+we asked them general questions about their experience (Appendix~\ref{interview-questions}) and participant-specific questions to verify any hypotheses we had (e.g. ``the participant was selecting bridges at random''). We paid each participant~\$30 for their time. 
 
 \subsection{Results} 
-We give a summary of what our participants did below. We watched the screen recording to summarize their actions and referred to their interviews for insight into why they took specific actions. We hope that these participant summaries give some insight into how users may currently struggle with the Tor Launcher interface.
+We use out screen recording and interview data to give a summary of each participant.
 
 %E1: P2, P3, P4, P9, P10
 %E2: P7, P8, P11, P12, P13
@@ -429,36 +427,37 @@ Observations in E1:
 \pquote{P3 (new user, obfs3, 1:39)}{They connected with the recommended bridge. They were also going to use a proxy, but decided not to when they saw the proxy input fields.}
 
 %P4(regular): E1 (8:56, 7:22 to 16:18)
-\pquote{P4 (new user, obfs4, 8:56)}{They chose the recommended bridge and then tried to configure a proxy. After not being able to fill out the proxy input fields, they start over and connected using an obfs4 bridge. Note that they didn't try connecting with the obfs3 bridge, which would have worked.}
+\pquote{P4 (new user, obfs4, 8:56)}{They chose the recommended bridge and then tried to configure a proxy. After not being able to fill out the proxy input fields, they started over and connected with an obfs4 bridge. Note that they did not try connecting with the obfs3 bridge, which would have worked.}
 
 %P10 (has used Tor before): E1 (1:02; 0:13 to 1:15)
-\pquote{P5 (previous Tor user, obfs3, 1:02)}{They connected using the recommended bridge.}
+\pquote{P5 (previous Tor user, obfs3, 1:02)}{They connected with the recommended bridge.}
 
-Participants in E1 were able to connect to Tor, but most were unsure if their actions were correct. Three of the five participants unnecessarily used bridges. 
+Participants in E1 were able to connect to Tor, but most were unsure if their actions were correct. Three of the five participants unnecessarily configured bridges. 
 
 \subsubsection{E2} 
-In E2, a bridge was required to connect, but any bridge worked. Configuring a proxy was optional.
+In E2, a bridge was required to connect. Any of the hardcoded bridges from the dropdown menu, as well as any custom bridges aquired out of band would work. Configuring a proxy was optional.
 Observations in E2: 
 
 %P7 (heard of Tor): E2 (4:04; 0:29 to 4:33) 
-\pquote{P6 (new user, obfs3, 4:04)}{They tried connecting directly and gave up after minutes of waiting. Then, they connected using the recommended bridge.}
+\pquote{P6 (new user, obfs3, 4:04)}{They tried connecting directly. After watching the progress bar not make any progress for a couple minutes, and gave up on the direct connection. Then they connected with the recommended bridge.}
 
 %P13 (regular): E2 (7:48; 0:34 to 9:22) 
-\pquote{P7 (new user, obfs3, 9:22)}{They tried connecting directly. They restarted Tor Launcher and tried another direct connection---and repeated this two more times. On the fourth restart, they tried to configure a proxy, but gave up. On the fifth restart, they connected using the recommended bridge.}
+\pquote{P7 (new user, obfs3, 9:22)}{They tried connecting directly. They restarted Tor Launcher and tried to connect directly again---and repeated this two more times. On the fourth restart, they tried to configure a proxy, but gave up. On the fifth restart, they connected using the recommended bridge.}
 
 %P12 (regular): E2 (10:40; 0:46 to 11:26)
-\pquote{P8 (new user, direct, 10:40)}{They tried connecting directly. They then looked at proxy settings, gave up, and tried connecting directly again. Then, they tried to configure a proxy, and gave up. They tried a direct connection again, which worked unexpectedly. They found a bug in our setup that we fixed for the later experiment. E2 required a bridge to connect, but new public relays came online after we ran our firewall rules and they were able to connect using those new relays. }
+\pquote{P8 (new user, direct, 10:40)}{They tried connecting directly. After waiting a couple minutes, they figured that did not work and looked at proxy settings. But after looking at the settings and being intimidated, they tried connecting directly again. Then, they tried to configure a proxy, and gave up. They tried connecting directly again, which worked unexpectedly. They found a bug in our setup that we fixed for the later experiment. E2 required a bridge to connect, but new public relays came online after we ran our firewall rules and they were able to connect using those new relays. }
 
 %P11 (used Tor before): E2 (~3:00; 1:05 to 5:13)
-\pquote{P9 (previous Tor user, obfs3, 4:08)}{They tried connecting directly. Then, they answered no to both bridge and proxy questions, and effectively tried another direct connection. After that, they connect using the recommended bridge.}
+\pquote{P9 (previous Tor user, obfs3, 4:08)}{They tried connecting directly. And they tried connecting directly through a different user path by answering no to bridge and proxy questions in the interface, connecting from the proxy screen. Then, they connected using the recommended bridge.}
 
 %P8 (used Tor): E2 (clock drift mission impossible, 1:38 to 7:20) 
-\pquote{P10 (previous Tor user, failed to connect)}{They tried a direct connection. Then, they tried a connection with the recommended bridge, which should have worked. However, our setup experienced a clock drift. Tor does not allow connections with bad clocks. They spent the rest of their time trying different bridges and proxies in vain (Figure~\ref{fig:proxy-attempt}).}
+\pquote{P10 (previous Tor user, failed to connect)}{They tried a direct connection. Then, they tried a connection with the recommended bridge, which should have worked. However, our setup experienced a clock drift. Tor does not allow connections with bad clocks. They spent the rest of their time trying different bridges and proxies in vain (Figure~\ref{fig:proxy-attempt}). This participant tried the most attempts to connect to Tor, using a variety of bridges and proxies.}
 
-Participants in E2 {\it eventually} connected using the recommended bridge, but spent a fair bit of time waiting for direct connections to fail and unsuccessfully configuring proxies. 
+Participants in E2 tried a direct connection to Tor before {\it eventually} connecting with the recommended bridge.
+They spent a fair amount of time waiting before determining that connections failed. Some stated that they connected directly because the interface says that it would work in ``most situations'' (Figure~\ref{fig:old-first}). Our participants did not know if they needed bridges or proxies, so they only tried to configure one when the direct connection failed. Since they did not know whether they needed a bridge or proxy, they often tried to configure proxies when they did not need one and should have configured bridges instead.  
 
 \subsubsection{E3}
-In E3, a bridge was required to connect, but only meek and custom bridges worked. Configuring a proxy was optional.
+In E3, a bridge was required to connect. Most of the hardcoded bridges in the dropdown menu do not work, with the exception of meek-amazon, meek-azure, and meek-google. Custom bridges can also work. Configuring a proxy was optional.
 Observations in E3: 
 
 \begin{figure}[t]
@@ -476,52 +475,67 @@ Proxies were not necessary to connect to Tor, but many spent time trying to conf
 %P15 (regular): E3 FAIL
 \pquote{P12 (new user, failed to connect)}{They tried connecting with the recommended bridge. They decided that they need a proxy along with the recommended bridge, and spent the rest of their time trying to configure a proxy.}
 
-%P16: E3 (regular) FAIL (why did obfs3 work the first time? It shouldn't have!) 
-\pquote{P13 (new user, failed to connect)}{They tried connecting directly, and then with the recommended bridge. They retried connecting with the recommended bridge. When that didn't work, they tried to configure a proxy. Then, they gave up and tried using other browsers to complete the task.}
+%P16: E3 (regular) FAIL
+\pquote{P13 (new user, failed to connect)}{They tried connecting directly, and then with the recommended bridge. They retried connecting with the recommended bridge. When that didn't work, they tried to configure a proxy. Then, they gave up on the task entirely.}
 
 %P6 (heard of Tor): E3 (26:48; 0:18 to 27:06) 
 \pquote{P14 (new user, meek-google, 26:48)}{They tried a direct connection by answering no to bridge and proxy questions. After waiting a while, they canceled the connection and tried connecting with the recommended bridge. They retried connecting with the recommended bridge two more times, then tried to connect with a flashproxy bridge, an obfs4 bridge, a scramblesuit bridge. After retrying the recommended bridge again, they made a connection using a meek-google bridge.}
 
 %P1 (heard of tor before): E3 (~7:31, 0:51 to 8:22) 
-\pquote{P15 (new user, meek-azure, 7:31)}{They tried connecting directly, and then with the recommended bridge. After that, they tried a connection using a meek-azure bridge, but gave up after before it could connect. They went back to the start screen and clicked connect, which made a connection using meek-azure bridge. The participant thought they made a direct connection, but the connect button used settings toggled in the bridge and proxy screens in the interface.}
+\pquote{P15 (new user, meek-azure, 7:31)}{They tried connecting directly, and then with the recommended bridge. After that, they tried a connection using a meek-azure bridge, but gave up after before it could connect. They went back to the first screen~\ref{fig:old-first} and clicked connect, which made a connection using meek-azure bridge. The connect button makes a connection to Tor with the toggled settings in the interface. When the interface is initialized to not use a bridge or proxy, clicking connect on the first page starts a direct connection. But since the participant had chosen a meek-azure bridge, the connect button made a connection to a meek-azure bridge, even though the text in the first screen says that they will ``connect directly.'' Because of this, the participant thought they made a direct connection. Although they succeeded in connecting to Tor, they did not realize what they had done or why connecting to a meek-azure bridge worked. They chose that bridge at random.}
 
 %P5 (has used tor before): E3 (22:06; 0:00 to 22:06)
-\pquote{P16 (previous Tor user, custom bridge, 22:06)}{They tried and retried connecting directly, then they tried connecting with the recommended bridge. After briefly looking at error messages the system log, they retried connecting directly two more times. After looking up proxy settings, they tried connecting with a meek-google bridge, but gave up before it could connect. They made a connection with the custom bridge by following the instructions from the bridge help button (they created a throwaway email account, emailed the bridge responder with poor syntax and did not get a response, emailed the bridge responder again with correct syntax and got a response, and then typed in the bridge information into the custom bridge field).}
+\pquote{P16 (previous Tor user, custom bridge, 22:06)}{They tried and retried connecting directly, then they tried connecting with the recommended bridge. After briefly looking at error messages the system log, they retried connecting directly two more times. After trying to configure a proxy for a while, they instead decided not to use one and tried connecting with a meek-google bridge, which would have worked. But  due to a bug in the progress bar that prevents it from updating correctly on subsequent attempts, they gave up before it could connect. They made a connection with the custom bridge by following the instructions from the bridge help button (they created a throwaway email account, emailed the bridge responder with poor syntax and did not get a response, emailed the bridge responder again with correct syntax and got a response, and then typed in the bridge information into the custom bridge field).}
 
-Participants in E3 struggled. Three failed to connect. Of the three that connected, one brute forced options until something worked (P14), another did not understand what they did (P15), and the third used a custom bridge after being convinced meek bridges were not working (P16). 
+Participants in E3 also generally tried a direct connection to Tor. They did not know if they needed a bridge or proxy, and like the participnts in E2, only configured them when the direct connection failed. But even if the participants were able to figure out that they needed a bridge and not a proxy, the recommended bridge will not work. Of the participants that failed, they all tried the recommended bridge but not any others. The participants that did manage to connect to Tor did not know which bridges worked and which ones did not, or which ones to try next in case the recommended one failed. P14 brute forced options until something worked, P15 did not think that thye used a bridge, and P16 gave up on a hardcoded bridge that would have worked and used a custom bridge instead.
 
 \subsection{Pain Points in Tor Launcher} 
 \label{sec:pain-points}
 We talk about the main challenges our participants faced during the experiment. 
 Quotations were transcribed live during the follow-up interview.
 
-Participants found the interface confusing, and were often intimidated by the tasks they were asked to do. 
-
-%P8 in the repo, P10 in the paper
-\pquote{P10}{``I have no clue what's the difference between flashproxy, fte, etc. And why do I need a custom bridge if there are options built in?''}
+The interface uses a technical and Tor-specific terms that are unfamiliar to an average user, such as the Tor network, internet service provider (ISP), local proxy, bridges, and transports. Participants found the interface confusing, and were often unable to answer the questions that were designed to guide them (Figures~\ref{fig:old-bridge} and~\ref{fig:old-proxy}) and did not know what to do to configure bridges and proxies (Figures~\ref{fig:old-bridge-combobox} and~\ref{fig:old-proxy-yes}).
 
 %P3 in the repo, P3 in the paper
 \pquote{P3}{``The vocabulary is really challenging, for someone not doing IT work.''}
 
-Participants were unsure of what to do, and often configured bridges and proxies when they did not need to.  
+%P13 in the repo, P7 in the paper 
+\pquote{P7}{``I didn't know where to start. I didn't know what to do. [I] was just fiddling, to be honest with you... it was kind of confusing.''}
+
+In addition to not knowing what to do, they did not understand the choices that they had to make. 
+
+%P2 in the repo, P2 in the paper 
+\pquote{P2}{``I don't know what any of those (points to list of transports) means. I don't know what that (points to proxy settings) means at all."}
+
+%P8 in the repo, P10 in the paper
+\pquote{P10}{``I have no clue what's the difference between flashproxy, fte, etc. And why do I need a custom bridge if there are options built in?''}
 
 %P15 in the repo, but P12 in the paper
-\pquote{P15}{``I didn't know if this computer had any proxy information. I wasn't able to find it if it did.''}
+\pquote{P15}{``I didn't know if this computer had any proxy information. I wasn't able to find it if it did. I went to every browser and could not find what they were talking about. I googled how I would find that and couldn't seem to get good information. [I] couldn't find anything that said tools.''}
 
-The progress bar had system dependencies that made it update oddly. If progress bar reached a 90\% and failed, the progress bar will remain at 0\% on the next attempt until the progress surpassed 90\%. Many assumed that their subsequent attempts were wrong because of this.
+%P11 in the repo, P9 in the paper
+\pquote{P9}{``I think you can only answer this question correctly if you know what a local proxy is.
+Otherwise you have no chance... because looking at the internet setting in another browser could be anything.''}
+
+The progress bar had dependencies that made it update oddly. If progress bar reached a 90\% and failed, the progress bar will remain at 0\% on the next attempt until the progress surpassed 90\%. This made many assume that their subsequent attempts were wrong.
+
+%P13 in the repo, P7 in the paper 
+\pquote{P7}{``I was kind of doubting myself because everything was really slow.''}
+
+%P16 in the repo, P13 in the paper
+\pquote{P13}{``Put in a 30 second timeout! I don't know, maybe it takes longer than that...''}
 
 %P1 in the repo, P15 in the paper
-\pquote{P15}{``It was hard to figure out if the progress bar wasn't moving because the connection was censored, or if it was just slow.''}
+\pquote{P15}{``there doesn't seem to be any timeout on any of this stuff. Am I waiting long enough? Should I wait 5 minutes?''}
 
-We think users in the wild may also face these challenges, and that changes should be made to mitigate them. We show our attempt in the next section. 
+We have additional concerns on system visibility, error recovery, and user workload. Users cannot see their settings before or while they are connecting. This is only visible on the bridge and proxy screens. Participants did not know what to do after a connection failed. Users should be made aware of what to fix. Users do too much work (reading text, click throughs, choices) in this interface. We show an attempt to fix these issues in Section~\ref{sec:design}.
 
 \section{A Design Iteration}
 \label{sec:design} 
 This section discusses how we converted our formative usability testing observations into design changes. 
 
 \subsection{Procedure} 
-Three researchers agreed on security and usability design principles. 
-We then rewatched screen capture videos and read interview transcriptions to brainstorm design changes. We provided the security and usability design principles, screen capture videos, interview transcriptions, and our suggested changes to a user interface designer, who iteratively redesigned the interface with our feedback and user interface best practices in mind. Figure~\ref{fig:new-interface} shows our redesign of the interface. 
+We agreed on security and usability design principles, before reviewing our formative usability study observations and brainstorming changes to the interface. We worked with a user interface designer to iteratively design the interface. Figure~\ref{fig:new-interface} is the result.
 
 \begin{figure*}
 \centering
@@ -589,80 +603,40 @@ A redesigned version of the Tor Browser 5.0.3 Tor Launcher GUI. Screens are in t
 \subsection{Design Principles} 
 The interface currently favors a guided manual configuration over an automated configuration with network probing. Our redesign preserves this approach and has no user-dependent inputs, no network-dependent inputs, and minimal information leaks.
 
-In addition to addressing the pain points we discovered through our formative usability testing (Section~\ref{sec:pain-points}), we aimed to follow usability best practices by minimizing work, giving targeted feedback, and helping users build an understanding of the system.
+In order of priority, our design objectives were to minimize the user workload, to assist in user decision making, and to help users understand the system. We preferred to eliminate tasks if we could, help users through necessary tasks, and educate them only if this information would be useful for future decisions. These objectives were inspired by our previous usability study. 
 
 \subsection{Changes Made} 
-We made these changes for a more usable interface. \\
+To require our users to do less work, we eliminated the bridge and proxy questions from Figure~\ref{fig:old-bridge} and~\ref{fig:old-proxy} and simulated auto-detection for proxies by telling users that they did not need a proxy (this is feasible to implement with a local scan that does not leak information. 
 
-\noindent To minimize work: 
-\begin{itemize}
-\item We eliminated technical questions, resulting in fewer tasks and interface screens. 
-\item We simulated auto-detection for proxies, telling users that they did not need a proxy. This is feasible to do with a local scan (no information leaked). 
-\item We labeled the configure button as an option for users in heavily censored environments.
-\item We gave advice on choosing transports, telling users to try a meek bridge if obfs3 does not work.
-\end{itemize} 
+To help users decide what to do, we labeled the configure button as an option heavily censored environments, tell users to configure a bridge if Tor is censored, and gave additional advice on choosing transports if the recommended one did not work.
 
-To give targeted feedback: 
-\begin{itemize}
-\item We fixed the progress bar so that it reflects the current progress on subsequent attempts. 
-\item We switched added indicators to the progress bar to show the progress of bridges and proxies. 
-\item We told users what to try next on errors (i.e. choose a different bridge, try a without a proxy). 
-\end{itemize}
-
-To build an understanding of the system:
-\begin{itemize}
-\item We added a summary screen displays the current bridge and proxy settings for system visibility. 
-\item We switched proxy and bridge screens to put them in a topologically sequential order (Figure~\ref{fig:topology}).
-\end{itemize}
-
-Figure~\ref{fig:new-interface} shows the resulting interface.  Figure~\ref{fig:old-interface} shows the unchanged version. 
+To help users understand what is going on, we added a summary screen displays the current bridge and proxy settings for system visibility, switched proxy and bridge screens to put them in a topologically sequential order (Figure~\ref{fig:topology}), and added checklist indicators of components topological order into the progress bar to that show if various components reached successfully.
 
 \section{Summative Usability Testing}
 \label{sec:quantitative}
 This section discusses our large-scale quantitative usability experiment and resulting user measurements. 
 
 \subsection{Recruitment}
-We recruited  people using the recruitment text in Appendix~\ref{quantitative-recruitment}. We recruited 65 participants from Craigslist and 59 participants from the <redacted lab> participant pool. <Redacted lab> encouraged the use of their participant pool, but we bargained to recruit participants from Craigslist to ensure a diverse set of participants. Although the <redacted lab>'s participant pool is not limited to students and staff from <redacted institution>, it was estimated that a large majority were. 
+We recruited 65 participants from Craigslist and 59 participants from the <redacted lab> participant pool using text in Appendix~\ref{quantitative-recruitment}. <Redacted lab> encouraged the use of their participant pool, but we bargained to recruit participants from Craigslist to ensure a diverse set of participants. <Redacted lab>'s participant pool is mainlystudents and staff from <redacted institution>, even though anyone could join. 
 
-124 people participated in our experiment, but we used data from 114. We filtered participants who made errors in completing the consent form or did not interact with the instrumented interface. Of the 114, one participant did not report their demographics. We still use their experiment data. Of the 113, 44.2\% identified as male, 54.0\% identified as female, and 1.8\% identified as neither. Ages ranged from 18 to~68 years ($\mu = 28.2$, $\sigma = 12.3$). 84.1\% of our participants had at least a college education. We distributed participants evenly across experimental condition, about 20 in each interface and environment combination. Although there is variation in gender and age in each experimental condition, we ensured each condition had about half Craigslist recruited participants and half <redacted lab>  pool participants. 
+We had 124 participants, but we filtered out 10 participants who did not complet the consent form correctly or did not interact with the instrumented interface. Of the 114, one participant did not report their demographics. We still use their experiment data. Of the 113, 44.2\% identified as male, 54.0\% identified as female, and 1.8\% identified as neither. Ages ranged from 18 to~68 years ($\mu = 28.2$, $\sigma = 12.3$). 84.1\% of our participants had at least a college education. We had about 20 in each interface and environment combination and ensured each condition had about half Craigslist recruited participants and half <redacted lab>  pool participants. 
 
 \subsection{Setup}
-We ran our experiment at <redacted lab>, an experimental social science laboratory for behavioral experiments. The testing room had 36 workstations with identical Windows~7 laptops. Side panels at each workstation to discouraged participants from looking at other participants' screens. 
+We ran our experiment at <redacted lab>, an experimental social science laboratory for behavioral experiments. The testing room had 36 workstations with identical Windows~7 laptops. Side panels at each workstation to discouraged participants from looking at other screens. 
 %Xlab~\cite{xlab}, the Experimental Social Science Laboratory at the University of California, Berkeley. 
 The computers at <Redacted lab> use a system restore software to revert computers to a clean version at the beginning of each session. 
 
-Before each session, we ran a script that downloaded the necessary software, set up one of the three simulated environments (E1, E2, or E3), and downloaded the original Tor Browser 5.0.3 or a modified version of Tor Browser 5.0.3 that contained our design changes (OLD or NEW), and started the video recording. In contrast to the previous test, we installed an instrumented version of Tor Browser 5.0.3. The instrumentation logged user interactions, such as window transitions, mouse clicks, and menu selections. Similarly to the previous test, we installed Chrome, Firefox, and Internet Explorer to allow users to browse the Internet on a browser of their choice and VLC to record the screen during the experiment. Each computer was manually assigned one of the six interface--environment combinations in a way that evenly distributed experimental conditions throughout the room and assigned an equal number of participants to each experimental condition.
+Before each session, we ran a script that downloaded Firefox, Chrome, IE, and VLC, set up one of the three simulated environments (E1, E2, or E3), and downloaded a version of Tor Browser 5.0.3 (original or our design), and started the computer screen recording. In contrast to the previous test, the Tor Browser 5.0.3 was instrumented to log user interactions with it (clicks, selects, transitions, etc.). Each computer was manually assigned one of the six interface--environment combinations in a way that evenly distributed experimental conditions throughout the room.
 
 \subsection{Procedure}
-Participants were assigned to a computer at random, which effectively assigned them to a simulated censorship environment combination at random. Before the experiment began, participants were verbally informed of the purpose of the study, what data was collected, and any associated risks. If they wished to participate, they were informed again in writing and consented by signing the document. To be thorough, we clarified that they could stop at any time during the experiment with no negative consequences. 
+We assigned participants  to a simulated censorship environment combination at random by being assigning them to a computer at random. We told the participants the purpose of the study, what data was collected, and any associated risks. Then they signed a consent form with this information in writing. Before the experiment, we clarified that they could stop at any time during the experiment with no negative consequences. 
 
-The experiment formally began by informing participants of the simulated censorship environment, giving them their worksheet, and informing them that Tor browser is necessary to circumvent censorship (Appendix~\ref{quantitative-script}). This time, the worksheet only asks users to visit one blocked website (Wikipedia) and explicitly reminds users to use Tor to do so. Before participants started their tasks, we reminded them that their screens are being recorded so they should not log into anything that shows personal information. We gave users a chance to ask any questions about the experiment or task. 
+We started by informing participants of the simulated censorship environment, giving them their worksheet,  informing them that Tor browser is necessary to circumvent censorship, and pointing out that Tor is installed for them on the computer (Appendix~\ref{quantitative-script}). They were asked to complete a worksheet that requires an answer from a censored site (Wikipedia) and explicitly reminds users to use Tor to do so (Appendix~\ref{summative-worksheet}). We reminded them to not show personal information since we are recording their screens, answered any questions, then gave them 40 minutes to complete the task. 
 
-Participants were given 40 minutes to complete the task. After instructions, researchers maintained minimal interactions with the participants, only answering logistical questions. Afterward, we administered an exit survey to collect demographics (Appendix~\ref{quantitative-exit-survey}). We paid each participant \$30 for their time. 
+After instructions, researchers maintained minimal interactions with the participants, only answering logistical questions. Afterward, we administered an exit survey to collect demographics (Appendix~\ref{quantitative-exit-survey}). We paid each participant \$30 for their time. 
 
 \subsection{Results} 
 We summarize what our participants did below.  Table~\ref{table:participant-summary} gives an overview of the results and Figure~\ref{fig:all-participant-edges} summarizes all participants' paths during the experiment. In this section, we use OLD to refer to the deployed Tor Browser 5.0.3 Tor Launcher GUI (Figure~\ref{fig:old-interface}) and NEW to refer to our redesigned version (Figure~\ref{fig:new-interface}).
-
-\begin{table}[t]
-\centering
-\begin{tabular}{l r r r r r}
-& \multicolumn{2}{r}{completion rate} & \multicolumn{1}{r}{connection} & \multicolumn{1}{r}{configuration} \\
-& \multicolumn{2}{r}{(at 40min 8s)} & \multicolumn{1}{r}{time (med)} & \multicolumn{1}{r}{time (med)} \\
-\noalign{\hrule}
-E1-NEW & 19/19 & 100\% & 0:20 & 0:06 \\
-E1-OLD & 19/19 & 100\% & 1:01 & 0:24 \\
-E2-NEW & 18/18 & 100\% & 3:22 & 0:40 \\
-E2-OLD & 16/19 & 84\% & 5:00 & 2:04 \\
-E3-NEW & 13/19 & 68\% & 20:25 & 1:56 \\
-E3-OLD & 10/20 & 50\% & 40:08 & 9:09 \\
-\end{tabular}
-\caption{
-An overview of the results of the experiment. Those who
-failed to connect were assigned the maximum time of 40:08, 
-the maximum time a participant took to finish the task.
-}
-\label{table:participant-summary}
-\end{table}
 
 \label{all-participant-edges} 
 \begin{figure*}
@@ -684,6 +658,27 @@ i.e. restarting the application).}
 \end{figure*}
 
 \subsubsection{Completion Rate} 
+
+\begin{table}[t]
+\centering
+\begin{tabular}{l r r r r r}
+& \multicolumn{2}{r}{completion rate} & \multicolumn{1}{r}{connection} & \multicolumn{1}{r}{configuration} \\
+& \multicolumn{2}{r}{(at 40min 8s)} & \multicolumn{1}{r}{time (med)} & \multicolumn{1}{r}{time (med)} \\
+\noalign{\hrule}
+E1-NEW & 19/19 & 100\% & 0:20 & 0:06 \\
+E1-OLD & 19/19 & 100\% & 1:01 & 0:24 \\
+E2-NEW & 18/18 & 100\% & 3:22 & 0:40 \\
+E2-OLD & 16/19 & 84\% & 5:00 & 2:04 \\
+E3-NEW & 13/19 & 68\% & 20:25 & 1:56 \\
+E3-OLD & 10/20 & 50\% & 40:08 & 9:09 \\
+\end{tabular}
+\caption{
+An overview of the results of the experiment. Those who
+failed to connect were assigned the maximum time of 40:08, 
+the maximum time a participant took to finish the task.
+}
+\label{table:participant-summary}
+\end{table}
 
 %table
 \begin{table}[t]
@@ -734,45 +729,31 @@ Our interface changes had a significant impact in reducing connection time (one-
 \centering
 \includegraphics{time_to_success_clamped}
 \caption{
-The dots show the raw connection times,
-while the boxplots show the medians and interquartile ranges.
-The ``DNF'' (did not finish) numbers at the right show how many of participants 
-did not finish, who were assigned the maximum time of 40:08.}
+Participants in E2 and E3 took a long time to connect.
+The ``DNF'' (did not finish) shows how many of participants 
+did not finish; they were assigned the maximum time of 40:08.}
 \label{fig:time_to_success_clamped}
 \end{figure}
 
 \begin{figure}[t]
 \centering
 \includegraphics{time_to_success_ecdf}
-\input{time_to_success_ecdf.tex}
+%\input{time_to_success_ecdf.tex}
 \caption{
-Cumulative success rates over time, shown continuously and at discrete times we found interesting.
-Notice that the longer the time went on, participants were less likely to succeed. 
-At 1.5 minutes, every E1-NEW participant had finished,
-but only 58\% of E1-OLD had finished by that time.  
-At 10 minutes, most participants in E2 had finished. 
+Cumulative success rates over time. The longer the time went on, participants were less likely to succeed. 
 }
 \label{fig:time_to_success_ecdf}
 \end{figure}
 
 
 \subsubsection{Configuration Time} 
-Configuration time is the time spent configuring network components, which we define as the completion time minus any time spent on the progress screen. Table~\ref{table:participant-summary} shows the median times and Figure~\ref{fig:time_to_success_active_clamped} shows their distribution. Table~\ref{table:median_time} shows the percentage of time spent on each screen. Note that the time spent configuring bridges and proxies is {\it not} equivalent to the amount of time participants spent trying to connect, which would be the connection time minus the time spent on the progress screen for the last time (time Tor takes to bootstrap after a valid configuration). 
-
-%things to keep in mind
-We believe that configuration time is a meaningful metric because 1) bootstrapping can take a couple minutes, which dominates measurements for users do not need much time to configure their connection, such as participants in E1, and 2) some mistakes, such as using a syntactically valid but unusable proxy, generate non-interrupting warnings and let the users wait indefinitely until they manually cancel the connection to try again. But this is not the most accurate measurement of time spent configuring, since it does not reflect how some participants searched for help in another browser while waiting on the progress screen.
-
-%configuration time and version
-Our interface changes had a significant impact in reducing configuration time (one-tailed Mann--Whitney; $Z = -3.28$, $p = 0.000516$, $r = 0.307$). That is, the differences in mean configuration times in E1-NEW vs E1-OLD and E2-NEW vs E2-OLD and E3-NEW vs E3-OLD is likely not due to random chance. We used a one-tailed Mann--Whitney test because the distribution of configuration times was also 1) right-censored and 2) non-normal and heavily right tailed, due to being an artifact of completion time. 
+Configuration is defined as the completion time minus {\it any} time spent on the progress screen.Table~\ref{table:participant-summary} shows the median times and Figure~\ref{fig:time_to_success_active_clamped} shows their distribution. Table~\ref{table:median_time} shows where participants spent their time.  
 
 \begin{table}[t]
 \centering
 \input{median_time.tex}
 \caption{
-The median percent of time spent on each screen. 
-This percentage is computed independently for each screen; that is, a participant who spent the median percent 
-of time on one screen may not be the same participant who spent the median percent
-of time on other screens.}
+The median percent of time spent on each screen, aggregated over participants in each experimental condition. }
 \label{table:median_time}
 \end{table}
 
@@ -780,24 +761,30 @@ of time on other screens.}
 \centering
 \includegraphics{time_to_success_active_clamped}
 \caption{
-The dots show the raw active configuration times,
-while the boxplots show the medians and interquartile ranges.
-Here, non-finishing participants' active time was computed by
+Only a small fraction of the time was used to configure bridges and proxies.
+Non-finishing participants' active time was computed by
 subtracting the amount of time spent on the progress screen from the 
 their assigned completion time of 40:08.
 }
 \label{fig:time_to_success_active_clamped}
 \end{figure}
 
-\subsection{Usability of Tor Launcher} 
-In total, 63\% (72 of 114) of first attempts to connect failed and 79\% (363 of 458) of total attempts to connect failed.
-On average, users who required a bridge took over 3 minutes to connect to Tor, and users who required a meek or custom bridge took over 20 minutes.
+%things to keep in mind
+We believe that configuration time is a meaningful metric because 1) bootstrapping can dominate measurements for users do not need much time to configure their connection (E1 participants), and 2) many errors do not interrupt the connection attempt and cause many users to wait a long time before they manually cancel the connection to try again. This is metric is not perfect though, since it does not reflect how some participants actively searched for help in another browser rather than passively waiting for their connections to work. 
 
-Ideally, almost all users should be able to configure the necessary or optional network components and connect to Tor within a few minutes. Neither the Tor Browser's 5.0.3 Tor Launcher GUI or our redesigned Tor Launcher GUI meets this goal.
+%configuration time and version
+Our interface changes had a significant impact in reducing configuration time (one-tailed Mann--Whitney; $Z = -3.28$, $p = 0.000516$, $r = 0.307$). That is, the differences in mean configuration times in E1-NEW vs E1-OLD and E2-NEW vs E2-OLD and E3-NEW vs E3-OLD is likely not due to random chance. We used a one-tailed Mann--Whitney test because the distribution of configuration times was also 1) right-censored and 2) non-normal and heavily right tailed, due to being an artifact of completion time. 
+
+\subsection{Usability of Tor Launcher} 
+We confirmed our observations from our formative usability test and find that participants wait the progress screen for a long time, spend time configuring proxies when they did not need to, and do not know what to do if the recommended bridge doesn't work. 
+
+From our measurements, we find that 63\% (72 of 114) of first attempts to connect failed and 79\% (363 of 458) of total attempts to connect failed. Users average over 3 minutes if they needed a bridge and averaging over 20 minutes if they needed a meek or custom bridge. 
+
+Ideally, almost all users should be able to configure the necessary or optional network components and connect to Tor within a few minutes. Neither the Tor Browser's 5.0.3 Tor Launcher GUI or our redesigned Tor Launcher GUI meets this goal. 
 
 \section{Recommendations}
 \label{sec:recommendations}
-We do believe that adopting our design will help save users time when connecting to Tor. But since we did not test our design changes independently, we cannot (and do not) claim the effects each change we made. Therefore, we do not recommend specific changes, but offer some suggestions for Tor Launcher's GUI based on what we learned: \\
+We believe that adopting our design will save users time. But since we did not test our design changes independently, we cannot (and do not) claim the effects each change. We do not recommend specific changes, but offer some suggestions based on what we learned: \\
 
 \begin{itemize}
 \item {\bfseries Hide infrequent options.} Hide the proxy configuration screen and less-used transports. None of our participants connected using flashproxy, fte, fte-ipv6, or scramblesuit transport bridges. 
@@ -810,21 +797,44 @@ We also recommend exploring solutions that leverage automation, user-dependent i
 
 \section{Limitations}
 \label{sec:limitations}
-We did not study international users, or the configuration interface in languages other than English. All of our participants were from the United States and were instructed to interact with the English version of Tor Browser.
+We did not study international users, or the interface in languages other than English. All of our participants were from the United States and were instructed to interact with the English version of Tor Browser.
 
-Participants in a laboratory setting may alter their behavior due to their awareness of being observed~\cite{mccarney2007hawthorne}. We are aware that our participants were likely motivated differently compared to real users. We believe that participants were likely overmotivated to connect to Tor because they were being observed and receiving a monetary reward. If true, this makes our results are a conservative estimate of the current usability problems. 
+Participants in a laboratory setting may alter their behavior due to their awareness of being observed~\cite{mccarney2007hawthorne}. Our participants were likely motivated differently compared to real users, but we believe that they were likely overmotivated because they were being observed and receiving a monetary reward. If true, this makes our results a conservative estimate of the usability problems. 
 
 Since the configuration interfaces in simulated environments, we cannot claim how difficult it would be for a user to connect to Tor in a certain country or how much our redesigned interface would help those users.  
 
-Our experiment did not directly test more advanced tasks. Our simulated environments did not require users to configure a proxy or to get a custom bridge. From observing of user attempts to configure proxies and get custom bridges, we suspect users generally struggle with these tasks but cannot quantify how much they do. 
+Our experiment did not directly test advanced tasks such as configuring a proxy or a custom bridge. From observing  users, we suspect they struggle with these tasks. 
 
-We only tested the interface on Windows machines, which were the machines available at <redacted>. %Xlab.
-The configuration interface leverages the native operating system's styling and elements, making the configuration interface on Windows look slightly different from the OS~X or Linux equivalent. Additionally, we acknowledge that participants' unfamiliarity with Windows may have affected our experiment, but we believe that this affected all experimental conditions minorly and equally.  
+We only tested the interface with Windows machines.
+The interface leverages the native operating system's styling and elements, making the configuration interface on Windows look slightly different from the OS~X or Linux equivalents. We acknowledge that participants' unfamiliarity with Windows may have affected our experiment, but we believe that this affected all experimental conditions minorly and equally.  
 
 \section{Related Work}
 \label{sec:related} 
-
 {\color {red} 
+% intro to usable security 
+Researchers have been studying usable computer security for decades. 
+%the paper that started it all: ~\ref{whitten1999johnny}
+
+% methods
+qualitative analysis, quantitative analysis, cognitive walkthroughs
+%usability inspection: ~\ref{nielsen1994usability}
+%heuristic evaluation: ~\ref{nielsen1994heuristic}
+%improving dialogue: ~\ref{molich1990improving}
+
+% focuses
+graphical redesign, redesigning interactions, user education 
+
+% user help 
+% explicit goals and subgoals ~\ref{reeder2005user}
+% hypothesis elimination ~\ref{wason1960failure}
+% user tolerance on security delays ~\ref{egelmanplease}
+
+% subjects 
+Two consistent areas of research are user authentication and email encryption ~\ref{payne2008brief}.
+%%% driveby citations of user authentication papers here
+%%% driveby citations of email authentication papers here. 
+There has not been much usable security work on cencorship circumvention or anonymity.
+
 % Previous Tor studies 
 There have been three published user studies on Tor. Clark et~al.~\cite{clark2007usability} examined various deployment
 options for Tor Browser, such as Vidalia, Privoxy, Torbutton, and FoxyProxy, and found that none had satisfactory from a usability. Fabian et~al.~\cite{fabian2010privately} show that Tor's added
@@ -838,14 +848,6 @@ Tor Browser since the release of the 3.5 series in 2013, which introduced radica
 The most recent effort is an unpublished pilot study by Lee and Fifield~\cite{uxsprint} 
 that tested the downloading, installation, and browsing tasks in Tor Browser.  This study uncovered a number of issues~\cite{uxsprint2015-tickets},
 some of which influenced changes in Tor Browser version~4.5 and later.
-
-Previous user studies have considered the whole browsing experience,
-without focusing on specific features in isolation.
-Our study focuses on 
-the browser's configuration interface, which guides users through setting up components required to circumvent censorship. 
-
-% Scoping our work wrt usable security, usability, and interaction design  
-Our work combines the three. We try to make it as usable as possible by following usability practices (reducing load, not having people remember, easy learning curve, etc.) But at the same time, we also tried to make some things hard and kept things hard (not automating things that would be dangerous) like confirm if you want to delete everything is a useful feature, and it's more usable security than usability. Our thing was more interaction design--we changed from letting the users guide to telling them, to making it as easy as possible to having a consistent model. We didn't really do any real design except to prove the concept (cite Adrienne's warning study with icons and colors), and while we tried to make it good, we didn't reaaaaallly thorougly test out the icons and wording and whatnot. 
 }
 
 \section{Conclusion} 
@@ -902,13 +904,13 @@ error states:
 
 The same input can lead to different end states. Tor Launcher will connect to a proxy successfully with the port left blank if the proxy uses port 80 (s2) but will not if the proxy uses another port (e12). 
 
-\section{Qualitative User Study Recruitment Posting} 
+\section{Formative User Study Recruitment Posting} 
 \label{qualitative-recruitment}
 We are recruiting participants for an in-person research study at <redacted>. %the University of California, Berkeley. 
 You will need to come in to our lab and perform tasks on a computer for an hour or less. You will be compensated \$30 for participating. 
 No special knowledge and no technical experience is required. If you are interested, fill out the survey at \textit{<survey link>}. 
 
-\section{Qualitative User Study Prescreening Survey} 
+\section{Formative User Study Prescreening Survey} 
 \label{qualitative-prescreening}
 We are recruiting participants for an in-person research study at the <redacted>. %University of California, Berkeley. 
 You will need to come in to our lab and perform tasks on a computer for an hour or less. You will be compensated \$30 for participating. No special knowledge and no technical experience is required.\\
@@ -977,7 +979,7 @@ Formative users' self-reported use of various security software.
 
 Table~\ref{table:selfreported-software} lists their self-reported use of security software. Similarly to self-reported familiarity, we assume that participants answered to appear more technically fluent. We assumed that this self-reported use of security tools is an approximate upper bound of how many have actually used these security tools.
 
-\section{Qualitative User Study Introduction Script} 
+\section{Formative User Study Introduction Script} 
 \label{qualitative-script} 
 Imagine you live in an oppressive country that censors part of the Internet. We have simulated this in the laboratory by blocking certain websites and services.  The purpose of this experiment is to evaluate the use of Tor browser, which is a browser that can circumvent censorship and let you visit blocked websites. Currently, torproject is blocked (you can check this by going to torproject.org on a standard browser, like Firefox, Chrome, or Internet Explorer). 
 
@@ -985,7 +987,7 @@ To circumvent censorship successfully, you will need to set up Tor browser corre
 
 Before you start, do you have any questions about what you are asked to do? 
 
-\section{Participant Worksheet Text} 
+\section{Formative Study Worksheet Text} 
 \label{participant-worksheet}
 Imagine you live in an oppressive country that censors part of the Internet. We have simulated this in the laboratory by blocking certain websites and services. The purpose of this experiment is to evaluate the use of Tor browser, which is a browser that can circumvent censorship and let you visit blocked websites. For instance, www.torproject.org is blocked. Check this by going to the site on a standard browser, like Firefox, Chrome, or Internet Explorer. It will fail to load, when you can visit other sites.
 
@@ -1007,7 +1009,7 @@ We asked our participants these questions after they were given time to configur
 
 In addition to these questions, we asked our participants about specific questions based on their observation, usually regarding a specific choice in action, a particular screen they seemed stuck on, and any errors they encountered during the configuration process. 
 
-\section{Quantitative User Recruitment Posting}
+\section{Summative User Study Recruitment Posting}
 \label{quantitative-recruitment}
 We are recruiting up to 40 participants for a user study at <redacted>. %UC Berkeley. 
 The experiment will involve basic Internet browsing tasks. You are not eligible if you have participated in our previous sessions.\\
@@ -1025,7 +1027,7 @@ with the sessions you are able to attend. We will confirm your participation and
 2. Come to <redacted> %Xlab 
 at the appointed time for the experiment.
 
-\section{Quantitative User Study Introduction Script} 
+\section{Summative User Study Introduction Script} 
 \label{quantitative-script} 
 Imagine you live in an oppressive country that censors part of the Internet. We have simulated this in the laboratory by blocking certain websites and services.  The purpose of this experiment is to evaluate the use of Tor browser, which is a browser that can circumvent censorship and let you visit blocked websites. Currently, torproject is blocked (you can check this by going to torproject.org on a standard browser, like Firefox, Chrome, or Internet Explorer). 
 
@@ -1036,7 +1038,20 @@ We will give you time to complete this task. If you finish early, we ask that yo
 
 Before you start, do you have any questions about what you are asked to do? 
 
-\section{Quantitative User Study Exit Survey} 
+\section{Summative User Study Worksheet Text} 
+\label{summative-worksheet}
+Imagine you live in an oppressive country that censors part of the Internet. We have simulated this in the laboratory by blocking certain websites and services.
+
+The purpose of this experiment is to evaluate the use of Tor browser, which is a browser that can circumvent censorship and let you visit blocked websites. For instance, www.torproject.org is blocked. Check this by going to the site on a standard browser, like Firefox, Chrome, or Internet Explorer. It will fail to load, when you can visit other sites.
+
+To complete this worksheet, you will need to set up Tor browser (on your desktop) correctly and use it to get to blocked site. If you can visit wikipedia, then you know that you have successfully circumvented censorship.
+
+1. Visit Wikipedia’s main page (\url{https://en.wikipedia.org/wiki/Main\_Page}). What is the topic of today’s selected article? 
+
+2. After you have completed the tasks, fill out this survey: http://bit.ly/tor-survey 
+
+
+\section{Summative User Study Exit Survey} 
 \label{quantitative-exit-survey}
 We'd like to know more about you.  All of your answers will be stored separately from any identifying information in order to protect your confidentiality.
 
