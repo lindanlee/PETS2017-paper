@@ -272,16 +272,14 @@ The Tor Browser 5.0.3 Tor Launcher GUI. Screens are in the order that they appea
 \end{figure*} 
 
 \section{Methodology} 
-This section discusses our process, principles, and preparations for evaluating the configuration interface.
+This section discusses how we performed our summative evaluation to determine the interface's effectiveness.
 
 \subsection{Testing Pipeline} 
-We performed a cognitive walkthrough~\cite{cognitive-walkthrough} to prepare for user testing. This evaluation method involved usability evaluators to working through a series of tasks from the perspective of the user, trying to understand a system's learnability for new or infrequent users.
+We performed a cognitive walkthrough~\cite{cognitive-walkthrough} of the interface by working tasks from the perspective of the user and assessing its learnability for new or infrequent users.
 
-We then conducted a formative usability test~\cite{formative} that found where and why users struggle. This testing is usually used as a support tool to find improvements. Five users is considered to be the maximum benefit-cost ratio for gaining insights~\cite{howmanyusers}, so we recruited five participants for each experimental condition. 
+We then conducted qualitative and quantiative usability tests of the interface. We believed that both were necessary for a complete evaluation. Qualitative testing tells you {\it why or how} it is or is not usable, while quantitative testing testing tells you {\it how much} it is or is not usable. Five users is considered to be the maximum benefit-cost ratio for gaining insights~\cite{howmanyusers}, so we recruited five participants for each condition in our qualitative experiment. Twenty users is considered to be a minimum for statistically significant measurements~\cite{howmanyusers}, so we recruited twenty participants for each condition in our quantitative experiment.
 
-We opportunistically used our observations to make changes to the interface. We believed that the process of identifying design principles, drafting design changes, and testing an alternative interface would be insightful.
-
-We concluded with a summative usability test~\cite{summative} that measured the usability of the current and redesigned interface. This testing is a usually used as quality assurance tool to test features. In short, formative testing tells you {\it what} is is not usable, while summative testing testing tells you {\it if} it is or is not usable. Twenty users is considered to be a minimum for statistically significant measurements~\cite{howmanyusers}, so we recruited twenty participants for each experimental condition.  
+We opportunistically used our observations from the qualitative study to design interface changes that would address common issues that our participants encountered. We also opportunistically used our quantitive testing setup to measure its usability with respect to the the original interface. We found the process of identifying design principles, drafting design changes, and testing an alternative interface to be insightful and hope that this may be insightful to others as well. 
 
 \subsection{Evaluation Metrics}
 \label{sec:eval}
@@ -344,7 +342,7 @@ mapping domain names to localhost (127.0.0.1) (E1, E2, E3). For all experiments,
 This section discusses our inspection of the configuration interface and the resulting observations.
 
 \subsection{Procedure} 
-Two researchers performed the cognitive walkthrough on the Tor Browser 5.0.3 Tor Launcher GUI, the most recent version deployed at the time (Figure~\ref{fig:old-interface}). We systematically tried action sequences from the perspective of a typical user, which we defined as a first time or infrequent user with almost no previous knowledge about network components involved in connecting to Tor.
+Two researchers performed the cognitive walkthrough on the Tor Browser 5.0.3 Tor Launcher GUI, the most recent version deployed at the time (Figure~\ref{fig:old-interface}). We systematically tried actions from the perspective of a typical user, which we defined as a first time or infrequent user with almost no previous knowledge about network components involved in connecting to Tor.
 
 We first examined each screen in the interface for tasks required, inputs taken, and consequences of possible actions. This was done to map all potential paths through the interface (Figure~\ref{fig:digraph}). We then stepped through each user path and recorded our observations. 
 
@@ -353,7 +351,7 @@ The interface did not suppose that a user has previous exposure to Tor. To help 
 
 More generally, we suspected that new users or infrequent users would struggle to configure bridges and proxies. We doubted that users would have an understanding of how the Internet well enough to even explain how Tor relays, bridges, and proxies worked. Additionally, as mentioned previously, Tor relays, bridges, and proxies all allow indirect connections, and the difference in terminology can be confusing. The terminology of bridges and transports are also specific to Tor, and not other censorship circumvention software. 
 
-We used the map of potential user paths (Figure~\ref{fig:digraph}) to design our simulated environments (section~\ref{sec:environments}).  We used our walkthrough observations as inspiration for drafting our post-experiment interview questions (Appendix~\ref{interview-questions}) for formative usability testing. 
+We used the map of potential user paths (Figure~\ref{fig:digraph}) to design our simulated environments (section~\ref{sec:environments}).  We used our walkthrough observations as inspiration for drafting our post-experiment interview questions (Appendix~\ref{interview-questions}) for qualitative usability testing. 
 
 \begin{figure*}
 \centering
@@ -364,7 +362,7 @@ A digraph illustrating the potential user paths through the interface. Non-leaf 
 \label{fig:digraph}
 \end{figure*} 
 
-\section{Formative Usability Testing}
+\section{Qualitative User Testing}
 \label{sec:qualitative}
 This section discusses our small-scale, qualitative usability experiment and resulting user insights. 
 
@@ -383,7 +381,7 @@ We ran the experiment in a meeting room in <redacted building> at <redacted univ
 set up one of the three simulated environments (E1, E2, or E3) and started recording the computer screen.  
 
 \subsection{Procedure}
-Three researchers ran the formative usability tests, with each session having at least two researchers.  
+Three researchers ran the qualitative user tests. Each session had at least two researchers.  
 We told the participant the purpose of the 
 study, what data was collected, and any associated risks. 
 Then they signed a consent form with this information in writing. 
@@ -532,10 +530,10 @@ We have additional concerns on system visibility, error recovery, and user workl
 
 \section{A Design Iteration}
 \label{sec:design} 
-This section discusses how we converted our formative usability testing observations into design changes. 
+This section discusses how we converted our qualitative user testing observations into design changes. 
 
 \subsection{Procedure} 
-We agreed on security and usability design principles, before reviewing our formative usability study observations and brainstorming changes to the interface. We worked with a user interface designer to iteratively design the interface. Figure~\ref{fig:new-interface} is the result.
+We agreed on security and usability design principles, before reviewing our qualitative usability study observations and brainstorming changes to the interface. We worked with a user interface designer to iteratively design the interface. Figure~\ref{fig:new-interface} is the result.
 
 \begin{figure*}
 \centering
@@ -612,7 +610,7 @@ To help users decide what to do, we labeled the configure button as an option he
 
 To help users understand what is going on, we added a summary screen displays the current bridge and proxy settings for system visibility, switched proxy and bridge screens to put them in a topologically sequential order (Figure~\ref{fig:topology}), and added checklist indicators of components topological order into the progress bar to that show if various components reached successfully.
 
-\section{Summative Usability Testing}
+\section{Quantitative User Testing}
 \label{sec:quantitative}
 This section discusses our large-scale quantitative usability experiment and resulting user measurements. 
 
@@ -776,7 +774,7 @@ We believe that configuration time is a meaningful metric because 1) bootstrappi
 Our interface changes had a significant impact in reducing configuration time (one-tailed Mann--Whitney; $Z = -3.28$, $p = 0.000516$, $r = 0.307$). That is, the differences in mean configuration times in E1-NEW vs E1-OLD and E2-NEW vs E2-OLD and E3-NEW vs E3-OLD is likely not due to random chance. We used a one-tailed Mann--Whitney test because the distribution of configuration times was also 1) right-censored and 2) non-normal and heavily right tailed, due to being an artifact of completion time. 
 
 \subsection{Usability of Tor Launcher} 
-We confirmed our observations from our formative usability test and find that participants wait the progress screen for a long time, spend time configuring proxies when they did not need to, and do not know what to do if the recommended bridge doesn't work. 
+We confirmed our observations from our qualitative user test and find that participants wait the progress screen for a long time, spend time configuring proxies when they did not need to, and do not know what to do if the recommended bridge doesn't work. 
 
 From our measurements, we find that 63\% (72 of 114) of first attempts to connect failed and 79\% (363 of 458) of total attempts to connect failed. Users average over 3 minutes if they needed a bridge and averaging over 20 minutes if they needed a meek or custom bridge. 
 
@@ -787,10 +785,10 @@ Ideally, almost all users should be able to configure the necessary or optional 
 We believe that adopting our design will save users time. But since we did not test our design changes independently, we cannot (and do not) claim the effects each change. We do not recommend specific changes, but offer some suggestions based on what we learned: \\
 
 \begin{itemize}
-\item {\bfseries Hide infrequent options.} Hide the proxy configuration screen and less-used transports. None of our participants connected using flashproxy, fte, fte-ipv6, or scramblesuit transport bridges. 
-\item {\bfseries Give advice.} Discourage users from configuring optional components. Add a secondary recommendation for bridges (try meek if obfs3 doesn't work, use meek if you are in China) to help users in need. 
-\item {\bfseries Minimize work.} Detect if users need a proxy or not. Redirect users to the relevant pages on error (i.e. redirect to the bridge screen the bridge fails).  
-\item {\bfseries Provide feedback.} Tell users what to do when a specific error occurs (i.e. try the same connection again, pick another bridge, try without a proxy, etc.).  Show users their bridge and proxy settings before and during connection. Fix the progress bar so that it updates on subsequent connections.
+\item {\bfseries Hide the proxy configuration screen and less-used transports.} None of our participants connected using flashproxy, fte, fte-ipv6, or scramblesuit transport bridges. Hiding infrequently used options will help users make better choices.
+\item {\bfseries Discourage users from configuring optional components.} Many participants configured proxies and bridges that they did not need. Add more explicit guidance on when to use them.
+\item {\bfseries Redirect to relevant screens on error.} For instance, redirect users to the bridge screen if the bridge failed instead of requiring users to do so.
+\item {\bfseries Take advantage of the progress screen.} Participants spent a majority of their time here. This time could be used to inform them of their bridge and proxy settings, educate users about what Tor does, or introduce Tor Browser.
 \end{itemize}
 
 We also recommend exploring solutions that leverage automation, user-dependent inputs, or network-dependent inputs. We start this discussion by sharing some of our own ideas in appendix~\ref{alternatives}. 
@@ -810,55 +808,35 @@ The interface leverages the native operating system's styling and elements, maki
 
 \section{Related Work}
 \label{sec:related} 
-{\color {red} 
 % intro to usable security 
-Researchers have been studying usable computer security for decades. 
-%the paper that started it all: ~\ref{whitten1999johnny}
+The difference between a poor interface and a good interface can influence users’ ability to perform tasks securely~\cite{payne2008brief}. Usable security aims to improve the security of a system by designing with the user in mind. This involves informing users about the system, communicating risks in a way that is understandable, clarifying what the security requirements are, and providing guidance with technical tasks~\cite{adams1999users}. Our work contributes to the body of usable security by evaluating Tor Browser, which is an anonymity and censorship circumvention software that requires user interaction. Other usable security research explores on a variety of security software or features, such as email encryption sofware ~\cite{whitten1999johnny}\cite{garfinkel2005johnny}, authentication methods~\cite{morris1979password}\cite{dhamija2000deja}\cite{suo2005graphical}, web indicators~\cite{dhamija2006phishing}\cite{akhawe2013alice}, and security warnings ~\cite{schechter2007emperor}\cite{egelman2008you}. 
 
-% methods
-qualitative analysis, quantitative analysis, cognitive walkthroughs
-%usability inspection: ~\ref{nielsen1994usability}
-%heuristic evaluation: ~\ref{nielsen1994heuristic}
-%improving dialogue: ~\ref{molich1990improving}
+Usability inspection methods~\cite{nielsen1994usability} are used to define usability problems in an interface. We
+used a cognitive walkthrough~\cite{wharton1994cognitive}\cite{cognitive-walkthrough} to evaluate our interface. Other inspection methods include heuristic evaluation, pluralistic walkthrough and feature inspection~\cite{inspection}.  
 
-% focuses
-graphical redesign, redesigning interactions, user education 
-
-% user help 
-% explicit goals and subgoals ~\ref{reeder2005user}
-% hypothesis elimination ~\ref{wason1960failure}
-% user tolerance on security delays ~\ref{egelmanplease}
-
-% subjects 
-Two consistent areas of research are user authentication and email encryption ~\ref{payne2008brief}.
-%%% driveby citations of user authentication papers here
-%%% driveby citations of email authentication papers here. 
-There has not been much usable security work on cencorship circumvention or anonymity.
+We used usability lab studies (one-on-one experiments witha  given a set of scenarios and tasks for a specific use of  a product or service) and usability benchmarking (tightly scripted usability studies are performed with many participants used to collect measures of performance) to get qualitative and quantitative behavioral data about Tor Launcher's GUI~\cite{krol2016towards}. There are other ways to collect behavioral data as well, such as eyetracking, clickstream analysis and AB testing. These are in contrast with a variety of user experience research methods that collect qualitative or quantitative attitudnal data, such as focus group, camera studies, and product surveys~\cite{ux-methods}. We performed interviews after our lab study, but we mostly used these interviews to verify our behavioral observations rather than to draw conclusions about what people thought about their experience. 
+ 
+User-centered design improves the usability of software by accounting for user factors. 
+Some work we found especially relevant to improving the usability of Tor Browser were
+Yee et~al.'s starting points for reasoning about security from
+a user-centred perspective and principles for secure interaction design ~\cite{yee2002user},  
+Molich et~al.'s examination of  common problems in human-computer dialogue deisgn ~\cite{molich1990improving}, and Egelman et~al's examination of user tolerance of security delays~\cite{egelmanplease}.
 
 % Previous Tor studies 
-There have been three published user studies on Tor. Clark et~al.~\cite{clark2007usability} examined various deployment
-options for Tor Browser, such as Vidalia, Privoxy, Torbutton, and FoxyProxy, and found that none had satisfactory from a usability. Fabian et~al.~\cite{fabian2010privately} show that Tor's added
-latency~\cite{dingledine2009performance} causes users
-to be frustrated, cancel requests, and prevents user adoption. 
-Norcie et~al.~\cite{norcie2012eliminating} found found that 
-64\% of users are unable to continue with installation or browsing at least once due to difficulties.
-
-We do not know of any published usability evaluations of
-Tor Browser since the release of the 3.5 series in 2013, which introduced radical UI changes~\cite{torbrowser-35}.
-The most recent effort is an unpublished pilot study by Lee and Fifield~\cite{uxsprint} 
-that tested the downloading, installation, and browsing tasks in Tor Browser.  This study uncovered a number of issues~\cite{uxsprint2015-tickets},
-some of which influenced changes in Tor Browser version~4.5 and later.
-}
+Our work uniquely contributes to Tor by examining the usability of the configuration interface.  
+Previous usability studies on Tor have focused on installation and use. Norcie et~al.~\cite{norcie2012eliminating} performed a 25-user test of Tor Browser and found that 64\% of users were unable complete installation or browsing tasks. Fabian et~al.~\cite{fabian2010privately} discussed how added latency benefits anonmity~\cite{dingledine2009performance} but reduces usability. They quantified how the difference in latency causes frustration and decreases adoption. Clark et~al.~\cite{clark2007usability} performed a cognitive walkthrough of Tor Browser deployment options (Vidalia, Privoxy, Torbutton, and FoxyProxy) and found that none were satisfactory from a usability perspective. They highlight the best aspects of each tool and offer usability improvements. We do not know of any published usability evaluations of
+Tor Browser the 3.5 series in 2013, which introduced radical UI changes~\cite{torbrowser-35}.
+Lee and Fifield~\cite{uxsprint} ran an informal UX sprint that recruited 5 users to install and use Tor Browser tp observe their behavior. This unconvered some usability issues~\cite{uxsprint2015-tickets} and caused UI changes in Tor Browser version~4.5.
 
 \section{Conclusion} 
 \label{sec:conclusion}
 The Tor Launcher GUI allows most users to connect to the Tor network, provided that the user's connection does not require a proxy or a non-default bridge. User observation showed that participants were intimidated by the tasks, unsure of what to do, and likely to get stuck configuring proxies that they did not need. User testing showed that most people take more than 10 minutes to connect to Tor if they need to use bridges. 
 
 %proof that user testing is important and general advice to for more research on Tor
-We encourage usability testing for Tor Browser and other Tor applications because it provides user insight for products without user interaction data. Tor Browser version~4.5 incorporated changes to Tor Launcher based on our work <redacted Tor blog post here; it was authored by one of the authors of this paper>. We also talked to Tor developers about ways to automate the bootstrapping process to Tor. 
+We encourage user testing for Tor Browser and other Tor applications because it provides user insight for products without user interaction data. Tor Browser version~4.5 incorporated changes to Tor Launcher based on our work <redacted Tor blog post here; it was authored by one of the authors of this paper>. We also talked to Tor developers about ways to automate the bootstrapping process to Tor. 
 
 \section {Experiment Artifacts} 
-Due to space constraints, we could not include many of our experiment artifacts. This includes the experiment setup and teardown code, firewall rules that simulated censorship environments, interview transcriptions from the formative user study, logs from our instrumented configuration interfaces, and videos of users attempting to connect to Tor through the configuration interface. We urge you to check out the project repository: \\
+Due to space constraints, we could not include many of our experiment artifacts. This includes the experiment setup and teardown code, firewall rules that simulated censorship environments, interview transcriptions from the qualitative user study, logs from our instrumented configuration interfaces, and videos of users attempting to connect to Tor through the configuration interface. We urge you to check out the project repository: \\
 
 \noindent <redacted url>
 %\noindent \url{https://github.com/lindanlee/circumvention-ux-tor}
@@ -868,13 +846,13 @@ Many generous people helped us along the way. <Redacted> assisted with testing o
 % Rowilma del Castillo. Nima Fatemi and Isabela Bagueros.  Georg Koppen and the Tor UX team.
 
 \bibliographystyle{abbrv}
-\bibliography{pets2017-paper}
+\bibliography{pets2017-paper.bib}
 
 \appendix
 
 \section{Success and Error States in Tor Launcher 5.0.3} 
 \label{states} 
-An exhaustive list of Tor Launcher 5.0.3's end states corresponding to Figure~\ref{fig:digraph}. End states such as e\# and $\mbox{e\#}^\prime$ are equivalent, but $\mbox{e\#}^\prime$ uses a bridge while e\# does not. This was generated during the inspection process.\\
+Tor Launcher 5.0.3's end states corresponding to Figure~\ref{fig:digraph}. E\# and $\mbox{e\#}^\prime$ are equivalent, but $\mbox{e\#}^\prime$ uses a bridge while e\# does not. \\
 
 \noindent success states: 
 \begin{itemize}
@@ -902,15 +880,15 @@ error states:
 \item e13: proxy: valid IP address, blank port
 \end{itemize} 
 
-The same input can lead to different end states. Tor Launcher will connect to a proxy successfully with the port left blank if the proxy uses port 80 (s2) but will not if the proxy uses another port (e12). 
+Same inputs can lead to different end states. Tor Launcher will connect to a proxy successfully with the port left blank if the proxy uses port 80 (s2) but will not if the proxy uses another port (e12). 
 
-\section{Formative User Study Recruitment Posting} 
+\section{Qualitative User Study Recruitment Posting} 
 \label{qualitative-recruitment}
 We are recruiting participants for an in-person research study at <redacted>. %the University of California, Berkeley. 
 You will need to come in to our lab and perform tasks on a computer for an hour or less. You will be compensated \$30 for participating. 
 No special knowledge and no technical experience is required. If you are interested, fill out the survey at \textit{<survey link>}. 
 
-\section{Formative User Study Prescreening Survey} 
+\section{Qualitative User Study Prescreening Survey} 
 \label{qualitative-prescreening}
 We are recruiting participants for an in-person research study at the <redacted>. %University of California, Berkeley. 
 You will need to come in to our lab and perform tasks on a computer for an hour or less. You will be compensated \$30 for participating. No special knowledge and no technical experience is required.\\
@@ -934,7 +912,7 @@ Thank you for filling out this form. You are now done!
 
 \section{Prescreening Survey Responses}
 \label{prescreening-responses}
-We asked people how familiar they were with some technical terms and security tools during our prescreening survey for formative usability testing. We did {\it not} use this information to influence the experimental procedure (i.e. use this to pick their environment). We show their responses: 
+We asked people how familiar they were with some technical terms and security tools during our prescreening survey for qualitative usability testing. We did {\it not} use this information to influence the experimental procedure (i.e. use this to pick their environment). We show their responses: 
 
 \begin{table}[h]
 \centering
@@ -949,7 +927,7 @@ X.511 certificates & 25\% (4/16)\\ %4/16
 Tor & 50\% (8/16)\\ %8/16
 \end{tabular}
 \caption{
-Formative users' self-reported familiarity with various security terms. 
+Qualitative users' self-reported familiarity with various security terms. 
 }
 \label{table:selfreported-tech}
 \end{table}
@@ -972,14 +950,14 @@ Instant messaging encryption 			& 44\% (7/16) & 25\% (4/16) & 13\% (2/16) & 1\% 
 Voice communication encryption 		& 81\% (13/16) & 1\% (1/16) & 1\% (1/16) & 0\% (0/16) & 0\% (0/16) &1\% (1/16)\\
 \end{tabular}
 \caption{
-Formative users' self-reported use of various security software. 
+Qualitative users' self-reported use of various security software. 
 }
 \label{table:selfreported-software}
 \end{table*}
 
 Table~\ref{table:selfreported-software} lists their self-reported use of security software. Similarly to self-reported familiarity, we assume that participants answered to appear more technically fluent. We assumed that this self-reported use of security tools is an approximate upper bound of how many have actually used these security tools.
 
-\section{Formative User Study Introduction Script} 
+\section{Qualitative User Study Introduction Script} 
 \label{qualitative-script} 
 Imagine you live in an oppressive country that censors part of the Internet. We have simulated this in the laboratory by blocking certain websites and services.  The purpose of this experiment is to evaluate the use of Tor browser, which is a browser that can circumvent censorship and let you visit blocked websites. Currently, torproject is blocked (you can check this by going to torproject.org on a standard browser, like Firefox, Chrome, or Internet Explorer). 
 
@@ -987,7 +965,7 @@ To circumvent censorship successfully, you will need to set up Tor browser corre
 
 Before you start, do you have any questions about what you are asked to do? 
 
-\section{Formative Study Worksheet Text} 
+\section{Qualitative Study Worksheet Text} 
 \label{participant-worksheet}
 Imagine you live in an oppressive country that censors part of the Internet. We have simulated this in the laboratory by blocking certain websites and services. The purpose of this experiment is to evaluate the use of Tor browser, which is a browser that can circumvent censorship and let you visit blocked websites. For instance, www.torproject.org is blocked. Check this by going to the site on a standard browser, like Firefox, Chrome, or Internet Explorer. It will fail to load, when you can visit other sites.
 
@@ -1009,7 +987,7 @@ We asked our participants these questions after they were given time to configur
 
 In addition to these questions, we asked our participants about specific questions based on their observation, usually regarding a specific choice in action, a particular screen they seemed stuck on, and any errors they encountered during the configuration process. 
 
-\section{Summative User Study Recruitment Posting}
+\section{Quantitative User Study Recruitment Posting}
 \label{quantitative-recruitment}
 We are recruiting up to 40 participants for a user study at <redacted>. %UC Berkeley. 
 The experiment will involve basic Internet browsing tasks. You are not eligible if you have participated in our previous sessions.\\
@@ -1027,7 +1005,7 @@ with the sessions you are able to attend. We will confirm your participation and
 2. Come to <redacted> %Xlab 
 at the appointed time for the experiment.
 
-\section{Summative User Study Introduction Script} 
+\section{Quantitative User Study Introduction Script} 
 \label{quantitative-script} 
 Imagine you live in an oppressive country that censors part of the Internet. We have simulated this in the laboratory by blocking certain websites and services.  The purpose of this experiment is to evaluate the use of Tor browser, which is a browser that can circumvent censorship and let you visit blocked websites. Currently, torproject is blocked (you can check this by going to torproject.org on a standard browser, like Firefox, Chrome, or Internet Explorer). 
 
@@ -1038,7 +1016,7 @@ We will give you time to complete this task. If you finish early, we ask that yo
 
 Before you start, do you have any questions about what you are asked to do? 
 
-\section{Summative User Study Worksheet Text} 
+\section{Quantitative User Study Worksheet Text} 
 \label{summative-worksheet}
 Imagine you live in an oppressive country that censors part of the Internet. We have simulated this in the laboratory by blocking certain websites and services.
 
@@ -1051,7 +1029,7 @@ To complete this worksheet, you will need to set up Tor browser (on your desktop
 2. After you have completed the tasks, fill out this survey: http://bit.ly/tor-survey 
 
 
-\section{Summative User Study Exit Survey} 
+\section{Quantitative User Study Exit Survey} 
 \label{quantitative-exit-survey}
 We'd like to know more about you.  All of your answers will be stored separately from any identifying information in order to protect your confidentiality.
 
@@ -1079,10 +1057,9 @@ We list some of our ideas:\\
 \item{\bfseries Ask users about their risk.} If they answer that they are sensitive about having a network adversary possibly know that they are using Tor, direct users to connect to a secret relay that is not publicly associated with Tor, using transport that obfuscates their connection. If users are not sensitive, let them configure their own bridges and proxies. 
 \item{\bfseries Ask users if they know what to do.} If they know, offer the option to manually configure bridges and proxies. If they do not know, give suggestions on what to do next or automate the process for them somehow. This requires users to answer honestly to the question and to trust the suggestions given. 
 \item{\bfseries Automate naively.} Have the interface automatically try configurations that would most likely work, in order (i.e. a direct connection, then an obfs3 connection without a proxy, then an meek bridge connection with out a proxy). This is what most users would ideally do anyway. However, this method leaks to network eavesdroppers that the user is using Tor without the user's awareness. 
-\item {\bfseries Automate naively after users fail.} Let users try to configure bridges and proxies. If they fail, then a network adversary already knows that the user is trying to connect to Tor. At this point, we believe that it is low risk to naively automate configuring bridges and proxies. 
+\item {\bfseries Automate naively after users fail.} Let users try to configure bridges and proxies. If they fail, then a network eavesdropper already knows that the user is trying to connect to Tor. We believe there is negligible added risk to naively automate the connection. 
 \item{\bfseries Automate in a smart way.} The interface first detects proxy settings and uses them, if any. Then it automatically connects to some secret bridges that will always work, which assign the user an entry relay that works based on their location. This requires having an invincible set of high-bandwidth bridges that work for every single user around the world.  
 \end{description}
-
 We believe that these ideas can significantly help users connect to Tor. 
 
 
