@@ -82,11 +82,12 @@ that all Tor Browser users must use to configure their initial connection to the
 We believe that the interface is usable if a new user can to identify what to do,
 knows if and when they do the right thing in the process, 
 and configures the necessary network components to connect to Tor. 
-We use a combination of user observations and user interaction logs to determine
-where the interface is not usable, and quantify how unusable the interface is. We 
-offer some suggestions for the interface based on what 
-we have learned and also suggest alternative approaches 
-to bootstrap a connection to Tor that do not require new users to configure the network components. 
+We qualify where the interface is not usable with user observations 
+and quantify how unusable the interface is with user interaction logs. 
+Based on what we learned, we recommend some changes that 
+we believe will help users connect to Tor in censored environments. 
+We conclude by starting a discussion on alternative 
+approaches to bootstrap a connection to Tor. 
 }
 \end{abstract}
   \keywords{Usable Security, User Studies, Tor, Security, Censorship, Anonymity}
@@ -150,9 +151,9 @@ This section discusses network components, when to configure them, and how they 
 
 \subsection{Proxies, Relays, Bridges, and Pluggable Transports} 
 
-In this paper, the word``proxy'' refers to a local, ordinary unobfuscated proxy such as a SOCKS or HTTP proxy. This is to maintain consistency with the wording in the configuration interface. Fig.~\ref{fig:topology} illustrates the interacting components. A proxy is technically an intermediary between clients and servers, so a single Tor relay, a bridge, the circuit of entry, middle, and guard relays, and local proxies can all can be considered a proxy. A user uses a proxy to bypass local firewalls. 
+In this paper, the word ``proxy'' refers to a local, ordinary unobfuscated proxy such as a SOCKS or HTTP proxy. This is to maintain consistency with the wording in the configuration interface. Fig.~\ref{fig:topology} illustrates the interacting components. A proxy is technically an intermediary between clients and servers, so a single Tor relay, a bridge, the circuit of entry, middle, and guard relays, and local proxies can all can be considered a proxy. A user uses a proxy to bypass local firewalls. 
 
-Tor relays are the routers in the Tor network. The Tor network is a group of routers that peform onion routing, a technique for anonymous communication over a computer network.  
+Tor relays are the routers in the Tor network. The Tor network is a group of routers that perform onion routing, a technique for anonymous communication over a computer network.  
 Guard relays that serve as an entry node into the Tor network and receive packets from the user. Middle relays forward traffic from an entry relay to an exit relay, and provide an extra layer of encryption in the Tor network. Exit relays receive traffic from a middle relay, and direct the traffic to its intended destination. 
 A user uses Tor Browser to connect to the Tor network, which indirectly connects to websites. 
 
@@ -169,12 +170,12 @@ which encrypt or alter the Tor protocol to appear as random noise.
 Other transports route traffic through other services and do not need secret IP address. 
 ``flashproxy''~\cite{flashproxy} connects through third party web browsers,
 and the ``meek''~\cite{fifield2015blocking} options route traffic
-through content delivery networks. Fig.~\ref{fig:old-bridge-combobox} shows the bridge and transport options at the time of the study. A user uses a bridge to connect to the Tor network while Tor relays or the Tor network protocol is is being censored. 
+through content delivery networks. Fig.~\ref{fig:old-bridge-combobox} shows the bridge and transport options at the time of the study. A user uses a bridge to connect to the Tor network while Tor relays or the Tor network protocol is being censored. 
 
 \subsection{State and Corporate Censorship}
 A local proxy is required to connect in certain managed networks (i.e. universities and corporations). This usually means that users cannot connect to the Internet at all without a proxy, including connecting to the Internet through Tor. The user must first successfully connect to the Internet through their proxy before trying to connect to a Tor relay or bridge. 
 
-State level censors block access to the Tor network by blocking pubicly listed Tor relays. Some also employ more sophisticated techniques such as deep packet inspection and protocol detection. This means that users can connect directly to websites, but some may be blocked as is Tor. The thoroughness of censorship is what requires different bridges and transports. 
+State level censors block access to the Tor network by blocking publicly listed Tor relays. Some also employ more sophisticated techniques such as deep packet inspection and protocol detection. This means that users can connect directly to (uncensored) websites, but Tor is blocked. The thoroughness of censorship is what requires different bridges and transports. 
 
 \begin{figure}
 \centering
@@ -277,9 +278,9 @@ This section discusses how we performed our summative evaluation to determine th
 \subsection{Testing Pipeline} 
 We performed a cognitive walkthrough~\cite{cognitive-walkthrough} of the interface by working tasks from the perspective of the user and assessing its learnability for new or infrequent users.
 
-We then conducted qualitative and quantiative usability tests of the interface. We believed that both were necessary for a complete evaluation. Qualitative testing tells you {\it why or how} it is or is not usable, while quantitative testing testing tells you {\it how much} it is or is not usable. Five users is considered to be the maximum benefit-cost ratio for gaining insights~\cite{howmanyusers}, so we recruited five participants for each condition in our qualitative experiment. Twenty users is considered to be a minimum for statistically significant measurements~\cite{howmanyusers}, so we recruited twenty participants for each condition in our quantitative experiment.
+We then conducted qualitative and quantiative usability tests of the interface. We believed that both were necessary for a complete evaluation. Qualitative testing tells you {\it why or how} it is or is not usable, while quantitative testing tells you {\it how much} it is or is not usable. Five users is considered to be the maximum benefit-cost ratio for gaining insights~\cite{howmanyusers}, so we recruited five participants for each condition in our qualitative experiment. Twenty users is considered to be the minimum for statistically significant measurements~\cite{howmanyusers}, so we recruited twenty participants for each condition in our quantitative experiment.
 
-We opportunistically used our observations from the qualitative study to design interface changes that would address common issues that our participants encountered. We also opportunistically used our quantitive testing setup to measure its usability with respect to the the original interface. We found the process of identifying design principles, drafting design changes, and testing an alternative interface to be insightful and hope that this may be insightful to others as well. 
+We opportunistically used our observations from the qualitative study to design interface changes that would address common issues that our participants encountered. We also opportunistically used our quantitative testing setup to measure its usability with respect to the original interface. We found the process of identifying design principles, drafting design changes, and testing an alternative interface to be insightful and hope that this may be insightful to others as well. 
 
 \subsection{Evaluation Metrics}
 \label{sec:eval}
@@ -334,7 +335,7 @@ to connect to Tor. We believe this to be sufficient for the purpose of testing t
 
 We conducted our studies at <redacted>, which only had Windows machines. 
 So we used Windows Firewall rules to block IP addresses of public Tor relays (E2, E3) and default bridges (E3). 
-and the Windows operating system hosts file to to block websites by
+and the Windows operating system hosts file to block websites by
 mapping domain names to localhost (127.0.0.1) (E1, E2, E3). For all experiments, we blocked torproject.org and its subdomains to discourage downloading Tor Browser (as we had installed a specific version on the test computers) and wikipedia.org, cnn.com, and their subdomains (these were our simulated ``censored'' websites). 
 
 \section{Usability Inspection}
@@ -433,7 +434,7 @@ Observations in E1:
 Participants in E1 were able to connect to Tor, but most were unsure if their actions were correct. Three of the five participants unnecessarily configured bridges. 
 
 \subsubsection{E2} 
-In E2, a bridge was required to connect. Any of the hardcoded bridges from the dropdown menu, as well as any custom bridges aquired out of band would work. Configuring a proxy was optional.
+In E2, a bridge was required to connect. Any of the hardcoded bridges from the dropdown menu, as well as any custom bridges acquired out of band would work. Configuring a proxy was optional.
 Observations in E2: 
 
 %P7 (heard of Tor): E2 (4:04; 0:29 to 4:33) 
@@ -485,7 +486,7 @@ Proxies were not necessary to connect to Tor, but many spent time trying to conf
 %P5 (has used tor before): E3 (22:06; 0:00 to 22:06)
 \pquote{P16 (previous Tor user, custom bridge, 22:06)}{They tried and retried connecting directly, then they tried connecting with the recommended bridge. After briefly looking at error messages the system log, they retried connecting directly two more times. After trying to configure a proxy for a while, they instead decided not to use one and tried connecting with a meek-google bridge, which would have worked. But  due to a bug in the progress bar that prevents it from updating correctly on subsequent attempts, they gave up before it could connect. They made a connection with the custom bridge by following the instructions from the bridge help button (they created a throwaway email account, emailed the bridge responder with poor syntax and did not get a response, emailed the bridge responder again with correct syntax and got a response, and then typed in the bridge information into the custom bridge field).}
 
-Participants in E3 also generally tried a direct connection to Tor. They did not know if they needed a bridge or proxy, and like the participnts in E2, only configured them when the direct connection failed. But even if the participants were able to figure out that they needed a bridge and not a proxy, the recommended bridge will not work. Of the participants that failed, they all tried the recommended bridge but not any others. The participants that did manage to connect to Tor did not know which bridges worked and which ones did not, or which ones to try next in case the recommended one failed. P14 brute forced options until something worked, P15 did not think that thye used a bridge, and P16 gave up on a hardcoded bridge that would have worked and used a custom bridge instead.
+Participants in E3 also generally tried a direct connection to Tor. They did not know if they needed a bridge or proxy, and like the participants in E2, only configured them when the direct connection failed. But even if the participants were able to figure out that they needed a bridge and not a proxy, the recommended bridge will not work. Of the participants that failed, they all tried the recommended bridge but not any others. The participants that did manage to connect to Tor did not know which bridges worked and which ones did not, or which ones to try next in case the recommended one failed. P14 brute forced options until something worked, P15 did not think that they used a bridge, and P16 gave up on a hardcoded bridge that would have worked and used a custom bridge instead.
 
 \subsection{Pain Points in Tor Launcher} 
 \label{sec:pain-points}
@@ -513,7 +514,7 @@ In addition to not knowing what to do, they did not understand the choices that 
 
 %P11 in the repo, P9 in the paper
 \pquote{P9}{``I think you can only answer this question correctly if you know what a local proxy is.
-Otherwise you have no chance... because looking at the internet setting in another browser could be anything.''}
+Otherwise you have no chance... because looking at the Internet setting in another browser could be anything.''}
 
 The progress bar had dependencies that made it update oddly. If progress bar reached a 90\% and failed, the progress bar will remain at 0\% on the next attempt until the progress surpassed 90\%. This made many assume that their subsequent attempts were wrong.
 
@@ -615,9 +616,9 @@ To help users understand what is going on, we added a summary screen displays th
 This section discusses our large-scale quantitative usability experiment and resulting user measurements. 
 
 \subsection{Recruitment}
-We recruited 65 participants from Craigslist and 59 participants from the <redacted lab> participant pool using text in Appendix~\ref{quantitative-recruitment}. <Redacted lab> encouraged the use of their participant pool, but we bargained to recruit participants from Craigslist to ensure a diverse set of participants. <Redacted lab>'s participant pool is mainlystudents and staff from <redacted institution>, even though anyone could join. 
+We recruited 65 participants from Craigslist and 59 participants from the <redacted lab> participant pool using text in Appendix~\ref{quantitative-recruitment}. <Redacted lab> encouraged the use of their participant pool, but we bargained to recruit participants from Craigslist to ensure a diverse set of participants. <Redacted lab>'s participant pool is mainly students and staff from <redacted institution>, even though anyone could join. 
 
-We had 124 participants, but we filtered out 10 participants who did not complet the consent form correctly or did not interact with the instrumented interface. Of the 114, one participant did not report their demographics. We still use their experiment data. Of the 113, 44.2\% identified as male, 54.0\% identified as female, and 1.8\% identified as neither. Ages ranged from 18 to~68 years ($\mu = 28.2$, $\sigma = 12.3$). 84.1\% of our participants had at least a college education. We had about 20 in each interface and environment combination and ensured each condition had about half Craigslist recruited participants and half <redacted lab>  pool participants. 
+We had 124 participants, but we filtered out 10 participants who did not complete the consent form correctly or did not interact with the instrumented interface. Of the 114, one participant did not report their demographics. We still use their experiment data. Of the 113, 44.2\% identified as male, 54.0\% identified as female, and 1.8\% identified as neither. Ages ranged from 18 to~68 years ($\mu = 28.2$, $\sigma = 12.3$). 84.1\% of our participants had at least a college education. We had about 20 in each interface and environment combination and ensured each condition had about half Craigslist recruited participants and half <redacted lab>  pool participants. 
 
 \subsection{Setup}
 We ran our experiment at <redacted lab>, an experimental social science laboratory for behavioral experiments. The testing room had 36 workstations with identical Windows~7 laptops. Side panels at each workstation to discouraged participants from looking at other screens. 
@@ -814,26 +815,26 @@ The difference between a poor interface and a good interface can influence users
 Usability inspection methods~\cite{nielsen1994usability} are used to define usability problems in an interface. We
 used a cognitive walkthrough~\cite{wharton1994cognitive}\cite{cognitive-walkthrough} to evaluate our interface. Other inspection methods include heuristic evaluation, pluralistic walkthrough and feature inspection~\cite{inspection}.  
 
-We used usability lab studies (one-on-one experiments witha  given a set of scenarios and tasks for a specific use of  a product or service) and usability benchmarking (tightly scripted usability studies are performed with many participants used to collect measures of performance) to get qualitative and quantitative behavioral data about Tor Launcher's GUI~\cite{krol2016towards}. There are other ways to collect behavioral data as well, such as eyetracking, clickstream analysis and AB testing. These are in contrast with a variety of user experience research methods that collect qualitative or quantitative attitudnal data, such as focus group, camera studies, and product surveys~\cite{ux-methods}. We performed interviews after our lab study, but we mostly used these interviews to verify our behavioral observations rather than to draw conclusions about what people thought about their experience. 
+We used usability lab studies (one-on-one experiments with a given a set of scenarios and tasks for a specific use of  a product or service) and usability benchmarking (tightly scripted usability studies are performed with many participants used to collect measures of performance) to get qualitative and quantitative behavioral data about Tor Launcher's GUI~\cite{krol2016towards}. There are other ways to collect behavioral data as well, such as eye tracking, clickstream analysis and AB testing. These are in contrast with a variety of user experience research methods that collect qualitative or quantitative attitudinal data, such as focus group, camera studies, and product surveys~\cite{ux-methods}. We performed interviews after our lab study, but we mostly used these interviews to verify our behavioral observations rather than to draw conclusions about what people thought about their experience. 
  
 User-centered design improves the usability of software by accounting for user factors. 
 Some work we found especially relevant to improving the usability of Tor Browser were
 Yee et~al.'s starting points for reasoning about security from
-a user-centred perspective and principles for secure interaction design ~\cite{yee2002user},  
-Molich et~al.'s examination of  common problems in human-computer dialogue deisgn ~\cite{molich1990improving}, and Egelman et~al's examination of user tolerance of security delays~\cite{egelmanplease}.
+a user-centered perspective and principles for secure interaction design~\cite{yee2002user},  
+Molich et~al.'s examination of  common problems in human-computer dialogue design~\cite{molich1990improving}, and Egelman et~al's examination of user tolerance of security delays~\cite{egelmanplease}.
 
 % Previous Tor studies 
 Our work uniquely contributes to Tor by examining the usability of the configuration interface.  
-Previous usability studies on Tor have focused on installation and use. Norcie et~al.~\cite{norcie2012eliminating} performed a 25-user test of Tor Browser and found that 64\% of users were unable complete installation or browsing tasks. Fabian et~al.~\cite{fabian2010privately} discussed how added latency benefits anonmity~\cite{dingledine2009performance} but reduces usability. They quantified how the difference in latency causes frustration and decreases adoption. Clark et~al.~\cite{clark2007usability} performed a cognitive walkthrough of Tor Browser deployment options (Vidalia, Privoxy, Torbutton, and FoxyProxy) and found that none were satisfactory from a usability perspective. They highlight the best aspects of each tool and offer usability improvements. We do not know of any published usability evaluations of
+Previous usability studies on Tor have focused on installation and use. Norcie et~al.~\cite{norcie2012eliminating} performed a 25-user test of Tor Browser and found that 64\% of users were unable complete installation or browsing tasks. Fabian et~al.~\cite{fabian2010privately} discussed how added latency benefits anonymity~\cite{dingledine2009performance} but reduces usability. They quantified how the difference in latency causes frustration and decreases adoption. Clark et~al.~\cite{clark2007usability} performed a cognitive walkthrough of Tor Browser deployment options (Vidalia, Privoxy, Torbutton, and FoxyProxy) and found that none were satisfactory from a usability perspective. They highlight the best aspects of each tool and offer usability improvements. We do not know of any published usability evaluations of
 Tor Browser the 3.5 series in 2013, which introduced radical UI changes~\cite{torbrowser-35}.
-Lee and Fifield~\cite{uxsprint} ran an informal UX sprint that recruited 5 users to install and use Tor Browser tp observe their behavior. This unconvered some usability issues~\cite{uxsprint2015-tickets} and caused UI changes in Tor Browser version~4.5.
+Lee and Fifield~\cite{uxsprint} ran an informal UX sprint that recruited 5 users to install and use Tor Browser tp observe their behavior. This uncovered some usability issues~\cite{uxsprint2015-tickets} and caused UI changes in Tor Browser version~4.5.
 
 \section{Conclusion} 
 \label{sec:conclusion}
-The Tor Launcher GUI allows most users to connect to the Tor network, provided that the user's connection does not require a proxy or a non-default bridge. User observation showed that participants were intimidated by the tasks, unsure of what to do, and likely to get stuck configuring proxies that they did not need. User testing showed that most people take more than 10 minutes to connect to Tor if they need to use bridges. 
+Users who do not require a proxy or a non-default bridge can usually connect to connect to the Tor network with the Tor Launcher GUI. However, user observations revealed that participants were intimidated by the tasks, unsure of what to do, and likely to get stuck configuring network components that they did not need. User testing showed that most users take more than 10 minutes to connect to Tor if the public relays are censored and half of the users cannot connect to Tor if the interface's hardcoded bridges are censored. 
 
 %proof that user testing is important and general advice to for more research on Tor
-We encourage user testing for Tor Browser and other Tor applications because it provides user insight for products without user interaction data. Tor Browser version~4.5 incorporated changes to Tor Launcher based on our work <redacted Tor blog post here; it was authored by one of the authors of this paper>. We also talked to Tor developers about ways to automate the bootstrapping process to Tor. 
+Tor Browser version~4.5 incorporated changes to Tor Launcher based on our work <redacted Tor blog post here; it was authored by one of the authors of this paper>. We also talked to Tor developers about ways to automate the bootstrapping process to Tor. We encourage user testing for Tor applications to provide user insight into products that do not collect user data. We found the use of simulated censorship environments were especially helpful in running our experiments, due to their reproducibility, stability, and simplicity.
 
 \section {Experiment Artifacts} 
 Due to space constraints, we could not include many of our experiment artifacts. This includes the experiment setup and teardown code, firewall rules that simulated censorship environments, interview transcriptions from the qualitative user study, logs from our instrumented configuration interfaces, and videos of users attempting to connect to Tor through the configuration interface. We urge you to check out the project repository: \\
