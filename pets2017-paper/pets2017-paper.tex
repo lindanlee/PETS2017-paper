@@ -77,16 +77,7 @@
 
   \begin{abstract}
 {
-We perform the first usability test on Tor Launcher, a graphical user interface (GUI) 
-that all Tor Browser users must use to configure their initial connection to the Tor network. 
-We believe that the interface is usable if a new user can to identify what to do,
-knows if and when they do the right thing in the process, 
-and configures the necessary network components to connect to Tor. 
-We qualify where the interface is not usable with user observations 
-and quantify how unusable the interface is with user interaction logs. 
-Based on what we learned, we recommend some changes that 
-we believe will help users connect to Tor in censored environments. 
-We conclude by starting a discussion on alternative 
+We perform the first usability test on Tor Launcher, a graphical user interface (GUI) that all Tor Browser users must use to configure their initial connection to the Tor network. Users who do not require a proxy or a non-default bridge can usually connect to connect to the Tor network with the Tor Launcher GUI. However, user observations revealed that participants were intimidated by the tasks, unsure of what to do, and likely to get stuck configuring network components that they did not need. User testing showed that most users take more than 10 minutes to connect to Tor if the public relays are censored and half of the users cannot connect to Tor if the interface's hardcoded bridges are censored. We conclude with recommendations based on what we learned and by start a discussion on alternative 
 approaches to bootstrap a connection to Tor. 
 }
 \end{abstract}
@@ -134,13 +125,11 @@ limitations of our evaluation (section~\ref{sec:limitations}), and framed our wo
 \smallskip
 \begin{itemize}
 \item an inspection of the Tor Launcher 5.0.3 interface
-\item user connection attempts in various environments
 \item what users found challenging about the interface
 \item measurements of how many users could connect
 \item measurements of how long users took to connect
 \item patterns seen in the users that failed to connect
 \item recommendations to improve the interface
-\item alternatives to burdening users with configuration 
 \end{itemize}
 
 We hope that our work contributes to Tor Browser and is an informative case study of users interacting with anonymity and censorship circumvention tools. 
@@ -831,7 +820,7 @@ Lee and Fifield~\cite{uxsprint} ran an informal UX sprint that recruited 5 users
 
 \section{Conclusion} 
 \label{sec:conclusion}
-Users who do not require a proxy or a non-default bridge can usually connect to connect to the Tor network with the Tor Launcher GUI. However, user observations revealed that participants were intimidated by the tasks, unsure of what to do, and likely to get stuck configuring network components that they did not need. User testing showed that most users take more than 10 minutes to connect to Tor if the public relays are censored and half of the users cannot connect to Tor if the interface's hardcoded bridges are censored. 
+We believe that an interface is usable if a new user can to identify what to do, knows if and when they do the right thing in the process, and can accomplish the required tasks. Tor Browser 5.0.3's configuration interface does not meet these requirements. We qualified where the interface is not usable with user observations and quantified how unusable the interface is with user interaction logs. We believe that our recommended hanges will will help users connect to Tor in censored environments, but encourage discussion about alternative ways to configure a connection that would be easier for users. 
 
 %proof that user testing is important and general advice to for more research on Tor
 Tor Browser version~4.5 incorporated changes to Tor Launcher based on our work <redacted Tor blog post here; it was authored by one of the authors of this paper>. We also talked to Tor developers about ways to automate the bootstrapping process to Tor. We encourage user testing for Tor applications to provide user insight into products that do not collect user data. We found the use of simulated censorship environments were especially helpful in running our experiments, due to their reproducibility, stability, and simplicity.
