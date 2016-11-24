@@ -1,7 +1,7 @@
 library(coin)
 source("common.R")
 
-participants <- filter_participants(read_participants())
+participants <- read_participants()
 
 format_percent <- function(x) {
 	sprintf("%5.1f%%", 100*x)
