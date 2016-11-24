@@ -59,6 +59,24 @@ max.e1.new <- max(participants$time_to_success[participants$env=="E1" & particip
 cat(sprintf("maximum time for E1-NEW: %s\n", format_minutes(max.e1.new)))
 
 cat("\n\n\n\n\n\n")
+cat("****************\n")
+cat("* DEMOGRAPHICS *\n")
+cat("****************\n")
+
+demographics <- read.csv("summative-demographics.csv")
+demographics <- merge(demographics, participants, by=c("session", "seat"), all=F) # omits participants that did not do the demographic survey
+
+n <- nrow(demographics)
+cat(sprintf("of %d demographic surveys,\n", n))
+cat(sprintf("male:    %s\n", pctsummary(demographics$"What.is.your.gender." == "Male")))
+cat(sprintf("female:  %s\n", pctsummary(demographics$"What.is.your.gender." == "Female")))
+cat(sprintf("neither: %s\n", pctsummary(!(demographics$"What.is.your.gender." %in% c("Male", "Female")))))
+cat("age distribution:\n")
+summary(demographics[, "What.is.your.age."])
+sd(demographics[, "What.is.your.age."])
+table(demographics$"Please.select.your.highest.completed..or.current..level.or.education.")
+
+cat("\n\n\n\n\n\n")
 cat("****************************\n")
 cat("* SCREEN SPECIFIC ANALYSES *\n")
 cat("****************************\n")
