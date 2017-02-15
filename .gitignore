@@ -7,4 +7,5 @@ pets2017-paper.pdf
 *.out
 *.synctex.gz
 .Rhistory
+.RData
 Rplots.pdf
