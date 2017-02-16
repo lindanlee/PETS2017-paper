@@ -434,24 +434,12 @@ The progress bar had dependencies that made it update oddly. If progress bar rea
 %P1 in the repo, P15 in the paper
 \pquote{P15}{``there doesn't seem to be any timeout on any of this stuff. Am I waiting long enough? Should I wait 5 minutes?''}
 
-We have additional concerns on system visibility, error recovery, and user workload. Users cannot see their settings before or while they are connecting. This is only visible on the bridge and proxy screens. Participants did not know what to do after a connection failed. Users should be made aware of what to fix. Users do too much work (reading text, click throughs, choices) in this interface. We show an attempt to fix these issues in Section~\ref{sec:design}.
+We have additional concerns on system visibility, error recovery, and user workload. Users cannot see their settings before or while they are connecting. This is only visible on the bridge and proxy screens. Participants did not know what to do after a connection failed. Users should be made aware of what to fix. Users do too much work (reading text, click throughs, choices) in this interface. We show an attempt to fix these issues in Section~\ref{sec:design}. 
 
-%\section{Alternative Approaches} 
-%\item{\bfseries Suggest bridges based on country.} Give users information about which bridges would work in their country. one way to do this is to show a list of countries with a corresponding recommended configuration. This requires developers to maintain a list of suggestions and that the users trust the suggestions. 
-%\item{\bfseries Ask users about their risk.} If they answer that they are sensitive about having a network adversary possibly know that they are using Tor, direct users to connect to a secret relay that is not publicly associated with Tor, using transport that obfuscates their connection. If users are not sensitive, let them configure their own bridges and proxies. 
-%\item{\bfseries Ask users if they know what to do.} If they know, offer the option to manually configure bridges and proxies. If they do not know, give suggestions on what to do next or automate the process for them somehow. This requires users to answer honestly to the question and to trust the suggestions given. 
-%\item{\bfseries Automate naively.} Have the interface automatically try configurations that would most likely work, in order (i.e. a direct connection, then an obfs3 connection without a proxy, then an meek bridge connection with out a proxy). This is what most users would ideally do anyway. However, this method leaks to network eavesdroppers that the user is using Tor without the user's awareness. 
-%\item {\bfseries Automate naively after users fail.} Let users try to configure bridges and proxies. If they fail, then a network eavesdropper already knows that the user is trying to connect to Tor. We believe there is negligible added risk to naively automate the connection. 
-%\item{\bfseries Automate in a smart way.} The interface first detects proxy settings and uses them, if any. Then it automatically connects to some secret bridges that will always work, which assign the user an entry relay that works based on their location. This requires having an invincible set of high-bandwidth bridges that work for every single user around the world.  
-%\end{description}
-%We believe that these ideas can significantly help users connect to Tor. 
-
-\section{A Design Iteration}
+\section{Design Changes}
 \label{sec:design} 
-This section discusses how we converted our qualitative user testing observations into design changes. 
 
-\subsection{Procedure} 
-We agreed on security and usability design principles, before reviewing our qualitative usability study observations and brainstorming changes to the interface. We worked with a user interface designer to iteratively design the interface. Figure~\ref{fig:new-interface} is the result.
+We limited ourselves to design changes that do not require infrastructural changes. Figure~\ref{fig:new-interface} shows the results. 
 
 \begin{figure*}
 \centering
@@ -516,19 +504,32 @@ A redesigned version of the Tor Browser 5.0.3 Tor Launcher GUI. Screens are in t
 \label{fig:new-interface}
 \end{figure*} 
 
-\subsection{Design Principles} 
-The interface currently favors a guided manual configuration over an automated configuration with network probing. Our redesign preserves this approach and has no user-dependent inputs, no network-dependent inputs, and minimal information leaks.
+\subsection {Design Considerations} 
 
-In order of priority, our design objectives were to minimize the user workload, to assist in user decision making, and to help users understand the system. We preferred to eliminate tasks if we could, help users through necessary tasks, and educate them only if this information would be useful for future decisions. These objectives were inspired by our previous usability study. 
+Changes were inspired by user observations and constrained by the following design considerations: 
+
+\begin{itemize}
+\item {\bfseries User consent}: Connecting to Tor requires consent since being revealed as using Tor can be dangerous. While we could help users by automating the configuration and connection process, taking on risk for the user without proper consent is not ethical. 
+
+\item{\bfseries Active adversaries}: We could ask the user, "what country are you in?", "are you at risk?" or "do you know what you are doing?" to make decisions. While leveraging user input works well, third-party versions of Tor Browser will replicate the official version, but might steal the inputs to profile users. 
+
+\item {\bfseries  Passive adversaries}: Assuming a sufficiently powerful network adversary (like governments), a failed, non-obfuscated attempt to connect to Tor will tell a passive eavesdropper that the user is connecting to Tor. We should allow users to leverage local information to reduce their risk.
+
+\item{\bfseries  Maintenance constraints}: Network environments change all the time--what bridge was reachable in a country an hour ago might not be tomorrow. Keeping up with how and when each country censors Tor would require a lot of time. Even if we keep up with how and when each country censors Tor, we would need to push changes before any of the affected users connect to Tor, which is an unreasonable turnaround time.
+
+\item{\bfseries  Financial constraints}: We could leverage harder-to-block meek relays connect people to Tor, then assign them something that would work afterward. But these relays cost thousands of dollars to run a month at their current capacity, and using them more would cost even more money.
+\end{itemize}
+
+It's possible that alternative changes could have been made, if we didn't treat these considerations as constraints. We start the discussion on methods that leverage user input and automation in Appendix~\ref{alternatives}. 
 
 \subsection{Changes Made} 
-To require our users to do less work, we eliminated the bridge and proxy questions from Figure~\ref{fig:old-bridge} and~\ref{fig:old-proxy} and simulated auto-detection for proxies by telling users that they did not need a proxy (this is feasible to implement with a local scan that does not leak information. 
+To require less work, we eliminated the bridge and proxy questions from Figure~\ref{fig:old-bridge} and~\ref{fig:old-proxy} and simulated auto-detection for proxies by telling users that they did not need a proxy (this is feasible to implement with a local scan that does not leak information). 
 
-To help users decide what to do, we labeled the configure button as an option heavily censored environments, tell users to configure a bridge if Tor is censored, and gave additional advice on choosing transports if the recommended one did not work.
+To help users decide what to do, we label the configure button as an option heavily censored environments, tell users to configure a bridge if Tor is censored, and give a secondary bridge recommendation.
 
-To help users understand what is going on, we added a summary screen displays the current bridge and proxy settings for system visibility, switched proxy and bridge screens to put them in a topologically sequential order (Figure~\ref{fig:topology}), and added checklist indicators of components topological order into the progress bar to that show if various components reached successfully.
+To help users understand, we added a summary screen displays the current bridge and proxy settings, switched proxy and bridge screens to put them in a topologically sequential order (Figure~\ref{fig:topology}), and added checklist indicators into the progress bar to that show if various components were reached.
 
-\section{Quantitative User Testing}
+\section{Quantitative Testing}
 \label{sec:quantitative}
 This section discusses our large-scale quantitative usability experiment and resulting user measurements. 
 
@@ -944,6 +945,20 @@ Proxies were not necessary to connect to Tor, but many spent time trying to conf
 \pquote{P16 (previous Tor user, custom bridge, 22:06)}{They tried and retried connecting directly, then they tried connecting with the recommended bridge. After briefly looking at error messages the system log, they retried connecting directly two more times. After trying to configure a proxy for a while, they instead decided not to use one and tried connecting with a meek-google bridge, which would have worked. But  due to a bug in the progress bar that prevents it from updating correctly on subsequent attempts, they gave up before it could connect. They made a connection with the custom bridge by following the instructions from the bridge help button (they created a throwaway email account, emailed the bridge responder with poor syntax and did not get a response, emailed the bridge responder again with correct syntax and got a response, and then typed in the bridge information into the custom bridge field).}
 
 Participants in E3 also generally tried a direct connection to Tor. They did not know if they needed a bridge or proxy, and like the participants in E2, only configured them when the direct connection failed. But even if the participants were able to figure out that they needed a bridge and not a proxy, the recommended bridge will not work. Of the participants that failed, they all tried the recommended bridge but not any others. The participants that did manage to connect to Tor did not know which bridges worked and which ones did not, or which ones to try next in case the recommended one failed. P14 brute forced options until something worked, P15 did not think that they used a bridge, and P16 gave up on a hardcoded bridge that would have worked and used a custom bridge instead.
+
+\section{Alternative Approaches} 
+\label{alternatives}
+{\color {red}
+\begin{itemize} 
+\item{\bfseries Suggest bridges based on country.} Give users information about which bridges would work in their country. one way to do this is to show a list of countries with a corresponding recommended configuration. This requires developers to maintain a list of suggestions and that the users trust the suggestions. 
+\item{\bfseries Ask users about their risk.} If they answer that they are sensitive about having a network adversary possibly know that they are using Tor, direct users to connect to a secret relay that is not publicly associated with Tor, using transport that obfuscates their connection. If users are not sensitive, let them configure their own bridges and proxies. 
+\item{\bfseries Ask users if they know what to do.} If they know, offer the option to manually configure bridges and proxies. If they do not know, give suggestions on what to do next or automate the process for them somehow. This requires users to answer honestly to the question and to trust the suggestions given. 
+\item{\bfseries Automate naively.} Have the interface automatically try configurations that would most likely work, in order (i.e. a direct connection, then an obfs3 connection without a proxy, then an meek bridge connection with out a proxy). This is what most users would ideally do anyway. However, this method leaks to network eavesdroppers that the user is using Tor without the user's awareness. 
+\item {\bfseries Automate naively after users fail.} Let users try to configure bridges and proxies. If they fail, then a network eavesdropper already knows that the user is trying to connect to Tor. We believe there is negligible added risk to naively automate the connection. 
+\item{\bfseries Automate in a smart way.} The interface first detects proxy settings and uses them, if any. Then it automatically connects to some secret bridges that will always work, which assign the user an entry relay that works based on their location. This requires having an invincible set of high-bandwidth bridges that work for every single user around the world.  
+\end{itemize}
+We believe that these ideas can significantly help users connect to Tor.
+}
 
 \section{Quantitative User Study Recruitment Posting}
 \label{quantitative-recruitment}
