@@ -326,9 +326,9 @@ Otherwise you have no chance...''}
 %P1 in the repo, P15 in the paper
 \pquote{P15}{``there doesn't seem to be any timeout on any of this stuff. Am I waiting long enough? Should I wait 5 minutes?''}
 
-These were our general observations. Participants who could connect directly or use the recommended bridge had an easy time connecting, but the participants who could not use many of the hardcoded bridges did not know what to do. For a summary of how each participant connected to Tor and what behavioral trends dominated in each environment, see Appendix~\ref{summary}. 
+These were our general observations. Participants who could connect directly (E1) or use the recommended bridge had an easy time connecting (E2), but the participants who could not use many of the hardcoded bridges (E3) did not know what to do. For a summary of how each participant connected to Tor and what behavioral trends dominated in each environment, see Appendix~\ref{summary}. 
 
-\section{Design}
+\section{Interface Redesign}
 \label{sec:design} 
 
 We limited design changes to ones that do not require infrastructural changes, addressed observed pain points, and adhered to our design considerations (Figure~\ref{fig:new-interface}). 
@@ -338,28 +338,28 @@ We limited design changes to ones that do not require infrastructural changes, a
 \begin{subfigure}[b]{0.30\textwidth}
 	\includegraphics[width=\textwidth]{screenshots/NEW-first.png}
 	\centering\captionsetup{width=1.5\linewidth}%
-	\caption{The first screen (F) with reduced, alternative text. We said configuration was required for heavily censorship.}
+	\caption{The first screen (F) with reduced, alternative text. We said configuration was required for heavy censorship.}
 	\label{fig:new-first}
 \end{subfigure}
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 \begin{subfigure}[b]{0.30\textwidth}
 	\includegraphics[width=\textwidth]{screenshots/NEW-proxyYES.png}
 	\centering\captionsetup{width=1.5\linewidth}%
-	\caption{The proxy screen (P). The interface locally detects for a proxy and automatically populates the fields if necessary.}
+	\caption{The proxy screen (P). The interface locally detects a proxy and automatically populates the fields as necessary.}
 	\label{fig:new-proxy}
 \end{subfigure}
 ~~~~~~~~~~
 \begin{subfigure}[b]{0.30\textwidth}
 	\includegraphics[width=\textwidth]{screenshots/NEW-bridgeSettings.png}
 	\centering\captionsetup{width=1.5\linewidth}%
-	\caption{The bridge screen (B). We give users the options to connect with or without a bridge all on one screen, and got rid of the bridge question screen.}
+	\caption{The bridge screen (B). We give users the options to connect with or without a bridge all on one screen, and eliminated the bridge question screen.}
 	\label{fig:new-nobridge}
 \end{subfigure}
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 \begin{subfigure}[b]{0.30\textwidth}
 	\includegraphics[width=\textwidth]{screenshots/NEW-bridgeSettings-default.png}
 	\centering\captionsetup{width=1.5\linewidth}%
-	\caption{The bridge menu and additional advice shows up when the corresponding option is chosen. The custom bridge input fields until the custom option is chosen.}
+	\caption{The bridge menu and additional advice shows up when the corresponding option is chosen. The custom bridge input fields are hidden until the custom option is chosen.}
 	\label{fig:new-bridge}
 \end{subfigure}
 ~~~~~~~~~~
@@ -397,32 +397,32 @@ A redesigned version of the Tor Browser 5.0.3 Tor Launcher GUI. Screens are in t
 \end{figure*} 
 
 \subsection{Changes Made} 
-We eliminated the bridge and proxy questions from Figure~\ref{fig:old-bridge} and~\ref{fig:old-proxy} and eliminated the proxy screen by simulating auto-detection for proxies. We added a screen to summarize the settings before connecting and added indicators to progress bar that showed what component was unreachable. We switched the proxy and bridge screens so that they are in a topologically sequential order. We clarified that the configure option was for heavily censored environments and gave a secondary bridge recommendation for heavily censored users. 
+We eliminated the bridge and proxy questions from Figure~\ref{fig:old-bridge} and~\ref{fig:old-proxy} and eliminated the proxy screen by simulating auto-detection for proxies. We added a screen to summarize the settings before connecting and added indicators to the progress bar that showed what component was unreachable. We switched the proxy and bridge screens so that they are in a topologically sequential order. We clarified that configuration options were for heavily censored environments and gave a secondary bridge recommendation for heavily censored users. 
 
 \subsection {Design Considerations} 
 
 Here are some of the justifications for why we made conservative, front-end only design changes: \\
 
 \begin{itemize}
-\item {\bfseries User consent}: Using Tor can involve some risk dangerous. While we could help users by automating connection, taking on risk for the user without proper consent is not ethical. 
+\item {\bfseries User consent}: Some oppressive regimes may detect and prosecute Tor usage, and therefore simply using Tor may carry risks. While we could help users by automating configuration settings, this would involve probing network configurations, which may alert authorities to Tor usage. Taking this risk without proper consent is not ethical. 
 
-\item{\bfseries Active adversaries}: We could ask the user for their location, risk, or preferences to make decisions. Leveraging user input works well, but third-party versions of Tor Browser that replicate the official version can steal the inputs to profile users. 
+\item{\bfseries Active adversaries}: We could ask the user for their location, risk tolerance, or other preferences to help automatically make decisions. Leveraging user input works well, but third-party versions of Tor Browser that replicate the official version could use these inputs to profile users. 
 
-\item {\bfseries  Passive adversaries}: A sufficiently powerful network adversary can detect that the user is connecting to Tor. We should allow users to leverage local information to reduce their risk.
+\item {\bfseries Passive adversaries}: A sufficiently powerful network adversary can detect that a user is connecting to Tor. We should allow users to leverage local information to reduce their risk.
 
-\item{\bfseries  Maintenance constraints}: Network environments change all the time. Keeping up with how each country censors and pushing changes before the affected users connect to Tor is difficult.
+\item{\bfseries Maintenance constraints}: Network environments change all the time. Keeping up with how each country censors and pushing changes before the affected users connect to Tor is difficult.
 
-\item{\bfseries  Financial constraints}: Leveraging harder-to-block meek bridges can help, but these relays cost magnitudes more than other relays and using them more would cost even more money.
+\item{\bfseries Financial constraints}: Leveraging harder-to-block ``meek'' bridges, which make use of pay-per-use content delivery networks that are hard to block without imposing collateral damage (e.g., Amazon Web Services), can help, but these relays cost the Tor Project magnitudes more than other relays and using them more would cost even more money.
 \end{itemize}
 
-Other beneficial changes could have been made, if we didn't treat these considerations as constraints.
+Other beneficial changes could have been made, if we did not consider these constraints.
 
 \section{Quantitative Testing}
 \label{sec:quantitative}
-To confirm pain points and user behaviors, we logged and quantified user interactions with the interface.
+To confirm prior pain points and user behaviors, as well as to validate our proposed design improvements, we logged and quantified user interactions as part of a followup experiment.
 
 \subsection{Recruitment}
-We recruited 65 participants from Craigslist and 59 participants from Xlab participant pool with an ad (Appendix~\ref{quantitative-recruitment}). Xlab encouraged the use of their participant pool, we recruited from Craigslist as well to ensure diversity of participants since its participants were primarily students and staff from UC Berkeley.
+We recruited 59 participants from the Xlab mailing list, which is a university-wide pool of participants who have opted-in to participating in social science experiments (see Appendix~\ref{quantitative-recruitment} for the recruitment materials). We recruited an additional 65 participants from Craigslist to ensure diversity, since Xlab participants are primarily students and staff from UC Berkeley.
 
 Of our 124 participants, we filtered out 10 participants who did not complete the consent form correctly or did not interact with the interface. One participant did not report their demographics, but we still used their data. Of the remaining 113, 44.2\% identified as male, 54.0\% identified as female, and 1.8\% identified as neither. They were between 18 to~68 years ($\mu = 28.2$, $\sigma = 12.3$) and highly educated (84.1\% had at least a college education). 
 
