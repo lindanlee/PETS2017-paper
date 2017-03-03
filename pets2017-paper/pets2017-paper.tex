@@ -59,7 +59,7 @@
 
   \begin{abstract}
 {
-Although Tor has state-of-the art anti-censorship measures, users in heavily censored environments will likely not be able to connect to Tor because they cannot make the correct decisions during the configuration process. We perform the first usability evaluation of Tor Launcher, the graphical user interface (GUI) that Tor Browser uses to configure their connections to Tor. Our study shows that 79\% (363 of 458) of user attempts to connect to Tor failed, and found that users were often frustrated during the process and try options at random. In this paper, we describe how we measured potential usability issues, discuss design constraints unique to Tor, and provide recommendations based on what we learned to help more users connect to Tor while reducing the time they take to do so. Tor Browser ~4.5 incorporated  changes based on our work.
+Although Tor has state-of-the art anti-censorship measures, users in heavily censored environments will likely not be able to connect to Tor because they cannot make the correct decisions during the configuration process. We perform the first usability evaluation of Tor Launcher, the graphical user interface (GUI) that Tor Browser uses to configure connections to Tor. Our study shows that 79\% (363 of 458) of user attempts to connect to Tor in censored environments failed. We found that users were often frustrated during the process and try options at random. In this paper, we describe how we measured potential usability issues, discuss design constraints unique to Tor, and provide recommendations based on what we learned to help more users connect to Tor while reducing the time they take to do so. Tor Browser ~4.5 incorporated the changes proposed by this study.
 }
 \end{abstract}
   \keywords{Usable Security, User Studies, Tor, Security, Censorship, Anonymity}
@@ -74,24 +74,19 @@ Although Tor has state-of-the art anti-censorship measures, users in heavily cen
   \revised{..}
   \accepted{..}
 
-  \journalyear{2015}
-  \journalvolume{2015}
-  \journalissue{2}
+  \journalyear{2017}
+  \journalvolume{2017}
+  \journalissue{3}
 
 \maketitle
 
 \section{Introduction}
 Tor~\cite{dingledine2004tor} is an anonymity network that routes Internet traffic through a series of relays 
-that make it difficult to observe the source and destination.  Tor Browser~\cite{torbrowser} is a modified Firefox browser that routes traffic through Tor. Tor Launcher is a Tor Browser graphical user interface (Figure~\ref{fig:old-interface}) that asks the user to configure their connection to Tor. This is the object of our study. 
+that make it difficult to observe sources and destinations. Tor Browser~\cite{torbrowser} is a modified Firefox browser that routes traffic through Tor, thereby simplifying the process of configuring Tor to use existing browsers. Although Tor Browser was originally designed for anonymity, many now use Tor Browser to circumvent Internet censorship. Many countries block Tor relays specifically to prevent their citizens from circumventing censorship~\cite{winter2012great}. Tor Browser is bundled with a graphical configuration interface, Tor Launcher (Figure~\ref{fig:old-interface}), which allows users to bypass censorship by configuring various bridges, proxies, and transport protocols prior to connecting to Tor. Of course, these configuration options are only effective if users understand how to correctly use them. Thus, we performed a usability study wherein we simulated various censorship environments in order to examine the effectiveness of Tor Launcher and how it could be improved.
 
-Although Tor Browser was originally designed for Internet anonymity, many now use Tor Browser to circumvent Internet censorship. Many countries block Tor relays specifically to prevent their citizens from circumventing censorship~\cite{winter2012great}. The configuration interface mainly exists so that people who face Internet censorship can configure bridges, transports, and proxies to connect to Tor. Improving Tor launcher has the obvious benefit of helping censored users connect to Tor, but this is also benefits other Tor users by increasing in overall users increases the anonymity set~\cite{dingledine2006anonymity}). 
-
-We started our usability evaluation by inspecting the interface (section~\ref{sec:inspection}) and
-running observing participants interact with it (section~\ref{sec:qualitative}). 
-We used the insights from our observations to make some changes to the interface (section~\ref{sec:design}) and
-quantified how usable the interface was before and after changes (section~\ref{sec:quantitative}).
-Afterward, we gave recommendations based on what we learned (section~\ref{sec:recommendations}), addressed
-limitations of our evaluation (section~\ref{sec:limitations}), and framed our work in the context of existing work (section~\ref{sec:related}). We hope that our usability evaluation serves as an informative case study and provides guidance on improving Tor launcher. 
+Improving Tor launcher has the obvious benefit of helping censored users connect to Tor, but this also benefits other Tor users: an increase in overall users increases the anonymity set~\cite{dingledine2006anonymity}). In this paper, we describe how we started our usability evaluation by inspecting the interface (Section~\ref{sec:inspection}) and observing participants interact with it (Section~\ref{sec:qualitative}). Based on the insights from our observations, we proposed some changes to the interface (Section~\ref{sec:design}) and
+quantified how usable the interface was before and after changes (Section~\ref{sec:quantitative}). Finally, we provide recommendations based on what we learned (Section~\ref{sec:recommendations}), we address
+limitations of our evaluation (Section~\ref{sec:limitations}), and frame our study in the context of existing work (Section~\ref{sec:related}). We hope that our usability evaluation serves as an informative case study and provides guidance on further improving Tor Launcher, as well as other privacy-enhancing technologies. 
 
 \section{Technical Background}
 \label{sec:background}
