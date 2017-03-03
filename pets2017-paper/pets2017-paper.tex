@@ -59,7 +59,7 @@
 
   \begin{abstract}
 {
-Although Tor has state-of-the art anti-censorship measures, users in heavily censored environments will likely not be able to connect to Tor because they cannot make the correct decisions during the configuration process. We perform the first usability evaluation of Tor Launcher, the graphical user interface (GUI) that Tor Browser uses to configure their connections to Tor. Our study shows that 79\% (363 of 458) of user attempts to connect to Tor failed, and found that users were often frustrated during the process and try options at random. In this paper, we describe how we measured potential usability issues, discuss design constraints unique to Tor, and provide recommendations based on what we learned to help more users connect to Tor while reducing the time they take to do so. Tor Browser incorporated  changes based on our work.
+Although Tor has state-of-the art anti-censorship measures, users in heavily censored environments will likely not be able to connect to Tor because they cannot make the correct decisions during the configuration process. We perform the first usability evaluation of Tor Launcher, the graphical user interface (GUI) that Tor Browser uses to configure connections to Tor. Our study shows that 79\% (363 of 458) of user attempts to connect to Tor in censored environments failed. We found that users were often frustrated during the process and try options at random. In this paper, we describe how we measured potential usability issues, discuss design constraints unique to Tor, and provide recommendations based on what we learned to help more users connect to Tor while reducing the time they take to do so. Tor Browser incorporated the changes proposed by this study.
 }
 \end{abstract}
   \keywords{Usable Security, User Studies, Tor, Security, Censorship, Anonymity}
@@ -74,24 +74,19 @@ Although Tor has state-of-the art anti-censorship measures, users in heavily cen
   \revised{..}
   \accepted{..}
 
-  \journalyear{2015}
-  \journalvolume{2015}
-  \journalissue{2}
+  \journalyear{2017}
+  \journalvolume{2017}
+  \journalissue{3}
 
 \maketitle
 
 \section{Introduction}
 Tor~\cite{dingledine2004tor} is an anonymity network that routes Internet traffic through a series of relays 
-that make it difficult to observe the source and destination.  Tor Browser~\cite{torbrowser} is a modified Firefox browser that routes traffic through Tor. Tor Launcher is a Tor Browser graphical user interface (Figure~\ref{fig:old-interface}) that asks the user to configure their connection to Tor. This is the object of our study. 
+that make it difficult to observe sources and destinations. Tor Browser~\cite{torbrowser} is a modified Firefox browser that routes traffic through Tor, thereby simplifying the process of configuring Tor to use existing browsers. Although Tor Browser was originally designed for anonymity, many now use Tor Browser to circumvent Internet censorship. Many countries block Tor relays specifically to prevent their citizens from circumventing censorship~\cite{winter2012great}. Tor Browser is bundled with a graphical configuration interface, Tor Launcher (Figure~\ref{fig:old-interface}), which allows users to bypass censorship by configuring various bridges, proxies, and transport protocols prior to connecting to Tor. Of course, these configuration options are only effective if users understand how to correctly use them. Thus, we performed a usability study wherein we simulated various censorship environments in order to examine the effectiveness of Tor Launcher and how it could be improved.
 
-Although Tor Browser was originally designed for Internet anonymity, many now use Tor Browser to circumvent Internet censorship. Many countries block Tor relays specifically to prevent their citizens from circumventing censorship~\cite{winter2012great}. The configuration interface mainly exists so that people who face Internet censorship can configure bridges, transports, and proxies to connect to Tor. Improving Tor launcher has the obvious benefit of helping censored users connect to Tor, but this is also benefits other Tor users by increasing in overall users increases the anonymity set~\cite{dingledine2006anonymity}). 
-
-We started our usability evaluation by inspecting the interface (section~\ref{sec:inspection}) and
-running observing participants interact with it (section~\ref{sec:qualitative}). 
-We used the insights from our observations to make some changes to the interface (section~\ref{sec:design}) and
-quantified how usable the interface was before and after changes (section~\ref{sec:quantitative}).
-Afterward, we gave recommendations based on what we learned (section~\ref{sec:recommendations}), addressed
-limitations of our evaluation (section~\ref{sec:limitations}), and framed our work in the context of existing work (section~\ref{sec:related}). We hope that our usability evaluation serves as an informative case study and provides guidance on improving Tor launcher. 
+Improving Tor launcher has the obvious benefit of helping censored users connect to Tor, but this also benefits other Tor users: an increase in overall users increases the anonymity set~\cite{dingledine2006anonymity}). In this paper, we describe how we started our usability evaluation by inspecting the interface (Section~\ref{sec:inspection}) and observing participants interact with it (Section~\ref{sec:qualitative}). Based on the insights from our observations, we proposed some changes to the interface (Section~\ref{sec:design}) and
+quantified how usable the interface was before and after changes (Section~\ref{sec:quantitative}). Finally, we provide recommendations based on what we learned (Section~\ref{sec:recommendations}), we address
+limitations of our evaluation (Section~\ref{sec:limitations}), and frame our study in the context of existing work (Section~\ref{sec:related}). We hope that our usability evaluation serves as an informative case study and provides guidance on further improving Tor Launcher, as well as other privacy-enhancing technologies. 
 
 \section{Technical Background}
 \label{sec:background}
@@ -99,14 +94,14 @@ This section discusses how to connect to Tor and what network components are inv
 
 \subsection{Proxies, Relays, Bridges, and Pluggable Transports} 
 
-Technically, proxies are any computer or service that allow its users to make indirect network connections to other services. In this sense, any Tor relay and the Tor circuit can also be considered to be a proxy. However, in this paper and verbally, the word ``proxy'' refers to a SOCKS or HTTP proxy that bypasses local firewalls. Fig.~\ref{fig:topology} illustrates the network components involved. 
+Technically, a proxy is any computer or service that allows its users to make indirect network connections to other services. In this sense, any Tor relay and the Tor circuit can also be considered to be a proxy. However, in this paper and more generally, the word ``proxy'' refers to a SOCKS or HTTP proxy that bypasses local firewalls. Figure~\ref{fig:topology} illustrates the potential network components involved in connecting to the Tor network.
 
-Tor relays are the routers in the Tor network. The Tor network is a group of routers that perform onion routing, a technique for anonymous communication over a computer network.  Guard relays receive packets from the user and forward traffic to middle relays. Middle relays forward traffic from an entry relay to an exit relay. Exit relays receive traffic from a middle relay and direct the traffic to its intended destination.  A user uses Tor Browser to connect to the Tor network, which connects to websites on behalf of the user. 
+Tor relays are the routers in the Tor network. The Tor network is a group of routers that perform onion routing, a technique for anonymous communication over a computer network.  Guard relays receive packets from the user and forward traffic to middle relays. Middle relays forward traffic from an entry relay to an exit relay. Exit relays receive traffic from a middle relay and direct the traffic to its intended destination (e.g., a website).  A user uses Tor Browser to connect to the Tor network, which connects to websites on behalf of the user. 
 
 Bridges are unlisted alternative entry nodes used to connect to Tor when Tor relays are censored.
-Bridges also recieve packets from the user and forward traffic to middle relays, but also run a pluggable transport (referred to as ``transport'' for shorthand). Bridges are grouped by which transport they run for convenience. 
+Bridges also receive packets from the user and forward traffic to middle relays, but also may run a pluggable transport (referred to as ``transport'' for shorthand). Pluggable transports specify alternative protocols by which Tor Browser may connect to the Tor network, thereby disguising Tor traffic to make it harder to detect and block bridges. For convenience, bridges are grouped by which transport they run. 
 
-Most bridges can be blocked by blocking their static IP addresses. These include bridges that run``fte'' and ``fte-ipv6''~\cite{fte} transports, which disguise the Tor protocol as another protocol (such as HTTP), and ``obfs3''~\cite{obfs3}, ``obfs4''~\cite{obfs4}, and ``scramblesuit''~\cite{scramblesuit} transports, which encrypt or alter the Tor protocol to appear as random noise. Other bridges are less blockable because of how they work. Bridges that run the ``flashproxy''~\cite{flashproxy} and ``meek''~\cite{fifield2015blocking} transports route traffic through third party web browsers and content delivery networks. What bridges are accesssible in each country varies. Fig.~\ref{fig:old-bridge-combobox} shows the bridge and transport options at the time of the study. 
+Most bridges can be blocked by blocking their static IP addresses. These include bridges that run``fte'' and ``fte-ipv6''~\cite{fte} pluggable transports, which disguise the Tor protocol as another protocol (such as HTTP); these also include the ``obfs3''~\cite{obfs3}, ``obfs4''~\cite{obfs4}, and ``scramblesuit''~\cite{scramblesuit} transports, which encrypt or alter the Tor protocol to appear as random noise. Other bridges are less susceptible to blocking because of how they work. Bridges that run the ``flashproxy''~\cite{flashproxy} and ``meek''~\cite{fifield2015blocking} transports route traffic through third party web browsers and content delivery networks. The bridges that are accessible in each country vary. Figure~\ref{fig:old-bridge-combobox} shows the bridge and transport options at the time of our study. 
 
 \begin{figure}
 \centering
@@ -115,7 +110,7 @@ Most bridges can be blocked by blocking their static IP addresses. These include
 The chain of components involved in connecting to a website over Tor.
 Most users do not need a proxy;
 only users who face a censor need a bridge.
-In the diagram, ``Tor'' represents all three anonymizing hops through the Tor network.
+In the diagram, ``Tor'' represents a circuit of hops through the Tor network.
 We have shown the bridge as a separate component
 because of the special role it plays.
 When a bridge is used, it becomes the first Tor relay.
@@ -124,17 +119,17 @@ When a bridge is used, it becomes the first Tor relay.
 \end{figure}
 
 \subsection{Connecting to Tor} 
-There are many valid configuration settings to connect to the Tor network.
-A user who does not need a bridge or proxy can connect with a bridge, proxy, or both, provided that they are configured correctly. 
+There are many valid configuration settings that can be used to connect to the Tor network.
+A user who does not need a bridge or proxy can still connect with a bridge, proxy, or both, provided that they are configured correctly (though adding unnecessary network hops or obfuscation protocols may slow the connection down).
 
-Users can configure a bridge by choosing a transport (Figure~\ref{fig:old-bridge-combobox}), which selects the group of bridges that use that transport. If the built-in bridges do not work, users can obtain bridge lines through out-of-band channels~\cite{bridgedb} that provides the necessary bridge specifications. Configuring a proxy requires entering in the proxy protocol, IP address, port, and additional optional fields (Figure~\ref{fig:old-proxy}). The user must locate this information. 
+Users can configure a bridge by choosing a transport (Figure~\ref{fig:old-bridge-combobox}), which selects the group of bridges that use that transport. If the built-in bridges do not work, users can obtain bridge configurations through out-of-band channels~\cite{bridgedb} that provide the necessary information. Configuring a proxy requires entering in the proxy protocol, IP address, port, and additional optional fields (Figure~\ref{fig:old-proxy}). The user must locate this information.
 
 \begin{figure*}
 \centering
 \begin{subfigure}[b]{0.30\textwidth}
 	\includegraphics[width=\textwidth]{screenshots/OLD-first.png}
 	\centering\captionsetup{width=1.5\linewidth}%
-	\caption{The first screen (F). ``Connect'' starts a connection.``Configure'' leads to the first bridge screen (Figure~\ref{fig:old-bridge}). }
+	\caption{The first screen (F). ``Connect'' starts a connection. ``Configure'' leads to the first bridge screen (Figure~\ref{fig:old-bridge}). }
 	\label{fig:old-first}
 \end{subfigure}
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -193,12 +188,12 @@ The Tor Browser 5.0.3 Tor Launcher GUI. Screens are in the order that they appea
 \end{figure*} 
 
 \section{Methodology} 
-This section discusses the process we used to determine the usability of Tor launcher interface.
+This section discusses the process we used to evaluate the usability of Tor Launcher.
 
 \subsection{Testing Pipeline} 
-We inspected the interface to anticipate potential problems and formally assess its pros and cons. We then conducted qualitative and quantitative usability tests. We believed both were necessary for a complete evaluation. Qualitative testing tells you {\it why or how} it is or is not usable, while quantitative testing tells you {\it how much} it is or is not usable. Five users is considered to be the maximum benefit-cost ratio for gaining insights~\cite{howmanyusers}, so we recruited five participants for each condition in our qualitative experiment. Twenty users is considered to be the minimum for statistically significant measurements~\cite{howmanyusers}, so we recruited twenty participants for each condition in our quantitative experiment.
+We performed a cognitive walkthrough to inspect the interface to anticipate potential problems and formally assess its pros and cons. We then conducted qualitative and quantitative usability tests. We believe both methods were necessary for a complete evaluation. Qualitative testing tells you {\it why or how} it is or is not usable, while quantitative testing tells you {\it how much} it is or is not usable. For gathering qualitative data, five users is considered to maximize the cost-benefit ratio~\cite{howmanyusers}, so we recruited five participants for each condition---multiple simulated censorship environments---in our qualitative experiment. Twenty users is considered to be the minimum for yielding statistically significant measurements~\cite{howmanyusers}, so we recruited twenty participants for each condition in our quantitative experiment.
 
-We opportunistically used our observations from the qualitative study to design interface changes that would address common issues that our participants encountered. We also opportunistically used our quantitative testing setup to measure its usability with respect to the original interface. We discuss how our changes saved users time and recommend some changes. 
+We used our observations from the qualitative study to design interface changes that would address common issues that these participants encountered. We used our quantitative testing setup to measure the usability of our proposed changes, as compared to the original Tor Launcher interface.
 
 \subsection{Evaluation Metrics}
 \label{sec:eval}
@@ -206,11 +201,11 @@ We use the following industry-standard~\cite{albert2013measuring} metrics to det
 
 \begin{itemize}
 \item {\bfseries Completion rate:}  percentage of users that connect to Tor. A high completion rate is ideal. 
-\item {\bfseries Connection time:} time until a successful connection to Tor. This should be a couple minutes. 
+\item {\bfseries Connection time:} time until a successful connection to Tor. A low connection time is ideal, though is expected to be a couple of minutes.
 \item {\bfseries Configuration time:} time users spent in Tor Launcher configuring bridges and proxies, which excludes time waiting for connections to establish or timeout. This should be as short as possible.
 \end{itemize}
 
-Completion rate is the fundamental usability metric that measures if users can accomplish the task. We defined success as a binary metric that is true if a user connected to Tor and false if a user did not. Task time is a supplemental usability metric that measures user productivity during the task. We measured this in two ways. Connection time measures how long users took to connect to Tor, which includes the time Tor takes to establish a series of relays. Since that time can dominate the measurement, we use configuration time to measure the time users spent configuring bridges and proxies. 
+Completion rate is the fundamental usability metric that measures if users can accomplish the task. We defined success as a binary metric that is true if a user connected to Tor and false if a user did not. Task time is a supplemental usability metric that measures user productivity during the task. We measured this in two ways. Connection time measures how long users took to connect to Tor, which includes the time Tor takes to establish a series of relays, while the user is forced to wait. Since time spent waiting can dominate the measurement, we use configuration time to measure the time users spent actively configuring bridges and proxies. 
 
 \subsection{Experimental Setup}
 \label{sec:environments}
@@ -233,22 +228,20 @@ E2 requires users to connect with a built-in bridge;
 and E3 requires users to connect with a specific type of built-in bridge
 or a custom bridge.
 E2's blocking is a superset of E1's;
-similarly E3's is a superset of E2's.
+similarly, E3's is a superset of E2's.
 }
 \label{tab:environments}
 \end{table}
 
-The simulated environments are not intended to imitate any particular country's network. Rather, they were designed to require different bridges to connect to Tor. We believe this to be sufficient for the purpose of testing the configuration interface, since this requires the user to take the interface paths we wanted to test. 
+The simulated environments are not intended to imitate any particular country's network---though they do use the same techniques that are currently used by various censorship regimes. Rather, we designed simulated environments to require different bridges to connect to Tor. We believe this to be sufficient for the purpose of testing the configuration interface, since this requires the user to take the interface paths we wanted to test (and matches the actions real users would need to take to circumvent various types of censorship).
 
 We used Tor Browser~5.0.3, the most recent stable release at the time~\cite{torbrowser-503}.
-There were new releases during the experiments, but we used the same version throughout to not introduce confounding factors.
-
-We conducted our experiments on Windows machines. To create the environments, we used Windows Firewall rules to block the IP addresses of public Tor relays and default bridges, and the Windows hosts file to block websites by mapping domain names to localhost. 
+There were new releases during the experiments, but we used the same version throughout to not introduce confounding factors. We conducted our experiments on Windows machines. To create the environments, we used Windows Firewall rules to block the IP addresses of public Tor relays and default bridges, and the Windows hosts file to block websites by mapping domain names to localhost. 
 
 
-\section{Usability Inspection}
+\section{Cognitive Walkthrough}
 \label{sec:inspection}
-We inspected of the interface to anticipate potential problems before testing it on users.
+We inspected the interface to anticipate potential problems before testing it on real users.
 
 \subsection{Procedure} 
 Two researchers performed the cognitive walkthrough~\cite{cognitive-walkthrough} on the Tor Browser 5.0.3 Tor Launcher GUI, which was the most recent version deployed at the time (Figure~\ref{fig:old-interface}). We first examined each screen in the interface for tasks required, inputs taken, and consequences of possible actions. This was done to map all potential paths through the interface (Figure~\ref{fig:digraph}). We then stepped through each user path, systematically tried all possible actions, and recorded our observations. 
