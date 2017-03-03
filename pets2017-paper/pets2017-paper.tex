@@ -284,19 +284,19 @@ We recruited people from Craigslist using an ad (Appendix~\ref{qualitative-recru
 We distributed participants evenly across experimental conditions:  5~in E1, 5~in E2, and 6~in E3. We ensured that each condition had new and previous Tor Browser users, and tried for variation in gender and age.
 
 \subsection{Procedure} 
-We ran the experiment in a meeting room at UC Berkeley. The room had a desk and chair, where a monitor, keyboard, and a Windows computer were set up. On a clean computer, we downloaded and installed Tor Browser 5.0.3 for testing, Chrome, Firefox, and Internet Explorer so that participants could browse the Internet in another browser of their choice, and VLC to record the screen during the experiment. Before each participant, we ran a script on the computer that set up one of the three simulated environments (E1, E2, or E3) and started recording the computer screen.  
+We ran the experiment in a meeting room at UC Berkeley. The room had a desk and chair, where a monitor, keyboard, and a Windows computer were set up. On a clean computer, we downloaded and installed Tor Browser 5.0.3 for testing, Chrome, Firefox, and Internet Explorer so that participants could browse the Internet in another browser of their choice, and VLC to record the screen during the experiment. Prior to each participant, we ran a script on the computer that set up one of the three simulated environments (E1, E2, or E3) and started recording the computer screen.
 
-Each one-hour session was run by at least two researchers. We started by informing the participant of the study, task, and risks (Appendix~\ref{qualitative-script}). After they consent to the experiment, we instructed them to visit sample censored and uncensored websites in a non-Tor browser to illustrate that some sites are blocked. We explicitly tell them to use Tor to circumvent censorship. The worksheet (Appendix~\ref{participant-worksheet}) required answers from a censored website (Wikipedia) and an uncensored website (CNN). We chose Wikipedia and CNN because they were popular websites~\cite{alexa} and their likely familiarity would make the task seem less intimidating. After instructions, researchers gave left the room to minimize interactions and watched a live feed of the participants' screen.
+Each one-hour session was run by at least two researchers. We started by informing the participant of the study, task, and risks (Appendix~\ref{qualitative-script}). After they consented to the experiment, we instructed them to visit sample censored and uncensored websites in a non-Tor browser to illustrate that some sites were blocked. We explicitly told them to use Tor to circumvent censorship. The worksheet (Appendix~\ref{participant-worksheet}) required answers from a censored website (Wikipedia) and an uncensored website (CNN). We chose Wikipedia and CNN because they were popular websites~\cite{alexa} and their likely familiarity would make the task seem less intimidating. After giving the instructions, the researchers left the room to minimize interactions and watched a live feed of the participant's screen.
 
-After 45 minutes (or when they finished the worksheet), we interviewed them. We asked both general questions (Appendix~\ref{interview-questions}) and additional participant-specific questions that verified our observations (e.g. ``the participant was selecting bridges at random''). We gave them~\$30 for their time. 
+After 45 minutes (or when participants finished the worksheet), we interviewed them. We asked both general questions (Appendix~\ref{interview-questions}) and additional participant-specific questions that verified our observations (e.g., ``the participant was selecting bridges at random''). We gave them~\$30 for their time. 
 
 \subsection{Results} 
 
-We talk about the main reasons why users struggled to use Tor launcher, summarizing general behavioral trends and attitudes. We detail what each participant did in Appendix~\ref{summaries}. 
+We talk about the main reasons why participants struggled to use Tor launcher, summarizing general behavioral trends and attitudes. We detail what each participant did in Appendix~\ref{summary}. 
 
 \subsection{Pain Points in Tor Launcher} 
 \label{sec:pain-points}
-Participants spent a lot of time going back and forth on screens, looking for proxy information, and waiting for the connection to work or timeout. We believe that the reasons for these behaviors are:\\
+Participants spent a lot of time going back and forth on screens, looking for proxy information, and waiting for the connection to work or timeout. We believe that the reasons for these behaviors were:\\
 
 \begin{itemize}
 \item {\bfseries A non-existent mental model:} Participants found terms in the interface confusing, and were often unable to answer the questions that were designed to guide them (Figures~\ref{fig:old-bridge} and~\ref{fig:old-proxy}).
@@ -310,14 +310,14 @@ Otherwise you have no chance...''}
 \pquote{P7}{``[I] was just fiddling, to be honest with you... it was kind of confusing.''}
 
 \begin{itemize}
-\item {\bfseries Missing information:} They did not know how to choose a bridge by transport and which bridges worked in their environment (Figures~\ref{fig:old-bridge-combobox}).
+\item {\bfseries Missing information:} They did not know how to choose a bridge by transport or which bridges worked in their environment (Figures~\ref{fig:old-bridge-combobox}).
 \end{itemize} 
 
 %P8 in the repo, P10 in the paper
 \pquote{P10}{``I have no clue what's the difference between flashproxy, fte, etc. And why do I need a custom bridge if there are options built in?''}
 
 \begin{itemize}
-\item {\bfseries Bad recovery:} Participants had to wait a couple minutes to know if their connection failed, and also were quote upset that they had to wait that long to find out that their connection failed.
+\item {\bfseries Bad recovery:} Participants had to wait a couple minutes to know if their connection failed, and also were quite upset that they had to wait that long to find out that their connection failed.
 \end{itemize} 
 
 %P16 in the repo, P13 in the paper
@@ -326,7 +326,7 @@ Otherwise you have no chance...''}
 %P1 in the repo, P15 in the paper
 \pquote{P15}{``there doesn't seem to be any timeout on any of this stuff. Am I waiting long enough? Should I wait 5 minutes?''}
 
-These were our general observations. Participants who could connect directly or use the recommended bridge had an easy time connecting, but the participants who could not use many of the hardcoded bridges did not know what to do. For a summary of how each participant connected to Tor and what behaviroal trends dominated in each environment, see Appendix ~\ref{summary}. 
+These were our general observations. Participants who could connect directly or use the recommended bridge had an easy time connecting, but the participants who could not use many of the hardcoded bridges did not know what to do. For a summary of how each participant connected to Tor and what behavioral trends dominated in each environment, see Appendix~\ref{summary}. 
 
 \section{Design}
 \label{sec:design} 
