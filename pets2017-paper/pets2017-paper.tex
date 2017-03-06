@@ -59,7 +59,7 @@
 
   \begin{abstract}
 {
-Although Tor has state-of-the art anti-censorship measures, users in heavily censored environments will likely not be able to connect to Tor because they cannot make the correct decisions during the configuration process. We perform the first usability evaluation of Tor Launcher, the graphical user interface (GUI) that Tor Browser uses to configure connections to Tor. Our study shows that 79\% (363 of 458) of user attempts to connect to Tor in censored environments failed. We found that users were often frustrated during the process and try options at random. In this paper, we describe how we measured potential usability issues, discuss design constraints unique to Tor, and provide recommendations based on what we learned to help more users connect to Tor while reducing the time they take to do so. Tor Browser incorporated the changes proposed by this study.
+Although Tor has state-of-the art anti-censorship measures, users in heavily censored environments will likely not be able to connect to Tor because they cannot configure their connections. Our study shows that 79\% (363 of 458) of user attempts to connect to Tor in censored environments failed. We found that users were often frustrated during the process and tried options at random. We perform the first usability evaluation of Tor Launcher, the graphical user interface (GUI) that Tor Browser uses to configure connections to Tor. In this paper, we measured potential usability issues, discuss design constraints unique to Tor, and provide recommendations based on what we learned to help more users connect to Tor while reducing the time they take to do so. Tor Browser incorporated the changes proposed by this study.
 }
 \end{abstract}
   \keywords{Usable Security, User Studies, Tor, Security, Censorship, Anonymity}
@@ -434,9 +434,9 @@ We assigned participants to a simulated censorship environment combination at ra
 Researchers maintained minimal interactions with the participants after instructions, only answering logistical questions. After the experiment and exit survey (Appendix~\ref{quantitative-exit-survey}), we answered any additional questions and gave them \$30. 
 
 \subsection{Results} 
-Users should be able to connect to Tor within a few minutes. The interface does not meet this goal (Table~\ref{table:participant-summary}). Our proposed design changes save users some time, but more changes are required to get more people to connect and to connect even faster. In this section, we use OLD to refer to the original interface (Figure~\ref{fig:old-interface}) and NEW to refer the version with our changes (Figure~\ref{fig:new-interface}).
+Users should be able to connect to Tor within a few minutes. The interface does not meet this goal (Table~\ref{table:participant-summary}). Our design changes helped more users connect to Tor in less time, but we still encourage further improvements. In this section, we use OLD to refer to the original interface (Figure~\ref{fig:old-interface}) and NEW to refer the version with our changes (Figure~\ref{fig:new-interface}).
 
-We found that 63\% (72 of 114) of first attempts to connect failed and 79\% (363 of 458) of total attempts to connect failed. Participants averaged over 3 minutes in censored environments and over 20 minutes in heavily censored environments (Figure~\ref{fig:all-participant-edges}). Based on this, we recommend a thorough redesign of the interface.
+We found that 63\% (72 of 114) of first attempts to connect failed and 79\% (363 of 458) of total attempts to connect failed. Participants averaged over 3 minutes in censored environments (E2) and over 20 minutes in heavily censored environments (E3, Figure~\ref{fig:all-participant-edges}). Based on this, we recommend a thorough redesign of the interface.
 
 \label{all-participant-edges} 
 \begin{figure*}
@@ -491,9 +491,9 @@ One participant configured a proxy to bypass our simulated censorship environmen
 \label{tab:attempts-bridge-proxy}
 \end{table} 
 
-Most participants could connect if they did not need to configure anything (E1) or used the recommended settings (E2). If some bridges were blocked (E3), people could not figure it out, or took a long time to do so (Table~\ref{table:participant-summary}). Some optionally used a bridge (E1), although those who could use any bridge to connect did not deviate from the recommendation (E2) and those who needed a meek bridge chose one at random (Table~\ref{tab:attempts-bridge-proxy}). Seventeen percent (19 of 114) were not able to connect to Tor at all. The most common reasons for failing to connect were not knowing whether to connect directly or configure a bridge or proxy (P73, P75, P89, P91, P106, P110), not knowing what they needed and trying to configure proxies (P74, P92, P105, P107, P113), and not knowing what to do when a recommended bridge did not work (P90, P93, P108, P111, P114). 
+Most participants could connect if they did not need to configure anything (E1) or used the recommended settings (E2). If some bridges were blocked (E3), people could not figure it out, or took a long time to do so (Table~\ref{table:participant-summary}). Some optionally used a bridge (E1), although those who could use any bridge to connect did not deviate from the recommendation (E2) and those who needed a meek bridge chose one at random (Table~\ref{tab:attempts-bridge-proxy}). Seventeen percent (19 of 114) were not able to connect to Tor. The most common reasons for failing to connect were not knowing whether to connect directly or configure a bridge or proxy (P73, P75, P89, P91, P106, P110), not knowing what they needed and trying to configure proxies (P74, P92, P105, P107, P113), and not knowing what to do when a recommended bridge did not work (P90, P93, P108, P111, P114). 
 
-Because we hypothesized that the NEW interface would result in greater completion rates, we performed a one-tailed Pearson's chi-square test and found the results to be statistically significant ($\chi^2 = 2.808$, $\mbox{df} = 1$, $p < 0.047$), albeit with small effect size ($\phi=0.157$).
+Our changes significantly increased success rates (one-tailed Pearson's chi-square test ; $\chi^2 = 2.808$, $\mbox{df} = 1$, $p < 0.047$, albeit with small effect size $\phi=0.157$), helping users connect to Tor.
 
 
 %using http://www.socscistatistics.com/tests/chisquare/Default2.aspx
@@ -528,7 +528,7 @@ Cumulative success rates over time.
 
 
 \subsubsection{Configuration Time} 
-Most participants spent a majority of their time on the progress screen (Table~\ref{table:median_time}). Their active configuration time was a small fraction of their connection time (Figure~\ref{fig:time_to_success_active_clamped}). We see that the time spent bootstrapping the connection to Tor dominated the measurements of participants who connected without configuring anything (E1), and waiting for the timeout error when Tor was blocked dominated the measurements for participants who did not try the correct configuration on the first try (E2, E3). We noticed that participants who configured components incorrectly searched for help in another browser while waiting for their connection to time out. Participants should not need to search for help outside the interface during configuration.
+Participants spent a majority of their time on the progress screen (Table~\ref{table:median_time}). Their active configuration time was a small fraction of their connection time (Figure~\ref{fig:time_to_success_active_clamped}). We see that the time spent bootstrapping the connection to Tor dominated the measurements of participants who connected without configuring anything (E1), and waiting for the timeout error when Tor was blocked dominated the measurements for participants who did not try the correct configuration on the first try (E2, E3). We noticed that participants who configured components incorrectly searched for help in another browser while waiting for their connection to time out. Participants should not need to search for help outside the interface during configuration.
 
 Our changes significantly reduced configuration time (one-tailed Mann--Whitney; $Z = -3.28$, $p < 0.0005$, $r = 0.307$). Again, we used a one-tailed Mann--Whitney test because the distributions were non-normal, heavily right-tailed, and right-censored. Participants were less likely to spend time unnecessarily configuring proxies (Table~\ref{table:median_time}) and trying different bridges. We believe that this is reflective of how most users would not require a proxy to connect to Tor, and suspect that most real users spend time configuring proxies when they need a bridge instead. 
 
@@ -575,7 +575,7 @@ We did not study international users, or the interface in languages other than E
 
 Participants in a laboratory setting may alter their behavior due to their awareness of being observed~\cite{mccarney2007hawthorne}. Ours were likely motivated differently compared to real users. We believe that they were likely over-motivated because they were being observed and receiving a monetary reward. If true, this makes our results a conservative estimate of the usability problems. 
 
-Our experiment did not directly test advanced tasks such as configuring a proxy or a custom bridge. From observing participants, we suspect they struggle with these tasks. 
+Our experiment did not directly test configuring a proxy or a custom bridge. From observing participants, we suspect they struggle with these tasks. 
 
 We only tested the interface on the Windows operating system. The interface leverages the native operating system's styling and elements, making the configuration interface on Windows look slightly different from the OS~X or Linux equivalents. We acknowledge that participants' unfamiliarity with Windows may have affected our experiment, but we believe that this affected all experimental conditions equally.  
 
@@ -753,7 +753,7 @@ Observations in E3:
 \centering
 \includegraphics[width=0.5\textwidth]{P8-proxy-attempt.png}
 \caption{
-Proxies were not necessary to connect to Tor, but many spent time trying to configure one when they couldn't connect. None succeeded. Here, we show P10's unsuccessful attempt. 
+Proxies were not necessary to connect to Tor, but many spent time trying to configure one when they couldn't connect. Here, we show P10's unsuccessful attempt. 
 }
 \label{fig:proxy-attempt}
 \end{figure}
@@ -776,7 +776,7 @@ Proxies were not necessary to connect to Tor, but many spent time trying to conf
 %P5 (has used tor before): E3 (22:06; 0:00 to 22:06)
 \pquote{P16 (previous Tor user, custom bridge, 22:06)}{They tried and retried connecting directly, then they tried connecting with the recommended bridge. After briefly looking at error messages in the system log, they retried connecting directly two more times. After trying to configure a proxy for a while, they instead decided not to use one and tried connecting with a meek-google bridge, which would have worked. But  due to a bug in the progress bar that prevents it from updating correctly on subsequent attempts, they gave up before it could connect. They made a connection with the custom bridge by following the instructions from the bridge help button (they created a throwaway email account, emailed the bridge responder with poor syntax and did not get a response, emailed the bridge responder again with correct syntax and got a response, and then typed in the bridge information into the custom bridge field).}
 
-Participants in E3 also generally tried a direct connection to Tor. They did not know if they needed a bridge or proxy, and like the participants in E2, only configured them when the direct connection failed. But even if the participants were able to figure out that they needed a bridge and not a proxy, the recommended bridge will not work. Of the participants that failed, they all tried the recommended bridge but not any others. The participants that did manage to connect to Tor did not know which bridges worked and which ones did not, or which ones to try next in case the recommended one failed. P14 brute forced options until something worked, P15 did not think that they used a bridge, and P16 gave up on a hardcoded bridge that would have worked and used a custom bridge instead.
+Participants in E3 also generally tried a direct connection to Tor. They did not know if they needed a bridge or proxy, and like the participants in E2, only configured them when the direct connection failed. Of the participants that failed, they all tried the recommended bridge but not any others. The participants that did manage to connect to Tor did not know which bridges worked and which ones did not, or which ones to try next in case the recommended one failed. P14 brute forced options until something worked, P15 did not think that they used a bridge, and P16 gave up on a hardcoded bridge that would have worked and used a custom bridge instead.
 
 \section{Quantitative User Study Recruitment Posting}
 \label{quantitative-recruitment}
