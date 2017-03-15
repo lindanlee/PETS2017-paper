@@ -356,27 +356,6 @@ These were our general observations. Participants who could connect directly (E1
 \label{sec:design} 
 We redesigned the interface according to usability best practices while addressing the pain points found in our qualitative usability study. We drafted a list of design considerations, prioritized the pain points to address, and iteratively made changes to the interface to get to our final design (Figure~\ref{fig:new-interface}).
 
-\subsection {Design Considerations} 
-
-Designing an interface for Tor had unique challenges: \\
-
-\begin{itemize}
-\item {\bfseries User consent}: Some oppressive regimes may detect and prosecute Tor usage, and therefore simply using Tor may carry risks. While we could help users by automating configuration settings, this would involve probing network configurations, which may alert authorities to Tor usage. Taking this risk without proper consent is not ethical. 
-
-\item{\bfseries Active adversaries}: We could ask the user for their location, risk tolerance, or other preferences to help automatically make decisions. Leveraging user input works well, but third-party versions of Tor Browser that replicate the official version could use these inputs to profile users. 
-
-\item {\bfseries Passive adversaries}: A sufficiently powerful network adversary can detect that a user is connecting to Tor. We should allow users to leverage local information to reduce their risk.
-
-\item{\bfseries Maintenance constraints}: Network environments change all the time. Keeping up with how each country censors and pushing changes before the affected users connect to Tor is difficult.
-
-\item{\bfseries Financial constraints}: Leveraging harder-to-block ``meek'' bridges, which make use of pay-per-use content delivery networks that are hard to block without imposing collateral damage (e.g., Amazon Web Services), can help, but these relays cost the Tor Project magnitudes more than other relays and using them more would cost even more money.
-\end{itemize}
-
-We kept the user involved so that they explicitly start a connection to Tor. We chose not to leverage user inputs such as their location, risk, or other preferences due to active and passive adversaries. We limited our design changes to ones that do not require infrastructural changes or cause additional financial burden to increase the chances of Tor adoption our design changes. 
-
-\subsection{Changes Made} 
-In this section, we highlight and explain the speific design changes we made to address the observed pain points while adhering to the design considerations. We: \\
-
 \begin{figure*}
 \centering
 \begin{subfigure}[b]{0.30\textwidth}
@@ -439,6 +418,27 @@ A redesigned version of the Tor Browser 5.0.3 Tor Launcher GUI. Screens are in t
 }
 \label{fig:new-interface}
 \end{figure*} 
+
+\subsection {Design Considerations} 
+
+Designing an interface for Tor had unique challenges: \\
+
+\begin{itemize}
+\item {\bfseries User consent}: Some oppressive regimes may detect and prosecute Tor usage, and therefore simply using Tor may carry risks. While we could help users by automating configuration settings, this would involve probing network configurations, which may alert authorities to Tor usage. Taking this risk without proper consent is not ethical. 
+
+\item{\bfseries Active adversaries}: We could ask the user for their location, risk tolerance, or other preferences to help automatically make decisions. Leveraging user input works well, but third-party versions of Tor Browser that replicate the official version could use these inputs to profile users. 
+
+\item {\bfseries Passive adversaries}: A sufficiently powerful network adversary can detect that a user is connecting to Tor. We should allow users to leverage local information to reduce their risk.
+
+\item{\bfseries Maintenance constraints}: Network environments change all the time. Keeping up with how each country censors and pushing changes before the affected users connect to Tor is difficult.
+
+\item{\bfseries Financial constraints}: Leveraging harder-to-block ``meek'' bridges, which make use of pay-per-use content delivery networks that are hard to block without imposing collateral damage (e.g., Amazon Web Services), can help, but these relays cost the Tor Project magnitudes more than other relays and using them more would cost even more money.
+\end{itemize}
+
+We kept the user involved so that they explicitly start a connection to Tor. We chose not to leverage user inputs such as their location, risk, or other preferences due to active and passive adversaries. We limited our design changes to ones that do not require infrastructural changes or cause additional financial burden to increase the chances of Tor adoption our design changes. 
+
+\subsection{Changes Made} 
+In this section, we highlight and explain the speific design changes we made to address the observed pain points while adhering to the design considerations. We: \\
 
 \begin{itemize}
 \item{reduced the amount of text and technical terms in the text (Figures~\ref{fig:new-first},~\ref{fig:new-proxy},~\ref{fig:new-nobridge},~\ref{fig:new-bridge},~\ref{fig:new-bridge-combobox}, and ~\ref{fig:new-progress})  to encourage users to read instructions.} 
