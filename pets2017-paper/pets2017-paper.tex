@@ -210,29 +210,17 @@ The Tor Browser 5.0.3 Tor Launcher GUI. Screens are in the order that they appea
 \end{figure*} 
 
 \section{Methodology} 
-This section discusses the process we used to evaluate the usability of Tor Launcher.
+This section discusses the usability testing process used to evaluate Tor Launcher, the simulated censorship environments we used to require users to configure different network components to connect to Tor, and what our evaluation metrics  we collected to deem the interface usable or not usable.
 
 \subsection{Testing Pipeline} 
-We began by performing a cognitive walkthrough~\cite{wharton1994cognitive,cognitive-walkthrough} to inspect the interface to anticipate potential problems and formally assess its pros and cons. A cognitive walkthrough is a formal method of inspection performed by researchers without any user involvement. We then conducted qualitative and quantitative usability tests. We believe both methods were necessary for a complete usability evaluation. Qualitative testing tells you {\it why or how} it is or is not usable, while quantitative testing tells you {\it how much} it is or is not usable. We used our observations from the qualitative study to design interface changes that would address common issues that these participants encountered. We used our quantitative testing setup to measure the usability of our proposed changes, as compared to the original Tor Launcher interface.
+We began by performing a cognitive walkthrough~\cite{wharton1994cognitive,cognitive-walkthrough} to inspect the interface to anticipate potential problems and formally assess its pros and cons. A cognitive walkthrough is a formal method of inspection performed by researchers without any user involvement. We then conducted qualitative and quantitative usability tests. We believe both methods were necessary for a complete usability evaluation. Qualitative testing tells you {\it why or how} it is or is not usable, while quantitative testing tells you {\it how much} it is or is not usable. We used our observations from the qualitative study to design interface changes that would address common issues that these participants encountered. We used our quantitative testing setup to measure the usability of our proposed changes, as compared to the original interface.
 
 We performed our qualitative experiments one participant at a time, so that we could observe their behaviors in real time and interview them about their experience after user. We recruited five participants per experimental condition to gather qualitative data; this is considered the optimal number of measurements to maximize the cost-benefit ratio~\cite{howmanyusers}. We performed our quantitative experiments at a behavioral laboratory many participants at a time, using instrumentation to capture evaluation metrics. We recruited twenty users per experimental condition to gather quantitative data; this is considered to be the minimum for yielding statistically significant measurements~\cite{howmanyusers}. 
-
-\subsection{Evaluation Metrics}
-\label{sec:eval}
-We use the following industry-standard~\cite{albert2013measuring} metrics to determine if the launcher is usable: \\
-
-\begin{itemize}
-\item {\bfseries Completion rate:}  the percentage of users that want to connect to Tor and successfully do so. The higher the completion rate, the better. The ideal case would be that everyone is able to connect to Tor if they want to. Even if users do not successfully connect to Tor on previous attempts but eventually do so during the experiment, they are considered to have successfully connected to Tor for this metric.
-\item {\bfseries Connection time:} the amount of  time it takes a user to connect to Tor. The less time it takes for userss to connect, the better. The ideal case would be that the connection time is very close to the time it takes for the application to communicate with the servers and establish a circuit of relays for the connection, which can take up to a couple minutes. Connection time includes this bootstrapping time and any additional time that people spend in the interface. 
-\item {\bfseries Configuration time:} the amount of time users spend in the interface. The less time it takes for users to configure their preferences, the better. Configuration time is included in connection time, so it will always be less than connection time. We defined configuration time as any time spent on the bridge and proxy screens, since users were most likely configuring bridges and proxies. We excluded any time spent on the progress screen, because users were most likely waiting for connections to establish or timeout and not necessarily interacting with the interface. This should be as short as possible.
-\end{itemize}
-
-Completion rate is the fundamental usability metric that measures if users can accomplish the task. We defined success as a binary metric that is true if a user connected to Tor and false if a user did not. Task time is a supplemental usability metric that measures user productivity during the task. We measured this in two ways. Connection time measures how long users took to connect to Tor, while configuration time to measures how long users spent actively configuring bridges and proxies. We use both metrics to quantify productivity since the bootstrapping time, and hence, time spent waiting for the connection to succeed or fail, can dominate the measurement. Connection time is always greater than the configuration time, since it includes the configuration time. 
 
 \subsection{Experimental Setup}
 \label{sec:environments}
 We simulated three environments of varying censorship severity (Table~\ref{tab:environments}). We chose to 
-simulate environments for the stability and reproducibility of the experiment, as real censored networks are volatile and complex. 
+simulate environments for the stability and reproducibility of the experiment, as real censored networks are volatile and complex. Re-routing participant traffic through other countries' networks also may introduce unforseen risks to the participants out of our control and performing hundreds of connections in short intervals during expeirments may draw unnecessary attention to Tor use in that country. 
 
 \begin{table}[t]
 \centering
@@ -255,12 +243,26 @@ similarly, E3's is a superset of E2's.
 \label{tab:environments}
 \end{table}
 
-In the first environment, E1, particular websites were blocked, which meant that they could be accessed via a default Tor configuration (i.e., bridges or proxies were not needed). In the second environment, E2, we additionally blocked the IP addresses of public Tor relays, which meant that Tor could still be accessed by enabling any of the included bridges. Finally, the third environment, E3, additionally blocked several of the included bridges, which required experimenting with several different bridges---beyond the recommended option---in order to successfully connect.
-
 The simulated environments are not intended to imitate any particular country's network---though they do use the same techniques that are currently used by various censorship regimes. Rather, we designed simulated environments to have different requirements to connect to Tor. We believe this to be sufficient for the purpose of testing the configuration interface, since this requires the user to take the different interface paths we wanted to test (and matches the actions real users would need to take to circumvent various types of censorship).
+
+In the first environment, E1, particular websites were blocked, which meant that they could be accessed via a default Tor configuration (i.e., bridges or proxies were not needed). In the second environment, E2, we additionally blocked the IP addresses of public Tor relays, which meant that Tor could still be accessed by enabling any of the included bridges. Finally, the third environment, E3, additionally blocked several of the included bridges, which required experimenting with several different bridges---beyond the recommended option---in order to successfully connect.
 
 We used Tor Browser~5.0.3, the most recent stable release at the time~\cite{torbrowser-503}.
 There were new releases during the experiments, but we used the same version throughout to not introduce confounding factors. We conducted our experiments on Windows machines. To create the environments, we used Windows Firewall rules to block the IP addresses of public Tor relays and default bridges, and the Windows hosts file to block websites by mapping domain names to localhost. 
+
+\subsection{Evaluation Metrics}
+\label{sec:eval}
+We use the following three industry-standard~\cite{albert2013measuring} usability metrics to quantify how easily users completed their task and if they were productive with their time: \\
+
+\begin{itemize}
+\item {\bfseries Completion rate:}  the percentage of users that want to connect to Tor and successfully do so. The higher the completion rate, the better. The ideal case would be that everyone is able to connect to Tor if they want to. Even if users do not successfully connect to Tor on previous attempts but eventually do so during the experiment, they are considered to have successfully connected to Tor for this metric.
+\item {\bfseries Connection time:} the amount of  time it takes a user to connect to Tor. The less time it takes for userss to connect, the better. The ideal case would be that the connection time is very close to the time it takes for the application to communicate with the servers and establish a circuit of relays for the connection, which can take up to a couple minutes. Connection time includes this bootstrapping time and any additional time that people spend in the interface. 
+\item {\bfseries Configuration time:} the amount of time users spend in the interface. The less time it takes for users to configure their preferences, the better. Configuration time is included in connection time, so it will always be less than connection time. We defined configuration time as any time spent on the bridge and proxy screens, since users were most likely configuring bridges and proxies. We excluded any time spent on the progress screen, because users were most likely waiting for connections to establish or timeout and not necessarily interacting with the interface. This should be as short as possible.
+\end{itemize}
+
+Completion rate is the fundamental usability metric that measures if users can accomplish the task. We defined success as a binary metric that is true if a user connected to Tor and false if a user did not. We consider this to be the most important usability metric, as this directly measures if users could connect to Tor. 
+
+Task time is a supplemental usability metric that measures user productivity during the task. We measured this in two ways. Connection time measures how long users took to connect to Tor, while configuration time to measures how long users spent actively configuring bridges and proxies. We use both metrics to quantify productivity since the bootstrapping time, and hence, time spent waiting for the connection to succeed or fail, can dominate the measurement. Connection time is always greater than the configuration time, since it includes the configuration time. We consider connection time and configuration time to be equally important in measuring user productivity. 
 
 
 \section{Cognitive Walkthrough}
