@@ -99,17 +99,16 @@ Specifically, we describe how we started our usability evaluation by inspecting 
 
 \section{Technical Background}
 \label{sec:background}
-This section discusses how to connect to Tor and what network components are involved. 
+This section discusses the network components are involved in connecting to Tor and how users can connect to Tor in various ways. An understanding of the network components or the various connection options are not required to understand our work, but we refer to these terms and methods throughout the paper.  
 
 \subsection{Proxies, Relays, Bridges, and Pluggable Transports} 
 
 A connection to Tor involves many interacting components,
 illustrated in Figure~\ref{fig:topology}.
-It may involve a proxy and a bridge,
-possibly in the presence of a censor.
+In the presence of a local firewall and censor, it may involve a proxy and a bridge.
 
 The word ``proxy'' has a specific meaning in the context of a Tor connection.
-Generally, a proxy is any computer or service that allows its users to make indirect network connections to other services. In this sense, any Tor relay and the Tor circuit can also be considered to be a proxy. However, in this paper, the word ``proxy'' refers to a SOCKS or HTTP proxy that bypasses local firewalls.
+Generally, a proxy is any computer or service that allows users to make indirect connections to other services. In this sense, any Tor relay and the Tor circuit can also be considered to be a proxy. However, in this paper, the word ``proxy'' refers to a SOCKS or HTTP proxy that bypasses local firewalls.
 
 Tor relays are the routers in the Tor network. The Tor network is a group of routers that perform onion routing, a technique for anonymous communication over a computer network.  Guard relays receive packets from the user and forward traffic to middle relays. Middle relays forward traffic from an entry relay to an exit relay. Exit relays receive traffic from a middle relay and direct the traffic to its intended destination (e.g., a website).  A user uses Tor Browser to connect to the Tor network, which connects to websites on behalf of the user. 
 
@@ -145,7 +144,7 @@ When a bridge is used, it becomes the first Tor relay.
 It is important to note that there are many valid configuration settings that can be used to connect to the Tor network. A user may or may not need a combination of proxy and bridge.
 A user who does not need a bridge or proxy can still connect with a bridge, proxy, or both, provided that they are configured correctly (though adding unnecessary network hops or obfuscation protocols may slow the connection down).
 
-Users can configure a bridge by choosing a transport (Figure~\ref{fig:old-bridge-combobox}), which selects the group of bridges that use that transport. If the built-in bridges do not work, users can obtain bridge configurations through out-of-band channels~\cite{bridgedb} that provide the necessary information. Configuring a proxy requires entering in the proxy protocol, IP address, port, and additional optional fields (Figure~\ref{fig:old-proxy}). The user must locate this information.
+Users can configure a bridge by choosing a transport, which selects the group of bridges that use that transport. For instance, choosing the ``obfs3'' option in Figure~\ref{fig:old-bridge-combobox} will select a group of bridges that peform the obfs3 transport protocol as okay to use, and the user will be assigned one of these bridges as their guard relay. If these built-in options do not work, users can obtain bridge configurations through out-of-band channels~\cite{bridgedb}. Configuring a proxy requires entering in the proxy protocol, IP address, port, and additional optional fields (Figure~\ref{fig:old-proxy}). The user must locate this information.
 
 \begin{figure*}
 \centering
