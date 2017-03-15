@@ -471,9 +471,7 @@ We ran our experiment at Xlab~\cite{xlab}, an experimental social science labora
 We receive informed consent after talking about the study (Appendix~\ref{quantitative-script}) and instruct participants to use Tor to complete their worksheet (Appendix~\ref{summative-worksheet}), and gave them 40 minutes to complete the task. Researchers maintained minimal interactions with the participants. After the experiment and exit survey (Appendix~\ref{quantitative-exit-survey}), gave them \$30 for their time. 
 
 \subsection{Results} 
-In this section, we use OLD to refer to the original interface (Figure~\ref{fig:old-interface}) and NEW to refer the version with our changes (Figure~\ref{fig:new-interface}). Users should be able to connect to Tor within a few minutes. The interface does not meet this goal (Table~\ref{table:participant-summary}). Our design changes helped more users connect to Tor in less time, but we still encourage further improvements. 
-
-We found that 63\% (72 of 114) of first attempts to connect failed and 79\% (363 of 458) of total attempts to connect failed. Even with the redesigned interface, participants averaged over 3 minutes in censored environments (E2) and over 20 minutes in heavily censored environments (E3, Figure~\ref{fig:all-participant-edges}). Based on this, we recommend a thorough redesign of the interface.
+In this section, we use OLD to refer to the original interface (Figure~\ref{fig:old-interface}) and NEW to refer the version with our changes (Figure~\ref{fig:new-interface}). As seen in Table~\ref{table:participant-summary}, our design changes helped more users connect to Tor in less time. However, many, including users who used the redesigned version, still could not connect to Tor (63\% (72 of 114) of first attempts failed and 79\% (363 of 458) of total attempts failed) and those that did took long to do so (>3 minutes in E2 and >20 minutes in E3). Figure~\ref{fig:all-participant-edges}) summarizes each partipant--showing if they connect to Tor, how long each participant took to do so, and where they spent their time. Based on these results, we recommend that our changes be adapted in the meantime, but encourage a drastic redesign of the interface.
 
 \label{all-participant-edges} 
 \begin{figure*}
@@ -516,21 +514,23 @@ Those who did not connect were assigned a time of 40:08,
 \label{table:participant-summary}
 \end{table}
 
+Our changes significantly increased success rates (one-tailed Pearson's chi-square test; $\chi^2 = 2.808$, $\mbox{df} = 1$, $p < 0.047$, albeit with small effect size $\phi=0.157$).
+
+Table~\ref{tab:attempts-bridge-proxy} shows participants' connections to Tor. As reported in the first two columns, most participants who did not need to configure anything (E1) didn't, although some optionally used a bridge. Participants who needed any bridge (E2) all used the recommended bridge. Participants who needed a meek-bridge or custom bridge (E3) chose a meek bridge at random; the ones who tried to use a custom bridge did not format their messages or inputs correctly and did not connect to Tor. 
+
 %table
 \begin{table}[t]
 \centering
 \input{attempts-bridge-proxy.tex}
 \caption{
-A table showing how people connected to Tor.
+A table showing participants' connections to Tor.
 Note that none used the flashproxy, fte, fte-ipv6, obfs4, or scramblesuit bridges to connect. 
 One participant configured a proxy to bypass our simulated censorship environment.
 }
 \label{tab:attempts-bridge-proxy}
 \end{table} 
 
-Most participants could connect if they did not need to configure anything (E1) or used the recommended settings (E2). If some bridges were blocked (E3), people could not figure it out, or took a long time to do so (Table~\ref{table:participant-summary}). Some optionally used a bridge (E1), although those who could use any bridge to connect did not deviate from the recommendation (E2) and those who needed a meek bridge chose one at random (Table~\ref{tab:attempts-bridge-proxy}). Seventeen percent (19 of 114) were not able to connect to Tor. The most common reasons for failing to connect were not knowing whether to connect directly or configure a bridge or proxy (P73, P75, P89, P91, P106, P110), not knowing what they needed and trying to configure proxies (P74, P92, P105, P107, P113), and not knowing what to do when a recommended bridge did not work (P90, P93, P108, P111, P114). 
-
-Our changes significantly increased success rates (one-tailed Pearson's chi-square test; $\chi^2 = 2.808$, $\mbox{df} = 1$, $p < 0.047$, albeit with small effect size $\phi=0.157$).
+Seventeen percent (19 of 114) were not able to connect to Tor. The most common reasons for failing to connect were not knowing whether to connect directly or configure a bridge or proxy (P73, P75, P89, P91, P106, P110), not knowing what they needed and trying to configure proxies (P74, P92, P105, P107, P113), and not knowing what to do when a recommended bridge did not work (P90, P93, P108, P111, P114). 
 
 
 %using http://www.socscistatistics.com/tests/chisquare/Default2.aspx
@@ -540,9 +540,11 @@ Our changes significantly increased success rates (one-tailed Pearson's chi-squa
 % E3-old vs e3-new: The chi-square statistic is 1.3666. The p-value is .242403.
 
 \subsubsection{Connection time} 
-The simulated censorship environment, and therefore, the difficulty of the configuration, was the strongest factor in determining connection time (Kruskal--Wallis $\chi^2 = 80.5$, $\mbox{df} = 2$, $p < 10^{-15}$). Participants in E2 took longer to connect than participants in E1, and participants in E3 took the longest to connect (Figure~\ref{fig:time_to_success_clamped}). The more time spent, the less likely that participants were to succeed (Figure~\ref{fig:time_to_success_ecdf}). Participants generally kept trying the same options over and over, or gave up and waited for the experiment to be over. 
+Our changes significantly reduced connection time (one-tailed Mann--Whitney; $ Z = -1.84$, $p < 0.0328$, $r= 0.172$). We used a one-tailed Mann--Whitney test because the distributions were non-normal, heavily right-tailed, and right-censored. 
 
-Our changes significantly reduced connection time (one-tailed Mann--Whitney; $ Z = -1.84$, $p < 0.0328$, $r= 0.172$). We used a one-tailed Mann--Whitney test because the distributions were non-normal, heavily right-tailed, and right-censored. With the advice to only configure for heavily censored settings, participants tried a connection more quickly without trying to configure anything. This worked for users who did not need one (E1), but did not save users who needed a bridge (E2) much time. People still tried to connect with the recommended bridge before trying another one, but we suspect that the advice to ``try a meek-bridge if the recommended one did not work'' saved users who could not use certain bridges (E3) a significant amount of time. 
+However, the simulated censorship environment (and therefore, the difficulty of the configuration), was the strongest factor in determining connection time (Kruskal--Wallis $\chi^2 = 80.5$, $\mbox{df} = 2$, $p < 10^{-15}$). Figure~\ref{fig:time_to_success_clamped} shows that participants in E2 took longer to connect than participants in E1, and participants in E3 took the longest to connect. It would be ideal to have an interface that allows users to connect in the similar amounts of time, no matter what their configuration requirements; neither the OLD or NEW interface achieves this. 
+
+Figure~\ref{fig:time_to_success_ecdf} shows a cumulative distribution of connection times. Everyone in E1 was able to connect right away; particpants with the NEW interface doing so faster than participiants with the OLD interface. Most participants in E2 were able to connect right away; participants with the NEW interface and OLD interface connecting in a similar distribution of time. Participants in E3 took various amount of time to succeed, with participants with the NEW interface connecting significantly faster than those with the OLD interface. 
 
 \begin{figure}[t]
 \centering
@@ -558,24 +560,18 @@ The ``DNF'' (did not finish) shows how many did not connect.}
 \includegraphics{time_to_success_ecdf}
 %\input{time_to_success_ecdf.tex}
 \caption{
-Cumulative success rates over time.
+Cumulative success rates over time. Those who did not connect were assigned an arbitratily large finishing time greater than 40 minutes for the purpose of graphing this cumulative distribution. 
 }
 \label{fig:time_to_success_ecdf}
 \end{figure}
 
 
 \subsubsection{Configuration Time} 
-Participants spent a majority of their time on the progress screen (Table~\ref{table:median_time}). Their active configuration time was a small fraction of their connection time (Figure~\ref{fig:time_to_success_active_clamped}). We see that the time spent bootstrapping the connection to Tor dominated the measurements of participants who connected without configuring anything (E1), and waiting for the timeout error when Tor was blocked dominated the measurements for participants who did not try the correct configuration on the first try (E2, E3). We noticed that participants who configured components incorrectly searched for help in another browser while waiting for their connection to time out. Participants should not need to search for help outside the interface during configuration.
+Our changes significantly reduced configuration time (one-tailed Mann--Whitney; $Z = -3.28$, $p < 0.0005$, $r = 0.307$). Again, we used a one-tailed Mann--Whitney test because the distributions were non-normal, heavily right-tailed, and right-censored. 
 
-Our changes significantly reduced configuration time (one-tailed Mann--Whitney; $Z = -3.28$, $p < 0.0005$, $r = 0.307$). Again, we used a one-tailed Mann--Whitney test because the distributions were non-normal, heavily right-tailed, and right-censored. Participants were less likely to spend time unnecessarily configuring proxies (Table~\ref{table:median_time}) and trying different bridges. We believe that this is reflective of how most users would not require a proxy to connect to Tor, and suspect that most real users spend time configuring proxies when they need a bridge instead. 
+Figure~\ref{fig:time_to_success_active_clamped} shows that participants' active configuration time were generally a small fraction of their connection time. E1 participants' configuration time was a small fraction of connection time because because they generally chose a configuration that successfully connected to Tor right away, and the time spent bootstrapping the connection to Tor dominated the connection time. E3 participants' configuration time was significantly less than their connection time they usually needed to try multiple configuration options before connecting, but had to wait for the connection to time out or manually cancel their attempt between attempts. E2, participants' configuration time was a a modest amount of their connection time, due to the combination of reasons that affected participants in E1 and E3. 
 
-\begin{table}[t]
-\centering
-\input{median_time.tex}
-\caption{
-The median percent of time spent on each screen, aggregated over participants in each experimental condition.}
-\label{table:median_time}
-\end{table}
+Due to the mentions above, participants spent a majority of their time on the progress screen compared to the time spent anywhere else(Table~\ref{table:median_time}). We defined configuration time as a partcipant's connection time spent on all screens but the progress screen, because participants mostly waited on the progress screen. However, we noticed that some participants did utilize this time to search for help in another browser while waiting for their connection to time out, so configuration time is not a prefect metric to measure participant engagement. 
 
 \begin{figure}[t]
 \centering
@@ -585,6 +581,15 @@ Configuration times are much shorter than connection times, which means that mos
 }
 \label{fig:time_to_success_active_clamped}
 \end{figure}
+
+\begin{table}[t]
+\centering
+\input{median_time.tex}
+\caption{
+The median percent of time spent on each screen, aggregated over participants in each experimental condition.}
+\label{table:median_time}
+\end{table}
+
 
 \section{Recommendations}
 \label{sec:recommendations}
