@@ -358,7 +358,7 @@ We redesigned the interface according to usability best practices while addressi
 
 \subsection {Design Considerations} 
 
-Here are some of the design considerations we considered as constraints while designing our interface. Designing an interface for Tor had unique challenges: \\
+Designing an interface for Tor had unique challenges: \\
 
 \begin{itemize}
 \item {\bfseries User consent}: Some oppressive regimes may detect and prosecute Tor usage, and therefore simply using Tor may carry risks. While we could help users by automating configuration settings, this would involve probing network configurations, which may alert authorities to Tor usage. Taking this risk without proper consent is not ethical. 
@@ -372,8 +372,10 @@ Here are some of the design considerations we considered as constraints while de
 \item{\bfseries Financial constraints}: Leveraging harder-to-block ``meek'' bridges, which make use of pay-per-use content delivery networks that are hard to block without imposing collateral damage (e.g., Amazon Web Services), can help, but these relays cost the Tor Project magnitudes more than other relays and using them more would cost even more money.
 \end{itemize}
 
+We kept the user involved so that they explicitly start a connection to Tor. We chose not to leverage user inputs such as their location, risk, or other preferences due to active and passive adversaries. We limited our design changes to ones that do not require infrastructural changes or cause additional financial burden to increase the chances of Tor adoption our design changes. 
+
 \subsection{Changes Made} 
-We limited design changes to ones that do not require infrastructural changes, addressed observed pain points, and adhered to our design considerations. 
+In this section, we highlight and explain the speific design changes we made to address the observed pain points while adhering to the design considerations. We: \\
 
 \begin{figure*}
 \centering
@@ -438,10 +440,21 @@ A redesigned version of the Tor Browser 5.0.3 Tor Launcher GUI. Screens are in t
 \label{fig:new-interface}
 \end{figure*} 
 
-We eliminated the bridge and proxy questions from Figure~\ref{fig:old-bridge} and~\ref{fig:old-proxy} and eliminated the proxy screen by simulating auto-detection for proxies. We added a screen to summarize the settings before connecting and added indicators to the progress bar that showed what component was unreachable. We switched the proxy and bridge screens so that they are in a topologically sequential order. We clarified that configuration options were for heavily censored environments and gave a secondary bridge recommendation for heavily censored users. 
+\begin{itemize}
+\item{reduced the amount of text and technical terms in the text (Figures~\ref{fig:new-first},~\ref{fig:new-proxy},~\ref{fig:new-nobridge},~\ref{fig:new-bridge},~\ref{fig:new-bridge-combobox}, and ~\ref{fig:new-progress})  to encourage users to read instructions.} 
+\item{centered the text to make the design compatible for left to right and right to left languages.}
+\item{clarified that configuration options were manual and for heavily censored environments (Figure~\ref{fig:new-first}) to discourage users who did not need bridges and proxies to not optionally configure them.}
+\item{added a status bar on the proxy and bridge screens (Figure~\ref{fig:new-proxy},~\ref{fig:new-nobridge},~\ref{fig:new-bridge}, and~\ref{fig:new-bridge-combobox}) to hint at future tasks.}
+\item{reordered proxy and bridge screens (Figures ~\ref{fig:new-proxy} and ~\ref{fig:new-nobridge}) in a topologically sequential order. This hints that proper proxy settings (if required, to set one up properly, and if not required, to be set up properly or not selected) are necessary to reach bridges.}
+\item{eliminated the bridge and proxy questions (Figure~\ref{fig:old-bridge} and~\ref{fig:old-proxy}) to reduce the number of screens.}
+\item{added auto-detection for proxies (Figure~\ref{fig:new-proxy}) in place of the proxy question. In theory, this can be done locally without leacking information onto the network or for infrastructural changes.}
+\item{added the option to not use a bridge on the bridge screen (Figures~\ref{fig:new-nobridge}, ~\ref{fig:new-bridge} and ~\ref{fig:new-bridge-combobox}) to replace the function of the of the bridge question screen (Figure~\ref{fig:old-bridge}).}
+\item{gave a recommendation to use one of the three meek-transport bridges (Figure~\ref{fig:new-bridge}) in case the recommended obfs3-transport bridges were unreachable, which happens in heavily censored real environments and our simulated enviornment E3.}
+\item{added a summary screen (Figure~\ref{fig:new-summary}) that summarizes the settings before making a connection to Tor, since some participants from the previous study didn't know how they connected to Tor.}
+\item{added indicators on the progress screen (Figure~\ref{fig:new-progress}) that visualized what components are trying to be reached, and in the case of failure, showed which component was unreachable. This was to help users understand what was going on during  connection and to help troubleshoot their configuration.}
+\end{itemize} 
 
-
-Other beneficial changes could have been made, if we did not consider these constraints.
+Our interface was made to test changes in a laboratory testing. We acknowledge that our version would need refining (aligning text properly, using higher quality visual assets, etc.) before deployment. 
 
 \section{Quantitative Testing}
 \label{sec:quantitative}
@@ -617,7 +630,7 @@ For our work, we draw on the large body of previous work in secure interaction d
 
 \section{Conclusion} 
 \label{sec:conclusion}
-We measured why and how users have a hard time connecting to Tor through this usability evaluation of Tor launcher. We believe that this is because the interface requires users to know technical terms, provides a lot of freedom for error, and does not give proper feedback. Users in heavily censored environments will likely not succeed in connecting to Tor without outside help. We encourage more usability studies on security tools in general as well as other Tor applications, as they have the potential to create user growth, help user retention, and prevent user frustration. Tor Browser version~4.5 incorporated  changes based on our work. We also talked with Tor developers about automating connections to Tor, and they are now considering this as future work. 
+We measured why and how users have a hard time connecting to Tor through this usability evaluation of Tor launcher. We believe that this is because the interface requires users to know technical terms, provides a lot of freedom for error, and does not give proper feedback. Users in heavily censored environments will likely not succeed in connecting to Tor without outside help. We encourage more usability studies on security tools in general as well as other Tor applications, as they have the potential to create user growth, help user retention, and prevent user frustration. Tor Browser version~5.4.5 incorporated  changes based on our work. We also talked with Tor developers about automating connections to Tor, and they are now considering this as future work. 
 
 \section {Acknowledgments}
 We would like to thank the peer reviewers, especially our shepherd Jens Grossklas, for giving us valuable feedback on this paper. Tor Project employees Georg Koppen, Mike Perry, and Isabela Bagueros provided valuable insights about the history of Tor launcher and internal constraints. This work was done in collaboration with Xlab (Experimental Social Science Laboratory)~\cite{xlab}, SCRUB (secure computing research for users' benefit)~\cite{scrub}, and BLUES (Berkeley laboratory for usable and experimental security)~\cite{blues} laboratories, with support from
