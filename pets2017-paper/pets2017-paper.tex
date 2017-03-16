@@ -144,7 +144,7 @@ When a bridge is used, it becomes the first Tor relay.
 It is important to note that there are many valid configuration settings that can be used to connect to the Tor network. A user may or may not need a combination of proxy and bridge.
 A user who does not need a bridge or proxy can still connect with a bridge, proxy, or both, provided that they are configured correctly (though adding unnecessary network hops or obfuscation protocols may slow the connection down).
 
-Users can configure a bridge by choosing a transport, which selects the group of bridges that use that transport. For instance, choosing the ``obfs3'' option in Figure~\ref{fig:old-bridge-combobox} will select a group of bridges that peform the obfs3 transport protocol as okay to use, and the user will be assigned one of these bridges as their guard relay. If these built-in options do not work, users can obtain bridge configurations through out-of-band channels~\cite{bridgedb}. Configuring a proxy requires entering in the proxy protocol, IP address, port, and additional optional fields (Figure~\ref{fig:old-proxy}). The user must locate this information.
+Users can configure a bridge by choosing a transport, which selects the group of bridges that use that transport. For instance, choosing the ``obfs3'' option in Figure~\ref{fig:old-bridge-combobox} will select a group of bridges that perform the obfs3 transport protocol as okay to use, and the user will be assigned one of these bridges as their guard relay. If these built-in options do not work, users can obtain bridge configurations through out-of-band channels~\cite{bridgedb}. Configuring a proxy requires entering in the proxy protocol, IP address, port, and additional optional fields (Figure~\ref{fig:old-proxy}). The user must locate this information.
 
 \begin{figure*}
 \centering
@@ -220,7 +220,7 @@ We performed our qualitative experiments one participant at a time, so that we c
 \subsection{Experimental Setup}
 \label{sec:environments}
 We simulated three environments of varying censorship severity (Table~\ref{tab:environments}). We chose to 
-simulate environments for the stability and reproducibility of the experiment, as real censored networks are volatile and complex. Re-routing participant traffic through other countries' networks also may introduce unforseen risks to the participants out of our control and performing hundreds of connections in short intervals during expeirments may draw unnecessary attention to Tor use in that country. 
+simulate environments for the stability and reproducibility of the experiment, as real censored networks are volatile and complex. Re-routing participant traffic through other countries' networks also may introduce unforeseen risks to the participants out of our control and performing hundreds of connections in short intervals during experiments may draw unnecessary attention to Tor use in that country. 
 
 \begin{table}[t]
 \centering
@@ -256,7 +256,7 @@ We use the following three industry-standard~\cite{albert2013measuring} usabilit
 
 \begin{itemize}
 \item {\bfseries Completion rate:}  the percentage of users that want to connect to Tor and successfully do so. The higher the completion rate, the better. The ideal case would be that everyone is able to connect to Tor if they want to. Even if users do not successfully connect to Tor on previous attempts but eventually do so during the experiment, they are considered to have successfully connected to Tor for this metric.
-\item {\bfseries Connection time:} the amount of  time it takes a user to connect to Tor. The less time it takes for userss to connect, the better. The ideal case would be that the connection time is very close to the time it takes for the application to communicate with the servers and establish a circuit of relays for the connection, which can take up to a couple minutes. Connection time includes this bootstrapping time and any additional time that people spend in the interface. 
+\item {\bfseries Connection time:} the amount of  time it takes a user to connect to Tor. The less time it takes for users to connect, the better. The ideal case would be that the connection time is very close to the time it takes for the application to communicate with the servers and establish a circuit of relays for the connection, which can take up to a couple minutes. Connection time includes this bootstrapping time and any additional time that people spend in the interface. 
 \item {\bfseries Configuration time:} the amount of time users spend in the interface. The less time it takes for users to configure their preferences, the better. Configuration time is included in connection time, so it will always be less than connection time. We defined configuration time as any time spent on the bridge and proxy screens, since users were most likely configuring bridges and proxies. We excluded any time spent on the progress screen, because users were most likely waiting for connections to establish or timeout and not necessarily interacting with the interface. This should be as short as possible.
 \end{itemize}
 
@@ -310,7 +310,7 @@ As we performed the experiments, we distributed participants evenly across exper
 \subsection{Procedure} 
 We ran the experiments in a small room with a desk and chair, where a monitor, keyboard, and a Windows computer were set up. On a clean computer, we installed Tor Browser 5.0.3 for testing, Chrome, Firefox, and Internet Explorer as browser options, and VLC media player~\cite{vlc} to record the screen during the experiment. We ran a script that set up one of the three simulated environments (E1, E2, or E3) and started recording the computer screen before each participant.
 
-We get informed consent by talking about the study, task, and risks (Appendix~\ref{qualitative-script}). Then the participant visited sample websites in a non-Tor browser to illustrate that some sites were blocked and instruct them to use Tor to circumvent censorship. Their task was to complete a worksheet (Appendix~\ref{participant-worksheet}) that required visitng a censored website (Wikipedia) and an uncensored website (CNN). We chose Wikipedia and CNN because their likely familiarity~\cite{alexa}. After giving the instructions, the researchers left the room to minimize interactions and watched a live feed of the participant's screen.
+We get informed consent by talking about the study, task, and risks (Appendix~\ref{qualitative-script}). Then the participant visited sample websites in a non-Tor browser to illustrate that some sites were blocked and instruct them to use Tor to circumvent censorship. Their task was to complete a worksheet (Appendix~\ref{participant-worksheet}) that required visiting a censored website (Wikipedia) and an uncensored website (CNN). We chose Wikipedia and CNN because their likely familiarity~\cite{alexa}. After giving the instructions, the researchers left the room to minimize interactions and watched a live feed of the participant's screen.
 
 After 45 minutes (or when participants finished the worksheet), we interviewed the participant about their experience. We asked general questions (Appendix~\ref{interview-questions}) and participant-specific questions to verify any observations (e.g., ``the participant was selecting bridges at random''). After the interview, we allowed the participant to ask any questions about the experiment, then gave them~\$30 for their time. 
 
@@ -438,7 +438,7 @@ Designing an interface for Tor had unique challenges: \\
 We kept the user involved so that they explicitly start a connection to Tor. We chose not to leverage user inputs such as their location, risk, or other preferences due to active and passive adversaries. We limited our design changes to ones that do not require infrastructural changes or cause additional financial burden to increase the chances of Tor adoption our design changes. 
 
 \subsection{Changes Made} 
-In this section, we highlight and explain the speific design changes we made to address the observed pain points while adhering to the design considerations. We: \\
+In this section, we highlight and explain the specific design changes we made to address the observed pain points while adhering to the design considerations. We: \\
 
 \begin{itemize}
 \item{reduced the amount of text and technical terms in the text (Figures~\ref{fig:new-first},~\ref{fig:new-proxy},~\ref{fig:new-nobridge},~\ref{fig:new-bridge},~\ref{fig:new-bridge-combobox}, and ~\ref{fig:new-progress})  to encourage users to read instructions.} 
@@ -447,9 +447,9 @@ In this section, we highlight and explain the speific design changes we made to 
 \item{added a status bar on the proxy and bridge screens (Figure~\ref{fig:new-proxy},~\ref{fig:new-nobridge},~\ref{fig:new-bridge}, and~\ref{fig:new-bridge-combobox}) to hint at future tasks.}
 \item{reordered proxy and bridge screens (Figures ~\ref{fig:new-proxy} and ~\ref{fig:new-nobridge}) in a topologically sequential order. This hints that proper proxy settings (if required, to set one up properly, and if not required, to be set up properly or not selected) are necessary to reach bridges.}
 \item{eliminated the bridge and proxy questions (Figure~\ref{fig:old-bridge} and~\ref{fig:old-proxy}) to reduce the number of screens.}
-\item{added auto-detection for proxies (Figure~\ref{fig:new-proxy}) in place of the proxy question. In theory, this can be done locally without leacking information onto the network or for infrastructural changes.}
+\item{added auto-detection for proxies (Figure~\ref{fig:new-proxy}) in place of the proxy question. In theory, this can be done locally without leaking information onto the network or for infrastructural changes.}
 \item{added the option to not use a bridge on the bridge screen (Figures~\ref{fig:new-nobridge}, ~\ref{fig:new-bridge} and ~\ref{fig:new-bridge-combobox}) to replace the function of the of the bridge question screen (Figure~\ref{fig:old-bridge}).}
-\item{gave a recommendation to use one of the three meek-transport bridges (Figure~\ref{fig:new-bridge}) in case the recommended obfs3-transport bridges were unreachable, which happens in heavily censored real environments and our simulated enviornment E3.}
+\item{gave a recommendation to use one of the three meek-transport bridges (Figure~\ref{fig:new-bridge}) in case the recommended obfs3-transport bridges were unreachable, which happens in heavily censored real environments and our simulated environment E3.}
 \item{added a summary screen (Figure~\ref{fig:new-summary}) that summarizes the settings before making a connection to Tor, since some participants from the previous study didn't know how they connected to Tor.}
 \item{added indicators on the progress screen (Figure~\ref{fig:new-progress}) that visualized what components are trying to be reached, and in the case of failure, showed which component was unreachable. This was to help users understand what was going on during  connection and to help troubleshoot their configuration.}
 \end{itemize} 
@@ -471,7 +471,7 @@ We ran our experiment at Xlab~\cite{xlab}, an experimental social science labora
 We receive informed consent after talking about the study (Appendix~\ref{quantitative-script}) and instruct participants to use Tor to complete their worksheet (Appendix~\ref{summative-worksheet}), and gave them 40 minutes to complete the task. Researchers maintained minimal interactions with the participants. After the experiment and exit survey (Appendix~\ref{quantitative-exit-survey}), gave them \$30 for their time. 
 
 \subsection{Results} 
-In this section, we use OLD to refer to the original interface (Figure~\ref{fig:old-interface}) and NEW to refer the version with our changes (Figure~\ref{fig:new-interface}). As seen in Table~\ref{table:participant-summary}, our design changes helped more users connect to Tor in less time. However, many, including users who used the redesigned version, still could not connect to Tor (63\% (72 of 114) of first attempts failed and 79\% (363 of 458) of total attempts failed) and those that did took long to do so (>3 minutes in E2 and >20 minutes in E3). Figure~\ref{fig:all-participant-edges}) summarizes each partipant--showing if they connect to Tor, how long each participant took to do so, and where they spent their time. Based on these results, we recommend that our changes be adapted in the meantime, but encourage a drastic redesign of the interface.
+In this section, we use OLD to refer to the original interface (Figure~\ref{fig:old-interface}) and NEW to refer the version with our changes (Figure~\ref{fig:new-interface}). As seen in Table~\ref{table:participant-summary}, our design changes helped more users connect to Tor in less time. However, many, including users who used the redesigned version, still could not connect to Tor (63\% (72 of 114) of first attempts failed and 79\% (363 of 458) of total attempts failed) and those that did took long to do so (>3 minutes in E2 and >20 minutes in E3). Figure~\ref{fig:all-participant-edges}) summarizes each participant--showing if they connect to Tor, how long each participant took to do so, and where they spent their time. Based on these results, we recommend that our changes be adapted in the meantime, but encourage a drastic redesign of the interface.
 
 \label{all-participant-edges} 
 \begin{figure*}
@@ -544,7 +544,7 @@ Our changes significantly reduced connection time (one-tailed Mann--Whitney; $ Z
 
 However, the simulated censorship environment (and therefore, the difficulty of the configuration), was the strongest factor in determining connection time (Kruskal--Wallis $\chi^2 = 80.5$, $\mbox{df} = 2$, $p < 10^{-15}$). Figure~\ref{fig:time_to_success_clamped} shows that participants in E2 took longer to connect than participants in E1, and participants in E3 took the longest to connect. It would be ideal to have an interface that allows users to connect in the similar amounts of time, no matter what their configuration requirements; neither the OLD or NEW interface achieves this. 
 
-Figure~\ref{fig:time_to_success_ecdf} shows a cumulative distribution of connection times. Everyone in E1 was able to connect right away; particpants with the NEW interface doing so faster than participiants with the OLD interface. Most participants in E2 were able to connect right away; participants with the NEW interface and OLD interface connecting in a similar distribution of time. Participants in E3 took various amount of time to succeed, with participants with the NEW interface connecting significantly faster than those with the OLD interface. 
+Figure~\ref{fig:time_to_success_ecdf} shows a cumulative distribution of connection times. Everyone in E1 was able to connect right away; participants with the NEW interface doing so faster than participants with the OLD interface. Most participants in E2 were able to connect right away; participants with the NEW interface and OLD interface connecting in a similar distribution of time. Participants in E3 took various amount of time to succeed, with participants with the NEW interface connecting significantly faster than those with the OLD interface. 
 
 \begin{figure}[t]
 \centering
@@ -560,7 +560,7 @@ The ``DNF'' (did not finish) shows how many did not connect.}
 \includegraphics{time_to_success_ecdf}
 %\input{time_to_success_ecdf.tex}
 \caption{
-Cumulative success rates over time. Those who did not connect were assigned an arbitratily large finishing time greater than 40 minutes for the purpose of graphing this cumulative distribution. 
+Cumulative success rates over time. Those who did not connect were assigned an arbitrarily large finishing time greater than 40 minutes for the purpose of graphing this cumulative distribution. 
 }
 \label{fig:time_to_success_ecdf}
 \end{figure}
@@ -571,7 +571,7 @@ Our changes significantly reduced configuration time (one-tailed Mann--Whitney; 
 
 Figure~\ref{fig:time_to_success_active_clamped} shows that participants' active configuration time were generally a small fraction of their connection time. E1 participants' configuration time was a small fraction of connection time because because they generally chose a configuration that successfully connected to Tor right away, and the time spent bootstrapping the connection to Tor dominated the connection time. E3 participants' configuration time was significantly less than their connection time they usually needed to try multiple configuration options before connecting, but had to wait for the connection to time out or manually cancel their attempt between attempts. E2, participants' configuration time was a a modest amount of their connection time, due to the combination of reasons that affected participants in E1 and E3. 
 
-Due to the mentions above, participants spent a majority of their time on the progress screen compared to the time spent anywhere else(Table~\ref{table:median_time}). We defined configuration time as a partcipant's connection time spent on all screens but the progress screen, because participants mostly waited on the progress screen. However, we noticed that some participants did utilize this time to search for help in another browser while waiting for their connection to time out, so configuration time is not a prefect metric to measure participant engagement. 
+Due to the mentions above, participants spent a majority of their time on the progress screen compared to the time spent anywhere else(Table~\ref{table:median_time}). We defined configuration time as a participant's connection time spent on all screens but the progress screen, because participants mostly waited on the progress screen. However, we noticed that some participants did utilize this time to search for help in another browser while waiting for their connection to time out, so configuration time is not a prefect metric to measure participant engagement. 
 
 \begin{figure}[t]
 \centering
@@ -645,9 +645,9 @@ Fabian et~al.~\cite{fabian2010privately}, in 2010,
 estimated how much Tor's added latency harms usability
 (considered separately from user interface concerns).
 They measured the latency of requests to common websites with and without Tor,
-and mapped the latencies to compute an expected ``cancelation rate,''
+and mapped the latencies to compute an expected ``cancellation rate,''
 the fraction of users who would have given up waiting for a request to complete.
-They estimated a median cancelation rate of 88\% for Tor, compared to 14\% for direct requests.
+They estimated a median cancellation rate of 88\% for Tor, compared to 14\% for direct requests.
 In 2007, Clark et~al.~\cite{clark2007usability}
 used cognitive walkthroughs to evaluate four
 methods of web browsing over Tor
