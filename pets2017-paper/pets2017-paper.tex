@@ -636,7 +636,14 @@ places where users' uncertainty about what to do
 put them at risk of not completing a task.
 Of their 25 participants, 64\% encountered at least one stop-point,
 such as a long startup time, misidentified icons, or confusion with other web browsers.
-Fabian et~al.~\cite{fabian2010privately} revealed how users are frustrated by latency in Tor Browser enough not to use it, even if that latency benefits their anonymity~\cite{dingledine2009performance}. Clark et~al.~\cite{clark2007usability} evaluated various Tor Browser deployment options (Vidalia, Privoxy, Torbutton, and FoxyProxy--none of which are around today) to find that none were satisfactory from a usability perspective and offered advice on how to improve them.
+Fabian et~al.~\cite{fabian2010privately}, in 2010,
+estimated how much Tor's added latency harms usability.
+They measured the latency of requests to common websites with and without Tor,
+and mapped the latencies to compute an expected ``cancelation rate,''
+the fraction of users who would have given up waiting for a request to complete.
+They estimated a median cancelation rate of 88\% for Tor, compared to 14\% for direct requests.
+% \cite{dingledine2009performance}
+Clark et~al.~\cite{clark2007usability} evaluated various Tor Browser deployment options (Vidalia, Privoxy, Torbutton, and FoxyProxy--none of which are around today) to find that none were satisfactory from a usability perspective and offered advice on how to improve them.
 Lee and Fifield~\cite{uxsprint} ran an informal UX sprint~\cite{uxsprint2015-tickets}.
 
 Usable security aims to improve the security of a system by helping the user make good decisions~\cite{payne2008brief}. This involves informing users about the system, communicating risks in a way that is understandable, clarifying what the security requirements are, and providing guidance with technical tasks~\cite{adams1999users}. Usable security research explores a variety of security concepts, such as email encryption~\cite{whitten1999johnny,garfinkel2005johnny}, authentication~\cite{morris1979password,dhamija2000deja,suo2005graphical}, security indicators~\cite{dhamija2006phishing,akhawe2013alice}, and warnings~\cite{schechter2007emperor,egelman2008you}. Our work contributes to this body of knowledge by exploring tools for censorship circumvention.
