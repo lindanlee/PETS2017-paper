@@ -687,11 +687,12 @@ the US Department of State, Bureau of Democracy, Human Rights and Labor.
 
 \section{Success and Error States in Tor Launcher 5.0.3} 
 \label{states} 
-Tor Launcher 5.0.3's end states corresponding to Figure~\ref{fig:digraph}. E\# and $\mbox{e\#}^\prime$ are equivalent, but $\mbox{e\#}^\prime$ uses a bridge while e\# does not. \\
+Here we define the end state codes that appear in Figure~\ref{fig:digraph}.
+e\# and $\mbox{e\#}^\prime$ are equivalent, except that $\mbox{e\#}^\prime$ uses a bridge while e\# does not. \\
 
 \noindent success states: 
 \begin{itemize}
-\item s0: no bridge no proxy
+\item s0: no bridge, no proxy
 \item s1: valid bridge, no proxy
 \item s2: valid bridge and valid proxy (blank port)
 \item s3: valid bridge and valid proxy (specified port)
@@ -715,7 +716,9 @@ error states:
 \item e13: proxy: valid IP address, blank port
 \end{itemize} 
 
-Same inputs can lead to different end states. Tor Launcher will connect to a proxy successfully with the port left blank if the proxy uses port 80 (s2) but will not if the proxy uses another port (e12). 
+The same inputs can lead to different end states,
+depending on the network environment.
+For example, Tor Launcher will connect to a proxy successfully with the port left blank if the proxy uses port 80 (s2) but will not if the proxy uses another port (e12). 
 
 \section{Qualitative User Study Recruitment Posting} 
 \label{qualitative-recruitment}
@@ -740,7 +743,7 @@ campus.}
 \item{What is your occupation?} 
 \item{Do you speak any languages other than English fluently?}
 \item{If you have a personal computer, what kind do you use?}
-\item{Which of the following terms have you heard of? \textit{<answer choices: a checkboxlist of the the following terms: malware, proxy services, phishing, SSL, X.511 certificates, Tor>}}
+\item{Which of the following terms have you heard of? \textit{<answer choices: a checkboxlist of the following terms: malware, proxy services, phishing, SSL, X.511 certificates, Tor>}}
 \item{How often do you use the following software or features? \textit{<answer choices: a grid of radio buttons. Software/features (rows): HTTPS on web pages, proxies or other censorship circumvention tools, virtual private networks (VPN), file or whole-disk encryption, anonymity systems (e.g., Tor), email encryption (e.g., PGP), chat or instant messaging encryption, voice communication encryption. Frequency (columns): never, less than once a month, a few times a month, several times a week, daily.>}}
 \end{enumerate}
 Thank you for filling out this form. You are now done!
