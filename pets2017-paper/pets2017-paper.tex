@@ -824,16 +824,16 @@ Observations in E2:
 \pquote{P8 (new user, direct, 10:40)}{They tried connecting directly. After waiting a couple minutes, they figured that did not work and looked at proxy settings. But after looking at the settings and being intimidated, they tried connecting directly again. Then, they tried to configure a proxy, and gave up. They tried connecting directly again, which worked unexpectedly. They found a bug in our setup that we fixed for the later experiment. E2 required a bridge to connect, but new public relays came online after we ran our firewall rules and they were able to connect using those new relays. }
 
 %P11 (used Tor before): E2 (~3:00; 1:05 to 5:13)
-\pquote{P9 (previous Tor user, obfs3, 4:08)}{They tried connecting directly. And they tried connecting directly through a different user path by answering no to bridge and proxy questions in the interface, connecting from the proxy screen. Then, they connected using the recommended bridge.}
+\pquote{P9 (previous Tor user, obfs3, 4:08)}{They tried connecting directly. And they tried connecting directly through a different user path by answering `no' to the bridge and proxy questions in the interface, connecting from the proxy screen. Then, they connected using the recommended bridge.}
 
 %P8 (used Tor): E2 (clock drift mission impossible, 1:38 to 7:20) 
-\pquote{P10 (previous Tor user, failed to connect)}{They tried a direct connection. Then, they tried a connection with the recommended bridge, which should have worked. However, our setup experienced a clock drift. Tor does not allow connections with bad clocks. They spent the rest of their time trying different bridges and proxies in vain (Figure~\ref{fig:proxy-attempt}). This participant tried the most attempts to connect to Tor, using a variety of bridges and proxies.}
+\pquote{P10 (previous Tor user, failed to connect)}{They tried a direct connection. Then, they tried a connection with the recommended bridge, which should have worked. However, our setup experienced a clock drift. Tor does not allow connections with bad clocks. They spent the rest of their time trying different bridges and proxies in vain (Figure~\ref{fig:proxy-attempt}). This participant made the most connection attempts, using a variety of bridges and proxies.}
 
-Participants in E2 tried a direct connection to Tor before {\it eventually} connecting with the recommended bridge.
+Participants in E2 tried a direct connection to Tor before \emph{eventually} connecting with the recommended bridge.
 They spent a fair amount of time waiting before determining that connections failed. Some stated that they connected directly because the interface says that it would work in ``most situations'' (Figure~\ref{fig:old-first}). Our participants did not know if they needed bridges or proxies, so they only tried to configure one when the direct connection failed. Since they did not know whether they needed a bridge or proxy, they often tried to configure proxies when they did not need one and should have configured bridges instead.  
 
 \subsection{E3}
-In E3, a bridge was required to connect. Most of the hardcoded bridges in the dropdown menu do not work, with the exception of meek-amazon, meek-azure, and meek-google. Custom bridges can also work. Configuring a proxy was optional.
+In E3, a bridge was required to connect. Most of the hardcoded bridges in the dropdown menu would not work, with the exception of meek-amazon, meek-azure, and meek-google. Custom bridges can also work. Configuring a proxy was optional.
 Observations in E3: 
 
 \begin{figure}[t]
@@ -855,15 +855,15 @@ Proxies were not necessary to connect to Tor, but many spent time trying to conf
 \pquote{P13 (new user, failed to connect)}{They tried connecting directly, and then with the recommended bridge. They retried connecting with the recommended bridge. When that didn't work, they tried to configure a proxy. Then, they gave up on the task entirely.}
 
 %P6 (heard of Tor): E3 (26:48; 0:18 to 27:06) 
-\pquote{P14 (new user, meek-google, 26:48)}{They tried a direct connection by answering no to bridge and proxy questions. After waiting a while, they canceled the connection and tried connecting with the recommended bridge. They retried connecting with the recommended bridge two more times, then tried to connect with a flashproxy bridge, an obfs4 bridge, a scramblesuit bridge. After retrying the recommended bridge again, they made a connection using a meek-google bridge.}
+\pquote{P14 (new user, meek-google, 26:48)}{They tried a direct connection by answering `no' to the bridge and proxy questions. After waiting a while, they canceled the connection and tried connecting with the recommended bridge. They retried connecting with the recommended bridge two more times, then tried to connect with a flashproxy bridge, an obfs4 bridge, a scramblesuit bridge. After retrying the recommended bridge again, they made a connection using a meek-google bridge.}
 
 %P1 (heard of tor before): E3 (~7:31, 0:51 to 8:22) 
-\pquote{P15 (new user, meek-azure, 7:31)}{They tried connecting directly, and then with the recommended bridge. After that, they tried a connection using a meek-azure bridge, but gave up after before it could connect. They went back to the first screen~\ref{fig:old-first} and clicked connect, which made a connection using meek-azure bridge. The connect button makes a connection to Tor with the toggled settings in the interface. When the interface is initialized to not use a bridge or proxy, clicking connect on the first page starts a direct connection. But since the participant had chosen a meek-azure bridge, the connect button made a connection to a meek-azure bridge, even though the text in the first screen says that they will ``connect directly.'' Because of this, the participant thought they made a direct connection. Although they succeeded in connecting to Tor, they did not realize what they had done or why connecting to a meek-azure bridge worked. They chose that bridge at random.}
+\pquote{P15 (new user, meek-azure, 7:31)}{They tried connecting directly, and then with the recommended bridge. After that, they tried a connection using a meek-azure bridge, but gave up after before it could connect. They went back to the first screen (Figure~\ref{fig:old-first}) and clicked connect, which made a connection using a meek-azure bridge. The connect button makes a connection to Tor with the toggled settings in the interface. When the interface is initialized to not use a bridge or proxy, clicking connect on the first page starts a direct connection. But since the participant had chosen a meek-azure bridge, the connect button made a connection to a meek-azure bridge, even though the text in the first screen says that they will ``connect directly.'' Because of this, the participant thought they made a direct connection. Although they succeeded in connecting to Tor, they did not realize what they had done or why connecting to a meek-azure bridge worked. They chose that bridge at random.}
 
 %P5 (has used tor before): E3 (22:06; 0:00 to 22:06)
 \pquote{P16 (previous Tor user, custom bridge, 22:06)}{They tried and retried connecting directly, then they tried connecting with the recommended bridge. After briefly looking at error messages in the system log, they retried connecting directly two more times. After trying to configure a proxy for a while, they instead decided not to use one and tried connecting with a meek-google bridge, which would have worked. But  due to a bug in the progress bar that prevents it from updating correctly on subsequent attempts, they gave up before it could connect. They made a connection with the custom bridge by following the instructions from the bridge help button (they created a throwaway email account, emailed the bridge responder with poor syntax and did not get a response, emailed the bridge responder again with correct syntax and got a response, and then typed in the bridge information into the custom bridge field).}
 
-Participants in E3 also generally tried a direct connection to Tor. They did not know if they needed a bridge or proxy, and like the participants in E2, only configured them when the direct connection failed. Of the participants that failed, they all tried the recommended bridge but not any others. The participants that did manage to connect to Tor did not know which bridges worked and which ones did not, or which ones to try next in case the recommended one failed. P14 brute forced options until something worked, P15 did not think that they used a bridge, and P16 gave up on a hardcoded bridge that would have worked and used a custom bridge instead.
+Participants in E3 also generally tried a direct connection to Tor. They did not know if they needed a bridge or proxy, and like the participants in E2, only configured them when the direct connection failed. Of the participants that failed, they all tried the recommended bridge but not any others. The participants that did manage to connect to Tor did not know which bridges worked and which ones did not, or which ones to try next in case the recommended one failed. P14 brute-forced options until something worked, P15 did not think that they were using a bridge, and P16 gave up on a hardcoded bridge that would have worked and used a custom bridge instead.
 
 \section{Quantitative User Study Recruitment Posting}
 \label{quantitative-recruitment}
@@ -878,9 +878,9 @@ The experiment will involve basic Internet browsing tasks. You are not eligible 
 
 To be eligible, you must be an adult (18 or older). This is to comply with university policies on research. 
 
-If you are interested: 1. Email lnl@berkeley.edu 
+If you are interested: 1.~Email lnl@berkeley.edu 
 with the sessions you are able to attend. We will confirm your participation and assign you a session. 
-2. Come to Xlab 
+2.~Come to Xlab 
 at the appointed time for the experiment.
 
 \section{Quantitative User Study Introduction Script} 
@@ -903,7 +903,7 @@ The purpose of this experiment is to evaluate the use of Tor browser, which is a
 To complete this worksheet, you will need to set up Tor browser (on your desktop) correctly and use it to get to blocked site. If you can visit wikipedia, then you know that you have successfully circumvented censorship.
 
 \begin{enumerate}
-\item Visit Wikipedia’s main page (\begin{NoHyper}\url{https://en.wikipedia.org/wiki/Main_Page}\end{NoHyper}). What is the topic of today’s selected article?
+\item Visit Wikipedia's main page (\begin{NoHyper}\url{https://en.wikipedia.org/wiki/Main_Page}\end{NoHyper}). What is the topic of today's selected article?
 \item After you have completed the tasks, fill out this survey: \begin{NoHyper}\url{http://bit.ly/tor-survey}\end{NoHyper}
 \end{enumerate}
 
