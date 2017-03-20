@@ -466,7 +466,8 @@ Designing an interface for Tor had unique challenges: \\
 
 \item{\bfseries Maintenance constraints}: Network environments change all the time. Keeping up with how each country censors and pushing changes before the affected users connect to Tor is difficult.
 
-\item{\bfseries Financial constraints}: Leveraging harder-to-block \texttt{meek} bridges, which make use of pay-per-use content delivery networks that are hard to block without imposing collateral damage (e.g., Amazon Web Services), can help, but these relays cost the Tor Project magnitudes more than other relays and using them more would cost even more money.
+\item{\bfseries Financial constraints}: The \texttt{meek} bridges are especially effective at avoiding censorship: they are harder to block without imposing significant collateral damage (e.g., to Amazon Web Services) and are harder to detect through passive monitoring~\cite{fifield2015blocking}.
+Leveraging these harder-to-block bridges can help users in heavily censored environments, but these relays cost the Tor Project magnitudes more than other relays and using them more would cost even more money.
 \end{itemize}
 
 We kept the user involved so that they explicitly start a connection to Tor. We chose not to leverage user inputs such as their location, risk, or other preferences due to active and passive adversaries. We limited our design changes to ones that do not require infrastructural changes or cause additional financial burden to make it easier for the Tor project to adopt them.
