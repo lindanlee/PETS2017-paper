@@ -592,7 +592,7 @@ The median percent of time spent on each screen, aggregated over participants in
 
 \section{Recommendations}
 \label{sec:recommendations}
-While our design resulted in shorter connection times and greater success, it could still be improved. Thus, we do not recommend our exact design. Instead, we offer some suggestions based on what we learned: \\
+While our design resulted in shorter connection times and greater success,  but it could still be improved. We do not recommend our exact design as the optimal design, although we believe it is an improvement. Instead, we offer some suggestions based on what we learned: \\
  
 \begin{itemize}
 \item {\bfseries Assume users do not know technical concepts.} Users should not need to know what a relay, bridge, proxy, or transport is to connect to Tor. 
@@ -600,7 +600,7 @@ While our design resulted in shorter connection times and greater success, it co
 \item {\bfseries Leverage user knowledge.} Users know what country they are connecting from, their level of acceptable risk, and what they are using Tor for. Guiding users to make decisions based on this information will work better than asking about their ISP or explaining what obfuscation protocols are. 
 \end{itemize}
 
-We ourselves did not follow the above advice, due to design constraints. But seeing as how our redesigned interface still did not have an ideal success rate, connection time, or configuration time, we think that alternative designs that leverage user input and automation should be considered. We recommend implementing some design changes right away initially to improve on the current design, then consider implementing our advice above. \\
+We did not try any designs that asked for user inputs, due to design constraints. But we see further room for improvement in success rate, connection time, and configuration time that could be made by leverage user input and automation. Here, we talk about the potential approaches to redesigning the interface:  \\
 
 \begin{itemize}
 \item{\bfseries Design changes:} as demonstrated by our design iteration, tweaks in the interface can result in significant usability improvements.
@@ -608,7 +608,7 @@ We ourselves did not follow the above advice, due to design constraints. But see
 \item{\bfseries Smart automation:} a scheme that connects to a hard-to-censor bridge, which then automatically assigns a bridge that works for the user based on availability and bandwidth constraints. We call this ``smart'' automation because this scheme involves communication with Tor servers, which choose a bridge that will work for the user on the first try. 
 \end{itemize}
 
-User consent should precede any automated connections to Tor. Alternative methods, such as giving location-specific advice, should be explored as well.
+We recommend a gradual approach that starts with deploying design changes, measuring the impact of those changes, and cautiously incorporating automation into the interface only if the impact of those changes are still unsatisfactory. 
 
 \section{Limitations}
 \label{sec:limitations}
