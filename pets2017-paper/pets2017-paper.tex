@@ -460,7 +460,7 @@ Designing an interface for Tor had unique challenges: \\
 \begin{itemize}
 \item {\bfseries User consent}: Some oppressive regimes may detect and prosecute Tor usage, and therefore simply using Tor may carry risks. While we could help users by automating configuration settings, this would involve probing network configurations and sending network traffic that could allow authorities to detect that the user is using Tor.
 
-\item{\bfseries Active adversaries}: We could ask the user for their location, risk tolerance, or other preferences to help automatically make decisions. Leveraging user input works well, but third-party versions of Tor Browser that replicate the official version could use these inputs to profile users. 
+%\item{\bfseries Active adversaries}: We could ask the user for their location, risk tolerance, or other preferences to help automatically make decisions. Leveraging user input works well, but third-party versions of Tor Browser that replicate the official version could use these inputs to profile users. 
 
 \item {\bfseries Passive adversaries}: A sufficiently powerful network adversary can detect that a user is connecting to Tor, unless the user chooses some very specific network configurations. We should enable informed users who wish to avoid this risk to do so.
 
@@ -470,7 +470,7 @@ Designing an interface for Tor had unique challenges: \\
 Leveraging these harder-to-block bridges can help users in heavily censored environments, but these relays cost the Tor Project magnitudes more than other relays and using them more would cost even more money.
 \end{itemize}
 
-We kept the user involved so that they explicitly start a connection to Tor. We chose not to leverage user inputs such as their location, risk, or other preferences due to active and passive adversaries. We limited our design changes to ones that do not require infrastructural changes or cause additional financial burden to make it easier for the Tor project to adopt them.
+We kept the user involved so that they explicitly start a connection to Tor. We chose not to leverage user inputs such as their location, risk, or other preferences. We limited our design changes to ones that do not require infrastructural changes or cause additional financial burden to make it easier for the Tor project to adopt them.
 
 \subsection{Changes Made} 
 In this section, we highlight and explain the specific design changes we made to address the observed pain points while adhering to the design considerations. We: \\
