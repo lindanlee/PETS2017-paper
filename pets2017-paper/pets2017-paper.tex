@@ -198,7 +198,7 @@ The user must obtain this information themselves.
 \begin{subfigure}[b]{0.30\textwidth}
 	\includegraphics[width=\textwidth]{screenshots/OLD-bridgeHelp.png}
 	\centering\captionsetup{width=1.5\linewidth}%
-	\caption{The bridge help screen (BH) talks about getting a custom bridge. ``Done'' leads back to the previous screen.}
+	\caption{The bridge help screen (BH) describes options for obtaining a custom bridge. ``Done'' leads back to the previous screen.}
 	\label{fig:old-bridge-help}
 \end{subfigure}
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -493,7 +493,7 @@ Our interface was intended as a proof of concept, so we could evaluate these cha
 
 \section{Quantitative Testing}
 \label{sec:quantitative}
-We conducted our quantitative experiments at a behavioral laboratory with many participants in parallel, using instrumentation to capture evaluation metrics. These experiments confirmed previously-seen stumbling points and user behaviors and validated our proposed design improvements.
+We conducted our quantitative experiments at a behavioral laboratory with many participants in parallel, using instrumentation to capture evaluation metrics. These experiments confirmed previously-seen pain points and validated our proposed design improvements.
 
 \subsection{Recruitment}
 We recruited 59 participants from the Xlab mailing list, which is a university-wide pool of participants who have opted in to participating in social science experiments (see Appendix~\ref{quantitative-recruitment} for recruitment materials). We recruited an additional 65 participants from Craigslist to ensure diversity, since Xlab participants are primarily students and staff from UC Berkeley.
@@ -501,7 +501,7 @@ We recruited 59 participants from the Xlab mailing list, which is a university-w
 Of our 124 participants, we filtered out 10 participants who did not complete the consent form correctly or who downloaded another version of Tor Browser to use during the experiment. One participant did not report their demographics, but we still used their data. Of the remaining 113, 44.2\% identified as male, 54.0\% as female, and 1.8\% as neither. They were between 18 and~68 years old ($\mu = 28.2$, $\sigma = 12.3$) and highly educated (84.1\% had at least a college education). 
 
 \subsection{Procedure}
-We ran our experiment at Xlab~\cite{xlab}, an experimental social science laboratory. Xlab had 36 workstations with identical Windows~7 laptops, with workstation partitions to discourage participants from looking at others' screens. At the beginning of each session, we used a script to revert the computers to a clean image; download Firefox, Chrome, Internet Explorer, VLC media player, and Tor Browser 5.0.3 (instrumented versions that logged user interactions, with or without our proposed UI changes); set up one of the three simulated environments (E1, E2, or E3); and start recording the computer screen.
+We ran our experiment at Xlab~\cite{xlab}, an experimental social science laboratory. Xlab had 36 workstations with identical Windows~7 laptops, with workstation partitions to discourage participants from looking at others' screens.  Before each session, we used a script to revert the computers to a clean image; download Firefox, Chrome, Internet Explorer, VLC media player, and Tor Browser 5.0.3 (instrumented versions that logged user interactions, with or without our proposed UI changes); set up one of the three simulated environments (E1, E2, or E3); and start recording the computer screen.
 We assigned each participant to one of six conditions (Table~\ref{table:participant-summary}), which determines their user interface (OLD or NEW) and censorship environment (E1, E2, or E3).
 We use OLD to refer to the original interface (Figure~\ref{fig:old-interface}) and NEW to refer the version with our changes (Figure~\ref{fig:new-interface}).
 
@@ -713,7 +713,7 @@ For our work, we draw on the large body of previous work in secure interaction d
 
 \section{Conclusion} 
 \label{sec:conclusion}
-We measured why and how users have a hard time connecting to Tor through this usability evaluation of Tor Launcher. We believe that this is because the interface requires users to know technical terms, provides a lot of freedom for error, and does not give proper feedback. Users in heavily censored environments will likely not succeed in connecting to Tor without outside help. We encourage more usability studies on security tools in general as well as other Tor applications, as they have the potential to create user growth, help user retention, and prevent user frustration. Tor Browser version~5.4.5 incorporated  changes based on our work. We also talked with Tor developers about automating connections to Tor, and they are now considering this as future work. 
+We measured why and how users have a hard time connecting to Tor through this usability evaluation of Tor Launcher. We believe that this is because the interface requires users to know technical terms, provides a lot of freedom for error, and does not give proper feedback. Users in heavily censored environments will likely not succeed in connecting to Tor without outside help. We encourage more usability studies on security tools in general as well as other Tor applications, as they have the potential to create user growth, help user retention, and prevent user frustration. Tor Browser version~5.4.5 incorporated  changes based on our work. We also discussed the possibility of automating connections to Tor with its developers, and they are now considering this as future work.
 
 \section {Acknowledgments}
 We would like to thank the peer reviewers, especially our shepherd Jens Grossklags, for giving us valuable feedback on this paper. Tor Project employees Georg Koppen, Mike Perry, and Isabela Bagueros provided valuable insights about the history of Tor Launcher and internal constraints. This work was done in collaboration with Xlab (Experimental Social Science Laboratory)~\cite{xlab}, SCRUB (Secure Computing Research for Users' Benefit)~\cite{scrub}, and BLUES (Berkeley Laboratory for Usable and Experimental Security)~\cite{blues} laboratories, with support from
