@@ -342,22 +342,22 @@ We recruited people from Craigslist using an ad (Appendix~\ref{qualitative-recru
 As we performed the experiments, we distributed participants evenly across experimental conditions:  5~in E1, 5~in E2, and 6~in E3. We ensured that each condition had new and previous Tor Browser users, and tried for variation in gender and age.
 
 \subsection{Procedure} 
-We ran the experiments in a small room with a desk and chair, where a monitor, keyboard, and a Windows computer were set up. On a clean computer, we installed Tor Browser 5.0.3 for testing, Chrome, Firefox, and Internet Explorer as browser options, and VLC media player~\cite{vlc} to record the screen during the experiment. We ran a script that set up one of the three simulated environments (E1, E2, or E3) and started recording the computer screen before each participant.
+We ran the experiments in a small room with a desk and chair, where a monitor, keyboard, and a Windows computer were set up. Using a fresh install of the operating system, we installed Tor Browser 5.0.3 for testing, Chrome, Firefox, and Internet Explorer as browser options, and VLC media player~\cite{vlc} to record the screen during the experiment. We ran a script that set up one of the three simulated environments (E1, E2, or E3) and started recording the computer screen before each participant.
 
-We get informed consent by talking about the study, task, and risks (Appendix~\ref{qualitative-script}). Then the participant visited sample websites in a non-Tor browser to illustrate that some sites were blocked and instruct them to use Tor to circumvent censorship. Their task was to complete a worksheet (Appendix~\ref{participant-worksheet}) that required visiting a censored website (Wikipedia) and an uncensored website (CNN). We chose Wikipedia and CNN because their likely familiarity~\cite{alexa}. After giving the instructions, the researchers left the room to minimize interactions and watched a live feed of the participant's screen.
+Before beginning our procedure, we obtained informed consent from all our participants (Appendix~\ref{qualitative-script}). The session began with the participant visiting sample websites in a non-Tor browser to ascertain that some sites were blocked. The participants' task was to complete a worksheet (Appendix~\ref{participant-worksheet}) that required visiting a censored website (Wikipedia) and an uncensored website (CNN). We chose Wikipedia and CNN because of their likely familiarity~\cite{alexa}. After giving the instructions, the researchers left the room to minimize interactions and watched a live feed of the participant's screen.
 
-After 45 minutes (or when participants finished the worksheet), we interviewed the participant about their experience. We asked general questions (Appendix~\ref{interview-questions}) and participant-specific questions to verify any observations (e.g., ``the participant was selecting bridges at random''). After the interview, we allowed the participant to ask any questions about the experiment, then gave them~\$30 for their time. 
+After 45 minutes (or when participants finished the worksheet), the experimenters interviewed them about their experience. We asked general questions (Appendix~\ref{interview-questions}) and participant-specific questions to verify any observations (e.g., ``the participant was selecting bridges at random''). After the interview, we allowed the participant to ask any questions about the experiment and provided their compensation~(\$30).
 
 \subsection{Results} 
 
-Here we report about the main reasons why participants struggled to use Tor launcher, summarizing general behavioral trends and attitudes. 
-
-\subsection{Pain Points in Tor Launcher} 
 \label{sec:pain-points}
+
+Here we report the main reasons why participants struggled to use Tor Launcher, summarizing general behavioral trends and attitudes, and providing representative quotes from individual subjects.
+
 Participants spent a lot of time going back and forth on screens, looking for proxy information, and waiting for the connection to work or time out. We believe that the reasons for these behaviors were:\\
 
 \begin{itemize}
-\item {\bfseries Unfamiliar concepts:} Participants found technical terms (i.e. relay, bridge, proxy, censor, ISP) confusing, and were often unable to answer the questions that were designed to guide them (Figures~\ref{fig:old-bridge} and~\ref{fig:old-proxy}).
+\item {\bfseries Unfamiliar concepts:} Participants found technical terms (e.g., relay, bridge, proxy, censor, ISP) confusing, and were often unable to answer the questions that were designed to guide them (Figures~\ref{fig:old-bridge} and~\ref{fig:old-proxy}).
 \end{itemize} 
 
 %P11 in the repo, P9 in the paper
@@ -368,14 +368,14 @@ Otherwise you have no chance...''}
 \pquote{P7}{``[I] was just fiddling, to be honest with you... it was kind of confusing.''}
 
 \begin{itemize}
-\item {\bfseries Missing information:} They did not know how to choose a bridge by transport or which bridges worked in their environment (Figures~\ref{fig:old-bridge-combobox}).
+\item {\bfseries Missing information:} They did not know how to choose a bridge/transport or which bridges worked in their environment (Figures~\ref{fig:old-bridge-combobox}).
 \end{itemize} 
 
 %P8 in the repo, P10 in the paper
 \pquote{P10}{``I have no clue what's the difference between flashproxy, fte, etc. And why do I need a custom bridge if there are options built in?''}
 
 \begin{itemize}
-\item {\bfseries Bad recovery:} Participants had to wait a couple minutes to know if their connection failed, and also were quite upset that they had to wait that long to find out that their connection failed.
+\item {\bfseries Bad recovery:} Participants had to wait up to several minutes to know if their connection failed, and were sometimes upset that they had to wait that long to find out that their connection failed.
 \end{itemize} 
 
 %P16 in the repo, P13 in the paper
