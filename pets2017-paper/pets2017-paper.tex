@@ -553,14 +553,14 @@ Those who did not connect were assigned a time of 40:08,
 
 Our changes significantly increased success rates (one-tailed Pearson's chi-square test; $\chi^2 = 2.808$, $\mbox{df} = 1$, $p < 0.047$, albeit with small effect size $\phi=0.157$).
 
-Table~\ref{tab:attempts-bridge-proxy} shows participants' connections to Tor. As reported in the first two columns, most participants who did not need to configure anything (E1) didn't, although some optionally used a bridge. Participants who could have used any bridge (E2) all used the recommended bridge. Participants who needed a \texttt{meek} bridge or custom bridge (E3) chose a \texttt{meek} bridge at random; the ones who tried to use a custom bridge did not format their messages or inputs correctly and failed to connect to Tor.
+Table~\ref{tab:attempts-bridge-proxy} shows participants' connections to Tor. As reported in the first two columns, most participants who did not need to configure anything (E1) didn't, although some optionally used a bridge. Participants who could have used any bridge (E2) all used the recommended bridge. Participants who needed a \texttt{meek} bridge or custom bridge (E3) chose a \texttt{meek} bridge at random; the ones who tried to use a custom bridge did not format their inputs correctly and failed to connect to Tor.
 
 %table
 \begin{table}[t]
 \centering
 \input{attempts-bridge-proxy.tex}
 \caption{
-A table showing participants' connections to Tor.
+Participants' connections to Tor.
 Note that none used the flashproxy, fte, fte-ipv6, obfs4, or scramblesuit bridges to connect. 
 One participant configured a proxy to bypass our simulated censorship environment.
 }
@@ -579,9 +579,9 @@ Seventeen percent (19 of 114) were not able to connect to Tor. The most common r
 \subsubsection{Connection time} 
 Our changes significantly reduced connection time (one-tailed Mann--Whitney; $ Z = -1.84$, $p < 0.0328$, $r= 0.172$). We used a one-tailed Mann--Whitney test because the distributions were non-normal, heavily right-tailed, and right-censored. 
 
-However, the simulated censorship environment (and therefore, the difficulty of the configuration), was the strongest factor in determining connection time (Kruskal--Wallis $\chi^2 = 80.5$, $\mbox{df} = 2$, $p < 10^{-15}$). Figure~\ref{fig:time_to_success_clamped} shows that participants in E2 took longer to connect than participants in E1, and participants in E3 took the longest to connect. It would be ideal to have an interface that allows users to connect in the similar amounts of time, no matter what their configuration requirements; neither the OLD or NEW interface achieves this. 
+The simulated censorship environment (and therefore, the difficulty of the configuration) was the strongest factor in determining connection time (Kruskal--Wallis $\chi^2 = 80.5$, $\mbox{df} = 2$, $p < 10^{-15}$). Figure~\ref{fig:time_to_success_clamped} shows that participants in E2 took longer to connect than participants in E1, and participants in E3 took the longest to connect. Ideally, we would prefer an interface that allows users to connect in about the same amount of time, regardless of their configuration requirements; neither the OLD or NEW interface achieves this. 
 
-Figure~\ref{fig:time_to_success_ecdf} shows a cumulative distribution of connection times. Everyone in E1 was able to connect right away; participants with the NEW interface doing so faster than participants with the OLD interface. Most participants in E2 were able to connect right away, with participants with the NEW interface and OLD interface taking a similar amount of time. Participants in E3 took various amount of time to succeed, with participants with the NEW interface connecting significantly faster than those with the OLD interface. 
+Figure~\ref{fig:time_to_success_ecdf} shows the cumulative distribution of connection times. Everyone in E1 was able to connect right away; participants with the NEW interface were faster than participants with the OLD interface. Most participants in E2 were able to connect right away, with participants with the NEW interface and OLD interface taking a similar amount of time. Participants in E3 took various amount of time to succeed, with participants with the NEW interface connecting significantly faster than those with the OLD interface. 
 
 \begin{figure}[t]
 \centering
@@ -589,7 +589,7 @@ Figure~\ref{fig:time_to_success_ecdf} shows a cumulative distribution of connect
 \caption{
 Connection times.
 Participants in E2 and E3 took a long time to connect.
-The ``DNF'' (did not finish) shows how many did not connect.}
+The ``DNF'' (did not finish) shows how many were never able to successfully connect.}
 \label{fig:time_to_success_clamped}
 \end{figure}
 
@@ -598,7 +598,7 @@ The ``DNF'' (did not finish) shows how many did not connect.}
 \includegraphics{time_to_success_ecdf}
 %\input{time_to_success_ecdf.tex}
 \caption{
-Cumulative success rates over time. Those who did not connect were assigned an arbitrarily large finishing time greater than 40 minutes for the purpose of graphing this cumulative distribution. 
+Cumulative success rates over time. Those who were never able to successfully connect were assigned an arbitrarily large finishing time greater than 40 minutes for the purpose of graphing this cumulative distribution. 
 }
 \label{fig:time_to_success_ecdf}
 \end{figure}
