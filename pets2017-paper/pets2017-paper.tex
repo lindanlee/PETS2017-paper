@@ -311,7 +311,7 @@ Almost any HTTP or SOCKS proxy can be used as the proxy.
 Custom bridge lines require the bridge information in a specific syntax, but this syntax is not specified in the interface.
 Proxy fields also do not provide syntactic guidelines.
 The full list of possible errors we identified can be found in Appendix~\ref{states}.
-\item {\bfseries Poor feedback:} Even if there was a syntactic error in the bridge or proxy fields, the user is not notified until after a connection is attempted and fails. If a censored bridge was chosen, the connection timeout takes several minutes. Error messages were often technical and did not give suggestions for next steps.
+\item {\bfseries Poor feedback:} Even if there was a syntactic error in the bridge or proxy fields, the user is not notified until after a connection is attempted and fails. If a censored bridge was chosen, the connection timeout takes several minutes. Error messages were often technical and did not suggest how to fix the problem.
 \end{itemize}
 
 These are some of the factors that we believed contribute to users struggling with the interface and therefore may prevent them from connecting to Tor quickly.
@@ -339,12 +339,12 @@ We recruited people from Craigslist using an ad (Appendix~\ref{qualitative-recru
 % ages: 22, 23, 34, 52, 25, 22, 29, 21, 25, didn't answer, 20, 20, 26, 24, 62, 52
 
 
-As we performed the experiments, we distributed participants evenly across experimental conditions:  5~in E1, 5~in E2, and 6~in E3. We ensured that each condition had new and previous Tor Browser users, and tried for variation in gender and age.
+As we performed the experiments, we distributed participants evenly across three experimental conditions:  5~in E1, 5~in E2, and 6~in E3. We ensured that each condition had new and previous Tor Browser users, and tried for variation in gender and age.
 
 \subsection{Procedure} 
 We ran the experiments in a small room with a desk and chair, where a monitor, keyboard, and a Windows computer were set up. Using a fresh install of the operating system, we installed Tor Browser 5.0.3 for testing, Chrome, Firefox, and Internet Explorer as browser options, and VLC media player~\cite{vlc} to record the screen during the experiment. We ran a script that set up one of the three simulated environments (E1, E2, or E3) and started recording the computer screen before each participant.
 
-Before beginning our procedure, we obtained informed consent from all our participants (Appendix~\ref{qualitative-script}). The session began with the participant visiting sample websites in a non-Tor browser to ascertain that some sites were blocked. The participants' task was to complete a worksheet (Appendix~\ref{participant-worksheet}) that required visiting a censored website (Wikipedia) and an uncensored website (CNN). We chose Wikipedia and CNN because of their likely familiarity~\cite{alexa}. After giving the instructions, the researchers left the room to minimize interactions and watched a live feed of the participant's screen.
+Before beginning our procedure, we obtained informed consent from all our participants (Appendix~\ref{qualitative-script}). The session began with the participant visiting sample websites in a non-Tor browser to ascertain that some sites were blocked. The participants' task was to complete a worksheet (Appendix~\ref{participant-worksheet}) that required visiting a censored website (Wikipedia) and an uncensored website (CNN). We chose Wikipedia and CNN because of their likely familiarity~\cite{alexa}. After giving the instructions, the researchers left the room to minimize interaction and watched a live feed of the participant's screen.
 
 After 45 minutes (or when participants finished the worksheet), the experimenters interviewed them about their experience. We asked general questions (Appendix~\ref{interview-questions}) and participant-specific questions to verify any observations (e.g., ``the participant was selecting bridges at random''). After the interview, we allowed the participant to ask any questions about the experiment and provided their compensation~(\$30).
 
@@ -384,7 +384,7 @@ Otherwise you have no chance...''}
 %P1 in the repo, P15 in the paper
 \pquote{P15}{``there doesn't seem to be any timeout on any of this stuff. Am I waiting long enough? Should I wait 5 minutes?''}
 
-These were our general observations. Participants who could connect directly (E1) or use the recommended bridge had an easy time connecting (E2), but the participants who could not use many of the hardcoded bridges (E3) did not know what to do. For a summary of how each participant connected to Tor and what behavioral trends dominated in each environment, see Appendix~\ref{summary}. 
+Participants who could connect directly (E1) or use the recommended bridge had an easy time connecting (E2), but the participants who could not use many of the hardcoded bridges (E3) did not know what to do. For a summary of how each participant connected to Tor and what behavioral trends dominated in each environment, see Appendix~\ref{summary}. 
 
 \section{Interface Redesign}
 \label{sec:design} 
@@ -458,11 +458,11 @@ A redesigned version of the Tor Browser 5.0.3 Tor Launcher GUI. Screens are in t
 Designing an interface for Tor had unique challenges: \\
 
 \begin{itemize}
-\item {\bfseries User consent}: Some oppressive regimes may detect and prosecute Tor usage, and therefore simply using Tor may carry risks. While we could help users by automating configuration settings, this would involve probing network configurations, which may alert authorities to Tor usage. Taking this risk without proper consent is not ethical. 
+\item {\bfseries User consent}: Some oppressive regimes may detect and prosecute Tor usage, and therefore simply using Tor may carry risks. While we could help users by automating configuration settings, this would involve probing network configurations and sending network traffic that could allow authorities to detect that the user is using Tor. Taking this risk without proper consent is not ethical. 
 
 \item{\bfseries Active adversaries}: We could ask the user for their location, risk tolerance, or other preferences to help automatically make decisions. Leveraging user input works well, but third-party versions of Tor Browser that replicate the official version could use these inputs to profile users. 
 
-\item {\bfseries Passive adversaries}: A sufficiently powerful network adversary can detect that a user is connecting to Tor. We should allow users to leverage local information to reduce their risk.
+\item {\bfseries Passive adversaries}: A sufficiently powerful network adversary can detect that a user is connecting to Tor, unless the user chooses some very specific network configurations. We should enable informed users who wish to avoid this risk to do so.
 
 \item{\bfseries Maintenance constraints}: Network environments change all the time. Keeping up with how each country censors and pushing changes before the affected users connect to Tor is difficult.
 
