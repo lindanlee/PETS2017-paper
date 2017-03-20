@@ -645,7 +645,7 @@ We did not try any designs that asked for user inputs, due to design constraints
 
 \begin{itemize}
 \item{\bfseries Design changes:} As demonstrated by our design iteration, incremental improvements to the interface can result in significant usability improvements.
-\item{\bfseries Naive automation:} The launcher could automatically choose a bridges, wait for timeout, and try another bridge on failure, so users do not need to do this themselves. We call this ``naive'' automation, because this scheme does not leverage information about the user or network conditions and essentially just automates the trial and error process that users would otherwise have to do manually. 
+\item{\bfseries Naive automation:} The launcher could automatically choose a bridge, wait for a timeout, and try another bridge on failure, so users do not need to do this themselves. We call this ``naive'' automation, because this scheme does not leverage information about the user or network conditions and essentially just automates the trial and error process that users would otherwise have to do manually.
 \item{\bfseries Smart automation:} The launcher could initially connect to Tor via a hard-to-censor bridge, then contact a central server (over this Tor connection) to identify a bridge that will work for the user based on availability and bandwidth constraints, automatically choose that bridge, and re-connect to Tor using that bridge. We call this ``smart'' automation because this scheme involves communication with Tor servers, which choose a bridge that will work for the user on the first try. 
 \end{itemize}
 
