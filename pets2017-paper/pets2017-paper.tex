@@ -466,10 +466,10 @@ Designing an interface for Tor had unique challenges: \\
 
 \item{\bfseries Maintenance constraints}: Network environments change all the time. Keeping up with how each country censors and pushing changes before the affected users connect to Tor is difficult.
 
-\item{\bfseries Financial constraints}: Leveraging harder-to-block ``meek'' bridges, which make use of pay-per-use content delivery networks that are hard to block without imposing collateral damage (e.g., Amazon Web Services), can help, but these relays cost the Tor Project magnitudes more than other relays and using them more would cost even more money.
+\item{\bfseries Financial constraints}: Leveraging harder-to-block \texttt{meek} bridges, which make use of pay-per-use content delivery networks that are hard to block without imposing collateral damage (e.g., Amazon Web Services), can help, but these relays cost the Tor Project magnitudes more than other relays and using them more would cost even more money.
 \end{itemize}
 
-We kept the user involved so that they explicitly start a connection to Tor. We chose not to leverage user inputs such as their location, risk, or other preferences due to active and passive adversaries. We limited our design changes to ones that do not require infrastructural changes or cause additional financial burden to increase the chances of Tor adoption our design changes. 
+We kept the user involved so that they explicitly start a connection to Tor. We chose not to leverage user inputs such as their location, risk, or other preferences due to active and passive adversaries. We limited our design changes to ones that do not require infrastructural changes or cause additional financial burden to make it easier for the Tor project to adopt them.
 
 \subsection{Changes Made} 
 In this section, we highlight and explain the specific design changes we made to address the observed pain points while adhering to the design considerations. We: \\
@@ -477,13 +477,13 @@ In this section, we highlight and explain the specific design changes we made to
 \begin{itemize}
 \item{reduced the amount of text and technical terms in the text (Figures~\ref{fig:new-first},~\ref{fig:new-proxy},~\ref{fig:new-nobridge},~\ref{fig:new-bridge},~\ref{fig:new-bridge-combobox}, and ~\ref{fig:new-progress})  to encourage users to read instructions.} 
 \item{centered the text to make the design compatible for left to right and right to left languages.}
-\item{clarified that configuration options were manual and for heavily censored environments (Figure~\ref{fig:new-first}) to discourage users who did not need bridges and proxies to not optionally configure them.}
+\item{clarified that configuration options were manual and for heavily censored environments (Figure~\ref{fig:new-first}) to discourage users who did not need bridges and proxies from configuring them.}
 \item{added a status bar on the proxy and bridge screens (Figure~\ref{fig:new-proxy},~\ref{fig:new-nobridge},~\ref{fig:new-bridge}, and~\ref{fig:new-bridge-combobox}) to hint at future tasks.}
-\item{reordered proxy and bridge screens (Figures ~\ref{fig:new-proxy} and ~\ref{fig:new-nobridge}) in a topologically sequential order. This hints that proper proxy settings (if required, to set one up properly, and if not required, to be set up properly or not selected) are necessary to reach bridges.}
+\item{reordered proxy and bridge screens (Figures ~\ref{fig:new-proxy} and ~\ref{fig:new-nobridge}) in a topologically sequential order. This hints that proper proxy configuration is necessary to reach bridges.}
 \item{eliminated the bridge and proxy questions (Figure~\ref{fig:old-bridge} and~\ref{fig:old-proxy}) to reduce the number of screens.}
-\item{added auto-detection for proxies (Figure~\ref{fig:new-proxy}) in place of the proxy question. In theory, this can be done locally without leaking information onto the network or for infrastructural changes.}
+\item{added auto-detection for proxies (Figure~\ref{fig:new-proxy}) in place of the proxy question. In theory, this can be done locally without infrastructural changes or leaking information to the network.}
 \item{added the option to not use a bridge on the bridge screen (Figures~\ref{fig:new-nobridge}, ~\ref{fig:new-bridge} and ~\ref{fig:new-bridge-combobox}) to replace the function of the of the bridge question screen (Figure~\ref{fig:old-bridge}).}
-\item{gave a recommendation to use one of the three meek-transport bridges (Figure~\ref{fig:new-bridge}) in case the recommended obfs3-transport bridges were unreachable, which happens in heavily censored real environments and our simulated environment E3.}
+\item{gave a recommendation to use one of the three \texttt{meek}-transport bridges (Figure~\ref{fig:new-bridge}) in case the recommended \texttt{obfs3}-transport bridges were unreachable, which happens in heavily censored real environments and our simulated environment E3.}
 \item{added a summary screen (Figure~\ref{fig:new-summary}) that summarizes the settings before making a connection to Tor, since some participants from the previous study didn't know how they connected to Tor.}
 \item{added indicators on the progress screen (Figure~\ref{fig:new-progress}) that visualized what components are trying to be reached, and in the case of failure, showed which component was unreachable. This was to help users understand what was going on during  connection and to help troubleshoot their configuration.}
 \end{itemize} 
