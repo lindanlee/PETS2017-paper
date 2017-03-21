@@ -22,7 +22,6 @@ digraph torconfig {
 	#"proxy yes/no" -> "bridge settings" [label="back\nbridge=yes"];
 	#"proxy yes/no" -> q3 [label=quit];
 	"proxy yes/no" -> "progress'" [label="CONNECT\nproxy=no"];
-	"progress'" -> "s0'"; #no bridge no proxy connection
 	"progress'" -> "s1"; #bridge no proxy connection 
 	"progress'" -> "s2"; #selected proxy type, good address syntax, good ip address, blank port
 	"progress'" -> "s3"; #selected proxy type, good address syntax, good ip address, good port
@@ -47,7 +46,7 @@ digraph torconfig {
 	#"proxy yes/no'" -> "bridge yes/no" [label="back\nbridge=no"];
 	#"proxy yes/no'" -> "q3'" [label=quit];
 	"proxy yes/no'" -> "progress''" [label="CONNECT\nproxy=no"];
-	"progress''" -> "s0''"; #no bridge no rpoxy connection 
+	"progress''" -> "s0'"; #no bridge no rpoxy connection 
 	"progress''" -> "s2'"; #selected proxy type, good address syntax, good ip address, blank port
 	"progress''" -> "s3'"; #selected proxy type, good address syntax, good ip address, good port
 	"proxy yes/no'" -> "proxy settings'" [label="NEXT\nproxy=yes"];	
