@@ -1,64 +1,77 @@
 digraph torconfig {
-	#"first" -> q0 [label=quit];
-	"first" -> "progress" [label=CONNECT];
-	#"progress" -> "first" [label=cancel];
-	#"progress" -> "progress" [label="timeout?!"];
-	"progress" -> "s0"; #no bridge no proxy connection
-	"progress" -> "e0"; #need a bridge or proxy
-	"first" -> "bridge yes/no" [label=CONFIGURE];
-	#"bridge yes/no" -> q1 [label=quit];
-	"bridge yes/no" -> "bridge settings" [label=YES];
-	#"bridge settings" -> "bridge yes/no" [label=back];
-	#"bridge settings" -> q2 [label=quit];
-	"bridge settings" -> "bridge help" [label=help];
-	#"bridge help" -> "bridge settings" [label=done];
-	"bridge help" -> "open-ended user actions" [label=suggestion1];
-	"bridge help" -> "open-ended user actions" [label=suggestion2];
-	"bridge help" -> "open-ended user actions" [label=suggestion3];
-	"bridge yes/no" -> "proxy yes/no'" [label=NO];
-	"bridge settings" -> "proxy yes/no" [label="YES\nbridge-info=stuff"];
+	"F" [label="first (F)"];
+	"Pr" [label="progress (Pr)"];
+	"Pr'" [label="progress (Pr)'"];
+	"Pr''" [label="progress (Pr)''"];
+	"B1" [label="bridge 1 (B1)"];
+	"B2" [label="bridge 2 (B2)"];
+	"BH" [label="bridge help (BH)"];
+	"P1" [label="proxy 1 (P1)"];
+	"P1'" [label="proxy 1 (P1)'"];
+	"P2" [label="proxy 2 (P2)"];
+	"P2'" [label="proxy 2 (P2)'"];
+	"open-ended" [label="open-ended user actions"];
+
+	#"F" -> q0 [label=quit];
+	"F" -> "Pr" [label=CONNECT];
+	#"Pr" -> "F" [label=cancel];
+	#"Pr" -> "Pr" [label="timeout?!"];
+	"Pr" -> "s0"; #no bridge no proxy connection
+	"Pr" -> "e0"; #need a bridge or proxy
+	"F" -> "B1" [label=CONFIGURE];
+	#"B1" -> q1 [label=quit];
+	"B1" -> "B2" [label=YES];
+	#"B2" -> "B1" [label=back];
+	#"B2" -> q2 [label=quit];
+	"B2" -> "BH" [label=help];
+	#"BH" -> "B2" [label=done];
+	"BH" -> "open-ended" [label=suggestion1];
+	"BH" -> "open-ended" [label=suggestion2];
+	"BH" -> "open-ended" [label=suggestion3];
+	"B1" -> "P1'" [label=NO];
+	"B2" -> "P1" [label="YES\nbridge-info=stuff"];
 	#####################################################################################################
-	#"proxy yes/no" -> "bridge yes/no" [label="back\nbridge=no"];
-	#"proxy yes/no" -> "bridge settings" [label="back\nbridge=yes"];
-	#"proxy yes/no" -> q3 [label=quit];
-	"proxy yes/no" -> "progress'" [label="CONNECT\nproxy=no"];
-	"progress'" -> "s1"; #bridge no proxy connection 
-	"progress'" -> "s2"; #selected proxy type, good address syntax, good ip address, blank port
-	"progress'" -> "s3"; #selected proxy type, good address syntax, good ip address, good port
-	"progress'" -> "e1"; #bridge blocked in country
-	"progress'" -> "e2"; #unspecified bridges
-	"progress'" -> "e3"; #bridge syntax error
-	"progress'" -> "e4"; #custom bridge: good syntax, bad ip address
-	"progress'" -> "e5"; #custom bridge blocked
-	"proxy yes/no" -> "proxy settings" [label="NEXT\nproxy=yes"];	
-	#"proxy settings" -> "proxy yes/no" [label="back\nproxy=yes"];
-	#"proxy settings" -> q4 [label=quit];
-	"proxy settings" -> "progress'" [label="CONNECT\nproxy-info=stuff"];
-	"progress'" -> "e6"; #blank proxy input
-	"progress'" -> "e7"; #no proxy type
-	"progress'" -> "e8"; #selected proxy type, bad address syntax
-	"progress'" -> "e9"; #selected proxy type, good address syntax, bad ip address, blank port
-	"progress'" -> "e10"; #selected proxy type, good address syntax, bad ip address, good port
-	"progress'" -> "e11"; #selected proxy type, good address syntax, bad ip address, bad port
-	"progress'" -> "e12"; #selected proxy type, good address syntax, good ip address, bad port
-	"progress'" -> "e13"; #selected proxy type, good address syntax, good ip address, blank port
+	#"P1" -> "B1" [label="back\nbridge=no"];
+	#"P1" -> "B2" [label="back\nbridge=yes"];
+	#"P1" -> q3 [label=quit];
+	"P1" -> "Pr'" [label="CONNECT\nproxy=no"];
+	"Pr'" -> "s1"; #bridge no proxy connection 
+	"Pr'" -> "s2"; #selected proxy type, good address syntax, good ip address, blank port
+	"Pr'" -> "s3"; #selected proxy type, good address syntax, good ip address, good port
+	"Pr'" -> "e1"; #bridge blocked in country
+	"Pr'" -> "e2"; #unspecified bridges
+	"Pr'" -> "e3"; #bridge syntax error
+	"Pr'" -> "e4"; #custom bridge: good syntax, bad ip address
+	"Pr'" -> "e5"; #custom bridge blocked
+	"P1" -> "P2" [label="NEXT\nproxy=yes"];	
+	#"P2" -> "P1" [label="back\nproxy=yes"];
+	#"P2" -> q4 [label=quit];
+	"P2" -> "Pr'" [label="CONNECT\nproxy-info=stuff"];
+	"Pr'" -> "e6"; #blank proxy input
+	"Pr'" -> "e7"; #no proxy type
+	"Pr'" -> "e8"; #selected proxy type, bad address syntax
+	"Pr'" -> "e9"; #selected proxy type, good address syntax, bad ip address, blank port
+	"Pr'" -> "e10"; #selected proxy type, good address syntax, bad ip address, good port
+	"Pr'" -> "e11"; #selected proxy type, good address syntax, bad ip address, bad port
+	"Pr'" -> "e12"; #selected proxy type, good address syntax, good ip address, bad port
+	"Pr'" -> "e13"; #selected proxy type, good address syntax, good ip address, blank port
 	#####################################################################################################
-	#"proxy yes/no'" -> "bridge yes/no" [label="back\nbridge=no"];
-	#"proxy yes/no'" -> "q3'" [label=quit];
-	"proxy yes/no'" -> "progress''" [label="CONNECT\nproxy=no"];
-	"progress''" -> "s0'"; #no bridge no rpoxy connection 
-	"progress''" -> "s2'"; #selected proxy type, good address syntax, good ip address, blank port
-	"progress''" -> "s3'"; #selected proxy type, good address syntax, good ip address, good port
-	"proxy yes/no'" -> "proxy settings'" [label="NEXT\nproxy=yes"];	
-	#"proxy settings'" -> "proxy yes/no'" [label="back\nproxy=yes"];
-	#"proxy settings'" -> "q4'" [label=quit];
-	"proxy settings'" -> "progress''" [label="CONNECT\nproxy-info=stuff"];
-	"progress''" -> "e6'"; #blank proxy input
-	"progress''" -> "e7'"; #no proxy type
-	"progress''" -> "e8'"; #selected proxy type, bad adddress syntax
-	"progress''" -> "e9'"; #selected proxy type, good address syntax, bad ip address, blank port
-	"progress''" -> "e10'"; #selected proxy type, good address syntax, bad ip address, good port
-	"progress''" -> "e11'"; #selected proxy type, good address syntax, bad ip address, bad port
-	"progress''" -> "e12'"; #selected proxy type, good address syntax, good ip address, bad port
-	"progress''" -> "e13'"; #selected proxy type, good address syntax, good ip address, blank port
+	#"P1'" -> "B1" [label="back\nbridge=no"];
+	#"P1'" -> "q3'" [label=quit];
+	"P1'" -> "Pr''" [label="CONNECT\nproxy=no"];
+	"Pr''" -> "s0'"; #no bridge no rpoxy connection 
+	"Pr''" -> "s2'"; #selected proxy type, good address syntax, good ip address, blank port
+	"Pr''" -> "s3'"; #selected proxy type, good address syntax, good ip address, good port
+	"P1'" -> "P2'" [label="NEXT\nproxy=yes"];	
+	#"P2'" -> "P1'" [label="back\nproxy=yes"];
+	#"P2'" -> "q4'" [label=quit];
+	"P2'" -> "Pr''" [label="CONNECT\nproxy-info=stuff"];
+	"Pr''" -> "e6'"; #blank proxy input
+	"Pr''" -> "e7'"; #no proxy type
+	"Pr''" -> "e8'"; #selected proxy type, bad adddress syntax
+	"Pr''" -> "e9'"; #selected proxy type, good address syntax, bad ip address, blank port
+	"Pr''" -> "e10'"; #selected proxy type, good address syntax, bad ip address, good port
+	"Pr''" -> "e11'"; #selected proxy type, good address syntax, bad ip address, bad port
+	"Pr''" -> "e12'"; #selected proxy type, good address syntax, good ip address, bad port
+	"Pr''" -> "e13'"; #selected proxy type, good address syntax, good ip address, blank port
 }
