@@ -342,7 +342,7 @@ We recruited people from Craigslist using an ad (Appendix~\ref{qualitative-recru
 As we performed the experiments, we distributed participants evenly across three experimental conditions:  5~in E1, 5~in E2, and 6~in E3. We ensured that each condition had new and previous Tor Browser users, and tried for variation in gender and age.
 
 \subsection{Procedure} 
-We ran the experiments in a small room where a monitor, keyboard, and a Windows computer were set up. Using a fresh install of the operating system, we installed Tor Browser 5.0.3 for testing, Chrome, Firefox, and Internet Explorer as browser options, and VLC media player~\cite{vlc} to record the screen during the experiment. Before each participant, we ran a script that set up one of the three simulated environments (E1, E2, or E3) and started recording the computer screen.
+We ran the experiments in a room with a monitor, keyboard, and a Windows computer. On a fresh install of the operating system, we installed Tor Browser 5.0.3 for testing, Chrome, Firefox, and Internet Explorer for browser options, and VLC media player~\cite{vlc} for recording the computer screen. Before each participant, we ran a script that simulated E1, E2, or E3 and started recording the computer screen.
 
 Before beginning our procedure, we obtained informed consent from all our participants (Appendix~\ref{qualitative-script}). The session began with the participant visiting sample websites in a non-Tor browser to ascertain that some sites were blocked. The participants' task was to complete a worksheet (Appendix~\ref{participant-worksheet}) that required visiting a censored website (Wikipedia) and an uncensored website (CNN). We chose Wikipedia and CNN because of their likely familiarity~\cite{alexa}. After giving the instructions, the researchers left the room to minimize interaction and watched a live feed of the participant's screen.
 
@@ -470,7 +470,10 @@ Designing an interface for Tor had unique challenges: \\
 Leveraging these harder-to-block bridges can help users in heavily censored environments, but these relays cost the Tor Project magnitudes more than other relays and using them more would cost even more money.
 \end{itemize}
 
-We kept the user involved so that they explicitly start a connection to Tor. We chose not to leverage user inputs such as their location, risk, or other preferences. We limited our design changes to ones that do not require infrastructural changes or cause additional financial burden to make it easier for the Tor project to adopt them.
+We kept the user involved in the configuration so that they explicitly start a connection to Tor (currently, the user needs to click a ``connect'' button before Tor Launcher makes a connection to Tor). 
+%We chose not to leverage user inputs such as their location, risk, or other preferences, as this would require additional research on all these options before designing changes incorporating those. 
+And although some users in our qualitative study tried to configure unnecessary components, we still also allow all users to choose a manual configuration to give them a chance to connect to Tor securely the first time. 
+We limited our design changes to ones that do not require infrastructural changes or cause additional financial burden to make it easier for the Tor project to adopt them.
 
 \subsection{Changes Made} 
 In this section, we highlight and explain the specific design changes we made to address the observed pain points while adhering to the design considerations. We: \\
