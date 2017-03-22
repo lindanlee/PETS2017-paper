@@ -102,9 +102,10 @@ Improving Tor Launcher has the obvious benefit of helping censored users connect
 \item{Provide recommendations beyond design changes to improve Tor Launcher, such as leveraging user input (requires research) and building an automated connection scheme (requires Tor infrastructure work).}
 \end{itemize} 
 
-Specifically, we describe how the initial evaluation of the interface (Section~\ref{sec:inspection}) and our observations of participants' interactions with it (Section~\ref{sec:qualitative}).
+Specifically, we describe the initial evaluation of the interface (Section~\ref{sec:inspection}) and our observations of participants' interactions with it (Section~\ref{sec:qualitative}).
 Based on the insights from our observations, we proposed several changes to the interface (Section~\ref{sec:design}) and measured how successfully and quickly users connect to Tor before and after changes (Section~\ref{sec:quantitative}).
-Finally, we provide recommendations based on what we learned (Section~\ref{sec:recommendations}), we address limitations of our evaluation (Section~\ref{sec:limitations}), and frame our study in the context of existing work (Section~\ref{sec:related}).
+Finally, we provide recommendations based on what we learned (Section~\ref{sec:recommendations}), we address limitations of our evaluation (Section~\ref{sec:limitations}), frame our study in the context of existing work (Section~\ref{sec:related}),
+and conclude (Section~\ref{sec:conclusion}).
 We hope that our usability evaluation serves as an informative case study and provides guidance on further improving Tor Launcher, as well as other privacy-enhancing technologies.
 
 
@@ -240,7 +241,7 @@ Qualitative testing illuminates {\it why or how} the software is or is not usabl
 We used our qualitative study observations to design interface changes that would address encountered issues.
 We used quantitative testing to measure the impact of our proposed changes, as compared to the original interface.
 
-We performed our qualitative experiments one participant at a time, so that we could observe their behaviors in real time and interview them about their experience after user.
+We performed our qualitative experiments one participant at a time, so that we could observe their behaviors in real time and interview them about their experience after use.
 We recruited five participants per experimental condition to gather qualitative data; this has been suggested as the optimal number of measurements to maximize the cost-benefit ratio~\cite{howmanyusers}.
 We performed our quantitative experiments at a behavioral laboratory many participants at a time, using instrumentation to capture evaluation metrics.
 We recruited twenty users per experimental condition to gather quantitative data, based on estimates of the number needed for statistical significance~\cite{howmanyusers}.
@@ -286,7 +287,7 @@ We use the following three industry-standard~\cite{albert2013measuring} usabilit
 \begin{itemize}
 \item {\bfseries Completion rate:}  the percentage of users that want to connect to Tor and successfully do so. The higher the completion rate, the better. The ideal case would be that everyone is able to connect to Tor if they want to. Even if users do not successfully connect to Tor at first but eventually do so during the experiment, they are considered to have successfully connected to Tor for this metric.
 \item {\bfseries Connection time:} the amount of time users take to connect to Tor. The less time it takes for users to connect, the better. The ideal case would be that the connection time is very close to the time it takes for the application to communicate with the servers and establish a circuit of relays for the connection, which can take up to several minutes. Connection time includes this bootstrapping time and any additional time that people spend in the interface.
-\item {\bfseries Configuration time:} the amount of time users spend in the interface. The less time it takes for users to configure their preferences, the better. Configuration time is included in connection time, so it will always be less than connection time. We defined configuration time as any time spent on the bridge and proxy screens, since users were most likely configuring bridges and proxies. We excluded any time spent on the progress screen, because users were most likely waiting for connections to establish or timeout and not necessarily interacting with the interface. This should be as short as possible.
+\item {\bfseries Configuration time:} the amount of time users spend in the interface. The less time it takes for users to configure their preferences, the better. Configuration time is included in connection time, so it will always be less than connection time. We defined configuration time as any time spent on the bridge and proxy screens, since users were most likely configuring bridges and proxies. We excluded any time spent on the progress screen, because users were most likely waiting for connections to establish or time out and not necessarily interacting with the interface. This should be as short as possible.
 \end{itemize}
 
 Completion rate is the most important usability metric, measuring if users can accomplish the task. We defined success as a binary metric that is true if a user connected to Tor and false if a user did not.
@@ -455,7 +456,7 @@ A redesigned version of the Tor Browser 5.0.3 Tor Launcher GUI. Screens are in t
 
 \subsection {Design Considerations} 
 
-Designing an interface for Tor had unique challenges: \\
+Designing an interface for Tor has unique challenges: \\
 
 \begin{itemize}
 \item {\bfseries User consent}: Some oppressive regimes may detect and prosecute Tor usage, and therefore simply using Tor may carry risks. While we could help users by automating configuration settings, this would involve probing network configurations and sending network traffic that could allow authorities to detect that the user is using Tor.
@@ -479,7 +480,7 @@ We limited our design changes to ones that do not require infrastructural change
 In this section, we highlight and explain the specific design changes we made to address the observed pain points while adhering to the design considerations. We: \\
 
 \begin{itemize}
-\item{reduced the amount of text and technical terms in the text (Figures~\ref{fig:new-first},~\ref{fig:new-proxy},~\ref{fig:new-nobridge},~\ref{fig:new-bridge},~\ref{fig:new-bridge-combobox}, and ~\ref{fig:new-progress})  to encourage users to read instructions.} 
+\item{reduced the amount of text and technical terms in the text (Figures~\ref{fig:new-first},~\ref{fig:new-proxy},~\ref{fig:new-nobridge},~\ref{fig:new-bridge},~\ref{fig:new-bridge-combobox}, and~\ref{fig:new-progress})  to encourage users to read instructions.} 
 \item{centered the text to make the design compatible for left to right and right to left languages.}
 \item{clarified that configuration options were manual and for heavily censored environments (Figure~\ref{fig:new-first}) to discourage users who did not need bridges and proxies from configuring them.}
 \item{added a status bar on the proxy and bridge screens (Figure~\ref{fig:new-proxy},~\ref{fig:new-nobridge},~\ref{fig:new-bridge}, and~\ref{fig:new-bridge-combobox}) to hint at future tasks.}
