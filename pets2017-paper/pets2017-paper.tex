@@ -86,8 +86,8 @@ In this paper, we measure potential usability issues, discuss design constraints
 \section{Introduction}
 Tor~\cite{dingledine2004tor} is an anonymity network that routes Internet traffic through a series of relays 
 to make it difficult to observe sources and destinations.
-Tor Browser~\cite{torbrowser} is a modified Firefox browser that routes traffic through Tor, designed to minimize the configuration required before connecting.
-Although Tor was originally designed for anonymity, many now use it to circumvent Internet censorship.
+Tor Browser~\cite{torbrowser} is a modified Firefox browser that routes traffic through the Tor network.
+Although Tor and Tor Browser were originally designed for anonymity, many now use them to circumvent Internet censorship.
 Because of this, many countries block Tor relays specifically to prevent their citizens from circumventing censorship~\cite{winter2012great}.
 
 Tor Browser is bundled with a graphical configuration interface, Tor Launcher, which allows users to bypass censorship by configuring various bridges, proxies, and transport protocols prior to connecting to Tor.
@@ -230,7 +230,7 @@ The Tor Browser 5.0.3 Tor Launcher GUI. Screens are in the order that they appea
 \end{figure*} 
 
 \section{Methodology} 
-This section discusses our usability testing process, including the simulated censorship environments we used to require users to configure different network components to connect to Tor and the evaluation metrics  we collected.
+This section discusses our IRB-approved usability testing process, including the simulated censorship environments we used to require users to configure different network components to connect to Tor and the evaluation metrics  we collected.
 
 \subsection{Testing Pipeline} 
 We began by performing a cognitive walkthrough~\cite{wharton1994cognitive,cognitive-walkthrough} to inspect the interface to anticipate potential problems and formally assess its pros and cons.
@@ -473,7 +473,7 @@ Leveraging these harder-to-block bridges can help users in heavily censored envi
 
 We kept the user involved in the configuration so that they explicitly start a connection to Tor (currently, the user needs to click a ``connect'' button before Tor Launcher makes a connection to Tor). 
 %We chose not to leverage user inputs such as their location, risk, or other preferences, as this would require additional research on all these options before designing changes incorporating those. 
-And although some users in our qualitative study tried to configure unnecessary components, we still also allow all users to choose a manual configuration to give them a chance to connect to Tor securely the first time. 
+And although some users in our qualitative study tried to configure unnecessary components in confusion, we still give users the freedom to configure optional components. 
 We limited our design changes to ones that do not require infrastructural changes or cause additional financial burden to make it easier for the Tor project to adopt them.
 
 \subsection{Changes Made} 
@@ -585,7 +585,7 @@ Our changes significantly reduced connection time (one-tailed Mann--Whitney; $ Z
 
 The simulated censorship environment (and therefore, the difficulty of the configuration) was the strongest factor in determining connection time (Kruskal--Wallis $\chi^2 = 80.5$, $\mbox{df} = 2$, $p < 10^{-15}$). Figure~\ref{fig:time_to_success_clamped} shows that participants in E2 took longer to connect than participants in E1, and participants in E3 took the longest to connect. Ideally, we would prefer an interface that allows users to connect in about the same amount of time, regardless of their configuration requirements; neither the OLD or NEW interface achieves this. 
 
-Figure~\ref{fig:time_to_success_ecdf} shows the cumulative distribution of connection times. Everyone in E1 was able to connect right away; participants with the NEW interface were faster than participants with the OLD interface. Most participants in E2 were able to connect right away, with participants with the NEW interface and OLD interface taking a similar amount of time. Participants in E3 took various amount of time to succeed, with participants with the NEW interface connecting significantly faster than those with the OLD interface. 
+Figure~\ref{fig:time_to_success_ecdf} shows the cumulative distribution of connection times. Everyone in E1 was able to connect right away; participants with the NEW interface were faster than participants with the OLD interface. Most participants in E2 were able to connect right away, with participants with the NEW interface and OLD interface taking a similar amount of time. Participants in E3 took various amounts of time to succeed, with participants with the NEW interface connecting significantly faster than those with the OLD interface. 
 
 \begin{figure}[t]
 \centering
@@ -614,6 +614,8 @@ Our changes significantly reduced configuration time (one-tailed Mann--Whitney; 
 Figure~\ref{fig:time_to_success_active_clamped} shows that participants' active configuration time was generally a small fraction of their connection time. The configuration time of participants in E1 was dominated by the time waiting for a connection to be established to Tor because they generally chose the correct configuration right away. The configuration time of participants in E3 was also dominated by the time waiting for a connection to be established to Tor, because they usually needed to try multiple configuration options before connecting, but had to wait for the connection to time out or manually cancel their connection between attempts. The configuration time of participants in E2 was a modest fraction of their connection time, due to a combination of reasons that affected participants in E1 and E3. 
 
 Due to the reasons above, participants spent more time on the progress screen than on any other screen (Table~\ref{table:median_time}). We defined configuration time as a participant's connection time spent on all screens but the progress screen, because participants mostly waited on the progress screen. However, we noticed that some participants utilized this time to search for help in another browser while waiting for their connection to time out, so configuration time is not a perfect metric to measure participant engagement. 
+
+Although none of the participants needed to configure a proxy to bypass censorship, participants still spent time trying to configure them. Participants the OLD interface spent more time configuring proxies than bridges and participants with the NEW interface spent about an equal amount of time configuring bridges and proxies even when the interface said that they didn't need one. 
 
 \begin{figure}[t]
 \centering
