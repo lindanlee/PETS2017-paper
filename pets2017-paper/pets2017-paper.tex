@@ -271,8 +271,6 @@ similarly, E3's is a superset of E2's.
 \label{tab:environments}
 \end{table}
 
-The simulated environments are not intended to imitate any particular country's network---though they do use the same techniques that are currently used by various censorship regimes. Rather, we designed simulated environments to have different requirements to connect to Tor. We believe this to be sufficient for the purpose of testing the configuration interface, since this requires the user to take the different interface paths we wanted to test (and matches the actions real users would need to take to circumvent various types of censorship).
-
 In the first environment, E1, particular websites were blocked, which meant that they could be accessed using a default Tor configuration (i.e., bridges or proxies were not needed). In the second environment, E2, we additionally blocked the IP addresses of public Tor relays, which meant that Tor could still be accessed by enabling any of the included bridges. Finally, the third environment, E3, additionally blocked several of the included bridges, which required experimenting with several different bridges---beyond the recommended option---in order to successfully connect.
 
 The simulated environments are not intended to imitate any particular country's network---though they do use the same techniques that are currently used by various censorship regimes. Rather, we designed simulated environments to have different requirements to connect to Tor. We believe this to be sufficient for the purpose of testing the configuration interface, since this requires the user to take the different interface paths we wanted to test (and matches the actions real users would need to take to circumvent various types of censorship).
