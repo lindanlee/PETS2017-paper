@@ -22,12 +22,14 @@ torconfig.pdf: ../torconfig.dot
 
 STAGING_DIR = paper2-2017-3-source
 # https://petsymposium.org/authors.php#camera-ready
-paper2-2017-3-source.zip: pets2017-paper.tex pets2017-paper.bib dgruyter_NEW.sty dg-degruyter.pdf by-nc-nd.pdf $(FIGS) $(TABLES) screenshots/
+paper2-2017-3-source.zip: pets2017-paper.tex pets2017-paper.bib dgruyter_NEW.sty dg-degruyter.pdf by-nc-nd.pdf $(FIGS) $(TABLES) screenshots/ dist-Makefile
 	rm -rf "$(STAGING_DIR)"
 	mkdir -p "$(STAGING_DIR)"
 	cp -RL $^ "$(STAGING_DIR)"
 # PoPETs wants the main file to be called "main.tex".
 	mv "$(STAGING_DIR)/pets2017-paper.tex" "$(STAGING_DIR)/main.tex"
+# Include a simplified makefile for editors.
+	mv "$(STAGING_DIR)/dist-Makefile" "$(STAGING_DIR)/Makefile"
 	rm -f "$@"
 	zip -9r "$@" "$(STAGING_DIR)"
 	rm -rf "$(STAGING_DIR)"

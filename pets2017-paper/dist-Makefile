@@ -1,0 +1,13 @@
+# Simplified makefile for editors (doesn't rebuild figures, etc.)
+
+PDFLATEX = pdflatex -halt-on-error -file-line-error
+BIBTEX = bibtex
+
+all: main.pdf
+%.pdf: %.tex
+	$(PDFLATEX) $*
+	$(BIBTEX) $*
+	$(PDFLATEX) $*
+	$(PDFLATEX) $*
+
+.PHONY: all
